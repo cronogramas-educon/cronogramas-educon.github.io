@@ -30,7 +30,6 @@ jobs:
       EXCEL_URL: ${{ secrets.EXCEL_URL }}
       # Modo de entrada: "excel" (Plan A, descarga el .xlsx) o "json" (Plan B, datos en el evento de Power Automate)
       MODO_ENTRADA: ${{ vars.MODO_ENTRADA || 'excel' }}
-      PAYLOAD: ${{ toJSON(github.event.client_payload) }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -53,8 +52,16 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$MODO_ENTRADA" = "json" ]; then
-            [ "$PAYLOAD" != "null" ] || { echo "::error::Modo json: el evento no trae client_payload. Usa el evento excel-actualizado de Power Automate con las filas."; exit 1; }
-            printf '%s' "$PAYLOAD" | python -c "import sys,json; p=json.load(sys.stdin); r=p.get('filas', p) if isinstance(p, dict) else p; json.dump(json.loads(r) if isinstance(r, str) else r, open('fuente.json','w'))"
+            # La carga útil se lee del archivo del evento, nunca de una variable de entorno: así no se imprime en el registro público
+            python - <<'PY'
+          import json, os, sys
+          p = json.load(open(os.environ["GITHUB_EVENT_PATH"])).get("client_payload")
+          if not p:
+              print("::error::Modo json: el evento no trae client_payload. Usa el evento excel-actualizado de Power Automate con las filas.")
+              sys.exit(1)
+          r = p.get("filas", p) if isinstance(p, dict) else p
+          json.dump(json.loads(r) if isinstance(r, str) else r, open("fuente.json", "w"))
+          PY
             echo "ruta=fuente.json" >> "$GITHUB_OUTPUT"; echo "flag=--json" >> "$GITHUB_OUTPUT"
           else
             [ -n "$EXCEL_URL" ] || { echo "::error::Falta el secreto EXCEL_URL (Settings > Secrets and variables > Actions)."; exit 1; }
