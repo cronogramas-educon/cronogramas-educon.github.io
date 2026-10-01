@@ -1,0 +1,5 @@
+pytest
+icalendar
+playwright
+pypdfium2
+pillow

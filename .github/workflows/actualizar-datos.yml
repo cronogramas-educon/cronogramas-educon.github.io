@@ -1,0 +1,132 @@
+name: Actualizar datos
+
+on:
+  repository_dispatch:
+    types: [excel-actualizado]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'   # red de seguridad si el aviso de Power Automate falla o se demora
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**', 'README.md', 'tests/**', 'referencias/**']
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: actualizar-datos
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    # En modo json no hay Excel que descargar en el temporizador: se omite sin marcar error
+    if: ${{ !(vars.MODO_ENTRADA == 'json' && github.event_name == 'schedule') }}
+    runs-on: ubuntu-latest
+    outputs:
+      desplegar: ${{ steps.decidir.outputs.desplegar }}
+    env:
+      EXCEL_URL: ${{ secrets.EXCEL_URL }}
+      # Modo de entrada: "excel" (Plan A, descarga el .xlsx) o "json" (Plan B, datos en el evento de Power Automate)
+      MODO_ENTRADA: ${{ vars.MODO_ENTRADA || 'excel' }}
+      PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt pytest icalendar
+
+      - name: Pruebas de datos
+        run: pytest tests/test_datos.py -q
+
+      - name: Obtener la fuente (Excel o JSON)
+        if: github.event_name != 'push'
+        id: fuente
+        run: |
+          set -euo pipefail
+          if [ "$MODO_ENTRADA" = "json" ]; then
+            [ "$PAYLOAD" != "null" ] || { echo "::error::Modo json: el evento no trae client_payload. Usa el evento excel-actualizado de Power Automate con las filas."; exit 1; }
+            printf '%s' "$PAYLOAD" | python -c "import sys,json; p=json.load(sys.stdin); json.dump(p.get('filas', p) if isinstance(p, dict) else p, open('fuente.json','w'))"
+            echo "ruta=fuente.json" >> "$GITHUB_OUTPUT"; echo "flag=--json" >> "$GITHUB_OUTPUT"
+          else
+            [ -n "$EXCEL_URL" ] || { echo "::error::Falta el secreto EXCEL_URL (Settings > Secrets and variables > Actions)."; exit 1; }
+            case "$EXCEL_URL" in *\?*) URL="${EXCEL_URL}&download=1" ;; *) URL="${EXCEL_URL}?download=1" ;; esac
+            curl -fsSL --max-time 90 --retry 2 -D cabeceras.txt -o fuente.xlsx "$URL" \
+              || { echo "::error::No se pudo descargar el Excel. Revisa que el vínculo siga siendo 'Cualquier persona con el vínculo' y que no haya expirado."; exit 1; }
+            echo "ruta=fuente.xlsx" >> "$GITHUB_OUTPUT"; echo "flag=" >> "$GITHUB_OUTPUT"
+            echo "modificado=$(grep -i '^last-modified:' cabeceras.txt | tail -1 | cut -d' ' -f2- | tr -d '\r')" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validar y construir
+        if: github.event_name != 'push'
+        env:
+          RUTA: ${{ steps.fuente.outputs.ruta }}
+          FLAG: ${{ steps.fuente.outputs.flag }}
+          MODIFICADO: ${{ steps.fuente.outputs.modificado }}
+        run: |
+          set +e
+          python scripts/construir_datos.py "$RUTA" $FLAG --modificado "$MODIFICADO" 2>&1 | tee salida.txt
+          estado=${PIPESTATUS[0]}
+          {
+            echo "## Actualizar datos"
+            echo '```'; cat salida.txt; echo '```'
+            [ "$estado" -eq 0 ] || echo "**Falló: se conserva el último data.json bueno.**"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $estado
+
+      - name: Publicar cambios en el repositorio
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data estado cronograma.ics
+          if git diff --cached --quiet; then
+            echo "hay=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Actualizar datos desde el Excel"
+            git pull --rebase origin main
+            git push origin HEAD:main
+            echo "hay=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Decidir si se despliega
+        id: decidir
+        run: |
+          # Se despliega si cambiaron los datos o si es un push o ejecución manual (para publicar cambios del sitio)
+          if [ "${{ steps.commit.outputs.hay }}" = "true" ] || [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "desplegar=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "desplegar=false" >> "$GITHUB_OUTPUT"
+            echo "Sin cambios en los datos: no se despliega." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Armar el sitio
+        if: steps.decidir.outputs.desplegar == 'true'
+        run: |
+          mkdir _sitio
+          cp -r index.html css js assets data config cronograma.ics _sitio/
+          touch _sitio/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.decidir.outputs.desplegar == 'true'
+        with:
+          path: _sitio
+
+  desplegar:
+    needs: construir
+    if: needs.construir.outputs.desplegar == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - id: pages
+        uses: actions/deploy-pages@v4
