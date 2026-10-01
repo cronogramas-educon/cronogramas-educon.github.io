@@ -228,3 +228,16 @@ def test_ics_escape_y_plegado_utf8():
     plegada = plegar(larga)
     assert all(len(p.encode()) <= 75 for p in plegada.split("\r\n"))
     assert plegada.replace("\r\n ", "") == larga
+
+
+def test_json_con_encabezados_codificados_de_excel_online(raiz, tmp_path):
+    """El conector de Excel Online devuelve 'No.' como 'No_x002e_'."""
+    ws = load_workbook(FIX)[cd.HOJA]
+    cod = lambda k: k.replace(".", "_x002e_")
+    filas = [{cod(c): ws.cell(r, i + 1).value for i, c in enumerate(cd.COLS)} for r in range(3, 38)]
+    for f in filas:
+        f[cod("Fecha")] = (f[cod("Fecha")].date() - datetime(1899, 12, 30).date()).days
+    p = tmp_path / "codificado.json"
+    p.write_text(json.dumps(filas, default=str), encoding="utf-8")
+    datos, _ = cd.construir(p, raiz, modo_json=True, ahora=T0)
+    assert datos["meta"]["totalClases"] == 35 and datos["clases"][0]["id"] == 1

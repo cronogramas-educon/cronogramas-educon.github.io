@@ -84,6 +84,9 @@ def leer_json(ruta):
     datos = json.loads(Path(ruta).read_text(encoding="utf-8"))
     if isinstance(datos, dict):
         datos = datos.get("filas") or datos.get("value") or []
+    # Excel Online codifica los caracteres especiales de los encabezados: "No." llega como "No_x002e_"
+    deco = lambda k: re.sub(r"_x([0-9a-fA-F]{4})_", lambda m: chr(int(m.group(1), 16)), k)
+    datos = [{deco(k): v for k, v in d.items()} for d in datos]
     if datos and not set(COLS) <= set(datos[0]):
         raise ErrorDatos(f"El JSON no trae las columnas obligatorias: {[c for c in COLS if c not in datos[0]]}")
     return [[d.get(c) for c in COLS] for d in datos]
