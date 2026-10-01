@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store
+# El Excel de muestra trae enlaces reales de Teams: nunca al repositorio público
+referencias/datos/cronograma_muestra.xlsx
+referencias/datos/data.ejemplo.json

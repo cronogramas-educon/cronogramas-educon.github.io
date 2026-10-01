@@ -1,0 +1,15 @@
+{
+  "programa": "Diplomado Compliance Anti-corrupción y Anti-lavado, más allá de las Normas y la Teoría",
+  "programaCorto": "Compliance Anti-corrupción y Anti-lavado",
+  "cohorte": "3er 2026-2",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "modalidad": "Remota (Microsoft Teams)",
+  "horario": { "inicio": "17:00", "fin": "20:00", "zona": "America/Bogota", "desfase": "-05:00" },
+  "uidSufijo": "cronograma-compliance-2026-2",
+  "urlPaginaOficial": "",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "contacto": {},
+  "docentesExtra": {}
+}
