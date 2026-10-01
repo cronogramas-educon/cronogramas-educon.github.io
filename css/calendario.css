@@ -1,0 +1,76 @@
+.cal-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+.cal-layout.con-detalle { grid-template-columns: minmax(0, 1fr) 330px; }
+.cal-cab { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-3); flex-wrap: wrap; }
+.cal-cab h3 { font: 800 28px/34px var(--font-heading); }
+.cal-meses { display: flex; gap: 6px; align-items: center; }
+.cal-meses button { border: 1.5px solid var(--surface-border); background: #fff; border-radius: var(--radius-pill); font: 700 13px var(--font-heading); padding: 8px 16px; }
+.cal-meses button[aria-pressed="true"] { background: var(--brand-navy); color: #fff; border-color: var(--brand-navy); }
+.cal-meses .nav-mes { width: 38px; padding: 8px 0; }
+.cal-meses button:disabled { opacity: .4; cursor: default; }
+.cal { border: 1px solid var(--surface-border); border-radius: var(--radius-md); overflow: hidden; background: #fff; }
+.cal-fila { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.cal-fila + .cal-fila { border-top: 1px solid var(--surface-border); }
+.cal-dsem { font: 700 12px var(--font-heading); color: var(--ink-secondary); padding: 10px 8px; background: var(--surface-200); text-align: left; }
+.cal-celda { min-height: 118px; padding: 0; border-left: 1px solid var(--surface-border); background: #fff; position: relative; }
+.cal-celda:first-child { border-left: 0; }
+.cal-celda.fds { background: #FAFBFD; }
+.cal-celda.fuera { background: var(--surface-200); }
+.cal-btn { display: grid; grid-template-rows: auto 1fr; gap: 6px; width: 100%; height: 100%; min-height: 118px; padding: 8px; background: none; border: 0; text-align: left; align-content: start; }
+.cal-btn:disabled { cursor: default; }
+.cal-btn[aria-disabled="true"] { cursor: default; }
+.cal-num { font: 700 13px var(--font-heading); color: var(--ink-secondary); }
+.cal-celda.es-hoy .cal-num { color: #fff; background: var(--brand-red); border-radius: var(--radius-pill); padding: 1px 9px; justify-self: start; }
+.cal-btn:focus-visible { outline-offset: -3px; border-radius: 0; }
+
+.pieza { display: grid; gap: 2px; padding: 7px 8px; min-width: 0; border-radius: var(--radius-sm); border: 1.5px solid var(--brand-navy); background: #fff; color: var(--brand-navy); }
+.pieza strong { font: 800 14px/18px var(--font-heading); white-space: nowrap; }
+.pieza small { font-size: 12px; line-height: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pieza em { font: 700 10px/14px var(--font-heading); font-style: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.pieza.es-pasada { background: var(--past-bg); border-color: var(--past-line); color: var(--ink-secondary); }
+.pieza.es-proxima { background: var(--brand-navy); color: #fff; }
+.pieza.es-hoy { border-color: var(--brand-red); box-shadow: 0 0 0 2px var(--brand-red); }
+.pieza.es-envivo { background: var(--brand-red); border-color: var(--brand-red); color: #fff; box-shadow: none; }
+.pieza.es-repro { border-left: 6px solid var(--warn-line); }
+.pieza.es-repro em { color: var(--warn-ink); background: var(--warn-bg); border-radius: 4px; padding: 0 4px; justify-self: start; }
+.cal-btn[aria-expanded="true"] .pieza, .cal-btn.sel .pieza { outline: 3px solid var(--focus); outline-offset: 1px; }
+
+.leyenda { display: flex; flex-wrap: wrap; gap: 8px var(--space-4); margin-top: var(--space-3); font-size: 13px; color: var(--ink-secondary); }
+.leyenda i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid var(--brand-navy); vertical-align: -2px; margin-right: 6px; background: #fff; }
+.leyenda .l-proxima { background: var(--brand-navy); }
+.leyenda .l-hoy { border-color: var(--brand-red); box-shadow: 0 0 0 1.5px var(--brand-red); }
+.leyenda .l-envivo { background: var(--brand-red); border-color: var(--brand-red); }
+.leyenda .l-pasada { background: var(--past-bg); border-color: var(--past-line); }
+.leyenda .l-repro { border-left: 5px solid var(--warn-line); }
+
+/* detalle: panel lateral en escritorio, hoja inferior en celular */
+.detalle { position: sticky; top: 92px; background: #fff; border: 1px solid var(--surface-border); border-top: 3px solid var(--brand-navy); border-radius: var(--radius-md); padding: var(--space-6); max-height: calc(100vh - 110px); overflow: auto; }
+.detalle-cab { display: flex; justify-content: space-between; align-items: start; gap: var(--space-3); margin-bottom: var(--space-4); }
+.detalle-cab p { font: 700 14px var(--font-heading); color: var(--ink-secondary); }
+.detalle-cerrar { border: 1.5px solid var(--surface-border); background: #fff; border-radius: var(--radius-pill); width: 36px; height: 36px; font-size: 18px; line-height: 1; flex-shrink: 0; }
+.fondo-detalle { display: none; }
+@media (max-width: 1100px) {
+  .cal-layout.con-detalle { grid-template-columns: minmax(0, 1fr); }
+  .detalle { position: fixed; left: 0; right: 0; bottom: 0; top: auto; max-height: 82vh; border-radius: var(--radius-md) var(--radius-md) 0 0; z-index: 200; box-shadow: 0 -8px 30px rgba(11,27,61,.25); }
+  .fondo-detalle.on { display: block; position: fixed; inset: 0; background: rgba(11,27,61,.45); z-index: 190; }
+}
+@media (max-width: 720px) {
+  .cal-celda, .cal-btn { min-height: 54px; }
+  .cal-btn { padding: 4px; justify-items: center; align-content: center; gap: 4px; }
+  .cal-dsem { text-align: center; padding: 8px 0; }
+  .pieza { width: 30px; height: 30px; padding: 0; border-radius: 50%; place-items: center; }
+  .pieza small, .pieza em { display: none; }
+  .pieza strong { font-size: 13px; }
+  .pieza.es-repro { border-left-width: 1.5px; box-shadow: 0 0 0 2px var(--warn-line); }
+  .cal-celda.es-hoy .cal-num { padding: 0 6px; }
+  .cal-cab h3 { font-size: 22px; }
+  .pieza .solo-escritorio { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .punto-vivo { animation: none; }
+  * { transition-duration: .01ms !important; }
+}
+@media (max-width: 720px) {
+  .cal-meses { width: 100%; }
+  .cal-meses button:not(.nav-mes) { flex: 1; padding: 8px 4px; font-size: 12px; }
+}

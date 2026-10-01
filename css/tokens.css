@@ -1,0 +1,63 @@
+:root {
+  /* Color — regla 60-30-10 */
+  --brand-navy: #0B1B3D;
+  --brand-red: #C8102E;
+  --brand-white: #FFFFFF;
+
+  --surface-100: #FFFFFF;
+  --surface-200: #F5F7FA;
+  --surface-border: #E3E7EE;
+  --ink: #0B1B3D;
+  --ink-secondary: #5B6B88;
+  --ink-on-navy: #FFFFFF;
+  --ink-on-red: #FFFFFF;
+  --accent-eyebrow: #C8102E;
+  --success: #0F9D58;
+  --danger: #C8102E;
+
+  /* Tipografía */
+  --font-heading: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --display-lg-size: 56px; --display-lg-lh: 62px;
+  --display-md-size: 40px; --display-md-lh: 46px;
+  --h1-size: 32px; --h1-lh: 38px;
+  --h2-size: 24px; --h2-lh: 30px;
+  --h3-size: 18px; --h3-lh: 24px;
+  --body-lg-size: 17px; --body-lg-lh: 26px;
+  --body-size: 15px; --body-lh: 22px;
+  --body-sm-size: 13px; --body-sm-lh: 19px;
+  --eyebrow-size: 12px; --eyebrow-lh: 16px;
+  --badge-size: 11px; --badge-lh: 14px;
+  --stat-size: 44px; --stat-lh: 48px;
+
+  /* Espaciado */
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Radios */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+
+  /* Bordes */
+  --border-width-frame: 2px;
+
+  --shadow-card: 0 1px 2px rgba(11, 27, 61, 0.06), 0 1px 1px rgba(11, 27, 61, 0.04);
+  --max-width: 1200px;
+}
+
+/* Añadidos de este sitio */
+:root {
+  --warn-ink: #8A5300;
+  --warn-bg: #FFF3D6;
+  --warn-line: #D99A00;
+  --past-bg: #EEF1F6;
+  --past-line: #C9D1DE;
+  --focus: #1B5FE0;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}

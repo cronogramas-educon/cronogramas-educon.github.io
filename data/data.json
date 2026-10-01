@@ -1,0 +1,1123 @@
+{
+  "meta": {
+    "programa": "Diplomado Compliance Anti-corrupción y Anti-lavado, más allá de las Normas y la Teoría",
+    "cohorte": "3er 2026-2",
+    "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+    "modalidad": "Remota (Microsoft Teams)",
+    "horario": {
+      "inicio": "17:00",
+      "fin": "20:00",
+      "zona": "America/Bogota"
+    },
+    "totalClases": 35,
+    "horasTotales": 105,
+    "inicio": "2026-10-01",
+    "fin": "2026-12-04",
+    "hash": "b4a7a7099d3c1fb5",
+    "generadoEn": "2026-10-01T20:39:26Z",
+    "fuenteModificadaEn": ""
+  },
+  "clases": [
+    {
+      "id": 1,
+      "clase": "CLASE 1",
+      "unidad": "CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN",
+      "unidadSlug": "contexto-general-de-la-amenaza-de-la-corrupcion",
+      "tema": "Breve historia de las herramientas de lucha contra la corrupción\nDiferentes aproximaciones al vocablo corrupción\nConvenciones internacionales de lucha contra la corrupción",
+      "temaPuntos": [
+        "Breve historia de las herramientas de lucha contra la corrupción",
+        "Diferentes aproximaciones al vocablo corrupción",
+        "Convenciones internacionales de lucha contra la corrupción"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Marta Lucia Ramírez",
+      "profesores": [
+        "Marta Lucia Ramírez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-01",
+      "inicio": "2026-10-01T17:00:00-05:00",
+      "fin": "2026-10-01T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 2,
+      "clase": "CLASE 2",
+      "unidad": "SISTEMA DE GESTIÓN DE RIESGOS",
+      "unidadSlug": "sistema-de-gestion-de-riesgos",
+      "tema": "Aspectos generales de la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de administración y gestión integral de riesgos.\n\n¿Cuál es la estructura básica y las etapas de un modelo de Sistema de administración de riesgos de lavado de activos?\n\n¿Cómo se elabora el diagnóstico de riesgos?\n\n¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto para el sector público como privado?\nContexto interno y externo, identificación y clases de riesgos, control y manejo del riesgo.\n\nGuías de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de la República y de UNODC.",
+      "temaPuntos": [
+        "Aspectos generales de la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de administración y gestión integral de riesgos.",
+        "¿Cuál es la estructura básica y las etapas de un modelo de Sistema de administración de riesgos de lavado de activos?",
+        "¿Cómo se elabora el diagnóstico de riesgos?",
+        "¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto para el sector público como privado?",
+        "Contexto interno y externo, identificación y clases de riesgos, control y manejo del riesgo.",
+        "Guías de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de la República y de UNODC."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "SABANA",
+      "profesores": [
+        "SABANA"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-02",
+      "inicio": "2026-10-02T17:00:00-05:00",
+      "fin": "2026-10-02T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 3,
+      "clase": "CLASE 3",
+      "unidad": "SISTEMA DE GESTIÓN DE RIESGOS",
+      "unidadSlug": "sistema-de-gestion-de-riesgos",
+      "tema": "Aspectos generales de la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de administración y gestión integral de riesgos.\n\n¿Cuál es la estructura básica y las etapas de un modelo de Sistema de administración de riesgos de lavado de activos?\n\n¿Cómo se elabora el diagnóstico de riesgos?\n\n¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto para el sector público como privado?\nContexto interno y externo, identificación y clases de riesgos, control y manejo del riesgo.\n\nGuías de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de la República y de UNODC.",
+      "temaPuntos": [
+        "Aspectos generales de la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de administración y gestión integral de riesgos.",
+        "¿Cuál es la estructura básica y las etapas de un modelo de Sistema de administración de riesgos de lavado de activos?",
+        "¿Cómo se elabora el diagnóstico de riesgos?",
+        "¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto para el sector público como privado?",
+        "Contexto interno y externo, identificación y clases de riesgos, control y manejo del riesgo.",
+        "Guías de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de la República y de UNODC."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "SABANA",
+      "profesores": [
+        "SABANA"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-06",
+      "inicio": "2026-10-06T17:00:00-05:00",
+      "fin": "2026-10-06T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 4,
+      "clase": "CLASE 4",
+      "unidad": "SISTEMA DE GESTIÓN DE RIESGOS",
+      "unidadSlug": "sistema-de-gestion-de-riesgos",
+      "tema": "Aspectos generales de la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de administración y gestión integral de riesgos.\n\n¿Cuál es la estructura básica y las etapas de un modelo de Sistema de administración de riesgos de lavado de activos?\n\n¿Cómo se elabora el diagnóstico de riesgos?\n\n¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto para el sector público como privado?\nContexto interno y externo, identificación y clases de riesgos, control y manejo del riesgo.\n\nGuías de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de la República y de UNODC.",
+      "temaPuntos": [
+        "Aspectos generales de la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de administración y gestión integral de riesgos.",
+        "¿Cuál es la estructura básica y las etapas de un modelo de Sistema de administración de riesgos de lavado de activos?",
+        "¿Cómo se elabora el diagnóstico de riesgos?",
+        "¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto para el sector público como privado?",
+        "Contexto interno y externo, identificación y clases de riesgos, control y manejo del riesgo.",
+        "Guías de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de la República y de UNODC."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "SABANA",
+      "profesores": [
+        "SABANA"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-07",
+      "inicio": "2026-10-07T17:00:00-05:00",
+      "fin": "2026-10-07T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 5,
+      "clase": "CLASE 5",
+      "unidad": "SISTEMA DE GESTIÓN DE RIESGOS",
+      "unidadSlug": "sistema-de-gestion-de-riesgos",
+      "tema": "Aspectos generales de la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de administración y gestión integral de riesgos.\n\n¿Cuál es la estructura básica y las etapas de un modelo de Sistema de administración de riesgos de lavado de activos?\n\n¿Cómo se elabora el diagnóstico de riesgos?\n\n¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto para el sector público como privado?\nContexto interno y externo, identificación y clases de riesgos, control y manejo del riesgo.\n\nGuías de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de la República y de UNODC.",
+      "temaPuntos": [
+        "Aspectos generales de la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de administración y gestión integral de riesgos.",
+        "¿Cuál es la estructura básica y las etapas de un modelo de Sistema de administración de riesgos de lavado de activos?",
+        "¿Cómo se elabora el diagnóstico de riesgos?",
+        "¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto para el sector público como privado?",
+        "Contexto interno y externo, identificación y clases de riesgos, control y manejo del riesgo.",
+        "Guías de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de la República y de UNODC."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "SABANA",
+      "profesores": [
+        "SABANA"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-08",
+      "inicio": "2026-10-08T17:00:00-05:00",
+      "fin": "2026-10-08T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 6,
+      "clase": "CLASE 6",
+      "unidad": "EL OFICIAL DE CUMPLIMIENTO Y LA JUNTA DIRECTIVA",
+      "unidadSlug": "el-oficial-de-cumplimiento-y-la-junta-directiva",
+      "tema": "Funciones.\nAspectos legales y corporativos.\nPerfil del oficial de cumplimiento.\nObligaciones.\nResponsabilidades.\nRol en el sistema.\nLa confidencialidad del ROS, revelación (tipping-off).",
+      "temaPuntos": [
+        "Funciones.",
+        "Aspectos legales y corporativos.",
+        "Perfil del oficial de cumplimiento.",
+        "Obligaciones.",
+        "Responsabilidades.",
+        "Rol en el sistema.",
+        "La confidencialidad del ROS, revelación (tipping-off)."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "SABANA",
+      "profesores": [
+        "SABANA"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-09",
+      "inicio": "2026-10-09T17:00:00-05:00",
+      "fin": "2026-10-09T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 7,
+      "clase": "CLASE 7",
+      "unidad": "TRANSPARENCIA EN LA CONTRATACIÓN",
+      "unidadSlug": "transparencia-en-la-contratacion",
+      "tema": "Esquemas de anti-fraude en la contratación pública en Colombia, Banco Mundial (BM) y Banco Interamericano de Desarrollo (BID).",
+      "temaPuntos": [
+        "Esquemas de anti-fraude en la contratación pública en Colombia, Banco Mundial (BM) y Banco Interamericano de Desarrollo (BID)."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Felipe Ortegón",
+      "profesores": [
+        "Felipe Ortegón"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-13",
+      "inicio": "2026-10-13T17:00:00-05:00",
+      "fin": "2026-10-13T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 8,
+      "clase": "CLASE 8",
+      "unidad": "CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN",
+      "unidadSlug": "contexto-general-de-la-amenaza-de-la-corrupcion",
+      "tema": "Actores, roles y responsabilidades de sistema de lucha anti-corrupción en Colombia. (Procuraduría, Fiscalía y Contraloría)\nSecretaría de Transparencia\nMecanismos de Prevención.",
+      "temaPuntos": [
+        "Actores, roles y responsabilidades de sistema de lucha anti-corrupción en Colombia. (Procuraduría, Fiscalía y Contraloría)",
+        "Secretaría de Transparencia",
+        "Mecanismos de Prevención."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Beatriz Londoño P",
+      "profesores": [
+        "Beatriz Londoño P"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-14",
+      "inicio": "2026-10-14T17:00:00-05:00",
+      "fin": "2026-10-14T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 9,
+      "clase": "CLASE 9",
+      "unidad": "CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN",
+      "unidadSlug": "contexto-general-de-la-amenaza-de-la-corrupcion",
+      "tema": "Leyes nacionales relacionadas con la lucha anticorrupción y la Ley 2195 de 2022.",
+      "temaPuntos": [
+        "Leyes nacionales relacionadas con la lucha anticorrupción y la Ley 2195 de 2022."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Beatriz Londoño P",
+      "profesores": [
+        "Beatriz Londoño P"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-15",
+      "inicio": "2026-10-15T17:00:00-05:00",
+      "fin": "2026-10-15T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 10,
+      "clase": "CLASE 10",
+      "unidad": "EVOLUCIÓN Y MARCO NORMATIVO DEL COMPLIANCE\nEN EEUU",
+      "unidadSlug": "evolucion-y-marco-normativo-del-compliance-en-eeuu",
+      "tema": "Evolución y surgimiento en EE. UU. del compliance empresarial.",
+      "temaPuntos": [
+        "Evolución y surgimiento en EE. UU. del compliance empresarial."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Mery Mantilla",
+      "profesores": [
+        "Mery Mantilla"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-20",
+      "inicio": "2026-10-20T17:00:00-05:00",
+      "fin": "2026-10-20T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 11,
+      "clase": "CLASE 11",
+      "unidad": "EVOLUCIÓN Y MARCO NORMATIVO DEL COMPLIANCE\nEN EEUU",
+      "unidadSlug": "evolucion-y-marco-normativo-del-compliance-en-eeuu",
+      "tema": "Casos de estudio.",
+      "temaPuntos": [
+        "Casos de estudio."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Mery Mantilla",
+      "profesores": [
+        "Mery Mantilla"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-21",
+      "inicio": "2026-10-21T17:00:00-05:00",
+      "fin": "2026-10-21T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 12,
+      "clase": "CLASE 12",
+      "unidad": "CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MARCO NORMATIVO APLICADO PARA ENFRENTARLA",
+      "unidadSlug": "contexto-general-de-la-amenaza-y-del-lavado-de-activos-y-el-",
+      "tema": "Breve historia de la lucha contra el lavado de activos\nMarco normativo Internacional",
+      "temaPuntos": [
+        "Breve historia de la lucha contra el lavado de activos",
+        "Marco normativo Internacional"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Marta Lucia Ramírez",
+      "profesores": [
+        "Marta Lucia Ramírez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-22",
+      "inicio": "2026-10-22T17:00:00-05:00",
+      "fin": "2026-10-22T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 13,
+      "clase": "CLASE 13",
+      "unidad": "CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MARCO NORMATIVO APLICADO PARA ENFRENTARLA",
+      "unidadSlug": "contexto-general-de-la-amenaza-y-del-lavado-de-activos-y-el-",
+      "tema": "Marco normativo Nacional\n40 Recomendaciones GAFI",
+      "temaPuntos": [
+        "Marco normativo Nacional",
+        "40 Recomendaciones GAFI"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Marta Lucia Ramírez",
+      "profesores": [
+        "Marta Lucia Ramírez"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-23",
+      "inicio": "2026-10-23T17:00:00-05:00",
+      "fin": "2026-10-23T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 14,
+      "clase": "CLASE 14",
+      "unidad": "CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MARCO NORMATIVO APLICADO PARA ENFRENTARLA",
+      "unidadSlug": "contexto-general-de-la-amenaza-y-del-lavado-de-activos-y-el-",
+      "tema": "Efectos del Lavado de Activos, indicadores económicos y sociales",
+      "temaPuntos": [
+        "Efectos del Lavado de Activos, indicadores económicos y sociales"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Marta Lucia Ramírez",
+      "profesores": [
+        "Marta Lucia Ramírez"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-27",
+      "inicio": "2026-10-27T17:00:00-05:00",
+      "fin": "2026-10-27T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 15,
+      "clase": "CLASE 15",
+      "unidad": "CONTEXTO GENERAL DE LA AMENAZA DEL FINANCIAMIENTO DEL TERRORISMO Y DE LA PROLIFERACIÓN DE ARMAS DE DESTRUCCIÓN MASIVA",
+      "unidadSlug": "contexto-general-de-la-amenaza-del-financiamiento-del-terror",
+      "tema": "El 911 y los cambios en la lucha contra el terrorismo\nMarco internacional y nacional. Exigencias GAFI.",
+      "temaPuntos": [
+        "El 911 y los cambios en la lucha contra el terrorismo",
+        "Marco internacional y nacional. Exigencias GAFI."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Marta Lucia Ramírez",
+      "profesores": [
+        "Marta Lucia Ramírez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-28",
+      "inicio": "2026-10-28T17:00:00-05:00",
+      "fin": "2026-10-28T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 16,
+      "clase": "CLASE 16",
+      "unidad": "HERRAMIENTAS Y CONTROLES ANTI- LAVADO Y ANTI-CORRUPCIÓN.",
+      "unidadSlug": "herramientas-y-controles-anti-lavado-y-anti-corrupcion",
+      "tema": "Importancia del enfoque basado en riesgos.\nDebida diligencia (simplificada y reforzada). CASO\n-Personas Expuestas Políticamente (PEP). CASO\n-Beneficiario final. CASO\n-Chequeo de listas (vinculantes y restrictivas).",
+      "temaPuntos": [
+        "Importancia del enfoque basado en riesgos.",
+        "Debida diligencia (simplificada y reforzada).",
+        "CASO: Personas Expuestas Políticamente (PEP).",
+        "CASO: Beneficiario final.",
+        "CASO: Chequeo de listas (vinculantes y restrictivas)."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Camilo Jaimes P",
+      "profesores": [
+        "Camilo Jaimes P"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-30",
+      "inicio": "2026-10-30T17:00:00-05:00",
+      "fin": "2026-10-30T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 17,
+      "clase": "CLASE 17",
+      "unidad": "HERRAMIENTAS Y CONTROLES ANTI- LAVADO Y ANTI-CORRUPCIÓN.",
+      "unidadSlug": "herramientas-y-controles-anti-lavado-y-anti-corrupcion",
+      "tema": "Importancia del enfoque basado en riesgos.\nDebida diligencia (simplificada y reforzada). CASO\n-Personas Expuestas Políticamente (PEP). CASO\n-Beneficiario final. CASO\n-Chequeo de listas (vinculantes y restrictivas).",
+      "temaPuntos": [
+        "Importancia del enfoque basado en riesgos.",
+        "Debida diligencia (simplificada y reforzada).",
+        "CASO: Personas Expuestas Políticamente (PEP).",
+        "CASO: Beneficiario final.",
+        "CASO: Chequeo de listas (vinculantes y restrictivas)."
+      ],
+      "temaHeredado": true,
+      "horas": 3,
+      "profesor": "Camilo Jaimes P",
+      "profesores": [
+        "Camilo Jaimes P"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-03",
+      "inicio": "2026-11-03T17:00:00-05:00",
+      "fin": "2026-11-03T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 18,
+      "clase": "CLASE 18",
+      "unidad": "SEGMENTACIÓN PARA EL ANÁLISIS DE RIESGOS ALA/CFT.",
+      "unidadSlug": "segmentacion-para-el-analisis-de-riesgos-ala-cft",
+      "tema": "Se explicarán aspectos práctico – teóricos sobre segmentación de riesgos y realizará un taller práctico.",
+      "temaPuntos": [
+        "Se explicarán aspectos práctico – teóricos sobre segmentación de riesgos y realizará un taller práctico."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Wilson Gonzalez",
+      "profesores": [
+        "Wilson Gonzalez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-04",
+      "inicio": "2026-11-04T17:00:00-05:00",
+      "fin": "2026-11-04T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 19,
+      "clase": "CLASE 19",
+      "unidad": "SEGMENTACIÓN PARA EL ANÁLISIS DE RIESGOS ALA/CFT.",
+      "unidadSlug": "segmentacion-para-el-analisis-de-riesgos-ala-cft",
+      "tema": "Se explicarán aspectos práctico – teóricos sobre segmentación de riesgos y realizará un taller práctico.",
+      "temaPuntos": [
+        "Se explicarán aspectos práctico – teóricos sobre segmentación de riesgos y realizará un taller práctico."
+      ],
+      "temaHeredado": true,
+      "horas": 3,
+      "profesor": "Wilson Gonzalez",
+      "profesores": [
+        "Wilson Gonzalez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-05",
+      "inicio": "2026-11-05T17:00:00-05:00",
+      "fin": "2026-11-05T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 20,
+      "clase": "CLASE 20",
+      "unidad": "TALLER SEGMENTACIÓN",
+      "unidadSlug": "taller-segmentacion",
+      "tema": "segmentación de riesgos",
+      "temaPuntos": [
+        "segmentación de riesgos"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Wilson Gonzalez",
+      "profesores": [
+        "Wilson Gonzalez"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-06",
+      "inicio": "2026-11-06T17:00:00-05:00",
+      "fin": "2026-11-06T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 21,
+      "clase": "CLASE 21",
+      "unidad": "CANALES DE DENUNCIA, INVESTIGACIONES INTERNAS Y PROTECCIÓN A DENUNCIANTES",
+      "unidadSlug": "canales-de-denuncia-investigaciones-internas-y-proteccion-a-",
+      "tema": "Canales de denuncia. \nRecepción y elementos mínimos de una denuncia. \nEvaluación e investigación de los hechos expuestos. CASO\nProcesos internos. \nPolíticas de protección a denunciantes.",
+      "temaPuntos": [
+        "Canales de denuncia.",
+        "Recepción y elementos mínimos de una denuncia.",
+        "Evaluación e investigación de los hechos expuestos. CASO",
+        "Procesos internos.",
+        "Políticas de protección a denunciantes."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Camilo Jaimes P",
+      "profesores": [
+        "Camilo Jaimes P"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-10",
+      "inicio": "2026-11-10T17:00:00-05:00",
+      "fin": "2026-11-10T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 22,
+      "clase": "CLASE 22",
+      "unidad": "CANALES DE DENUNCIA, INVESTIGACIONES INTERNAS Y PROTECCIÓN A DENUNCIANTES",
+      "unidadSlug": "canales-de-denuncia-investigaciones-internas-y-proteccion-a-",
+      "tema": "Canales de denuncia. \nRecepción y elementos mínimos de una denuncia. \nEvaluación e investigación de los hechos expuestos. CASO\nProcesos internos. \nPolíticas de protección a denunciantes.",
+      "temaPuntos": [
+        "Canales de denuncia.",
+        "Recepción y elementos mínimos de una denuncia.",
+        "Evaluación e investigación de los hechos expuestos. CASO",
+        "Procesos internos.",
+        "Políticas de protección a denunciantes."
+      ],
+      "temaHeredado": true,
+      "horas": 3,
+      "profesor": "Camilo Jaimes P",
+      "profesores": [
+        "Camilo Jaimes P"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-11",
+      "inicio": "2026-11-11T17:00:00-05:00",
+      "fin": "2026-11-11T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 23,
+      "clase": "CLASE 23",
+      "unidad": "PROGRAMAS DE TRANSPARENCIA Y ÉTICA PÚBLICA Y EMPRESARIAL",
+      "unidadSlug": "programas-de-transparencia-y-etica-publica-y-empresarial",
+      "tema": "Ley 2195 de 2022 y decreto reglamentario. Sector público y privado.\nParámetros de la Superfinanciera y Supersociedades para la revisión de los programas de administración de riesgos.",
+      "temaPuntos": [
+        "Ley 2195 de 2022 y decreto reglamentario. Sector público y privado.",
+        "Parámetros de la Superfinanciera y Supersociedades para la revisión de los programas de administración de riesgos."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Marta Lucia Ramírez y Beatriz Londoño P",
+      "profesores": [
+        "Marta Lucia Ramírez",
+        "Beatriz Londoño P"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-12",
+      "inicio": "2026-11-12T17:00:00-05:00",
+      "fin": "2026-11-12T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 24,
+      "clase": "CLASE 24",
+      "unidad": "BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y ANTICORRUPCIÓN",
+      "unidadSlug": "big-data-y-analitica-en-la-gestion-del-riesgo-antilavado-y-a",
+      "tema": "Fundamentos teóricos y prácticos sobre la utilización y empleo de big data, analítica y redes en la gestión del riesgo ALA/CFT",
+      "temaPuntos": [
+        "Fundamentos teóricos y prácticos sobre la utilización y empleo de big data, analítica y redes en la gestión del riesgo ALA/CFT"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Sebastián Villegas",
+      "profesores": [
+        "Sebastián Villegas"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-17",
+      "inicio": "2026-11-17T17:00:00-05:00",
+      "fin": "2026-11-17T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 25,
+      "clase": "CLASE 25",
+      "unidad": "BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y ANTICORRUPCIÓN",
+      "unidadSlug": "big-data-y-analitica-en-la-gestion-del-riesgo-antilavado-y-a",
+      "tema": "Fundamentos teóricos y prácticos sobre la utilización y empleo de big data, analítica y redes en la gestión del riesgo ALA/CFT",
+      "temaPuntos": [
+        "Fundamentos teóricos y prácticos sobre la utilización y empleo de big data, analítica y redes en la gestión del riesgo ALA/CFT"
+      ],
+      "temaHeredado": true,
+      "horas": 3,
+      "profesor": "Sebastián Villegas",
+      "profesores": [
+        "Sebastián Villegas"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-18",
+      "inicio": "2026-11-18T17:00:00-05:00",
+      "fin": "2026-11-18T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 26,
+      "clase": "CLASE 26",
+      "unidad": "BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y ANTICORRUPCIÓN",
+      "unidadSlug": "big-data-y-analitica-en-la-gestion-del-riesgo-antilavado-y-a",
+      "tema": "Fundamentos teóricos y prácticos sobre la utilización y empleo de big data, analítica y redes en la gestión del riesgo ALA/CFT",
+      "temaPuntos": [
+        "Fundamentos teóricos y prácticos sobre la utilización y empleo de big data, analítica y redes en la gestión del riesgo ALA/CFT"
+      ],
+      "temaHeredado": true,
+      "horas": 3,
+      "profesor": "Sebastián Villegas",
+      "profesores": [
+        "Sebastián Villegas"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-19",
+      "inicio": "2026-11-19T17:00:00-05:00",
+      "fin": "2026-11-19T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 27,
+      "clase": "CLASE 27",
+      "unidad": "TALLERES PRÁCTICOS SOBRE CASUISTICA, TIPOLOGÍAS DE LAVADO, CORRUPCIÓN, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANALIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS",
+      "unidadSlug": "talleres-practicos-sobre-casuistica-tipologias-de-lavado-cor",
+      "tema": "Explicación y estudio del caso de DMG",
+      "temaPuntos": [
+        "Explicación y estudio del caso de DMG"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Beatriz Londoño P",
+      "profesores": [
+        "Beatriz Londoño P"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-20",
+      "inicio": "2026-11-20T17:00:00-05:00",
+      "fin": "2026-11-20T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 28,
+      "clase": "CLASE 28",
+      "unidad": "TALLERES PRÁCTICOS SOBRE CASUISTICA, TIPOLOGÍAS DE LAVADO, CORRUPCIÓN, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANALIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS",
+      "unidadSlug": "talleres-practicos-sobre-casuistica-tipologias-de-lavado-cor",
+      "tema": "Explicación de caso de Lavado de Activos y principales tipologías de lavado.",
+      "temaPuntos": [
+        "Explicación de caso de Lavado de Activos y principales tipologías de lavado."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Pablo Latorre",
+      "profesores": [
+        "Pablo Latorre"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-24",
+      "inicio": "2026-11-24T17:00:00-05:00",
+      "fin": "2026-11-24T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 29,
+      "clase": "CLASE 29",
+      "unidad": "TALLERES PRÁCTICOS SOBRE CASUISTICA, TIPOLOGÍAS DE LAVADO, CORRUPCIÓN, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANALIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS",
+      "unidadSlug": "talleres-practicos-sobre-casuistica-tipologias-de-lavado-cor",
+      "tema": "Explicación y estudio del caso Lava Jato Y Odebrecht",
+      "temaPuntos": [
+        "Explicación y estudio del caso Lava Jato Y Odebrecht"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Camilo Jaimes P",
+      "profesores": [
+        "Camilo Jaimes P"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-25",
+      "inicio": "2026-11-25T17:00:00-05:00",
+      "fin": "2026-11-25T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 30,
+      "clase": "CLASE 30",
+      "unidad": "TALLERES PRÁCTICOS SOBRE CASUISTICA, TIPOLOGÍAS DE LAVADO, CORRUPCIÓN, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANALIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS",
+      "unidadSlug": "talleres-practicos-sobre-casuistica-tipologias-de-lavado-cor",
+      "tema": "Caso práctico y simulación de roles",
+      "temaPuntos": [
+        "Caso práctico y simulación de roles"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Marta Lucia Ramírez y Beatriz Londoño P",
+      "profesores": [
+        "Marta Lucia Ramírez",
+        "Beatriz Londoño P"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-26",
+      "inicio": "2026-11-26T17:00:00-05:00",
+      "fin": "2026-11-26T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 31,
+      "clase": "CLASE 31",
+      "unidad": "TALLERES PRÁCTICOS SOBRE CASUISTICA, TIPOLOGÍAS DE LAVADO, CORRUPCIÓN, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANALIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS",
+      "unidadSlug": "talleres-practicos-sobre-casuistica-tipologias-de-lavado-cor",
+      "tema": "Caso práctico y simulación de roles",
+      "temaPuntos": [
+        "Caso práctico y simulación de roles"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Camilo Jaimes P",
+      "profesores": [
+        "Camilo Jaimes P"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-27",
+      "inicio": "2026-11-27T17:00:00-05:00",
+      "fin": "2026-11-27T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 32,
+      "clase": "CLASE 32",
+      "unidad": "LOS REPORTES INTERNOS DE OPERACIONES INUSUALES Y LOS REPORTES EXTERNOS DE OPERACIONES SOSPECHOSAS (ROS)",
+      "unidadSlug": "los-reportes-internos-de-operaciones-inusuales-y-los-reporte",
+      "tema": "Taller teórico - práctico sobre reportes internos de inusualidades y Reportes de Operaciones Sospechosas (ROS) a la UIAF",
+      "temaPuntos": [
+        "Taller teórico - práctico sobre reportes internos de inusualidades y Reportes de Operaciones Sospechosas (ROS) a la UIAF"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Angélica Sánchez Durán",
+      "profesores": [
+        "Angélica Sánchez Durán"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-12-01",
+      "inicio": "2026-12-01T17:00:00-05:00",
+      "fin": "2026-12-01T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 33,
+      "clase": "CLASE 33",
+      "unidad": "NEUROSCIENCIA, ÉTICA Y COMPLIANCE",
+      "unidadSlug": "neurosciencia-etica-y-compliance",
+      "tema": "Cerebro, neuronas espejo, teoría de la mente y enfoque racional de las herramientas anti-corrupción.",
+      "temaPuntos": [
+        "Cerebro, neuronas espejo, teoría de la mente y enfoque racional de las herramientas anti-corrupción."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Camilo Jaimes P",
+      "profesores": [
+        "Camilo Jaimes P"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-12-02",
+      "inicio": "2026-12-02T17:00:00-05:00",
+      "fin": "2026-12-02T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 34,
+      "clase": "CLASE 34",
+      "unidad": "ÉTICA DEL COMPORTAMIENTO COMO BASE DE LOS PROGRAMAS CUMPLIMIENTO",
+      "unidadSlug": "etica-del-comportamiento-como-base-de-los-programas-cumplimi",
+      "tema": "Cultura de la integridad y del cumplimiento.",
+      "temaPuntos": [
+        "Cultura de la integridad y del cumplimiento."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Andrés Murcia",
+      "profesores": [
+        "Andrés Murcia"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-12-03",
+      "inicio": "2026-12-03T17:00:00-05:00",
+      "fin": "2026-12-03T20:00:00-05:00",
+      "asistentePat": "Jenier Sebastián Achury Gómez",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    },
+    {
+      "id": 35,
+      "clase": "CLASE 35",
+      "unidad": "ÉTICA DEL COMPORTAMIENTO COMO BASE DE LOS PROGRAMAS CUMPLIMIENTO",
+      "unidadSlug": "etica-del-comportamiento-como-base-de-los-programas-cumplimi",
+      "tema": "Taller Cultura de la Integridad",
+      "temaPuntos": [
+        "Taller Cultura de la Integridad"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Camilo Jaimes P",
+      "profesores": [
+        "Camilo Jaimes P"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-12-04",
+      "inicio": "2026-12-04T17:00:00-05:00",
+      "fin": "2026-12-04T20:00:00-05:00",
+      "asistentePat": "Fabián Alberto Córdoba Almendrales",
+      "linkTeams": "https://teams.microsoft.com/meet/EJEMPLO",
+      "cambio": null,
+      "secuencia": 0
+    }
+  ],
+  "unidades": [
+    {
+      "slug": "contexto-general-de-la-amenaza-de-la-corrupcion",
+      "nombre": "CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN",
+      "clases": [
+        1,
+        8,
+        9
+      ],
+      "horas": 9
+    },
+    {
+      "slug": "sistema-de-gestion-de-riesgos",
+      "nombre": "SISTEMA DE GESTIÓN DE RIESGOS",
+      "clases": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "horas": 12
+    },
+    {
+      "slug": "el-oficial-de-cumplimiento-y-la-junta-directiva",
+      "nombre": "EL OFICIAL DE CUMPLIMIENTO Y LA JUNTA DIRECTIVA",
+      "clases": [
+        6
+      ],
+      "horas": 3
+    },
+    {
+      "slug": "transparencia-en-la-contratacion",
+      "nombre": "TRANSPARENCIA EN LA CONTRATACIÓN",
+      "clases": [
+        7
+      ],
+      "horas": 3
+    },
+    {
+      "slug": "evolucion-y-marco-normativo-del-compliance-en-eeuu",
+      "nombre": "EVOLUCIÓN Y MARCO NORMATIVO DEL COMPLIANCE\nEN EEUU",
+      "clases": [
+        10,
+        11
+      ],
+      "horas": 6
+    },
+    {
+      "slug": "contexto-general-de-la-amenaza-y-del-lavado-de-activos-y-el-",
+      "nombre": "CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MARCO NORMATIVO APLICADO PARA ENFRENTARLA",
+      "clases": [
+        12,
+        13,
+        14
+      ],
+      "horas": 9
+    },
+    {
+      "slug": "contexto-general-de-la-amenaza-del-financiamiento-del-terror",
+      "nombre": "CONTEXTO GENERAL DE LA AMENAZA DEL FINANCIAMIENTO DEL TERRORISMO Y DE LA PROLIFERACIÓN DE ARMAS DE DESTRUCCIÓN MASIVA",
+      "clases": [
+        15
+      ],
+      "horas": 3
+    },
+    {
+      "slug": "herramientas-y-controles-anti-lavado-y-anti-corrupcion",
+      "nombre": "HERRAMIENTAS Y CONTROLES ANTI- LAVADO Y ANTI-CORRUPCIÓN.",
+      "clases": [
+        16,
+        17
+      ],
+      "horas": 6
+    },
+    {
+      "slug": "segmentacion-para-el-analisis-de-riesgos-ala-cft",
+      "nombre": "SEGMENTACIÓN PARA EL ANÁLISIS DE RIESGOS ALA/CFT.",
+      "clases": [
+        18,
+        19
+      ],
+      "horas": 6
+    },
+    {
+      "slug": "taller-segmentacion",
+      "nombre": "TALLER SEGMENTACIÓN",
+      "clases": [
+        20
+      ],
+      "horas": 3
+    },
+    {
+      "slug": "canales-de-denuncia-investigaciones-internas-y-proteccion-a-",
+      "nombre": "CANALES DE DENUNCIA, INVESTIGACIONES INTERNAS Y PROTECCIÓN A DENUNCIANTES",
+      "clases": [
+        21,
+        22
+      ],
+      "horas": 6
+    },
+    {
+      "slug": "programas-de-transparencia-y-etica-publica-y-empresarial",
+      "nombre": "PROGRAMAS DE TRANSPARENCIA Y ÉTICA PÚBLICA Y EMPRESARIAL",
+      "clases": [
+        23
+      ],
+      "horas": 3
+    },
+    {
+      "slug": "big-data-y-analitica-en-la-gestion-del-riesgo-antilavado-y-a",
+      "nombre": "BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y ANTICORRUPCIÓN",
+      "clases": [
+        24,
+        25,
+        26
+      ],
+      "horas": 9
+    },
+    {
+      "slug": "talleres-practicos-sobre-casuistica-tipologias-de-lavado-cor",
+      "nombre": "TALLERES PRÁCTICOS SOBRE CASUISTICA, TIPOLOGÍAS DE LAVADO, CORRUPCIÓN, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANALIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS",
+      "clases": [
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "horas": 15
+    },
+    {
+      "slug": "los-reportes-internos-de-operaciones-inusuales-y-los-reporte",
+      "nombre": "LOS REPORTES INTERNOS DE OPERACIONES INUSUALES Y LOS REPORTES EXTERNOS DE OPERACIONES SOSPECHOSAS (ROS)",
+      "clases": [
+        32
+      ],
+      "horas": 3
+    },
+    {
+      "slug": "neurosciencia-etica-y-compliance",
+      "nombre": "NEUROSCIENCIA, ÉTICA Y COMPLIANCE",
+      "clases": [
+        33
+      ],
+      "horas": 3
+    },
+    {
+      "slug": "etica-del-comportamiento-como-base-de-los-programas-cumplimi",
+      "nombre": "ÉTICA DEL COMPORTAMIENTO COMO BASE DE LOS PROGRAMAS CUMPLIMIENTO",
+      "clases": [
+        34,
+        35
+      ],
+      "horas": 6
+    }
+  ],
+  "profesores": [
+    "Andrés Murcia",
+    "Angélica Sánchez Durán",
+    "Beatriz Londoño P",
+    "Camilo Jaimes P",
+    "Felipe Ortegón",
+    "Marta Lucia Ramírez",
+    "Mery Mantilla",
+    "Pablo Latorre",
+    "SABANA",
+    "Sebastián Villegas",
+    "Wilson Gonzalez"
+  ],
+  "asistentesPat": [
+    "Fabián Alberto Córdoba Almendrales",
+    "Jenier Sebastián Achury Gómez"
+  ],
+  "cambios": []
+}

@@ -1,0 +1,219 @@
+"""Pruebas de humo del frontend con Chromium headless. Se omiten si Playwright no está instalado.
+La hora se simula con ?ahora=..., sin tocar el reloj del sistema."""
+import functools, http.server, json, threading
+from pathlib import Path
+
+import pytest
+
+pw = pytest.importorskip("playwright.sync_api")
+RAIZ = Path(__file__).resolve().parent.parent
+
+
+class Silencioso(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
+    def log_message(self, *a):
+        pass
+
+
+@pytest.fixture(scope="module")
+def base():
+    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Silencioso, directory=str(RAIZ)))
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    yield f"http://127.0.0.1:{srv.server_address[1]}/index.html"
+    srv.shutdown()
+
+
+@pytest.fixture(scope="module")
+def navegador():
+    with pw.sync_playwright() as p:
+        try:
+            b = p.chromium.launch()
+        except Exception as e:  # navegador no descargado
+            pytest.skip(f"Chromium no disponible: {e}")
+        yield b
+        b.close()
+
+
+@pytest.fixture
+def pagina(navegador):
+    ctx = navegador.new_context(viewport={"width": 1440, "height": 900}, accept_downloads=True)
+    p = ctx.new_page()
+    p.errores = []
+    p.on("pageerror", lambda e: p.errores.append(str(e)))
+    p.on("console", lambda m: m.type == "error" and p.errores.append(m.text))
+    yield p
+    ctx.close()
+
+
+def abrir(p, base, q=""):
+    p.goto(f"{base}?{q}")
+    p.wait_for_selector("#vista .cal-btn, #vista .fila, #vista .vacio")
+    return p
+
+
+def test_carga_sin_errores_y_cifras(pagina, base):
+    abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
+    assert pagina.locator("#cifras strong").all_inner_texts() == ["35", "105", "17", "10"]
+    assert "Mostrando 35 de 35" in pagina.inner_text("#contador")
+    assert pagina.errores == []
+
+
+@pytest.mark.parametrize("ahora,esperado", [
+    ("2026-09-20T10:00:00-05:00", "Próxima clase"),
+    ("2026-10-01T10:00:00-05:00", "Próxima clase, hoy"),
+    ("2026-10-01T18:00:00-05:00", "En vivo ahora"),
+    ("2026-12-05T10:00:00-05:00", "El diplomado ha finalizado"),
+])
+def test_estados_del_panel(pagina, base, ahora, esperado):
+    abrir(pagina, base, f"ahora={ahora}")
+    assert esperado in pagina.inner_text("#panel")
+
+
+def test_en_vivo_destaca_teams_y_pasada_se_marca(pagina, base):
+    abrir(pagina, base, "ahora=2026-10-01T18:00:00-05:00&vista=lista")
+    assert pagina.locator("#panel .chevron-cta.solid").count() == 1
+    abrir(pagina, base, "ahora=2026-10-02T09:00:00-05:00&vista=lista")
+    assert "Realizada" in pagina.locator(".fila").first.inner_text()
+
+
+def test_cuenta_regresiva_avanza(pagina, base):
+    abrir(pagina, base, "ahora=2026-10-14T16:59:50-05:00")
+    a = pagina.inner_text("#panel [data-cuenta]")
+    pagina.wait_for_timeout(2200)
+    assert pagina.inner_text("#panel [data-cuenta]") != a
+
+
+def test_filtro_docente_incluye_clases_con_dos_docentes(pagina, base):
+    abrir(pagina, base, "docente=Beatriz%20Londo%C3%B1o%20P&vista=lista")
+    filas = pagina.locator(".fila")
+    textos = " ".join(filas.all_inner_texts())
+    assert "Clase 23" in textos and "Clase 30" in textos  # compartidas con Marta Lucia Ramírez
+    pagina.select_option("#f-docente", "Marta Lucia Ramírez")
+    assert "Clase 23" in " ".join(pagina.locator(".fila").all_inner_texts())
+    assert "docente=" in pagina.url
+
+
+def test_busqueda_sin_tildes_resalta_y_url(pagina, base):
+    abrir(pagina, base, "vista=lista")
+    pagina.fill("#f-q", "ramirez")
+    pagina.wait_for_selector("mark")
+    assert pagina.locator(".fila").count() >= 5 and "q=ramirez" in pagina.url
+    pagina.fill("#f-q", "zzzzzz")
+    pagina.wait_for_selector(".vacio")
+    pagina.click("[data-limpiar]")
+    assert "Mostrando 35 de 35" in pagina.inner_text("#contador")
+
+
+def test_ocultar_realizadas_y_estado(pagina, base):
+    abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00&vista=lista")
+    pagina.check("#f-ocultar")
+    assert "Mostrando 28 de 35" in pagina.inner_text("#contador")
+    pagina.uncheck("#f-ocultar")
+    pagina.select_option("#f-estado", "realizadas")
+    assert "Mostrando 7 de 35" in pagina.inner_text("#contador")
+
+
+def test_celular_abre_en_lista_y_sin_scroll_horizontal(navegador, base):
+    ctx = navegador.new_context(viewport={"width": 390, "height": 844})
+    p = ctx.new_page()
+    abrir(p, base, "ahora=2026-10-14T10:00:00-05:00")
+    assert p.locator("[data-vista=lista]").get_attribute("aria-pressed") == "true"
+    assert p.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+    p.click("[data-vista=calendario]")
+    p.wait_for_selector(".cal-btn")
+    assert p.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+    ctx.close()
+
+
+def test_calendario_teclado_y_detalle(pagina, base):
+    abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00&mes=2026-10")
+    pagina.focus('.cal-btn[tabindex="0"]')
+    f0 = pagina.evaluate("document.activeElement.dataset.fecha")
+    pagina.keyboard.press("ArrowRight")
+    assert pagina.evaluate("document.activeElement.dataset.fecha") != f0
+    pagina.click('.cal-btn[data-fecha="2026-10-15"]')
+    pagina.wait_for_selector("#detalle")
+    assert "Unirme en Teams" in pagina.inner_text("#detalle") and "Agregar a mi calendario" in pagina.inner_text("#detalle")
+    label = pagina.get_attribute('.cal-btn[data-fecha="2026-10-15"]', "aria-label")
+    assert "Clase 9" in label and "jueves 15 de octubre de 2026" in label
+    pagina.keyboard.press("Escape")
+    assert pagina.locator("#detalle").count() == 0
+
+
+def test_mostrar_links_teams_apagado(pagina, base):
+    cfg = json.loads((RAIZ / "config/contenido.json").read_text(encoding="utf-8"))
+    cfg["mostrarLinksTeams"] = False
+    pagina.route("**/config/contenido.json*", lambda r: r.fulfill(json=cfg))
+    abrir(pagina, base, "ahora=2026-10-01T18:00:00-05:00&vista=lista")
+    assert pagina.locator("a[href*='teams.microsoft.com']").count() == 0
+
+
+def datos_con_cambio():
+    d = json.loads((RAIZ / "data/data.json").read_text(encoding="utf-8"))
+    c = d["clases"][6]  # clase 7
+    ant = c["fecha"]
+    c["cambio"] = {"tipo": "fecha", "fechaAnterior": "2026-10-13", "fechaOriginal": "2026-10-13", "detectadoEn": "2026-10-10T12:00:00Z"}
+    c["fecha"] = "2026-10-14"
+    c["inicio"], c["fin"] = "2026-10-14T17:00:00-05:00", "2026-10-14T20:00:00-05:00"
+    d["meta"]["hash"] = "otro"
+    return d
+
+
+def test_aviso_de_cambio_y_entendido(pagina, base):
+    d = datos_con_cambio()
+    pagina.route("**/data/data.json*", lambda r: r.fulfill(json=d))
+    abrir(pagina, base, "ahora=2026-10-11T10:00:00-05:00&vista=lista")
+    assert "la Clase 7 pasó del martes 13 de octubre al miércoles 14 de octubre" in pagina.inner_text("#avisos")
+    fila = pagina.locator(".fila[data-id='7']")
+    assert "Reprogramada" in fila.inner_text()
+    pagina.click("[data-entendido]")
+    assert pagina.locator("#avisos").is_hidden()
+    pagina.reload()
+    pagina.wait_for_selector(".fila")
+    assert pagina.locator("#avisos").is_hidden() and "Reprogramada" in pagina.locator(".fila[data-id='7']").inner_text()
+
+
+def test_sin_red_usa_ultima_copia(navegador, base):
+    ctx = navegador.new_context()
+    p = ctx.new_page()
+    abrir(p, base, "vista=lista")
+    p.route("**/data/data.json*", lambda r: r.abort())
+    p.goto(f"{base}?vista=lista")
+    p.wait_for_selector(".fila")
+    assert "última versión guardada" in p.inner_text("#aviso-red")
+    ctx.close()
+
+
+def test_sin_red_ni_copia_no_deja_pagina_en_blanco(navegador, base):
+    ctx = navegador.new_context()
+    p = ctx.new_page()
+    p.route("**/data/data.json*", lambda r: r.abort())
+    p.goto(base)
+    p.wait_for_selector(".vacio")
+    assert "No pudimos cargar" in p.inner_text("#vista")
+    ctx.close()
+
+
+def test_descarga_ics(pagina, base):
+    abrir(pagina, base, "docente=Camilo%20Jaimes%20P&vista=lista")
+    with pagina.expect_download() as d:
+        pagina.click("[data-ics-visibles]")
+    txt = Path(d.value.path()).read_text(encoding="utf-8")
+    n = pagina.locator(".fila").count()
+    assert txt.count("BEGIN:VEVENT") == n > 3 and "\r\nTZID" not in txt and "BEGIN:VTIMEZONE" in txt
+
+
+def test_hoja_de_impresion_respeta_filtros_y_temas(pagina, base, tmp_path):
+    abrir(pagina, base, "docente=Camilo%20Jaimes%20P&vista=lista")
+    pagina.check("#f-temas")
+    pagina.evaluate("window.dispatchEvent(new Event('beforeprint'))")
+    filas = pagina.locator("#hoja-impresion tbody").count()
+    assert filas == pagina.locator(".fila").count()
+    assert pagina.locator("#hoja-impresion td.temas").count() == filas
+    assert "Filtros activos" in pagina.inner_text("#hoja-impresion")
+    pdf = tmp_path / "cronograma.pdf"
+    pagina.pdf(path=str(pdf), landscape=True, format="A4", print_background=True)
+    assert pdf.stat().st_size > 5000

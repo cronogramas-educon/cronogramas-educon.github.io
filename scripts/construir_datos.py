@@ -255,6 +255,8 @@ def main():
         print("SIN CAMBIOS: el hash coincide, no se publica")
     else:
         m = datos["meta"]
+        for x in datos["cambios"]:
+            print(f"CAMBIO: {x['clase']} pasó de {x['fechaAnterior']} a {x['fechaNueva']} (original {x['fechaOriginal']})")
         print(f"OK: {m['totalClases']} clases, {m['horasTotales']} horas, {len(datos['unidades'])} unidades, "
               f"{m['inicio']} a {m['fin']}, {len(datos['cambios'])} cambios activos")
 

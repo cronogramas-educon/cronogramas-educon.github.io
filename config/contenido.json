@@ -5,11 +5,24 @@
   "universidad": "Universidad de La Sabana",
   "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
   "modalidad": "Remota (Microsoft Teams)",
-  "horario": { "inicio": "17:00", "fin": "20:00", "zona": "America/Bogota", "desfase": "-05:00" },
+  "horario": {
+    "inicio": "17:00",
+    "fin": "20:00",
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
   "uidSufijo": "cronograma-compliance-2026-2",
-  "urlPaginaOficial": "",
+  "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-compliance-anti-corrupcion-y-anti-lavado-mas-alla-de-las-normas-y-la-teoria",
   "mostrarLinksTeams": true,
   "diasAvisoCambio": 14,
   "contacto": {},
-  "docentesExtra": {}
+  "docentesExtra": {},
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS"
+  ]
 }

@@ -1,0 +1,758 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cronograma Compliance//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Compliance Anti-corrupción y Anti-lavado 3er 2026-2
+X-WR-TIMEZONE:America/Bogota
+BEGIN:VTIMEZONE
+TZID:America/Bogota
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0500
+TZNAME:-05
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:clase-01@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261001T170000
+DTEND;TZID=America/Bogota:20261001T200000
+SUMMARY:Clase 1: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN\n\nTema:\n- Br
+ eve historia de las herramientas de lucha contra la corrupción\n- Diferen
+ tes aproximaciones al vocablo corrupción\n- Convenciones internacionales 
+ de lucha contra la corrupción\n\nDocente: Marta Lucia Ramírez\nAsistente
+  PAT: Jenier Sebastián Achury Gómez\n\nUnirme en Teams: https://teams.mi
+ crosoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 1 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-02@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261002T170000
+DTEND;TZID=America/Bogota:20261002T200000
+SUMMARY:Clase 2: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
+ e la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de
+  administración y gestión integral de riesgos.\n- ¿Cuál es la estructu
+ ra básica y las etapas de un modelo de Sistema de administración de ries
+ gos de lavado de activos?\n- ¿Cómo se elabora el diagnóstico de riesgos
+ ?\n- ¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto
+  para el sector público como privado?\n- Contexto interno y externo\, ide
+ ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
+ de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
+  la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
+ rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
+ eet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 2 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-03@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261006T170000
+DTEND;TZID=America/Bogota:20261006T200000
+SUMMARY:Clase 3: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
+ e la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de
+  administración y gestión integral de riesgos.\n- ¿Cuál es la estructu
+ ra básica y las etapas de un modelo de Sistema de administración de ries
+ gos de lavado de activos?\n- ¿Cómo se elabora el diagnóstico de riesgos
+ ?\n- ¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto
+  para el sector público como privado?\n- Contexto interno y externo\, ide
+ ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
+ de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
+  la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
+ rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
+ eet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 3 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-04@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261007T170000
+DTEND;TZID=America/Bogota:20261007T200000
+SUMMARY:Clase 4: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
+ e la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de
+  administración y gestión integral de riesgos.\n- ¿Cuál es la estructu
+ ra básica y las etapas de un modelo de Sistema de administración de ries
+ gos de lavado de activos?\n- ¿Cómo se elabora el diagnóstico de riesgos
+ ?\n- ¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto
+  para el sector público como privado?\n- Contexto interno y externo\, ide
+ ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
+ de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
+  la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
+ rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
+ eet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 4 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-05@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261008T170000
+DTEND;TZID=America/Bogota:20261008T200000
+SUMMARY:Clase 5: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
+ e la gestión y mitigación del Riesgo de lavado. Revisión de sistemas de
+  administración y gestión integral de riesgos.\n- ¿Cuál es la estructu
+ ra básica y las etapas de un modelo de Sistema de administración de ries
+ gos de lavado de activos?\n- ¿Cómo se elabora el diagnóstico de riesgos
+ ?\n- ¿Qué se debe tener en cuenta para realizar un mapa de riesgos tanto
+  para el sector público como privado?\n- Contexto interno y externo\, ide
+ ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
+ de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
+  la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Jenier Sebas
+ tián Achury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/E
+ JEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 5 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-06@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261009T170000
+DTEND;TZID=America/Bogota:20261009T200000
+SUMMARY:Clase 6: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:EL OFICIAL DE CUMPLIMIENTO Y LA JUNTA DIRECTIVA\n\nTema:\n- Fun
+ ciones.\n- Aspectos legales y corporativos.\n- Perfil del oficial de cumpl
+ imiento.\n- Obligaciones.\n- Responsabilidades.\n- Rol en el sistema.\n- L
+ a confidencialidad del ROS\, revelación (tipping-off).\n\nDocente: SABANA
+ \nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: 
+ https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 6 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-07@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261013T170000
+DTEND;TZID=America/Bogota:20261013T200000
+SUMMARY:Clase 7: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:TRANSPARENCIA EN LA CONTRATACIÓN\n\nTema:\n- Esquemas de anti-
+ fraude en la contratación pública en Colombia\, Banco Mundial (BM) y Ban
+ co Interamericano de Desarrollo (BID).\n\nDocente: Felipe Ortegón\nAsiste
+ nte PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://
+ teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 7 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-08@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261014T170000
+DTEND;TZID=America/Bogota:20261014T200000
+SUMMARY:Clase 8: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN\n\nTema:\n- Ac
+ tores\, roles y responsabilidades de sistema de lucha anti-corrupción en 
+ Colombia. (Procuraduría\, Fiscalía y Contraloría)\n- Secretaría de Tra
+ nsparencia\n- Mecanismos de Prevención.\n\nDocente: Beatriz Londoño P\nA
+ sistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: htt
+ ps://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 8 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-09@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261015T170000
+DTEND;TZID=America/Bogota:20261015T200000
+SUMMARY:Clase 9: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN\n\nTema:\n- Le
+ yes nacionales relacionadas con la lucha anticorrupción y la Ley 2195 de 
+ 2022.\n\nDocente: Beatriz Londoño P\nAsistente PAT: Jenier Sebastián Ach
+ ury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 9 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-10@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261020T170000
+DTEND;TZID=America/Bogota:20261020T200000
+SUMMARY:Clase 10: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:EVOLUCIÓN Y MARCO NORMATIVO DEL COMPLIANCE\nEN EEUU\n\nTema:\n
+ - Evolución y surgimiento en EE. UU. del compliance empresarial.\n\nDocen
+ te: Mery Mantilla\nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\n
+ Unirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 10 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-11@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261021T170000
+DTEND;TZID=America/Bogota:20261021T200000
+SUMMARY:Clase 11: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:EVOLUCIÓN Y MARCO NORMATIVO DEL COMPLIANCE\nEN EEUU\n\nTema:\n
+ - Casos de estudio.\n\nDocente: Mery Mantilla\nAsistente PAT: Fabián Albe
+ rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
+ eet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 11 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-12@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261022T170000
+DTEND;TZID=America/Bogota:20261022T200000
+SUMMARY:Clase 12: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MAR
+ CO NORMATIVO APLICADO PARA ENFRENTARLA\n\nTema:\n- Breve historia de la lu
+ cha contra el lavado de activos\n- Marco normativo Internacional\n\nDocent
+ e: Marta Lucia Ramírez\nAsistente PAT: Jenier Sebastián Achury Gómez\n\
+ nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 12 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-13@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261023T170000
+DTEND;TZID=America/Bogota:20261023T200000
+SUMMARY:Clase 13: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MAR
+ CO NORMATIVO APLICADO PARA ENFRENTARLA\n\nTema:\n- Marco normativo Naciona
+ l\n- 40 Recomendaciones GAFI\n\nDocente: Marta Lucia Ramírez\nAsistente P
+ AT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams
+ .microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 13 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-14@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261027T170000
+DTEND;TZID=America/Bogota:20261027T200000
+SUMMARY:Clase 14: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MAR
+ CO NORMATIVO APLICADO PARA ENFRENTARLA\n\nTema:\n- Efectos del Lavado de A
+ ctivos\, indicadores económicos y sociales\n\nDocente: Marta Lucia Ramír
+ ez\nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams
+ : https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 14 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-15@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261028T170000
+DTEND;TZID=America/Bogota:20261028T200000
+SUMMARY:Clase 15: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA DEL FINANCIAMIENTO DEL TERRORISM
+ O Y DE LA PROLIFERACIÓN DE ARMAS DE DESTRUCCIÓN MASIVA\n\nTema:\n- El 91
+ 1 y los cambios en la lucha contra el terrorismo\n- Marco internacional y 
+ nacional. Exigencias GAFI.\n\nDocente: Marta Lucia Ramírez\nAsistente PAT
+ : Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.m
+ icrosoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 15 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-16@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261030T170000
+DTEND;TZID=America/Bogota:20261030T200000
+SUMMARY:Clase 16: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:HERRAMIENTAS Y CONTROLES ANTI- LAVADO Y ANTI-CORRUPCIÓN.\n\nTe
+ ma:\n- Importancia del enfoque basado en riesgos.\n- Debida diligencia (si
+ mplificada y reforzada).\n- CASO: Personas Expuestas Políticamente (PEP).
+ \n- CASO: Beneficiario final.\n- CASO: Chequeo de listas (vinculantes y re
+ strictivas).\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Alberto C
+ órdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/E
+ JEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 16 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-17@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261103T170000
+DTEND;TZID=America/Bogota:20261103T200000
+SUMMARY:Clase 17: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:HERRAMIENTAS Y CONTROLES ANTI- LAVADO Y ANTI-CORRUPCIÓN.\n\nTe
+ ma:\n- Importancia del enfoque basado en riesgos.\n- Debida diligencia (si
+ mplificada y reforzada).\n- CASO: Personas Expuestas Políticamente (PEP).
+ \n- CASO: Beneficiario final.\n- CASO: Chequeo de listas (vinculantes y re
+ strictivas).\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Alberto C
+ órdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/E
+ JEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 17 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-18@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261104T170000
+DTEND;TZID=America/Bogota:20261104T200000
+SUMMARY:Clase 18: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:SEGMENTACIÓN PARA EL ANÁLISIS DE RIESGOS ALA/CFT.\n\nTema:\n-
+  Se explicarán aspectos práctico – teóricos sobre segmentación de ri
+ esgos y realizará un taller práctico.\n\nDocente: Wilson Gonzalez\nAsist
+ ente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https:/
+ /teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 18 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-19@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261105T170000
+DTEND;TZID=America/Bogota:20261105T200000
+SUMMARY:Clase 19: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:SEGMENTACIÓN PARA EL ANÁLISIS DE RIESGOS ALA/CFT.\n\nTema:\n-
+  Se explicarán aspectos práctico – teóricos sobre segmentación de ri
+ esgos y realizará un taller práctico.\n\nDocente: Wilson Gonzalez\nAsist
+ ente PAT: Jenier Sebastián Achury Gómez\n\nUnirme en Teams: https://team
+ s.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 19 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-20@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261106T170000
+DTEND;TZID=America/Bogota:20261106T200000
+SUMMARY:Clase 20: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:TALLER SEGMENTACIÓN\n\nTema:\n- segmentación de riesgos\n\nDo
+ cente: Wilson Gonzalez\nAsistente PAT: Fabián Alberto Córdoba Almendrale
+ s\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 20 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-21@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261110T170000
+DTEND;TZID=America/Bogota:20261110T200000
+SUMMARY:Clase 21: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CANALES DE DENUNCIA\, INVESTIGACIONES INTERNAS Y PROTECCIÓN A 
+ DENUNCIANTES\n\nTema:\n- Canales de denuncia.\n- Recepción y elementos m
+ ínimos de una denuncia.\n- Evaluación e investigación de los hechos exp
+ uestos. CASO\n- Procesos internos.\n- Políticas de protección a denuncia
+ ntes.\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Alberto Córdoba
+  Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 21 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-22@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261111T170000
+DTEND;TZID=America/Bogota:20261111T200000
+SUMMARY:Clase 22: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:CANALES DE DENUNCIA\, INVESTIGACIONES INTERNAS Y PROTECCIÓN A 
+ DENUNCIANTES\n\nTema:\n- Canales de denuncia.\n- Recepción y elementos m
+ ínimos de una denuncia.\n- Evaluación e investigación de los hechos exp
+ uestos. CASO\n- Procesos internos.\n- Políticas de protección a denuncia
+ ntes.\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Alberto Córdoba
+  Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 22 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-23@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261112T170000
+DTEND;TZID=America/Bogota:20261112T200000
+SUMMARY:Clase 23: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:PROGRAMAS DE TRANSPARENCIA Y ÉTICA PÚBLICA Y EMPRESARIAL\n\nT
+ ema:\n- Ley 2195 de 2022 y decreto reglamentario. Sector público y privad
+ o.\n- Parámetros de la Superfinanciera y Supersociedades para la revisió
+ n de los programas de administración de riesgos.\n\nDocente: Marta Lucia 
+ Ramírez y Beatriz Londoño P\nAsistente PAT: Jenier Sebastián Achury Gó
+ mez\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 23 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-24@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261117T170000
+DTEND;TZID=America/Bogota:20261117T200000
+SUMMARY:Clase 24: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y AN
+ TICORRUPCIÓN\n\nTema:\n- Fundamentos teóricos y prácticos sobre la util
+ ización y empleo de big data\, analítica y redes en la gestión del ries
+ go ALA/CFT\n\nDocente: Sebastián Villegas\nAsistente PAT: Fabián Alberto
+  Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet
+ /EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 24 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-25@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261118T170000
+DTEND;TZID=America/Bogota:20261118T200000
+SUMMARY:Clase 25: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y AN
+ TICORRUPCIÓN\n\nTema:\n- Fundamentos teóricos y prácticos sobre la util
+ ización y empleo de big data\, analítica y redes en la gestión del ries
+ go ALA/CFT\n\nDocente: Sebastián Villegas\nAsistente PAT: Fabián Alberto
+  Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet
+ /EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 25 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-26@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261119T170000
+DTEND;TZID=America/Bogota:20261119T200000
+SUMMARY:Clase 26: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y AN
+ TICORRUPCIÓN\n\nTema:\n- Fundamentos teóricos y prácticos sobre la util
+ ización y empleo de big data\, analítica y redes en la gestión del ries
+ go ALA/CFT\n\nDocente: Sebastián Villegas\nAsistente PAT: Jenier Sebasti
+ án Achury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJE
+ MPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 26 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-27@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261120T170000
+DTEND;TZID=America/Bogota:20261120T200000
+SUMMARY:Clase 27: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\, 
+ CORRUPCIÓN\, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANA
+ LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Explicaci
+ ón y estudio del caso de DMG\n\nDocente: Beatriz Londoño P\nAsistente PA
+ T: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.
+ microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 27 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-28@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261124T170000
+DTEND;TZID=America/Bogota:20261124T200000
+SUMMARY:Clase 28: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\, 
+ CORRUPCIÓN\, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANA
+ LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Explicaci
+ ón de caso de Lavado de Activos y principales tipologías de lavado.\n\nD
+ ocente: Pablo Latorre\nAsistente PAT: Fabián Alberto Córdoba Almendrales
+ \n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 28 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-29@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261125T170000
+DTEND;TZID=America/Bogota:20261125T200000
+SUMMARY:Clase 29: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\, 
+ CORRUPCIÓN\, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANA
+ LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Explicaci
+ ón y estudio del caso Lava Jato Y Odebrecht\n\nDocente: Camilo Jaimes P\n
+ Asistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: ht
+ tps://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 29 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-30@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261126T170000
+DTEND;TZID=America/Bogota:20261126T200000
+SUMMARY:Clase 30: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\, 
+ CORRUPCIÓN\, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANA
+ LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Caso prá
+ ctico y simulación de roles\n\nDocente: Marta Lucia Ramírez y Beatriz Lo
+ ndoño P\nAsistente PAT: Jenier Sebastián Achury Gómez\n\nUnirme en Team
+ s: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 30 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-31@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261127T170000
+DTEND;TZID=America/Bogota:20261127T200000
+SUMMARY:Clase 31: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\, 
+ CORRUPCIÓN\, USO DE NUEVAS TECNOLOGÍAS Y METODOLOGÍAS DE CASOS PARA ANA
+ LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Caso prá
+ ctico y simulación de roles\n\nDocente: Camilo Jaimes P\nAsistente PAT: F
+ abián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.micr
+ osoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 31 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-32@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261201T170000
+DTEND;TZID=America/Bogota:20261201T200000
+SUMMARY:Clase 32: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:LOS REPORTES INTERNOS DE OPERACIONES INUSUALES Y LOS REPORTES E
+ XTERNOS DE OPERACIONES SOSPECHOSAS (ROS)\n\nTema:\n- Taller teórico - pr
+ áctico sobre reportes internos de inusualidades y Reportes de Operaciones
+  Sospechosas (ROS) a la UIAF\n\nDocente: Angélica Sánchez Durán\nAsiste
+ nte PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://
+ teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 32 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-33@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261202T170000
+DTEND;TZID=America/Bogota:20261202T200000
+SUMMARY:Clase 33: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:NEUROSCIENCIA\, ÉTICA Y COMPLIANCE\n\nTema:\n- Cerebro\, neuro
+ nas espejo\, teoría de la mente y enfoque racional de las herramientas an
+ ti-corrupción.\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Albert
+ o Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/mee
+ t/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 33 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-34@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261203T170000
+DTEND;TZID=America/Bogota:20261203T200000
+SUMMARY:Clase 34: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:ÉTICA DEL COMPORTAMIENTO COMO BASE DE LOS PROGRAMAS CUMPLIMIEN
+ TO\n\nTema:\n- Cultura de la integridad y del cumplimiento.\n\nDocente: An
+ drés Murcia\nAsistente PAT: Jenier Sebastián Achury Gómez\n\nUnirme en 
+ Teams: https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 34 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-35@cronograma-compliance-2026-2
+DTSTAMP:20261001T203926Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261204T170000
+DTEND;TZID=America/Bogota:20261204T200000
+SUMMARY:Clase 35: Compliance Anti-corrupción y Anti-lavado
+DESCRIPTION:ÉTICA DEL COMPORTAMIENTO COMO BASE DE LOS PROGRAMAS CUMPLIMIEN
+ TO\n\nTema:\n- Taller Cultura de la Integridad\n\nDocente: Camilo Jaimes P
+ \nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: 
+ https://teams.microsoft.com/meet/EJEMPLO
+LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/EJEMPLO
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 35 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
