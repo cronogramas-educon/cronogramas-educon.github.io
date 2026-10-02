@@ -1,0 +1,477 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cronograma Educacion Continua//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Contratación Estatal
+X-WR-TIMEZONE:America/Bogota
+BEGIN:VTIMEZONE
+TZID:America/Bogota
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0500
+TZNAME:-05
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:clase-01@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261006T180000
+DTEND;TZID=America/Bogota:20261006T210000
+SUMMARY:Clase 1: Contratación Estatal
+DESCRIPTION:MÓDULO 1: INTRODUCCIÓN A LA CONTRATACIÓN ESTATAL\n\nTema:\n-
+  Etapas de la contratación estatal y sujetos contractuales\n\nDocente: Ja
+ ssir Álvarez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 1 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-02@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261007T180000
+DTEND;TZID=America/Bogota:20261007T210000
+SUMMARY:Clase 2: Contratación Estatal
+DESCRIPTION:MÓDULO 1: INTRODUCCIÓN A LA CONTRATACIÓN ESTATAL\n\nTema:\n-
+  Etapas de la contratación estatal y sujetos contractuales\n\nDocente: Ja
+ ssir Álvarez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 2 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-03@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261008T180000
+DTEND;TZID=America/Bogota:20261008T210000
+SUMMARY:Clase 3: Contratación Estatal
+DESCRIPTION:MÓDULO 1: INTRODUCCIÓN A LA CONTRATACIÓN ESTATAL\n\nTema:\n-
+  Etapas de la contratación estatal y sujetos contractuales\n\nDocente: Ja
+ ssir Álvarez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 3 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-04@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261013T180000
+DTEND;TZID=America/Bogota:20261013T210000
+SUMMARY:Clase 4: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Plan Anual de Adquisiciones\, Tienda Virtual del Estado e Ins
+ trumentos de Agregación de Demanda\n\nDocente: Iván Unigarro
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 4 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-05@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261014T180000
+DTEND;TZID=America/Bogota:20261014T210000
+SUMMARY:Clase 5: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Plan Anual de Adquisiciones\, Tienda Virtual del Estado e Ins
+ trumentos de Agregación de Demanda\n\nDocente: Iván Unigarro
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 5 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-06@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261015T180000
+DTEND;TZID=America/Bogota:20261015T210000
+SUMMARY:Clase 6: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Plan Anual de Adquisiciones\, Tienda Virtual del Estado e Ins
+ trumentos de Agregación de Demanda\n\nDocente: Iván Unigarro
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 6 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-07@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261020T180000
+DTEND;TZID=America/Bogota:20261020T210000
+SUMMARY:Clase 7: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Modalidades de selección\, causales de rechazo y criterios d
+ e desempate\n\nDocente: Yani Zambrano
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 7 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-08@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261021T180000
+DTEND;TZID=America/Bogota:20261021T210000
+SUMMARY:Clase 8: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Modalidades de selección\, causales de rechazo y criterios d
+ e desempate\n\nDocente: Yani Zambrano
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 8 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-09@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261022T180000
+DTEND;TZID=America/Bogota:20261022T210000
+SUMMARY:Clase 9: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Modalidades de selección\, causales de rechazo y criterios d
+ e desempate\n\nDocente: Yani Zambrano
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 9 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-10@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261027T180000
+DTEND;TZID=America/Bogota:20261027T210000
+SUMMARY:Clase 10: Contratación Estatal
+DESCRIPTION:MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL\n\nTe
+ ma:\n- Tipología de contratos estatales\n\nDocente: Jimmy Pérez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 10 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-11@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261028T180000
+DTEND;TZID=America/Bogota:20261028T210000
+SUMMARY:Clase 11: Contratación Estatal
+DESCRIPTION:MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL\n\nTe
+ ma:\n- Tipología de contratos estatales\n\nDocente: Jimmy Pérez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 11 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-12@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261029T180000
+DTEND;TZID=America/Bogota:20261029T210000
+SUMMARY:Clase 12: Contratación Estatal
+DESCRIPTION:MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL\n\nTe
+ ma:\n- Tipología de contratos estatales\n\nDocente: Jimmy Pérez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 12 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-13@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261103T180000
+DTEND;TZID=America/Bogota:20261103T210000
+SUMMARY:Clase 13: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Registro\, configuración\, proceso de contratación\, acceso
+  y transacciones por medio de SECOP II\n\nDocente: Nataly Del Pilar Moreno
+  Caballero
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 13 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-14@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261104T180000
+DTEND;TZID=America/Bogota:20261104T210000
+SUMMARY:Clase 14: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Registro\, configuración\, proceso de contratación\, acceso
+  y transacciones por medio de SECOP II\n\nDocente: Nataly Del Pilar Moreno
+  Caballero
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 14 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-15@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261105T180000
+DTEND;TZID=America/Bogota:20261105T210000
+SUMMARY:Clase 15: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Planeación precontractual\, estudio de mercado\, sector econ
+ ómico\, matriz de riesgos\, elaboración de requisitos habilitantes y pli
+ ego de condiciones\n\nDocente: Viviana Rodríguez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 15 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-16@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261110T180000
+DTEND;TZID=America/Bogota:20261110T210000
+SUMMARY:Clase 16: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Planeación precontractual\, estudio de mercado\, sector econ
+ ómico\, matriz de riesgos\, elaboración de requisitos habilitantes y pli
+ ego de condiciones\n\nDocente: Viviana Rodríguez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 16 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-17@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261111T180000
+DTEND;TZID=America/Bogota:20261111T210000
+SUMMARY:Clase 17: Contratación Estatal
+DESCRIPTION:MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS
+ \n\nTema:\n- Planeación precontractual\, estudio de mercado\, sector econ
+ ómico\, matriz de riesgos\, elaboración de requisitos habilitantes y pli
+ ego de condiciones\n\nDocente: Viviana Rodríguez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 17 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-18@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261112T180000
+DTEND;TZID=America/Bogota:20261112T210000
+SUMMARY:Clase 18: Contratación Estatal
+DESCRIPTION:MÓDULO 3: REGULACIÓN Y SUPERVISIÓN\n\nTema:\n- Regulación y
+  supervisión\, Funciones de la Agencia Nacional de Contratación Pública
+  y la Superintendencia de Industria y Comercio y Facultades sancionatorias
+  en la contratación estatal.\n\nDocente: Diana Bernal
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 18 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-19@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261117T180000
+DTEND;TZID=America/Bogota:20261117T210000
+SUMMARY:Clase 19: Contratación Estatal
+DESCRIPTION:MÓDULO 3: REGULACIÓN Y SUPERVISIÓN\n\nTema:\n- Regulación y
+  supervisión\, Funciones de la Agencia Nacional de Contratación Pública
+  y la Superintendencia de Industria y Comercio y Facultades sancionatorias
+  en la contratación estatal.\n\nDocente: Diana Bernal
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 19 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-20@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261118T180000
+DTEND;TZID=America/Bogota:20261118T210000
+SUMMARY:Clase 20: Contratación Estatal
+DESCRIPTION:MÓDULO 3: REGULACIÓN Y SUPERVISIÓN\n\nTema:\n- Regulación y
+  supervisión\, Funciones de la Agencia Nacional de Contratación Pública
+  y la Superintendencia de Industria y Comercio y Facultades sancionatorias
+  en la contratación estatal.\n\nDocente: Diana Bernal
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 20 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-21@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261119T180000
+DTEND;TZID=America/Bogota:20261119T210000
+SUMMARY:Clase 21: Contratación Estatal
+DESCRIPTION:MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL\n\nTe
+ ma:\n- Liquidación del contrato estatal\n\nDocente: Daniel Bernal
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 21 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-22@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261124T180000
+DTEND;TZID=America/Bogota:20261124T210000
+SUMMARY:Clase 22: Contratación Estatal
+DESCRIPTION:MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL\n\nTe
+ ma:\n- Liquidación del contrato estatal\n\nDocente: Daniel Bernal
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 22 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-23@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261125T180000
+DTEND;TZID=America/Bogota:20261125T210000
+SUMMARY:Clase 23: Contratación Estatal
+DESCRIPTION:MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRAC
+ TUAL\n\nTema:\n- Garantías contractuales\n\nDocente: José López Oliva
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 23 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-24@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261126T180000
+DTEND;TZID=America/Bogota:20261126T210000
+SUMMARY:Clase 24: Contratación Estatal
+DESCRIPTION:MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRAC
+ TUAL\n\nTema:\n- Garantías contractuales\n\nDocente: José López Oliva
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 24 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-25@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261201T180000
+DTEND;TZID=America/Bogota:20261201T210000
+SUMMARY:Clase 25: Contratación Estatal
+DESCRIPTION:MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRAC
+ TUAL\n\nTema:\n- Contencioso Administrativo y responsabilidad contractual\
+ n\nDocente: Edgar Quiroga
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 25 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-26@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261202T180000
+DTEND;TZID=America/Bogota:20261202T210000
+SUMMARY:Clase 26: Contratación Estatal
+DESCRIPTION:MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRAC
+ TUAL\n\nTema:\n- Contencioso Administrativo y responsabilidad contractual\
+ n\nDocente: Edgar Quiroga
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 26 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-27@cronograma-contratacion-estatal
+DTSTAMP:20261002T210453Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261203T180000
+DTEND;TZID=America/Bogota:20261203T210000
+SUMMARY:Clase 27: Contratación Estatal
+DESCRIPTION:MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRAC
+ TUAL\n\nTema:\n- Contencioso Administrativo y responsabilidad contractual\
+ n\nDocente: Edgar Quiroga
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 27 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

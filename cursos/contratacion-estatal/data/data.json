@@ -1,0 +1,772 @@
+{
+  "meta": {
+    "programa": "Diplomado Contratación Estatal",
+    "tipo": "Diplomado",
+    "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+    "modalidad": "Remota (Microsoft Teams)",
+    "zona": "America/Bogota",
+    "totalClases": 27,
+    "horasTotales": 0,
+    "horasCompletas": false,
+    "inicio": "2026-10-06",
+    "fin": "2026-12-03",
+    "hash": "4efa48ac24437c43",
+    "generadoEn": "2026-10-02T21:04:53Z",
+    "fuenteModificadaEn": "2026-10-02T21:04:36.1520525Z"
+  },
+  "clases": [
+    {
+      "id": 1,
+      "clase": "CLASE 1",
+      "unidad": "MÓDULO 1: INTRODUCCIÓN A LA CONTRATACIÓN ESTATAL",
+      "unidadSlug": "modulo-1-introduccion-a-la-contratacion-estatal",
+      "tema": "Etapas de la contratación estatal y sujetos contractuales",
+      "temaPuntos": [
+        "Etapas de la contratación estatal y sujetos contractuales"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Jassir Álvarez",
+      "profesores": [
+        "Jassir Álvarez"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-06",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-06T18:00:00-05:00",
+      "fin": "2026-10-06T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 2,
+      "clase": "CLASE 2",
+      "unidad": "MÓDULO 1: INTRODUCCIÓN A LA CONTRATACIÓN ESTATAL",
+      "unidadSlug": "modulo-1-introduccion-a-la-contratacion-estatal",
+      "tema": "Etapas de la contratación estatal y sujetos contractuales",
+      "temaPuntos": [
+        "Etapas de la contratación estatal y sujetos contractuales"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Jassir Álvarez",
+      "profesores": [
+        "Jassir Álvarez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-07",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-07T18:00:00-05:00",
+      "fin": "2026-10-07T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 3,
+      "clase": "CLASE 3",
+      "unidad": "MÓDULO 1: INTRODUCCIÓN A LA CONTRATACIÓN ESTATAL",
+      "unidadSlug": "modulo-1-introduccion-a-la-contratacion-estatal",
+      "tema": "Etapas de la contratación estatal y sujetos contractuales",
+      "temaPuntos": [
+        "Etapas de la contratación estatal y sujetos contractuales"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Jassir Álvarez",
+      "profesores": [
+        "Jassir Álvarez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-08",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-08T18:00:00-05:00",
+      "fin": "2026-10-08T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 4,
+      "clase": "CLASE 4",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Plan Anual de Adquisiciones, Tienda Virtual del Estado e Instrumentos de Agregación de Demanda",
+      "temaPuntos": [
+        "Plan Anual de Adquisiciones, Tienda Virtual del Estado e Instrumentos de Agregación de Demanda"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Iván Unigarro",
+      "profesores": [
+        "Iván Unigarro"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-13",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-13T18:00:00-05:00",
+      "fin": "2026-10-13T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 5,
+      "clase": "CLASE 5",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Plan Anual de Adquisiciones, Tienda Virtual del Estado e Instrumentos de Agregación de Demanda",
+      "temaPuntos": [
+        "Plan Anual de Adquisiciones, Tienda Virtual del Estado e Instrumentos de Agregación de Demanda"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Iván Unigarro",
+      "profesores": [
+        "Iván Unigarro"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-14",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-14T18:00:00-05:00",
+      "fin": "2026-10-14T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 6,
+      "clase": "CLASE 6",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Plan Anual de Adquisiciones, Tienda Virtual del Estado e Instrumentos de Agregación de Demanda",
+      "temaPuntos": [
+        "Plan Anual de Adquisiciones, Tienda Virtual del Estado e Instrumentos de Agregación de Demanda"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Iván Unigarro",
+      "profesores": [
+        "Iván Unigarro"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-15",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-15T18:00:00-05:00",
+      "fin": "2026-10-15T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 7,
+      "clase": "CLASE 7",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Modalidades de selección, causales de rechazo y criterios de desempate",
+      "temaPuntos": [
+        "Modalidades de selección, causales de rechazo y criterios de desempate"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Yani Zambrano",
+      "profesores": [
+        "Yani Zambrano"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-20",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-20T18:00:00-05:00",
+      "fin": "2026-10-20T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 8,
+      "clase": "CLASE 8",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Modalidades de selección, causales de rechazo y criterios de desempate",
+      "temaPuntos": [
+        "Modalidades de selección, causales de rechazo y criterios de desempate"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Yani Zambrano",
+      "profesores": [
+        "Yani Zambrano"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-21",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-21T18:00:00-05:00",
+      "fin": "2026-10-21T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 9,
+      "clase": "CLASE 9",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Modalidades de selección, causales de rechazo y criterios de desempate",
+      "temaPuntos": [
+        "Modalidades de selección, causales de rechazo y criterios de desempate"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Yani Zambrano",
+      "profesores": [
+        "Yani Zambrano"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-22",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-22T18:00:00-05:00",
+      "fin": "2026-10-22T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 10,
+      "clase": "CLASE 10",
+      "unidad": "MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL",
+      "unidadSlug": "modulo-4-ejecucion-y-liquidacion-del-contrato-estatal",
+      "tema": "Tipología de contratos estatales",
+      "temaPuntos": [
+        "Tipología de contratos estatales"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Jimmy Pérez",
+      "profesores": [
+        "Jimmy Pérez"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-27",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-27T18:00:00-05:00",
+      "fin": "2026-10-27T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 11,
+      "clase": "CLASE 11",
+      "unidad": "MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL",
+      "unidadSlug": "modulo-4-ejecucion-y-liquidacion-del-contrato-estatal",
+      "tema": "Tipología de contratos estatales",
+      "temaPuntos": [
+        "Tipología de contratos estatales"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Jimmy Pérez",
+      "profesores": [
+        "Jimmy Pérez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-28",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-28T18:00:00-05:00",
+      "fin": "2026-10-28T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 12,
+      "clase": "CLASE 12",
+      "unidad": "MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL",
+      "unidadSlug": "modulo-4-ejecucion-y-liquidacion-del-contrato-estatal",
+      "tema": "Tipología de contratos estatales",
+      "temaPuntos": [
+        "Tipología de contratos estatales"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Jimmy Pérez",
+      "profesores": [
+        "Jimmy Pérez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-29",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-29T18:00:00-05:00",
+      "fin": "2026-10-29T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 13,
+      "clase": "CLASE 13",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Registro, configuración, proceso de contratación, acceso y transacciones por medio de SECOP II",
+      "temaPuntos": [
+        "Registro, configuración, proceso de contratación, acceso y transacciones por medio de SECOP II"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Nataly Del Pilar Moreno Caballero",
+      "profesores": [
+        "Nataly Del Pilar Moreno Caballero"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-03",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-03T18:00:00-05:00",
+      "fin": "2026-11-03T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 14,
+      "clase": "CLASE 14",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Registro, configuración, proceso de contratación, acceso y transacciones por medio de SECOP II",
+      "temaPuntos": [
+        "Registro, configuración, proceso de contratación, acceso y transacciones por medio de SECOP II"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Nataly Del Pilar Moreno Caballero",
+      "profesores": [
+        "Nataly Del Pilar Moreno Caballero"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-04",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-04T18:00:00-05:00",
+      "fin": "2026-11-04T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 15,
+      "clase": "CLASE 15",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Planeación precontractual, estudio de mercado, sector económico, matriz de riesgos, elaboración de requisitos habilitantes y pliego de condiciones",
+      "temaPuntos": [
+        "Planeación precontractual, estudio de mercado, sector económico, matriz de riesgos, elaboración de requisitos habilitantes y pliego de condiciones"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Viviana Rodríguez",
+      "profesores": [
+        "Viviana Rodríguez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-05",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-05T18:00:00-05:00",
+      "fin": "2026-11-05T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 16,
+      "clase": "CLASE 16",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Planeación precontractual, estudio de mercado, sector económico, matriz de riesgos, elaboración de requisitos habilitantes y pliego de condiciones",
+      "temaPuntos": [
+        "Planeación precontractual, estudio de mercado, sector económico, matriz de riesgos, elaboración de requisitos habilitantes y pliego de condiciones"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Viviana Rodríguez",
+      "profesores": [
+        "Viviana Rodríguez"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-10",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-10T18:00:00-05:00",
+      "fin": "2026-11-10T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 17,
+      "clase": "CLASE 17",
+      "unidad": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "unidadSlug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "tema": "Planeación precontractual, estudio de mercado, sector económico, matriz de riesgos, elaboración de requisitos habilitantes y pliego de condiciones",
+      "temaPuntos": [
+        "Planeación precontractual, estudio de mercado, sector económico, matriz de riesgos, elaboración de requisitos habilitantes y pliego de condiciones"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Viviana Rodríguez",
+      "profesores": [
+        "Viviana Rodríguez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-11",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-11T18:00:00-05:00",
+      "fin": "2026-11-11T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 18,
+      "clase": "CLASE 18",
+      "unidad": "MÓDULO 3: REGULACIÓN Y SUPERVISIÓN",
+      "unidadSlug": "modulo-3-regulacion-y-supervision",
+      "tema": "Regulación y supervisión, Funciones de la Agencia Nacional de Contratación Pública y la Superintendencia de Industria y Comercio y Facultades sancionatorias en la contratación estatal.",
+      "temaPuntos": [
+        "Regulación y supervisión, Funciones de la Agencia Nacional de Contratación Pública y la Superintendencia de Industria y Comercio y Facultades sancionatorias en la contratación estatal."
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Diana Bernal",
+      "profesores": [
+        "Diana Bernal"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-12",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-12T18:00:00-05:00",
+      "fin": "2026-11-12T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 19,
+      "clase": "CLASE 19",
+      "unidad": "MÓDULO 3: REGULACIÓN Y SUPERVISIÓN",
+      "unidadSlug": "modulo-3-regulacion-y-supervision",
+      "tema": "Regulación y supervisión, Funciones de la Agencia Nacional de Contratación Pública y la Superintendencia de Industria y Comercio y Facultades sancionatorias en la contratación estatal.",
+      "temaPuntos": [
+        "Regulación y supervisión, Funciones de la Agencia Nacional de Contratación Pública y la Superintendencia de Industria y Comercio y Facultades sancionatorias en la contratación estatal."
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Diana Bernal",
+      "profesores": [
+        "Diana Bernal"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-17",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-17T18:00:00-05:00",
+      "fin": "2026-11-17T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 20,
+      "clase": "CLASE 20",
+      "unidad": "MÓDULO 3: REGULACIÓN Y SUPERVISIÓN",
+      "unidadSlug": "modulo-3-regulacion-y-supervision",
+      "tema": "Regulación y supervisión, Funciones de la Agencia Nacional de Contratación Pública y la Superintendencia de Industria y Comercio y Facultades sancionatorias en la contratación estatal.",
+      "temaPuntos": [
+        "Regulación y supervisión, Funciones de la Agencia Nacional de Contratación Pública y la Superintendencia de Industria y Comercio y Facultades sancionatorias en la contratación estatal."
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Diana Bernal",
+      "profesores": [
+        "Diana Bernal"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-18",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-18T18:00:00-05:00",
+      "fin": "2026-11-18T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 21,
+      "clase": "CLASE 21",
+      "unidad": "MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL",
+      "unidadSlug": "modulo-4-ejecucion-y-liquidacion-del-contrato-estatal",
+      "tema": "Liquidación del contrato estatal",
+      "temaPuntos": [
+        "Liquidación del contrato estatal"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Daniel Bernal",
+      "profesores": [
+        "Daniel Bernal"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-19",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-19T18:00:00-05:00",
+      "fin": "2026-11-19T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 22,
+      "clase": "CLASE 22",
+      "unidad": "MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL",
+      "unidadSlug": "modulo-4-ejecucion-y-liquidacion-del-contrato-estatal",
+      "tema": "Liquidación del contrato estatal",
+      "temaPuntos": [
+        "Liquidación del contrato estatal"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Daniel Bernal",
+      "profesores": [
+        "Daniel Bernal"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-24",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-24T18:00:00-05:00",
+      "fin": "2026-11-24T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 23,
+      "clase": "CLASE 23",
+      "unidad": "MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRACTUAL",
+      "unidadSlug": "modulo-5-contencioso-administrativo-y-responsabilidad-contra",
+      "tema": "Garantías contractuales",
+      "temaPuntos": [
+        "Garantías contractuales"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "José López Oliva",
+      "profesores": [
+        "José López Oliva"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-25",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-25T18:00:00-05:00",
+      "fin": "2026-11-25T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 24,
+      "clase": "CLASE 24",
+      "unidad": "MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRACTUAL",
+      "unidadSlug": "modulo-5-contencioso-administrativo-y-responsabilidad-contra",
+      "tema": "Garantías contractuales",
+      "temaPuntos": [
+        "Garantías contractuales"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "José López Oliva",
+      "profesores": [
+        "José López Oliva"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-26",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-26T18:00:00-05:00",
+      "fin": "2026-11-26T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 25,
+      "clase": "CLASE 25",
+      "unidad": "MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRACTUAL",
+      "unidadSlug": "modulo-5-contencioso-administrativo-y-responsabilidad-contra",
+      "tema": "Contencioso Administrativo y responsabilidad contractual",
+      "temaPuntos": [
+        "Contencioso Administrativo y responsabilidad contractual"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Edgar Quiroga",
+      "profesores": [
+        "Edgar Quiroga"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-12-01",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-12-01T18:00:00-05:00",
+      "fin": "2026-12-01T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 26,
+      "clase": "CLASE 26",
+      "unidad": "MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRACTUAL",
+      "unidadSlug": "modulo-5-contencioso-administrativo-y-responsabilidad-contra",
+      "tema": "Contencioso Administrativo y responsabilidad contractual",
+      "temaPuntos": [
+        "Contencioso Administrativo y responsabilidad contractual"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Edgar Quiroga",
+      "profesores": [
+        "Edgar Quiroga"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-12-02",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-12-02T18:00:00-05:00",
+      "fin": "2026-12-02T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 27,
+      "clase": "CLASE 27",
+      "unidad": "MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRACTUAL",
+      "unidadSlug": "modulo-5-contencioso-administrativo-y-responsabilidad-contra",
+      "tema": "Contencioso Administrativo y responsabilidad contractual",
+      "temaPuntos": [
+        "Contencioso Administrativo y responsabilidad contractual"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Edgar Quiroga",
+      "profesores": [
+        "Edgar Quiroga"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-12-03",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-12-03T18:00:00-05:00",
+      "fin": "2026-12-03T21:00:00-05:00",
+      "secuencia": 0
+    }
+  ],
+  "unidades": [
+    {
+      "slug": "modulo-1-introduccion-a-la-contratacion-estatal",
+      "nombre": "MÓDULO 1: INTRODUCCIÓN A LA CONTRATACIÓN ESTATAL",
+      "clases": [
+        1,
+        2,
+        3
+      ],
+      "horas": 0
+    },
+    {
+      "slug": "modulo-2-seleccion-de-contratistas-y-herramientas-operativas",
+      "nombre": "MÓDULO 2: SELECCIÓN DE CONTRATISTAS Y HERRAMIENTAS OPERATIVAS",
+      "clases": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "horas": 0
+    },
+    {
+      "slug": "modulo-4-ejecucion-y-liquidacion-del-contrato-estatal",
+      "nombre": "MÓDULO 4: EJECUCIÓN Y LIQUIDACIÓN DEL CONTRATO ESTATAL",
+      "clases": [
+        10,
+        11,
+        12,
+        21,
+        22
+      ],
+      "horas": 0
+    },
+    {
+      "slug": "modulo-3-regulacion-y-supervision",
+      "nombre": "MÓDULO 3: REGULACIÓN Y SUPERVISIÓN",
+      "clases": [
+        18,
+        19,
+        20
+      ],
+      "horas": 0
+    },
+    {
+      "slug": "modulo-5-contencioso-administrativo-y-responsabilidad-contra",
+      "nombre": "MÓDULO 5: CONTENCIOSO ADMINISTRATIVO Y RESPONSABILIDAD CONTRACTUAL",
+      "clases": [
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "horas": 0
+    }
+  ],
+  "profesores": [
+    "Daniel Bernal",
+    "Diana Bernal",
+    "Edgar Quiroga",
+    "Iván Unigarro",
+    "Jassir Álvarez",
+    "Jimmy Pérez",
+    "José López Oliva",
+    "Nataly Del Pilar Moreno Caballero",
+    "Viviana Rodríguez",
+    "Yani Zambrano"
+  ],
+  "asistentesPat": [],
+  "cambios": []
+}
