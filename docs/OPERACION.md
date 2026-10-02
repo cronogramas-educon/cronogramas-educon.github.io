@@ -1,6 +1,6 @@
 # Operación: guía para quien edita el Excel
 
-El Excel es la única fuente de verdad. Cuando guardas un cambio, la página se actualiza sola en unos minutos (el tiempo medido está en el README). No hay que tocar nada más.
+El Excel es la única fuente de verdad. El archivo que alimenta la página es `Cuadro de horas módulos y profesores - 3er 2026_2 (3).xlsx`, en el sitio SharePoint **Información cursos y diplomados FEJPI**. Editar la otra copia (en el sitio Especializaciones) no actualiza la página. Cuando guardas un cambio, la página se actualiza sola en unos minutos (el tiempo medido está en el README). No hay que tocar nada más.
 
 ## Qué sí puedes cambiar
 

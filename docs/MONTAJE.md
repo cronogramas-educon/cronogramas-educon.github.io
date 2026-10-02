@@ -134,3 +134,20 @@ Quien edite el Excel debe leer `docs/OPERACION.md`.
 4. GitHub limita la carga útil del evento a unos 65 mil caracteres. Los datos actuales (35 filas) caben con holgura. Verifica el límite vigente en la documentación de GitHub si el programa crece mucho.
 5. En este modo no hace falta el secreto `EXCEL_URL`.
 6. En este modo el temporizador de 15 minutos se omite (no hay Excel que descargar), así que solo el aviso de Power Automate actualiza la página. Para forzar una actualización, vuelve a guardar el Excel o ejecuta el flujo manualmente.
+
+---
+
+## Cómo quedó el montaje real (Plan B en funcionamiento)
+
+El inquilino de la Universidad no permite vínculos "Cualquier persona", así que este proyecto usa el Plan B. Datos concretos, por si hay que repararlo:
+
+- **Variable del repositorio:** `MODO_ENTRADA = json` (Settings > Secrets and variables > Actions > Variables). No existe el secreto `EXCEL_URL`. El temporizador de 15 minutos se omite en este modo.
+- **Flujo de Power Automate:** `Cronograma a GitHub`, cuenta institucional del propietario del flujo, con cuatro pasos:
+  1. SharePoint, **Cuando se crea o modifica un archivo (solo propiedades)**. Sitio `Información cursos y diplomados FEJPI` (`/sites/InformacincursosydiplomadosFEJPI`), biblioteca `Documents`, sin carpeta. En Configuración tiene una **condición de desencadenador** que solo deja pasar archivos cuyo nombre contenga `3er 2026_2 (3)`.
+  2. Excel Online (Business), **Enumerar filas presentes en una tabla**: ese mismo archivo y la tabla `Table1`.
+  3. **Seleccionar**: arma las 10 columnas. Excel Online codifica el punto de los encabezados, por eso `No.` se lee como `No_x002e_` y `No. de clase` como `No_x002e_ de clase`. El procesador de datos también decodifica estos nombres.
+  4. GitHub, **Create a repository dispatch event** (conector estándar, en vista previa): propietario y repositorio, evento `excel-actualizado` y carga útil `{"filas":"@{string(body('Select'))}"}`.
+- **Qué archivo editar:** la copia `Cuadro de horas módulos y profesores - 3er 2026_2 (3).xlsx` del sitio FEJPI. Existe otra copia en el sitio `Especializaciones` que **no** alimenta la página. Si se renombra el archivo, hay que actualizar la condición del desencadenador y la ruta del paso de Excel.
+- **Privacidad de los registros:** el repositorio es público, y los registros de Actions también. El workflow lee la carga útil del archivo del evento (`GITHUB_EVENT_PATH`) y nunca de una variable de entorno, porque GitHub imprime esas variables en el registro. No cambiar eso.
+- **Fechas:** el conector entrega la fecha como número serial de Excel en texto (por ejemplo `"46296"`). El procesador la convierte.
+- **Reintento:** si una ejecución falla por un dato del Excel, se corrige el Excel y se vuelve a guardar. Si falló por un error de código ya corregido, en GitHub se puede usar `Re-run failed jobs` sobre la ejecución fallida (reutiliza el mismo evento).
