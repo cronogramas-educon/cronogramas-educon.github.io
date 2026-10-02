@@ -1,0 +1,539 @@
+{
+  "meta": {
+    "programa": "Curso de gestión de conflictos societarios",
+    "tipo": "Curso",
+    "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+    "modalidad": "Remota",
+    "zona": "America/Bogota",
+    "totalClases": 16,
+    "horasTotales": 32,
+    "horasCompletas": true,
+    "inicio": "2026-10-02",
+    "fin": "2026-11-06",
+    "hash": "bd40a1f6d3a16d60",
+    "generadoEn": "2026-10-02T21:01:16Z",
+    "fuenteModificadaEn": "2026-10-02T21:01:02.4952815Z"
+  },
+  "clases": [
+    {
+      "id": 1,
+      "clase": "CLASE 1",
+      "unidad": "MÓDULO I: FUNDAMENTOS DE LOS CONFLICTOS SOCIETARIOS (2 HORAS)",
+      "unidadSlug": "modulo-i-fundamentos-de-los-conflictos-societarios-2-horas",
+      "tema": "Teoría de los problemas de agencia en el contexto societario Tipología de conflictos societarios\nMarco normativo y jurisprudencial colombiano Mecanismos alternativos de resolución de conflictos",
+      "temaPuntos": [
+        "Teoría de los problemas de agencia en el contexto societario Tipología de conflictos societarios",
+        "Marco normativo y jurisprudencial colombiano Mecanismos alternativos de resolución de conflictos"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "María Angela Restrepo",
+      "profesores": [
+        "María Angela Restrepo"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-02",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-02T18:00:00-05:00",
+      "fin": "2026-10-02T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 2,
+      "clase": "CLASE 2",
+      "unidad": "MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORITARIOS (8 HORAS)",
+      "unidadSlug": "modulo-iii-conflictos-entre-accionistas-mayoritarios-y-minor",
+      "tema": "Manifestaciones del conflicto mayoritario-minoritario Dilución y squeeze-out: técnicas y motivaciones\nFenómenos tunneling y self-dealing en el contexto colombiano Mecanismos preventivos\nAcuerdos de accionistas Cláusulas anti-deadlock",
+      "temaPuntos": [
+        "Manifestaciones del conflicto mayoritario-minoritario Dilución y squeeze-out: técnicas y motivaciones",
+        "Fenómenos tunneling y self-dealing en el contexto colombiano Mecanismos preventivos",
+        "Acuerdos de accionistas Cláusulas anti-deadlock"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "María Victoria Peña",
+      "profesores": [
+        "María Victoria Peña"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-06",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-06T18:00:00-05:00",
+      "fin": "2026-10-06T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 3,
+      "clase": "CLASE 3",
+      "unidad": "MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORITARIOS (8 HORAS)",
+      "unidadSlug": "modulo-iii-conflictos-entre-accionistas-mayoritarios-y-minor",
+      "tema": "Manifestaciones del conflicto mayoritario-minoritario Dilución y squeeze-out: técnicas y motivaciones\nFenómenos tunneling y self-dealing en el contexto colombiano Mecanismos preventivos\nAcuerdos de accionistas Cláusulas anti-deadlock",
+      "temaPuntos": [
+        "Manifestaciones del conflicto mayoritario-minoritario Dilución y squeeze-out: técnicas y motivaciones",
+        "Fenómenos tunneling y self-dealing en el contexto colombiano Mecanismos preventivos",
+        "Acuerdos de accionistas Cláusulas anti-deadlock"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "María Victoria Peña",
+      "profesores": [
+        "María Victoria Peña"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-07",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-07T18:00:00-05:00",
+      "fin": "2026-10-07T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 4,
+      "clase": "CLASE 4",
+      "unidad": "MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORITARIOS (8 HORAS)",
+      "unidadSlug": "modulo-iii-conflictos-entre-accionistas-mayoritarios-y-minor",
+      "tema": "Manifestaciones del conflicto mayoritario-minoritario Dilución y squeeze-out: técnicas y motivaciones\nFenómenos tunneling y self-dealing en el contexto colombiano Mecanismos preventivos\nAcuerdos de accionistas Cláusulas anti-deadlock",
+      "temaPuntos": [
+        "Manifestaciones del conflicto mayoritario-minoritario Dilución y squeeze-out: técnicas y motivaciones",
+        "Fenómenos tunneling y self-dealing en el contexto colombiano Mecanismos preventivos",
+        "Acuerdos de accionistas Cláusulas anti-deadlock"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "María Victoria Peña",
+      "profesores": [
+        "María Victoria Peña"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-09",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-09T18:00:00-05:00",
+      "fin": "2026-10-09T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 5,
+      "clase": "CLASE 5",
+      "unidad": "MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORITARIOS (8 HORAS)",
+      "unidadSlug": "modulo-iii-conflictos-entre-accionistas-mayoritarios-y-minor",
+      "tema": "Manifestaciones del conflicto mayoritario-minoritario Dilución y squeeze-out: técnicas y motivaciones\nFenómenos tunneling y self-dealing en el contexto colombiano Mecanismos preventivos\nAcuerdos de accionistas Cláusulas anti-deadlock",
+      "temaPuntos": [
+        "Manifestaciones del conflicto mayoritario-minoritario Dilución y squeeze-out: técnicas y motivaciones",
+        "Fenómenos tunneling y self-dealing en el contexto colombiano Mecanismos preventivos",
+        "Acuerdos de accionistas Cláusulas anti-deadlock"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "María Victoria Peña",
+      "profesores": [
+        "María Victoria Peña"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-13",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-13T18:00:00-05:00",
+      "fin": "2026-10-13T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 6,
+      "clase": "CLASE 6",
+      "unidad": "MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HORAS)",
+      "unidadSlug": "modulo-iv-conflictos-entre-la-sociedad-y-sus-acreedores-8-ho",
+      "tema": "Naturaleza y contextos del conflicto sociedad-acreedor Transferencias de valor entre stakeholders\nContextos agravantes: grupos empresariales y financiamiento intragrupo Mecanismos preventivos\nCovenants financieros y garantías contractuales Cláusulas de cross-default\nPolíticas de distribución de utilidades y capitalización Capitalizaciones defensivas\nTransparencia financiera y revelación de información Fairness opinions en reestructuraciones\nReportes periódicos y event-driven Mecanismos correctivos\nAcciones de responsabilidad en contexto de insolvencia Desestimación de la personalidad jurídica\nAcciones revocatorias\nJurisprudencia en materia de protección a acreedores",
+      "temaPuntos": [
+        "Naturaleza y contextos del conflicto sociedad-acreedor Transferencias de valor entre stakeholders",
+        "Contextos agravantes: grupos empresariales y financiamiento intragrupo Mecanismos preventivos",
+        "Covenants financieros y garantías contractuales Cláusulas de cross-default",
+        "Políticas de distribución de utilidades y capitalización Capitalizaciones defensivas",
+        "Transparencia financiera y revelación de información Fairness opinions en reestructuraciones",
+        "Reportes periódicos y event-driven Mecanismos correctivos",
+        "Acciones de responsabilidad en contexto de insolvencia Desestimación de la personalidad jurídica",
+        "Acciones revocatorias",
+        "Jurisprudencia en materia de protección a acreedores"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Jennifer Paola Torres",
+      "profesores": [
+        "Jennifer Paola Torres"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-14",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-14T18:00:00-05:00",
+      "fin": "2026-10-14T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 7,
+      "clase": "CLASE 7",
+      "unidad": "MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HORAS)",
+      "unidadSlug": "modulo-iv-conflictos-entre-la-sociedad-y-sus-acreedores-8-ho",
+      "tema": "Naturaleza y contextos del conflicto sociedad-acreedor Transferencias de valor entre stakeholders\nContextos agravantes: grupos empresariales y financiamiento intragrupo Mecanismos preventivos\nCovenants financieros y garantías contractuales Cláusulas de cross-default\nPolíticas de distribución de utilidades y capitalización Capitalizaciones defensivas\nTransparencia financiera y revelación de información Fairness opinions en reestructuraciones\nReportes periódicos y event-driven Mecanismos correctivos\nAcciones de responsabilidad en contexto de insolvencia Desestimación de la personalidad jurídica\nAcciones revocatorias\nJurisprudencia en materia de protección a acreedores",
+      "temaPuntos": [
+        "Naturaleza y contextos del conflicto sociedad-acreedor Transferencias de valor entre stakeholders",
+        "Contextos agravantes: grupos empresariales y financiamiento intragrupo Mecanismos preventivos",
+        "Covenants financieros y garantías contractuales Cláusulas de cross-default",
+        "Políticas de distribución de utilidades y capitalización Capitalizaciones defensivas",
+        "Transparencia financiera y revelación de información Fairness opinions en reestructuraciones",
+        "Reportes periódicos y event-driven Mecanismos correctivos",
+        "Acciones de responsabilidad en contexto de insolvencia Desestimación de la personalidad jurídica",
+        "Acciones revocatorias",
+        "Jurisprudencia en materia de protección a acreedores"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Jennifer Paola Torres",
+      "profesores": [
+        "Jennifer Paola Torres"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-16",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-16T18:00:00-05:00",
+      "fin": "2026-10-16T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 8,
+      "clase": "CLASE 8",
+      "unidad": "MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HORAS)",
+      "unidadSlug": "modulo-iv-conflictos-entre-la-sociedad-y-sus-acreedores-8-ho",
+      "tema": "Naturaleza y contextos del conflicto sociedad-acreedor Transferencias de valor entre stakeholders\nContextos agravantes: grupos empresariales y financiamiento intragrupo Mecanismos preventivos\nCovenants financieros y garantías contractuales Cláusulas de cross-default\nPolíticas de distribución de utilidades y capitalización Capitalizaciones defensivas\nTransparencia financiera y revelación de información Fairness opinions en reestructuraciones\nReportes periódicos y event-driven Mecanismos correctivos\nAcciones de responsabilidad en contexto de insolvencia Desestimación de la personalidad jurídica\nAcciones revocatorias\nJurisprudencia en materia de protección a acreedores",
+      "temaPuntos": [
+        "Naturaleza y contextos del conflicto sociedad-acreedor Transferencias de valor entre stakeholders",
+        "Contextos agravantes: grupos empresariales y financiamiento intragrupo Mecanismos preventivos",
+        "Covenants financieros y garantías contractuales Cláusulas de cross-default",
+        "Políticas de distribución de utilidades y capitalización Capitalizaciones defensivas",
+        "Transparencia financiera y revelación de información Fairness opinions en reestructuraciones",
+        "Reportes periódicos y event-driven Mecanismos correctivos",
+        "Acciones de responsabilidad en contexto de insolvencia Desestimación de la personalidad jurídica",
+        "Acciones revocatorias",
+        "Jurisprudencia en materia de protección a acreedores"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Jennifer Paola Torres",
+      "profesores": [
+        "Jennifer Paola Torres"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-20",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-20T18:00:00-05:00",
+      "fin": "2026-10-20T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 9,
+      "clase": "CLASE 9",
+      "unidad": "MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HORAS)",
+      "unidadSlug": "modulo-iv-conflictos-entre-la-sociedad-y-sus-acreedores-8-ho",
+      "tema": "Naturaleza y contextos del conflicto sociedad-acreedor Transferencias de valor entre stakeholders\nContextos agravantes: grupos empresariales y financiamiento intragrupo Mecanismos preventivos\nCovenants financieros y garantías contractuales Cláusulas de cross-default\nPolíticas de distribución de utilidades y capitalización Capitalizaciones defensivas\nTransparencia financiera y revelación de información Fairness opinions en reestructuraciones\nReportes periódicos y event-driven Mecanismos correctivos\nAcciones de responsabilidad en contexto de insolvencia Desestimación de la personalidad jurídica\nAcciones revocatorias\nJurisprudencia en materia de protección a acreedores",
+      "temaPuntos": [
+        "Naturaleza y contextos del conflicto sociedad-acreedor Transferencias de valor entre stakeholders",
+        "Contextos agravantes: grupos empresariales y financiamiento intragrupo Mecanismos preventivos",
+        "Covenants financieros y garantías contractuales Cláusulas de cross-default",
+        "Políticas de distribución de utilidades y capitalización Capitalizaciones defensivas",
+        "Transparencia financiera y revelación de información Fairness opinions en reestructuraciones",
+        "Reportes periódicos y event-driven Mecanismos correctivos",
+        "Acciones de responsabilidad en contexto de insolvencia Desestimación de la personalidad jurídica",
+        "Acciones revocatorias",
+        "Jurisprudencia en materia de protección a acreedores"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Jennifer Paola Torres",
+      "profesores": [
+        "Jennifer Paola Torres"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-21",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-21T18:00:00-05:00",
+      "fin": "2026-10-21T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 10,
+      "clase": "CLASE 10",
+      "unidad": "MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 HORAS)",
+      "unidadSlug": "modulo-ii-conflictos-entre-accionistas-y-administradores-10-",
+      "tema": "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos\nDiseño de sistemas de compensación e incentivos Cláusulas malus y clawback\nTransparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial\nPolítica de whistleblowing y protección",
+      "temaPuntos": [
+        "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos",
+        "Diseño de sistemas de compensación e incentivos Cláusulas malus y clawback",
+        "Transparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial",
+        "Política de whistleblowing y protección"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Carlos Mantilla",
+      "profesores": [
+        "Carlos Mantilla"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-23",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-23T18:00:00-05:00",
+      "fin": "2026-10-23T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 11,
+      "clase": "CLASE 11",
+      "unidad": "MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 HORAS)",
+      "unidadSlug": "modulo-ii-conflictos-entre-accionistas-y-administradores-10-",
+      "tema": "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos\nDiseño de sistemas de compensación e incentivos Cláusulas malus y clawback\nTransparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial\nPolítica de whistleblowing y protección",
+      "temaPuntos": [
+        "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos",
+        "Diseño de sistemas de compensación e incentivos Cláusulas malus y clawback",
+        "Transparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial",
+        "Política de whistleblowing y protección"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Carlos Mantilla",
+      "profesores": [
+        "Carlos Mantilla"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-27",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-27T18:00:00-05:00",
+      "fin": "2026-10-27T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 12,
+      "clase": "CLASE 12",
+      "unidad": "MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 HORAS)",
+      "unidadSlug": "modulo-ii-conflictos-entre-accionistas-y-administradores-10-",
+      "tema": "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos\nDiseño de sistemas de compensación e incentivos Cláusulas malus y clawback\nTransparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial\nPolítica de whistleblowing y protección",
+      "temaPuntos": [
+        "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos",
+        "Diseño de sistemas de compensación e incentivos Cláusulas malus y clawback",
+        "Transparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial",
+        "Política de whistleblowing y protección"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Carlos Mantilla",
+      "profesores": [
+        "Carlos Mantilla"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-28",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-28T18:00:00-05:00",
+      "fin": "2026-10-28T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 13,
+      "clase": "CLASE 13",
+      "unidad": "MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 HORAS)",
+      "unidadSlug": "modulo-ii-conflictos-entre-accionistas-y-administradores-10-",
+      "tema": "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos\nDiseño de sistemas de compensación e incentivos Cláusulas malus y clawback\nTransparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial\nPolítica de whistleblowing y protección",
+      "temaPuntos": [
+        "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos",
+        "Diseño de sistemas de compensación e incentivos Cláusulas malus y clawback",
+        "Transparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial",
+        "Política de whistleblowing y protección"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Carlos Mantilla",
+      "profesores": [
+        "Carlos Mantilla"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-30",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-30T18:00:00-05:00",
+      "fin": "2026-10-30T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 14,
+      "clase": "CLASE 14",
+      "unidad": "MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 HORAS)",
+      "unidadSlug": "modulo-ii-conflictos-entre-accionistas-y-administradores-10-",
+      "tema": "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos\nDiseño de sistemas de compensación e incentivos Cláusulas malus y clawback\nTransparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial\nPolítica de whistleblowing y protección",
+      "temaPuntos": [
+        "Causas y manifestaciones del conflicto accionista-administrador Mecanismos preventivos",
+        "Diseño de sistemas de compensación e incentivos Cláusulas malus y clawback",
+        "Transparencia y revelación de compensaciones Estructuración de políticas de gobierno corporativo Códigos de conducta empresarial",
+        "Política de whistleblowing y protección"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Carlos Mantilla",
+      "profesores": [
+        "Carlos Mantilla"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-03",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-03T18:00:00-05:00",
+      "fin": "2026-11-03T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 15,
+      "clase": "CLASE 15",
+      "unidad": "MÓDULO V: CONFLICTOS EN SOCIEDADES DE FAMILIA Y CERRADAS (4 HORAS)",
+      "unidadSlug": "modulo-v-conflictos-en-sociedades-de-familia-y-cerradas-4-ho",
+      "tema": "Particularidades del conflicto en empresas familiares Superposición de sistemas: familia, propiedad y gestión Conflictos intergeneracionales y procesos sucesorios Tensiones entre profesionalización y control familiar Conflictos emocionales con impacto patrimonial Mecanismos preventivos\nProtocolos de familia",
+      "temaPuntos": [
+        "Particularidades del conflicto en empresas familiares Superposición de sistemas: familia, propiedad y gestión Conflictos intergeneracionales y procesos sucesorios Tensiones entre profesionalización y control familiar Conflictos emocionales con impacto patrimonial Mecanismos preventivos",
+        "Protocolos de familia"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Andrés Gaitán Rozo",
+      "profesores": [
+        "Andrés Gaitán Rozo"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-04",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-04T18:00:00-05:00",
+      "fin": "2026-11-04T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 16,
+      "clase": "CLASE 16",
+      "unidad": "MÓDULO V: CONFLICTOS EN SOCIEDADES DE FAMILIA Y CERRADAS (4 HORAS)",
+      "unidadSlug": "modulo-v-conflictos-en-sociedades-de-familia-y-cerradas-4-ho",
+      "tema": "Particularidades del conflicto en empresas familiares Superposición de sistemas: familia, propiedad y gestión Conflictos intergeneracionales y procesos sucesorios Tensiones entre profesionalización y control familiar Conflictos emocionales con impacto patrimonial Mecanismos preventivos\nProtocolos de familia",
+      "temaPuntos": [
+        "Particularidades del conflicto en empresas familiares Superposición de sistemas: familia, propiedad y gestión Conflictos intergeneracionales y procesos sucesorios Tensiones entre profesionalización y control familiar Conflictos emocionales con impacto patrimonial Mecanismos preventivos",
+        "Protocolos de familia"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Andrés Gaitán Rozo",
+      "profesores": [
+        "Andrés Gaitán Rozo"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-06",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-06T18:00:00-05:00",
+      "fin": "2026-11-06T20:00:00-05:00",
+      "secuencia": 0
+    }
+  ],
+  "unidades": [
+    {
+      "slug": "modulo-i-fundamentos-de-los-conflictos-societarios-2-horas",
+      "nombre": "MÓDULO I: FUNDAMENTOS DE LOS CONFLICTOS SOCIETARIOS (2 HORAS)",
+      "clases": [
+        1
+      ],
+      "horas": 2
+    },
+    {
+      "slug": "modulo-iii-conflictos-entre-accionistas-mayoritarios-y-minor",
+      "nombre": "MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORITARIOS (8 HORAS)",
+      "clases": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "horas": 8
+    },
+    {
+      "slug": "modulo-iv-conflictos-entre-la-sociedad-y-sus-acreedores-8-ho",
+      "nombre": "MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HORAS)",
+      "clases": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "horas": 8
+    },
+    {
+      "slug": "modulo-ii-conflictos-entre-accionistas-y-administradores-10-",
+      "nombre": "MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 HORAS)",
+      "clases": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "horas": 10
+    },
+    {
+      "slug": "modulo-v-conflictos-en-sociedades-de-familia-y-cerradas-4-ho",
+      "nombre": "MÓDULO V: CONFLICTOS EN SOCIEDADES DE FAMILIA Y CERRADAS (4 HORAS)",
+      "clases": [
+        15,
+        16
+      ],
+      "horas": 4
+    }
+  ],
+  "profesores": [
+    "Andrés Gaitán Rozo",
+    "Carlos Mantilla",
+    "Jennifer Paola Torres",
+    "María Angela Restrepo",
+    "María Victoria Peña"
+  ],
+  "asistentesPat": [],
+  "cambios": []
+}

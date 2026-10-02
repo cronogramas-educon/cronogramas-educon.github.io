@@ -1,0 +1,365 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cronograma Educacion Continua//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Gestión de Conflictos Societarios
+X-WR-TIMEZONE:America/Bogota
+BEGIN:VTIMEZONE
+TZID:America/Bogota
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0500
+TZNAME:-05
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:clase-01@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261002T180000
+DTEND;TZID=America/Bogota:20261002T200000
+SUMMARY:Clase 1: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO I: FUNDAMENTOS DE LOS CONFLICTOS SOCIETARIOS (2 HORAS)\
+ n\nTema:\n- Teoría de los problemas de agencia en el contexto societario 
+ Tipología de conflictos societarios\n- Marco normativo y jurisprudencial 
+ colombiano Mecanismos alternativos de resolución de conflictos\n\nDocente
+ : María Angela Restrepo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 1 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-02@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261006T180000
+DTEND;TZID=America/Bogota:20261006T200000
+SUMMARY:Clase 2: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORI
+ TARIOS (8 HORAS)\n\nTema:\n- Manifestaciones del conflicto mayoritario-min
+ oritario Dilución y squeeze-out: técnicas y motivaciones\n- Fenómenos t
+ unneling y self-dealing en el contexto colombiano Mecanismos preventivos\n
+ - Acuerdos de accionistas Cláusulas anti-deadlock\n\nDocente: María Vict
+ oria Peña
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 2 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-03@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261007T180000
+DTEND;TZID=America/Bogota:20261007T200000
+SUMMARY:Clase 3: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORI
+ TARIOS (8 HORAS)\n\nTema:\n- Manifestaciones del conflicto mayoritario-min
+ oritario Dilución y squeeze-out: técnicas y motivaciones\n- Fenómenos t
+ unneling y self-dealing en el contexto colombiano Mecanismos preventivos\n
+ - Acuerdos de accionistas Cláusulas anti-deadlock\n\nDocente: María Vict
+ oria Peña
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 3 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-04@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261009T180000
+DTEND;TZID=America/Bogota:20261009T200000
+SUMMARY:Clase 4: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORI
+ TARIOS (8 HORAS)\n\nTema:\n- Manifestaciones del conflicto mayoritario-min
+ oritario Dilución y squeeze-out: técnicas y motivaciones\n- Fenómenos t
+ unneling y self-dealing en el contexto colombiano Mecanismos preventivos\n
+ - Acuerdos de accionistas Cláusulas anti-deadlock\n\nDocente: María Vict
+ oria Peña
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 4 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-05@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261013T180000
+DTEND;TZID=America/Bogota:20261013T200000
+SUMMARY:Clase 5: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO III: CONFLICTOS ENTRE ACCIONISTAS MAYORITARIOS Y MINORI
+ TARIOS (8 HORAS)\n\nTema:\n- Manifestaciones del conflicto mayoritario-min
+ oritario Dilución y squeeze-out: técnicas y motivaciones\n- Fenómenos t
+ unneling y self-dealing en el contexto colombiano Mecanismos preventivos\n
+ - Acuerdos de accionistas Cláusulas anti-deadlock\n\nDocente: María Vict
+ oria Peña
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 5 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-06@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261014T180000
+DTEND;TZID=America/Bogota:20261014T200000
+SUMMARY:Clase 6: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HO
+ RAS)\n\nTema:\n- Naturaleza y contextos del conflicto sociedad-acreedor Tr
+ ansferencias de valor entre stakeholders\n- Contextos agravantes: grupos e
+ mpresariales y financiamiento intragrupo Mecanismos preventivos\n- Covenan
+ ts financieros y garantías contractuales Cláusulas de cross-default\n- P
+ olíticas de distribución de utilidades y capitalización Capitalizacione
+ s defensivas\n- Transparencia financiera y revelación de información Fai
+ rness opinions en reestructuraciones\n- Reportes periódicos y event-drive
+ n Mecanismos correctivos\n- Acciones de responsabilidad en contexto de ins
+ olvencia Desestimación de la personalidad jurídica\n- Acciones revocator
+ ias\n- Jurisprudencia en materia de protección a acreedores\n\nDocente: J
+ ennifer Paola Torres
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 6 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-07@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261016T180000
+DTEND;TZID=America/Bogota:20261016T200000
+SUMMARY:Clase 7: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HO
+ RAS)\n\nTema:\n- Naturaleza y contextos del conflicto sociedad-acreedor Tr
+ ansferencias de valor entre stakeholders\n- Contextos agravantes: grupos e
+ mpresariales y financiamiento intragrupo Mecanismos preventivos\n- Covenan
+ ts financieros y garantías contractuales Cláusulas de cross-default\n- P
+ olíticas de distribución de utilidades y capitalización Capitalizacione
+ s defensivas\n- Transparencia financiera y revelación de información Fai
+ rness opinions en reestructuraciones\n- Reportes periódicos y event-drive
+ n Mecanismos correctivos\n- Acciones de responsabilidad en contexto de ins
+ olvencia Desestimación de la personalidad jurídica\n- Acciones revocator
+ ias\n- Jurisprudencia en materia de protección a acreedores\n\nDocente: J
+ ennifer Paola Torres
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 7 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-08@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261020T180000
+DTEND;TZID=America/Bogota:20261020T200000
+SUMMARY:Clase 8: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HO
+ RAS)\n\nTema:\n- Naturaleza y contextos del conflicto sociedad-acreedor Tr
+ ansferencias de valor entre stakeholders\n- Contextos agravantes: grupos e
+ mpresariales y financiamiento intragrupo Mecanismos preventivos\n- Covenan
+ ts financieros y garantías contractuales Cláusulas de cross-default\n- P
+ olíticas de distribución de utilidades y capitalización Capitalizacione
+ s defensivas\n- Transparencia financiera y revelación de información Fai
+ rness opinions en reestructuraciones\n- Reportes periódicos y event-drive
+ n Mecanismos correctivos\n- Acciones de responsabilidad en contexto de ins
+ olvencia Desestimación de la personalidad jurídica\n- Acciones revocator
+ ias\n- Jurisprudencia en materia de protección a acreedores\n\nDocente: J
+ ennifer Paola Torres
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 8 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-09@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261021T180000
+DTEND;TZID=America/Bogota:20261021T200000
+SUMMARY:Clase 9: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO IV: CONFLICTOS ENTRE LA SOCIEDAD Y SUS ACREEDORES (8 HO
+ RAS)\n\nTema:\n- Naturaleza y contextos del conflicto sociedad-acreedor Tr
+ ansferencias de valor entre stakeholders\n- Contextos agravantes: grupos e
+ mpresariales y financiamiento intragrupo Mecanismos preventivos\n- Covenan
+ ts financieros y garantías contractuales Cláusulas de cross-default\n- P
+ olíticas de distribución de utilidades y capitalización Capitalizacione
+ s defensivas\n- Transparencia financiera y revelación de información Fai
+ rness opinions en reestructuraciones\n- Reportes periódicos y event-drive
+ n Mecanismos correctivos\n- Acciones de responsabilidad en contexto de ins
+ olvencia Desestimación de la personalidad jurídica\n- Acciones revocator
+ ias\n- Jurisprudencia en materia de protección a acreedores\n\nDocente: J
+ ennifer Paola Torres
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 9 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-10@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261023T180000
+DTEND;TZID=America/Bogota:20261023T200000
+SUMMARY:Clase 10: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 
+ HORAS)\n\nTema:\n- Causas y manifestaciones del conflicto accionista-admin
+ istrador Mecanismos preventivos\n- Diseño de sistemas de compensación e 
+ incentivos Cláusulas malus y clawback\n- Transparencia y revelación de c
+ ompensaciones Estructuración de políticas de gobierno corporativo Códig
+ os de conducta empresarial\n- Política de whistleblowing y protección\n\
+ nDocente: Carlos Mantilla
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 10 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-11@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261027T180000
+DTEND;TZID=America/Bogota:20261027T200000
+SUMMARY:Clase 11: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 
+ HORAS)\n\nTema:\n- Causas y manifestaciones del conflicto accionista-admin
+ istrador Mecanismos preventivos\n- Diseño de sistemas de compensación e 
+ incentivos Cláusulas malus y clawback\n- Transparencia y revelación de c
+ ompensaciones Estructuración de políticas de gobierno corporativo Códig
+ os de conducta empresarial\n- Política de whistleblowing y protección\n\
+ nDocente: Carlos Mantilla
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 11 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-12@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261028T180000
+DTEND;TZID=America/Bogota:20261028T200000
+SUMMARY:Clase 12: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 
+ HORAS)\n\nTema:\n- Causas y manifestaciones del conflicto accionista-admin
+ istrador Mecanismos preventivos\n- Diseño de sistemas de compensación e 
+ incentivos Cláusulas malus y clawback\n- Transparencia y revelación de c
+ ompensaciones Estructuración de políticas de gobierno corporativo Códig
+ os de conducta empresarial\n- Política de whistleblowing y protección\n\
+ nDocente: Carlos Mantilla
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 12 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-13@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261030T180000
+DTEND;TZID=America/Bogota:20261030T200000
+SUMMARY:Clase 13: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 
+ HORAS)\n\nTema:\n- Causas y manifestaciones del conflicto accionista-admin
+ istrador Mecanismos preventivos\n- Diseño de sistemas de compensación e 
+ incentivos Cláusulas malus y clawback\n- Transparencia y revelación de c
+ ompensaciones Estructuración de políticas de gobierno corporativo Códig
+ os de conducta empresarial\n- Política de whistleblowing y protección\n\
+ nDocente: Carlos Mantilla
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 13 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-14@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261103T180000
+DTEND;TZID=America/Bogota:20261103T200000
+SUMMARY:Clase 14: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO II: CONFLICTOS ENTRE ACCIONISTAS Y ADMINISTRADORES (10 
+ HORAS)\n\nTema:\n- Causas y manifestaciones del conflicto accionista-admin
+ istrador Mecanismos preventivos\n- Diseño de sistemas de compensación e 
+ incentivos Cláusulas malus y clawback\n- Transparencia y revelación de c
+ ompensaciones Estructuración de políticas de gobierno corporativo Códig
+ os de conducta empresarial\n- Política de whistleblowing y protección\n\
+ nDocente: Carlos Mantilla
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 14 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-15@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261104T180000
+DTEND;TZID=America/Bogota:20261104T200000
+SUMMARY:Clase 15: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO V: CONFLICTOS EN SOCIEDADES DE FAMILIA Y CERRADAS (4 HO
+ RAS)\n\nTema:\n- Particularidades del conflicto en empresas familiares Sup
+ erposición de sistemas: familia\, propiedad y gestión Conflictos interge
+ neracionales y procesos sucesorios Tensiones entre profesionalización y c
+ ontrol familiar Conflictos emocionales con impacto patrimonial Mecanismos 
+ preventivos\n- Protocolos de familia\n\nDocente: Andrés Gaitán Rozo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 15 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-16@cronograma-conflictos-societarios
+DTSTAMP:20261002T210116Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261106T180000
+DTEND;TZID=America/Bogota:20261106T200000
+SUMMARY:Clase 16: Gestión de Conflictos Societarios
+DESCRIPTION:MÓDULO V: CONFLICTOS EN SOCIEDADES DE FAMILIA Y CERRADAS (4 HO
+ RAS)\n\nTema:\n- Particularidades del conflicto en empresas familiares Sup
+ erposición de sistemas: familia\, propiedad y gestión Conflictos interge
+ neracionales y procesos sucesorios Tensiones entre profesionalización y c
+ ontrol familiar Conflictos emocionales con impacto patrimonial Mecanismos 
+ preventivos\n- Protocolos de familia\n\nDocente: Andrés Gaitán Rozo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 16 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
