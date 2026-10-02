@@ -13,8 +13,8 @@
     "horasTotales": 105,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
-    "hash": "f3dbcd35e4227f93",
-    "generadoEn": "2026-10-02T03:41:24Z",
+    "hash": "2332a5568626dff2",
+    "generadoEn": "2026-10-02T03:46:07Z",
     "fuenteModificadaEn": ""
   },
   "clases": [
@@ -931,9 +931,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "YOTOKO TUKUKA",
+      "profesor": "Camilo Jaimes P",
       "profesores": [
-        "YOTOKO TUKUKA"
+        "Camilo Jaimes P"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
@@ -1113,8 +1113,7 @@
     "Pablo Latorre",
     "SABANA",
     "Sebastián Villegas",
-    "Wilson Gonzalez",
-    "YOTOKO TUKUKA"
+    "Wilson Gonzalez"
   ],
   "asistentesPat": [
     "Fabián Alberto Córdoba Almendrales",
