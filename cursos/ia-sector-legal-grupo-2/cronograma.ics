@@ -1,0 +1,378 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cronograma Educacion Continua//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:IA en el Sector Legal\, Grupo 2
+X-WR-TIMEZONE:America/Bogota
+BEGIN:VTIMEZONE
+TZID:America/Bogota
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0500
+TZNAME:-05
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:clase-01@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20260930T180000
+DTEND;TZID=America/Bogota:20260930T200000
+SUMMARY:Clase 1: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 1 IA Y DERECHO: TODO LO QUE NECESITAS SABER ANTES DE EMP
+ EZAR\n\nTema:\n- Qué es la IA generativa\, en qué se diferencia de la IA
+  tradicional y qué está pasando con su adopción en el mundo jurídico\,
+  en Colombia y en el resto del mundo.\n- Cómo está cambiando la práctic
+ a legal: casos de uso reales e inmediatos\, qué puede hacer la IA por ti\
+ , dónde están sus límites y qué riesgos debes conocer antes de usarla.
+ \n- Un recorrido por las herramientas que están transformando la práctic
+ a legal: ChatGPT\, Claude\, Copilot\, Notebook LM\, Lexis+AI\, Harvey\, Ma
+ gnar\, Legora y Saga.\n\nDocente: Rodolfo Yesid Meza Patacon
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 1 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-02@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261001T180000
+DTEND;TZID=America/Bogota:20261001T200000
+SUMMARY:Clase 2: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 1 IA Y DERECHO: TODO LO QUE NECESITAS SABER ANTES DE EMP
+ EZAR\n\nTema:\n- Qué es la IA generativa\, en qué se diferencia de la IA
+  tradicional y qué está pasando con su adopción en el mundo jurídico\,
+  en Colombia y en el resto del mundo.\n- Cómo está cambiando la práctic
+ a legal: casos de uso reales e inmediatos\, qué puede hacer la IA por ti\
+ , dónde están sus límites y qué riesgos debes conocer antes de usarla.
+ \n- Un recorrido por las herramientas que están transformando la práctic
+ a legal: ChatGPT\, Claude\, Copilot\, Notebook LM\, Lexis+AI\, Harvey\, Ma
+ gnar\, Legora y Saga.\n\nDocente: Rodolfo Yesid Meza Patacon
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 2 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-03@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261006T180000
+DTEND;TZID=America/Bogota:20261006T200000
+SUMMARY:Clase 3: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTE
+ NER RESULTADOS JURÍDICOS PRECISOS\n\nTema:\n- Aprende los cinco component
+ es de un prompt efectivo.\n- De lo simple a lo complejo: zero-shot\, one-s
+ hot y few-shot prompting aplicados a tareas jurídicas reales.\n- Taller i
+ nicial: construye tus primeros prompts jurídicos.\n\nDocente: Patricio Bu
+ stos
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 3 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-04@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261007T180000
+DTEND;TZID=America/Bogota:20261007T200000
+SUMMARY:Clase 4: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTE
+ NER RESULTADOS JURÍDICOS PRECISOS\n\nTema:\n- Aprende los cinco component
+ es de un prompt efectivo.\n- De lo simple a lo complejo: zero-shot\, one-s
+ hot y few-shot prompting aplicados a tareas jurídicas reales.\n- Taller i
+ nicial: construye tus primeros prompts jurídicos.\n\nDocente: Patricio Bu
+ stos
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 4 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-05@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261008T180000
+DTEND;TZID=America/Bogota:20261008T200000
+SUMMARY:Clase 5: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTE
+ NER RESULTADOS JURÍDICOS PRECISOS\n\nTema:\n- Técnicas avanzadas para pr
+ oblemas complejos: chain-of-thought\, break the task down y super promptin
+ g.\n- Estrategias CARE\, ADP y TAM aplicadas al derecho: cómo diseñar pr
+ ompts para análisis jurisprudencial\, redacción de conceptos y revisión
+  de contratos.\n- Taller avanzado: cada participante resuelve un caso de s
+ u propia práctica usando las técnicas del módulo.\n\nDocente: Sergio Mo
+ rales
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 5 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-06@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261013T180000
+DTEND;TZID=America/Bogota:20261013T200000
+SUMMARY:Clase 6: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTE
+ NER RESULTADOS JURÍDICOS PRECISOS\n\nTema:\n- Técnicas avanzadas para pr
+ oblemas complejos: chain-of-thought\, break the task down y super promptin
+ g.\n- Estrategias CARE\, ADP y TAM aplicadas al derecho: cómo diseñar pr
+ ompts para análisis jurisprudencial\, redacción de conceptos y revisión
+  de contratos.\n- Taller avanzado: cada participante resuelve un caso de s
+ u propia práctica usando las técnicas del módulo.\n\nDocente: Sergio Mo
+ rales
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 6 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-07@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261014T180000
+DTEND;TZID=America/Bogota:20261014T200000
+SUMMARY:Clase 7: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 3 PROMPTLIBRARY JURÍDICA: CONSTRUYE EL ACTIVO DE IA MÁ
+ S VALIOSO DE TU PRÁCTICA\n\nTema:\n- Qué es una PromptLibrary y por qué
+  es la herramienta que más tiempo te va a ahorrar: diseño colaborativo d
+ e los primeros prompts según tu rol\, ya seas litigante\, asesor o funcio
+ nario público.\n- De los prompts iniciales a un sistema que crece contigo
+ : refinamiento individual y grupal\, integración de plantillas reutilizab
+ les y estrategias para mantener tu PromptLibrary actualizada y sostenible 
+ en el tiempo.\n\nDocente: Ricardo Reyes
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 7 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-08@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261015T180000
+DTEND;TZID=America/Bogota:20261015T200000
+SUMMARY:Clase 8: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 3 PROMPTLIBRARY JURÍDICA: CONSTRUYE EL ACTIVO DE IA MÁ
+ S VALIOSO DE TU PRÁCTICA\n\nTema:\n- Qué es una PromptLibrary y por qué
+  es la herramienta que más tiempo te va a ahorrar: diseño colaborativo d
+ e los primeros prompts según tu rol\, ya seas litigante\, asesor o funcio
+ nario público.\n- De los prompts iniciales a un sistema que crece contigo
+ : refinamiento individual y grupal\, integración de plantillas reutilizab
+ les y estrategias para mantener tu PromptLibrary actualizada y sostenible 
+ en el tiempo.\n\nDocente: Ricardo Reyes
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 8 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-09@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261020T180000
+DTEND;TZID=America/Bogota:20261020T200000
+SUMMARY:Clase 9: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 4 CREA TU PROPIO ASISTENTE JURÍDICO: DE LA IDEA AL ASIS
+ TENTE DE IA\n\nTema:\n- Qué es un asistente de IA\, en qué se diferencia
+  de un chatbot básico y cuándo tiene más sentido usarlo que un agente a
+ utónomo.\n- Cómo está construido por dentro: modelo de lenguaje\, instr
+ ucciones de sistema y base de conocimiento\, los tres componentes que dete
+ rminan qué tan útil y confiable será tu asistente.\n- Casos de uso real
+ es: desde la atención de consultas frecuentes hasta la revisión prelimin
+ ar de documentos.\n- Taller: cada participante diseña y configura su prop
+ io asistente jurídico especializado en su área de práctica.\n\nDocente:
+  Sebastián Giraldo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 9 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-10@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261021T180000
+DTEND;TZID=America/Bogota:20261021T200000
+SUMMARY:Clase 10: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 4 CREA TU PROPIO ASISTENTE JURÍDICO: DE LA IDEA AL ASIS
+ TENTE DE IA\n\nTema:\n- Qué es un asistente de IA\, en qué se diferencia
+  de un chatbot básico y cuándo tiene más sentido usarlo que un agente a
+ utónomo.\n- Cómo está construido por dentro: modelo de lenguaje\, instr
+ ucciones de sistema y base de conocimiento\, los tres componentes que dete
+ rminan qué tan útil y confiable será tu asistente.\n- Casos de uso real
+ es: desde la atención de consultas frecuentes hasta la revisión prelimin
+ ar de documentos.\n- Taller: cada participante diseña y configura su prop
+ io asistente jurídico especializado en su área de práctica.\n\nDocente:
+  Sebastián Giraldo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 10 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-11@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261022T180000
+DTEND;TZID=America/Bogota:20261022T200000
+SUMMARY:Clase 11: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 4 CREA TU PROPIO ASISTENTE JURÍDICO: DE LA IDEA AL ASIS
+ TENTE DE IA\n\nTema:\n- Qué es un asistente de IA\, en qué se diferencia
+  de un chatbot básico y cuándo tiene más sentido usarlo que un agente a
+ utónomo.\n- Cómo está construido por dentro: modelo de lenguaje\, instr
+ ucciones de sistema y base de conocimiento\, los tres componentes que dete
+ rminan qué tan útil y confiable será tu asistente.\n- Casos de uso real
+ es: desde la atención de consultas frecuentes hasta la revisión prelimin
+ ar de documentos.\n- Taller: cada participante diseña y configura su prop
+ io asistente jurídico especializado en su área de práctica.\n\nDocente:
+  Sebastián Giraldo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 11 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-12@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261027T180000
+DTEND;TZID=America/Bogota:20261027T200000
+SUMMARY:Clase 12: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 5 ÉTICA\, REGULACIÓN Y GOBERNANZA: ÚSALA BIEN\, ÚSAL
+ A DE MANERA SEGURA Y RESPONSABLE.\n\nTema:\n- Qué pasa cuando la IA se eq
+ uivoca: responsabilidad profesional del abogado frente al uso de sistemas 
+ de IA.\n- El marco legal que todo jurista debe conocer: Ley 1581\, CONPES 
+ 4144\, Ley 2502 de 2025 y directrices de la SIC sobre protección de datos
+ \, privacidad y uso de sistemas automatizados.\n- Sesgos algorítmicos\, a
+ lucinaciones y fuentes inventadas: cómo identificarlos\, cómo verificarl
+ os y qué lecciones dejan los casos reales de mal uso de IA en el ejercici
+ o del derecho.\n\nDocente: Maria Camila Segura
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 12 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-13@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261028T180000
+DTEND;TZID=America/Bogota:20261028T200000
+SUMMARY:Clase 13: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 5 ÉTICA\, REGULACIÓN Y GOBERNANZA: ÚSALA BIEN\, ÚSAL
+ A DE MANERA SEGURA Y RESPONSABLE.\n\nTema:\n- Qué pasa cuando la IA se eq
+ uivoca: responsabilidad profesional del abogado frente al uso de sistemas 
+ de IA.\n- El marco legal que todo jurista debe conocer: Ley 1581\, CONPES 
+ 4144\, Ley 2502 de 2025 y directrices de la SIC sobre protección de datos
+ \, privacidad y uso de sistemas automatizados.\n- Sesgos algorítmicos\, a
+ lucinaciones y fuentes inventadas: cómo identificarlos\, cómo verificarl
+ os y qué lecciones dejan los casos reales de mal uso de IA en el ejercici
+ o del derecho.\n\nDocente: Maria Camila Segura
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 13 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-14@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261029T180000
+DTEND;TZID=America/Bogota:20261029T200000
+SUMMARY:Clase 14: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 6 LO QUE LA IA PUEDE COSTARTE: NUEVOS RIESGOS LEGALES QU
+ E TODO JURISTA DEBE ANTICIPAR\n\nTema:\n- Propiedad intelectual: quién es
+  el autor cuando la IA crea\, qué pasa con el contenido generado en el tr
+ abajo y cómo proteger y no infringir derechos de autor.\n- Laboral: el im
+ pacto de la automatización en las relaciones de trabajo y la responsabili
+ dad del empleador frente al uso de IA por sus colaboradores.\n- Contractua
+ l: cláusulas que ya deberías estar incluyendo en tus contratos\, respons
+ abilidad por decisiones tomadas con apoyo de IA y los vacíos legales que 
+ hoy representan el mayor riesgo.\n\nDocente: Karen Palacios
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 14 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-15@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261103T180000
+DTEND;TZID=America/Bogota:20261103T200000
+SUMMARY:Clase 15: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 6 LO QUE LA IA PUEDE COSTARTE: NUEVOS RIESGOS LEGALES QU
+ E TODO JURISTA DEBE ANTICIPAR\n\nTema:\n- Propiedad intelectual: quién es
+  el autor cuando la IA crea\, qué pasa con el contenido generado en el tr
+ abajo y cómo proteger y no infringir derechos de autor.\n- Laboral: el im
+ pacto de la automatización en las relaciones de trabajo y la responsabili
+ dad del empleador frente al uso de IA por sus colaboradores.\n- Contractua
+ l: cláusulas que ya deberías estar incluyendo en tus contratos\, respons
+ abilidad por decisiones tomadas con apoyo de IA y los vacíos legales que 
+ hoy representan el mayor riesgo.\n\nDocente: Juan Camilo Medina (PI)
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 15 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-16@cronograma-ia-sector-legal-grupo-2
+DTSTAMP:20261002T210639Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261104T180000
+DTEND;TZID=America/Bogota:20261104T200000
+SUMMARY:Clase 16: IA en el Sector Legal\, Grupo 2
+DESCRIPTION:MODULO 6 LO QUE LA IA PUEDE COSTARTE: NUEVOS RIESGOS LEGALES QU
+ E TODO JURISTA DEBE ANTICIPAR\n\nTema:\n- Propiedad intelectual: quién es
+  el autor cuando la IA crea\, qué pasa con el contenido generado en el tr
+ abajo y cómo proteger y no infringir derechos de autor.\n- Laboral: el im
+ pacto de la automatización en las relaciones de trabajo y la responsabili
+ dad del empleador frente al uso de IA por sus colaboradores.\n- Contractua
+ l: cláusulas que ya deberías estar incluyendo en tus contratos\, respons
+ abilidad por decisiones tomadas con apoyo de IA y los vacíos legales que 
+ hoy representan el mayor riesgo.\n\nDocente: José Valderrama
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 16 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
