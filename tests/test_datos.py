@@ -67,6 +67,7 @@ def test_puntos_caso():
 def test_fecha_serial_e_iso():
     assert cd.fecha_a_date(46296).isoformat() == "2026-10-01"
     assert cd.fecha_a_date("2026-10-01").isoformat() == "2026-10-01"
+    assert cd.fecha_a_date("46296").isoformat() == "2026-10-01"
     with pytest.raises(cd.ErrorDatos):
         cd.fecha_a_date("pronto")
 

@@ -52,6 +52,8 @@ def fecha_a_date(v):
     if isinstance(v, (int, float)) and not isinstance(v, bool):
         return (datetime(1899, 12, 30) + timedelta(days=int(v))).date()
     if isinstance(v, str):
+        if re.fullmatch(r"\d+(\.\d+)?", v.strip()):  # serial de Excel como texto (así lo entrega Power Automate)
+            return fecha_a_date(float(v))
         try:
             return date.fromisoformat(v.strip()[:10])
         except ValueError:
