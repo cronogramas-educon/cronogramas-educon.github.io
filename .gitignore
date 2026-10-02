@@ -5,3 +5,7 @@ __pycache__/
 # El Excel de muestra trae enlaces reales de Teams: nunca al repositorio público
 referencias/datos/cronograma_muestra.xlsx
 referencias/datos/data.ejemplo.json
+
+# Evidencia de revision de diseno (no se publica)
+.impeccable/review/
+.impeccable/build/

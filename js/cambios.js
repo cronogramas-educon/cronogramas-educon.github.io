@@ -12,7 +12,7 @@ export function renderAvisos(el, clases, cfg, t) {
   const cs = cambiosVisibles(clases, cfg, t);
   if (!cs.length) { el.hidden = true; el.innerHTML = ''; return; }
   el.hidden = false;
-  el.innerHTML = `<div class="container"><ul>${cs.map((c) =>
+  el.innerHTML = `<div class="dentro"><ul>${cs.map((c) =>
     `<li>Cambio de fecha: la ${esc(cap(c.clase.toLowerCase()))} pasó del ${esc(fechaLarga(c.cambio.fechaAnterior))} al ${esc(fechaLarga(c.fecha))}</li>`).join('')}</ul>
     <button class="btn" type="button" data-entendido>Entendido</button></div>`;
   el.querySelector('[data-entendido]').onclick = () => {

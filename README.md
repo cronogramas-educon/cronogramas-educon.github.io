@@ -6,7 +6,7 @@ El Excel manda. Si contradice la página oficial, la página muestra lo del Exce
 
 ## Qué hace
 
-Cuenta regresiva a la próxima clase en hora de Colombia, calendario mensual y lista por semana, filtros por docente, unidad y estado, buscador sin tildes, aviso de cambios de fecha, botón "Unirme en Teams", archivos `.ics` (por clase, visibles o completo, más suscripción), impresión en PDF y modo sin red.
+Una etiqueta con la próxima clase y su cuenta regresiva en hora de Colombia, un hilo rojo que recorre el cronograma, calendario mensual y lista por semana, filtros por docente, unidad y estado, buscador sin tildes, aviso de cambios de fecha, botón "Unirme en Teams", archivos `.ics` (por clase, visibles o completo, más suscripción), impresión en PDF y modo sin red.
 
 ## Cómo funciona
 
@@ -26,7 +26,8 @@ El workflow descarga el Excel, valida, genera `data/data.json`, `estado/cambios.
 | `config/contenido.json` | Textos, interruptores y datos opcionales. Nada de fechas ni nombres va en el código |
 | `data/`, `estado/`, `cronograma.ics` | Generados por el workflow (no editar) |
 | `tests/` | Pruebas del parser, cambios, `.ics` y del frontend con Chromium headless |
-| `referencias/` | Tokens de diseño, logos y parser de referencia |
+| `referencias/` | Tokens de la gama de color original y parser de referencia (sin logos) |
+| `PRODUCT.md`, `.impeccable/` | Contexto de producto y contrato de dirección visual (no se publican) |
 
 ## Desarrollo local
 
@@ -60,3 +61,7 @@ Medidos el 2 de octubre de 2026 en la prueba de extremo a extremo (cambio de fec
 | Desde guardar el Excel hasta el aviso en GitHub | no se midió con precisión. El desencadenador de SharePoint de Power Automate consulta cambios de forma periódica, por lo que se esperan de 1 a 5 minutos |
 
 Estado: el cambio de fecha se detectó, se publicó y se resolvió al revertir. El caso de Excel dañado (encabezado borrado) está cubierto por pruebas automáticas (`test_error_conserva_ultimo_bueno`). No se ejecutó en vivo.
+
+## Diseño
+
+La página sigue la dirección "El hilo rojo": tablero azul marino, etiquetas de papel para cada clase y un hilo rojo que las une. No lleva logos de la Universidad (solo su nombre como texto en el pie). Fuentes autoalojadas: Archivo (títulos y números) y Public Sans (lectura). Íconos Phosphor (MIT) incrustados en `js/iconos.js`. El tema es único (oscuro), con los colores definidos en `css/tokens.css`.

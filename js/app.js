@@ -1,5 +1,5 @@
 import { cargarConfig, cargarDatos } from './datos.js';
-import { estado, poner, leerURL, hayFiltros } from './estado.js';
+import { estado, poner, leerURL, hayFiltros, suscribir } from './estado.js';
 import { filtrar } from './filtros.js';
 import { renderLista, iniciarLista } from './vista-lista.js';
 import { renderCalendario, iniciarCalendario, mesesDe } from './vista-calendario.js';
@@ -9,7 +9,8 @@ import { construirICS, descargar, urlSuscripcion } from './ics.js';
 import { prepararHoja } from './pdf.js';
 import * as sec from './secciones.js';
 import { esc, usarSiglas, legible } from './ui.js';
-import { ahora, estadoClase, haceCuanto, partes, MESES, cap } from './utils-fecha.js';
+import { ic } from './iconos.js';
+import { ahora, estadoClase, haceCuanto, partes, MESES } from './utils-fecha.js';
 
 const $ = (id) => document.getElementById(id);
 let datos, cfg, ultimaCarga = new Date(), desdeCopia = false, guardadoEn = null, firma = '';
@@ -28,52 +29,53 @@ function resumenFiltros() {
   const o = [];
   if (estado.q) o.push(`búsqueda "${estado.q}"`);
   if (estado.docente) o.push(`docente ${estado.docente}`);
-  if (estado.unidad) o.push(`unidad ${datos.unidades.find((u) => u.slug === estado.unidad)?.nombre ?? ''}`);
+  if (estado.unidad) o.push(`unidad ${legible(datos.unidades.find((u) => u.slug === estado.unidad)?.nombre ?? '')}`);
   if (estado.estado !== 'todas') o.push(estado.estado);
   if (estado.ocultar) o.push('sin realizadas');
   return o.join(', ');
 }
 
+const vacio = () => `<div class="vacio"><strong>Ninguna clase coincide con tu búsqueda</strong>Prueba con otras palabras o <button class="enlace-btn" type="button" data-limpiar>limpia los filtros</button> para ver las ${datos.meta.totalClases} clases.</div>`;
+const firmaEstados = () => { const t = ahora(); return datos.clases.map((c) => estadoClase(c, t)[0]).join('') + proximaDe(datos.clases, t)?.id; };
+
 function pintar() {
   const ctx = contexto();
   const cs = visibles();
   document.querySelectorAll('[data-vista]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.vista === estado.vista));
-  $('f-q').value !== estado.q && ($('f-q').value = estado.q);
+  if ($('f-q').value !== estado.q) $('f-q').value = estado.q;
   $('f-docente').value = estado.docente; $('f-unidad').value = estado.unidad; $('f-estado').value = estado.estado;
   $('f-ocultar').checked = estado.ocultar; $('f-temas').checked = estado.temas;
   $('limpiar').hidden = !hayFiltros();
-  $('contador').textContent = `Mostrando ${cs.length} de ${datos.meta.totalClases} clases`;
+  const activos = [estado.docente, estado.unidad, estado.estado !== 'todas', estado.ocultar].filter(Boolean).length;
+  $('cuenta-filtros').hidden = !activos;
+  $('cuenta-filtros').textContent = activos;
+  $('contador').textContent = cs.length === datos.meta.totalClases ? `${cs.length} clases` : `Mostrando ${cs.length} de ${datos.meta.totalClases} clases`;
   const v = $('vista');
   if (estado.vista === 'lista') {
     v.className = 'vista-lista';
     cs.length ? renderLista(v, cs, ctx) : (v.innerHTML = vacio());
   } else {
     v.className = 'vista-cal';
-    const sinFoco = !cs.length;
     renderCalendario(v, cs, ctx);
-    if (sinFoco) v.insertAdjacentHTML('afterbegin', vacio());
+    if (!cs.length) v.insertAdjacentHTML('afterbegin', vacio());
     if (estado.foco) { v.querySelector(`[data-fecha="${estado.foco}"]`)?.focus(); estado.foco = null; }
   }
   renderAvisos($('avisos'), datos.clases, cfg, ctx.t);
   firma = firmaEstados();
 }
-const vacio = () => `<div class="vacio"><strong>Ninguna clase coincide con tu búsqueda</strong>Prueba con otras palabras o <button class="enlace-btn" type="button" data-limpiar>limpia los filtros</button> para ver las ${datos.meta.totalClases} clases.</div>`;
-const firmaEstados = () => { const t = ahora(); return datos.clases.map((c) => estadoClase(c, t)[0]).join('') + proximaDe(datos.clases, t)?.id; };
 
 function estaticos() {
   const m = datos.meta;
-  const [a, ...b] = m.programa.split(/,\s(.+)/);
-  $('titulo').innerHTML = `${esc(a)}${b[0] ? `<span>, ${esc(b[0])}</span>` : ''}`;
-  $('hero-meta').innerHTML = `<strong>Cohorte ${esc(m.cohorte)}</strong> · del ${esc(sinDia(m.inicio))} al ${esc(sinDia(m.fin))} · ${esc(m.modalidad)}`;
-  $('marca-programa').textContent = cfg.programaCorto ?? m.programa;
-  $('marca-cohorte').textContent = `Cohorte ${m.cohorte}`;
-  document.title = `${m.programa.split(',')[0]}, cronograma ${m.cohorte}`;
-  sec.cifras($('cifras'), datos, cfg);
+  const nombre = cfg.programaCorto ?? m.programa.split(',')[0];
+  $('marca').textContent = `Diplomado ${nombre.split(' ')[0]}`;
+  $('titulo').innerHTML = nombre.split(' ').map((w) => (w.includes('-') ? `<span class="sin-corte">${esc(w)}</span>` : esc(w))).join(' ');
+  $('lead').innerHTML = `<strong>Diplomado, cohorte ${esc(m.cohorte)}.</strong> ${m.totalClases} clases del ${esc(sinDia(m.inicio))} al ${esc(sinDia(m.fin))}. ${esc(m.modalidad)}.`;
+  document.title = `${nombre}, cronograma ${m.cohorte}`;
   sec.plan($('plan-lista'), datos, plan);
-  sec.docentes($('docentes-lista'), datos, cfg);
-  sec.equipo($('equipo-lista'), datos);
+  sec.docentes($('docentes-lista'), datos);
+  sec.apoyo($('apoyo'), datos);
   sec.sobre($('sobre-contenido'), datos, cfg);
-  $('pie-oficial').innerHTML = cfg.urlPaginaOficial ? `<a href="${esc(cfg.urlPaginaOficial)}" target="_blank" rel="noopener noreferrer">Página oficial del diplomado</a>` : '';
+  $('pie-nombre').textContent = [cfg.universidad, cfg.facultad].filter(Boolean).join(', ');
   const opt = (v, t, title) => `<option value="${esc(v)}"${title ? ` title="${esc(title)}"` : ''}>${esc(t)}</option>`;
   $('f-docente').innerHTML = opt('', 'Todos') + datos.profesores.map((p) => opt(p, p)).join('');
   $('f-unidad').innerHTML = opt('', 'Todas las unidades') + datos.unidades.map((u) => opt(u.slug, corto(legible(u.nombre), 64), legible(u.nombre))).join('');
@@ -84,7 +86,7 @@ function textoActualizado() {
   $('actualizado').textContent = `Datos actualizados ${haceCuanto(datos.meta.generadoEn)}`;
   const r = $('aviso-red');
   r.hidden = !desdeCopia;
-  if (desdeCopia) r.innerHTML = `<div class="container">Mostrando la última versión guardada (${esc(haceCuanto(guardadoEn ?? ultimaCarga))}). Revisa tu conexión: seguiremos intentando.</div>`;
+  if (desdeCopia) r.innerHTML = `<div class="dentro">Mostrando la última versión guardada (${esc(haceCuanto(guardadoEn ?? ultimaCarga))}). Revisa tu conexión: seguiremos intentando.</div>`;
 }
 
 function aplicar(data) {
@@ -94,6 +96,7 @@ function aplicar(data) {
   if (!meses.includes(estado.mes)) { const p = proximaDe(datos.clases); estado.mes = p ? p.fecha.slice(0, 7) : meses.at(-1); }
   estaticos();
   renderPanel($('panel'), datos.clases, datos.meta, cfg);
+  if (hayFiltros() && !estado.q) abrirFiltros(true);
   pintar();
   textoActualizado();
 }
@@ -107,22 +110,34 @@ async function refrescar() {
   textoActualizado();
 }
 
+function abrirFiltros(abierto) {
+  $('filtros').hidden = !abierto;
+  $('abrir-filtros').setAttribute('aria-expanded', abierto);
+}
+
+function limpiar() { poner({ q: '', docente: '', unidad: '', estado: 'todas', ocultar: false, sel: null }); $('f-q').value = ''; }
+
 function enlazar() {
+  document.querySelectorAll('[data-ic]').forEach((e) => { e.outerHTML = ic(e.dataset.ic); });
   const dponer = (k) => (e) => poner({ [k]: e.target.value, sel: null });
   let to;
   $('f-q').addEventListener('input', (e) => { clearTimeout(to); to = setTimeout(() => poner({ q: e.target.value.trim(), sel: null }), 120); });
   $('f-docente').onchange = dponer('docente'); $('f-unidad').onchange = dponer('unidad'); $('f-estado').onchange = dponer('estado');
   $('f-ocultar').onchange = (e) => poner({ ocultar: e.target.checked, sel: null });
   $('f-temas').onchange = (e) => { estado.temas = e.target.checked; };
+  $('abrir-filtros').onclick = () => abrirFiltros($('filtros').hidden);
   document.querySelectorAll('[data-vista]').forEach((b) => (b.onclick = () => poner({ vista: b.dataset.vista, sel: null })));
   $('limpiar').onclick = limpiar;
   $('vista').addEventListener('click', (e) => { if (e.target.closest('[data-limpiar]')) limpiar(); });
   document.addEventListener('click', (e) => {
     const i = e.target.closest('[data-ics]');
     if (i) { const c = datos.clases.find((x) => x.id === +i.dataset.ics); descargar(`clase-${String(c.id).padStart(2, '0')}.ics`, construirICS([c], datos.meta, cfg)); }
-    if (e.target.closest('[data-ics-visibles]')) descargar('clases-visibles.ics', construirICS(visibles(), datos.meta, cfg));
-    if (e.target.closest('[data-ics-todas]')) descargar('cronograma.ics', construirICS(datos.clases, datos.meta, cfg));
+    if (e.target.closest('[data-ics-visibles]')) { descargar('clases-visibles.ics', construirICS(visibles(), datos.meta, cfg)); $('menu-ics').open = false; }
+    if (e.target.closest('[data-ics-todas]')) { descargar('cronograma.ics', construirICS(datos.clases, datos.meta, cfg)); $('menu-ics').open = false; }
     if (e.target.closest('[data-pdf]')) { e.preventDefault(); window.print(); }
+    const d = e.target.closest('[data-docente]');
+    if (d) { abrirFiltros(true); poner({ docente: d.dataset.docente, sel: null }); $('cronograma').scrollIntoView(); }
+    if (!e.target.closest('#menu-ics')) $('menu-ics').open = false;
   });
   $('plan-lista').addEventListener('toggle', (e) => { const s = e.target.dataset?.slug; if (s) e.target.open ? plan.add(s) : plan.delete(s); }, true);
   const mb = document.querySelector('.menu-btn');
@@ -131,9 +146,8 @@ function enlazar() {
   window.addEventListener('beforeprint', () => prepararHoja($('hoja-impresion'), visibles(), { meta: datos.meta, cfg, estado, resumenFiltros: resumenFiltros() }));
   iniciarLista($('vista'));
   iniciarCalendario($('vista'), { poner, estado, mesesActual: () => mesesDe(datos.meta) });
-  import('./estado.js').then((m) => m.suscribir(pintar));
+  suscribir(pintar);
 }
-function limpiar() { poner({ q: '', docente: '', unidad: '', estado: 'todas', ocultar: false, sel: null }); $('f-q').value = ''; }
 
 async function arrancar() {
   cfg = await cargarConfig();

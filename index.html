@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cronograma del diplomado de Compliance</title>
-  <meta name="description" content="Cronograma, plan de estudios, docentes y enlaces de clase del Diplomado Compliance Anti-corrupción y Anti-lavado, Universidad de La Sabana.">
+  <meta name="description" content="Cuándo es tu próxima clase, quién la dicta y el enlace para entrar. Cronograma del Diplomado Compliance Anti-corrupción y Anti-lavado.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
   <meta property="og:title" content="Cronograma del Diplomado Compliance Anti-corrupción y Anti-lavado">
-  <meta property="og:description" content="Fechas, docentes y enlaces de cada clase, con la cuenta regresiva de la próxima sesión.">
+  <meta property="og:description" content="Tu próxima clase, el calendario completo y el enlace de Teams en un solo lugar.">
   <meta name="theme-color" content="#0B1B3D">
-  <link rel="icon" type="image/svg+xml" href="assets/logos/sabana-escudo.svg">
-  <link rel="preload" href="assets/fuentes/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+  <link rel="preload" href="assets/fuentes/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
@@ -19,17 +19,14 @@
   <link rel="stylesheet" href="css/impresion.css">
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="caucho" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="r"/><feColorMatrix in="r" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3.4 0 0 0 2.9" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
   <a class="omitir" href="#cronograma">Ir al cronograma</a>
-  <header class="site-header">
-    <div class="container">
-      <a class="marca" href="#inicio">
-        <img src="assets/logos/sabana-facultad-lockup.png" alt="Universidad de La Sabana, Facultad de Estudios Jurídicos, Políticos e Internacionales" width="289" height="44">
-        <span class="marca-texto"><strong id="marca-programa"></strong><span id="marca-cohorte"></span></span>
-      </a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+  <header class="cabecera">
+    <div class="dentro">
+      <a class="marca" href="#inicio" id="marca"></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><span data-ic="list"></span>Menú</button>
       <nav class="nav" id="nav" aria-label="Secciones">
-        <a href="#cronograma">Cronograma</a><a href="#plan">Plan de estudios</a><a href="#docentes">Docentes</a><a href="#equipo">Equipo de apoyo</a>
-        <a href="#" class="cta-pdf" data-pdf>Descargar PDF</a>
+        <a href="#cronograma">Cronograma</a><a href="#temario">Temario</a><a href="#docentes">Docentes</a>
       </nav>
     </div>
   </header>
@@ -37,64 +34,67 @@
   <div class="avisos" id="avisos" role="status" hidden></div>
   <div class="aviso-red" id="aviso-red" role="status" hidden></div>
 
-  <main id="inicio">
-    <section class="hero">
-      <div class="container">
+  <main class="tablero" id="inicio">
+    <div class="hilo" aria-hidden="true"></div>
+
+    <section class="portada">
+      <div class="portada-top">
         <h1 id="titulo"></h1>
-        <p class="hero-meta" id="hero-meta"></p>
-        <div id="panel" aria-live="off"></div>
-        <div class="cifras" id="cifras"></div>
+        <p class="lead" id="lead"></p>
       </div>
+      <div id="panel" aria-live="off"></div>
     </section>
 
-    <section class="seccion gris" id="cronograma">
-      <div class="container">
-        <h2>Cronograma</h2>
-        <p class="intro">Todas las horas son de Colombia. Busca por tema, docente o fecha, o filtra por unidad y estado. La vista que elijas se puede compartir copiando la dirección.</p>
-        <div class="barra">
-          <div class="barra-fila">
-            <div class="segmentos" role="group" aria-label="Vista">
-              <button type="button" data-vista="calendario" aria-pressed="false">Calendario</button>
-              <button type="button" data-vista="lista" aria-pressed="false">Lista</button>
-            </div>
-            <label class="campo buscar">Buscar<input id="f-q" type="search" placeholder="Tema, docente, unidad o fecha" autocomplete="off"></label>
+    <section class="seccion" id="cronograma">
+      <h2>Cronograma</h2>
+      <div class="herramientas">
+        <div class="controles">
+          <div class="segmentos" role="group" aria-label="Vista">
+            <button type="button" data-vista="calendario" aria-pressed="false">Calendario</button>
+            <button type="button" data-vista="lista" aria-pressed="false">Lista</button>
           </div>
-          <div class="barra-fila">
-            <label class="campo docente">Docente<select id="f-docente"></select></label>
-            <label class="campo unidad">Unidad<select id="f-unidad"></select></label>
-            <label class="campo estado">Estado<select id="f-estado">
-              <option value="todas">Todas</option><option value="proximas">Próximas</option><option value="realizadas">Realizadas</option></select></label>
-          </div>
-          <div class="resultado">
-            <p class="contador" id="contador" aria-live="polite"></p>
-            <div class="barra-fila">
-              <label class="check"><input type="checkbox" id="f-ocultar"> Ocultar realizadas</label>
-              <button class="enlace-btn" type="button" id="limpiar" hidden>Limpiar filtros</button>
-            </div>
+          <label class="buscar"><span class="solo-lectores">Buscar</span><span data-ic="magnifying-glass"></span><input id="f-q" type="search" placeholder="Buscar un tema, docente o fecha" autocomplete="off"></label>
+          <button class="btn btn-filtrar" id="abrir-filtros" type="button" aria-expanded="false" aria-controls="filtros"><span data-ic="funnel"></span>Filtrar<span class="cuenta-filtros" id="cuenta-filtros" hidden></span></button>
+        </div>
+        <div class="filtros" id="filtros" hidden>
+          <label class="campo">Docente<select id="f-docente"></select></label>
+          <label class="campo">Unidad<select id="f-unidad"></select></label>
+          <label class="campo">Estado<select id="f-estado">
+            <option value="todas">Todas</option><option value="proximas">Próximas</option><option value="realizadas">Realizadas</option></select></label>
+          <div class="filtros-pie">
+            <label class="check"><input type="checkbox" id="f-ocultar"> Ocultar clases realizadas</label>
+            <button class="enlace-btn" type="button" id="limpiar" hidden>Limpiar filtros</button>
           </div>
         </div>
-        <div id="vista"></div>
-        <div class="acciones-cal">
-          <button class="btn" type="button" data-ics-visibles>Agregar las clases visibles a mi calendario</button>
-          <button class="btn" type="button" data-ics-todas>Agregar el calendario completo</button>
-          <a class="btn" id="suscribir" href="#">Suscribirme</a>
-          <button class="btn" type="button" data-pdf>Descargar PDF</button>
-          <label class="check"><input type="checkbox" id="f-temas"> Incluir temas completos en el PDF</label>
-        </div>
-        <p class="nota-cal">La suscripción mantiene tu calendario al día, pero cada aplicación la actualiza a su propio ritmo y puede tardar horas. Para imprimir, elige "Guardar como PDF" en el diálogo.</p>
+        <p class="contador" id="contador" aria-live="polite"></p>
       </div>
+      <div id="vista"></div>
+      <div class="acciones">
+        <details class="menu" id="menu-ics">
+          <summary class="btn"><span data-ic="calendar-plus"></span>Agregar a mi calendario<span data-ic="caret-down"></span></summary>
+          <div class="menu-panel papel">
+            <button class="btn" type="button" data-ics-visibles>Las clases que veo ahora</button>
+            <button class="btn" type="button" data-ics-todas>Todo el cronograma</button>
+            <a class="btn" id="suscribir" href="#">Suscribirme y recibir los cambios</a>
+          </div>
+        </details>
+        <button class="btn" type="button" data-pdf><span data-ic="printer"></span>Imprimir o guardar en PDF</button>
+        <label class="check"><input type="checkbox" id="f-temas"> Con los temas de cada clase</label>
+      </div>
+      <p class="nota-ics">Si te suscribes, tu aplicación de calendario actualizará las fechas a su propio ritmo, y puede tardar horas.</p>
     </section>
 
-    <section class="seccion" id="plan"><div class="container"><h2>Plan de estudios</h2><p class="intro">Unidades del diplomado con sus clases y los temas de cada una.</p><div id="plan-lista"></div></div></section>
-    <section class="seccion gris" id="docentes"><div class="container"><h2>Docentes</h2><p class="intro">Quién dicta cada clase.</p><ul class="personas" id="docentes-lista"></ul></div></section>
-    <section class="seccion" id="equipo"><div class="container"><h2>Equipo de apoyo</h2><p class="intro">Asistentes PAT que acompañan las sesiones en Teams.</p><ul class="personas" id="equipo-lista"></ul></div></section>
-    <section class="seccion gris" id="sobre"><div class="container"><h2>Sobre el programa</h2><div class="sobre" id="sobre-contenido"></div></div></section>
+    <section class="seccion" id="temario"><h2>Temario</h2>
+      <details class="temario"><summary class="btn">Ver los temas de cada unidad<span data-ic="caret-down"></span></summary><div class="unidades" id="plan-lista"></div></details>
+    </section>
+    <section class="seccion" id="docentes"><h2>Docentes</h2><div class="docentes-lista" id="docentes-lista"></div><p class="apoyo" id="apoyo"></p></section>
+    <section class="seccion" id="sobre"><h2>Sobre el programa</h2><div class="sobre" id="sobre-contenido"></div></section>
   </main>
 
   <footer class="pie">
-    <div class="container">
-      <img src="assets/logos/sabana-facultad-lockup.png" alt="Universidad de La Sabana, Facultad de Estudios Jurídicos, Políticos e Internacionales" width="289" height="44">
-      <div><p>Universidad de La Sabana, Chía, Cundinamarca</p><p id="pie-oficial"></p><p id="actualizado" aria-live="off"></p></div>
+    <div class="dentro">
+      <p id="pie-nombre"></p>
+      <p id="actualizado" aria-live="off"></p>
     </div>
   </footer>
 

@@ -3,20 +3,19 @@
   @page { size: A4 landscape; margin: 12mm; }
   * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   body > *:not(#hoja-impresion) { display: none !important; }
-  body { background: #fff; }
-  #hoja-impresion { display: block; color: #000; font-size: 10pt; line-height: 1.3; }
-  .imp-cab { display: flex; align-items: center; gap: 12mm; border-bottom: 2px solid var(--brand-red); padding-bottom: 4mm; margin-bottom: 4mm; }
-  .imp-cab img { height: 14mm; width: auto; }
-  .imp-cab h1 { font-size: 14pt; line-height: 1.2; }
-  .imp-cab p { font-size: 9pt; color: #333; }
+  body { background: #fff; color: #000; }
+  body::before { display: none; }
+  #hoja-impresion { display: block; color: #000; font-family: var(--font-body); font-size: 10pt; line-height: 1.3; }
+  .imp-cab { border-bottom: 3px solid var(--red); padding-bottom: 4mm; margin-bottom: 4mm; }
+  .imp-cab h1 { font-size: 15pt; line-height: 1.2; color: var(--navy-900); }
+  .imp-cab p { font-size: 9pt; color: #333; margin-top: 1mm; }
   .imp-filtros { font-size: 9pt; margin-bottom: 3mm; }
   #hoja-impresion table { width: 100%; border-collapse: collapse; }
   #hoja-impresion thead { display: table-header-group; }
-  #hoja-impresion th { background: var(--brand-navy); color: #fff; text-align: left; font-size: 9pt; padding: 2mm; border: 1px solid #000; }
+  #hoja-impresion th { background: var(--navy-900); color: #fff; text-align: left; font-size: 9pt; padding: 2mm; border: 1px solid #000; }
   #hoja-impresion td { padding: 1.6mm 2mm; border: 1px solid #555; vertical-align: top; font-size: 9pt; }
   #hoja-impresion td:first-child, #hoja-impresion td:nth-child(2) { white-space: nowrap; }
-  #hoja-impresion tbody { break-inside: avoid; page-break-inside: avoid; }
-  #hoja-impresion tr { break-inside: avoid; page-break-inside: avoid; }
+  #hoja-impresion tbody, #hoja-impresion tr { break-inside: avoid; page-break-inside: avoid; }
   #hoja-impresion td.temas { font-size: 8.5pt; border-top: 0; background: #F2F4F8; }
   #hoja-impresion td.temas ul { margin: 0; padding-left: 5mm; list-style: disc; }
   #hoja-impresion a { color: #000; text-decoration: underline; }

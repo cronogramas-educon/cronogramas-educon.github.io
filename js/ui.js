@@ -1,4 +1,5 @@
 import { fechaLarga, fechaLargaAnio, hora12, cap } from './utils-fecha.js';
+import { ic } from './iconos.js';
 
 const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ESC[c]);
@@ -57,38 +58,36 @@ export const horario = (meta) => `${hora12(meta.horario.inicio)} a ${hora12(meta
 export function botonTeams(c, cfg, estado) {
   if (!cfg.mostrarLinksTeams || !c.linkTeams) return '';
   const prim = estado === 'hoy' || estado === 'envivo';
-  return `<a class="btn btn-teams${prim ? ' primario' : ''}" href="${esc(c.linkTeams)}" target="_blank" rel="noopener noreferrer">Unirme en Teams</a>`;
+  return `<a class="btn btn-teams${prim ? ' rojo' : ''}" href="${esc(c.linkTeams)}" target="_blank" rel="noopener noreferrer">${ic('video-camera')}Unirme en Teams</a>`;
 }
 
 export function insignias(c, estado, esProxima, repro) {
   const o = [];
-  if (repro) o.push('<span class="insignia repro">Reprogramada</span>');
-  if (estado === 'envivo') o.push('<span class="insignia envivo">En vivo</span>');
-  else if (estado === 'hoy') o.push('<span class="insignia hoy">Hoy</span>');
-  else if (estado === 'pasada') o.push('<span class="insignia pasada">Realizada</span>');
-  if (esProxima && estado !== 'envivo' && estado !== 'hoy') o.push('<span class="insignia proxima">Próxima</span>');
+  if (repro) o.push('<span class="sello repro">Reprogramada</span>');
+  if (estado === 'envivo') o.push('<span class="sello envivo">En vivo</span>');
+  else if (estado === 'hoy') o.push('<span class="sello hoy">Hoy</span>');
+  else if (estado === 'pasada') o.push('<span class="sello pasada">Realizada</span>');
+  if (esProxima && estado !== 'envivo' && estado !== 'hoy') o.push('<span class="sello proxima">Próxima</span>');
   return o.join('');
 }
 
-/** Ficha completa: todos los campos del Excel. ctx = {meta, cfg, q, estado, esProxima, repro} */
+/** Ficha de la clase. Con titulo=true (panel del calendario) repite el nombre y la unidad. */
 export function fichaClase(c, ctx) {
-  const { meta, cfg, q = '', estado, repro } = ctx;
+  const { meta, cfg, q = '', estado, repro, titulo } = ctx;
   const fecha = repro
     ? `<span class="tachada">${esc(fechaLargaAnio(c.cambio.fechaAnterior))}</span> ${esc(fechaLargaAnio(c.fecha))}`
     : esc(fechaLargaAnio(c.fecha));
   return `<div class="ficha-clase">
-    <div class="fila-estados" style="justify-content:flex-start;margin-bottom:8px">${insignias(c, estado, ctx.esProxima, repro)}</div>
-    <h3>${resaltar(cap(c.clase.toLowerCase()), q)}</h3>
-    <p class="u">${resaltar(legible(c.unidad), q)}</p>
+    ${titulo ? `<div class="fila-estados" style="justify-content:flex-start;margin-bottom:10px">${insignias(c, estado, ctx.esProxima, repro)}</div>
+    <h3>${resaltar(cap(c.clase.toLowerCase()), q)}</h3><p class="u">${resaltar(legible(c.unidad), q)}</p>` : ''}
     <ul class="temas">${c.temaPuntos.map((p) => `<li>${resaltar(p, q)}</li>`).join('')}</ul>
     <dl>
       <dt>Docente</dt><dd>${c.profesores.map((p) => resaltar(p, q)).join(' y ')}</dd>
       <dt>Fecha</dt><dd>${fecha}</dd>
-      <dt>Horario</dt><dd>${esc(horario(meta))} (hora de Colombia)</dd>
-      <dt>Duración</dt><dd>${c.horas} horas</dd>
-      ${c.asistentePat ? `<dt>Asistente PAT</dt><dd>${resaltar(c.asistentePat, q)}</dd>` : ''}
+      <dt>Horario</dt><dd>${esc(horario(meta))}, hora de Colombia</dd>
+      ${c.asistentePat ? `<dt>Te acompaña</dt><dd>${resaltar(c.asistentePat, q)}</dd>` : ''}
     </dl>
-    <div class="acc">${botonTeams(c, cfg, estado)}<button class="btn" type="button" data-ics="${c.id}">Agregar a mi calendario</button></div>
+    <div class="acc">${botonTeams(c, cfg, estado)}<button class="btn" type="button" data-ics="${c.id}">${ic('calendar-plus')}Agregar a mi calendario</button></div>
   </div>`;
 }
-export { fechaLarga };
+export { fechaLarga, ic };

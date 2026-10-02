@@ -14,8 +14,7 @@ export function prepararHoja(el, clases, { meta, cfg, estado, resumenFiltros }) 
       <td>${esc(legible(c.unidad))}</td><td>${esc(c.profesores.join(' y '))}</td><td>${esc(c.asistentePat)}</td><td>${teams}</td></tr>
       ${estado.temas ? `<tr><td class="temas" colspan="7"><ul>${c.temaPuntos.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></td></tr>` : ''}</tbody>`;
   }).join('');
-  el.innerHTML = `<div class="imp-cab"><img src="assets/logos/sabana-facultad-lockup.png" alt="${esc(cfg.universidad)}, ${esc(cfg.facultad)}">
-    <div><h1>${esc(meta.programa)}</h1><p>Cohorte ${esc(meta.cohorte)}. Generado el ${esc(fechaLargaAnio(hoyISO(t)))}. Horario en hora de Colombia.</p></div></div>
+  el.innerHTML = `<div class="imp-cab"><h1>${esc(meta.programa)}</h1><p>Cohorte ${esc(meta.cohorte)}. Generado el ${esc(fechaLargaAnio(hoyISO(t)))}. Horario en hora de Colombia.</p></div>
     ${resumenFiltros ? `<p class="imp-filtros">Filtros activos: ${esc(resumenFiltros)}. ${clases.length} de ${meta.totalClases} clases.</p>` : ''}
-    <table><thead><tr><th>Clase</th><th>Fecha</th><th>Horario</th><th>Unidad</th><th>Docente</th><th>Asistente PAT</th><th>Enlace</th></tr></thead>${filas}</table>`;
+    <table><thead><tr><th>Clase</th><th>Fecha</th><th>Horario</th><th>Unidad</th><th>Docente</th><th>Te acompaña</th><th>Enlace</th></tr></thead>${filas}</table>`;
 }

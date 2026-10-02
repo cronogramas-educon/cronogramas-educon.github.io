@@ -50,20 +50,21 @@ def pagina(navegador):
 
 def abrir(p, base, q=""):
     p.goto(f"{base}?{q}")
-    p.wait_for_selector("#vista .cal-btn, #vista .fila, #vista .vacio")
+    p.wait_for_selector("#vista .cal-btn, #vista .fila, #vista .vacio", state="attached")
     return p
 
 
 def test_carga_sin_errores_y_cifras(pagina, base):
     abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
-    assert pagina.locator("#cifras strong").all_inner_texts() == ["35", "105", "17", "10"]
-    assert "Mostrando 35 de 35" in pagina.inner_text("#contador")
+    assert "35 clases del 1 de octubre de 2026 al 4 de diciembre de 2026" in pagina.inner_text("#lead")
+    assert pagina.inner_text("#contador") == "35 clases"
+    assert pagina.locator("#plan-lista .unidad").count() == 17 and pagina.locator(".chip-docente").count() == 12
     assert pagina.errores == []
 
 
 @pytest.mark.parametrize("ahora,esperado", [
-    ("2026-09-20T10:00:00-05:00", "Próxima clase"),
-    ("2026-10-01T10:00:00-05:00", "Próxima clase, hoy"),
+    ("2026-09-20T10:00:00-05:00", "Falta"),
+    ("2026-10-01T10:00:00-05:00", "Hoy a las 5:00"),
     ("2026-10-01T18:00:00-05:00", "En vivo ahora"),
     ("2026-12-05T10:00:00-05:00", "El diplomado ha finalizado"),
 ])
@@ -74,9 +75,10 @@ def test_estados_del_panel(pagina, base, ahora, esperado):
 
 def test_en_vivo_destaca_teams_y_pasada_se_marca(pagina, base):
     abrir(pagina, base, "ahora=2026-10-01T18:00:00-05:00&vista=lista")
-    assert pagina.locator("#panel .chevron-cta.solid").count() == 1
+    assert pagina.locator("#panel .btn.rojo").count() == 1
     abrir(pagina, base, "ahora=2026-10-02T09:00:00-05:00&vista=lista")
-    assert "Realizada" in pagina.locator(".fila").first.inner_text()
+    pagina.click(".realizadas > summary")
+    assert "realizada" in pagina.locator(".fila").first.inner_text().lower()
 
 
 def test_cuenta_regresiva_avanza(pagina, base):
@@ -91,6 +93,7 @@ def test_filtro_docente_incluye_clases_con_dos_docentes(pagina, base):
     filas = pagina.locator(".fila")
     textos = " ".join(filas.all_inner_texts())
     assert "Clase 23" in textos and "Clase 30" in textos  # compartidas con Marta Lucia Ramírez
+    assert pagina.is_visible("#filtros")  # con filtros en la URL el panel llega abierto
     pagina.select_option("#f-docente", "Marta Lucia Ramírez")
     assert "Clase 23" in " ".join(pagina.locator(".fila").all_inner_texts())
     assert "docente=" in pagina.url
@@ -104,11 +107,12 @@ def test_busqueda_sin_tildes_resalta_y_url(pagina, base):
     pagina.fill("#f-q", "zzzzzz")
     pagina.wait_for_selector(".vacio")
     pagina.click("[data-limpiar]")
-    assert "Mostrando 35 de 35" in pagina.inner_text("#contador")
+    assert pagina.inner_text("#contador") == "35 clases"
 
 
 def test_ocultar_realizadas_y_estado(pagina, base):
     abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00&vista=lista")
+    pagina.click("#abrir-filtros")
     pagina.check("#f-ocultar")
     assert "Mostrando 28 de 35" in pagina.inner_text("#contador")
     pagina.uncheck("#f-ocultar")
@@ -168,12 +172,12 @@ def test_aviso_de_cambio_y_entendido(pagina, base):
     abrir(pagina, base, "ahora=2026-10-11T10:00:00-05:00&vista=lista")
     assert "la Clase 7 pasó del martes 13 de octubre al miércoles 14 de octubre" in pagina.inner_text("#avisos")
     fila = pagina.locator(".fila[data-id='7']")
-    assert "Reprogramada" in fila.inner_text()
+    assert "reprogramada" in fila.inner_text().lower()
     pagina.click("[data-entendido]")
     assert pagina.locator("#avisos").is_hidden()
     pagina.reload()
-    pagina.wait_for_selector(".fila")
-    assert pagina.locator("#avisos").is_hidden() and "Reprogramada" in pagina.locator(".fila[data-id='7']").inner_text()
+    pagina.wait_for_selector(".fila", state="attached")
+    assert pagina.locator("#avisos").is_hidden() and "reprogramada" in pagina.locator(".fila[data-id='7']").inner_text().lower()
 
 
 def test_sin_red_usa_ultima_copia(navegador, base):
@@ -182,7 +186,7 @@ def test_sin_red_usa_ultima_copia(navegador, base):
     abrir(p, base, "vista=lista")
     p.route("**/data/data.json*", lambda r: r.abort())
     p.goto(f"{base}?vista=lista")
-    p.wait_for_selector(".fila")
+    p.wait_for_selector(".fila", state="attached")
     assert "última versión guardada" in p.inner_text("#aviso-red")
     ctx.close()
 
@@ -199,6 +203,7 @@ def test_sin_red_ni_copia_no_deja_pagina_en_blanco(navegador, base):
 
 def test_descarga_ics(pagina, base):
     abrir(pagina, base, "docente=Camilo%20Jaimes%20P&vista=lista")
+    pagina.click("#menu-ics summary")
     with pagina.expect_download() as d:
         pagina.click("[data-ics-visibles]")
     txt = Path(d.value.path()).read_text(encoding="utf-8")

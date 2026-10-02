@@ -1,4 +1,4 @@
-import { esc, docentesCorto, fichaClase } from './ui.js';
+import { esc, docentesCorto, fichaClase, ic } from './ui.js';
 import { MESES, mesAnio, cap, diaSemana, addDias, partes, fechaLargaAnio, estadoClase, cambioVigente, hoyISO } from './utils-fecha.js';
 
 const num = (c) => c.clase.replace(/\D/g, '') || c.id;
@@ -19,7 +19,7 @@ function pieza(c, ctx) {
   const cls = ['pieza', `es-${e}`];
   if (c.id === proximaId && (e === 'futura' || e === 'hoy')) cls.push('es-proxima');
   if (repro) cls.push('es-repro');
-  return `<span class="${cls.join(' ')}"><strong><span class="solo-escritorio">Clase </span>${esc(num(c))}${e === 'pasada' ? ' <span aria-hidden="true">✓</span>' : ''}</strong><small>${esc(docentesCorto(c))}</small>${repro ? '<em>Reprogramada</em>' : ''}</span>`;
+  return `<span class="${cls.join(' ')}"><strong><span class="solo-escritorio">Clase </span>${esc(num(c))}${e === 'pasada' ? ic('check') : ''}</strong><small>${esc(docentesCorto(c))}</small>${repro ? '<em>Reprogramada</em>' : ''}</span>`;
 }
 
 function etiquetaDia(iso, cs, ctx) {
@@ -60,20 +60,18 @@ export function renderCalendario(el, clases, ctx) {
   const idx = meses.indexOf(mes);
   const detalleCs = sel ? porFecha.get(sel) ?? [] : [];
   const detalle = detalleCs.length ? `<aside class="detalle" id="detalle" role="dialog" aria-label="Detalle de la clase" aria-modal="false">
-      <div class="detalle-cab"><p>${esc(cap(fechaLargaAnio(sel)))}</p><button class="detalle-cerrar" type="button" data-cerrar aria-label="Cerrar detalle">×</button></div>
-      ${detalleCs.map((c) => fichaClase(c, { ...ctx, estado: estadoClase(c, t), esProxima: c.id === ctx.proximaId, repro: cambioVigente(c, ctx.cfg, t) })).join('')}
+      <div class="detalle-cab"><p>${esc(cap(fechaLargaAnio(sel)))}</p><button class="detalle-cerrar" type="button" data-cerrar aria-label="Cerrar detalle">${ic('x')}</button></div>
+      ${detalleCs.map((c) => fichaClase(c, { ...ctx, titulo: true, estado: estadoClase(c, t), esProxima: c.id === ctx.proximaId, repro: cambioVigente(c, ctx.cfg, t) })).join('')}
     </aside><div class="fondo-detalle on" data-cerrar></div>` : '';
   el.innerHTML = `<div class="cal-layout${detalle ? ' con-detalle' : ''}"><div>
     <div class="cal-cab"><h3>${esc(cap(mesAnio(mes)))}</h3>
       <div class="cal-meses" role="group" aria-label="Mes">
-        <button class="nav-mes" type="button" data-mes="${meses[idx - 1] ?? ''}" ${idx <= 0 ? 'disabled' : ''} aria-label="Mes anterior">‹</button>
         ${meses.map((x) => `<button type="button" data-mes="${x}" aria-pressed="${x === mes}">${esc(cap(MESES[+x.slice(5) - 1]))}</button>`).join('')}
-        <button class="nav-mes" type="button" data-mes="${meses[idx + 1] ?? ''}" ${idx >= meses.length - 1 ? 'disabled' : ''} aria-label="Mes siguiente">›</button>
       </div></div>
     <div class="cal" role="grid" aria-label="Calendario de ${esc(mesAnio(mes))}">
       <div class="cal-fila" role="row">${dias.map((d) => `<div class="cal-dsem" role="columnheader" aria-label="${d}">${esc(d.slice(0, 3))}</div>`).join('')}</div>${filas}
     </div>
-    <div class="leyenda" aria-label="Leyenda"><span><i class="l-proxima"></i>Próxima</span><span><i class="l-hoy"></i>Hoy</span><span><i class="l-envivo"></i>En vivo</span><span><i class="l-pasada"></i>Realizada</span><span><i class="l-repro"></i>Reprogramada</span></div>
+    <div class="leyenda" aria-label="Leyenda"><span><i class="l-proxima"></i>Próxima</span><span><i class="l-envivo"></i>En vivo</span><span><i class="l-pasada"></i>Realizada</span><span><i class="l-repro"></i>Reprogramada</span></div>
   </div>${detalle}</div>`;
 }
 
