@@ -12,9 +12,9 @@
     "totalClases": 35,
     "horasTotales": 105,
     "inicio": "2026-10-01",
-    "fin": "2026-12-04",
-    "hash": "14357f046df740f0",
-    "generadoEn": "2026-10-02T03:29:03Z",
+    "fin": "2026-12-11",
+    "hash": "ac4c1004ec18b6bc",
+    "generadoEn": "2026-10-02T03:35:11Z",
     "fuenteModificadaEn": ""
   },
   "clases": [
@@ -937,13 +937,18 @@
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
-      "fecha": "2026-12-04",
-      "inicio": "2026-12-04T17:00:00-05:00",
-      "fin": "2026-12-04T20:00:00-05:00",
+      "fecha": "2026-12-11",
+      "inicio": "2026-12-11T17:00:00-05:00",
+      "fin": "2026-12-11T20:00:00-05:00",
       "asistentePat": "Fabián Alberto Córdoba Almendrales",
       "linkTeams": "https://teams.microsoft.com/meet/277316336261184?p=5bYg2B5OAGdkuXzCG1",
-      "cambio": null,
-      "secuencia": 0
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-12-04",
+        "fechaOriginal": "2026-12-04",
+        "detectadoEn": "2026-10-02T03:35:11Z"
+      },
+      "secuencia": 1
     }
   ],
   "unidades": [
@@ -1119,5 +1124,15 @@
     "Fabián Alberto Córdoba Almendrales",
     "Jenier Sebastián Achury Gómez"
   ],
-  "cambios": []
+  "cambios": [
+    {
+      "id": 35,
+      "clase": "CLASE 35",
+      "fechaOriginal": "2026-12-04",
+      "fechaAnterior": "2026-12-04",
+      "fechaNueva": "2026-12-11",
+      "detectadoEn": "2026-10-02T03:35:11Z",
+      "resuelto": false
+    }
+  ]
 }
