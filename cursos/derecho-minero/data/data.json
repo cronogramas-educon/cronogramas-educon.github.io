@@ -1,0 +1,794 @@
+{
+  "meta": {
+    "programa": "Curso de Actualización en Derecho Minero Ambiental",
+    "tipo": "Curso",
+    "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+    "modalidad": "Remota",
+    "zona": "America/Bogota",
+    "totalClases": 24,
+    "horasTotales": 40,
+    "horasCompletas": true,
+    "inicio": "2026-10-01",
+    "fin": "2026-11-03",
+    "hash": "06e918dac8de1065",
+    "generadoEn": "2026-10-02T21:06:30Z",
+    "fuenteModificadaEn": "2026-10-02T21:06:17.1743968Z"
+  },
+  "clases": [
+    {
+      "id": 1,
+      "clase": "CLASE 1",
+      "unidad": "PRESENTACIÓN GENERAL DEL CURSO",
+      "unidadSlug": "presentacion-general-del-curso",
+      "tema": "",
+      "temaPuntos": [],
+      "temaHeredado": true,
+      "horas": 1,
+      "profesor": "Gerardo Bernal Gamboa",
+      "profesores": [
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-01",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-01T18:00:00-05:00",
+      "fin": "2026-10-01T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 2,
+      "clase": "CLASE 2",
+      "unidad": "MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIENTAL",
+      "unidadSlug": "modulo-2-procedimientos-administrativos-y-sancionatorio-ambi",
+      "tema": "Licenciamiento ambiental: requisitos, procedimientos y cambios recientes\nPermisos y autorizaciones conexas\nFiscalización y control administrativo en minería\nProcedimientos sancionatorios ambientales: etapas, plazos y recursos\nCasos prácticos y análisis de expedientes reales",
+      "temaPuntos": [
+        "Licenciamiento ambiental: requisitos, procedimientos y cambios recientes",
+        "Permisos y autorizaciones conexas",
+        "Fiscalización y control administrativo en minería",
+        "Procedimientos sancionatorios ambientales: etapas, plazos y recursos",
+        "Casos prácticos y análisis de expedientes reales"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Edna Arcón Reyes",
+      "profesores": [
+        "Edna Arcón Reyes"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-01",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-01T18:00:00-05:00",
+      "fin": "2026-10-01T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 3,
+      "clase": "CLASE 3",
+      "unidad": "MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AMBIENTAL",
+      "unidadSlug": "modulo-1-marco-juridico-y-actualizacion-normativa-minero-amb",
+      "tema": "Constitución Política y principios rectores en materia minera y ambiental\nEstructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR\nReformas recientes al Código de Minas y normativa ambiental\nJurisprudencia relevante del último quinquenio\nTendencias regulatorias y retos normativos actuales",
+      "temaPuntos": [
+        "Constitución Política y principios rectores en materia minera y ambiental",
+        "Estructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR",
+        "Reformas recientes al Código de Minas y normativa ambiental",
+        "Jurisprudencia relevante del último quinquenio",
+        "Tendencias regulatorias y retos normativos actuales"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Camilo Andrés Tovar Perilla",
+      "profesores": [
+        "Camilo Andrés Tovar Perilla"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-06",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-06T18:00:00-05:00",
+      "fin": "2026-10-06T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 4,
+      "clase": "CLASE 4",
+      "unidad": "MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA",
+      "unidadSlug": "modulo-3-derecho-penal-aplicado-a-la-mineria",
+      "tema": "Tipificación de delitos ambientales y mineros\nDelitos conexos: lavado de activos, contrabando, corrupción\nProcedimiento penal y medidas cautelares\nJurisprudencia relevante en materia penal minera\nEstudio de casos y simulación de audiencias",
+      "temaPuntos": [
+        "Tipificación de delitos ambientales y mineros",
+        "Delitos conexos: lavado de activos, contrabando, corrupción",
+        "Procedimiento penal y medidas cautelares",
+        "Jurisprudencia relevante en materia penal minera",
+        "Estudio de casos y simulación de audiencias"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Jessica Pacheco Pacheco",
+      "profesores": [
+        "Jessica Pacheco Pacheco"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-06",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-06T18:00:00-05:00",
+      "fin": "2026-10-06T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 5,
+      "clase": "CLASE 5",
+      "unidad": "MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AMBIENTAL",
+      "unidadSlug": "modulo-1-marco-juridico-y-actualizacion-normativa-minero-amb",
+      "tema": "Constitución Política y principios rectores en materia minera y ambiental\nEstructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR\nReformas recientes al Código de Minas y normativa ambiental\nJurisprudencia relevante del último quinquenio\nTendencias regulatorias y retos normativos actuales",
+      "temaPuntos": [
+        "Constitución Política y principios rectores en materia minera y ambiental",
+        "Estructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR",
+        "Reformas recientes al Código de Minas y normativa ambiental",
+        "Jurisprudencia relevante del último quinquenio",
+        "Tendencias regulatorias y retos normativos actuales"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Camilo Andrés Tovar Perilla",
+      "profesores": [
+        "Camilo Andrés Tovar Perilla"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-07",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-07T18:00:00-05:00",
+      "fin": "2026-10-07T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 6,
+      "clase": "CLASE 6",
+      "unidad": "MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIENTAL",
+      "unidadSlug": "modulo-2-procedimientos-administrativos-y-sancionatorio-ambi",
+      "tema": "Licenciamiento ambiental: requisitos, procedimientos y cambios recientes\nPermisos y autorizaciones conexas\nFiscalización y control administrativo en minería\nProcedimientos sancionatorios ambientales: etapas, plazos y recursos\nCasos prácticos y análisis de expedientes reales",
+      "temaPuntos": [
+        "Licenciamiento ambiental: requisitos, procedimientos y cambios recientes",
+        "Permisos y autorizaciones conexas",
+        "Fiscalización y control administrativo en minería",
+        "Procedimientos sancionatorios ambientales: etapas, plazos y recursos",
+        "Casos prácticos y análisis de expedientes reales"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Edna Arcón Reyes",
+      "profesores": [
+        "Edna Arcón Reyes"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-07",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-07T18:00:00-05:00",
+      "fin": "2026-10-07T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 7,
+      "clase": "CLASE 7",
+      "unidad": "MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AMBIENTAL",
+      "unidadSlug": "modulo-1-marco-juridico-y-actualizacion-normativa-minero-amb",
+      "tema": "Constitución Política y principios rectores en materia minera y ambiental\nEstructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR\nReformas recientes al Código de Minas y normativa ambiental\nJurisprudencia relevante del último quinquenio\nTendencias regulatorias y retos normativos actuales",
+      "temaPuntos": [
+        "Constitución Política y principios rectores en materia minera y ambiental",
+        "Estructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR",
+        "Reformas recientes al Código de Minas y normativa ambiental",
+        "Jurisprudencia relevante del último quinquenio",
+        "Tendencias regulatorias y retos normativos actuales"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Camilo Andrés Tovar Perilla",
+      "profesores": [
+        "Camilo Andrés Tovar Perilla"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-08",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-08T18:00:00-05:00",
+      "fin": "2026-10-08T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 8,
+      "clase": "CLASE 8",
+      "unidad": "MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIENTAL",
+      "unidadSlug": "modulo-2-procedimientos-administrativos-y-sancionatorio-ambi",
+      "tema": "Licenciamiento ambiental: requisitos, procedimientos y cambios recientes\nPermisos y autorizaciones conexas\nFiscalización y control administrativo en minería\nProcedimientos sancionatorios ambientales: etapas, plazos y recursos\nCasos prácticos y análisis de expedientes reales",
+      "temaPuntos": [
+        "Licenciamiento ambiental: requisitos, procedimientos y cambios recientes",
+        "Permisos y autorizaciones conexas",
+        "Fiscalización y control administrativo en minería",
+        "Procedimientos sancionatorios ambientales: etapas, plazos y recursos",
+        "Casos prácticos y análisis de expedientes reales"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Edna Arcón Reyes",
+      "profesores": [
+        "Edna Arcón Reyes"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-08",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-08T18:00:00-05:00",
+      "fin": "2026-10-08T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 9,
+      "clase": "CLASE 9",
+      "unidad": "MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AMBIENTAL",
+      "unidadSlug": "modulo-1-marco-juridico-y-actualizacion-normativa-minero-amb",
+      "tema": "Constitución Política y principios rectores en materia minera y ambiental\nEstructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR\nReformas recientes al Código de Minas y normativa ambiental\nJurisprudencia relevante del último quinquenio\nTendencias regulatorias y retos normativos actuales",
+      "temaPuntos": [
+        "Constitución Política y principios rectores en materia minera y ambiental",
+        "Estructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR",
+        "Reformas recientes al Código de Minas y normativa ambiental",
+        "Jurisprudencia relevante del último quinquenio",
+        "Tendencias regulatorias y retos normativos actuales"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Camilo Andrés Tovar Perilla",
+      "profesores": [
+        "Camilo Andrés Tovar Perilla"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-13",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-13T18:00:00-05:00",
+      "fin": "2026-10-13T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 10,
+      "clase": "CLASE 10",
+      "unidad": "MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA",
+      "unidadSlug": "modulo-3-derecho-penal-aplicado-a-la-mineria",
+      "tema": "Tipificación de delitos ambientales y mineros\nDelitos conexos: lavado de activos, contrabando, corrupción\nProcedimiento penal y medidas cautelares\nJurisprudencia relevante en materia penal minera\nEstudio de casos y simulación de audiencias",
+      "temaPuntos": [
+        "Tipificación de delitos ambientales y mineros",
+        "Delitos conexos: lavado de activos, contrabando, corrupción",
+        "Procedimiento penal y medidas cautelares",
+        "Jurisprudencia relevante en materia penal minera",
+        "Estudio de casos y simulación de audiencias"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Jessica Pacheco Pacheco",
+      "profesores": [
+        "Jessica Pacheco Pacheco"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-13",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-13T18:00:00-05:00",
+      "fin": "2026-10-13T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 11,
+      "clase": "CLASE 11",
+      "unidad": "MÓDULO 4: COMUNIDADES, FORMALIZACIÓN, CONTRATACIÓN MINERA Y ENFOQUE DIFERENCIAL",
+      "unidadSlug": "modulo-4-comunidades-formalizacion-contratacion-minera-y-enf",
+      "tema": "Consulta previa y derechos de comunidades étnicas\nNegociación con comunidades y resolución de conflictos socioambientales\nContratos de operación y de cuentas en participación: aspectos legales y prácticos\nInclusión de cláusulas con enfoque diferencial y de sostenibilidad\nCasos reales y buenas prácticas en la gestión contractual",
+      "temaPuntos": [
+        "Consulta previa y derechos de comunidades étnicas",
+        "Negociación con comunidades y resolución de conflictos socioambientales",
+        "Contratos de operación y de cuentas en participación: aspectos legales y prácticos",
+        "Inclusión de cláusulas con enfoque diferencial y de sostenibilidad",
+        "Casos reales y buenas prácticas en la gestión contractual"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Gerardo Bernal Gamboa",
+      "profesores": [
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-14",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-14T18:00:00-05:00",
+      "fin": "2026-10-14T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 12,
+      "clase": "CLASE 12",
+      "unidad": "MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIENTAL",
+      "unidadSlug": "modulo-2-procedimientos-administrativos-y-sancionatorio-ambi",
+      "tema": "Licenciamiento ambiental: requisitos, procedimientos y cambios recientes\nPermisos y autorizaciones conexas\nFiscalización y control administrativo en minería\nProcedimientos sancionatorios ambientales: etapas, plazos y recursos\nCasos prácticos y análisis de expedientes reales",
+      "temaPuntos": [
+        "Licenciamiento ambiental: requisitos, procedimientos y cambios recientes",
+        "Permisos y autorizaciones conexas",
+        "Fiscalización y control administrativo en minería",
+        "Procedimientos sancionatorios ambientales: etapas, plazos y recursos",
+        "Casos prácticos y análisis de expedientes reales"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Edna Arcón Reyes",
+      "profesores": [
+        "Edna Arcón Reyes"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-14",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-14T18:00:00-05:00",
+      "fin": "2026-10-14T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 13,
+      "clase": "CLASE 13",
+      "unidad": "MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AMBIENTAL",
+      "unidadSlug": "modulo-1-marco-juridico-y-actualizacion-normativa-minero-amb",
+      "tema": "Constitución Política y principios rectores en materia minera y ambiental\nEstructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR\nReformas recientes al Código de Minas y normativa ambiental\nJurisprudencia relevante del último quinquenio\nTendencias regulatorias y retos normativos actuales",
+      "temaPuntos": [
+        "Constitución Política y principios rectores en materia minera y ambiental",
+        "Estructura institucional y competencias: ANM, MinMinas, MinAmbiente, ANLA, CAR",
+        "Reformas recientes al Código de Minas y normativa ambiental",
+        "Jurisprudencia relevante del último quinquenio",
+        "Tendencias regulatorias y retos normativos actuales"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Camilo Andrés Tovar Perilla",
+      "profesores": [
+        "Camilo Andrés Tovar Perilla"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-15",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-15T18:00:00-05:00",
+      "fin": "2026-10-15T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 14,
+      "clase": "CLASE 14",
+      "unidad": "MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA",
+      "unidadSlug": "modulo-3-derecho-penal-aplicado-a-la-mineria",
+      "tema": "Tipificación de delitos ambientales y mineros\nDelitos conexos: lavado de activos, contrabando, corrupción\nProcedimiento penal y medidas cautelares\nJurisprudencia relevante en materia penal minera\nEstudio de casos y simulación de audiencias",
+      "temaPuntos": [
+        "Tipificación de delitos ambientales y mineros",
+        "Delitos conexos: lavado de activos, contrabando, corrupción",
+        "Procedimiento penal y medidas cautelares",
+        "Jurisprudencia relevante en materia penal minera",
+        "Estudio de casos y simulación de audiencias"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Jessica Pacheco Pacheco",
+      "profesores": [
+        "Jessica Pacheco Pacheco"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-15",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-15T18:00:00-05:00",
+      "fin": "2026-10-15T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 15,
+      "clase": "CLASE 15",
+      "unidad": "MÓDULO 4: COMUNIDADES, FORMALIZACIÓN, CONTRATACIÓN MINERA Y ENFOQUE DIFERENCIAL",
+      "unidadSlug": "modulo-4-comunidades-formalizacion-contratacion-minera-y-enf",
+      "tema": "Consulta previa y derechos de comunidades étnicas\nNegociación con comunidades y resolución de conflictos socioambientales\nContratos de operación y de cuentas en participación: aspectos legales y prácticos\nInclusión de cláusulas con enfoque diferencial y de sostenibilidad\nCasos reales y buenas prácticas en la gestión contractual",
+      "temaPuntos": [
+        "Consulta previa y derechos de comunidades étnicas",
+        "Negociación con comunidades y resolución de conflictos socioambientales",
+        "Contratos de operación y de cuentas en participación: aspectos legales y prácticos",
+        "Inclusión de cláusulas con enfoque diferencial y de sostenibilidad",
+        "Casos reales y buenas prácticas en la gestión contractual"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Gerardo Bernal Gamboa",
+      "profesores": [
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-20",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-20T18:00:00-05:00",
+      "fin": "2026-10-20T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 16,
+      "clase": "CLASE 16",
+      "unidad": "MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA",
+      "unidadSlug": "modulo-3-derecho-penal-aplicado-a-la-mineria",
+      "tema": "Tipificación de delitos ambientales y mineros\nDelitos conexos: lavado de activos, contrabando, corrupción\nProcedimiento penal y medidas cautelares\nJurisprudencia relevante en materia penal minera\nEstudio de casos y simulación de audiencias",
+      "temaPuntos": [
+        "Tipificación de delitos ambientales y mineros",
+        "Delitos conexos: lavado de activos, contrabando, corrupción",
+        "Procedimiento penal y medidas cautelares",
+        "Jurisprudencia relevante en materia penal minera",
+        "Estudio de casos y simulación de audiencias"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Jessica Pacheco Pacheco",
+      "profesores": [
+        "Jessica Pacheco Pacheco"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-20",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-20T18:00:00-05:00",
+      "fin": "2026-10-20T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 17,
+      "clase": "CLASE 17",
+      "unidad": "MÓDULO 4: COMUNIDADES, FORMALIZACIÓN, CONTRATACIÓN MINERA Y ENFOQUE DIFERENCIAL",
+      "unidadSlug": "modulo-4-comunidades-formalizacion-contratacion-minera-y-enf",
+      "tema": "Consulta previa y derechos de comunidades étnicas\nNegociación con comunidades y resolución de conflictos socioambientales\nContratos de operación y de cuentas en participación: aspectos legales y prácticos\nInclusión de cláusulas con enfoque diferencial y de sostenibilidad\nCasos reales y buenas prácticas en la gestión contractual",
+      "temaPuntos": [
+        "Consulta previa y derechos de comunidades étnicas",
+        "Negociación con comunidades y resolución de conflictos socioambientales",
+        "Contratos de operación y de cuentas en participación: aspectos legales y prácticos",
+        "Inclusión de cláusulas con enfoque diferencial y de sostenibilidad",
+        "Casos reales y buenas prácticas en la gestión contractual"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Gerardo Bernal Gamboa",
+      "profesores": [
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-21",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-21T18:00:00-05:00",
+      "fin": "2026-10-21T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 18,
+      "clase": "CLASE 18",
+      "unidad": "MÓDULO 5: TENDENCIAS, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍA",
+      "unidadSlug": "modulo-5-tendencias-innovacion-y-sostenibilidad-en-mineria",
+      "tema": "Estándares internacionales de sostenibilidad minera\nMinería y transición energética: minerales críticos y oportunidades\nInnovación tecnológica aplicada al monitoreo y control ambiental\nCasos de éxito en minería responsable\nProyecciones del sector y desafíos para la próxima década",
+      "temaPuntos": [
+        "Estándares internacionales de sostenibilidad minera",
+        "Minería y transición energética: minerales críticos y oportunidades",
+        "Innovación tecnológica aplicada al monitoreo y control ambiental",
+        "Casos de éxito en minería responsable",
+        "Proyecciones del sector y desafíos para la próxima década"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Gerardo Bernal Gamboa",
+      "profesores": [
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-22",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-22T18:00:00-05:00",
+      "fin": "2026-10-22T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 19,
+      "clase": "CLASE 19",
+      "unidad": "MÓDULO 5: TENDENCIAS, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍA",
+      "unidadSlug": "modulo-5-tendencias-innovacion-y-sostenibilidad-en-mineria",
+      "tema": "Estándares internacionales de sostenibilidad minera\nMinería y transición energética: minerales críticos y oportunidades\nInnovación tecnológica aplicada al monitoreo y control ambiental\nCasos de éxito en minería responsable\nProyecciones del sector y desafíos para la próxima década",
+      "temaPuntos": [
+        "Estándares internacionales de sostenibilidad minera",
+        "Minería y transición energética: minerales críticos y oportunidades",
+        "Innovación tecnológica aplicada al monitoreo y control ambiental",
+        "Casos de éxito en minería responsable",
+        "Proyecciones del sector y desafíos para la próxima década"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Gerardo Bernal Gamboa",
+      "profesores": [
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-27",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-27T18:00:00-05:00",
+      "fin": "2026-10-27T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 20,
+      "clase": "CLASE 20",
+      "unidad": "MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA",
+      "unidadSlug": "modulo-3-derecho-penal-aplicado-a-la-mineria",
+      "tema": "Tipificación de delitos ambientales y mineros\nDelitos conexos: lavado de activos, contrabando, corrupción\nProcedimiento penal y medidas cautelares\nJurisprudencia relevante en materia penal minera\nEstudio de casos y simulación de audiencias",
+      "temaPuntos": [
+        "Tipificación de delitos ambientales y mineros",
+        "Delitos conexos: lavado de activos, contrabando, corrupción",
+        "Procedimiento penal y medidas cautelares",
+        "Jurisprudencia relevante en materia penal minera",
+        "Estudio de casos y simulación de audiencias"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Jessica Pacheco Pacheco",
+      "profesores": [
+        "Jessica Pacheco Pacheco"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-27",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-27T18:00:00-05:00",
+      "fin": "2026-10-27T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 21,
+      "clase": "CLASE 21",
+      "unidad": "MÓDULO 5: TENDENCIAS, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍA",
+      "unidadSlug": "modulo-5-tendencias-innovacion-y-sostenibilidad-en-mineria",
+      "tema": "Estándares internacionales de sostenibilidad minera\nMinería y transición energética: minerales críticos y oportunidades\nInnovación tecnológica aplicada al monitoreo y control ambiental\nCasos de éxito en minería responsable\nProyecciones del sector y desafíos para la próxima década",
+      "temaPuntos": [
+        "Estándares internacionales de sostenibilidad minera",
+        "Minería y transición energética: minerales críticos y oportunidades",
+        "Innovación tecnológica aplicada al monitoreo y control ambiental",
+        "Casos de éxito en minería responsable",
+        "Proyecciones del sector y desafíos para la próxima década"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Gerardo Bernal Gamboa",
+      "profesores": [
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-28",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-28T18:00:00-05:00",
+      "fin": "2026-10-28T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 22,
+      "clase": "CLASE 22",
+      "unidad": "MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA",
+      "unidadSlug": "modulo-3-derecho-penal-aplicado-a-la-mineria",
+      "tema": "Tipificación de delitos ambientales y mineros\nDelitos conexos: lavado de activos, contrabando, corrupción\nProcedimiento penal y medidas cautelares\nJurisprudencia relevante en materia penal minera\nEstudio de casos y simulación de audiencias",
+      "temaPuntos": [
+        "Tipificación de delitos ambientales y mineros",
+        "Delitos conexos: lavado de activos, contrabando, corrupción",
+        "Procedimiento penal y medidas cautelares",
+        "Jurisprudencia relevante en materia penal minera",
+        "Estudio de casos y simulación de audiencias"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Jessica Pacheco Pacheco",
+      "profesores": [
+        "Jessica Pacheco Pacheco"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-28",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-28T18:00:00-05:00",
+      "fin": "2026-10-28T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 23,
+      "clase": "CLASE 23",
+      "unidad": "MÓDULO 5: TENDENCIAS, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍA",
+      "unidadSlug": "modulo-5-tendencias-innovacion-y-sostenibilidad-en-mineria",
+      "tema": "Estándares internacionales de sostenibilidad minera\nMinería y transición energética: minerales críticos y oportunidades\nInnovación tecnológica aplicada al monitoreo y control ambiental\nCasos de éxito en minería responsable\nProyecciones del sector y desafíos para la próxima década",
+      "temaPuntos": [
+        "Estándares internacionales de sostenibilidad minera",
+        "Minería y transición energética: minerales críticos y oportunidades",
+        "Innovación tecnológica aplicada al monitoreo y control ambiental",
+        "Casos de éxito en minería responsable",
+        "Proyecciones del sector y desafíos para la próxima década"
+      ],
+      "temaHeredado": false,
+      "horas": 1,
+      "profesor": "Gerardo Bernal Gamboa",
+      "profesores": [
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-29",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-29T18:00:00-05:00",
+      "fin": "2026-10-29T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 24,
+      "clase": "CLASE 24",
+      "unidad": "TALLER TRANSVERSAL INTEGRADOR FINAL",
+      "unidadSlug": "taller-transversal-integrador-final",
+      "tema": "Estándares internacionales de sostenibilidad minera\nMinería y transición energética: minerales críticos y oportunidades\nInnovación tecnológica aplicada al monitoreo y control ambiental\nCasos de éxito en minería responsable\nProyecciones del sector y desafíos para la próxima década",
+      "temaPuntos": [
+        "Estándares internacionales de sostenibilidad minera",
+        "Minería y transición energética: minerales críticos y oportunidades",
+        "Innovación tecnológica aplicada al monitoreo y control ambiental",
+        "Casos de éxito en minería responsable",
+        "Proyecciones del sector y desafíos para la próxima década"
+      ],
+      "temaHeredado": true,
+      "horas": 3,
+      "profesor": "Camilo Andrés Tovar Perilla, Jessica Pacheco Pacheco, Edna Arcón Reyes y Gerardo Bernal Gamboa",
+      "profesores": [
+        "Camilo Andrés Tovar Perilla, Jessica Pacheco Pacheco, Edna Arcón Reyes",
+        "Gerardo Bernal Gamboa"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-03",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-03T18:00:00-05:00",
+      "fin": "2026-11-03T21:00:00-05:00",
+      "secuencia": 0
+    }
+  ],
+  "unidades": [
+    {
+      "slug": "presentacion-general-del-curso",
+      "nombre": "PRESENTACIÓN GENERAL DEL CURSO",
+      "clases": [
+        1
+      ],
+      "horas": 1
+    },
+    {
+      "slug": "modulo-2-procedimientos-administrativos-y-sancionatorio-ambi",
+      "nombre": "MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIENTAL",
+      "clases": [
+        2,
+        6,
+        8,
+        12
+      ],
+      "horas": 7
+    },
+    {
+      "slug": "modulo-1-marco-juridico-y-actualizacion-normativa-minero-amb",
+      "nombre": "MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AMBIENTAL",
+      "clases": [
+        3,
+        5,
+        7,
+        9,
+        13
+      ],
+      "horas": 7
+    },
+    {
+      "slug": "modulo-3-derecho-penal-aplicado-a-la-mineria",
+      "nombre": "MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA",
+      "clases": [
+        4,
+        10,
+        14,
+        16,
+        20,
+        22
+      ],
+      "horas": 8
+    },
+    {
+      "slug": "modulo-4-comunidades-formalizacion-contratacion-minera-y-enf",
+      "nombre": "MÓDULO 4: COMUNIDADES, FORMALIZACIÓN, CONTRATACIÓN MINERA Y ENFOQUE DIFERENCIAL",
+      "clases": [
+        11,
+        15,
+        17
+      ],
+      "horas": 7
+    },
+    {
+      "slug": "modulo-5-tendencias-innovacion-y-sostenibilidad-en-mineria",
+      "nombre": "MÓDULO 5: TENDENCIAS, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍA",
+      "clases": [
+        18,
+        19,
+        21,
+        23
+      ],
+      "horas": 7
+    },
+    {
+      "slug": "taller-transversal-integrador-final",
+      "nombre": "TALLER TRANSVERSAL INTEGRADOR FINAL",
+      "clases": [
+        24
+      ],
+      "horas": 3
+    }
+  ],
+  "profesores": [
+    "Camilo Andrés Tovar Perilla",
+    "Camilo Andrés Tovar Perilla, Jessica Pacheco Pacheco, Edna Arcón Reyes",
+    "Edna Arcón Reyes",
+    "Gerardo Bernal Gamboa",
+    "Jessica Pacheco Pacheco"
+  ],
+  "asistentesPat": [],
+  "cambios": []
+}
