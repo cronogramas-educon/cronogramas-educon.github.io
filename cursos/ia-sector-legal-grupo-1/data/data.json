@@ -1,0 +1,524 @@
+{
+  "meta": {
+    "programa": "Curso en IA en el Sector Legal, Grupo 1",
+    "tipo": "Curso",
+    "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+    "modalidad": "Remota",
+    "zona": "America/Bogota",
+    "totalClases": 16,
+    "horasTotales": 32,
+    "horasCompletas": true,
+    "inicio": "2026-09-30",
+    "fin": "2026-11-04",
+    "hash": "95795b3a44c621b7",
+    "generadoEn": "2026-10-02T21:06:19Z",
+    "fuenteModificadaEn": "2026-10-02T21:06:04.3851381Z"
+  },
+  "clases": [
+    {
+      "id": 1,
+      "clase": "CLASE 1",
+      "unidad": "MODULO 1 IA Y DERECHO: TODO LO QUE NECESITAS SABER ANTES DE EMPEZAR",
+      "unidadSlug": "modulo-1-ia-y-derecho-todo-lo-que-necesitas-saber-antes-de-e",
+      "tema": "Qué es la IA generativa, en qué se diferencia de la IA tradicional y qué está pasando con su adopción en el mundo jurídico, en Colombia y en el resto del mundo.\nCómo está cambiando la práctica legal: casos de uso reales e inmediatos, qué puede hacer la IA por ti, dónde están sus límites y qué riesgos debes conocer antes de usarla.\nUn recorrido por las herramientas que están transformando la práctica legal: ChatGPT, Claude, Copilot, Notebook LM, Lexis+AI, Harvey, Magnar, Legora y Saga.",
+      "temaPuntos": [
+        "Qué es la IA generativa, en qué se diferencia de la IA tradicional y qué está pasando con su adopción en el mundo jurídico, en Colombia y en el resto del mundo.",
+        "Cómo está cambiando la práctica legal: casos de uso reales e inmediatos, qué puede hacer la IA por ti, dónde están sus límites y qué riesgos debes conocer antes de usarla.",
+        "Un recorrido por las herramientas que están transformando la práctica legal: ChatGPT, Claude, Copilot, Notebook LM, Lexis+AI, Harvey, Magnar, Legora y Saga."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Ricardo Reyes",
+      "profesores": [
+        "Ricardo Reyes"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-09-30",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-09-30T18:00:00-05:00",
+      "fin": "2026-09-30T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 2,
+      "clase": "CLASE 2",
+      "unidad": "MODULO 1 IA Y DERECHO: TODO LO QUE NECESITAS SABER ANTES DE EMPEZAR",
+      "unidadSlug": "modulo-1-ia-y-derecho-todo-lo-que-necesitas-saber-antes-de-e",
+      "tema": "Qué es la IA generativa, en qué se diferencia de la IA tradicional y qué está pasando con su adopción en el mundo jurídico, en Colombia y en el resto del mundo.\nCómo está cambiando la práctica legal: casos de uso reales e inmediatos, qué puede hacer la IA por ti, dónde están sus límites y qué riesgos debes conocer antes de usarla.\nUn recorrido por las herramientas que están transformando la práctica legal: ChatGPT, Claude, Copilot, Notebook LM, Lexis+AI, Harvey, Magnar, Legora y Saga.",
+      "temaPuntos": [
+        "Qué es la IA generativa, en qué se diferencia de la IA tradicional y qué está pasando con su adopción en el mundo jurídico, en Colombia y en el resto del mundo.",
+        "Cómo está cambiando la práctica legal: casos de uso reales e inmediatos, qué puede hacer la IA por ti, dónde están sus límites y qué riesgos debes conocer antes de usarla.",
+        "Un recorrido por las herramientas que están transformando la práctica legal: ChatGPT, Claude, Copilot, Notebook LM, Lexis+AI, Harvey, Magnar, Legora y Saga."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Ricardo Reyes",
+      "profesores": [
+        "Ricardo Reyes"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-01",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-01T18:00:00-05:00",
+      "fin": "2026-10-01T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 3,
+      "clase": "CLASE 3",
+      "unidad": "MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTENER RESULTADOS JURÍDICOS PRECISOS",
+      "unidadSlug": "modulo-2-legal-prompting-aprende-a-hablarle-a-la-ia-para-obt",
+      "tema": "Aprende los cinco componentes de un prompt efectivo.\nDe lo simple a lo complejo: zero-shot, one-shot y few-shot prompting aplicados a tareas jurídicas reales.\nTaller inicial: construye tus primeros prompts jurídicos.",
+      "temaPuntos": [
+        "Aprende los cinco componentes de un prompt efectivo.",
+        "De lo simple a lo complejo: zero-shot, one-shot y few-shot prompting aplicados a tareas jurídicas reales.",
+        "Taller inicial: construye tus primeros prompts jurídicos."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Sebastián Giraldo",
+      "profesores": [
+        "Sebastián Giraldo"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-06",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-06T18:00:00-05:00",
+      "fin": "2026-10-06T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 4,
+      "clase": "CLASE 4",
+      "unidad": "MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTENER RESULTADOS JURÍDICOS PRECISOS",
+      "unidadSlug": "modulo-2-legal-prompting-aprende-a-hablarle-a-la-ia-para-obt",
+      "tema": "Aprende los cinco componentes de un prompt efectivo.\nDe lo simple a lo complejo: zero-shot, one-shot y few-shot prompting aplicados a tareas jurídicas reales.\nTaller inicial: construye tus primeros prompts jurídicos.",
+      "temaPuntos": [
+        "Aprende los cinco componentes de un prompt efectivo.",
+        "De lo simple a lo complejo: zero-shot, one-shot y few-shot prompting aplicados a tareas jurídicas reales.",
+        "Taller inicial: construye tus primeros prompts jurídicos."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Sebastián Giraldo",
+      "profesores": [
+        "Sebastián Giraldo"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-07",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-07T18:00:00-05:00",
+      "fin": "2026-10-07T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 5,
+      "clase": "CLASE 5",
+      "unidad": "MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTENER RESULTADOS JURÍDICOS PRECISOS",
+      "unidadSlug": "modulo-2-legal-prompting-aprende-a-hablarle-a-la-ia-para-obt",
+      "tema": "Técnicas avanzadas para problemas complejos: chain-of-thought, break the task down y super prompting.\nEstrategias CARE, ADP y TAM aplicadas al derecho: cómo diseñar prompts para análisis jurisprudencial, redacción de conceptos y revisión de contratos.\nTaller avanzado: cada participante resuelve un caso de su propia práctica usando las técnicas del módulo.",
+      "temaPuntos": [
+        "Técnicas avanzadas para problemas complejos: chain-of-thought, break the task down y super prompting.",
+        "Estrategias CARE, ADP y TAM aplicadas al derecho: cómo diseñar prompts para análisis jurisprudencial, redacción de conceptos y revisión de contratos.",
+        "Taller avanzado: cada participante resuelve un caso de su propia práctica usando las técnicas del módulo."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Sebastián Giraldo",
+      "profesores": [
+        "Sebastián Giraldo"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-08",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-08T18:00:00-05:00",
+      "fin": "2026-10-08T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 6,
+      "clase": "CLASE 6",
+      "unidad": "MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTENER RESULTADOS JURÍDICOS PRECISOS",
+      "unidadSlug": "modulo-2-legal-prompting-aprende-a-hablarle-a-la-ia-para-obt",
+      "tema": "Técnicas avanzadas para problemas complejos: chain-of-thought, break the task down y super prompting.\nEstrategias CARE, ADP y TAM aplicadas al derecho: cómo diseñar prompts para análisis jurisprudencial, redacción de conceptos y revisión de contratos.\nTaller avanzado: cada participante resuelve un caso de su propia práctica usando las técnicas del módulo.",
+      "temaPuntos": [
+        "Técnicas avanzadas para problemas complejos: chain-of-thought, break the task down y super prompting.",
+        "Estrategias CARE, ADP y TAM aplicadas al derecho: cómo diseñar prompts para análisis jurisprudencial, redacción de conceptos y revisión de contratos.",
+        "Taller avanzado: cada participante resuelve un caso de su propia práctica usando las técnicas del módulo."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Sebastián Giraldo",
+      "profesores": [
+        "Sebastián Giraldo"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-13",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-13T18:00:00-05:00",
+      "fin": "2026-10-13T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 7,
+      "clase": "CLASE 7",
+      "unidad": "MODULO 3 PROMPTLIBRARY JURÍDICA: CONSTRUYE EL ACTIVO DE IA MÁS VALIOSO DE TU PRÁCTICA",
+      "unidadSlug": "modulo-3-promptlibrary-juridica-construye-el-activo-de-ia-ma",
+      "tema": "Qué es una PromptLibrary y por qué es la herramienta que más tiempo te va a ahorrar: diseño colaborativo de los primeros prompts según tu rol, ya seas litigante, asesor o funcionario público.\nDe los prompts iniciales a un sistema que crece contigo: refinamiento individual y grupal, integración de plantillas reutilizables y estrategias para mantener tu PromptLibrary actualizada y sostenible en el tiempo.",
+      "temaPuntos": [
+        "Qué es una PromptLibrary y por qué es la herramienta que más tiempo te va a ahorrar: diseño colaborativo de los primeros prompts según tu rol, ya seas litigante, asesor o funcionario público.",
+        "De los prompts iniciales a un sistema que crece contigo: refinamiento individual y grupal, integración de plantillas reutilizables y estrategias para mantener tu PromptLibrary actualizada y sostenible en el tiempo."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Rodolfo Yesid Meza Patacon",
+      "profesores": [
+        "Rodolfo Yesid Meza Patacon"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-14",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-14T18:00:00-05:00",
+      "fin": "2026-10-14T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 8,
+      "clase": "CLASE 8",
+      "unidad": "MODULO 3 PROMPTLIBRARY JURÍDICA: CONSTRUYE EL ACTIVO DE IA MÁS VALIOSO DE TU PRÁCTICA",
+      "unidadSlug": "modulo-3-promptlibrary-juridica-construye-el-activo-de-ia-ma",
+      "tema": "Qué es una PromptLibrary y por qué es la herramienta que más tiempo te va a ahorrar: diseño colaborativo de los primeros prompts según tu rol, ya seas litigante, asesor o funcionario público.\nDe los prompts iniciales a un sistema que crece contigo: refinamiento individual y grupal, integración de plantillas reutilizables y estrategias para mantener tu PromptLibrary actualizada y sostenible en el tiempo.",
+      "temaPuntos": [
+        "Qué es una PromptLibrary y por qué es la herramienta que más tiempo te va a ahorrar: diseño colaborativo de los primeros prompts según tu rol, ya seas litigante, asesor o funcionario público.",
+        "De los prompts iniciales a un sistema que crece contigo: refinamiento individual y grupal, integración de plantillas reutilizables y estrategias para mantener tu PromptLibrary actualizada y sostenible en el tiempo."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Rodolfo Yesid Meza Patacon",
+      "profesores": [
+        "Rodolfo Yesid Meza Patacon"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-15",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-15T18:00:00-05:00",
+      "fin": "2026-10-15T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 9,
+      "clase": "CLASE 9",
+      "unidad": "MODULO 4 CREA TU PROPIO ASISTENTE JURÍDICO: DE LA IDEA AL ASISTENTE DE IA",
+      "unidadSlug": "modulo-4-crea-tu-propio-asistente-juridico-de-la-idea-al-asi",
+      "tema": "Qué es un asistente de IA, en qué se diferencia de un chatbot básico y cuándo tiene más sentido usarlo que un agente autónomo.\nCómo está construido por dentro: modelo de lenguaje, instrucciones de sistema y base de conocimiento, los tres componentes que determinan qué tan útil y confiable será tu asistente.\nCasos de uso reales: desde la atención de consultas frecuentes hasta la revisión preliminar de documentos.\nTaller: cada participante diseña y configura su propio asistente jurídico especializado en su área de práctica.",
+      "temaPuntos": [
+        "Qué es un asistente de IA, en qué se diferencia de un chatbot básico y cuándo tiene más sentido usarlo que un agente autónomo.",
+        "Cómo está construido por dentro: modelo de lenguaje, instrucciones de sistema y base de conocimiento, los tres componentes que determinan qué tan útil y confiable será tu asistente.",
+        "Casos de uso reales: desde la atención de consultas frecuentes hasta la revisión preliminar de documentos.",
+        "Taller: cada participante diseña y configura su propio asistente jurídico especializado en su área de práctica."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Miguel Martínez",
+      "profesores": [
+        "Miguel Martínez"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-20",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-20T18:00:00-05:00",
+      "fin": "2026-10-20T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 10,
+      "clase": "CLASE 10",
+      "unidad": "MODULO 4 CREA TU PROPIO ASISTENTE JURÍDICO: DE LA IDEA AL ASISTENTE DE IA",
+      "unidadSlug": "modulo-4-crea-tu-propio-asistente-juridico-de-la-idea-al-asi",
+      "tema": "Qué es un asistente de IA, en qué se diferencia de un chatbot básico y cuándo tiene más sentido usarlo que un agente autónomo.\nCómo está construido por dentro: modelo de lenguaje, instrucciones de sistema y base de conocimiento, los tres componentes que determinan qué tan útil y confiable será tu asistente.\nCasos de uso reales: desde la atención de consultas frecuentes hasta la revisión preliminar de documentos.\nTaller: cada participante diseña y configura su propio asistente jurídico especializado en su área de práctica.",
+      "temaPuntos": [
+        "Qué es un asistente de IA, en qué se diferencia de un chatbot básico y cuándo tiene más sentido usarlo que un agente autónomo.",
+        "Cómo está construido por dentro: modelo de lenguaje, instrucciones de sistema y base de conocimiento, los tres componentes que determinan qué tan útil y confiable será tu asistente.",
+        "Casos de uso reales: desde la atención de consultas frecuentes hasta la revisión preliminar de documentos.",
+        "Taller: cada participante diseña y configura su propio asistente jurídico especializado en su área de práctica."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Miguel Martínez",
+      "profesores": [
+        "Miguel Martínez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-21",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-21T18:00:00-05:00",
+      "fin": "2026-10-21T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 11,
+      "clase": "CLASE 11",
+      "unidad": "MODULO 4 CREA TU PROPIO ASISTENTE JURÍDICO: DE LA IDEA AL ASISTENTE DE IA",
+      "unidadSlug": "modulo-4-crea-tu-propio-asistente-juridico-de-la-idea-al-asi",
+      "tema": "Qué es un asistente de IA, en qué se diferencia de un chatbot básico y cuándo tiene más sentido usarlo que un agente autónomo.\nCómo está construido por dentro: modelo de lenguaje, instrucciones de sistema y base de conocimiento, los tres componentes que determinan qué tan útil y confiable será tu asistente.\nCasos de uso reales: desde la atención de consultas frecuentes hasta la revisión preliminar de documentos.\nTaller: cada participante diseña y configura su propio asistente jurídico especializado en su área de práctica.",
+      "temaPuntos": [
+        "Qué es un asistente de IA, en qué se diferencia de un chatbot básico y cuándo tiene más sentido usarlo que un agente autónomo.",
+        "Cómo está construido por dentro: modelo de lenguaje, instrucciones de sistema y base de conocimiento, los tres componentes que determinan qué tan útil y confiable será tu asistente.",
+        "Casos de uso reales: desde la atención de consultas frecuentes hasta la revisión preliminar de documentos.",
+        "Taller: cada participante diseña y configura su propio asistente jurídico especializado en su área de práctica."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Miguel Martínez",
+      "profesores": [
+        "Miguel Martínez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-22",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-22T18:00:00-05:00",
+      "fin": "2026-10-22T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 12,
+      "clase": "CLASE 12",
+      "unidad": "MODULO 5 ÉTICA, REGULACIÓN Y GOBERNANZA: ÚSALA BIEN, ÚSALA DE MANERA SEGURA Y RESPONSABLE.",
+      "unidadSlug": "modulo-5-etica-regulacion-y-gobernanza-usala-bien-usala-de-m",
+      "tema": "Qué pasa cuando la IA se equivoca: responsabilidad profesional del abogado frente al uso de sistemas de IA.\nEl marco legal que todo jurista debe conocer: Ley 1581, CONPES 4144, Ley 2502 de 2025 y directrices de la SIC sobre protección de datos, privacidad y uso de sistemas automatizados.\nSesgos algorítmicos, alucinaciones y fuentes inventadas: cómo identificarlos, cómo verificarlos y qué lecciones dejan los casos reales de mal uso de IA en el ejercicio del derecho.",
+      "temaPuntos": [
+        "Qué pasa cuando la IA se equivoca: responsabilidad profesional del abogado frente al uso de sistemas de IA.",
+        "El marco legal que todo jurista debe conocer: Ley 1581, CONPES 4144, Ley 2502 de 2025 y directrices de la SIC sobre protección de datos, privacidad y uso de sistemas automatizados.",
+        "Sesgos algorítmicos, alucinaciones y fuentes inventadas: cómo identificarlos, cómo verificarlos y qué lecciones dejan los casos reales de mal uso de IA en el ejercicio del derecho."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Rodolfo Machado",
+      "profesores": [
+        "Rodolfo Machado"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-10-27",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-27T18:00:00-05:00",
+      "fin": "2026-10-27T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 13,
+      "clase": "CLASE 13",
+      "unidad": "MODULO 5 ÉTICA, REGULACIÓN Y GOBERNANZA: ÚSALA BIEN, ÚSALA DE MANERA SEGURA Y RESPONSABLE.",
+      "unidadSlug": "modulo-5-etica-regulacion-y-gobernanza-usala-bien-usala-de-m",
+      "tema": "Qué pasa cuando la IA se equivoca: responsabilidad profesional del abogado frente al uso de sistemas de IA.\nEl marco legal que todo jurista debe conocer: Ley 1581, CONPES 4144, Ley 2502 de 2025 y directrices de la SIC sobre protección de datos, privacidad y uso de sistemas automatizados.\nSesgos algorítmicos, alucinaciones y fuentes inventadas: cómo identificarlos, cómo verificarlos y qué lecciones dejan los casos reales de mal uso de IA en el ejercicio del derecho.",
+      "temaPuntos": [
+        "Qué pasa cuando la IA se equivoca: responsabilidad profesional del abogado frente al uso de sistemas de IA.",
+        "El marco legal que todo jurista debe conocer: Ley 1581, CONPES 4144, Ley 2502 de 2025 y directrices de la SIC sobre protección de datos, privacidad y uso de sistemas automatizados.",
+        "Sesgos algorítmicos, alucinaciones y fuentes inventadas: cómo identificarlos, cómo verificarlos y qué lecciones dejan los casos reales de mal uso de IA en el ejercicio del derecho."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Rodolfo Machado",
+      "profesores": [
+        "Rodolfo Machado"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-28",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-28T18:00:00-05:00",
+      "fin": "2026-10-28T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 14,
+      "clase": "CLASE 14",
+      "unidad": "MODULO 6 LO QUE LA IA PUEDE COSTARTE: NUEVOS RIESGOS LEGALES QUE TODO JURISTA DEBE ANTICIPAR",
+      "unidadSlug": "modulo-6-lo-que-la-ia-puede-costarte-nuevos-riesgos-legales-",
+      "tema": "Propiedad intelectual: quién es el autor cuando la IA crea, qué pasa con el contenido generado en el trabajo y cómo proteger y no infringir derechos de autor.\nLaboral: el impacto de la automatización en las relaciones de trabajo y la responsabilidad del empleador frente al uso de IA por sus colaboradores.\nContractual: cláusulas que ya deberías estar incluyendo en tus contratos, responsabilidad por decisiones tomadas con apoyo de IA y los vacíos legales que hoy representan el mayor riesgo.",
+      "temaPuntos": [
+        "Propiedad intelectual: quién es el autor cuando la IA crea, qué pasa con el contenido generado en el trabajo y cómo proteger y no infringir derechos de autor.",
+        "Laboral: el impacto de la automatización en las relaciones de trabajo y la responsabilidad del empleador frente al uso de IA por sus colaboradores.",
+        "Contractual: cláusulas que ya deberías estar incluyendo en tus contratos, responsabilidad por decisiones tomadas con apoyo de IA y los vacíos legales que hoy representan el mayor riesgo."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "José Valderrama",
+      "profesores": [
+        "José Valderrama"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-29",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-29T18:00:00-05:00",
+      "fin": "2026-10-29T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 15,
+      "clase": "CLASE 15",
+      "unidad": "MODULO 6 LO QUE LA IA PUEDE COSTARTE: NUEVOS RIESGOS LEGALES QUE TODO JURISTA DEBE ANTICIPAR",
+      "unidadSlug": "modulo-6-lo-que-la-ia-puede-costarte-nuevos-riesgos-legales-",
+      "tema": "Propiedad intelectual: quién es el autor cuando la IA crea, qué pasa con el contenido generado en el trabajo y cómo proteger y no infringir derechos de autor.\nLaboral: el impacto de la automatización en las relaciones de trabajo y la responsabilidad del empleador frente al uso de IA por sus colaboradores.\nContractual: cláusulas que ya deberías estar incluyendo en tus contratos, responsabilidad por decisiones tomadas con apoyo de IA y los vacíos legales que hoy representan el mayor riesgo.",
+      "temaPuntos": [
+        "Propiedad intelectual: quién es el autor cuando la IA crea, qué pasa con el contenido generado en el trabajo y cómo proteger y no infringir derechos de autor.",
+        "Laboral: el impacto de la automatización en las relaciones de trabajo y la responsabilidad del empleador frente al uso de IA por sus colaboradores.",
+        "Contractual: cláusulas que ya deberías estar incluyendo en tus contratos, responsabilidad por decisiones tomadas con apoyo de IA y los vacíos legales que hoy representan el mayor riesgo."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Karen Palacios",
+      "profesores": [
+        "Karen Palacios"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-03",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-03T18:00:00-05:00",
+      "fin": "2026-11-03T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 16,
+      "clase": "CLASE 16",
+      "unidad": "MODULO 6 LO QUE LA IA PUEDE COSTARTE: NUEVOS RIESGOS LEGALES QUE TODO JURISTA DEBE ANTICIPAR",
+      "unidadSlug": "modulo-6-lo-que-la-ia-puede-costarte-nuevos-riesgos-legales-",
+      "tema": "Propiedad intelectual: quién es el autor cuando la IA crea, qué pasa con el contenido generado en el trabajo y cómo proteger y no infringir derechos de autor.\nLaboral: el impacto de la automatización en las relaciones de trabajo y la responsabilidad del empleador frente al uso de IA por sus colaboradores.\nContractual: cláusulas que ya deberías estar incluyendo en tus contratos, responsabilidad por decisiones tomadas con apoyo de IA y los vacíos legales que hoy representan el mayor riesgo.",
+      "temaPuntos": [
+        "Propiedad intelectual: quién es el autor cuando la IA crea, qué pasa con el contenido generado en el trabajo y cómo proteger y no infringir derechos de autor.",
+        "Laboral: el impacto de la automatización en las relaciones de trabajo y la responsabilidad del empleador frente al uso de IA por sus colaboradores.",
+        "Contractual: cláusulas que ya deberías estar incluyendo en tus contratos, responsabilidad por decisiones tomadas con apoyo de IA y los vacíos legales que hoy representan el mayor riesgo."
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Juan Camilo Medina (PI)",
+      "profesores": [
+        "Juan Camilo Medina (PI)"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-04",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-04T18:00:00-05:00",
+      "fin": "2026-11-04T20:00:00-05:00",
+      "secuencia": 0
+    }
+  ],
+  "unidades": [
+    {
+      "slug": "modulo-1-ia-y-derecho-todo-lo-que-necesitas-saber-antes-de-e",
+      "nombre": "MODULO 1 IA Y DERECHO: TODO LO QUE NECESITAS SABER ANTES DE EMPEZAR",
+      "clases": [
+        1,
+        2
+      ],
+      "horas": 4
+    },
+    {
+      "slug": "modulo-2-legal-prompting-aprende-a-hablarle-a-la-ia-para-obt",
+      "nombre": "MÓDULO 2 LEGAL PROMPTING: APRENDE A HABLARLE A LA IA PARA OBTENER RESULTADOS JURÍDICOS PRECISOS",
+      "clases": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "horas": 8
+    },
+    {
+      "slug": "modulo-3-promptlibrary-juridica-construye-el-activo-de-ia-ma",
+      "nombre": "MODULO 3 PROMPTLIBRARY JURÍDICA: CONSTRUYE EL ACTIVO DE IA MÁS VALIOSO DE TU PRÁCTICA",
+      "clases": [
+        7,
+        8
+      ],
+      "horas": 4
+    },
+    {
+      "slug": "modulo-4-crea-tu-propio-asistente-juridico-de-la-idea-al-asi",
+      "nombre": "MODULO 4 CREA TU PROPIO ASISTENTE JURÍDICO: DE LA IDEA AL ASISTENTE DE IA",
+      "clases": [
+        9,
+        10,
+        11
+      ],
+      "horas": 6
+    },
+    {
+      "slug": "modulo-5-etica-regulacion-y-gobernanza-usala-bien-usala-de-m",
+      "nombre": "MODULO 5 ÉTICA, REGULACIÓN Y GOBERNANZA: ÚSALA BIEN, ÚSALA DE MANERA SEGURA Y RESPONSABLE.",
+      "clases": [
+        12,
+        13
+      ],
+      "horas": 4
+    },
+    {
+      "slug": "modulo-6-lo-que-la-ia-puede-costarte-nuevos-riesgos-legales-",
+      "nombre": "MODULO 6 LO QUE LA IA PUEDE COSTARTE: NUEVOS RIESGOS LEGALES QUE TODO JURISTA DEBE ANTICIPAR",
+      "clases": [
+        14,
+        15,
+        16
+      ],
+      "horas": 6
+    }
+  ],
+  "profesores": [
+    "José Valderrama",
+    "Juan Camilo Medina (PI)",
+    "Karen Palacios",
+    "Miguel Martínez",
+    "Ricardo Reyes",
+    "Rodolfo Machado",
+    "Rodolfo Yesid Meza Patacon",
+    "Sebastián Giraldo"
+  ],
+  "asistentesPat": [],
+  "cambios": []
+}
