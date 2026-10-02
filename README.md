@@ -50,8 +50,13 @@ El Excel real (`referencias/datos/cronograma_muestra.xlsx`) y el JSON de referen
 
 ## Tiempos medidos
 
-Pendiente. Se miden en la prueba de extremo a extremo (paso 6 de `docs/MONTAJE.md`) y se anotan aquí:
+Medidos el 2 de octubre de 2026 en la prueba de extremo a extremo (cambio de fecha de la Clase 35 y reversa):
 
-| Medición | Resultado |
+| Tramo | Resultado |
 |---|---|
-| Guardar el Excel hasta ver el aviso de cambio en la página | por medir |
+| Aviso recibido en GitHub hasta página publicada (workflow completo: pruebas, construcción, commit y despliegue) | 30 a 32 segundos (dos ejecuciones medidas) |
+| Cambio detectado y aviso publicado | 2 de octubre, 03:35 UTC (21:35 hora de Colombia) |
+| Reversa detectada y aviso resuelto | 2 de octubre, 03:41 UTC (21:41 hora de Colombia) |
+| Desde guardar el Excel hasta el aviso en GitHub | no se midió con precisión. El desencadenador de SharePoint de Power Automate consulta cambios de forma periódica, por lo que se esperan de 1 a 5 minutos |
+
+Estado: el cambio de fecha se detectó, se publicó y se resolvió al revertir. El caso de Excel dañado (encabezado borrado) está cubierto por pruebas automáticas (`test_error_conserva_ultimo_bueno`). No se ejecutó en vivo.
