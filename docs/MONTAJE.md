@@ -20,7 +20,7 @@ Por qué así: el inquilino de la Universidad no permite vínculos "Cualquier pe
 
 ## 1. Repositorio y GitHub Pages
 
-- Repositorio público `cursos-educacion-continua-2026` (antes `cronograma-compliance-2026-2`).
+- Repositorio público `cronogramas-educon/cronogramas-educon.github.io`, dentro de la organización neutra de GitHub `cronogramas-educon`, de modo que las direcciones no llevan el nombre de una persona (antes `cronograma-compliance-2026-2` y `cursos-educacion-continua-2026`).
 - Settings > Pages > Source: **GitHub Actions**.
 - Variable del repositorio `MODO_ENTRADA = json` (heredada; el workflow ya solo trabaja en este modo). No existe el secreto `EXCEL_URL`.
 
@@ -39,7 +39,7 @@ Un flujo vigila toda la carpeta `EDU CONTINUA 2026`. Cuatro pasos:
    Si se renombra un archivo para que ya no empiece por `Cuadro de horas`, deja de disparar.
 2. **Excel Online (Business), Enumerar filas presentes en una tabla.** Ubicación: el sitio Especializaciones. Biblioteca: `Documentos`. **Archivo: contenido dinámico `Identifier` del paso 1** (`@{triggerOutputs()?['body/{Identifier}']}`), de modo que lee el Excel que cambió. **Tabla: el nombre `Table1`** (no el identificador interno: ese cambia de un archivo a otro).
 3. **Seleccionar.** Arma las 10 columnas. Excel Online codifica el punto de los encabezados: `No.` llega como `No_x002e_` y `No. de clase` como `No_x002e_ de clase`. El procesador decodifica estos nombres.
-4. **GitHub, Create a repository dispatch event.** Propietario y repositorio `cursos-educacion-continua-2026`, evento `excel-actualizado` y carga útil:
+4. **GitHub, Create a repository dispatch event.** Propietario `cronogramas-educon` y repositorio `cronogramas-educon.github.io`, evento `excel-actualizado` y carga útil:
    ```
    { "ruta": "@{triggerOutputs()?['body/{Path}']}", "modificado": "@{utcNow()}",
      "filas": "@{string(body('Select'))}" }
