@@ -1,0 +1,42 @@
+{
+  "programa": "Diplomado Contratación Estatal",
+  "programaCorto": "Contratación Estatal",
+  "tipo": "Diplomado",
+  "marca": "Diplomado Contratación Estatal",
+  "modalidad": "Remota (Microsoft Teams)",
+  "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-contratacion-estatal",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "horario": {
+    "inicio": "18:00",
+    "fin": "21:00",
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "uidSufijo": "cronograma-contratacion-estatal",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "contratacion-estatal"
+}

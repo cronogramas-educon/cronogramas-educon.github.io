@@ -1,4 +1,4 @@
-import { esc, horario, legible, ic } from './ui.js';
+import { esc, horario, legible, ic, PENDIENTE } from './ui.js';
 import { ahora, estadoClase, desglose, hora12, diaNombre, partes, MESES, cap } from './utils-fecha.js';
 
 let el, ctxActual = null, clave = '', primera = true;
@@ -14,7 +14,8 @@ function zonaLocal(c) {
 }
 
 function teams(c, cfg, estado) {
-  if (!cfg.mostrarLinksTeams || !c.linkTeams) return '';
+  if (!cfg.mostrarLinksTeams) return '';
+  if (!c.linkTeams) return `<span class="btn btn-pendiente" role="note" aria-disabled="true">${ic('video-camera')}Enlace por confirmar</span>`;
   const prim = estado === 'envivo' || estado === 'hoy';
   return `<a class="btn${prim ? ' rojo' : ''}" href="${esc(c.linkTeams)}" target="_blank" rel="noopener noreferrer">${ic('video-camera')}Unirme en Teams<span class="flecha-btn">${ic('arrow-up-right')}</span></a>`;
 }
@@ -40,7 +41,7 @@ export function tick() {
   const t = ahora();
   const c = proximaDe(clases, t);
   if (!c) {
-    if (clave !== 'fin') { clave = 'fin'; el.innerHTML = `<div class="tag-proxima papel fin"><div class="tag-info"><h2>El diplomado ha finalizado</h2><p class="tag-datos">Gracias por acompañarnos. Las clases anteriores siguen en el cronograma.</p></div></div>`; }
+    if (clave !== 'fin') { clave = 'fin'; el.innerHTML = `<div class="tag-proxima papel fin"><div class="tag-info"><h2>${meta.tipo === 'Diplomado' ? 'El diplomado ha finalizado' : 'El curso ha finalizado'}</h2><p class="tag-datos">Gracias por acompañarnos. Las clases anteriores siguen en el cronograma.</p></div></div>`; }
     return;
   }
   const estado = estadoClase(c, t);
@@ -48,14 +49,15 @@ export function tick() {
   if (k !== clave) {
     clave = k;
     const p = partes(c.fecha);
+    const sub = c.unidad ? legible(c.unidad) : c.temaPuntos[0] ?? '';  // sin unidad en el Excel se muestra el primer tema
     const sello = estado === 'envivo' ? '<span class="sello envivo sello-esquina">En vivo</span>' : estado === 'hoy' ? '<span class="sello hoy sello-esquina">Hoy</span>' : '';
     el.innerHTML = `<div class="tag-proxima papel es-${estado}${primera ? ' nueva' : ''}" role="region" aria-label="Próxima clase">
       <div class="tag-fecha"><span class="dia-sem">${esc(diaNombre(c.fecha))}</span><span class="dia-num">${p.d}</span><span class="mes">${esc(MESES[p.m - 1])}</span></div>
       ${sello}
       <div class="tag-info">
         <h2>${esc(cap(c.clase.toLowerCase()))}</h2>
-        <p class="tag-unidad" title="${esc(legible(c.unidad))}">${esc(legible(c.unidad))}</p>
-        <p class="tag-datos">${esc(c.profesores.join(' y '))}. ${esc(horario(meta))}, hora de Colombia.${zonaLocal(c)}</p>
+        ${sub ? `<p class="tag-unidad" title="${esc(sub)}">${esc(sub)}</p>` : ''}
+        <p class="tag-datos">${c.profesores.length ? esc(c.profesores.join(' y ')) : `<span class="pendiente">Docente por confirmar</span>`}. ${esc(horario(c))}, hora de Colombia.${zonaLocal(c)}</p>
       </div>
       <div class="tag-cuenta">${cuentaHTML(c, estado, t)}${teams(c, cfg, estado)}</div>
     </div>`;

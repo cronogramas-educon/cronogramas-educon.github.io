@@ -67,10 +67,15 @@ function pintar() {
 function estaticos() {
   const m = datos.meta;
   const nombre = cfg.programaCorto ?? m.programa.split(',')[0];
-  $('marca').textContent = `Diplomado ${nombre.split(' ')[0]}`;
+  $('marca').textContent = cfg.marca ?? `${m.tipo} ${nombre.split(' ')[0]}`;
   $('titulo').innerHTML = nombre.split(' ').map((w) => (w.includes('-') ? `<span class="sin-corte">${esc(w)}</span>` : esc(w))).join(' ');
-  $('lead').innerHTML = `<strong>Diplomado, cohorte ${esc(m.cohorte)}.</strong> ${m.totalClases} clases del ${esc(sinDia(m.inicio))} al ${esc(sinDia(m.fin))}. ${esc(m.modalidad)}.`;
-  document.title = `${nombre}, cronograma ${m.cohorte}`;
+  $('lead').innerHTML = `<strong>${esc(m.tipo)}.</strong> ${m.totalClases} clases del ${esc(sinDia(m.inicio))} al ${esc(sinDia(m.fin))}. ${esc(m.modalidad)}.`;
+  document.title = `${nombre}, cronograma`;
+  // Sin unidades en el Excel no hay temario por unidades ni filtro de unidad
+  const hayUnidades = datos.unidades.length > 0;
+  $('temario').hidden = !hayUnidades;
+  $('nav').querySelector('[href="#temario"]').hidden = !hayUnidades;
+  $('f-unidad').closest('.campo').hidden = !hayUnidades;
   sec.plan($('plan-lista'), datos, plan);
   sec.docentes($('docentes-lista'), datos);
   sec.apoyo($('apoyo'), datos);
@@ -158,8 +163,11 @@ async function arrancar() {
     desdeCopia = r.desdeCopia; guardadoEn = r.guardadoEn;
     enlazar();
     aplicar(r.data);
-  } catch {
-    $('vista').innerHTML = `<div class="vacio"><strong>No pudimos cargar el cronograma</strong>Revisa tu conexión e inténtalo de nuevo. <button class="enlace-btn" type="button" onclick="location.reload()">Reintentar</button></div>`;
+  } catch (e) {
+    $('titulo').textContent = cfg.programaCorto ?? 'Cronograma';
+    $('vista').innerHTML = e.sinDatos
+      ? `<div class="vacio"><strong>El cronograma de este curso se publicará pronto</strong>Vuelve a revisar esta página en unas horas.</div>`
+      : `<div class="vacio"><strong>No pudimos cargar el cronograma</strong>Revisa tu conexión e inténtalo de nuevo. <button class="enlace-btn" type="button" onclick="location.reload()">Reintentar</button></div>`;
     return;
   }
   setInterval(() => { if (document.visibilityState === 'visible') tick(); }, 1000);

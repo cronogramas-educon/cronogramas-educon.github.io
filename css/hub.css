@@ -1,0 +1,46 @@
+/* Sitio base de administración: mismas piezas de "El hilo rojo" (franela, etiquetas de papel, hilo rojo) */
+.hub .portada-hub { padding-top: clamp(28px, 5vw, 64px); margin-left: calc(-1 * var(--pl)); padding-left: var(--pl); }
+.solo-admin { display: inline-block; margin-bottom: 16px; padding: 6px 12px; border: 1.5px solid var(--red-tint); border-radius: var(--r-pill); color: var(--red-tint); font: 700 .78rem/1 var(--font-display); letter-spacing: .08em; text-transform: uppercase; }
+.portada-hub h1 { font-size: clamp(2.1rem, 4.2vw, 3.6rem); font-weight: 800; line-height: 1.03; letter-spacing: -.025em; color: #fff; max-width: 18ch; }
+.portada-hub .lead { margin-top: 18px; color: var(--felt-2); font-size: 1.1rem; max-width: 56ch; }
+.portada-hub .lead strong { color: var(--felt); }
+.portada-hub .mal { color: var(--red-tint); font-weight: 700; }
+.nota-hub { margin-top: 14px; max-width: 62ch; color: var(--felt-2); font-size: .95rem; }
+
+.cursos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); gap: 22px; }
+.curso { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 22px 22px 20px; background: var(--paper); color: var(--ink); border-radius: var(--r-tag); box-shadow: var(--sombra-tag); }
+.curso header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.curso .tipo { font: 700 .8rem/1 var(--font-display); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.curso h3 { font: 800 1.45rem/1.12 var(--font-display); letter-spacing: -.015em; }
+.curso .prox { font-size: .98rem; line-height: 1.5; }
+.curso .prox span { display: block; font: 700 .76rem/1.4 var(--font-display); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.curso .barra { height: 8px; border-radius: var(--r-pill); background: var(--paper-2); overflow: hidden; }
+.curso .barra i { display: block; height: 100%; border-radius: inherit; background: var(--red); }
+.curso .meta { color: var(--ink-2); font-size: .88rem; margin-top: -6px; }
+.curso .falta { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: .92rem; color: var(--amber-ink); }
+.curso .falta.ok { color: #1D5C3A; }
+.curso .alerta { display: flex; gap: 10px; padding: 10px 12px; border-radius: 8px; background: var(--amber); color: var(--amber-ink); font-size: .9rem; font-weight: 600; }
+.acciones-curso { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+.curso .btn { padding: 10px 14px; font-size: .86rem; border-color: var(--ink-2); color: var(--ink); }
+.curso .btn:hover { background: var(--paper-2); border-color: var(--ink); }
+.curso .btn.rojo { background: var(--red); border-color: var(--red); color: #fff; }
+.curso .btn.rojo:hover { background: var(--red-hot); }
+.enlace-est { display: grid; gap: 3px; padding-top: 12px; border-top: 1px dashed var(--ink-2); }
+.enlace-est small { color: var(--ink-2); font-weight: 600; }
+.enlace-est code { font: 500 .78rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; color: var(--ink); }
+
+.tabla-envoltura { overflow-x: auto; border-radius: var(--r-tag); background: var(--paper); color: var(--ink); box-shadow: var(--sombra-chica); }
+.tabla-pend { width: 100%; border-collapse: collapse; min-width: 720px; }
+.tabla-pend th, .tabla-pend td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--paper-2); font-size: .92rem; }
+.tabla-pend thead th { font: 700 .76rem/1.2 var(--font-display); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); background: var(--paper-2); }
+.tabla-pend tbody th { font-weight: 700; }
+.tabla-pend .n { display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 8px; border-radius: var(--r-pill); background: var(--amber); color: var(--amber-ink); font-weight: 800; }
+.tabla-pend td small { display: block; margin-top: 4px; color: var(--ink-2); }
+.tabla-pend .ok { color: #1D5C3A; font-weight: 700; }
+.tabla-pend a { color: var(--ink); font-weight: 600; }
+.cambios { display: grid; gap: 12px; max-width: 760px; }
+.cambios li { padding: 14px 16px; border-left: 4px solid var(--amber); background: var(--navy-800); border-radius: 0 var(--r-tag) var(--r-tag) 0; }
+.cambios small { color: var(--felt-2); }
+.pie a { color: var(--felt-2); }
+@media (max-width: 720px) { .portada-hub h1 { max-width: none; } }
+.tabla-pend .sin { color: var(--ink-2); font-style: italic; }

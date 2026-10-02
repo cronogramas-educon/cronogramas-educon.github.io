@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Construye data/data.json, estado/cambios.json y cronograma.ics desde el Excel (o JSON crudo del Plan B).
+"""Construye data/data.json, estado/cambios.json y cronograma.ics de UN curso desde el Excel (o JSON crudo del Plan B).
 
-Uso: python scripts/construir_datos.py ENTRADA [--json] [--raiz .] [--modificado ISO]
+Uso: python scripts/construir_datos.py ENTRADA [--json] [--raiz c/<curso>] [--modificado ISO]
+--raiz es la carpeta del curso (con config/contenido.json); por defecto la raíz del repositorio (curso único).
 Sale con código 1 y mensaje claro ante un error bloqueante (se conserva el último data.json bueno).
 Con hash sin cambios no escribe nada (código 0, "SIN CAMBIOS").
 """
@@ -94,17 +95,56 @@ def leer_json(ruta):
     return [[d.get(c) for c in COLS] for d in datos]
 
 
+def hhmm_a_min(h):
+    a, b = h.split(":")
+    return int(a) * 60 + int(b)
+
+
+def min_a_hhmm(m):
+    return f"{m // 60:02d}:{m % 60:02d}"
+
+
+def asignar_horarios(clases, cfg):
+    """Pone inicio y fin a cada clase (hora de Colombia).
+
+    modo "ventana" (por defecto): todas las clases usan horario.inicio a horario.fin.
+    modo "porHoras": el inicio depende del día (horario.porDia, si no horario.inicio) y el fin es inicio más las horas de la clase
+    (horario.duracionPorDefecto si la casilla está vacía). Las clases del mismo día van una tras otra.
+    """
+    h, des = cfg["horario"], cfg["horario"]["desfase"]
+    sig = {}  # fecha -> minuto en que termina la clase anterior del mismo día
+    for c in clases:
+        if h.get("modo") == "porHoras":
+            ini = sig.get(c["fecha"], hhmm_a_min(h.get("porDia", {}).get(c["diaCalculado"], h["inicio"])))
+            fin = ini + int(c["horas"] or h.get("duracionPorDefecto", 3)) * 60
+            sig[c["fecha"]] = fin
+            fin = min(fin, 24 * 60 - 1)  # nunca pasa de medianoche
+            i, f = min_a_hhmm(ini), min_a_hhmm(fin)
+        else:
+            i, f = h["inicio"], h["fin"]
+        c["inicio"], c["fin"] = f"{c['fecha']}T{i}:00{des}", f"{c['fecha']}T{f}:00{des}"
+
+
+def entero_o_none(v):
+    if v is None or (isinstance(v, str) and not v.strip()):
+        return None
+    try:
+        n = float(v)
+    except (TypeError, ValueError):
+        raise ErrorDatos(f"'Horas' no es un número: {v!r}")
+    return int(n) if n == int(n) and n > 0 else None
+
+
 def filas_a_clases(filas, cfg):
-    des = cfg["horario"]["desfase"]
-    h_ini, h_fin = cfg["horario"]["inicio"], cfg["horario"]["fin"]
     clases, avisos, ant_tema, ant_raw = [], [], "", ""
     for v in filas:
         if not v[4] or not str(v[4]).strip().upper().startswith("CLASE"):
             continue  # fila TOTAL, vacías y residuos
         try:
-            num, horas = int(v[0]), int(v[3])
+            num = int(float(v[0]))
         except (TypeError, ValueError):
-            raise ErrorDatos(f"{limpiar(v[4])}: 'No.' u 'Horas' no son números ({v[0]!r}, {v[3]!r})")
+            raise ErrorDatos(f"{limpiar(v[4])}: 'No.' no es un número ({v[0]!r})")
+        horas = entero_o_none(v[3])
         tema, heredado = limpiar(v[2]), False
         if not tema:
             tema, heredado = ant_tema, True
@@ -118,15 +158,13 @@ def filas_a_clases(filas, cfg):
             "profesor": limpiar(v[5]),
             "profesores": [p for p in (limpiar(x) for x in re.split(r"\s+y\s+", limpiar(v[5]))) if p],
             "dia": limpiar(v[6]), "diaCalculado": calc, "fecha": d.isoformat(),
-            "inicio": f"{d.isoformat()}T{h_ini}:00{des}", "fin": f"{d.isoformat()}T{h_fin}:00{des}",
             "asistentePat": limpiar(v[8]), "linkTeams": limpiar(v[9]), "cambio": None,
         }
-        if c["dia"] != calc:
+        if c["dia"] and c["dia"] != calc:
             avisos.append(f"{c['clase']} dice '{c['dia']}' pero {c['fecha']} es {calc} (se muestra {calc})")
-        if not c["linkTeams"].startswith("https://"):
-            avisos.append(f"{c['clase']} sin enlace de Teams válido (vacío o sin https://)")
-        if horas != 3:
-            avisos.append(f"{c['clase']} tiene {horas} horas (se esperaban 3)")
+        if c["linkTeams"] and not c["linkTeams"].startswith("https://"):
+            avisos.append(f"{c['clase']} tiene un enlace de Teams que no empieza por https:// (se ignora)")
+            c["linkTeams"] = ""
         clases.append(c)
     if not clases:
         raise ErrorDatos("No se encontró ninguna clase (filas con 'CLASE' en la columna 'No. de clase').")
@@ -134,6 +172,13 @@ def filas_a_clases(filas, cfg):
     dup = sorted({i for i in ids if ids.count(i) > 1})
     if dup:
         raise ErrorDatos(f"Identificadores 'No.' duplicados: {dup}")
+    asignar_horarios(clases, cfg)
+    # Resumen de lo que falta (las casillas vacías se muestran como "Por confirmar" en la página)
+    for etiqueta, vacio in (("profesor", lambda c: not c["profesores"]), ("asistente PAT", lambda c: not c["asistentePat"]),
+                            ("enlace de Teams", lambda c: not c["linkTeams"]), ("horas", lambda c: c["horas"] is None)):
+        n = sum(1 for c in clases if vacio(c))
+        if n:
+            avisos.append(f"{n} de {len(clases)} clases sin {etiqueta}")
     return clases, avisos
 
 
@@ -196,18 +241,21 @@ def aplicar_cambios(clases, estado, ahora, dias_aviso):
 def armar(clases, cfg, cambios, ahora, modificado=""):
     unidades, vistos = [], {}
     for c in clases:
+        if not c["unidadSlug"]:
+            continue  # sin unidad en el Excel: la página oculta el temario por unidades
         u = vistos.get(c["unidadSlug"])
         if not u:
             u = vistos[c["unidadSlug"]] = {"slug": c["unidadSlug"], "nombre": c["unidad"], "clases": [], "horas": 0}
             unidades.append(u)
         u["clases"].append(c["id"])
-        u["horas"] += c["horas"]
-    hash_ = hashlib.sha256(json.dumps(clases, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+        u["horas"] += c["horas"] or 0
+    base = {"clases": clases, "programa": cfg["programa"], "horario": cfg["horario"]}
+    hash_ = hashlib.sha256(json.dumps(base, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
     return {
         "meta": {
-            "programa": cfg["programa"], "cohorte": cfg["cohorte"], "facultad": cfg["facultad"], "modalidad": cfg["modalidad"],
-            "horario": {k: cfg["horario"][k] for k in ("inicio", "fin", "zona")},
-            "totalClases": len(clases), "horasTotales": sum(c["horas"] for c in clases),
+            "programa": cfg["programa"], "tipo": cfg.get("tipo", "Curso"), "facultad": cfg["facultad"], "modalidad": cfg["modalidad"],
+            "zona": cfg["horario"]["zona"], "totalClases": len(clases),
+            "horasTotales": sum(c["horas"] or 0 for c in clases), "horasCompletas": all(c["horas"] for c in clases),
             "inicio": min(c["fecha"] for c in clases), "fin": max(c["fecha"] for c in clases),
             "hash": hash_, "generadoEn": ahora.strftime("%Y-%m-%dT%H:%M:%SZ"), "fuenteModificadaEn": modificado,
         },
@@ -249,11 +297,15 @@ def main():
     ap.add_argument("--raiz", default=str(Path(__file__).resolve().parent.parent))
     ap.add_argument("--modificado", default="")
     a = ap.parse_args()
+    ruta_error = Path(a.raiz) / "estado/error.json"
     try:
         datos, avisos = construir(a.entrada, a.raiz, a.json, modificado=a.modificado)
     except ErrorDatos as e:
         print(f"ERROR: {e}", file=sys.stderr)
+        ruta_error.parent.mkdir(exist_ok=True)  # el sitio base de administración lo muestra; se conserva el último data.json bueno
+        ruta_error.write_text(json.dumps({"mensaje": str(e), "en": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}, ensure_ascii=False), encoding="utf-8")
         sys.exit(1)
+    ruta_error.unlink(missing_ok=True)
     for av in avisos:
         print(f"AVISO: {av}")
     if datos is None:
@@ -262,7 +314,7 @@ def main():
         m = datos["meta"]
         for x in datos["cambios"]:
             print(f"CAMBIO: {x['clase']} pasó de {x['fechaAnterior']} a {x['fechaNueva']} (original {x['fechaOriginal']})")
-        print(f"OK: {m['totalClases']} clases, {m['horasTotales']} horas, {len(datos['unidades'])} unidades, "
+        print(f"OK: {m['totalClases']} clases, {m['horasTotales']} horas{'' if m['horasCompletas'] else ' (incompletas)'}, {len(datos['unidades'])} unidades, "
               f"{m['inicio']} a {m['fin']}, {len(datos['cambios'])} cambios activos")
 
 

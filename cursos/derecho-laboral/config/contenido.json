@@ -1,0 +1,46 @@
+{
+  "programa": "Diplomado en Derecho Laboral",
+  "programaCorto": "Derecho Laboral",
+  "tipo": "Diplomado",
+  "marca": "Diplomado Derecho Laboral",
+  "modalidad": "Remota (Microsoft Teams)",
+  "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-en-derecho-laboral",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "horario": {
+    "modo": "porHoras",
+    "inicio": "18:00",
+    "porDia": {
+      "Sábado": "08:00"
+    },
+    "duracionPorDefecto": 1,
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "uidSufijo": "cronograma-derecho-laboral",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "derecho-laboral"
+}

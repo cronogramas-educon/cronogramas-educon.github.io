@@ -1,7 +1,7 @@
 import { esc } from './ui.js';
 import { fechaLarga, cambioVigente, cap, ahora } from './utils-fecha.js';
 
-const clave = (c) => `cronograma:visto:${c.id}:${c.cambio.detectadoEn}`;
+const clave = (c) => `cronograma:visto:${document.documentElement.dataset.curso || 'curso'}:${c.id}:${c.cambio.detectadoEn}`;
 const visto = (c) => { try { return localStorage.getItem(clave(c)) === '1'; } catch { return false; } };
 
 export function cambiosVisibles(clases, cfg, t = ahora()) {

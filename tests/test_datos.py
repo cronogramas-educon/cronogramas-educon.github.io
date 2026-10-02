@@ -12,14 +12,16 @@ import construir_datos as cd
 from generar_ics import generar, plegar
 
 FIX = RAIZ / "tests/fixtures/muestra_sanitizada.xlsx"
-CFG = json.loads((RAIZ / "config/contenido.json").read_text(encoding="utf-8"))
+CURSO = "compliance-anticorrupcion"
+CFG_RUTA = RAIZ / "cursos" / CURSO / "config/contenido.json"
+CFG = json.loads(CFG_RUTA.read_text(encoding="utf-8"))
 T0 = datetime(2026, 10, 1, 12, 0, tzinfo=timezone.utc)
 
 
 @pytest.fixture
 def raiz(tmp_path):
     (tmp_path / "config").mkdir()
-    shutil.copy(RAIZ / "config/contenido.json", tmp_path / "config")
+    shutil.copy(CFG_RUTA, tmp_path / "config")
     return tmp_path
 
 
@@ -83,7 +85,7 @@ def test_modo_json_plan_b(raiz, tmp_path):
     p.write_text(json.dumps(filas, default=str), encoding="utf-8")
     r2 = tmp_path / "r2"
     (r2 / "config").mkdir(parents=True)
-    shutil.copy(RAIZ / "config/contenido.json", r2 / "config")
+    shutil.copy(CFG_RUTA, r2 / "config")
     datos, _ = cd.construir(p, r2, modo_json=True, ahora=T0)
     assert datos["meta"]["hash"] == datos0["meta"]["hash"]
 
@@ -133,9 +135,55 @@ def test_advertencias(raiz, tmp_path):
     def romper(ws):
         ws["G3"] = "Lunes"      # día no coincide
         ws["J4"] = None         # sin link
-        ws["D5"] = 4            # horas != 3
     datos, avisos = cd.construir(xlsx_con(tmp_path, "f.xlsx", romper), raiz, ahora=T0)
-    assert len(avisos) == 3 and datos["clases"][0]["diaCalculado"] == "Jueves"
+    assert len(avisos) == 2 and datos["clases"][0]["diaCalculado"] == "Jueves"
+    assert any("Lunes" in a for a in avisos) and "1 de 35 clases sin enlace de Teams" in avisos
+
+
+def test_casillas_vacias_no_rompen(raiz, tmp_path):
+    """Un Excel a medio llenar es normal: profesor, asistente, enlace, horas y unidad en blanco se publican como 'por confirmar'."""
+    def vaciar(ws):
+        for r in range(3, 38):
+            for col in (2, 4, 6, 9, 10):  # Unidad, Horas, Profesor, Asistente PAT, Link
+                ws.cell(r, col).value = None
+    datos, avisos = cd.construir(xlsx_con(tmp_path, "v.xlsx", vaciar), raiz, ahora=T0)
+    assert datos["unidades"] == [] and datos["profesores"] == [] and datos["asistentesPat"] == []
+    assert all(c["horas"] is None and c["profesores"] == [] and c["linkTeams"] == "" for c in datos["clases"])
+    assert datos["meta"]["horasCompletas"] is False and datos["meta"]["horasTotales"] == 0
+    for t in ("sin profesor", "sin asistente PAT", "sin enlace de Teams", "sin horas"):
+        assert f"35 de 35 clases {t}" in avisos
+
+
+def test_enlace_sin_https_se_ignora(raiz, tmp_path):
+    datos, avisos = cd.construir(xlsx_con(tmp_path, "w.xlsx", lambda ws: setattr(ws["J3"], "value", "teams.microsoft.com/x")), raiz, ahora=T0)
+    assert datos["clases"][0]["linkTeams"] == "" and any("https://" in a for a in avisos)
+
+
+def test_horario_por_horas_con_sabados_y_clases_el_mismo_dia(tmp_path):
+    cfg = json.loads(CFG_RUTA.read_text(encoding="utf-8"))
+    cfg["horario"] = {**cfg["horario"], "modo": "porHoras", "inicio": "18:00", "porDia": {"Sábado": "08:00"}, "duracionPorDefecto": 1}
+    r = tmp_path / "laboral"
+    (r / "config").mkdir(parents=True)
+    (r / "config/contenido.json").write_text(json.dumps(cfg), encoding="utf-8")
+
+    def ed(ws):
+        ws["H4"].value = ws["H3"].value          # clase 2 el mismo jueves que la 1
+        ws["H5"].value = datetime(2026, 10, 3)   # clase 3 en sábado
+        ws["D3"].value = None; ws["D4"].value = 3; ws["D5"].value = 4
+    datos, _ = cd.construir(xlsx_con(tmp_path, "x.xlsx", ed), r, ahora=T0)
+    h = [(c["inicio"][11:16], c["fin"][11:16]) for c in datos["clases"][:3]]
+    assert h == [("18:00", "19:00"), ("19:00", "22:00"), ("08:00", "12:00")]
+
+
+def test_error_se_registra_para_el_sitio_base(raiz, tmp_path, monkeypatch, capsys):
+    p = xlsx_con(tmp_path, "z.xlsx", lambda ws: setattr(ws["F2"], "value", None))
+    monkeypatch.setattr(sys, "argv", ["construir_datos.py", str(p), "--raiz", str(raiz)])
+    with pytest.raises(SystemExit):
+        cd.main()
+    assert "Profesor" in json.loads((raiz / "estado/error.json").read_text(encoding="utf-8"))["mensaje"]
+    monkeypatch.setattr(sys, "argv", ["construir_datos.py", str(FIX), "--raiz", str(raiz)])
+    cd.main()
+    assert not (raiz / "estado/error.json").exists()
 
 
 # --- detección de cambios
@@ -209,7 +257,7 @@ def test_ics_valido_y_horas(raiz):
     evs = [e for e in cal.walk("VEVENT")]
     assert len(evs) == 35
     e = evs[0]
-    assert str(e["UID"]) == "clase-01@cronograma-compliance-2026-2"
+    assert str(e["UID"]) == "clase-01@cronograma-compliance-anticorrupcion"
     ini = e["DTSTART"].dt.astimezone(timezone.utc)
     fin = e["DTEND"].dt.astimezone(timezone.utc)
     assert (ini.hour, fin.hour) == (22, 1) and fin.day == 2  # 17:00 a 20:00 Bogotá = 22:00 a 01:00 UTC

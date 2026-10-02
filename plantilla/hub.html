@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administración de cronogramas</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0B1B3D">
+  <link rel="icon" type="image/svg+xml" href="__BASE__assets/icono.svg">
+  <link rel="preload" href="__BASE__assets/fuentes/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="__BASE__css/tokens.css?v=__V__">
+  <link rel="stylesheet" href="__BASE__css/base.css?v=__V__">
+  <link rel="stylesheet" href="__BASE__css/componentes.css?v=__V__">
+  <link rel="stylesheet" href="__BASE__css/hub.css?v=__V__">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="caucho" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="r"/><feColorMatrix in="r" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3.4 0 0 0 2.9" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
+  <header class="cabecera">
+    <div class="dentro">
+      <span class="marca">Educación Continua</span>
+      <nav class="nav" aria-label="Secciones">
+        <a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#cambios">Cambios de fecha</a>
+      </nav>
+    </div>
+  </header>
+  <main class="tablero hub" id="inicio">
+    <div class="hilo" aria-hidden="true"></div>
+    <section class="portada-hub">
+      <p class="solo-admin">Solo para administración</p>
+      <h1>Cronogramas de cursos y diplomados</h1>
+      <p class="lead" id="resumen"></p>
+      <p class="nota-hub">Cada curso tiene su propio enlace para estudiantes. Desde ese enlace no se puede llegar a otro curso ni a esta página. Pásales únicamente el enlace de su curso.</p>
+    </section>
+    <section class="seccion" id="cursos"><h2>Cursos</h2><div class="cursos-grid" id="cursos-lista" aria-live="polite"></div></section>
+    <section class="seccion" id="pendientes"><h2>Pendientes por confirmar</h2>
+      <p class="nota">Lo que falta en cada Excel. Cuando lo llenes en SharePoint, la página lo toma sola en un par de minutos.</p>
+      <div class="tabla-envoltura" id="tabla-pendientes"></div></section>
+    <section class="seccion" id="cambios"><h2>Cambios de fecha recientes</h2><div id="lista-cambios"></div></section>
+  </main>
+  <footer class="pie"><div class="dentro"><p id="pie-carpeta"></p><p id="refresco" aria-live="off"></p></div></footer>
+  <script type="importmap">{"imports":{"__BASE__js/hub.js":"__BASE__js/hub.js?v=__V__","__BASE__js/ui.js":"__BASE__js/ui.js?v=__V__","__BASE__js/iconos.js":"__BASE__js/iconos.js?v=__V__","__BASE__js/utils-fecha.js":"__BASE__js/utils-fecha.js?v=__V__"}}</script>
+  <script type="module" src="__BASE__js/hub.js?v=__V__"></script>
+</body>
+</html>

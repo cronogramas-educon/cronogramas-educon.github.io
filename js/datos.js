@@ -1,5 +1,5 @@
 // Carga data.json (y config) sin caché del navegador; si falla la red, usa la última copia guardada.
-const CLAVE = 'cronograma:copia';
+const CLAVE = `cronograma:copia:${document.documentElement.dataset.curso || 'curso'}`; // un curso no debe leer la copia de otro
 const url = (ruta) => `${ruta}?m=${Math.floor(Date.now() / 60000)}`; // un valor por minuto: evita que la CDN sirva una copia vieja
 
 const leerCopia = () => { try { return JSON.parse(localStorage.getItem(CLAVE)); } catch { return null; } };
@@ -14,7 +14,7 @@ export async function cargarConfig() {
 export async function cargarDatos() {
   try {
     const r = await fetch(url('data/data.json'), { cache: 'no-store' });
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    if (!r.ok) throw Object.assign(new Error(`HTTP ${r.status}`), { sinDatos: r.status === 404 }); // 404: el curso aún no tiene Excel publicado
     const data = await r.json();
     if (!data?.clases?.length) throw new Error('data.json vacío');
     guardarCopia(data);

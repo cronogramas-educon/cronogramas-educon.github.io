@@ -18,15 +18,16 @@ export function plan(el, d, abiertas) {
 
 /** Cada docente es un botón: al pulsarlo se filtra el cronograma por su nombre. */
 export function docentes(el, d) {
-  el.innerHTML = d.profesores.map((p) => {
+  const faltan = d.clases.some((c) => !c.profesores.length);
+  el.innerHTML = (d.profesores.length ? '' : `<p class="pendiente-nota">Los docentes se publicarán pronto.</p>`) + d.profesores.map((p) => {
     const n = d.clases.filter((c) => c.profesores.includes(p)).length;
     return `<button class="chip-docente" type="button" data-docente="${esc(p)}" title="Ver las clases de ${esc(p)}">${esc(p)}<small>${n}</small></button>`;
-  }).join('');
+  }).join('') + (faltan && d.profesores.length ? `<p class="pendiente-nota">Algunas clases tienen docente por confirmar.</p>` : '');
 }
 
 export function apoyo(el, d) {
   const n = d.asistentesPat;
-  el.innerHTML = n.length ? `En las sesiones de Teams te acompañan <strong>${esc(n.join(' y '))}</strong>.` : '';
+  el.innerHTML = n.length ? `En las sesiones de Teams te acompañan <strong>${esc(n.join(' y '))}</strong>.` : 'Quién te acompaña en las sesiones de Teams está por confirmar.';
 }
 
 export function sobre(el, d, cfg) {

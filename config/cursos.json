@@ -1,0 +1,160 @@
+{
+  "global": {
+    "universidad": "Universidad de La Sabana",
+    "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+    "sharepointBase": "https://unisabanaedu.sharepoint.com/sites/Especializaciones/Documentos compartidos/ESPECIALIZACIONES 2014 - 2023/EDU CONTINUA 2026",
+    "adminCodigo": "pu75dwc5yd",
+    "mostrarLinksTeams": true,
+    "diasAvisoCambio": 14,
+    "profesoresInstitucionales": [
+      "SABANA"
+    ],
+    "siglas": [
+      "EEUU",
+      "ALA/CFT",
+      "ROS",
+      "IA",
+      "ESG",
+      "UGPP",
+      "PEP",
+      "I",
+      "II",
+      "III",
+      "IV",
+      "V",
+      "VI",
+      "VII",
+      "VIII",
+      "IX",
+      "X"
+    ],
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "cursos": [
+    {
+      "id": "compliance-anticorrupcion",
+      "codigo": "s9hv2xzn",
+      "carpeta": "Dip Compliance Anti- Corrupción",
+      "tipo": "Diplomado",
+      "marca": "Diplomado Compliance",
+      "programa": "Diplomado Compliance Anti-corrupción y Anti-lavado, más allá de las Normas y la Teoría",
+      "programaCorto": "Compliance Anti-corrupción y Anti-lavado",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-compliance-anti-corrupcion-y-anti-lavado-mas-alla-de-las-normas-y-la-teoria",
+      "horario": {
+        "inicio": "17:00",
+        "fin": "20:00"
+      }
+    },
+    {
+      "id": "compliance-gobierno-corporativo",
+      "codigo": "2oz2s1tr",
+      "carpeta": "Dip Compliance y Gobierno Corp",
+      "tipo": "Diplomado",
+      "marca": "Diplomado Gobierno Corporativo",
+      "programa": "Diplomado en Compliance y Gobierno Corporativo en la práctica: poder y riesgo",
+      "programaCorto": "Compliance y Gobierno Corporativo en la práctica",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado-en-complience-y-gobierno-corporativo-en-la-practica-poder-y-riesgo",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "21:00"
+      }
+    },
+    {
+      "id": "conflictos-societarios",
+      "codigo": "4r8orv53",
+      "carpeta": "Curs Gest de Conflictos Societarios",
+      "tipo": "Curso",
+      "marca": "Curso Conflictos Societarios",
+      "programa": "Curso de gestión de conflictos societarios",
+      "programaCorto": "Gestión de Conflictos Societarios",
+      "modalidad": "Remota",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/curso/curso-en-gestion-de-conlifctos-societarios",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "20:00"
+      }
+    },
+    {
+      "id": "contratacion-estatal",
+      "codigo": "0j7kfcl9",
+      "carpeta": "Dip en Contratación Estatal",
+      "tipo": "Diplomado",
+      "marca": "Diplomado Contratación Estatal",
+      "programa": "Diplomado Contratación Estatal",
+      "programaCorto": "Contratación Estatal",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-contratacion-estatal",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "21:00"
+      }
+    },
+    {
+      "id": "derecho-laboral",
+      "codigo": "y7qoa6f2",
+      "carpeta": "Dip en Derecho Laboral",
+      "tipo": "Diplomado",
+      "marca": "Diplomado Derecho Laboral",
+      "programa": "Diplomado en Derecho Laboral",
+      "programaCorto": "Derecho Laboral",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-en-derecho-laboral",
+      "horario": {
+        "modo": "porHoras",
+        "inicio": "18:00",
+        "porDia": {
+          "Sábado": "08:00"
+        },
+        "duracionPorDefecto": 1
+      }
+    },
+    {
+      "id": "derecho-minero",
+      "codigo": "ojw5wrjr",
+      "carpeta": "Curso en Derecho Minero",
+      "tipo": "Curso",
+      "marca": "Curso Derecho Minero",
+      "programa": "Curso de Actualización en Derecho Minero Ambiental",
+      "programaCorto": "Derecho Minero Ambiental",
+      "modalidad": "Remota",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/curso-de-actualizacion-en-derecho-minero-ambiental",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "21:00"
+      }
+    },
+    {
+      "id": "ia-sector-legal-grupo-1",
+      "codigo": "6te3wc5r",
+      "carpeta": "IA en el seclegal III Cohorte/GRUPO 1- Laura",
+      "tipo": "Curso",
+      "marca": "Curso IA Sector Legal",
+      "programa": "Curso en IA en el Sector Legal, Grupo 1",
+      "programaCorto": "IA en el Sector Legal, Grupo 1",
+      "modalidad": "Remota",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/curso-en-ia-en-el-sector-legal",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "20:00"
+      }
+    },
+    {
+      "id": "ia-sector-legal-grupo-2",
+      "codigo": "ey0cmnrj",
+      "carpeta": "IA en el seclegal III Cohorte/GRUPO 2- Valentina",
+      "tipo": "Curso",
+      "marca": "Curso IA Sector Legal",
+      "programa": "Curso en IA en el Sector Legal, Grupo 2",
+      "programaCorto": "IA en el Sector Legal, Grupo 2",
+      "modalidad": "Remota",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/curso-en-ia-en-el-sector-legal",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "20:00"
+      }
+    }
+  ]
+}

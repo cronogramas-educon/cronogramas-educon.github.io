@@ -1,21 +1,18 @@
 {
   "meta": {
     "programa": "Diplomado Compliance Anti-corrupción y Anti-lavado, más allá de las Normas y la Teoría",
-    "cohorte": "3er 2026-2",
     "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
     "modalidad": "Remota (Microsoft Teams)",
-    "horario": {
-      "inicio": "17:00",
-      "fin": "20:00",
-      "zona": "America/Bogota"
-    },
     "totalClases": 35,
     "horasTotales": 105,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
     "hash": "b7cd4eac1cd6b255",
     "generadoEn": "2026-10-02T14:45:43Z",
-    "fuenteModificadaEn": ""
+    "fuenteModificadaEn": "",
+    "tipo": "Diplomado",
+    "zona": "America/Bogota",
+    "horasCompletas": true
   },
   "clases": [
     {

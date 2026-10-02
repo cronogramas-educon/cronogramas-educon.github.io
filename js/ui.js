@@ -40,7 +40,7 @@ export function nombreCorto(n) {
   return `${p[0][0]}. ${ap}`;
 }
 export const iniciales = (n) => { const p = n.split(/\s+/).filter((x) => x.length > 1); return n === n.toUpperCase() ? n[0] : (p[0][0] + (p.length > 1 ? p[p.length - 1][0] : '')).toUpperCase(); };
-export const docentesCorto = (c) => (c.profesores.length > 1 ? `${nombreCorto(c.profesores[0])} +${c.profesores.length - 1}` : nombreCorto(c.profesor));
+export const docentesCorto = (c) => (c.profesores.length > 1 ? `${nombreCorto(c.profesores[0])} +${c.profesores.length - 1}` : c.profesores.length ? nombreCorto(c.profesor) : PENDIENTE);
 
 export function rangos(ids) {
   const o = [...ids].sort((a, b) => a - b), out = [];
@@ -53,10 +53,12 @@ export function rangos(ids) {
   return out.join(', ');
 }
 
-export const horario = (meta) => `${hora12(meta.horario.inicio)} a ${hora12(meta.horario.fin)}`;
+export const horario = (c) => `${hora12(c.inicio.slice(11, 16))} a ${hora12(c.fin.slice(11, 16))}`;
+export const PENDIENTE = 'Por confirmar';
 
 export function botonTeams(c, cfg, estado) {
-  if (!cfg.mostrarLinksTeams || !c.linkTeams) return '';
+  if (!cfg.mostrarLinksTeams) return '';
+  if (!c.linkTeams) return `<span class="btn btn-teams btn-pendiente" role="note" aria-disabled="true">${ic('video-camera')}Enlace por confirmar</span>`;
   const prim = estado === 'hoy' || estado === 'envivo';
   return `<a class="btn btn-teams${prim ? ' rojo' : ''}" href="${esc(c.linkTeams)}" target="_blank" rel="noopener noreferrer">${ic('video-camera')}Unirme en Teams</a>`;
 }
@@ -73,19 +75,19 @@ export function insignias(c, estado, esProxima, repro) {
 
 /** Ficha de la clase. Con titulo=true (panel del calendario) repite el nombre y la unidad. */
 export function fichaClase(c, ctx) {
-  const { meta, cfg, q = '', estado, repro, titulo } = ctx;
+  const { cfg, q = '', estado, repro, titulo } = ctx;
   const fecha = repro
     ? `<span class="tachada">${esc(fechaLargaAnio(c.cambio.fechaAnterior))}</span> ${esc(fechaLargaAnio(c.fecha))}`
     : esc(fechaLargaAnio(c.fecha));
   return `<div class="ficha-clase">
     ${titulo ? `<div class="fila-estados" style="justify-content:flex-start;margin-bottom:10px">${insignias(c, estado, ctx.esProxima, repro)}</div>
-    <h3>${resaltar(cap(c.clase.toLowerCase()), q)}</h3><p class="u">${resaltar(legible(c.unidad), q)}</p>` : ''}
+    <h3>${resaltar(cap(c.clase.toLowerCase()), q)}</h3>${c.unidad ? `<p class="u">${resaltar(legible(c.unidad), q)}</p>` : ''}` : ''}
     <ul class="temas">${c.temaPuntos.map((p) => `<li>${resaltar(p, q)}</li>`).join('')}</ul>
     <dl>
-      <dt>Docente</dt><dd>${c.profesores.map((p) => resaltar(p, q)).join(' y ')}</dd>
+      <dt>Docente</dt><dd>${c.profesores.length ? c.profesores.map((p) => resaltar(p, q)).join(' y ') : `<span class="pendiente">${PENDIENTE}</span>`}</dd>
       <dt>Fecha</dt><dd>${fecha}</dd>
-      <dt>Horario</dt><dd>${esc(horario(meta))}, hora de Colombia</dd>
-      ${c.asistentePat ? `<dt>Te acompaña</dt><dd>${resaltar(c.asistentePat, q)}</dd>` : ''}
+      <dt>Horario</dt><dd>${esc(horario(c))}, hora de Colombia</dd>
+      <dt>Te acompaña</dt><dd>${c.asistentePat ? resaltar(c.asistentePat, q) : `<span class="pendiente">${PENDIENTE}</span>`}</dd>
     </dl>
     <div class="acc">${botonTeams(c, cfg, estado)}<button class="btn" type="button" data-ics="${c.id}">${ic('calendar-plus')}Agregar a mi calendario</button></div>
   </div>`;

@@ -19,11 +19,16 @@ class Silencioso(http.server.SimpleHTTPRequestHandler):
 
 
 @pytest.fixture(scope="module")
-def base():
-    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Silencioso, directory=str(RAIZ)))
+def servidor(sitio):
+    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Silencioso, directory=str(sitio["dir"])))
     threading.Thread(target=srv.serve_forever, daemon=True).start()
-    yield f"http://127.0.0.1:{srv.server_address[1]}/index.html"
+    yield f"http://127.0.0.1:{srv.server_address[1]}"
     srv.shutdown()
+
+
+@pytest.fixture(scope="module")
+def base(servidor, sitio):
+    return f"{servidor}/{sitio['a']}/index.html"  # curso completo
 
 
 @pytest.fixture(scope="module")
@@ -54,11 +59,11 @@ def abrir(p, base, q=""):
     return p
 
 
-def test_carga_sin_errores_y_cifras(pagina, base):
+def test_carga_sin_errores_y_cifras(pagina, base, sitio):
     abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
     assert "35 clases del 1 de octubre de 2026 al 4 de diciembre de 2026" in pagina.inner_text("#lead")
     assert pagina.inner_text("#contador") == "35 clases"
-    datos = json.loads((RAIZ / "data/data.json").read_text(encoding="utf-8"))
+    datos = json.loads(sitio["datos_a"].read_text(encoding="utf-8"))
     assert pagina.locator("#plan-lista .unidad").count() == len(datos["unidades"])
     assert pagina.locator(".chip-docente").count() == len(datos["profesores"])
     assert pagina.errores == []
@@ -149,16 +154,16 @@ def test_calendario_teclado_y_detalle(pagina, base):
     assert pagina.locator("#detalle").count() == 0
 
 
-def test_mostrar_links_teams_apagado(pagina, base):
-    cfg = json.loads((RAIZ / "config/contenido.json").read_text(encoding="utf-8"))
+def test_mostrar_links_teams_apagado(pagina, base, sitio):
+    cfg = json.loads(sitio["cfg_a"].read_text(encoding="utf-8"))
     cfg["mostrarLinksTeams"] = False
     pagina.route("**/config/contenido.json*", lambda r: r.fulfill(json=cfg))
     abrir(pagina, base, "ahora=2026-10-01T18:00:00-05:00&vista=lista")
     assert pagina.locator("a[href*='teams.microsoft.com']").count() == 0
 
 
-def datos_con_cambio():
-    d = json.loads((RAIZ / "data/data.json").read_text(encoding="utf-8"))
+def datos_con_cambio(sitio):
+    d = json.loads(sitio["datos_a"].read_text(encoding="utf-8"))
     c = d["clases"][6]  # clase 7
     ant = c["fecha"]
     c["cambio"] = {"tipo": "fecha", "fechaAnterior": "2026-10-13", "fechaOriginal": "2026-10-13", "detectadoEn": "2026-10-10T12:00:00Z"}
@@ -168,8 +173,8 @@ def datos_con_cambio():
     return d
 
 
-def test_aviso_de_cambio_y_entendido(pagina, base):
-    d = datos_con_cambio()
+def test_aviso_de_cambio_y_entendido(pagina, base, sitio):
+    d = datos_con_cambio(sitio)
     pagina.route("**/data/data.json*", lambda r: r.fulfill(json=d))
     abrir(pagina, base, "ahora=2026-10-11T10:00:00-05:00&vista=lista")
     assert "la Clase 7 pasó del martes 13 de octubre al miércoles 14 de octubre" in pagina.inner_text("#avisos")
@@ -224,3 +229,93 @@ def test_hoja_de_impresion_respeta_filtros_y_temas(pagina, base, tmp_path):
     pdf = tmp_path / "cronograma.pdf"
     pagina.pdf(path=str(pdf), landscape=True, format="A4", print_background=True)
     assert pdf.stat().st_size > 5000
+
+
+def test_curso_sin_datos_dice_que_se_publicara_pronto(pagina, base):
+    pagina.route("**/data/data.json*", lambda r: r.fulfill(status=404, body="no existe"))
+    pagina.goto(base)
+    pagina.wait_for_selector(".vacio")
+    assert "se publicará pronto" in pagina.inner_text("#vista")
+
+
+# --- curso a medio llenar (sin unidad, docente, asistente, enlaces ni horas en algunas clases)
+@pytest.fixture
+def urlb(servidor, sitio):
+    return f"{servidor}/{sitio['b']}/index.html"
+
+
+def test_curso_incompleto_muestra_por_confirmar(pagina, urlb):
+    abrir(pagina, urlb, "ahora=2026-09-20T10:00:00-05:00&vista=lista")
+    assert pagina.errores == []
+    assert "cohorte" not in pagina.inner_text("#lead").lower() and pagina.inner_text("#lead").startswith("Diplomado.")
+    assert pagina.locator("#temario").is_hidden() and pagina.locator("#nav [href='#temario']").is_hidden()
+    assert pagina.locator("#f-unidad").is_hidden() is True or pagina.locator("#f-unidad").locator("xpath=..").is_hidden()
+    assert pagina.locator(".fila").first.locator(".fila-prof").inner_text() == "Por confirmar"
+    assert "Docente por confirmar" in pagina.inner_text("#panel")
+    assert pagina.locator("#panel .btn-pendiente").inner_text().strip() == "Enlace por confirmar"
+    pagina.locator(".fila-cab").first.click()
+    ficha = pagina.locator(".fila").first.inner_text()
+    assert ficha.count("Por confirmar") >= 3 and "Enlace por confirmar" in ficha  # docente, te acompaña, enlace
+    assert pagina.locator("a[href*='teams.microsoft.com']").count() == 0
+    assert "Quién te acompaña en las sesiones de Teams está por confirmar" in pagina.inner_text("#apoyo")
+
+
+def test_curso_incompleto_horario_por_horas(pagina, urlb):
+    abrir(pagina, urlb, "ahora=2026-09-20T10:00:00-05:00&vista=lista")
+    for n, esperado in ((1, "6:00 p. m. a 7:00 p. m."), (2, "7:00 p. m. a 10:00 p. m."), (3, "8:00 a. m. a 12:00 p. m.")):
+        pagina.locator(f".fila[data-id='{n}'] .fila-cab").click()
+        assert esperado in pagina.locator(f".fila[data-id='{n}']").inner_text().replace("\u202f", " ").replace("\u00a0", " "), n
+
+
+def test_curso_incompleto_hoja_de_impresion_y_ics_sin_enlace(pagina, urlb):
+    abrir(pagina, urlb, "vista=lista")
+    pagina.evaluate("window.dispatchEvent(new Event('beforeprint'))")
+    hoja = pagina.inner_text("#hoja-impresion")
+    assert "Por confirmar" in hoja and "Cohorte" not in hoja and "Unidad" not in hoja
+    pagina.click("#menu-ics summary")
+    with pagina.expect_download() as d:
+        pagina.click("[data-ics-todas]")
+    txt = Path(d.value.path()).read_text(encoding="utf-8").replace("\n ", "")  # las líneas largas del .ics vienen plegadas
+    assert "\nURL:" not in txt and "Docente: por confirmar" in txt and "X-WR-CALNAME:Derecho Laboral\n" in txt
+
+
+def test_una_pagina_no_lee_la_copia_de_otra(navegador, servidor, sitio):
+    ctx = navegador.new_context()
+    p = ctx.new_page()
+    abrir(p, f"{servidor}/{sitio['a']}/index.html", "vista=lista")
+    claves = p.evaluate("Object.keys(localStorage)")
+    assert f"cronograma:copia:{A_ID}" in claves and not any(k.endswith(B_ID) for k in claves)
+    ctx.close()
+
+
+A_ID, B_ID = "compliance-anticorrupcion", "derecho-laboral"
+
+
+# --- sitio base de administración
+def test_sitio_base_muestra_cursos_pendientes_y_errores(pagina, servidor, sitio):
+    pagina.goto(f"{servidor}/{sitio['hub']}/index.html?ahora=2026-09-20T10:00:00-05:00")
+    pagina.wait_for_selector(".curso")
+    assert pagina.errores == []
+    assert pagina.locator(".curso").count() == 2
+    assert 'content="noindex' in pagina.content()
+    tarjeta = pagina.locator(".curso", has_text="Derecho Laboral")
+    assert "El último guardado del Excel no se pudo leer" in tarjeta.inner_text() and "Falta la columna Profesor" in tarjeta.inner_text()
+    assert tarjeta.locator("a:has-text('Abrir sitio')").get_attribute("href").endswith(f"/{sitio['b']}/")
+    assert "sharepoint.com" in tarjeta.locator("a:has-text('Carpeta en SharePoint')").get_attribute("href")
+    tabla = pagina.inner_text("#tabla-pendientes")
+    assert "clases 1 a 3" in tabla and "Completo" in tabla  # docente falta en 1 a 3; el otro curso está completo
+    assert "1 con error" in pagina.inner_text("#resumen")
+    tarjeta.locator("[data-copiar]").click()
+    tarjeta.locator("[data-copiar] span:text('Enlace copiado')").wait_for(timeout=4000)
+    assert "No hay cambios de fecha" in pagina.inner_text("#lista-cambios")
+
+
+def test_raiz_no_lista_cursos(pagina, servidor):
+    pagina.goto(f"{servidor}/index.html")
+    assert "Abre el enlace" in pagina.inner_text("body") and pagina.locator("a").count() == 0
+
+
+def test_curso_no_enlaza_a_nada_interno(pagina, base):
+    abrir(pagina, base, "vista=lista")
+    hrefs = pagina.eval_on_selector_all("a[href]", "es => es.map(e => e.getAttribute('href'))")
+    assert all(h.startswith(("#", "https://", "webcal:")) for h in hrefs), hrefs

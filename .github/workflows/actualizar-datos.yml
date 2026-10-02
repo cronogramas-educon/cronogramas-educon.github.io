@@ -1,35 +1,29 @@
 name: Actualizar datos
 
+# Un solo flujo de Power Automate avisa de cualquier Excel de EDU CONTINUA 2026 (evento excel-actualizado) con la ruta de su carpeta
+# y las filas de la tabla. Aquí se reconoce el curso por esa ruta (config/cursos.json), se reconstruyen solo sus datos y se publica el sitio.
 on:
   repository_dispatch:
     types: [excel-actualizado]
   workflow_dispatch:
-  schedule:
-    - cron: '*/15 * * * *'   # red de seguridad si el aviso de Power Automate falla o se demora
   push:
     branches: [main]
-    paths-ignore: ['docs/**', 'README.md', 'tests/**', 'referencias/**']
+    paths-ignore: ['docs/**', 'README.md', 'tests/**', 'referencias/**', 'cursos/**']
 
 permissions:
   contents: write
   pages: write
   id-token: write
 
-concurrency:
-  group: actualizar-datos
-  cancel-in-progress: false
-
 jobs:
   construir:
-    # En modo json no hay Excel que descargar en el temporizador: se omite sin marcar error
-    if: ${{ !(vars.MODO_ENTRADA == 'json' && github.event_name == 'schedule') }}
     runs-on: ubuntu-latest
+    # Un grupo por curso: dos guardados del mismo Excel se hacen en orden y el último gana; cursos distintos no se pisan
+    concurrency:
+      group: construir-${{ github.event.client_payload.ruta || github.ref }}
+      cancel-in-progress: false
     outputs:
       desplegar: ${{ steps.decidir.outputs.desplegar }}
-    env:
-      EXCEL_URL: ${{ secrets.EXCEL_URL }}
-      # Modo de entrada: "excel" (Plan A, descarga el .xlsx) o "json" (Plan B, datos en el evento de Power Automate)
-      MODO_ENTRADA: ${{ vars.MODO_ENTRADA || 'excel' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,49 +37,47 @@ jobs:
       - name: Instalar dependencias
         run: pip install -r requirements.txt pytest icalendar
 
-      - name: Pruebas de datos
-        run: pytest tests/test_datos.py -q
+      - name: Pruebas de datos y registro de cursos
+        run: pytest tests/test_datos.py tests/test_cursos.py -q
 
-      - name: Obtener la fuente (Excel o JSON)
-        if: github.event_name != 'push'
+      - name: Reconocer el curso y leer las filas
+        if: github.event_name == 'repository_dispatch'
         id: fuente
         run: |
-          set -euo pipefail
-          if [ "$MODO_ENTRADA" = "json" ]; then
-            # La carga útil se lee del archivo del evento, nunca de una variable de entorno: así no se imprime en el registro público
-            python - <<'PY'
+          # La carga útil se lee del archivo del evento, nunca de una variable de entorno: así no se imprime en el registro público
+          python - <<'PY'
           import json, os, sys
+          sys.path.insert(0, "scripts")
+          import cursos
           p = json.load(open(os.environ["GITHUB_EVENT_PATH"])).get("client_payload")
           if not p:
-              print("::error::Modo json: el evento no trae client_payload. Usa el evento excel-actualizado de Power Automate con las filas.")
+              print("::error::El evento no trae client_payload. Usa el evento excel-actualizado del flujo de Power Automate con la ruta y las filas.")
               sys.exit(1)
-          r = p.get("filas", p) if isinstance(p, dict) else p
-          json.dump(json.loads(r) if isinstance(r, str) else r, open("fuente.json", "w"))
+          filas = p.get("filas", p) if isinstance(p, dict) else p
+          json.dump(json.loads(filas) if isinstance(filas, str) else filas, open("fuente.json", "w"))
+          ruta = p.get("ruta", "") if isinstance(p, dict) else ""
+          curso = cursos.resolver(ruta) if ruta else "compliance-anticorrupcion"  # el flujo anterior no mandaba ruta
+          if not curso:
+              print("::warning::La carpeta del Excel no está en config/cursos.json: no se actualiza ningún curso. Ruta recibida: " + ruta)
+          out = open(os.environ["GITHUB_OUTPUT"], "a")
+          out.write(f"curso={curso or ''}\nmodificado={p.get('modificado', '') if isinstance(p, dict) else ''}\n")
           PY
-            echo "ruta=fuente.json" >> "$GITHUB_OUTPUT"; echo "flag=--json" >> "$GITHUB_OUTPUT"
-          else
-            [ -n "$EXCEL_URL" ] || { echo "::error::Falta el secreto EXCEL_URL (Settings > Secrets and variables > Actions)."; exit 1; }
-            case "$EXCEL_URL" in *\?*) URL="${EXCEL_URL}&download=1" ;; *) URL="${EXCEL_URL}?download=1" ;; esac
-            curl -fsSL --max-time 90 --retry 2 -D cabeceras.txt -o fuente.xlsx "$URL" \
-              || { echo "::error::No se pudo descargar el Excel. Revisa que el vínculo siga siendo 'Cualquier persona con el vínculo' y que no haya expirado."; exit 1; }
-            echo "ruta=fuente.xlsx" >> "$GITHUB_OUTPUT"; echo "flag=" >> "$GITHUB_OUTPUT"
-            echo "modificado=$(grep -i '^last-modified:' cabeceras.txt | tail -1 | cut -d' ' -f2- | tr -d '\r')" >> "$GITHUB_OUTPUT"
-          fi
 
-      - name: Validar y construir
-        if: github.event_name != 'push'
+      - name: Validar y construir el curso
+        if: steps.fuente.outputs.curso != ''
+        id: construir
+        continue-on-error: true
         env:
-          RUTA: ${{ steps.fuente.outputs.ruta }}
-          FLAG: ${{ steps.fuente.outputs.flag }}
+          CURSO: ${{ steps.fuente.outputs.curso }}
           MODIFICADO: ${{ steps.fuente.outputs.modificado }}
         run: |
           set +e
-          python scripts/construir_datos.py "$RUTA" $FLAG --modificado "$MODIFICADO" 2>&1 | tee salida.txt
+          python scripts/construir_datos.py fuente.json --json --raiz "cursos/$CURSO" --modificado "$MODIFICADO" 2>&1 | tee salida.txt
           estado=${PIPESTATUS[0]}
           {
-            echo "## Actualizar datos"
+            echo "## Actualizar datos: $CURSO"
             echo '```'; cat salida.txt; echo '```'
-            [ "$estado" -eq 0 ] || echo "**Falló: se conserva el último data.json bueno.**"
+            [ "$estado" -eq 0 ] || echo "**Falló: se conserva el último data.json bueno de este curso.**"
           } >> "$GITHUB_STEP_SUMMARY"
           exit $estado
 
@@ -94,47 +86,60 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data estado cronograma.ics
+          git add cursos
           if git diff --cached --quiet; then
             echo "hay=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Actualizar datos desde el Excel"
-            git pull --rebase origin main
-            git push origin HEAD:main
+            for i in 1 2 3 4; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              sleep $((i * 3))
+            done
             echo "hay=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Decidir si se despliega
         id: decidir
         run: |
-          # Se despliega si cambiaron los datos o si es un push o ejecución manual (para publicar cambios del sitio)
-          if [ "${{ steps.commit.outputs.hay }}" = "true" ] || [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          # Se despliega si cambiaron los datos (o el aviso de error) o si es un push o ejecución manual
+          if [ "${{ steps.commit.outputs.hay }}" = "true" ] || [ "${{ github.event_name }}" != "repository_dispatch" ]; then
             echo "desplegar=true" >> "$GITHUB_OUTPUT"
           else
             echo "desplegar=false" >> "$GITHUB_OUTPUT"
             echo "Sin cambios en los datos: no se despliega." >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      - name: Armar el sitio
-        if: steps.decidir.outputs.desplegar == 'true'
-        run: |
-          mkdir _sitio
-          cp -r index.html css js assets data config cronograma.ics _sitio/
-          sed -i "s/__V__/${GITHUB_SHA::8}/g" _sitio/index.html
-          touch _sitio/.nojekyll
-
-      - uses: actions/upload-pages-artifact@v3
-        if: steps.decidir.outputs.desplegar == 'true'
-        with:
-          path: _sitio
+      - name: Marcar la ejecución como fallida si el Excel no se pudo leer
+        if: steps.construir.outcome == 'failure'
+        run: exit 1
 
   desplegar:
     needs: construir
-    if: needs.construir.outputs.desplegar == 'true'
+    # always(): si el Excel falló, igual se publica para que el sitio base muestre el aviso de error
+    if: ${{ always() && needs.construir.outputs.desplegar == 'true' }}
     runs-on: ubuntu-latest
+    # Solo importa el último despliegue: arma el sitio con lo más reciente de main, así ninguno pisa datos de otro curso
+    concurrency:
+      group: desplegar-pages
+      cancel-in-progress: true
     environment:
       name: github-pages
       url: ${{ steps.pages.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Armar el sitio
+        run: python scripts/cursos.py sitio _sitio "$(git rev-parse --short=8 HEAD)"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _sitio
+
       - id: pages
         uses: actions/deploy-pages@v4

@@ -1,0 +1,42 @@
+{
+  "programa": "Curso en IA en el Sector Legal, Grupo 1",
+  "programaCorto": "IA en el Sector Legal, Grupo 1",
+  "tipo": "Curso",
+  "marca": "Curso IA Sector Legal",
+  "modalidad": "Remota",
+  "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/curso-en-ia-en-el-sector-legal",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "horario": {
+    "inicio": "18:00",
+    "fin": "20:00",
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "uidSufijo": "cronograma-ia-sector-legal-grupo-1",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "ia-sector-legal-grupo-1"
+}

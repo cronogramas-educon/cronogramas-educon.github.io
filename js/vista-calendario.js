@@ -28,7 +28,7 @@ function etiquetaDia(iso, cs, ctx) {
   return `${s}, ${cs.map((c) => {
     const e = estadoClase(c, ctx.t);
     const est = e === 'pasada' ? 'realizada' : e === 'envivo' ? 'en vivo' : e === 'hoy' ? 'hoy' : c.id === ctx.proximaId ? 'próxima' : '';
-    return `${nombre(c)}, ${c.profesor}${cambioVigente(c, ctx.cfg, ctx.t) ? ', reprogramada' : ''}${est ? ', ' + est : ''}`;
+    return `${nombre(c)}${c.profesor ? ', ' + c.profesor : ', docente por confirmar'}${cambioVigente(c, ctx.cfg, ctx.t) ? ', reprogramada' : ''}${est ? ', ' + est : ''}`;
   }).join('; ')}`;
 }
 

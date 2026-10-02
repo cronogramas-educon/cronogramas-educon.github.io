@@ -29,10 +29,10 @@ def plegar(linea):
 
 
 def evento(c, cfg, stamp):
-    h = cfg["horario"]
     dia = c["fecha"].replace("-", "")
+    hh = lambda iso: iso[11:16].replace(":", "") + "00"  # "2026-10-01T18:00:00-05:00" -> 180000
     nombre = c["clase"].title()
-    desc = [c["unidad"], "", "Tema:"] + [f"- {p}" for p in c["temaPuntos"]] + ["", f"Docente: {c['profesor']}"]
+    desc = ([c["unidad"], ""] if c["unidad"] else []) + ["Tema:"] + [f"- {p}" for p in c["temaPuntos"]] + ["", f"Docente: {c['profesor'] or 'por confirmar'}"]
     if c["asistentePat"]:
         desc.append(f"Asistente PAT: {c['asistentePat']}")
     url = c["linkTeams"] if cfg.get("mostrarLinksTeams", True) and c["linkTeams"] else ""
@@ -41,8 +41,8 @@ def evento(c, cfg, stamp):
     lineas = [
         "BEGIN:VEVENT", f"UID:clase-{c['id']:02d}@{cfg['uidSufijo']}", f"DTSTAMP:{stamp}",
         f"SEQUENCE:{c.get('secuencia', 0)}",
-        f"DTSTART;TZID=America/Bogota:{dia}T{h['inicio'].replace(':', '')}00",
-        f"DTEND;TZID=America/Bogota:{dia}T{h['fin'].replace(':', '')}00",
+        f"DTSTART;TZID=America/Bogota:{dia}T{hh(c['inicio'])}",
+        f"DTEND;TZID=America/Bogota:{dia}T{hh(c['fin'])}",
         f"SUMMARY:{escapar(nombre)}: {escapar(cfg['programaCorto'])}",
         f"DESCRIPTION:{escapar(chr(10).join(desc))}", "LOCATION:Microsoft Teams",
     ]
@@ -55,8 +55,8 @@ def evento(c, cfg, stamp):
 
 def generar(datos, cfg):
     stamp = datos["meta"]["generadoEn"].replace("-", "").replace(":", "")
-    lineas = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Cronograma Compliance//ES", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
-              f"X-WR-CALNAME:{escapar(cfg['programaCorto'])} {escapar(cfg['cohorte'])}", "X-WR-TIMEZONE:America/Bogota"]
+    lineas = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Cronograma Educacion Continua//ES", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+              f"X-WR-CALNAME:{escapar(cfg['programaCorto'])}", "X-WR-TIMEZONE:America/Bogota"]
     lineas += VTIMEZONE
     for c in datos["clases"]:
         lineas += evento(c, cfg, stamp)

@@ -197,3 +197,12 @@
 .temario[open] > summary .ic { transform: rotate(180deg); }
 .temario .unidades { margin-top: 20px; }
 .sobre p { color: var(--felt-2); max-width: 52ch; }
+
+/* datos que faltan en el Excel: "Por confirmar" y botón de Teams apagado */
+.pendiente { font-style: italic; color: var(--ink-2); font-weight: 500; }
+.es-pasada .pendiente { color: var(--felt-2); }
+.btn.btn-pendiente, .fila .btn.btn-pendiente, .papel .btn.btn-pendiente { border-style: dashed; border-color: var(--ink-2); background: transparent; color: var(--ink-2); font-weight: 600; cursor: default; box-shadow: none; }
+.btn.btn-pendiente:hover, .fila .btn.btn-pendiente:hover, .papel .btn.btn-pendiente:hover { background: transparent; border-color: var(--ink-2); }
+.btn.btn-pendiente:active { transform: none; }
+.pendiente-nota { flex-basis: 100%; margin: 0; color: var(--felt-2); font-size: .95rem; }
+.apoyo { color: var(--felt); }

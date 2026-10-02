@@ -1,0 +1,42 @@
+{
+  "programa": "Diplomado en Compliance y Gobierno Corporativo en la práctica: poder y riesgo",
+  "programaCorto": "Compliance y Gobierno Corporativo en la práctica",
+  "tipo": "Diplomado",
+  "marca": "Diplomado Gobierno Corporativo",
+  "modalidad": "Remota (Microsoft Teams)",
+  "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado-en-complience-y-gobierno-corporativo-en-la-practica-poder-y-riesgo",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "horario": {
+    "inicio": "18:00",
+    "fin": "21:00",
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "uidSufijo": "cronograma-compliance-gobierno-corporativo",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "compliance-gobierno-corporativo"
+}

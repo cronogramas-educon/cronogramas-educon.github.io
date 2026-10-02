@@ -1,28 +1,42 @@
 {
   "programa": "Diplomado Compliance Anti-corrupción y Anti-lavado, más allá de las Normas y la Teoría",
   "programaCorto": "Compliance Anti-corrupción y Anti-lavado",
-  "cohorte": "3er 2026-2",
+  "tipo": "Diplomado",
+  "marca": "Diplomado Compliance",
+  "modalidad": "Remota (Microsoft Teams)",
+  "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-compliance-anti-corrupcion-y-anti-lavado-mas-alla-de-las-normas-y-la-teoria",
   "universidad": "Universidad de La Sabana",
   "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
-  "modalidad": "Remota (Microsoft Teams)",
   "horario": {
     "inicio": "17:00",
     "fin": "20:00",
     "zona": "America/Bogota",
     "desfase": "-05:00"
   },
-  "uidSufijo": "cronograma-compliance-2026-2",
-  "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-compliance-anti-corrupcion-y-anti-lavado-mas-alla-de-las-normas-y-la-teoria",
+  "uidSufijo": "cronograma-compliance-anticorrupcion",
   "mostrarLinksTeams": true,
   "diasAvisoCambio": 14,
-  "contacto": {},
-  "docentesExtra": {},
   "profesoresInstitucionales": [
     "SABANA"
   ],
   "siglas": [
     "EEUU",
     "ALA/CFT",
-    "ROS"
-  ]
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "compliance-anticorrupcion"
 }
