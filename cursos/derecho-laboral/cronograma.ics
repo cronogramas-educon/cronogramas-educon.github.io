@@ -1,0 +1,594 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cronograma Educacion Continua//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Derecho Laboral
+X-WR-TIMEZONE:America/Bogota
+BEGIN:VTIMEZONE
+TZID:America/Bogota
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0500
+TZNAME:-05
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:clase-01@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261002T180000
+DTEND;TZID=America/Bogota:20261002T190000
+SUMMARY:Clase 1: Derecho Laboral
+DESCRIPTION:Tema:\n- Inauguración del diplomado\n\nDocente: Diana María G
+ ómez Hoyos
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 1 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-02@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261002T190000
+DTEND;TZID=America/Bogota:20261002T220000
+SUMMARY:Clase 2: Derecho Laboral
+DESCRIPTION:MÓDULO 1: REFORMAS Y FUNDAMENTOS\n\nTema:\n- Presentación gen
+ eral de la reforma laboral\n- (Ley 2466/25)\n\nDocente: Daniela Henao Hong
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 2 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-03@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261003T080000
+DTEND;TZID=America/Bogota:20261003T120000
+SUMMARY:Clase 3: Derecho Laboral
+DESCRIPTION:MÓDULO 2: CONTRATACIÓN\n\nTema:\n- Contrato de trabajo\n\nDoc
+ ente: Diana María Gómez Hoyos
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 3 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-04@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261007T180000
+DTEND;TZID=America/Bogota:20261007T200000
+SUMMARY:Clase 4: Derecho Laboral
+DESCRIPTION:MÓDULO 1: REFORMAS Y FUNDAMENTOS\n\nTema:\n- Licencias y permi
+ sos\n\nDocente: Giovanna Rojas Carrillo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 4 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-05@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261008T180000
+DTEND;TZID=America/Bogota:20261008T210000
+SUMMARY:Clase 5: Derecho Laboral
+DESCRIPTION:MÓDULO 1: REFORMAS Y FUNDAMENTOS\n\nTema:\n- Jornada de trabaj
+ o\n\nDocente: Juan Manuel Insuasty Garzón
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 5 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-06@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261009T180000
+DTEND;TZID=America/Bogota:20261009T210000
+SUMMARY:Clase 6: Derecho Laboral
+DESCRIPTION:MÓDULO 3: RÉGIMEN DISCIPLINARIO Y PREVENCIÓN\n\nTema:\n- Reg
+ lamento de trabajo y régimen disciplinario\n\nDocente: Sebastián Mejía 
+ Paternina
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 6 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-07@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261010T080000
+DTEND;TZID=America/Bogota:20261010T120000
+SUMMARY:Clase 7: Derecho Laboral
+DESCRIPTION:MÓDULO 7: TERCERIZACIÓN E INTERMEDIACIÓN\n\nTema:\n- Terceri
+ zación e intermediación\n\nDocente: Enrique Borda Villegas
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 7 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-08@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261014T180000
+DTEND;TZID=America/Bogota:20261014T210000
+SUMMARY:Clase 8: Derecho Laboral
+DESCRIPTION:MÓDULO 9: ASPECTOS ESPECIALIZADOS\n\nTema:\n- Mecanismos inter
+ nacionales de protección al trabajo\n\nDocente: Juan Daniel Sierra Silgad
+ o
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 8 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-09@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261015T180000
+DTEND;TZID=America/Bogota:20261015T210000
+SUMMARY:Clase 9: Derecho Laboral
+DESCRIPTION:MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA\n\nTema:\n- Terminac
+ ión del contrato de trabajo.\n\nDocente: Viviana Marcela Plazas Muñoz
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 9 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-10@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261016T180000
+DTEND;TZID=America/Bogota:20261016T200000
+SUMMARY:Clase 10: Derecho Laboral
+DESCRIPTION:MÓDULO 2: CONTRATACIÓN\n\nTema:\n- Contratación de personas 
+ con discapacidad\n\nDocente: Juan Carlos Andrade Flórez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 10 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-11@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261017T080000
+DTEND;TZID=America/Bogota:20261017T120000
+SUMMARY:Clase 11: Derecho Laboral
+DESCRIPTION:MÓDULO 6: PRESTACIONES Y SEGURIDAD SOCIAL\n\nTema:\n- Salario\
+ n\nDocente: David Velandia Bueno
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 11 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-12@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261021T180000
+DTEND;TZID=America/Bogota:20261021T210000
+SUMMARY:Clase 12: Derecho Laboral
+DESCRIPTION:MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA\n\nTema:\n- Planes d
+ e terminación de contratos de trabajo y reestructuraciones empresariales 
+ (estrategias para proteger el empleo y las organizaciones)\n\nDocente: Dia
+ na Milena Bolívar Sánchez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 12 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-13@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261022T180000
+DTEND;TZID=America/Bogota:20261022T210000
+SUMMARY:Clase 13: Derecho Laboral
+DESCRIPTION:Tema:\n- Teletrabajo y auxilio de conectividad\, trabajo en cas
+ a\, trabajo remoto. Desconexión laboral.\n- Ciber acoso\n\nDocente: Juan 
+ Esteban Amador Sánchez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 13 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-14@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261023T180000
+DTEND;TZID=America/Bogota:20261023T210000
+SUMMARY:Clase 14: Derecho Laboral
+DESCRIPTION:MÓDULO 2: CONTRATACIÓN\n\nTema:\n- Contratación laboral de S
+ tartups y plataformas digitales\n\nDocente: Néstor Julián Sacipa Lozano
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 14 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-15@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261024T080000
+DTEND;TZID=America/Bogota:20261024T100000
+SUMMARY:Clase 15: Derecho Laboral
+DESCRIPTION:MÓDULO 1: REFORMAS Y FUNDAMENTOS\n\nTema:\n- Automatización\,
+  descarbonización y transición justa\n\nDocente: Daniel Merchán Montes
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 15 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-16@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261024T100000
+DTEND;TZID=America/Bogota:20261024T120000
+SUMMARY:Clase 16: Derecho Laboral
+DESCRIPTION:MÓDULO 9: ASPECTOS ESPECIALIZADOS\n\nTema:\n- Derecho laboral 
+ deportivo\n\nDocente: Carlos Alberto Buitrago Londoño
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 16 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-17@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261028T180000
+DTEND;TZID=America/Bogota:20261028T210000
+SUMMARY:Clase 17: Derecho Laboral
+DESCRIPTION:MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA\n\nTema:\n- Visión 
+ pragmática de los fueros de maternidad y parentalidad extendido\n\nDocent
+ e: César Augusto Orjuela Cáceres
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 17 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-18@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261029T180000
+DTEND;TZID=America/Bogota:20261029T210000
+SUMMARY:Clase 18: Derecho Laboral
+DESCRIPTION:MÓDULO 8: PROCEDIMIENTOS Y LITIGIO\n\nTema:\n- El derecho del 
+ trabajo y su protección a través de la acción de tutela\n\nDocente: Car
+ los Alberto Camargo Mejía
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 18 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-19@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261030T180000
+DTEND;TZID=America/Bogota:20261030T210000
+SUMMARY:Clase 19: Derecho Laboral
+DESCRIPTION:MÓDULO 9: ASPECTOS ESPECIALIZADOS\n\nTema:\n- Innovación lega
+ l y aplicación de la IA al Derecho Laboral\n\nDocente: Carolina Solano Me
+ dina
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 19 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-20@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261031T080000
+DTEND;TZID=America/Bogota:20261031T120000
+SUMMARY:Clase 20: Derecho Laboral
+DESCRIPTION:MÓDULO 10: TALLERES PRÁCTICOS\n\nTema:\n- Taller de manejo de
+  planillas de seguridad social integral (novedades\, correcciones y pagos)
+ \n\nDocente: Mauricio Antonio González Morales
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 20 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-21@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261104T180000
+DTEND;TZID=America/Bogota:20261104T210000
+SUMMARY:Clase 21: Derecho Laboral
+DESCRIPTION:Tema:\n- Otro tipo de trabajadores (Ley 2466/25)\n\nDocente: He
+ rmes García Duéñez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 21 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-22@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261105T180000
+DTEND;TZID=America/Bogota:20261105T210000
+SUMMARY:Clase 22: Derecho Laboral
+DESCRIPTION:MÓDULO 5: RELACIONES COLECTIVAS\n\nTema:\n- Sindicatos (estatu
+ tos\, representación)\n\nDocente: Fabrizio Gasca Mayans
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 22 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-23@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261106T180000
+DTEND;TZID=America/Bogota:20261106T210000
+SUMMARY:Clase 23: Derecho Laboral
+DESCRIPTION:MÓDULO 10: TALLERES PRÁCTICOS\n\nTema:\n- Taller práctico so
+ bre simulación de negociación colectiva\n\nDocente: Fabrizio Gasca Mayan
+ s
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 23 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-24@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261107T080000
+DTEND;TZID=America/Bogota:20261107T120000
+SUMMARY:Clase 24: Derecho Laboral
+DESCRIPTION:MÓDULO 6: PRESTACIONES Y SEGURIDAD SOCIAL\n\nTema:\n- Implemen
+ tación del nuevo régimen pensional en Colombia (Ley 2381 de 2024 y su re
+ glamentación)\n\nDocente: Vivian Acosta Aristizábal
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 24 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-25@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261111T180000
+DTEND;TZID=America/Bogota:20261111T210000
+SUMMARY:Clase 25: Derecho Laboral
+DESCRIPTION:MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA\n\nTema:\n- La aplic
+ ación práctica de los fueros de pre-pensionados y de salud\n\nDocente: G
+ ermán Ernesto Ponce Bravo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 25 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-26@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261112T180000
+DTEND;TZID=America/Bogota:20261112T210000
+SUMMARY:Clase 26: Derecho Laboral
+DESCRIPTION:MÓDULO 8: PROCEDIMIENTOS Y LITIGIO\n\nTema:\n- Ministerio del 
+ Trabajo\, conciliaciones\, querellas y procedimiento administrativo sancio
+ natorio\n\nDocente: Diego Andrés Adames Prada
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 26 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-27@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261113T180000
+DTEND;TZID=America/Bogota:20261113T210000
+SUMMARY:Clase 27: Derecho Laboral
+DESCRIPTION:MÓDULO 9: ASPECTOS ESPECIALIZADOS\n\nTema:\n- Migraciones labo
+ rales\n\nDocente: Rodrigo Tannus Serrano
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 27 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-28@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261114T080000
+DTEND;TZID=America/Bogota:20261114T120000
+SUMMARY:Clase 28: Derecho Laboral
+DESCRIPTION:MÓDULO 8: PROCEDIMIENTOS Y LITIGIO\n\nTema:\n- Aspectos puntua
+ les del procesal laboral a la luz del nuevo Código Procesal del Trabajo y
+  de la Seguridad Social\n- (Ley 2452 de 2025)\n\nDocente: Juan Sebastián 
+ López Jiménez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 28 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-29@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261118T180000
+DTEND;TZID=America/Bogota:20261118T210000
+SUMMARY:Clase 29: Derecho Laboral
+DESCRIPTION:Tema:\n- UGPP-\n- Aspectos prácticos frente a los procedimient
+ os ante los requerimientos de fiscalización. Ley de financiamiento\n\nDoc
+ ente: Manuel Alejandro Plazas Rodríguez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 29 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-30@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261119T180000
+DTEND;TZID=America/Bogota:20261119T210000
+SUMMARY:Clase 30: Derecho Laboral
+DESCRIPTION:MÓDULO 9: ASPECTOS ESPECIALIZADOS\n\nTema:\n- Aspectos tributa
+ rios en las relaciones laborales\n\nDocente: Juan Nicolás Cortés Galeano
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 30 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-31@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261120T180000
+DTEND;TZID=America/Bogota:20261120T210000
+SUMMARY:Clase 31: Derecho Laboral
+DESCRIPTION:MÓDULO 10: TALLERES PRÁCTICOS\n\nTema:\n- Nómina electrónic
+ a vs. nómina laboral\n\nDocente: Cristian Fabián Ramírez Ahumada
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 31 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-32@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261121T080000
+DTEND;TZID=America/Bogota:20261121T110000
+SUMMARY:Clase 32: Derecho Laboral
+DESCRIPTION:MÓDULO 3: RÉGIMEN DISCIPLINARIO Y PREVENCIÓN\n\nTema:\n- Pre
+ vención de la violencia\, acoso y discriminación\n\nDocente: Sebastián 
+ González Valencia
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 32 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-33@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261125T180000
+DTEND;TZID=America/Bogota:20261125T210000
+SUMMARY:Clase 33: Derecho Laboral
+DESCRIPTION:MÓDULO 6: PRESTACIONES Y SEGURIDAD SOCIAL\n\nTema:\n- Prestaci
+ ones sociales y otras obligaciones del empleador\n\nDocente: Pablo Hernán
+ dez Hussein
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 33 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-34@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261126T180000
+DTEND;TZID=America/Bogota:20261126T200000
+SUMMARY:Clase 34: Derecho Laboral
+DESCRIPTION:Tema:\n- Evaluaciones médico - ocupacionales (nuevas definicio
+ nes)\n\nDocente: Sara Patricia Ariza Correa
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 34 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-35@cronograma-derecho-laboral
+DTSTAMP:20261002T210507Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261126T200000
+DTEND;TZID=America/Bogota:20261126T210000
+SUMMARY:Clase 35: Derecho Laboral
+DESCRIPTION:Tema:\n- CLAUSURA\n\nDocente: Diana María Gómez Hoyos
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 35 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

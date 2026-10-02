@@ -1,0 +1,1035 @@
+{
+  "meta": {
+    "programa": "Diplomado en Derecho Laboral",
+    "tipo": "Diplomado",
+    "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+    "modalidad": "Remota (Microsoft Teams)",
+    "zona": "America/Bogota",
+    "totalClases": 35,
+    "horasTotales": 100,
+    "horasCompletas": false,
+    "inicio": "2026-10-02",
+    "fin": "2026-11-26",
+    "hash": "b0d352ec0975acbf",
+    "generadoEn": "2026-10-02T21:05:07Z",
+    "fuenteModificadaEn": "2026-10-02T21:04:48.5427789Z"
+  },
+  "clases": [
+    {
+      "id": 1,
+      "clase": "CLASE 1",
+      "unidad": "",
+      "unidadSlug": "",
+      "tema": "Inauguración del diplomado",
+      "temaPuntos": [
+        "Inauguración del diplomado"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Diana María Gómez Hoyos",
+      "profesores": [
+        "Diana María Gómez Hoyos"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-02",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-02T18:00:00-05:00",
+      "fin": "2026-10-02T19:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 2,
+      "clase": "CLASE 2",
+      "unidad": "MÓDULO 1: REFORMAS Y FUNDAMENTOS",
+      "unidadSlug": "modulo-1-reformas-y-fundamentos",
+      "tema": "Presentación general de la reforma laboral\n(Ley 2466/25)",
+      "temaPuntos": [
+        "Presentación general de la reforma laboral",
+        "(Ley 2466/25)"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Daniela Henao Hong",
+      "profesores": [
+        "Daniela Henao Hong"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-02",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-02T19:00:00-05:00",
+      "fin": "2026-10-02T22:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 3,
+      "clase": "CLASE 3",
+      "unidad": "MÓDULO 2: CONTRATACIÓN",
+      "unidadSlug": "modulo-2-contratacion",
+      "tema": "Contrato de trabajo",
+      "temaPuntos": [
+        "Contrato de trabajo"
+      ],
+      "temaHeredado": false,
+      "horas": 4,
+      "profesor": "Diana María Gómez Hoyos",
+      "profesores": [
+        "Diana María Gómez Hoyos"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-10-03",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-03T08:00:00-05:00",
+      "fin": "2026-10-03T12:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 4,
+      "clase": "CLASE 4",
+      "unidad": "MÓDULO 1: REFORMAS Y FUNDAMENTOS",
+      "unidadSlug": "modulo-1-reformas-y-fundamentos",
+      "tema": "Licencias y permisos",
+      "temaPuntos": [
+        "Licencias y permisos"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Giovanna Rojas Carrillo",
+      "profesores": [
+        "Giovanna Rojas Carrillo"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-07",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-07T18:00:00-05:00",
+      "fin": "2026-10-07T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 5,
+      "clase": "CLASE 5",
+      "unidad": "MÓDULO 1: REFORMAS Y FUNDAMENTOS",
+      "unidadSlug": "modulo-1-reformas-y-fundamentos",
+      "tema": "Jornada de trabajo",
+      "temaPuntos": [
+        "Jornada de trabajo"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Juan Manuel Insuasty Garzón",
+      "profesores": [
+        "Juan Manuel Insuasty Garzón"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-08",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-08T18:00:00-05:00",
+      "fin": "2026-10-08T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 6,
+      "clase": "CLASE 6",
+      "unidad": "MÓDULO 3: RÉGIMEN DISCIPLINARIO Y PREVENCIÓN",
+      "unidadSlug": "modulo-3-regimen-disciplinario-y-prevencion",
+      "tema": "Reglamento de trabajo y régimen disciplinario",
+      "temaPuntos": [
+        "Reglamento de trabajo y régimen disciplinario"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Sebastián Mejía Paternina",
+      "profesores": [
+        "Sebastián Mejía Paternina"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-09",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-09T18:00:00-05:00",
+      "fin": "2026-10-09T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 7,
+      "clase": "CLASE 7",
+      "unidad": "MÓDULO 7: TERCERIZACIÓN E INTERMEDIACIÓN",
+      "unidadSlug": "modulo-7-tercerizacion-e-intermediacion",
+      "tema": "Tercerización e intermediación",
+      "temaPuntos": [
+        "Tercerización e intermediación"
+      ],
+      "temaHeredado": false,
+      "horas": 4,
+      "profesor": "Enrique Borda Villegas",
+      "profesores": [
+        "Enrique Borda Villegas"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-10-10",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-10T08:00:00-05:00",
+      "fin": "2026-10-10T12:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 8,
+      "clase": "CLASE 8",
+      "unidad": "MÓDULO 9: ASPECTOS ESPECIALIZADOS",
+      "unidadSlug": "modulo-9-aspectos-especializados",
+      "tema": "Mecanismos internacionales de protección al trabajo",
+      "temaPuntos": [
+        "Mecanismos internacionales de protección al trabajo"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Juan Daniel Sierra Silgado",
+      "profesores": [
+        "Juan Daniel Sierra Silgado"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-14",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-14T18:00:00-05:00",
+      "fin": "2026-10-14T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 9,
+      "clase": "CLASE 9",
+      "unidad": "MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA",
+      "unidadSlug": "modulo-4-terminacion-y-planes-de-salida",
+      "tema": "Terminación del contrato de trabajo.",
+      "temaPuntos": [
+        "Terminación del contrato de trabajo."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Viviana Marcela Plazas Muñoz",
+      "profesores": [
+        "Viviana Marcela Plazas Muñoz"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-15",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-15T18:00:00-05:00",
+      "fin": "2026-10-15T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 10,
+      "clase": "CLASE 10",
+      "unidad": "MÓDULO 2: CONTRATACIÓN",
+      "unidadSlug": "modulo-2-contratacion",
+      "tema": "Contratación de personas con discapacidad",
+      "temaPuntos": [
+        "Contratación de personas con discapacidad"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Juan Carlos Andrade Flórez",
+      "profesores": [
+        "Juan Carlos Andrade Flórez"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-16",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-16T18:00:00-05:00",
+      "fin": "2026-10-16T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 11,
+      "clase": "CLASE 11",
+      "unidad": "MÓDULO 6: PRESTACIONES Y SEGURIDAD SOCIAL",
+      "unidadSlug": "modulo-6-prestaciones-y-seguridad-social",
+      "tema": "Salario",
+      "temaPuntos": [
+        "Salario"
+      ],
+      "temaHeredado": false,
+      "horas": 4,
+      "profesor": "David Velandia Bueno",
+      "profesores": [
+        "David Velandia Bueno"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-10-17",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-17T08:00:00-05:00",
+      "fin": "2026-10-17T12:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 12,
+      "clase": "CLASE 12",
+      "unidad": "MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA",
+      "unidadSlug": "modulo-4-terminacion-y-planes-de-salida",
+      "tema": "Planes de terminación de contratos de trabajo y reestructuraciones empresariales (estrategias para proteger el empleo y las organizaciones)",
+      "temaPuntos": [
+        "Planes de terminación de contratos de trabajo y reestructuraciones empresariales (estrategias para proteger el empleo y las organizaciones)"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Diana Milena Bolívar Sánchez",
+      "profesores": [
+        "Diana Milena Bolívar Sánchez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-21",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-21T18:00:00-05:00",
+      "fin": "2026-10-21T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 13,
+      "clase": "CLASE 13",
+      "unidad": "",
+      "unidadSlug": "",
+      "tema": "Teletrabajo y auxilio de conectividad, trabajo en casa, trabajo remoto. Desconexión laboral.\nCiber acoso",
+      "temaPuntos": [
+        "Teletrabajo y auxilio de conectividad, trabajo en casa, trabajo remoto. Desconexión laboral.",
+        "Ciber acoso"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Juan Esteban Amador Sánchez",
+      "profesores": [
+        "Juan Esteban Amador Sánchez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-22",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-22T18:00:00-05:00",
+      "fin": "2026-10-22T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 14,
+      "clase": "CLASE 14",
+      "unidad": "MÓDULO 2: CONTRATACIÓN",
+      "unidadSlug": "modulo-2-contratacion",
+      "tema": "Contratación laboral de Startups y plataformas digitales",
+      "temaPuntos": [
+        "Contratación laboral de Startups y plataformas digitales"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Néstor Julián Sacipa Lozano",
+      "profesores": [
+        "Néstor Julián Sacipa Lozano"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-23",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-23T18:00:00-05:00",
+      "fin": "2026-10-23T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 15,
+      "clase": "CLASE 15",
+      "unidad": "MÓDULO 1: REFORMAS Y FUNDAMENTOS",
+      "unidadSlug": "modulo-1-reformas-y-fundamentos",
+      "tema": "Automatización, descarbonización y transición justa",
+      "temaPuntos": [
+        "Automatización, descarbonización y transición justa"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Daniel Merchán Montes",
+      "profesores": [
+        "Daniel Merchán Montes"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-10-24",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-24T08:00:00-05:00",
+      "fin": "2026-10-24T10:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 16,
+      "clase": "CLASE 16",
+      "unidad": "MÓDULO 9: ASPECTOS ESPECIALIZADOS",
+      "unidadSlug": "modulo-9-aspectos-especializados",
+      "tema": "Derecho laboral deportivo",
+      "temaPuntos": [
+        "Derecho laboral deportivo"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Carlos Alberto Buitrago Londoño",
+      "profesores": [
+        "Carlos Alberto Buitrago Londoño"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-10-24",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-24T10:00:00-05:00",
+      "fin": "2026-10-24T12:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 17,
+      "clase": "CLASE 17",
+      "unidad": "MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA",
+      "unidadSlug": "modulo-4-terminacion-y-planes-de-salida",
+      "tema": "Visión pragmática de los fueros de maternidad y parentalidad extendido",
+      "temaPuntos": [
+        "Visión pragmática de los fueros de maternidad y parentalidad extendido"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "César Augusto Orjuela Cáceres",
+      "profesores": [
+        "César Augusto Orjuela Cáceres"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-10-28",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-28T18:00:00-05:00",
+      "fin": "2026-10-28T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 18,
+      "clase": "CLASE 18",
+      "unidad": "MÓDULO 8: PROCEDIMIENTOS Y LITIGIO",
+      "unidadSlug": "modulo-8-procedimientos-y-litigio",
+      "tema": "El derecho del trabajo y su protección a través de la acción de tutela",
+      "temaPuntos": [
+        "El derecho del trabajo y su protección a través de la acción de tutela"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Carlos Alberto Camargo Mejía",
+      "profesores": [
+        "Carlos Alberto Camargo Mejía"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-10-29",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-29T18:00:00-05:00",
+      "fin": "2026-10-29T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 19,
+      "clase": "CLASE 19",
+      "unidad": "MÓDULO 9: ASPECTOS ESPECIALIZADOS",
+      "unidadSlug": "modulo-9-aspectos-especializados",
+      "tema": "Innovación legal y aplicación de la IA al Derecho Laboral",
+      "temaPuntos": [
+        "Innovación legal y aplicación de la IA al Derecho Laboral"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Carolina Solano Medina",
+      "profesores": [
+        "Carolina Solano Medina"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-30",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-30T18:00:00-05:00",
+      "fin": "2026-10-30T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 20,
+      "clase": "CLASE 20",
+      "unidad": "MÓDULO 10: TALLERES PRÁCTICOS",
+      "unidadSlug": "modulo-10-talleres-practicos",
+      "tema": "Taller de manejo de planillas de seguridad social integral (novedades, correcciones y pagos)",
+      "temaPuntos": [
+        "Taller de manejo de planillas de seguridad social integral (novedades, correcciones y pagos)"
+      ],
+      "temaHeredado": false,
+      "horas": 4,
+      "profesor": "Mauricio Antonio González Morales",
+      "profesores": [
+        "Mauricio Antonio González Morales"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-10-31",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-10-31T08:00:00-05:00",
+      "fin": "2026-10-31T12:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 21,
+      "clase": "CLASE 21",
+      "unidad": "",
+      "unidadSlug": "",
+      "tema": "Otro tipo de trabajadores (Ley 2466/25)",
+      "temaPuntos": [
+        "Otro tipo de trabajadores (Ley 2466/25)"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Hermes García Duéñez",
+      "profesores": [
+        "Hermes García Duéñez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-04",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-04T18:00:00-05:00",
+      "fin": "2026-11-04T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 22,
+      "clase": "CLASE 22",
+      "unidad": "MÓDULO 5: RELACIONES COLECTIVAS",
+      "unidadSlug": "modulo-5-relaciones-colectivas",
+      "tema": "Sindicatos (estatutos, representación)",
+      "temaPuntos": [
+        "Sindicatos (estatutos, representación)"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Fabrizio Gasca Mayans",
+      "profesores": [
+        "Fabrizio Gasca Mayans"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-05",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-05T18:00:00-05:00",
+      "fin": "2026-11-05T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 23,
+      "clase": "CLASE 23",
+      "unidad": "MÓDULO 10: TALLERES PRÁCTICOS",
+      "unidadSlug": "modulo-10-talleres-practicos",
+      "tema": "Taller práctico sobre simulación de negociación colectiva",
+      "temaPuntos": [
+        "Taller práctico sobre simulación de negociación colectiva"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Fabrizio Gasca Mayans",
+      "profesores": [
+        "Fabrizio Gasca Mayans"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-06",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-06T18:00:00-05:00",
+      "fin": "2026-11-06T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 24,
+      "clase": "CLASE 24",
+      "unidad": "MÓDULO 6: PRESTACIONES Y SEGURIDAD SOCIAL",
+      "unidadSlug": "modulo-6-prestaciones-y-seguridad-social",
+      "tema": "Implementación del nuevo régimen pensional en Colombia (Ley 2381 de 2024 y su reglamentación)",
+      "temaPuntos": [
+        "Implementación del nuevo régimen pensional en Colombia (Ley 2381 de 2024 y su reglamentación)"
+      ],
+      "temaHeredado": false,
+      "horas": 4,
+      "profesor": "Vivian Acosta Aristizábal",
+      "profesores": [
+        "Vivian Acosta Aristizábal"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-11-07",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-07T08:00:00-05:00",
+      "fin": "2026-11-07T12:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 25,
+      "clase": "CLASE 25",
+      "unidad": "MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA",
+      "unidadSlug": "modulo-4-terminacion-y-planes-de-salida",
+      "tema": "La aplicación práctica de los fueros de pre-pensionados y de salud",
+      "temaPuntos": [
+        "La aplicación práctica de los fueros de pre-pensionados y de salud"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Germán Ernesto Ponce Bravo",
+      "profesores": [
+        "Germán Ernesto Ponce Bravo"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-11",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-11T18:00:00-05:00",
+      "fin": "2026-11-11T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 26,
+      "clase": "CLASE 26",
+      "unidad": "MÓDULO 8: PROCEDIMIENTOS Y LITIGIO",
+      "unidadSlug": "modulo-8-procedimientos-y-litigio",
+      "tema": "Ministerio del Trabajo, conciliaciones, querellas y procedimiento administrativo sancionatorio",
+      "temaPuntos": [
+        "Ministerio del Trabajo, conciliaciones, querellas y procedimiento administrativo sancionatorio"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Diego Andrés Adames Prada",
+      "profesores": [
+        "Diego Andrés Adames Prada"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-12",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-12T18:00:00-05:00",
+      "fin": "2026-11-12T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 27,
+      "clase": "CLASE 27",
+      "unidad": "MÓDULO 9: ASPECTOS ESPECIALIZADOS",
+      "unidadSlug": "modulo-9-aspectos-especializados",
+      "tema": "Migraciones laborales",
+      "temaPuntos": [
+        "Migraciones laborales"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Rodrigo Tannus Serrano",
+      "profesores": [
+        "Rodrigo Tannus Serrano"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-13",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-13T18:00:00-05:00",
+      "fin": "2026-11-13T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 28,
+      "clase": "CLASE 28",
+      "unidad": "MÓDULO 8: PROCEDIMIENTOS Y LITIGIO",
+      "unidadSlug": "modulo-8-procedimientos-y-litigio",
+      "tema": "Aspectos puntuales del procesal laboral a la luz del nuevo Código Procesal del Trabajo y de la Seguridad Social\n(Ley 2452 de 2025)",
+      "temaPuntos": [
+        "Aspectos puntuales del procesal laboral a la luz del nuevo Código Procesal del Trabajo y de la Seguridad Social",
+        "(Ley 2452 de 2025)"
+      ],
+      "temaHeredado": false,
+      "horas": 4,
+      "profesor": "Juan Sebastián López Jiménez",
+      "profesores": [
+        "Juan Sebastián López Jiménez"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-11-14",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-14T08:00:00-05:00",
+      "fin": "2026-11-14T12:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 29,
+      "clase": "CLASE 29",
+      "unidad": "",
+      "unidadSlug": "",
+      "tema": "-UGPP-\nAspectos prácticos frente a los procedimientos ante los requerimientos de fiscalización. Ley de financiamiento",
+      "temaPuntos": [
+        "UGPP-",
+        "Aspectos prácticos frente a los procedimientos ante los requerimientos de fiscalización. Ley de financiamiento"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Manuel Alejandro Plazas Rodríguez",
+      "profesores": [
+        "Manuel Alejandro Plazas Rodríguez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-18",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-18T18:00:00-05:00",
+      "fin": "2026-11-18T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 30,
+      "clase": "CLASE 30",
+      "unidad": "MÓDULO 9: ASPECTOS ESPECIALIZADOS",
+      "unidadSlug": "modulo-9-aspectos-especializados",
+      "tema": "Aspectos tributarios en las relaciones laborales",
+      "temaPuntos": [
+        "Aspectos tributarios en las relaciones laborales"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Juan Nicolás Cortés Galeano",
+      "profesores": [
+        "Juan Nicolás Cortés Galeano"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-19",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-19T18:00:00-05:00",
+      "fin": "2026-11-19T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 31,
+      "clase": "CLASE 31",
+      "unidad": "MÓDULO 10: TALLERES PRÁCTICOS",
+      "unidadSlug": "modulo-10-talleres-practicos",
+      "tema": "Nómina electrónica vs. nómina laboral",
+      "temaPuntos": [
+        "Nómina electrónica vs. nómina laboral"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Cristian Fabián Ramírez Ahumada",
+      "profesores": [
+        "Cristian Fabián Ramírez Ahumada"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-20",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-20T18:00:00-05:00",
+      "fin": "2026-11-20T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 32,
+      "clase": "CLASE 32",
+      "unidad": "MÓDULO 3: RÉGIMEN DISCIPLINARIO Y PREVENCIÓN",
+      "unidadSlug": "modulo-3-regimen-disciplinario-y-prevencion",
+      "tema": "Prevención de la violencia, acoso y discriminación",
+      "temaPuntos": [
+        "Prevención de la violencia, acoso y discriminación"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Sebastián González Valencia",
+      "profesores": [
+        "Sebastián González Valencia"
+      ],
+      "dia": "Sábado",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-11-21",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-21T08:00:00-05:00",
+      "fin": "2026-11-21T11:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 33,
+      "clase": "CLASE 33",
+      "unidad": "MÓDULO 6: PRESTACIONES Y SEGURIDAD SOCIAL",
+      "unidadSlug": "modulo-6-prestaciones-y-seguridad-social",
+      "tema": "Prestaciones sociales y otras obligaciones del empleador",
+      "temaPuntos": [
+        "Prestaciones sociales y otras obligaciones del empleador"
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Pablo Hernández Hussein",
+      "profesores": [
+        "Pablo Hernández Hussein"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-25",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-25T18:00:00-05:00",
+      "fin": "2026-11-25T21:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 34,
+      "clase": "CLASE 34",
+      "unidad": "",
+      "unidadSlug": "",
+      "tema": "Evaluaciones médico - ocupacionales (nuevas definiciones)",
+      "temaPuntos": [
+        "Evaluaciones médico - ocupacionales (nuevas definiciones)"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Sara Patricia Ariza Correa",
+      "profesores": [
+        "Sara Patricia Ariza Correa"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-26",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-26T18:00:00-05:00",
+      "fin": "2026-11-26T20:00:00-05:00",
+      "secuencia": 0
+    },
+    {
+      "id": 35,
+      "clase": "CLASE 35",
+      "unidad": "",
+      "unidadSlug": "",
+      "tema": "CLAUSURA",
+      "temaPuntos": [
+        "CLAUSURA"
+      ],
+      "temaHeredado": false,
+      "horas": null,
+      "profesor": "Diana María Gómez Hoyos",
+      "profesores": [
+        "Diana María Gómez Hoyos"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-26",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-26T20:00:00-05:00",
+      "fin": "2026-11-26T21:00:00-05:00",
+      "secuencia": 0
+    }
+  ],
+  "unidades": [
+    {
+      "slug": "modulo-1-reformas-y-fundamentos",
+      "nombre": "MÓDULO 1: REFORMAS Y FUNDAMENTOS",
+      "clases": [
+        2,
+        4,
+        5,
+        15
+      ],
+      "horas": 10
+    },
+    {
+      "slug": "modulo-2-contratacion",
+      "nombre": "MÓDULO 2: CONTRATACIÓN",
+      "clases": [
+        3,
+        10,
+        14
+      ],
+      "horas": 9
+    },
+    {
+      "slug": "modulo-3-regimen-disciplinario-y-prevencion",
+      "nombre": "MÓDULO 3: RÉGIMEN DISCIPLINARIO Y PREVENCIÓN",
+      "clases": [
+        6,
+        32
+      ],
+      "horas": 6
+    },
+    {
+      "slug": "modulo-7-tercerizacion-e-intermediacion",
+      "nombre": "MÓDULO 7: TERCERIZACIÓN E INTERMEDIACIÓN",
+      "clases": [
+        7
+      ],
+      "horas": 4
+    },
+    {
+      "slug": "modulo-9-aspectos-especializados",
+      "nombre": "MÓDULO 9: ASPECTOS ESPECIALIZADOS",
+      "clases": [
+        8,
+        16,
+        19,
+        27,
+        30
+      ],
+      "horas": 14
+    },
+    {
+      "slug": "modulo-4-terminacion-y-planes-de-salida",
+      "nombre": "MÓDULO 4: TERMINACIÓN Y PLANES DE SALIDA",
+      "clases": [
+        9,
+        12,
+        17,
+        25
+      ],
+      "horas": 12
+    },
+    {
+      "slug": "modulo-6-prestaciones-y-seguridad-social",
+      "nombre": "MÓDULO 6: PRESTACIONES Y SEGURIDAD SOCIAL",
+      "clases": [
+        11,
+        24,
+        33
+      ],
+      "horas": 11
+    },
+    {
+      "slug": "modulo-8-procedimientos-y-litigio",
+      "nombre": "MÓDULO 8: PROCEDIMIENTOS Y LITIGIO",
+      "clases": [
+        18,
+        26,
+        28
+      ],
+      "horas": 10
+    },
+    {
+      "slug": "modulo-10-talleres-practicos",
+      "nombre": "MÓDULO 10: TALLERES PRÁCTICOS",
+      "clases": [
+        20,
+        23,
+        31
+      ],
+      "horas": 10
+    },
+    {
+      "slug": "modulo-5-relaciones-colectivas",
+      "nombre": "MÓDULO 5: RELACIONES COLECTIVAS",
+      "clases": [
+        22
+      ],
+      "horas": 3
+    }
+  ],
+  "profesores": [
+    "Carlos Alberto Buitrago Londoño",
+    "Carlos Alberto Camargo Mejía",
+    "Carolina Solano Medina",
+    "Cristian Fabián Ramírez Ahumada",
+    "César Augusto Orjuela Cáceres",
+    "Daniel Merchán Montes",
+    "Daniela Henao Hong",
+    "David Velandia Bueno",
+    "Diana María Gómez Hoyos",
+    "Diana Milena Bolívar Sánchez",
+    "Diego Andrés Adames Prada",
+    "Enrique Borda Villegas",
+    "Fabrizio Gasca Mayans",
+    "Germán Ernesto Ponce Bravo",
+    "Giovanna Rojas Carrillo",
+    "Hermes García Duéñez",
+    "Juan Carlos Andrade Flórez",
+    "Juan Daniel Sierra Silgado",
+    "Juan Esteban Amador Sánchez",
+    "Juan Manuel Insuasty Garzón",
+    "Juan Nicolás Cortés Galeano",
+    "Juan Sebastián López Jiménez",
+    "Manuel Alejandro Plazas Rodríguez",
+    "Mauricio Antonio González Morales",
+    "Néstor Julián Sacipa Lozano",
+    "Pablo Hernández Hussein",
+    "Rodrigo Tannus Serrano",
+    "Sara Patricia Ariza Correa",
+    "Sebastián González Valencia",
+    "Sebastián Mejía Paternina",
+    "Vivian Acosta Aristizábal",
+    "Viviana Marcela Plazas Muñoz"
+  ],
+  "asistentesPat": [],
+  "cambios": []
+}
