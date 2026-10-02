@@ -12,11 +12,11 @@
   <meta name="theme-color" content="#0B1B3D">
   <link rel="icon" type="image/svg+xml" href="assets/icono.svg">
   <link rel="preload" href="assets/fuentes/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/componentes.css">
-  <link rel="stylesheet" href="css/calendario.css">
-  <link rel="stylesheet" href="css/impresion.css">
+  <link rel="stylesheet" href="css/tokens.css?v=__V__">
+  <link rel="stylesheet" href="css/base.css?v=__V__">
+  <link rel="stylesheet" href="css/componentes.css?v=__V__">
+  <link rel="stylesheet" href="css/calendario.css?v=__V__">
+  <link rel="stylesheet" href="css/impresion.css?v=__V__">
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="caucho" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="r"/><feColorMatrix in="r" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3.4 0 0 0 2.9" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
@@ -99,6 +99,8 @@
   </footer>
 
   <div id="hoja-impresion" aria-hidden="true"></div>
-  <script type="module" src="js/app.js"></script>
+  <!-- __V__ se reemplaza por el commit en cada despliegue: obliga al navegador a pedir los archivos nuevos -->
+  <script type="importmap">{"imports":{"./js/app.js":"./js/app.js?v=__V__","./js/datos.js":"./js/datos.js?v=__V__","./js/estado.js":"./js/estado.js?v=__V__","./js/filtros.js":"./js/filtros.js?v=__V__","./js/vista-lista.js":"./js/vista-lista.js?v=__V__","./js/vista-calendario.js":"./js/vista-calendario.js?v=__V__","./js/proxima-clase.js":"./js/proxima-clase.js?v=__V__","./js/cambios.js":"./js/cambios.js?v=__V__","./js/ics.js":"./js/ics.js?v=__V__","./js/pdf.js":"./js/pdf.js?v=__V__","./js/secciones.js":"./js/secciones.js?v=__V__","./js/ui.js":"./js/ui.js?v=__V__","./js/iconos.js":"./js/iconos.js?v=__V__","./js/utils-fecha.js":"./js/utils-fecha.js?v=__V__"}}</script>
+  <script type="module" src="js/app.js?v=__V__"></script>
 </body>
 </html>

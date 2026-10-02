@@ -58,7 +58,9 @@ def test_carga_sin_errores_y_cifras(pagina, base):
     abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
     assert "35 clases del 1 de octubre de 2026 al 4 de diciembre de 2026" in pagina.inner_text("#lead")
     assert pagina.inner_text("#contador") == "35 clases"
-    assert pagina.locator("#plan-lista .unidad").count() == 17 and pagina.locator(".chip-docente").count() == 12
+    datos = json.loads((RAIZ / "data/data.json").read_text(encoding="utf-8"))
+    assert pagina.locator("#plan-lista .unidad").count() == len(datos["unidades"])
+    assert pagina.locator(".chip-docente").count() == len(datos["profesores"])
     assert pagina.errores == []
 
 

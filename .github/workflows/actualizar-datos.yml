@@ -120,6 +120,7 @@ jobs:
         run: |
           mkdir _sitio
           cp -r index.html css js assets data config cronograma.ics _sitio/
+          sed -i "s/__V__/${GITHUB_SHA::8}/g" _sitio/index.html
           touch _sitio/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
