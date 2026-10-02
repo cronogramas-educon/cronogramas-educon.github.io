@@ -1,0 +1,595 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cronograma Educacion Continua//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Compliance y Gobierno Corporativo en la práctica
+X-WR-TIMEZONE:America/Bogota
+BEGIN:VTIMEZONE
+TZID:America/Bogota
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0500
+TZNAME:-05
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:clase-01@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261001T180000
+DTEND;TZID=America/Bogota:20261001T210000
+SUMMARY:Clase 1: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA\n\nTema:\n- 
+ Concepto y evolución del gobierno corporativo. Introducción y contexto d
+ el programa.\n\nDocente: por confirmar
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 1 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-02@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261002T180000
+DTEND;TZID=America/Bogota:20261002T210000
+SUMMARY:Clase 2: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA\n\nTema:\n- 
+ Gobierno corporativo formal vs. dinámicas reales.\n\nDocente: por confirm
+ ar
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 2 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-03@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261006T180000
+DTEND;TZID=America/Bogota:20261006T210000
+SUMMARY:Clase 3: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA\n\nTema:\n- 
+ Estructuras de gobierno: junta directiva\, administración y control.\n\nD
+ ocente: por confirmar
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 3 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-04@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261007T180000
+DTEND;TZID=America/Bogota:20261007T210000
+SUMMARY:Clase 4: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA\n\nTema:\n- 
+ Rol del abogado y de los profesionales en la organización. Introducción 
+ a la toma de decisiones en entornos corporativos.\n\nDocente: por confirma
+ r
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 4 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-05@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261008T180000
+DTEND;TZID=America/Bogota:20261008T210000
+SUMMARY:Clase 5: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECI
+ SIONES\n\nTema:\n- Función y dinámica de las juntas directivas.\n\nDocen
+ te: Alejandro Mejía
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 5 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-06@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261009T180000
+DTEND;TZID=America/Bogota:20261009T210000
+SUMMARY:Clase 6: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECI
+ SIONES\n\nTema:\n- Preparación y presentación de información en escenar
+ ios de decisión.\n\nDocente: Alejandro Mejía
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 6 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-07@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261013T180000
+DTEND;TZID=America/Bogota:20261013T210000
+SUMMARY:Clase 7: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECI
+ SIONES\n\nTema:\n- Qué comunicar\, cómo comunicar y qué evitar.\n\nDoce
+ nte: Alejandro Mejía
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 7 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-08@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261014T180000
+DTEND;TZID=America/Bogota:20261014T210000
+SUMMARY:Clase 8: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECI
+ SIONES\n\nTema:\n- Manejo de presión\, exposición y responsabilidad. Con
+ strucción de criterio en escenarios complejos.\n\nDocente: Alejandro Mej
+ ía
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 8 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-09@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261015T180000
+DTEND;TZID=America/Bogota:20261015T210000
+SUMMARY:Clase 9: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOC
+ IADOS\n\nTema:\n- Deberes fiduciarios y responsabilidad de administradores
+ .\n\nDocente: Daniel Berdugo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 9 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-10@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261016T180000
+DTEND;TZID=America/Bogota:20261016T210000
+SUMMARY:Clase 10: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOC
+ IADOS\n\nTema:\n- Responsabilidad civil\, penal y administrativa.\n\nDocen
+ te: Daniel Berdugo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 10 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-11@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261020T180000
+DTEND;TZID=America/Bogota:20261020T210000
+SUMMARY:Clase 11: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOC
+ IADOS\n\nTema:\n- Riesgos reputacionales. Mecanismos de protección y prev
+ ención.\n\nDocente: Daniel Berdugo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 11 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-12@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261021T180000
+DTEND;TZID=America/Bogota:20261021T210000
+SUMMARY:Clase 12: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOC
+ IADOS\n\nTema:\n- Casos relevantes: aplicación práctica de la responsabi
+ lidad de administradores.\n\nDocente: Daniel Berdugo
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 12 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-13@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261022T180000
+DTEND;TZID=America/Bogota:20261022T210000
+SUMMARY:Clase 13: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES\n\nTema:
+ \n- Tipologías de riesgo: legal\, reputacional\, operativo y estratégico
+ .\n\nDocente: Melissa Alejandra Dukuara
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 13 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-14@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261023T180000
+DTEND;TZID=America/Bogota:20261023T210000
+SUMMARY:Clase 14: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES\n\nTema:
+ \n- Identificación\, análisis y evaluación de riesgos.\n\nDocente: Meli
+ ssa Alejandra Dukuara
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 14 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-15@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261027T180000
+DTEND;TZID=America/Bogota:20261027T210000
+SUMMARY:Clase 15: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES\n\nTema:
+ \n- Herramientas de priorización. Estrategias de gestión: mitigación\, 
+ transferencia y aceptación.\n\nDocente: Melissa Alejandra Dukuara
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 15 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-16@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261028T180000
+DTEND;TZID=America/Bogota:20261028T210000
+SUMMARY:Clase 16: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES\n\nTema:
+ \n- Relación entre riesgo y decisión empresarial. Aplicación práctica.
+ \n\nDocente: Melissa Alejandra Dukuara
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 16 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-17@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261029T180000
+DTEND;TZID=America/Bogota:20261029T210000
+SUMMARY:Clase 17: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO\n\nTema:\n- Complia
+ nce como sistema organizacional.\n\nDocente: María Camila González
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 17 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-18@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261030T180000
+DTEND;TZID=America/Bogota:20261030T210000
+SUMMARY:Clase 18: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO\n\nTema:\n- Integra
+ ción de programas de cumplimiento.\n\nDocente: María Camila González
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 18 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-19@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261103T180000
+DTEND;TZID=America/Bogota:20261103T210000
+SUMMARY:Clase 19: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO\n\nTema:\n- Gobiern
+ o corporativo como eje articulador.\n\nDocente: María Camila González
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 19 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-20@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261104T180000
+DTEND;TZID=America/Bogota:20261104T210000
+SUMMARY:Clase 20: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO\n\nTema:\n- Cultura
+  de cumplimiento y ética empresarial. Modelos de implementación.\n\nDoce
+ nte: María Camila González
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 20 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-21@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261105T180000
+DTEND;TZID=America/Bogota:20261105T210000
+SUMMARY:Clase 21: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORN
+ OS DE DECISIÓN\n\nTema:\n- Comunicación en escenarios de alta dirección
+ .\n\nDocente: José Luis Jerez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 21 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-22@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261106T180000
+DTEND;TZID=America/Bogota:20261106T210000
+SUMMARY:Clase 22: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORN
+ OS DE DECISIÓN\n\nTema:\n- Estructuración del mensaje para la toma de de
+ cisiones.\n\nDocente: José Luis Jerez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 22 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-23@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261110T180000
+DTEND;TZID=America/Bogota:20261110T210000
+SUMMARY:Clase 23: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORN
+ OS DE DECISIÓN\n\nTema:\n- Técnicas de persuasión aplicadas al entorno 
+ corporativo. Lenguaje verbal y no verbal en contextos de presión.\n\nDoce
+ nte: José Luis Jerez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 23 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-24@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261111T180000
+DTEND;TZID=America/Bogota:20261111T210000
+SUMMARY:Clase 24: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORN
+ OS DE DECISIÓN\n\nTema:\n- Manejo de objeciones y preguntas difíciles. C
+ ontrol del discurso y seguridad al intervenir.\n\nDocente: José Luis Jere
+ z
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 24 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-25@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261112T180000
+DTEND;TZID=America/Bogota:20261112T210000
+SUMMARY:Clase 25: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORN
+ OS DE DECISIÓN\n\nTema:\n- Construcción de narrativa estratégica. Aplic
+ ación práctica en escenarios de decisión.\n\nDocente: José Luis Jerez
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 25 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-26@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261113T180000
+DTEND;TZID=America/Bogota:20261113T210000
+SUMMARY:Clase 26: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 7 – GOBIERNO CORPORATIVO\, CULTURA E IMPACTO ORGANIZA
+ CIONAL\n\nTema:\n- Cultura organizacional como activo estratégico.\n\nDoc
+ ente: Julio Ernesto Calderón
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 26 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-27@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261117T180000
+DTEND;TZID=America/Bogota:20261117T210000
+SUMMARY:Clase 27: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 7 – GOBIERNO CORPORATIVO\, CULTURA E IMPACTO ORGANIZA
+ CIONAL\n\nTema:\n- Responsabilidad social vs. responsabilidad empresarial.
+  ESG desde una perspectiva práctica.\n\nDocente: Julio Ernesto Calderón
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 27 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-28@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261118T180000
+DTEND;TZID=America/Bogota:20261118T210000
+SUMMARY:Clase 28: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 7 – GOBIERNO CORPORATIVO\, CULTURA E IMPACTO ORGANIZA
+ CIONAL\n\nTema:\n- Impacto reputacional y sostenibilidad. Gobierno corpora
+ tivo como generador de valor.\n\nDocente: Julio Ernesto Calderón
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 28 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-29@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261119T180000
+DTEND;TZID=America/Bogota:20261119T210000
+SUMMARY:Clase 29: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 7 – GOBIERNO CORPORATIVO\, CULTURA E IMPACTO ORGANIZA
+ CIONAL\n\nTema:\n- Relación con proveedores y aliados. Casos prácticos.\
+ n\nDocente: Julio Ernesto Calderón
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 29 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-30@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261120T180000
+DTEND;TZID=America/Bogota:20261120T210000
+SUMMARY:Clase 30: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL\n\nTem
+ a:\n- Tipología de crisis empresariales.\n\nDocente: Daniel Tocarruncho
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 30 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-31@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261124T180000
+DTEND;TZID=America/Bogota:20261124T210000
+SUMMARY:Clase 31: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL\n\nTem
+ a:\n- Manejo de crisis desde el gobierno corporativo.\n\nDocente: Daniel T
+ ocarruncho
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 31 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-32@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261125T180000
+DTEND;TZID=America/Bogota:20261125T210000
+SUMMARY:Clase 32: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL\n\nTem
+ a:\n- Rol del área legal y de cumplimiento.\n\nDocente: Daniel Tocarrunch
+ o
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 32 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-33@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261126T180000
+DTEND;TZID=America/Bogota:20261126T210000
+SUMMARY:Clase 33: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL\n\nTem
+ a:\n- Toma de decisiones bajo presión. Estrategias de contención y respu
+ esta.\n\nDocente: Daniel Tocarruncho
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 33 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clase-34@cronograma-compliance-gobierno-corporativo
+DTSTAMP:20261002T210334Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261127T180000
+DTEND;TZID=America/Bogota:20261127T210000
+SUMMARY:Clase 34: Compliance y Gobierno Corporativo en la práctica
+DESCRIPTION:MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL\n\nTem
+ a:\n- Caso práctico integrador / simulación de crisis empresarial y cier
+ re del diplomado.\n\nDocente: Daniel Tocarruncho y Melissa Dukuara
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 34 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
