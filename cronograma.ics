@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:clase-01@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261001T170000
 DTEND;TZID=America/Bogota:20261001T200000
@@ -26,9 +26,9 @@ DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN\n\nTema:\n- Br
  tes aproximaciones al vocablo corrupción\n- Convenciones internacionales 
  de lucha contra la corrupción\n\nDocente: Marta Lucia Ramírez\nAsistente
   PAT: Jenier Sebastián Achury Gómez\n\nUnirme en Teams: https://teams.mi
- crosoft.com/meet/EJEMPLO
+ crosoft.com/meet/284638275820611?p=eoKUnPFcmZZzAM1BmL
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/284638275820611?p=eoKUnPFcmZZzAM1BmL
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 1 comienza en 30 minutos
@@ -37,7 +37,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-02@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261002T170000
 DTEND;TZID=America/Bogota:20261002T200000
@@ -53,9 +53,9 @@ DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
  de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
   la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
  rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
- eet/EJEMPLO
+ eet/280147807408304?p=4FZXyLOMrGC2HtXnTW
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/280147807408304?p=4FZXyLOMrGC2HtXnTW
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 2 comienza en 30 minutos
@@ -64,7 +64,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-03@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261006T170000
 DTEND;TZID=America/Bogota:20261006T200000
@@ -80,9 +80,9 @@ DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
  de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
   la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
  rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
- eet/EJEMPLO
+ eet/23900964268754?p=uoYye9N7R60IEmpZAS
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/23900964268754?p=uoYye9N7R60IEmpZAS
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 3 comienza en 30 minutos
@@ -91,7 +91,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-04@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261007T170000
 DTEND;TZID=America/Bogota:20261007T200000
@@ -107,9 +107,9 @@ DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
  de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
   la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
  rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
- eet/EJEMPLO
+ eet/238328520074627?p=f59ZOV8sReDjl8ITl5
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/238328520074627?p=f59ZOV8sReDjl8ITl5
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 4 comienza en 30 minutos
@@ -118,7 +118,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-05@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261008T170000
 DTEND;TZID=America/Bogota:20261008T200000
@@ -133,10 +133,10 @@ DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
  ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
  de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
   la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Jenier Sebas
- tián Achury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/E
- JEMPLO
+ tián Achury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/2
+ 19889224645872?p=Xtx3atDv6Rd1cnlw9F
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/219889224645872?p=Xtx3atDv6Rd1cnlw9F
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 5 comienza en 30 minutos
@@ -145,7 +145,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-06@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261009T170000
 DTEND;TZID=America/Bogota:20261009T200000
@@ -155,9 +155,9 @@ DESCRIPTION:EL OFICIAL DE CUMPLIMIENTO Y LA JUNTA DIRECTIVA\n\nTema:\n- Fun
  imiento.\n- Obligaciones.\n- Responsabilidades.\n- Rol en el sistema.\n- L
  a confidencialidad del ROS\, revelación (tipping-off).\n\nDocente: SABANA
  \nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: 
- https://teams.microsoft.com/meet/EJEMPLO
+ https://teams.microsoft.com/meet/293664515793592?p=xfCS9MprvEqH04wqSI
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/293664515793592?p=xfCS9MprvEqH04wqSI
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 6 comienza en 30 minutos
@@ -166,7 +166,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-07@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261013T170000
 DTEND;TZID=America/Bogota:20261013T200000
@@ -175,9 +175,9 @@ DESCRIPTION:TRANSPARENCIA EN LA CONTRATACIÓN\n\nTema:\n- Esquemas de anti-
  fraude en la contratación pública en Colombia\, Banco Mundial (BM) y Ban
  co Interamericano de Desarrollo (BID).\n\nDocente: Felipe Ortegón\nAsiste
  nte PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://
- teams.microsoft.com/meet/EJEMPLO
+ teams.microsoft.com/meet/28849900588980?p=igIjlVpY5VaeXHwt87
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/28849900588980?p=igIjlVpY5VaeXHwt87
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 7 comienza en 30 minutos
@@ -186,7 +186,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-08@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261014T170000
 DTEND;TZID=America/Bogota:20261014T200000
@@ -196,9 +196,9 @@ DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN\n\nTema:\n- Ac
  Colombia. (Procuraduría\, Fiscalía y Contraloría)\n- Secretaría de Tra
  nsparencia\n- Mecanismos de Prevención.\n\nDocente: Beatriz Londoño P\nA
  sistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: htt
- ps://teams.microsoft.com/meet/EJEMPLO
+ ps://teams.microsoft.com/meet/240734369266245?p=PJMObbT0vbUJuVncXW
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/240734369266245?p=PJMObbT0vbUJuVncXW
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 8 comienza en 30 minutos
@@ -207,7 +207,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-09@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261015T170000
 DTEND;TZID=America/Bogota:20261015T200000
@@ -215,9 +215,10 @@ SUMMARY:Clase 9: Compliance Anti-corrupción y Anti-lavado
 DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA DE LA CORRUPCIÓN\n\nTema:\n- Le
  yes nacionales relacionadas con la lucha anticorrupción y la Ley 2195 de 
  2022.\n\nDocente: Beatriz Londoño P\nAsistente PAT: Jenier Sebastián Ach
- ury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+ ury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/2995720792
+ 11485?p=Bxtlufw2OAwf3sw1FI
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/299572079211485?p=Bxtlufw2OAwf3sw1FI
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 9 comienza en 30 minutos
@@ -226,7 +227,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-10@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261020T170000
 DTEND;TZID=America/Bogota:20261020T200000
@@ -234,9 +235,10 @@ SUMMARY:Clase 10: Compliance Anti-corrupción y Anti-lavado
 DESCRIPTION:EVOLUCIÓN Y MARCO NORMATIVO DEL COMPLIANCE\nEN EEUU\n\nTema:\n
  - Evolución y surgimiento en EE. UU. del compliance empresarial.\n\nDocen
  te: Mery Mantilla\nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\n
- Unirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+ Unirme en Teams: https://teams.microsoft.com/meet/241416725824559?p=C8mbjc
+ 2muUEP96qM9c
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/241416725824559?p=C8mbjc2muUEP96qM9c
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 10 comienza en 30 minutos
@@ -245,7 +247,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-11@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261021T170000
 DTEND;TZID=America/Bogota:20261021T200000
@@ -253,9 +255,9 @@ SUMMARY:Clase 11: Compliance Anti-corrupción y Anti-lavado
 DESCRIPTION:EVOLUCIÓN Y MARCO NORMATIVO DEL COMPLIANCE\nEN EEUU\n\nTema:\n
  - Casos de estudio.\n\nDocente: Mery Mantilla\nAsistente PAT: Fabián Albe
  rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
- eet/EJEMPLO
+ eet/255041666584638?p=scKHI3sCqWVt41hyhd
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/255041666584638?p=scKHI3sCqWVt41hyhd
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 11 comienza en 30 minutos
@@ -264,7 +266,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-12@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261022T170000
 DTEND;TZID=America/Bogota:20261022T200000
@@ -273,9 +275,10 @@ DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MAR
  CO NORMATIVO APLICADO PARA ENFRENTARLA\n\nTema:\n- Breve historia de la lu
  cha contra el lavado de activos\n- Marco normativo Internacional\n\nDocent
  e: Marta Lucia Ramírez\nAsistente PAT: Jenier Sebastián Achury Gómez\n\
- nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+ nUnirme en Teams: https://teams.microsoft.com/meet/296380318745372?p=ibXQn
+ x6biwt08M8GBv
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/296380318745372?p=ibXQnx6biwt08M8GBv
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 12 comienza en 30 minutos
@@ -284,7 +287,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-13@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261023T170000
 DTEND;TZID=America/Bogota:20261023T200000
@@ -293,9 +296,9 @@ DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MAR
  CO NORMATIVO APLICADO PARA ENFRENTARLA\n\nTema:\n- Marco normativo Naciona
  l\n- 40 Recomendaciones GAFI\n\nDocente: Marta Lucia Ramírez\nAsistente P
  AT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams
- .microsoft.com/meet/EJEMPLO
+ .microsoft.com/meet/298897279906033?p=hnK4efFgfNDufqEhPv
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/298897279906033?p=hnK4efFgfNDufqEhPv
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 13 comienza en 30 minutos
@@ -304,7 +307,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-14@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261027T170000
 DTEND;TZID=America/Bogota:20261027T200000
@@ -313,9 +316,9 @@ DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA Y DEL LAVADO DE ACTIVOS Y EL MAR
  CO NORMATIVO APLICADO PARA ENFRENTARLA\n\nTema:\n- Efectos del Lavado de A
  ctivos\, indicadores económicos y sociales\n\nDocente: Marta Lucia Ramír
  ez\nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams
- : https://teams.microsoft.com/meet/EJEMPLO
+ : https://teams.microsoft.com/meet/263400889676300?p=NgoPgA5PaPDozOJ2K4
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/263400889676300?p=NgoPgA5PaPDozOJ2K4
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 14 comienza en 30 minutos
@@ -324,7 +327,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-15@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261028T170000
 DTEND;TZID=America/Bogota:20261028T200000
@@ -334,9 +337,9 @@ DESCRIPTION:CONTEXTO GENERAL DE LA AMENAZA DEL FINANCIAMIENTO DEL TERRORISM
  1 y los cambios en la lucha contra el terrorismo\n- Marco internacional y 
  nacional. Exigencias GAFI.\n\nDocente: Marta Lucia Ramírez\nAsistente PAT
  : Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.m
- icrosoft.com/meet/EJEMPLO
+ icrosoft.com/meet/247991286940431?p=SIkCOLLDvXRNu1IByP
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/247991286940431?p=SIkCOLLDvXRNu1IByP
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 15 comienza en 30 minutos
@@ -345,7 +348,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-16@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261030T170000
 DTEND;TZID=America/Bogota:20261030T200000
@@ -355,10 +358,10 @@ DESCRIPTION:HERRAMIENTAS Y CONTROLES ANTI- LAVADO Y ANTI-CORRUPCIÓN.\n\nTe
  mplificada y reforzada).\n- CASO: Personas Expuestas Políticamente (PEP).
  \n- CASO: Beneficiario final.\n- CASO: Chequeo de listas (vinculantes y re
  strictivas).\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Alberto C
- órdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/E
- JEMPLO
+ órdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/2
+ 51547305811663?p=zvo7CotqqGRkwFghMa
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/251547305811663?p=zvo7CotqqGRkwFghMa
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 16 comienza en 30 minutos
@@ -367,7 +370,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-17@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261103T170000
 DTEND;TZID=America/Bogota:20261103T200000
@@ -377,10 +380,10 @@ DESCRIPTION:HERRAMIENTAS Y CONTROLES ANTI- LAVADO Y ANTI-CORRUPCIÓN.\n\nTe
  mplificada y reforzada).\n- CASO: Personas Expuestas Políticamente (PEP).
  \n- CASO: Beneficiario final.\n- CASO: Chequeo de listas (vinculantes y re
  strictivas).\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Alberto C
- órdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/E
- JEMPLO
+ órdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/2
+ 64336229100248?p=6ef7iO1L0a71vVpimW
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/264336229100248?p=6ef7iO1L0a71vVpimW
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 17 comienza en 30 minutos
@@ -389,7 +392,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-18@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261104T170000
 DTEND;TZID=America/Bogota:20261104T200000
@@ -398,9 +401,9 @@ DESCRIPTION:SEGMENTACIÓN PARA EL ANÁLISIS DE RIESGOS ALA/CFT.\n\nTema:\n-
   Se explicarán aspectos práctico – teóricos sobre segmentación de ri
  esgos y realizará un taller práctico.\n\nDocente: Wilson Gonzalez\nAsist
  ente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https:/
- /teams.microsoft.com/meet/EJEMPLO
+ /teams.microsoft.com/meet/235371453640061?p=cVl6lOyUciLUCoHCle
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/235371453640061?p=cVl6lOyUciLUCoHCle
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 18 comienza en 30 minutos
@@ -409,7 +412,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-19@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261105T170000
 DTEND;TZID=America/Bogota:20261105T200000
@@ -418,9 +421,9 @@ DESCRIPTION:SEGMENTACIÓN PARA EL ANÁLISIS DE RIESGOS ALA/CFT.\n\nTema:\n-
   Se explicarán aspectos práctico – teóricos sobre segmentación de ri
  esgos y realizará un taller práctico.\n\nDocente: Wilson Gonzalez\nAsist
  ente PAT: Jenier Sebastián Achury Gómez\n\nUnirme en Teams: https://team
- s.microsoft.com/meet/EJEMPLO
+ s.microsoft.com/meet/284676630972974?p=qLihHFYB59QRFvdUvA
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/284676630972974?p=qLihHFYB59QRFvdUvA
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 19 comienza en 30 minutos
@@ -429,16 +432,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-20@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261106T170000
 DTEND;TZID=America/Bogota:20261106T200000
 SUMMARY:Clase 20: Compliance Anti-corrupción y Anti-lavado
 DESCRIPTION:TALLER SEGMENTACIÓN\n\nTema:\n- segmentación de riesgos\n\nDo
  cente: Wilson Gonzalez\nAsistente PAT: Fabián Alberto Córdoba Almendrale
- s\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+ s\n\nUnirme en Teams: https://teams.microsoft.com/meet/235827307493812?p=I
+ qISQnzWj8C2V619Ak
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/235827307493812?p=IqISQnzWj8C2V619Ak
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 20 comienza en 30 minutos
@@ -447,7 +451,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-21@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261110T170000
 DTEND;TZID=America/Bogota:20261110T200000
@@ -457,9 +461,10 @@ DESCRIPTION:CANALES DE DENUNCIA\, INVESTIGACIONES INTERNAS Y PROTECCIÓN A
  ínimos de una denuncia.\n- Evaluación e investigación de los hechos exp
  uestos. CASO\n- Procesos internos.\n- Políticas de protección a denuncia
  ntes.\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Alberto Córdoba
-  Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+  Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/29234927
+ 9642253?p=d8LvfMcHMFREMIiVha
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/292349279642253?p=d8LvfMcHMFREMIiVha
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 21 comienza en 30 minutos
@@ -468,7 +473,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-22@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261111T170000
 DTEND;TZID=America/Bogota:20261111T200000
@@ -478,9 +483,10 @@ DESCRIPTION:CANALES DE DENUNCIA\, INVESTIGACIONES INTERNAS Y PROTECCIÓN A
  ínimos de una denuncia.\n- Evaluación e investigación de los hechos exp
  uestos. CASO\n- Procesos internos.\n- Políticas de protección a denuncia
  ntes.\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Alberto Córdoba
-  Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+  Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet/22156991
+ 0850094?p=oo1QJcXmfTynRNmilj
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/221569910850094?p=oo1QJcXmfTynRNmilj
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 22 comienza en 30 minutos
@@ -489,7 +495,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-23@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261112T170000
 DTEND;TZID=America/Bogota:20261112T200000
@@ -499,9 +505,10 @@ DESCRIPTION:PROGRAMAS DE TRANSPARENCIA Y ÉTICA PÚBLICA Y EMPRESARIAL\n\nT
  o.\n- Parámetros de la Superfinanciera y Supersociedades para la revisió
  n de los programas de administración de riesgos.\n\nDocente: Marta Lucia 
  Ramírez y Beatriz Londoño P\nAsistente PAT: Jenier Sebastián Achury Gó
- mez\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+ mez\n\nUnirme en Teams: https://teams.microsoft.com/meet/269235985144889?p
+ =UIZyZcE51MoT9V94xW
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/269235985144889?p=UIZyZcE51MoT9V94xW
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 23 comienza en 30 minutos
@@ -510,7 +517,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-24@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261117T170000
 DTEND;TZID=America/Bogota:20261117T200000
@@ -520,9 +527,9 @@ DESCRIPTION:BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y AN
  ización y empleo de big data\, analítica y redes en la gestión del ries
  go ALA/CFT\n\nDocente: Sebastián Villegas\nAsistente PAT: Fabián Alberto
   Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet
- /EJEMPLO
+ /211520175686743?p=1Laao1e533i4gpUwPx
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/211520175686743?p=1Laao1e533i4gpUwPx
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 24 comienza en 30 minutos
@@ -531,7 +538,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-25@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261118T170000
 DTEND;TZID=America/Bogota:20261118T200000
@@ -541,9 +548,9 @@ DESCRIPTION:BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y AN
  ización y empleo de big data\, analítica y redes en la gestión del ries
  go ALA/CFT\n\nDocente: Sebastián Villegas\nAsistente PAT: Fabián Alberto
   Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/meet
- /EJEMPLO
+ /25053109924129?p=f8LQIzyAkW3QZ4bmC6
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/25053109924129?p=f8LQIzyAkW3QZ4bmC6
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 25 comienza en 30 minutos
@@ -552,7 +559,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-26@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261119T170000
 DTEND;TZID=America/Bogota:20261119T200000
@@ -561,10 +568,10 @@ DESCRIPTION:BIG DATA Y ANALÍTICA EN LA GESTIÓN DEL RIESGO ANTILAVADO Y AN
  TICORRUPCIÓN\n\nTema:\n- Fundamentos teóricos y prácticos sobre la util
  ización y empleo de big data\, analítica y redes en la gestión del ries
  go ALA/CFT\n\nDocente: Sebastián Villegas\nAsistente PAT: Jenier Sebasti
- án Achury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/EJE
- MPLO
+ án Achury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/295
+ 449761184639?p=3Osh5Z7EiVevu5Pbh4
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/295449761184639?p=3Osh5Z7EiVevu5Pbh4
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 26 comienza en 30 minutos
@@ -573,7 +580,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-27@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261120T170000
 DTEND;TZID=America/Bogota:20261120T200000
@@ -583,9 +590,9 @@ DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\,
  LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Explicaci
  ón y estudio del caso de DMG\n\nDocente: Beatriz Londoño P\nAsistente PA
  T: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.
- microsoft.com/meet/EJEMPLO
+ microsoft.com/meet/216526624644237?p=K0SMZZXaH33howdr1g
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/216526624644237?p=K0SMZZXaH33howdr1g
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 27 comienza en 30 minutos
@@ -594,7 +601,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-28@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261124T170000
 DTEND;TZID=America/Bogota:20261124T200000
@@ -604,9 +611,10 @@ DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\,
  LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Explicaci
  ón de caso de Lavado de Activos y principales tipologías de lavado.\n\nD
  ocente: Pablo Latorre\nAsistente PAT: Fabián Alberto Córdoba Almendrales
- \n\nUnirme en Teams: https://teams.microsoft.com/meet/EJEMPLO
+ \n\nUnirme en Teams: https://teams.microsoft.com/meet/271038667714111?p=Wx
+ AJV6wFNGAnNCSp7e
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/271038667714111?p=WxAJV6wFNGAnNCSp7e
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 28 comienza en 30 minutos
@@ -615,7 +623,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-29@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261125T170000
 DTEND;TZID=America/Bogota:20261125T200000
@@ -625,9 +633,9 @@ DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\,
  LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Explicaci
  ón y estudio del caso Lava Jato Y Odebrecht\n\nDocente: Camilo Jaimes P\n
  Asistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: ht
- tps://teams.microsoft.com/meet/EJEMPLO
+ tps://teams.microsoft.com/meet/242640226004741?p=XEMhTqAf58dWD0T2ub
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/242640226004741?p=XEMhTqAf58dWD0T2ub
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 29 comienza en 30 minutos
@@ -636,7 +644,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-30@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261126T170000
 DTEND;TZID=America/Bogota:20261126T200000
@@ -646,9 +654,9 @@ DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\,
  LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Caso prá
  ctico y simulación de roles\n\nDocente: Marta Lucia Ramírez y Beatriz Lo
  ndoño P\nAsistente PAT: Jenier Sebastián Achury Gómez\n\nUnirme en Team
- s: https://teams.microsoft.com/meet/EJEMPLO
+ s: https://teams.microsoft.com/meet/259820329091217?p=phQdgfRpt3Xqc4dqvZ
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/259820329091217?p=phQdgfRpt3Xqc4dqvZ
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 30 comienza en 30 minutos
@@ -657,7 +665,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-31@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261127T170000
 DTEND;TZID=America/Bogota:20261127T200000
@@ -667,9 +675,9 @@ DESCRIPTION:TALLERES PRÁCTICOS SOBRE CASUISTICA\, TIPOLOGÍAS DE LAVADO\,
  LIZAR MODALIDADES DE CORRUPCIÓN y LAVADO DE ACTIVOS\n\nTema:\n- Caso prá
  ctico y simulación de roles\n\nDocente: Camilo Jaimes P\nAsistente PAT: F
  abián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.micr
- osoft.com/meet/EJEMPLO
+ osoft.com/meet/275709730197253?p=JmPSxcBUbykejqRhxD
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/275709730197253?p=JmPSxcBUbykejqRhxD
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 31 comienza en 30 minutos
@@ -678,7 +686,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-32@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261201T170000
 DTEND;TZID=America/Bogota:20261201T200000
@@ -688,9 +696,9 @@ DESCRIPTION:LOS REPORTES INTERNOS DE OPERACIONES INUSUALES Y LOS REPORTES E
  áctico sobre reportes internos de inusualidades y Reportes de Operaciones
   Sospechosas (ROS) a la UIAF\n\nDocente: Angélica Sánchez Durán\nAsiste
  nte PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://
- teams.microsoft.com/meet/EJEMPLO
+ teams.microsoft.com/meet/230875867842591?p=jr6zDnZQiuvKbBZjRh
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/230875867842591?p=jr6zDnZQiuvKbBZjRh
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 32 comienza en 30 minutos
@@ -699,7 +707,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-33@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261202T170000
 DTEND;TZID=America/Bogota:20261202T200000
@@ -708,9 +716,9 @@ DESCRIPTION:NEUROSCIENCIA\, ÉTICA Y COMPLIANCE\n\nTema:\n- Cerebro\, neuro
  nas espejo\, teoría de la mente y enfoque racional de las herramientas an
  ti-corrupción.\n\nDocente: Camilo Jaimes P\nAsistente PAT: Fabián Albert
  o Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/mee
- t/EJEMPLO
+ t/243429199161647?p=dgMRzaKTy4a9Kj92Sh
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/243429199161647?p=dgMRzaKTy4a9Kj92Sh
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 33 comienza en 30 minutos
@@ -719,7 +727,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-34@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261203T170000
 DTEND;TZID=America/Bogota:20261203T200000
@@ -727,9 +735,10 @@ SUMMARY:Clase 34: Compliance Anti-corrupción y Anti-lavado
 DESCRIPTION:ÉTICA DEL COMPORTAMIENTO COMO BASE DE LOS PROGRAMAS CUMPLIMIEN
  TO\n\nTema:\n- Cultura de la integridad y del cumplimiento.\n\nDocente: An
  drés Murcia\nAsistente PAT: Jenier Sebastián Achury Gómez\n\nUnirme en 
- Teams: https://teams.microsoft.com/meet/EJEMPLO
+ Teams: https://teams.microsoft.com/meet/212210981196667?p=Zi3bkm7yKrv9FErl
+ qY
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/212210981196667?p=Zi3bkm7yKrv9FErlqY
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 34 comienza en 30 minutos
@@ -738,7 +747,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-35@cronograma-compliance-2026-2
-DTSTAMP:20261001T203926Z
+DTSTAMP:20261002T032903Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261204T170000
 DTEND;TZID=America/Bogota:20261204T200000
@@ -746,9 +755,9 @@ SUMMARY:Clase 35: Compliance Anti-corrupción y Anti-lavado
 DESCRIPTION:ÉTICA DEL COMPORTAMIENTO COMO BASE DE LOS PROGRAMAS CUMPLIMIEN
  TO\n\nTema:\n- Taller Cultura de la Integridad\n\nDocente: Camilo Jaimes P
  \nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: 
- https://teams.microsoft.com/meet/EJEMPLO
+ https://teams.microsoft.com/meet/277316336261184?p=5bYg2B5OAGdkuXzCG1
 LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/meet/EJEMPLO
+URL:https://teams.microsoft.com/meet/277316336261184?p=5bYg2B5OAGdkuXzCG1
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 35 comienza en 30 minutos
