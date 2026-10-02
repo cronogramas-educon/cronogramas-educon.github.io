@@ -13,8 +13,8 @@
     "horasTotales": 105,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
-    "hash": "b7cd4eac1cd6b255",
-    "generadoEn": "2026-10-02T14:02:12Z",
+    "hash": "8a271e4428f9998f",
+    "generadoEn": "2026-10-02T14:41:57Z",
     "fuenteModificadaEn": ""
   },
   "clases": [
@@ -61,9 +61,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Melissa Dukuara",
+      "profesor": "Prueba Dos",
       "profesores": [
-        "Melissa Dukuara"
+        "Prueba Dos"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
@@ -1112,6 +1112,7 @@
     "Melissa Dukuara",
     "Mery Mantilla",
     "Pablo Latorre",
+    "Prueba Dos",
     "Sebastián Villegas",
     "Wilson Gonzalez"
   ],
