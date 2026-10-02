@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:clase-01@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261001T170000
 DTEND;TZID=America/Bogota:20261001T200000
@@ -37,7 +37,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-02@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261002T170000
 DTEND;TZID=America/Bogota:20261002T200000
@@ -51,9 +51,9 @@ DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
   para el sector público como privado?\n- Contexto interno y externo\, ide
  ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
  de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
-  la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
- rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
- eet/280147807408304?p=4FZXyLOMrGC2HtXnTW
+  la República y de UNODC.\n\nDocente: Melissa Dukuara\nAsistente PAT: Fab
+ ián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.micros
+ oft.com/meet/280147807408304?p=4FZXyLOMrGC2HtXnTW
 LOCATION:Microsoft Teams
 URL:https://teams.microsoft.com/meet/280147807408304?p=4FZXyLOMrGC2HtXnTW
 BEGIN:VALARM
@@ -64,7 +64,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-03@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261006T170000
 DTEND;TZID=America/Bogota:20261006T200000
@@ -78,9 +78,9 @@ DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
   para el sector público como privado?\n- Contexto interno y externo\, ide
  ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
  de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
-  la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
- rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
- eet/23900964268754?p=uoYye9N7R60IEmpZAS
+  la República y de UNODC.\n\nDocente: Melissa Dukuara\nAsistente PAT: Fab
+ ián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.micros
+ oft.com/meet/23900964268754?p=uoYye9N7R60IEmpZAS
 LOCATION:Microsoft Teams
 URL:https://teams.microsoft.com/meet/23900964268754?p=uoYye9N7R60IEmpZAS
 BEGIN:VALARM
@@ -91,7 +91,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-04@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261007T170000
 DTEND;TZID=America/Bogota:20261007T200000
@@ -105,9 +105,9 @@ DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
   para el sector público como privado?\n- Contexto interno y externo\, ide
  ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
  de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
-  la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Fabián Albe
- rto Córdoba Almendrales\n\nUnirme en Teams: https://teams.microsoft.com/m
- eet/238328520074627?p=f59ZOV8sReDjl8ITl5
+  la República y de UNODC.\n\nDocente: Melissa Dukuara\nAsistente PAT: Fab
+ ián Alberto Córdoba Almendrales\n\nUnirme en Teams: https://teams.micros
+ oft.com/meet/238328520074627?p=f59ZOV8sReDjl8ITl5
 LOCATION:Microsoft Teams
 URL:https://teams.microsoft.com/meet/238328520074627?p=f59ZOV8sReDjl8ITl5
 BEGIN:VALARM
@@ -118,7 +118,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-05@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261008T170000
 DTEND;TZID=America/Bogota:20261008T200000
@@ -132,9 +132,9 @@ DESCRIPTION:SISTEMA DE GESTIÓN DE RIESGOS\n\nTema:\n- Aspectos generales d
   para el sector público como privado?\n- Contexto interno y externo\, ide
  ntificación y clases de riesgos\, control y manejo del riesgo.\n- Guías 
  de mapa de riesgos de la Secretaría de Transparencia de la Presidencia de
-  la República y de UNODC.\n\nDocente: SABANA\nAsistente PAT: Jenier Sebas
- tián Achury Gómez\n\nUnirme en Teams: https://teams.microsoft.com/meet/2
- 19889224645872?p=Xtx3atDv6Rd1cnlw9F
+  la República y de UNODC.\n\nDocente: Melissa Dukuara\nAsistente PAT: Jen
+ ier Sebastián Achury Gómez\n\nUnirme en Teams: https://teams.microsoft.c
+ om/meet/219889224645872?p=Xtx3atDv6Rd1cnlw9F
 LOCATION:Microsoft Teams
 URL:https://teams.microsoft.com/meet/219889224645872?p=Xtx3atDv6Rd1cnlw9F
 BEGIN:VALARM
@@ -145,7 +145,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-06@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261009T170000
 DTEND;TZID=America/Bogota:20261009T200000
@@ -153,9 +153,10 @@ SUMMARY:Clase 6: Compliance Anti-corrupción y Anti-lavado
 DESCRIPTION:EL OFICIAL DE CUMPLIMIENTO Y LA JUNTA DIRECTIVA\n\nTema:\n- Fun
  ciones.\n- Aspectos legales y corporativos.\n- Perfil del oficial de cumpl
  imiento.\n- Obligaciones.\n- Responsabilidades.\n- Rol en el sistema.\n- L
- a confidencialidad del ROS\, revelación (tipping-off).\n\nDocente: SABANA
- \nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme en Teams: 
- https://teams.microsoft.com/meet/293664515793592?p=xfCS9MprvEqH04wqSI
+ a confidencialidad del ROS\, revelación (tipping-off).\n\nDocente: Meliss
+ a Dukuara\nAsistente PAT: Fabián Alberto Córdoba Almendrales\n\nUnirme e
+ n Teams: https://teams.microsoft.com/meet/293664515793592?p=xfCS9MprvEqH04
+ wqSI
 LOCATION:Microsoft Teams
 URL:https://teams.microsoft.com/meet/293664515793592?p=xfCS9MprvEqH04wqSI
 BEGIN:VALARM
@@ -166,7 +167,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-07@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261013T170000
 DTEND;TZID=America/Bogota:20261013T200000
@@ -186,7 +187,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-08@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261014T170000
 DTEND;TZID=America/Bogota:20261014T200000
@@ -207,7 +208,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-09@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261015T170000
 DTEND;TZID=America/Bogota:20261015T200000
@@ -227,7 +228,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-10@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261020T170000
 DTEND;TZID=America/Bogota:20261020T200000
@@ -247,7 +248,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-11@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261021T170000
 DTEND;TZID=America/Bogota:20261021T200000
@@ -266,7 +267,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-12@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261022T170000
 DTEND;TZID=America/Bogota:20261022T200000
@@ -287,7 +288,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-13@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261023T170000
 DTEND;TZID=America/Bogota:20261023T200000
@@ -307,7 +308,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-14@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261027T170000
 DTEND;TZID=America/Bogota:20261027T200000
@@ -327,7 +328,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-15@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261028T170000
 DTEND;TZID=America/Bogota:20261028T200000
@@ -348,7 +349,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-16@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261030T170000
 DTEND;TZID=America/Bogota:20261030T200000
@@ -370,7 +371,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-17@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261103T170000
 DTEND;TZID=America/Bogota:20261103T200000
@@ -392,7 +393,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-18@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261104T170000
 DTEND;TZID=America/Bogota:20261104T200000
@@ -412,7 +413,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-19@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261105T170000
 DTEND;TZID=America/Bogota:20261105T200000
@@ -432,7 +433,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-20@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261106T170000
 DTEND;TZID=America/Bogota:20261106T200000
@@ -451,7 +452,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-21@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261110T170000
 DTEND;TZID=America/Bogota:20261110T200000
@@ -473,7 +474,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-22@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261111T170000
 DTEND;TZID=America/Bogota:20261111T200000
@@ -495,7 +496,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-23@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261112T170000
 DTEND;TZID=America/Bogota:20261112T200000
@@ -517,7 +518,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-24@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261117T170000
 DTEND;TZID=America/Bogota:20261117T200000
@@ -538,7 +539,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-25@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261118T170000
 DTEND;TZID=America/Bogota:20261118T200000
@@ -559,7 +560,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-26@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261119T170000
 DTEND;TZID=America/Bogota:20261119T200000
@@ -580,7 +581,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-27@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261120T170000
 DTEND;TZID=America/Bogota:20261120T200000
@@ -601,7 +602,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-28@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261124T170000
 DTEND;TZID=America/Bogota:20261124T200000
@@ -623,7 +624,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-29@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261125T170000
 DTEND;TZID=America/Bogota:20261125T200000
@@ -644,7 +645,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-30@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261126T170000
 DTEND;TZID=America/Bogota:20261126T200000
@@ -665,7 +666,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-31@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261127T170000
 DTEND;TZID=America/Bogota:20261127T200000
@@ -686,7 +687,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-32@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261201T170000
 DTEND;TZID=America/Bogota:20261201T200000
@@ -707,7 +708,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-33@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261202T170000
 DTEND;TZID=America/Bogota:20261202T200000
@@ -727,7 +728,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-34@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261203T170000
 DTEND;TZID=America/Bogota:20261203T200000
@@ -747,7 +748,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-35@cronograma-compliance-2026-2
-DTSTAMP:20261002T034607Z
+DTSTAMP:20261002T140212Z
 SEQUENCE:2
 DTSTART;TZID=America/Bogota:20261204T170000
 DTEND;TZID=America/Bogota:20261204T200000

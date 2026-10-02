@@ -13,8 +13,8 @@
     "horasTotales": 105,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
-    "hash": "2332a5568626dff2",
-    "generadoEn": "2026-10-02T03:46:07Z",
+    "hash": "b7cd4eac1cd6b255",
+    "generadoEn": "2026-10-02T14:02:12Z",
     "fuenteModificadaEn": ""
   },
   "clases": [
@@ -61,9 +61,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "SABANA",
+      "profesor": "Melissa Dukuara",
       "profesores": [
-        "SABANA"
+        "Melissa Dukuara"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
@@ -91,9 +91,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "SABANA",
+      "profesor": "Melissa Dukuara",
       "profesores": [
-        "SABANA"
+        "Melissa Dukuara"
       ],
       "dia": "Martes",
       "diaCalculado": "Martes",
@@ -121,9 +121,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "SABANA",
+      "profesor": "Melissa Dukuara",
       "profesores": [
-        "SABANA"
+        "Melissa Dukuara"
       ],
       "dia": "Miércoles",
       "diaCalculado": "Miércoles",
@@ -151,9 +151,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "SABANA",
+      "profesor": "Melissa Dukuara",
       "profesores": [
-        "SABANA"
+        "Melissa Dukuara"
       ],
       "dia": "Jueves",
       "diaCalculado": "Jueves",
@@ -182,9 +182,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "SABANA",
+      "profesor": "Melissa Dukuara",
       "profesores": [
-        "SABANA"
+        "Melissa Dukuara"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
@@ -1109,9 +1109,9 @@
     "Camilo Jaimes P",
     "Felipe Ortegón",
     "Marta Lucia Ramírez",
+    "Melissa Dukuara",
     "Mery Mantilla",
     "Pablo Latorre",
-    "SABANA",
     "Sebastián Villegas",
     "Wilson Gonzalez"
   ],
