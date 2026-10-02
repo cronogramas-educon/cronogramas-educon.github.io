@@ -8,13 +8,13 @@ web
 
 ## Users
 
-Primary: estudiantes inscritos en el Diplomado Compliance Anti-corrupción y Anti-lavado, cohorte 3er 2026-2. Entran desde el computador o el celular, casi siempre con una prisa concreta: saber cuándo es la próxima clase (de 5:00 p. m. a 8:00 p. m., hora de Colombia), quién la dicta y entrar a Teams.
+Primary: estudiantes inscritos en cada curso o diplomado de Educación Continua 2026-2 (Compliance Anti-corrupción, Compliance y Gobierno Corporativo, Conflictos Societarios, Contratación Estatal, Derecho Laboral, Derecho Minero Ambiental e IA en el Sector Legal, grupos 1 y 2). Cada grupo recibe solo el enlace de su curso. Entran desde el computador o el celular, casi siempre con una prisa concreta: saber cuándo es la próxima clase (de 5:00 p. m. a 8:00 p. m., hora de Colombia), quién la dicta y entrar a Teams.
 
-Secundarios, no confirmados como foco: aspirantes y docentes o equipo de apoyo que consultan fechas. El usuario no los marcó como audiencia principal.
+Administración: quienes manejan todos los cursos usan un sitio base (con dirección no enlazada) para ver estados, pendientes por confirmar, errores de lectura de los Excel y copiar los enlaces para estudiantes. Secundarios, no confirmados como foco: aspirantes y docentes.
 
 ## Product Purpose
 
-Una sola página pública que muestra el cronograma completo del diplomado y se actualiza sola cuando se edita el Excel de SharePoint (35 clases, 105 horas, 17 unidades, del 1 de octubre al 4 de diciembre de 2026). Éxito: un estudiante sabe qué sigue y entra a la clase en pocos segundos, sin leer datos que no necesita.
+Una página pública por curso que muestra su cronograma completo y se actualiza sola cuando se edita su Excel de SharePoint, más un sitio base de administración. Un curso no enlaza a otro. Éxito: un estudiante sabe qué sigue y entra a la clase en pocos segundos, sin leer datos que no necesita.
 
 ## Positioning
 
@@ -28,7 +28,7 @@ Los datos viven en un Excel en SharePoint. Power Automate avisa a GitHub, que pu
 
 Funciones existentes que deben conservarse: cuenta regresiva a la próxima clase con estados (hoy, en vivo, finalizado), calendario mensual y lista por semana, filtros y buscador, aviso de cambio de fecha, botón "Unirme en Teams", archivos .ics (por clase, visibles, completo y suscripción), PDF por impresión, modo sin red con última copia guardada. Todo texto visible en español de Colombia. Sin datos inventados: no hay biografías, fotos ni contactos de docentes.
 
-Limitaciones: sin dependencias en tiempo de ejecución salvo fuentes autoalojadas. Los datos llegan con la forma de `data/data.json` y no se cambian.
+Limitaciones: sin dependencias en tiempo de ejecución salvo fuentes autoalojadas. Los datos llegan con la forma de `data.json` y no se cambian. Los datos que faltan en el Excel se muestran como "Por confirmar"; nunca se inventan.
 
 ## Brand Commitments
 
@@ -38,7 +38,7 @@ Prosa en español sin guiones largos ni medios como signo de puntuación y con p
 
 ## Evidence on Hand
 
-Datos reales en `data/data.json` (35 clases, temas por clase, docentes, asistentes PAT, enlaces de Teams). Capturas de la versión anterior en `docs/capturas/`. No hay fotografías, ilustraciones, testimonios ni cifras de inscripción, y no deben fabricarse.
+Datos reales en `cursos/<id>/data/data.json` (por ejemplo, 35 clases en Compliance Anti-corrupción, temas por clase, docentes, asistentes PAT, enlaces de Teams). Capturas de la versión anterior en `docs/capturas/`. No hay fotografías, ilustraciones, testimonios ni cifras de inscripción, y no deben fabricarse.
 
 ## Product Principles
 
