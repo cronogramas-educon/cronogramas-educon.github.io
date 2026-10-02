@@ -9,7 +9,7 @@ export function plan(el, d, abiertas) {
   el.innerHTML = d.unidades.map((u) => {
     const cs = u.clases.map((id) => porId.get(id));
     return `<details class="unidad" data-slug="${esc(u.slug)}"${abiertas.has(u.slug) ? ' open' : ''}>
-      <summary>${esc(legible(u.nombre))}<span class="n">${u.clases.length} ${u.clases.length === 1 ? 'clase' : 'clases'}</span>${ic('caret-down')}</summary>
+      <summary>${esc(legible(u.nombre))}${ic('caret-down')}</summary>
       <div class="unidad-cuerpo">${cs.map((c) => `<div class="unidad-clase">
         <h4>${esc(nombreClase(c))} <span>${esc(fechaLarga(c.fecha))}</span></h4>
         <ul>${c.temaPuntos.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div>`).join('')}</div></details>`;

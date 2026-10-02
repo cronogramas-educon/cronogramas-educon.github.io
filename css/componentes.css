@@ -143,6 +143,10 @@
 .ficha-clase dd { margin: 0; font-weight: 600; }
 .ficha-clase .acc { display: flex; flex-wrap: wrap; gap: 10px; }
 .ficha-clase + .ficha-clase { border-top: 2px dashed var(--paper-2); margin-top: 22px; padding-top: 22px; }
+.fila .btn { border-color: var(--ink-2); color: var(--ink); }
+.fila .btn:hover { background: var(--paper-2); border-color: var(--ink); }
+.fila .btn.rojo { background: var(--red); border-color: var(--red); color: #fff; }
+.fila .btn.rojo:hover { background: var(--red-hot); border-color: var(--red-hot); }
 .fila.es-pasada .btn { border-color: var(--felt-2); color: var(--felt); }
 .fila.es-pasada .btn:hover { background: var(--navy-700); }
 
@@ -152,8 +156,7 @@
 .unidad summary { display: flex; align-items: center; gap: 16px; padding: 18px 4px; cursor: pointer; list-style: none; font: 700 1.08rem/1.35 var(--font-display); }
 .unidad summary::-webkit-details-marker { display: none; }
 .unidad summary:hover { color: #fff; }
-.unidad summary .n { margin-left: auto; font: 500 .9rem var(--font-body); color: var(--felt-2); white-space: nowrap; }
-.unidad summary .ic { transition: transform .3s var(--ease); color: var(--red-tint); }
+.unidad summary .ic { margin-left: auto; transition: transform .3s var(--ease); color: var(--red-tint); }
 .unidad[open] summary .ic { transform: rotate(180deg); }
 .unidad-cuerpo { padding: 2px 4px 24px; display: grid; gap: 18px; max-width: 760px; }
 .unidad-clase h4 { font: 700 .95rem var(--font-body); color: var(--red-tint); margin-bottom: 4px; }
