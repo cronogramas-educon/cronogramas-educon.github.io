@@ -55,6 +55,7 @@ function tarjeta(r) {
     ${prox}
     ${d ? `<div class="barra" role="img" aria-label="${r.hechas} de ${d.clases.length} clases realizadas"><i style="width:${Math.round(100 * r.hechas / d.clases.length)}%"></i></div>
     <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. Datos publicados ${esc(haceCuanto(d.meta.generadoEn))}.</p>` : ''}
+    <p class="teams-av">${c.avisosTeams ? `${ic('check')}Avisos de cambio de fecha por el grupo de Teams` : `${ic('warning')}Sin grupo de Teams para avisos a estudiantes`}</p>
     <p class="falta ${n ? '' : 'ok'}">${n ? `${ic('warning')}${n === 1 ? 'Falta confirmar 1 dato' : `Faltan confirmar ${n} datos`}` : `${ic('check')}Nada por confirmar`}</p>
     <div class="acciones-curso">
       <a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Abrir sitio${ic('arrow-up-right')}</a>

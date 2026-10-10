@@ -107,3 +107,5 @@
   .tabla-urg th, .tabla-urg td { padding: 12px 10px; }
   .tabla-urg thead th:nth-child(4), .tabla-urg td:nth-child(4) { display: none; }
 }
+
+.curso .teams-av { display: flex; align-items: center; gap: 8px; margin-top: -4px; color: var(--ink-2); font-size: .86rem; }

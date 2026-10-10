@@ -191,3 +191,22 @@ def test_el_nombre_siempre_dice_si_es_curso_o_diplomado(sitio):
     meta = json.loads((sitio / "g" / REG["global"]["adminCodigo"] / "cursos.json").read_text(encoding="utf-8"))
     assert all(c["programaCorto"].startswith(c["tipo"]) for c in meta["cursos"])
     assert "<title>Diplomado Derecho Laboral" in (sitio / cu.sitio_ruta(next(c for c in REG["cursos"] if c["id"] == "derecho-laboral")) / "index.html").read_text(encoding="utf-8")
+
+
+LINK_TEAMS = "https://teams.microsoft.com/l/team/19%3AoE9nYUX5BgFCdcDqvAcLqtcgyqA5D1DPwl66NyZaTdU1%40thread.tacv2/conversations?groupId=d675843f-951b-4337-8de5-1d25e510b144&tenantId=aca51631-00fe-490d-91ab-163ef87260ee"
+
+
+def test_registro_lee_el_grupo_de_teams_y_avisa_si_no_se_entiende():
+    reg = _copia()
+    nuevo = dict(REG["cursos"][1], carpeta="EDU CONTINUA 2027-1/Otro", periodo="2027-1")
+    avisos, cambios = cu.fusionar(reg, [_fila(nuevo, Grupo_x0020_de_x0020_Teams=LINK_TEAMS), _fila(REG["cursos"][2], Grupo_x0020_de_x0020_Teams="hola")])
+    assert reg["cursos"][-1]["teams"] == {"equipo": "d675843f-951b-4337-8de5-1d25e510b144", "canal": "19:oE9nYUX5BgFCdcDqvAcLqtcgyqA5D1DPwl66NyZaTdU1@thread.tacv2"}
+    assert len(avisos) == 1 and "grupo de Teams" in avisos[0] and "teams" not in reg["cursos"][2]
+
+
+def test_los_ids_de_teams_no_llegan_a_las_paginas_publicas(sitio):
+    meta = (sitio / "g" / REG["global"]["adminCodigo"] / "cursos.json").read_text(encoding="utf-8")
+    assert '"avisosTeams": true' in meta and "d675843f" not in meta
+    for c in REG["cursos"]:
+        for arch in ("index.html", "config/contenido.json"):
+            assert "d675843f" not in (sitio / cu.sitio_ruta(c) / arch).read_text(encoding="utf-8")

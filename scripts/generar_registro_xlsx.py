@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import cursos as cu
 
 COLS = [("Periodo", 11), ("Carpeta del periodo", 24), ("Carpeta del curso", 44), ("Tipo", 13), ("Nombre del curso", 44), ("Nombre completo", 70),
-        ("Modalidad", 26), ("Hora de inicio", 14), ("Hora de fin", 13), ("Inicio del sábado", 17), ("Página oficial", 60)]
+        ("Modalidad", 26), ("Hora de inicio", 14), ("Hora de fin", 13), ("Inicio del sábado", 17), ("Página oficial", 60), ("Grupo de Teams", 50)]
 
 AYUDA = [
     "REGISTRO DE CURSOS Y DIPLOMADOS",
@@ -39,6 +39,7 @@ AYUDA = [
     "Hora de inicio y Hora de fin: por ejemplo 18:00 y 21:00. Si dejas vacía la Hora de fin, cada clase termina según sus horas del Excel del curso.",
     "Inicio del sábado: solo si las clases de sábado empiezan a otra hora y dejaste vacía la Hora de fin, por ejemplo 08:00.",
     "Página oficial: la dirección de la página del programa en unisabana.edu.co (opcional).",
+    "Grupo de Teams: el enlace del grupo de Teams del curso, para avisar a los estudiantes de los cambios de fecha. En Teams: los tres puntos del equipo, Obtener vínculo al equipo, y pega el enlace aquí (opcional).",
     "",
     "IMPORTANTE",
     "Nunca borres una fila de un curso que ya se dictó: ese curso pasa solo al archivo del sitio y su enlace sigue funcionando en modo lectura. Si borras la fila no pasa nada con la página, pero se pierde el rastro de que existió.",
@@ -62,14 +63,14 @@ def main(salida):
         per, cur = c["carpeta"].split("/", 1)
         h = c["horario"]
         fila = [c["periodo"], per, cur, c["tipo"], c["programaCorto"], c["programa"], c["modalidad"], h["inicio"], h.get("fin", ""),
-                h.get("porDia", {}).get("Sábado", ""), c.get("urlPaginaOficial", "")]
+                h.get("porDia", {}).get("Sábado", ""), c.get("urlPaginaOficial", ""), ""]
         for j, v in enumerate(fila, 1):
             x = ws.cell(i, j, v)
             x.alignment = Alignment(vertical="center", wrap_text=True)
             if j in (8, 9, 10):
                 x.number_format = "@"
     n = len(reg["cursos"]) + 1
-    t = Table(displayName="Table1", ref=f"A1:K{n}")
+    t = Table(displayName="Table1", ref=f"A1:L{n}")
     t.tableStyleInfo = TableStyleInfo(name="TableStyleMedium20", showRowStripes=True)
     ws.add_table(t)
     for col in "HIJ":  # el formato de texto se extiende a las filas que se agreguen

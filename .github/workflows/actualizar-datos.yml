@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pages: write
   id-token: write
 
@@ -39,7 +40,7 @@ jobs:
         run: pip install -r requirements.txt pytest icalendar
 
       - name: Pruebas de datos y registro de cursos
-        run: pytest tests/test_datos.py tests/test_cursos.py -q
+        run: pytest tests/test_datos.py tests/test_cursos.py tests/test_alertas.py -q
 
       - name: Reconocer el aviso (registro de cursos o Excel de un curso)
         if: github.event_name == 'repository_dispatch'
@@ -74,6 +75,28 @@ jobs:
             [ "$estado" -eq 0 ] || echo "**Falló: se conserva el último data.json bueno de este curso.**"
           } >> "$GITHUB_STEP_SUMMARY"
           exit $estado
+
+      - name: Avisos de cambio de fecha a los estudiantes (grupo de Teams)
+        if: steps.fuente.outputs.curso != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CURSO: ${{ steps.fuente.outputs.curso }}
+          ACTIVOS: ${{ vars.AVISOS_ESTUDIANTES }}
+        # APAGADO por defecto: sin AVISOS_ESTUDIANTES=true solo se anotan los cambios como vistos y no se publica nada.
+        # Cada aviso es una incidencia que un flujo de Power Automate publica en el grupo de Teams del curso.
+        run: |
+          python scripts/avisos.py "$CURSO" avisos.json
+          n=$(jq length avisos.json)
+          if [ "$n" -gt 0 ] && [ "$ACTIVOS" = "true" ]; then
+            gh label create aviso-estudiantes --color 0E8A16 --description "Aviso a estudiantes por Teams" 2>/dev/null || true
+            jq -c '.[]' avisos.json | while read -r a; do
+              url=$(gh issue create --title "$(jq -r .titulo <<<"$a")" --body "$(jq -r .cuerpo <<<"$a")" --label aviso-estudiantes)
+              gh issue close "$url" --comment "Procesado."
+              echo "Aviso publicado: $url" >> "$GITHUB_STEP_SUMMARY"
+            done
+          elif [ "$n" -gt 0 ]; then
+            echo "Hay $n aviso(s) de cambio de fecha para estudiantes, pero el envío está apagado (AVISOS_ESTUDIANTES no es true). No se publicó nada." >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Publicar cambios en el repositorio
         id: commit

@@ -30,7 +30,8 @@
     ],
     "zona": "America/Bogota",
     "desfase": "-05:00",
-    "registroRuta": "EDU CONTINUA 2026/Registro de cursos.xlsx"
+    "registroRuta": "EDU CONTINUA 2026/Registro de cursos.xlsx",
+    "urlSitio": "https://cronogramas-educon.github.io"
   },
   "cursos": [
     {
@@ -47,7 +48,11 @@
         "inicio": "17:00",
         "fin": "20:00"
       },
-      "periodo": "2026-2"
+      "periodo": "2026-2",
+      "teams": {
+        "equipo": "d675843f-951b-4337-8de5-1d25e510b144",
+        "canal": "19:oE9nYUX5BgFCdcDqvAcLqtcgyqA5D1DPwl66NyZaTdU1@thread.tacv2"
+      }
     },
     {
       "id": "compliance-gobierno-corporativo",
