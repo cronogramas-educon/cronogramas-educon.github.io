@@ -6,7 +6,7 @@ Dos mecanismos que **no envían nada mientras estén apagados**. Los dos funcion
 GitHub (calcula)  →  incidencia en el repositorio privado avisos-internos  →  flujo de Power Automate  →  correo o grupo de Teams
 ```
 
-**Por qué un repositorio privado.** El conector de GitHub de Power Automate solo ofrece disparadores del tipo "incidencia asignada a mí", y asignar la incidencia pondría el nombre de la cuenta personal a la vista en un repositorio público. En el repositorio privado no la ve nadie. Las incidencias se cierran solas apenas se crean y quedan como historial de lo enviado.
+**Por qué un repositorio privado.** El conector de GitHub de Power Automate solo ofrece disparadores del tipo "incidencia asignada a mí", y asignar la incidencia pondría el nombre de la cuenta personal a la vista en un repositorio público. En el repositorio privado no la ve nadie. El flujo de Power Automate cierra la incidencia cuando termina de procesarla, así que las cerradas quedan como historial de lo enviado.
 
 **Qué se necesita para que publique (lo hace una persona, una sola vez):**
 
@@ -44,11 +44,11 @@ Curso con grupo configurado hasta ahora: Diplomado Compliance Anti-corrupción y
 
 ## Los flujos de Power Automate
 
-Ambos se disparan con **GitHub, Cuando se me asigna una incidencia** (When an issue is assigned to me) sobre `cronogramas-educon/avisos-internos` y se filtran por etiqueta con una condición de desencadenador. Quedan **apagados** hasta la activación.
+Ambos se disparan con **GitHub, Cuando se abre una incidencia nueva asignada a mí** (el conector no ofrece un disparador por repositorio, por eso la incidencia se asigna a la cuenta con la que está conectado el flujo) y se filtran con una condición de desencadenador sobre el título. Terminan con la acción GitHub **Update an Issue** sobre `cronogramas-educon/avisos-internos` con estado `closed`. Ambos están **apagados** hasta la activación.
 
-**Alertas de cronogramas por correo.** Condición: `@contains(string(triggerOutputs()?['body/labels']), 'alerta-cronogramas')`. Las incidencias de la alerta llevan solo nombres de cursos, clases, fechas y qué falta, nunca docentes ni enlaces.. Acción: Office 365 Outlook, Enviar un correo (V2) a `educofdcp@unisabana.edu.co`, asunto = título de la incidencia, cuerpo = cuerpo de la incidencia (viene en HTML).
+**`Alertas de cronogramas por correo`** (listo). Condición: `@contains(toLower(string(triggerBody())), 'alerta de cronogramas:')`. Acción: Office 365 Outlook, Enviar un correo (V2) a `educofdcp@unisabana.edu.co`, asunto = título de la incidencia, cuerpo = cuerpo de la incidencia (viene en HTML). Las incidencias de la alerta llevan solo nombres de cursos, clases, fechas y qué falta, nunca docentes ni enlaces.
 
-**Avisos a estudiantes por Teams.** Condición: `@contains(string(triggerOutputs()?['body/labels']), 'aviso-estudiantes')`. El cuerpo empieza con `<!-- equipo:<id> canal:<id> -->`. Dos acciones Redactar sacan el equipo `first(split(last(split(triggerOutputs()?['body/body'], 'equipo:')), ' '))` y el canal `first(split(last(split(triggerOutputs()?['body/body'], 'canal:')), ' '))`. Acción: Microsoft Teams, Publicar mensaje en un chat o canal, en un canal, con el equipo y el canal obtenidos y como mensaje el cuerpo de la incidencia.
+**`Avisos a estudiantes por Teams`** (falta un paso). Condición: `@contains(toLower(string(triggerBody())), 'aviso a estudiantes:')`. Ya tiene dos acciones Redactar que sacan el equipo y el canal del comentario `<!-- equipo:<id> canal:<id> -->` con el que empieza el cuerpo. **Falta** crear la conexión con Microsoft Teams (inicio de sesión de la persona dueña del flujo) y agregar la acción Microsoft Teams, **Publicar mensaje en un chat o canal**, con: Publicar como = Usuario o Flow bot, Publicar en = Canal, Equipo = resultado de Redactar, Canal = resultado de Redactar 1, Mensaje = cuerpo de la incidencia. Hay que colocarla antes de la acción de cerrar la incidencia.
 
 ## Seguridad
 

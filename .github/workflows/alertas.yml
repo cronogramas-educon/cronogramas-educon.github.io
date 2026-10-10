@@ -51,8 +51,7 @@ jobs:
         run: |
           if [ -z "$GH_TOKEN" ]; then echo "Falta el secreto AVISOS_TOKEN: no se publicó nada." >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
           gh label create alerta-cronogramas -R "$COLA" --color B60205 2>/dev/null || true
-          url=$(gh issue create -R "$COLA" --title "$TITULO" --body-file alerta.html --label alerta-cronogramas --assignee "$RESPONSABLE")
-          gh issue close "$url" --comment "Procesada."
+          gh issue create -R "$COLA" --title "$TITULO" --body-file alerta.html --label alerta-cronogramas --assignee "$RESPONSABLE"
           echo "Alerta publicada en la cola interna." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Aviso de que no se publicó

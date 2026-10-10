@@ -93,8 +93,7 @@ jobs:
           elif [ "$n" -gt 0 ] && [ "$ACTIVOS" = "true" ]; then
             gh label create aviso-estudiantes -R "$COLA" --color 0E8A16 2>/dev/null || true
             jq -c '.[]' avisos.json | while read -r a; do
-              url=$(gh issue create -R "$COLA" --title "$(jq -r .titulo <<<"$a")" --body "$(jq -r .cuerpo <<<"$a")" --label aviso-estudiantes --assignee "$RESPONSABLE")
-              gh issue close "$url" --comment "Procesado."
+              gh issue create -R "$COLA" --title "$(jq -r .titulo <<<"$a")" --body "$(jq -r .cuerpo <<<"$a")" --label aviso-estudiantes --assignee "$RESPONSABLE"
               echo "Aviso publicado en la cola interna." >> "$GITHUB_STEP_SUMMARY"
             done
           elif [ "$n" -gt 0 ]; then
