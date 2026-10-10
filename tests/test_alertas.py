@@ -60,7 +60,7 @@ def test_alerta_de_faltantes_sin_pat_por_defecto(repo):
 
 def test_sin_alertas_cuando_manana_no_hay_clase(repo):
     a = al.calcular(repo, date(2030, 1, 1))
-    assert a == {"fecha": "2030-01-02", "faltantes": [], "choques": [], "errores": []} and not al.hay(a)
+    assert a == {"fecha": "2030-01-02", "hasta": "2030-01-02", "faltantes": [], "choques": [], "errores": []} and not al.hay(a)
 
 
 def test_alerta_de_choque_error_y_registro(repo):
@@ -121,3 +121,11 @@ def test_avisos_no_avisa_cambios_resueltos_ni_de_clases_pasadas(repo):
     assert av.pendientes(repo, A, HOY) == []
     agregar_cambio(repo, A, detectadoEn="2026-10-12T16:00:00Z", fechaNueva="2026-10-13")
     assert av.pendientes(repo, A, date(2026, 10, 20)) == []        # la clase ya pasó
+
+
+def test_revision_semanal_incluye_los_proximos_7_dias(repo):
+    clase_de_manana(repo, A, linkTeams="", profesores=[], profesor="", asistentePat="")
+    a = al.calcular(repo, HOY, dias=7)
+    assert al.semanal(a) and not al.semanal(al.calcular(repo, HOY))
+    assert len(a["faltantes"]) >= len(al.calcular(repo, HOY)["faltantes"])
+    assert "revisión semanal" in al.titulo(a) and "https://" not in al.html(a)

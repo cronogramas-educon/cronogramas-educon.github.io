@@ -1,11 +1,12 @@
 name: Alertas del día anterior
 
-# Todos los días a las 3:00 p. m. de Colombia calcula qué le falta a las clases de mañana (docente, enlace de Teams), los choques y los Excel con error.
+# Todos los días a las 3:00 p. m. de Colombia (y los lunes a las 8:00 a. m., con la revisión de los próximos 7 días) calcula qué le falta a las clases de mañana (docente, enlace de Teams), los choques y los Excel con error.
 # APAGADO por defecto: solo publica la alerta si la variable del repositorio ALERTAS_ACTIVAS vale true. Publicar = crear una incidencia en el
 # repositorio PRIVADO avisos-internos (con el secreto AVISOS_TOKEN), que un flujo de Power Automate convierte en correo. Ejecutado a mano con "enviar" en falso solo muestra el texto en el resumen, sin publicar nada.
 on:
   schedule:
     - cron: '0 20 * * *'
+    - cron: '0 13 * * 1'
   workflow_dispatch:
     inputs:
       enviar:
@@ -31,7 +32,9 @@ jobs:
       - name: Calcular las alertas de mañana
         id: calc
         run: |
-          python scripts/alertas.py --html alerta.html | tee salida.txt
+          # lunes 8:00 a. m. de Colombia: revisión de la semana; el resto, solo mañana
+          if [ "${{ github.event.schedule }}" = '0 13 * * 1' ]; then SEMANA=--semana; fi
+          python scripts/alertas.py $SEMANA --html alerta.html | tee salida.txt
           {
             echo "## Alertas de mañana"
             cat salida.txt

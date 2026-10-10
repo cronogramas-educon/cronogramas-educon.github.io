@@ -24,6 +24,8 @@ Todos los días a las 3:00 p. m. de Colombia, `.github/workflows/alertas.yml` re
 - Un docente o asistente tiene dos clases a la vez.
 - Un Excel de curso o el Excel de registro no se pudo leer.
 
+**Revisión semanal:** los lunes a las 8:00 a. m. (Colombia) el mismo workflow revisa los próximos 7 días con las mismas reglas y publica una incidencia aparte, "revisión semanal", con la fecha de cada clase. Usa la misma variable `ALERTAS_ACTIVAS`.
+
 Destino: `educofdcp@unisabana.edu.co`. El destinatario vive en el flujo `Alertas de cronogramas por correo`, no en el repositorio.
 
 **Ver cómo se vería sin enviar nada:** GitHub, pestaña Actions, `Alertas del día anterior`, Run workflow con "Publicar la alerta de verdad" en falso. El texto aparece en el resumen de la ejecución.
