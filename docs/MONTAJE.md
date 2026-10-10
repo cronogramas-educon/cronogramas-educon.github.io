@@ -72,3 +72,19 @@ Una página de curso muestra "El cronograma de este curso se publicará pronto" 
 - **El paso de Excel falla con "table not found":** el archivo no tiene una tabla llamada `Table1`.
 - **Una ejecución falló por un error de código ya corregido:** en GitHub, `Re-run failed jobs` reutiliza el mismo evento.
 - **Al cambiar de archivo o de sitio en el diseñador,** los campos Biblioteca y Tabla conservan identificadores viejos: bórralos con la X y vuelve a elegir.
+
+## 8. Sitio EduContinua (cuenta educofdcp, desde octubre de 2026)
+
+Todo lo nuevo vive en la cuenta institucional `educofdcp@unisabana.edu.co`, no en cuentas personales.
+
+- **Sitio de SharePoint:** título "EduContinua", dirección `https://unisabanaedu.sharepoint.com/sites/EduContinuaDerecho` (la dirección `/sites/EduContinua` ya la usa otra área). Biblioteca "Documentos compartidos".
+- **Estructura:** `EduContinua <periodo>` / `Cohorte N` / carpeta del curso / `Cuadro de horas módulos y profesores.xlsx`. Una cohorte es cada apertura de cursos dentro del mismo periodo. Ya existen `EduContinua 2026-2/Cohorte 1` y `EduContinua 2027-1/Cohorte 1`.
+- **`Plantillas/Cuadro de horas módulos y profesores.xlsx`:** el Excel en blanco con validaciones que se copia a cada curso nuevo.
+- **`Registro de cursos.xlsx`** en la raíz: el registro único, con las columnas Cohorte, Clave (se calcula sola) y Estado (lo escribe el sistema). Los 8 cursos de 2026-2 que ya existían siguen en el sitio Especializaciones hasta que terminen; sus filas dicen "Ya existía antes del sitio EduContinua".
+- **Formulario "Registrar curso o diplomado nuevo"** (Microsoft Forms, cuenta educofdcp): la forma más fácil de registrar un curso. Cada respuesta agrega una fila al registro.
+- **Flujos de Power Automate (cuenta educofdcp):**
+  1. *Cronograma a GitHub (EduContinua):* se dispara al guardar el registro o un "Cuadro de horas" del sitio (nunca la plantilla), lee la tabla `Table1` y manda las filas crudas a GitHub en el evento `excel-actualizado`. No necesita el paso Seleccionar: el procesador toma solo las columnas que conoce.
+  2. *Preparar curso nuevo:* por cada fila del registro con Estado vacío crea la carpeta `periodo/cohorte/curso`, copia la plantilla y escribe el Estado.
+  3. *Registrar curso desde el formulario:* convierte cada respuesta en una fila del registro.
+
+El sitio web enlaza a la carpeta correcta de cada curso: los que empiezan por `EduContinua <periodo>` van al sitio nuevo y los demás al sitio Especializaciones (`base_sharepoint` en `scripts/cursos.py`).
