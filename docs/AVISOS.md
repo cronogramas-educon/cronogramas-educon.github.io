@@ -8,7 +8,7 @@ GitHub (calcula)  →  incidencia en el repositorio privado avisos-internos  →
 
 **Por qué un repositorio privado.** El conector de GitHub de Power Automate solo ofrece disparadores del tipo "incidencia asignada a mí", y asignar la incidencia pondría el nombre de la cuenta personal a la vista en un repositorio público. En el repositorio privado no la ve nadie. El flujo de Power Automate cierra la incidencia cuando termina de procesarla, así que las cerradas quedan como historial de lo enviado.
 
-**Qué se necesita para que publique (lo hace una persona, una sola vez):**
+**Qué se necesita para que publique (hecho el 9 de octubre de 2026):**
 
 1. Un token de acceso: GitHub, foto de perfil, Settings, Developer settings, Personal access tokens, **Fine-grained tokens**, Generate new token. Propietario `cronogramas-educon`, solo el repositorio `avisos-internos`, permiso **Issues: Read and write**. Se copia una vez.
 2. Guardarlo como secreto del repositorio público: Settings, Secrets and variables, Actions, **New repository secret**, con el nombre `AVISOS_TOKEN`. El token nunca se comparte por chat ni se escribe en un archivo.
@@ -48,7 +48,7 @@ Ambos se disparan con **GitHub, Cuando se abre una incidencia nueva asignada a m
 
 **`Alertas de cronogramas por correo`** (listo). Condición: `@contains(toLower(string(triggerBody())), 'alerta de cronogramas:')`. Acción: Office 365 Outlook, Enviar un correo (V2) a `educofdcp@unisabana.edu.co`, asunto = título de la incidencia, cuerpo = cuerpo de la incidencia (viene en HTML). Las incidencias de la alerta llevan solo nombres de cursos, clases, fechas y qué falta, nunca docentes ni enlaces.
 
-**`Avisos a estudiantes por Teams`** (falta un paso). Condición: `@contains(toLower(string(triggerBody())), 'aviso a estudiantes:')`. Ya tiene dos acciones Redactar que sacan el equipo y el canal del comentario `<!-- equipo:<id> canal:<id> -->` con el que empieza el cuerpo. **Falta** crear la conexión con Microsoft Teams (inicio de sesión de la persona dueña del flujo) y agregar la acción Microsoft Teams, **Publicar mensaje en un chat o canal**, con: Publicar como = Usuario o Flow bot, Publicar en = Canal, Equipo = resultado de Redactar, Canal = resultado de Redactar 1, Mensaje = cuerpo de la incidencia. Hay que colocarla antes de la acción de cerrar la incidencia.
+**`Avisos a estudiantes por Teams`** (listo). Condición: `@contains(toLower(string(triggerBody())), 'aviso a estudiantes:')`. Dos acciones Redactar sacan el equipo y el canal del comentario `<!-- equipo:<id> canal:<id> -->` con el que empieza el cuerpo. Después, Microsoft Teams, Publicar mensaje en un chat o canal: Publicar como Flow bot, en un canal, con Equipo = `@{outputs('Compose')}`, Canal = `@{outputs('Compose_1')}` y Mensaje = el cuerpo sin el comentario (`last(split(triggerBody()?['body'], '-->'))`). La conexión de Teams es "Teams institucional Personal". Al probar por primera vez, comprobar que el mensaje sale bien en el canal (si Flow bot no puede publicar en ese canal, cambiar Publicar como a Usuario).
 
 ## Seguridad
 
