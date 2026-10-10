@@ -11,7 +11,7 @@ from openpyxl.formatting.rule import FormulaRule
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.worksheet.properties import PageSetupProperties
 from openpyxl.worksheet.datavalidation import DataValidation
-from openpyxl.worksheet.table import Table, TableStyleInfo
+from openpyxl.worksheet.table import Table, TableFormula, TableStyleInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import cursos as cu
@@ -35,6 +35,7 @@ COLS = [
     ("Inicio del sábado", 17, "Opcional", "Solo si los sábados empiezan a otra hora y dejaste vacía la Hora de fin.", "08:00", "Solo si los sábados empiezan a otra hora (y la Hora de fin está vacía)"),
     ("Página oficial", 60, "Opcional", "La dirección de la página del programa en unisabana.edu.co.", "https://www.unisabana.edu.co/programas/...", "Dirección completa, empieza por https://"),
     ("Grupo de Teams", 50, "Opcional", "El enlace del grupo de Teams del curso, para avisar a los estudiantes de los cambios de fecha. En Teams: los tres puntos del equipo, Obtener vínculo al equipo.", "https://teams.microsoft.com/l/team/...", "Enlace de Obtener vínculo al equipo, en Teams"),
+    ("Clave", 30, "Automático", "Identifica la fila para que el sistema escriba el Estado. Se calcula sola con las carpetas. No la edites.", "EduContinua 2026-2/Cohorte 1/Dip en Derecho Laboral", "Se calcula sola, no la edites"),
     ("Estado", 34, "Automático", "Lo escribe el sistema cuando prepara la carpeta y el Excel del curso. No lo edites.", "Listo: carpeta y Excel creados", "Lo escribe el sistema, no lo edites"),
 ]
 OBLIGATORIAS = {"Periodo", "Carpeta del periodo", "Carpeta del curso", "Nombre del curso", "Hora de inicio"}
@@ -49,7 +50,10 @@ def _link_teams(c):
     return f"https://teams.microsoft.com/l/team/{quote(t['canal'])}/conversations?groupId={t['equipo']}&tenantId={TENANT}" if t else ""
 
 
-def _hoja_registro(wb, reg):
+YA_EXISTIA = "Ya existía antes del sitio EduContinua"
+
+
+def _hoja_registro(wb, reg, con_teams=True):
     ws = wb.active
     ws.title = "Registro"
     borde = Border(bottom=Side(style="thin", color="BFBFBF"))
@@ -72,7 +76,7 @@ def _hoja_registro(wb, reg):
             cur = cur[len(coh) + 1:]
         h = c["horario"]
         fila = [c["periodo"], per, coh, cur, c["tipo"], c["programaCorto"], c["programa"], c["modalidad"], h["inicio"], h.get("fin", ""),
-                h.get("porDia", {}).get("Sábado", ""), c.get("urlPaginaOficial", ""), _link_teams(c), ""]
+                h.get("porDia", {}).get("Sábado", ""), c.get("urlPaginaOficial", ""), _link_teams(c) if con_teams else "", None, YA_EXISTIA]
         for j, v in enumerate(fila, 1):
             x = ws.cell(i, j, v)
             x.alignment = Alignment(vertical="center", wrap_text=True)
@@ -83,8 +87,16 @@ def _hoja_registro(wb, reg):
     for col in (L("Hora de inicio"), L("Hora de fin"), L("Inicio del sábado")):  # las horas son texto (18:00) también en las filas que se agreguen
         for r in range(2, 200):
             ws[f"{col}{r}"].number_format = "@"
+    clave = f'={L("Carpeta del periodo")}{{r}}&"/"&IF({L("Cohorte")}{{r}}="","",{L("Cohorte")}{{r}}&"/")&{L("Carpeta del curso")}{{r}}'
+    for r in range(2, n + 1):
+        ws[f"{L('Clave')}{r}"] = clave.format(r=r)
     t = Table(displayName="Table1", ref=f"A1:{L('Estado')}{n}")
     t.tableStyleInfo = TableStyleInfo(name="TableStyleLight1", showRowStripes=True)
+    t._initialise_columns()
+    for col, (nombre, *_r) in zip(t.tableColumns, COLS):  # la clave se calcula sola también en las filas que se agreguen
+        col.name = nombre
+        if nombre == "Clave":
+            col.calculatedColumnFormula = TableFormula(attr_text='Table1[[#This Row],[Carpeta del periodo]]&"/"&IF(Table1[[#This Row],[Cohorte]]="","",Table1[[#This Row],[Cohorte]]&"/")&Table1[[#This Row],[Carpeta del curso]]')
     ws.add_table(t)
 
     def regla(rango, tipo, **kw):
@@ -237,10 +249,10 @@ def _hoja_instrucciones(wb):
     return ay
 
 
-def main(salida):
+def main(salida, con_teams=True):
     reg = cu.registro()
     wb = Workbook()
-    _hoja_registro(wb, reg)
+    _hoja_registro(wb, reg, con_teams)
     _hoja_instrucciones(wb)
     wb.move_sheet("Instrucciones", offset=-1)
     wb.active = 1
@@ -248,4 +260,4 @@ def main(salida):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], "--sin-teams" not in sys.argv)  # --sin-teams: sin los enlaces de los grupos (para pasarlo por un lugar público)

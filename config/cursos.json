@@ -3,6 +3,7 @@
     "universidad": "Universidad de La Sabana",
     "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
     "sharepointBase": "https://unisabanaedu.sharepoint.com/sites/Especializaciones/Documentos compartidos/ESPECIALIZACIONES 2014 - 2023",
+    "sharepointBaseEduContinua": "https://unisabanaedu.sharepoint.com/sites/EduContinuaDerecho/Documentos compartidos",
     "adminCodigo": "pu75dwc5yd",
     "mostrarLinksTeams": true,
     "diasAvisoCambio": 14,
@@ -31,7 +32,8 @@
     "zona": "America/Bogota",
     "desfase": "-05:00",
     "registroRuta": "EDU CONTINUA 2026/Registro de cursos.xlsx",
-    "urlSitio": "https://cronogramas-educon.github.io"
+    "urlSitio": "https://cronogramas-educon.github.io",
+    "registroUrl": "https://unisabanaedu.sharepoint.com/sites/EduContinuaDerecho/Documentos compartidos/Registro de cursos.xlsx"
   },
   "cursos": [
     {

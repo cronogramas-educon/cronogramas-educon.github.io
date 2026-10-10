@@ -42,6 +42,12 @@ def resolver(ruta, reg=None):
     return mejor["id"] if mejor else None
 
 
+def base_sharepoint(carpeta, g):
+    """Los cursos nuevos viven en el sitio EduContinua (carpetas 'EduContinua 2026-2/...'); los anteriores, en el sitio Especializaciones."""
+    nuevo = g.get("sharepointBaseEduContinua")
+    return nuevo if nuevo and re.match(r"educontinua \d", carpeta.casefold()) else g["sharepointBase"]
+
+
 def con_tipo(nombre, tipo):
     """'Derecho Laboral' + 'Diplomado' da 'Diplomado Derecho Laboral', para que nunca se confunda un curso con un diplomado. No duplica el tipo."""
     return nombre if _norm(nombre).startswith(_norm(tipo)) else f"{tipo} {nombre}"
@@ -253,7 +259,7 @@ def carpeta_de_ruta(ruta):
     """Del ruta completa de SharePoint deja desde la carpeta 'EDU CONTINUA ...' en adelante."""
     partes = [p for p in unicodedata.normalize("NFC", unquote(ruta)).replace("\\", "/").split("/") if p]
     for i, p in enumerate(partes):
-        if re.match(r"edu\s?continua", p.casefold()):
+        if re.match(r"edu\s?continua(\s|$)", p.casefold()):
             return "/".join(partes[i:])
     return "/".join(partes)
 
@@ -331,15 +337,15 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
             raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(con_tipo(c["programaCorto"], c["tipo"])), DESC=_esc(desc)), encoding="utf-8")
         resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "cohorte": c.get("cohorte", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
                         "tieneError": (origen / "estado/error.json").exists(), "avisosTeams": bool(c.get("teams")), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
-                        "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{g['sharepointBase']}/{c['carpeta']}", safe=":/")})
+                        "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{base_sharepoint(c['carpeta'], g)}/{c['carpeta']}", safe=":/")})
     hub = salida / "g" / g["adminCodigo"]
     hub.mkdir(parents=True)
-    enlace = lambda carpeta: quote(f"{g['sharepointBase']}/{carpeta}", safe=":/")
+    enlace = lambda carpeta: quote(f"{base_sharepoint(carpeta, g)}/{carpeta}", safe=":/")
     leer = lambda nombre, defecto: json.loads((raiz / "estado" / nombre).read_text(encoding="utf-8")) if (raiz / "estado" / nombre).exists() else defecto
     reciente = max(reg["cursos"], key=lambda c: c.get("periodo", ""))["carpeta"].split("/")[0] if reg["cursos"] else ""
     sin = [dict(x, enlace=enlace(x["carpeta"])) for x in leer("sin-registrar.json", []) if not resolver(x["carpeta"], reg)]
     meta = {"cursos": resumen, "sharepointBase": quote(g["sharepointBase"], safe=":/"), "carpetaActual": enlace(reciente), "nombreCarpetaActual": reciente,
-            "sinRegistrar": sin, "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=enlace(g["registroRuta"]) + "?web=1" if g.get("registroRuta") else "")}
+            "sinRegistrar": sin, "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=(quote(g["registroUrl"], safe=":/") if g.get("registroUrl") else enlace(g["registroRuta"]) if g.get("registroRuta") else "") + "?web=1")}
     (hub / "cursos.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
     (hub / "index.html").write_text(_html(raiz / "plantilla/hub.html", V=version, BASE="../../"), encoding="utf-8")
     return salida
