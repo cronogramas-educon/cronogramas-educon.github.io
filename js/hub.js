@@ -111,6 +111,8 @@ function registro(meta) {
   const avisos = [...(r.error ? [`El último guardado del registro no se pudo leer y se conserva el anterior: ${r.error}`] : []), ...(r.avisos ?? [])];
   $('registro-estado').innerHTML = `${avisos.length ? `<ul class="alertas">${avisos.map((a) => `<li class="alerta" role="alert">${ic('warning')}<span>${esc(a)}</span></li>`).join('')}</ul>` : ''}
     ${(meta.sinRegistrar ?? []).length ? `<div class="sin-registrar"><h3>Carpetas con Excel que no están en el registro</h3><p class="nota">Esos Excel se guardaron pero no se publica nada de ellos hasta que agregues el curso al Excel de registro.</p><ul>${meta.sinRegistrar.map((x) => `<li><span>${esc(x.carpeta)}</span><a href="${esc(x.enlace)}" target="_blank" rel="noopener">Abrir carpeta</a></li>`).join('')}</ul></div>` : ''}`;
+  $('registro-formulario').hidden = !meta.formularioRegistro;
+  if (meta.formularioRegistro) $('registro-formulario').href = meta.formularioRegistro;
   $('registro-abrir').hidden = !r.enlace;
   if (r.enlace) $('registro-abrir').href = r.enlace;
   $('registro-pie').textContent = r.actualizado ? `Registro leído ${haceCuanto(r.actualizado)}.` : '';
