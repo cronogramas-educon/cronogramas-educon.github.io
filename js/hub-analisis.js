@@ -72,7 +72,7 @@ export function reportes(rs, t) {
   for (const { c, curso } of clases(rs)) {
     const { h, estimada } = horasDe(c), hecha = estadoClase(c, t) === 'pasada';
     const acum = (e) => { e.clases++; e.horas += h; if (hecha) e.hechas += h; if (estimada) e.estimadas++; return e; };
-    const ec = acum(suma(cur, curso.id, { nombre: curso.programaCorto, periodo: curso.periodo || '', docentes: new Set() }));
+    const ec = acum(suma(cur, curso.id, { nombre: curso.programaCorto + (curso.cohorte ? `, ${curso.cohorte}` : ''), periodo: curso.periodo || '', docentes: new Set() }));
     c.profesores.forEach((p) => { ec.docentes.add(p); acum(suma(doc, p, { cursos: new Set() })).cursos.add(curso.programaCorto); });
     acum(suma(mes, c.fecha.slice(0, 7), {}));
   }

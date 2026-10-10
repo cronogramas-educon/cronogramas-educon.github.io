@@ -72,7 +72,7 @@ function estaticos() {
   // Terminado: el mismo enlace sigue abierto en modo lectura y se aclara de qué periodo es
   const terminado = datos.clases.every((c) => estadoClase(c, ahora()) === 'pasada');
   document.body.classList.toggle('finalizado', terminado);
-  $('lead').innerHTML = `<strong>${esc(m.tipo)}${terminado ? ' finalizado' : ''}.</strong> ${terminado && cfg.periodo ? `Periodo ${esc(cfg.periodo)}. ` : ''}${m.totalClases} clases del ${esc(sinDia(m.inicio))} al ${esc(sinDia(m.fin))}. ${esc(m.modalidad)}.`;
+  $('lead').innerHTML = `<strong>${esc(m.tipo)}${terminado ? ' finalizado' : ''}.</strong> ${terminado && cfg.periodo ? `Periodo ${esc(cfg.periodo)}${cfg.cohorte ? `, ${esc(cfg.cohorte)}` : ''}. ` : (cfg.cohorte ? `${esc(cfg.cohorte)}. ` : '')}${m.totalClases} clases del ${esc(sinDia(m.inicio))} al ${esc(sinDia(m.fin))}. ${esc(m.modalidad)}.`;
   document.title = `${nombre}, cronograma`;
   // Sin unidades en el Excel no hay temario por unidades ni filtro de unidad
   const hayUnidades = datos.unidades.length > 0;

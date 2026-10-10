@@ -109,3 +109,7 @@
 }
 
 .curso .teams-av { display: flex; align-items: center; gap: 8px; margin-top: -4px; color: var(--ink-2); font-size: .86rem; }
+
+.filtros-cursos { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin: 0 0 12px; }
+.campo-rep input { padding: 10px 12px; border-radius: 10px; border: 1.5px solid var(--felt-2); background: var(--paper); color: var(--ink); font: inherit; }
+@media print { .filtros-cursos { display: none; } }

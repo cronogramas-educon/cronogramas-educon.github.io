@@ -210,3 +210,17 @@ def test_los_ids_de_teams_no_llegan_a_las_paginas_publicas(sitio):
     for c in REG["cursos"]:
         for arch in ("index.html", "config/contenido.json"):
             assert "d675843f" not in (sitio / cu.sitio_ruta(c) / arch).read_text(encoding="utf-8")
+
+
+def test_una_cohorte_nueva_del_mismo_curso_en_el_mismo_periodo_es_otro_curso():
+    reg = _copia()
+    c = REG["cursos"][4]
+    base = len(reg["cursos"])
+    avisos, cambios = cu.fusionar(reg, [_fila(c, Cohorte="Cohorte 1", Carpeta_x0020_del_x0020_periodo="EduContinua 2026-2"),
+                                        _fila(c, Cohorte="Cohorte 2", Carpeta_x0020_del_x0020_periodo="EduContinua 2026-2")])
+    nuevos = reg["cursos"][base:]
+    assert not avisos and len(nuevos) == 2
+    assert [x["carpeta"].split("/")[1] for x in nuevos] == ["Cohorte 1", "Cohorte 2"]
+    assert len({x["id"] for x in nuevos}) == 2 and len({x["codigo"] for x in nuevos}) == 2
+    assert nuevos[0]["cohorte"] == "Cohorte 1" and nuevos[0]["periodo"] == c["periodo"]
+    assert cu.resolver("/sites/EduContinua/Docs/EduContinua 2026-2/Cohorte 2/" + c["carpeta"].split("/", 1)[1] + "/a.xlsx", reg) == nuevos[1]["id"]

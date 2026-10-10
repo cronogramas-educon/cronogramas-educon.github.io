@@ -1,5 +1,5 @@
 // Sitio base de administración: lee cursos.json (junto a esta página) y el data.json de cada curso.
-import { esc, rangos, ic } from './ui.js';
+import { esc, rangos, ic, norm } from './ui.js';
 import { addDias, ahora, estadoClase, fechaLarga, fechaLargaAnio, haceCuanto, cambioVigente, cap, hoyISO, mesAnio } from './utils-fecha.js';
 import { horario } from './ui.js';
 import { urgentes, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
@@ -39,6 +39,8 @@ const pendientesTxt = (r) => [
   r.falta.link.length ? `Enlace de Teams: ${rangos(r.falta.link)}` : '',
 ].filter(Boolean);
 
+const etiquetaPeriodo = (c) => (c.periodo ? `Periodo ${c.periodo}${c.cohorte ? `, ${c.cohorte}` : ''}` : c.tipo);
+
 function tarjeta(r) {
   const { c, d, error } = r;
   const prox = r.proxima
@@ -49,7 +51,7 @@ function tarjeta(r) {
   const sa = salud(r, ahora());
   return `<article class="curso papel" data-curso="${esc(c.id)}">
     <p class="semaforo ${sa.nivel}" title="${esc(sa.motivo)}"><i aria-hidden="true"></i>${esc(sa.texto)}<small>${esc(sa.motivo)}</small></p>
-    <header><span class="sello ${r.estado === 'en-curso' ? 'hoy' : r.estado === 'terminado' ? 'pasada' : 'proxima'}">${ETIQ[r.estado]}</span><p class="tipo">${c.periodo ? `Periodo ${esc(c.periodo)}` : esc(c.tipo)}</p></header>
+    <header><span class="sello ${r.estado === 'en-curso' ? 'hoy' : r.estado === 'terminado' ? 'pasada' : 'proxima'}">${ETIQ[r.estado]}</span><p class="tipo">${esc(etiquetaPeriodo(c))}</p></header>
     <h3>${esc(c.programaCorto)}</h3>
     ${error ? `<p class="alerta" role="alert">${ic('warning')}<span>El último guardado del Excel no se pudo leer y se conserva la versión anterior: ${esc(error.mensaje)}</span></p>` : ''}
     ${prox}
@@ -97,7 +99,7 @@ function archivo(rs) {
   const por = Map.groupBy(rs, (r) => r.c.periodo || 'Sin periodo');
   $('archivo-lista').innerHTML = [...por].sort((a, b) => b[0].localeCompare(a[0])).map(([periodo, lista]) => `<div class="periodo"><h3>Periodo ${esc(periodo)}</h3><ul>${lista.map((r) => {
     const url = urlCurso(r.c);
-    return `<li><span><strong>${esc(r.c.programaCorto)}</strong><small>${esc(r.c.tipo)}, terminó el ${esc(fechaLargaAnio(r.d.meta.fin))}</small></span>
+    return `<li><span><strong>${esc(r.c.programaCorto)}</strong><small>${esc(r.c.tipo)}${r.c.cohorte ? `, ${esc(r.c.cohorte)}` : ''}, terminó el ${esc(fechaLargaAnio(r.d.meta.fin))}</small></span>
       <a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Abrir${ic('arrow-up-right')}</a>
       <button class="btn" type="button" data-copiar="${esc(url)}">${ic('link-simple')}<span>Copiar enlace</span></button></li>`;
   }).join('')}</ul></div>`).join('');
@@ -142,7 +144,7 @@ function seccionAgenda(rs) {
 }
 
 /** Horas por docente, por curso y por mes, con descarga a Excel (CSV) y PDF. Se puede filtrar por periodo. */
-let periodoSel = '', ultimosRs = [];
+let periodoSel = '', ultimosRs = [], activosVivos = [];
 function seccionReportes(rs) {
   const periodos = [...new Set(rs.map((r) => r.c.periodo).filter(Boolean))].sort().reverse();
   $('rep-periodo').innerHTML = `<option value="">Todos los periodos</option>${periodos.map((p) => `<option value="${esc(p)}"${p === periodoSel ? ' selected' : ''}>Periodo ${esc(p)}</option>`).join('')}`;
@@ -174,7 +176,9 @@ async function pintar(meta) {
   ultimosRs = rs;
   const activos = rs.filter((r) => r.estado !== 'terminado');
   resumen(activos, rs.length - activos.length);
-  $('cursos-lista').innerHTML = activos.length ? activos.map(tarjeta).join('') : '<p class="nota">No hay cursos activos. Agrega los del nuevo periodo en el Excel de registro.</p>';
+  activosVivos = activos;
+  filtrosCursos(activos);
+  pintarCursos();
   tablaPendientes(activos);
   listaCambios(activos);
   archivo(rs.filter((r) => r.estado === 'terminado'));
@@ -183,6 +187,24 @@ async function pintar(meta) {
   seccionReportes(rs);
   registro(meta);
   $('refresco').textContent = `Actualizado ${fechaLargaAnio(hoyISO())}`;
+}
+
+/** Filtros de la lista de cursos: texto, periodo y cohorte, y semáforo. Solo aparecen cuando hay más de unos pocos cursos. */
+function filtrosCursos(activos) {
+  const grupos = [...new Set(activos.map((r) => etiquetaPeriodo(r.c)))].sort().reverse();
+  const previo = $('cur-grupo').value;
+  $('cur-grupo').innerHTML = `<option value="">Todos</option>${grupos.map((g) => `<option value="${esc(g)}"${g === previo ? ' selected' : ''}>${esc(g)}</option>`).join('')}`;
+  $('filtros-cursos').hidden = activos.length < 4;
+}
+
+function pintarCursos() {
+  const q = norm($('cur-buscar').value || '').trim();
+  const g = $('cur-grupo').value;
+  const sem = $('cur-semaforo').value;
+  const vis = activosVivos.filter((r) => (!q || norm(r.c.programaCorto).includes(q)) && (!g || etiquetaPeriodo(r.c) === g) && (!sem || salud(r, ahora()).nivel === sem));
+  $('cursos-lista').innerHTML = vis.length ? vis.map(tarjeta).join('')
+    : `<p class="nota">${activosVivos.length ? 'Ningún curso coincide con el filtro.' : 'No hay cursos activos. Agrega los del nuevo periodo en el Excel de registro.'}</p>`;
+  $('cur-conteo').textContent = activosVivos.length >= 4 ? `Mostrando ${vis.length} de ${activosVivos.length} cursos activos.` : '';
 }
 
 /** Copia con la API moderna y, si el navegador no deja (sin permiso o sin https), con un campo temporal. */
@@ -201,6 +223,7 @@ async function arrancar() {
   if (!meta) { $('cursos-lista').innerHTML = '<p class="nota">No se pudo cargar la lista de cursos.</p>'; return; }
   $('pie-carpeta').innerHTML = `<a href="${esc(meta.carpetaActual)}" target="_blank" rel="noopener">Abrir la carpeta ${esc(meta.nombreCarpetaActual)} en SharePoint</a>`;
   await pintar(meta);
+  for (const id of ['cur-buscar', 'cur-grupo', 'cur-semaforo']) $(id).addEventListener(id === 'cur-buscar' ? 'input' : 'change', pintarCursos);
   $('rep-periodo').onchange = (e) => { periodoSel = e.target.value; seccionReportes(ultimosRs); };
   $('rep-csv').onclick = () => descargar(`reporte-horas${periodoSel ? `-${periodoSel}` : ''}.csv`, csvReporte());
   $('rep-pdf').onclick = () => window.print();

@@ -34,7 +34,14 @@
     <section class="seccion" id="urgente"><h2>Urgente, próximos 14 días</h2>
       <p class="nota">Clases de las próximas dos semanas a las que todavía les falta docente, asistente o enlace de Teams, de todos los cursos.</p>
       <div id="urgente-lista" aria-live="polite"></div></section>
-    <section class="seccion" id="cursos"><h2>Cursos</h2><div class="cursos-grid" id="cursos-lista" aria-live="polite"></div></section>
+    <section class="seccion" id="cursos"><h2>Cursos</h2>
+      <div class="filtros-cursos" id="filtros-cursos" hidden>
+        <label class="campo-rep"><span>Buscar un curso</span><input id="cur-buscar" type="search" placeholder="Nombre del curso" autocomplete="off"></label>
+        <label class="campo-rep"><span>Periodo y cohorte</span><select id="cur-grupo"></select></label>
+        <label class="campo-rep"><span>Estado</span><select id="cur-semaforo"><option value="">Todos</option><option value="rojo">Requieren atención</option><option value="ambar">Por revisar</option><option value="verde">Todo en orden</option></select></label>
+      </div>
+      <p class="nota" id="cur-conteo" aria-live="polite"></p>
+      <div class="cursos-grid" id="cursos-lista" aria-live="polite"></div></section>
     <section class="seccion" id="pendientes"><h2>Pendientes por confirmar</h2>
       <p class="nota">Lo que falta en cada Excel. Cuando lo llenes en SharePoint, la página lo toma sola en un par de minutos.</p>
       <div class="tabla-envoltura" id="tabla-pendientes"></div></section>
@@ -59,7 +66,7 @@
       <p class="nota">Aquí se agrega un curso o se abre un periodo nuevo, sin tocar GitHub. Todo sale del Excel <strong>Registro de cursos</strong>.</p>
       <ol class="pasos">
         <li>Crea en SharePoint la carpeta del periodo y la de cada curso, con su Excel <em>Cuadro de horas módulos y profesores</em> adentro.</li>
-        <li>Abre el Excel de registro, copia las filas del periodo anterior y cambia solo el <strong>Periodo</strong> y la <strong>Carpeta del periodo</strong> (y lo que sea distinto). Para un curso nuevo, escribe una fila nueva. Guarda.</li>
+        <li>Abre el Excel de registro y escribe una fila por curso. Para un periodo nuevo copia las filas del anterior y cambia el <strong>Periodo</strong> y la <strong>Carpeta del periodo</strong>. Si dentro del mismo periodo se vuelven a abrir cursos, copia sus filas y cambia solo la <strong>Cohorte</strong> (Cohorte 1, Cohorte 2). Guarda.</li>
         <li>En un par de minutos el curso aparece arriba, con su enlace para estudiantes. Guarda también el Excel del curso para que se publique su cronograma.</li>
       </ol>
       <p><a class="btn rojo" id="registro-abrir" href="#" target="_blank" rel="noopener" hidden>Abrir el Excel Registro de cursos</a></p>

@@ -15,7 +15,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote
 
 RAIZ = Path(__file__).resolve().parent.parent
-CAMPOS_CURSO = ("programa", "programaCorto", "tipo", "marca", "modalidad", "urlPaginaOficial", "periodo")
+CAMPOS_CURSO = ("programa", "programaCorto", "tipo", "marca", "modalidad", "urlPaginaOficial", "periodo", "cohorte")
 
 
 def registro(raiz=RAIZ):
@@ -68,7 +68,7 @@ def sincronizar(raiz=RAIZ):
 
 # ---- Excel "Registro de cursos": una fila por curso, lo edita el equipo sin tocar GitHub ----
 
-COLUMNAS = {"periodo": "periodo", "carpetadelperiodo": "carpetaPeriodo", "carpetadelcurso": "carpetaCurso", "tipo": "tipo",
+COLUMNAS = {"periodo": "periodo", "carpetadelperiodo": "carpetaPeriodo", "cohorte": "cohorte", "carpetadelcurso": "carpetaCurso", "tipo": "tipo",
             "nombredelcurso": "programaCorto", "nombrecompleto": "programa", "modalidad": "modalidad", "horadeinicio": "inicio",
             "horadefin": "fin", "iniciodelsabado": "sabado", "paginaoficial": "urlPaginaOficial", "grupodeteams": "enlaceTeams"}
 ETIQUETA = {"programaCorto": "Nombre del curso", "inicio": "Hora de inicio", "periodo": "Periodo"}
@@ -164,7 +164,8 @@ def fusionar(reg, filas):
         if not (d.get("carpetaPeriodo") and d.get("carpetaCurso")):
             avisos.append(f"Fila {n}: falta la carpeta del periodo o la carpeta del curso. No se procesó.")
             continue
-        carpeta = f"{d['carpetaPeriodo'].strip('/')}/{d['carpetaCurso'].strip('/')}"
+        # un periodo puede abrir los mismos cursos varias veces: cada apertura es una cohorte, una carpeta dentro del periodo
+        carpeta = "/".join(x.strip("/") for x in (d["carpetaPeriodo"], d.get("cohorte", ""), d["carpetaCurso"]) if x)
         llave = _norm(carpeta)
         if llave in vistas:
             avisos.append(f"Fila {n}: la carpeta {carpeta} está repetida. Se usó solo la primera.")
@@ -189,7 +190,7 @@ def fusionar(reg, filas):
             if falta:
                 avisos.append(f"Fila {n}: falta {', '.join(falta)}. El curso nuevo no se creó.")
                 continue
-            base = f"{_slug(d['programaCorto'])}-{_slug(d['periodo'])}"
+            base = "-".join(x for x in (_slug(d["programaCorto"]), _slug(d["periodo"]), _slug(d.get("cohorte", ""))) if x)
             i, k = base, 2
             while i in ids:
                 i, k = f"{base}-{k}", k + 1
@@ -199,13 +200,15 @@ def fusionar(reg, filas):
             c = {"id": i, "codigo": cod, "carpeta": carpeta, "tipo": d.get("tipo", "Curso"), "programa": d.get("programa", d["programaCorto"]),
                  "programaCorto": d["programaCorto"], "modalidad": d.get("modalidad", "Por confirmar"),
                  "urlPaginaOficial": d.get("urlPaginaOficial", ""), "periodo": d["periodo"], "horario": h}
+            if d.get("cohorte"):
+                c["cohorte"] = d["cohorte"]
             if equipo:
                 c["teams"] = equipo
             cursos.append(c)
             ids.add(i); codigos.add(cod); por[llave] = c
             cambios.append(f"Curso nuevo: {c['programaCorto']} ({c['periodo']})")
             continue
-        for k in ("tipo", "programa", "programaCorto", "modalidad", "urlPaginaOficial", "periodo"):
+        for k in ("tipo", "programa", "programaCorto", "modalidad", "urlPaginaOficial", "periodo", "cohorte"):
             if k in d and c.get(k) != d[k]:
                 c[k] = d[k]
                 cambios.append(f"{c['programaCorto']}: cambió {k}")
@@ -250,7 +253,7 @@ def carpeta_de_ruta(ruta):
     """Del ruta completa de SharePoint deja desde la carpeta 'EDU CONTINUA ...' en adelante."""
     partes = [p for p in unicodedata.normalize("NFC", unquote(ruta)).replace("\\", "/").split("/") if p]
     for i, p in enumerate(partes):
-        if p.casefold().startswith("edu continua"):
+        if re.match(r"edu\s?continua", p.casefold()):
             return "/".join(partes[i:])
     return "/".join(partes)
 
@@ -326,7 +329,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
         desc = f"Cuándo es tu próxima clase, quién la dicta y el enlace para entrar. {c['programa']}."
         (destino / "index.html").write_text(_html(
             raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(con_tipo(c["programaCorto"], c["tipo"])), DESC=_esc(desc)), encoding="utf-8")
-        resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
+        resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "cohorte": c.get("cohorte", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
                         "tieneError": (origen / "estado/error.json").exists(), "avisosTeams": bool(c.get("teams")), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
                         "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{g['sharepointBase']}/{c['carpeta']}", safe=":/")})
     hub = salida / "g" / g["adminCodigo"]
