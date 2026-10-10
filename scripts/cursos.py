@@ -74,7 +74,8 @@ def _clave(h):
 
 
 def es_registro(filas):
-    return any(_clave(k) == "carpetadelcurso" for f in filas if isinstance(f, dict) for k in f)
+    # basta una de las dos columnas de carpeta: si alguien daña un encabezado, igual se trata como registro y se avisa
+    return any(_clave(k) in ("carpetadelcurso", "carpetadelperiodo") for f in filas if isinstance(f, dict) for k in f)
 
 
 def _slug(s):

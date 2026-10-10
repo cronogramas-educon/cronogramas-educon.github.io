@@ -169,3 +169,13 @@ def test_aplicar_registro_escribe_estado_y_conserva_ante_error(tmp_path):
         cu.aplicar_registro(f, tmp_path)
     assert "Carpeta del curso" in json.loads((tmp_path / "estado/registro.json").read_text(encoding="utf-8"))["error"]
     assert cu.registro(tmp_path) == REG
+
+
+def test_registro_con_encabezado_danado_se_avisa_sin_tocar_nada():
+    reg = _copia()
+    filas = [dict(_fila(c), Column1=_fila(c).pop("Carpeta_x0020_del_x0020_curso")) for c in REG["cursos"]]
+    for f in filas:
+        del f["Carpeta_x0020_del_x0020_curso"]
+    assert cu.es_registro(filas)
+    avisos, cambios = cu.fusionar(reg, filas)
+    assert len(avisos) == 8 and cambios == [] and reg == REG
