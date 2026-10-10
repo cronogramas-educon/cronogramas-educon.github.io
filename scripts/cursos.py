@@ -305,7 +305,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
     reciente = max(reg["cursos"], key=lambda c: c.get("periodo", ""))["carpeta"].split("/")[0] if reg["cursos"] else ""
     sin = [dict(x, enlace=enlace(x["carpeta"])) for x in leer("sin-registrar.json", []) if not resolver(x["carpeta"], reg)]
     meta = {"cursos": resumen, "sharepointBase": quote(g["sharepointBase"], safe=":/"), "carpetaActual": enlace(reciente), "nombreCarpetaActual": reciente,
-            "sinRegistrar": sin, "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=enlace(g["registroRuta"]) if g.get("registroRuta") else "")}
+            "sinRegistrar": sin, "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=enlace(g["registroRuta"]) + "?web=1" if g.get("registroRuta") else "")}
     (hub / "cursos.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
     (hub / "index.html").write_text(_html(raiz / "plantilla/hub.html", V=version, BASE="../../"), encoding="utf-8")
     return salida
