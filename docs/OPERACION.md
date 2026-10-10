@@ -4,6 +4,18 @@ Cada curso tiene su Excel, llamado `Cuadro de horas módulos y profesores.xlsx`,
 
 El sitio base de administración (la dirección la tiene quien administra) muestra el estado de todos los cursos, qué falta por confirmar y los enlaces para copiar y enviar a los estudiantes.
 
+## Cada periodo: abrir cursos nuevos o repetir los anteriores
+
+Todo se maneja desde un solo Excel, **Registro de cursos**, que está en la carpeta EDU CONTINUA 2026 de SharePoint. Tiene una fila por curso y una hoja Instrucciones. No hace falta GitHub.
+
+1. En SharePoint crea la carpeta del periodo (por ejemplo `EDU CONTINUA 2027-1`) y, adentro, la carpeta de cada curso con su Excel `Cuadro de horas módulos y profesores`.
+2. En Registro de cursos copia las filas del periodo anterior, pégalas debajo y cambia **Periodo** y **Carpeta del periodo**. Para un curso nuevo escribe una fila nueva. Guarda.
+3. En un par de minutos el curso aparece en el sitio de administración con su **enlace nuevo para estudiantes**. Guarda también el Excel de cada curso para que se publique su cronograma.
+
+Los enlaces del periodo anterior no cambian: cuando termina la última clase, esa página pasa sola a "finalizado", sin botones de Teams, y el curso se mueve al **Archivo** del sitio de administración. Nada se borra.
+
+Si una fila del registro tiene un error (falta el nombre, una hora mal escrita), el sitio de administración lo avisa en **Cursos y periodos** y esa fila no se procesa. Si alguien guarda el Excel de un curso cuya carpeta no está en el registro, la carpeta aparece en esa misma sección como pendiente de registrar.
+
 ## Qué sí puedes cambiar
 
 Dentro de la tabla (hoja `DISTRIBUCIÓN HORAS`, columnas A a J):
@@ -45,7 +57,9 @@ En `config/cursos.json`, dentro de `global`, cambia `"mostrarLinksTeams": true` 
 
 Vuelve a guardar el Excel. Para republicar el sitio sin cambiar datos: Actions > **Actualizar datos** > **Run workflow**.
 
-## Ajustes por curso (`config/cursos.json`)
+## Ajustes por curso
+
+Los de uso normal (nombre, tipo, modalidad, horario, página oficial, periodo) se cambian en el Excel Registro de cursos. Lo siguiente es para quien administra el repositorio (`config/cursos.json`):
 
 - `programa`, `programaCorto`, `tipo` (Diplomado o Curso), `marca` (texto de la cabecera) y `modalidad`.
 - `urlPaginaOficial`: enlace al botón "Inscripción y valores".

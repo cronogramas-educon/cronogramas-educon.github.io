@@ -76,3 +76,96 @@ def test_cursos_json_del_sitio_base(sitio):
     laboral = next(c for c in meta["cursos"] if c["id"] == "derecho-laboral")
     assert laboral["carpetaSharePoint"].endswith("/EDU%20CONTINUA%202026/Dip%20en%20Derecho%20Laboral")
     assert laboral["ruta"].startswith("c/derecho-laboral-")
+
+
+# ---- Excel "Registro de cursos" ----
+
+def _fila(c, **extra):
+    """Fila como la entrega Excel Online: encabezados codificados y la hora como fracción de día."""
+    p, cur = c["carpeta"].split("/", 1)
+    h = c["horario"]
+    hm = lambda t: (int(t[:2]) * 60 + int(t[3:])) / 1440
+    f = {"Periodo": c["periodo"], "Carpeta_x0020_del_x0020_periodo": p, "Carpeta_x0020_del_x0020_curso": cur, "Tipo": c["tipo"],
+         "Nombre_x0020_del_x0020_curso": c["programaCorto"], "Nombre_x0020_completo": c["programa"], "Modalidad": c["modalidad"],
+         "Hora_x0020_de_x0020_inicio": hm(h["inicio"]), "Hora_x0020_de_x0020_fin": hm(h["fin"]) if "fin" in h else "",
+         "Inicio_x0020_del_x0020_s_x00e1_bado": hm(h["porDia"]["Sábado"]) if "porDia" in h else "",
+         "P_x00e1_gina_x0020_oficial": c.get("urlPaginaOficial", "")}
+    return dict(f, **extra)
+
+
+def _copia():
+    import copy
+    return copy.deepcopy(REG)
+
+
+def test_registro_en_excel_reproduce_el_actual_sin_cambios():
+    reg = _copia()
+    avisos, cambios = cu.fusionar(reg, [_fila(c) for c in REG["cursos"]])
+    assert avisos == [] and cambios == [] and reg == REG
+
+
+def test_registro_crea_curso_nuevo_con_codigo_y_conserva_los_existentes():
+    reg = _copia()
+    nuevo = dict(REG["cursos"][0], carpeta="EDU CONTINUA 2027-1/Dip Compliance Anti- Corrupción", periodo="2027-1")
+    avisos, cambios = cu.fusionar(reg, [_fila(c) for c in REG["cursos"]] + [_fila(nuevo)])
+    assert avisos == [] and len(cambios) == 1 and len(reg["cursos"]) == 9
+    n = reg["cursos"][-1]
+    assert n["id"] == "compliance-anti-corrupcion-y-anti-lavado-2027-1" and len(n["codigo"]) == 8
+    assert n["codigo"] not in {c["codigo"] for c in REG["cursos"]} and n["horario"] == REG["cursos"][0]["horario"]
+    assert cu.resolver("Documentos/EDU CONTINUA 2027-1/Dip Compliance Anti- Corrupción", reg) == n["id"]  # no se confunde con el de 2026
+    assert cu.resolver("Documentos/EDU CONTINUA 2026/Dip Compliance Anti- Corrupción", reg) == "compliance-anticorrupcion"
+
+
+def test_registro_actualiza_campos_pero_no_cambia_id_ni_codigo():
+    reg = _copia()
+    c0 = REG["cursos"][0]
+    cu.fusionar(reg, [_fila(c0, Hora_x0020_de_x0020_inicio="6:00 PM", Modalidad="Presencial")])
+    assert reg["cursos"][0]["horario"] == {"inicio": "18:00", "fin": "20:00"} and reg["cursos"][0]["modalidad"] == "Presencial"
+    assert reg["cursos"][0]["id"] == c0["id"] and reg["cursos"][0]["codigo"] == c0["codigo"]
+
+
+def test_registro_avisa_de_filas_incompletas_sin_inventar():
+    reg = _copia()
+    malas = [{"Carpeta_x0020_del_x0020_curso": "Solo curso"},
+             {"Periodo": "2027-1", "Carpeta_x0020_del_x0020_periodo": "EDU CONTINUA 2027-1", "Carpeta_x0020_del_x0020_curso": "Sin nombre"},
+             {"Periodo": "2027-1", "Carpeta_x0020_del_x0020_periodo": "EDU CONTINUA 2027-1", "Carpeta_x0020_del_x0020_curso": "Hora mala",
+              "Nombre_x0020_del_x0020_curso": "X", "Hora_x0020_de_x0020_inicio": "tarde"}]
+    avisos, cambios = cu.fusionar(reg, malas)
+    assert len(avisos) == 3 and cambios == [] and reg == REG
+
+
+def test_registro_hora_fin_vacia_calcula_por_horas():
+    reg = _copia()
+    nuevo = {"Periodo": "2027-1", "Carpeta_x0020_del_x0020_periodo": "EDU CONTINUA 2027-1", "Carpeta_x0020_del_x0020_curso": "Laboral",
+             "Nombre_x0020_del_x0020_curso": "Laboral", "Hora_x0020_de_x0020_inicio": "18:00", "Inicio_x0020_del_x0020_s_x00e1_bado": "8:00 AM"}
+    cu.fusionar(reg, [nuevo])
+    assert reg["cursos"][-1]["horario"] == {"modo": "porHoras", "inicio": "18:00", "duracionPorDefecto": 1, "porDia": {"Sábado": "08:00"}}
+    assert reg["cursos"][-1]["tipo"] == "Curso" and reg["cursos"][-1]["modalidad"] == "Por confirmar"
+
+
+def test_recibir_distingue_registro_curso_y_carpeta_sin_registrar(tmp_path):
+    def evento(ruta, filas):
+        e = tmp_path / "e.json"
+        e.write_text(json.dumps({"client_payload": {"ruta": ruta, "modificado": "x", "filas": json.dumps(filas)}}), encoding="utf-8")
+        return e
+    f = tmp_path / "f.json"
+    assert cu.recibir(evento("Docs/EDU CONTINUA - Registro de cursos", [_fila(REG["cursos"][0])]), f)[0] == "registro"
+    assert cu.recibir(evento("Docs/ESP/EDU CONTINUA 2026/Dip en Derecho Laboral", [{"Profesor": "A"}]), f)[:2] == ("curso", "derecho-laboral")
+    assert cu.recibir(evento("Docs/ESP/EDU CONTINUA 2027-1/Curso Nuevo", [{"Profesor": "A"}]), f)[:2] == ("ninguno", None)
+    cu.anotar_sin_registrar("Docs/ESP/EDU CONTINUA 2027-1/Curso%20Nuevo", tmp_path)
+    cu.anotar_sin_registrar("Docs/ESP/EDU CONTINUA 2027-1/Curso Nuevo", tmp_path)
+    assert json.loads((tmp_path / "estado/sin-registrar.json").read_text(encoding="utf-8"))[0]["carpeta"] == "EDU CONTINUA 2027-1/Curso Nuevo"
+
+
+def test_aplicar_registro_escribe_estado_y_conserva_ante_error(tmp_path):
+    import shutil
+    shutil.copytree(RAIZ / "config", tmp_path / "config")
+    f = tmp_path / "f.json"
+    f.write_text(json.dumps([_fila(c) for c in REG["cursos"]]), encoding="utf-8")
+    assert cu.aplicar_registro(f, tmp_path) == ([], [])
+    assert json.loads((tmp_path / "estado/registro.json").read_text(encoding="utf-8"))["error"] is None
+    f.write_text(json.dumps([{"Otra": 1}]), encoding="utf-8")
+    with pytest.raises(ValueError):
+        cu.aplicar_registro(f, tmp_path)
+    assert "Carpeta del curso" in json.loads((tmp_path / "estado/registro.json").read_text(encoding="utf-8"))["error"]
+    assert cu.registro(tmp_path) == REG

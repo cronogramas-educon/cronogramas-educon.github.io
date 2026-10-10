@@ -319,3 +319,28 @@ def test_curso_no_enlaza_a_nada_interno(pagina, base):
     abrir(pagina, base, "vista=lista")
     hrefs = pagina.eval_on_selector_all("a[href]", "es => es.map(e => e.getAttribute('href'))")
     assert all(h.startswith(("#", "https://", "webcal:")) for h in hrefs), hrefs
+
+
+# --- cierre automático y archivo
+def test_curso_terminado_queda_en_modo_lectura(pagina, base):
+    abrir(pagina, base, "ahora=2027-06-01T10:00:00-05:00&vista=lista")
+    assert "finalizado" in pagina.inner_text("#lead") and "Periodo 2026-2" in pagina.inner_text("#lead")
+    assert "ha finalizado" in pagina.inner_text("#panel")
+    assert pagina.locator("a[href*='teams.microsoft.com']").count() == 0 and pagina.locator(".btn-pendiente").count() == 0
+    assert pagina.errores == []
+
+
+def test_sitio_base_archiva_los_cursos_terminados(pagina, servidor, sitio):
+    pagina.goto(f"{servidor}/{sitio['hub']}/index.html?ahora=2027-06-01T10:00:00-05:00")
+    pagina.wait_for_selector("#archivo-lista li")
+    assert pagina.locator(".curso").count() == 0 and pagina.locator("#archivo-lista li").count() == 2
+    assert "periodo 2026-2" in pagina.inner_text("#archivo-lista").lower() and "2 en el archivo" in pagina.inner_text("#resumen")
+    assert pagina.errores == []
+
+
+def test_sitio_base_enlaza_el_registro_de_cursos(pagina, servidor, sitio):
+    pagina.goto(f"{servidor}/{sitio['hub']}/index.html?ahora=2026-09-20T10:00:00-05:00")
+    pagina.wait_for_selector(".curso")
+    assert pagina.locator("#archivo").is_hidden()
+    assert "sharepoint.com" in pagina.locator("#registro-abrir").get_attribute("href")
+    assert "EDU%20CONTINUA%202026" in pagina.locator("#pie-carpeta a").get_attribute("href")

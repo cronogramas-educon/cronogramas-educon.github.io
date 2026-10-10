@@ -46,7 +46,7 @@ function tarjeta(r) {
   const url = urlCurso(c);
   const n = pendientesTxt(r).length;
   return `<article class="curso papel" data-curso="${esc(c.id)}">
-    <header><span class="sello ${r.estado === 'en-curso' ? 'hoy' : r.estado === 'terminado' ? 'pasada' : 'proxima'}">${ETIQ[r.estado]}</span><p class="tipo">${esc(c.tipo)}</p></header>
+    <header><span class="sello ${r.estado === 'en-curso' ? 'hoy' : r.estado === 'terminado' ? 'pasada' : 'proxima'}">${ETIQ[r.estado]}</span><p class="tipo">${esc(c.tipo)}${c.periodo ? `, periodo ${esc(c.periodo)}` : ''}</p></header>
     <h3>${esc(c.programaCorto)}</h3>
     ${error ? `<p class="alerta" role="alert">${ic('warning')}<span>El último guardado del Excel no se pudo leer y se conserva la versión anterior: ${esc(error.mensaje)}</span></p>` : ''}
     ${prox}
@@ -80,11 +80,34 @@ function listaCambios(rs) {
     : '<p class="nota">No hay cambios de fecha vigentes en ningún curso.</p>';
 }
 
-function resumen(rs) {
-  const en = rs.filter((r) => r.estado === 'en-curso').length, por = rs.filter((r) => r.estado === 'por-empezar').length;
+function resumen(rs, archivados) {
+  const en = rs.filter((r) => r.estado === 'en-curso').length, por = rs.filter((r) => r.estado !== 'en-curso').length;
   const faltas = rs.reduce((a, r) => a + pendientesTxt(r).length, 0);
   const errores = rs.filter((r) => r.error).length;
-  $('resumen').innerHTML = `<strong>${rs.length} cursos.</strong> ${en} en curso, ${por} por empezar. ${faltas ? `${faltas} datos por confirmar.` : 'Nada por confirmar.'}${errores ? ` <span class="mal">${errores} con error al leer el Excel.</span>` : ''}`;
+  $('resumen').innerHTML = `<strong>${rs.length} ${rs.length === 1 ? 'curso activo' : 'cursos activos'}.</strong> ${en} en curso, ${por} por empezar. ${faltas ? `${faltas} datos por confirmar.` : 'Nada por confirmar.'}${archivados ? ` ${archivados} en el archivo.` : ''}${errores ? ` <span class="mal">${errores} con error al leer el Excel.</span>` : ''}`;
+}
+
+/** Cursos terminados: pasan solos al archivo, agrupados por periodo, con su página en modo lectura. */
+function archivo(rs) {
+  $('archivo').hidden = $('nav-archivo').hidden = !rs.length;
+  const por = Map.groupBy(rs, (r) => r.c.periodo || 'Sin periodo');
+  $('archivo-lista').innerHTML = [...por].sort((a, b) => b[0].localeCompare(a[0])).map(([periodo, lista]) => `<div class="periodo"><h3>Periodo ${esc(periodo)}</h3><ul>${lista.map((r) => {
+    const url = urlCurso(r.c);
+    return `<li><span><strong>${esc(r.c.programaCorto)}</strong><small>${esc(r.c.tipo)}, terminó el ${esc(fechaLargaAnio(r.d.meta.fin))}</small></span>
+      <a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Abrir${ic('arrow-up-right')}</a>
+      <button class="btn" type="button" data-copiar="${esc(url)}">${ic('link-simple')}<span>Copiar enlace</span></button></li>`;
+  }).join('')}</ul></div>`).join('');
+}
+
+/** Cómo agregar o cambiar cursos, estado del Excel de registro y carpetas que llegaron sin estar registradas. */
+function registro(meta) {
+  const r = meta.registro ?? {};
+  const avisos = [...(r.error ? [`El último guardado del registro no se pudo leer y se conserva el anterior: ${r.error}`] : []), ...(r.avisos ?? [])];
+  $('registro-estado').innerHTML = `${avisos.length ? `<ul class="alertas">${avisos.map((a) => `<li class="alerta" role="alert">${ic('warning')}<span>${esc(a)}</span></li>`).join('')}</ul>` : ''}
+    ${(meta.sinRegistrar ?? []).length ? `<div class="sin-registrar"><h3>Carpetas con Excel que no están en el registro</h3><p class="nota">Esos Excel se guardaron pero no se publica nada de ellos hasta que agregues el curso al Excel de registro.</p><ul>${meta.sinRegistrar.map((x) => `<li><span>${esc(x.carpeta)}</span><a href="${esc(x.enlace)}" target="_blank" rel="noopener">Abrir carpeta</a></li>`).join('')}</ul></div>` : ''}`;
+  $('registro-abrir').hidden = !r.enlace;
+  if (r.enlace) $('registro-abrir').href = r.enlace;
+  $('registro-pie').textContent = r.actualizado ? `Registro leído ${haceCuanto(r.actualizado)}.` : '';
 }
 
 async function pintar(meta) {
@@ -92,10 +115,13 @@ async function pintar(meta) {
     const [d, error] = await Promise.all([c.tieneDatos && traer(`${new URL(`${c.ruta}/data/data.json`, BASE)}`), c.tieneError && traer(`${new URL(`${c.ruta}/estado/error.json`, BASE)}`)]);
     return analizar(c, d, error);
   }));
-  resumen(rs);
-  $('cursos-lista').innerHTML = rs.map(tarjeta).join('');
-  tablaPendientes(rs);
-  listaCambios(rs);
+  const activos = rs.filter((r) => r.estado !== 'terminado');
+  resumen(activos, rs.length - activos.length);
+  $('cursos-lista').innerHTML = activos.length ? activos.map(tarjeta).join('') : '<p class="nota">No hay cursos activos. Agrega los del nuevo periodo en el Excel de registro.</p>';
+  tablaPendientes(activos);
+  listaCambios(activos);
+  archivo(rs.filter((r) => r.estado === 'terminado'));
+  registro(meta);
   $('refresco').textContent = `Actualizado ${fechaLargaAnio(hoyISO())}`;
 }
 
@@ -113,7 +139,7 @@ async function copiar(texto) {
 async function arrancar() {
   const meta = await traer('cursos.json');
   if (!meta) { $('cursos-lista').innerHTML = '<p class="nota">No se pudo cargar la lista de cursos.</p>'; return; }
-  $('pie-carpeta').innerHTML = `<a href="${esc(meta.sharepointBase)}" target="_blank" rel="noopener">Abrir la carpeta EDU CONTINUA 2026 en SharePoint</a>`;
+  $('pie-carpeta').innerHTML = `<a href="${esc(meta.carpetaActual)}" target="_blank" rel="noopener">Abrir la carpeta ${esc(meta.nombreCarpetaActual)} en SharePoint</a>`;
   await pintar(meta);
   document.addEventListener('click', async (e) => {
     const b = e.target.closest('[data-copiar]');

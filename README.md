@@ -59,11 +59,14 @@ python3 -m http.server 8000 --directory _sitio           # abrir http://localhos
 
 Para simular una hora, agrega `?ahora=2026-10-14T17:30:00-05:00` a la dirección de cualquier página.
 
-## Agregar un curso
+## Agregar un curso o abrir un periodo
 
-1. Crea la carpeta del curso en SharePoint con su `Cuadro de horas módulos y profesores.xlsx` (hoja `DISTRIBUCIÓN HORAS`, tabla de A a J).
-2. Agrega el curso a `config/cursos.json` con un código aleatorio nuevo (por ejemplo `python3 -c "import secrets,string;print(''.join(secrets.choice(string.ascii_lowercase+string.digits) for _ in range(8)))"`).
-3. `python scripts/cursos.py sincronizar`, commit y push. Con el primer guardado del Excel la página se llena sola. El flujo de Power Automate no cambia.
+Lo hace el equipo desde el Excel **Registro de cursos** (carpeta EDU CONTINUA 2026 en SharePoint), sin GitHub. Una fila por curso: periodo, carpetas, tipo, nombre, modalidad, horario y página oficial. El flujo de Power Automate manda ese Excel igual que los de cada curso, y el workflow lo fusiona en `config/cursos.json`: crea los cursos nuevos con id y código aleatorio, actualiza los existentes y **nunca borra ni cambia códigos**. `scripts/generar_registro_xlsx.py` regenera el Excel desde el registro si se pierde. Guía para el equipo en [docs/OPERACION.md](docs/OPERACION.md).
+
+- **Periodos.** Cada fila tiene `periodo` y la carpeta incluye la carpeta del periodo (`EDU CONTINUA 2027-1/Dip ...`), así que dos periodos del mismo curso son cursos distintos con enlace distinto.
+- **Cierre y archivo.** No hay estado que mantener: cuando pasa la última clase la página del curso se muestra "finalizado" (sin botones de Teams) y el sitio de administración lo mueve al Archivo, agrupado por periodo.
+- **Carpeta sin registrar.** Si llega un Excel de una carpeta que no está en el registro, no se publica y el sitio de administración la lista como pendiente.
+- Manualmente sigue valiendo editar `config/cursos.json` y correr `python scripts/cursos.py sincronizar`.
 
 ## Detalles que conviene saber
 

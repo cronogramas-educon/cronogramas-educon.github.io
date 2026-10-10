@@ -57,7 +57,7 @@ export const horario = (c) => `${hora12(c.inicio.slice(11, 16))} a ${hora12(c.fi
 export const PENDIENTE = 'Por confirmar';
 
 export function botonTeams(c, cfg, estado) {
-  if (!cfg.mostrarLinksTeams) return '';
+  if (!cfg.mostrarLinksTeams || estado === 'pasada') return '';
   if (!c.linkTeams) return `<span class="btn btn-teams btn-pendiente" role="note" aria-disabled="true">${ic('video-camera')}Enlace por confirmar</span>`;
   const prim = estado === 'hoy' || estado === 'envivo';
   return `<a class="btn btn-teams${prim ? ' rojo' : ''}" href="${esc(c.linkTeams)}" target="_blank" rel="noopener noreferrer">${ic('video-camera')}Unirme en Teams</a>`;

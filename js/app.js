@@ -69,7 +69,10 @@ function estaticos() {
   const nombre = cfg.programaCorto ?? m.programa.split(',')[0];
   $('marca').textContent = cfg.marca ?? `${m.tipo} ${nombre.split(' ')[0]}`;
   $('titulo').innerHTML = nombre.split(' ').map((w) => (w.includes('-') ? `<span class="sin-corte">${esc(w)}</span>` : esc(w))).join(' ');
-  $('lead').innerHTML = `<strong>${esc(m.tipo)}.</strong> ${m.totalClases} clases del ${esc(sinDia(m.inicio))} al ${esc(sinDia(m.fin))}. ${esc(m.modalidad)}.`;
+  // Terminado: el mismo enlace sigue abierto en modo lectura y se aclara de qué periodo es
+  const terminado = datos.clases.every((c) => estadoClase(c, ahora()) === 'pasada');
+  document.body.classList.toggle('finalizado', terminado);
+  $('lead').innerHTML = `<strong>${esc(m.tipo)}${terminado ? ' finalizado' : ''}.</strong> ${terminado && cfg.periodo ? `Periodo ${esc(cfg.periodo)}. ` : ''}${m.totalClases} clases del ${esc(sinDia(m.inicio))} al ${esc(sinDia(m.fin))}. ${esc(m.modalidad)}.`;
   document.title = `${nombre}, cronograma`;
   // Sin unidades en el Excel no hay temario por unidades ni filtro de unidad
   const hayUnidades = datos.unidades.length > 0;

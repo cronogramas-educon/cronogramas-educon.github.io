@@ -2,7 +2,7 @@
   "global": {
     "universidad": "Universidad de La Sabana",
     "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
-    "sharepointBase": "https://unisabanaedu.sharepoint.com/sites/Especializaciones/Documentos compartidos/ESPECIALIZACIONES 2014 - 2023/EDU CONTINUA 2026",
+    "sharepointBase": "https://unisabanaedu.sharepoint.com/sites/Especializaciones/Documentos compartidos/ESPECIALIZACIONES 2014 - 2023",
     "adminCodigo": "pu75dwc5yd",
     "mostrarLinksTeams": true,
     "diasAvisoCambio": 14,
@@ -29,13 +29,14 @@
       "X"
     ],
     "zona": "America/Bogota",
-    "desfase": "-05:00"
+    "desfase": "-05:00",
+    "registroRuta": "EDU CONTINUA 2026/Registro de cursos.xlsx"
   },
   "cursos": [
     {
       "id": "compliance-anticorrupcion",
       "codigo": "s9hv2xzn",
-      "carpeta": "Dip Compliance Anti- Corrupción",
+      "carpeta": "EDU CONTINUA 2026/Dip Compliance Anti- Corrupción",
       "tipo": "Diplomado",
       "marca": "Diplomado Compliance",
       "programa": "Diplomado Compliance Anti-corrupción y Anti-lavado, más allá de las Normas y la Teoría",
@@ -45,12 +46,13 @@
       "horario": {
         "inicio": "17:00",
         "fin": "20:00"
-      }
+      },
+      "periodo": "2026-2"
     },
     {
       "id": "compliance-gobierno-corporativo",
       "codigo": "2oz2s1tr",
-      "carpeta": "Dip Compliance y Gobierno Corp",
+      "carpeta": "EDU CONTINUA 2026/Dip Compliance y Gobierno Corp",
       "tipo": "Diplomado",
       "marca": "Diplomado Gobierno Corporativo",
       "programa": "Diplomado en Compliance y Gobierno Corporativo en la práctica: poder y riesgo",
@@ -60,12 +62,13 @@
       "horario": {
         "inicio": "18:00",
         "fin": "21:00"
-      }
+      },
+      "periodo": "2026-2"
     },
     {
       "id": "conflictos-societarios",
       "codigo": "4r8orv53",
-      "carpeta": "Curs Gest de Conflictos Societarios",
+      "carpeta": "EDU CONTINUA 2026/Curs Gest de Conflictos Societarios",
       "tipo": "Curso",
       "marca": "Curso Conflictos Societarios",
       "programa": "Curso de gestión de conflictos societarios",
@@ -75,12 +78,13 @@
       "horario": {
         "inicio": "18:00",
         "fin": "20:00"
-      }
+      },
+      "periodo": "2026-2"
     },
     {
       "id": "contratacion-estatal",
       "codigo": "0j7kfcl9",
-      "carpeta": "Dip en Contratación Estatal",
+      "carpeta": "EDU CONTINUA 2026/Dip en Contratación Estatal",
       "tipo": "Diplomado",
       "marca": "Diplomado Contratación Estatal",
       "programa": "Diplomado Contratación Estatal",
@@ -90,12 +94,13 @@
       "horario": {
         "inicio": "18:00",
         "fin": "21:00"
-      }
+      },
+      "periodo": "2026-2"
     },
     {
       "id": "derecho-laboral",
       "codigo": "y7qoa6f2",
-      "carpeta": "Dip en Derecho Laboral",
+      "carpeta": "EDU CONTINUA 2026/Dip en Derecho Laboral",
       "tipo": "Diplomado",
       "marca": "Diplomado Derecho Laboral",
       "programa": "Diplomado en Derecho Laboral",
@@ -109,12 +114,13 @@
           "Sábado": "08:00"
         },
         "duracionPorDefecto": 1
-      }
+      },
+      "periodo": "2026-2"
     },
     {
       "id": "derecho-minero",
       "codigo": "ojw5wrjr",
-      "carpeta": "Curso en Derecho Minero",
+      "carpeta": "EDU CONTINUA 2026/Curso en Derecho Minero",
       "tipo": "Curso",
       "marca": "Curso Derecho Minero",
       "programa": "Curso de Actualización en Derecho Minero Ambiental",
@@ -124,12 +130,13 @@
       "horario": {
         "inicio": "18:00",
         "fin": "21:00"
-      }
+      },
+      "periodo": "2026-2"
     },
     {
       "id": "ia-sector-legal-grupo-1",
       "codigo": "6te3wc5r",
-      "carpeta": "IA en el seclegal III Cohorte/GRUPO 1- Laura",
+      "carpeta": "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 1- Laura",
       "tipo": "Curso",
       "marca": "Curso IA Sector Legal",
       "programa": "Curso en IA en el Sector Legal, Grupo 1",
@@ -139,12 +146,13 @@
       "horario": {
         "inicio": "18:00",
         "fin": "20:00"
-      }
+      },
+      "periodo": "2026-2"
     },
     {
       "id": "ia-sector-legal-grupo-2",
       "codigo": "ey0cmnrj",
-      "carpeta": "IA en el seclegal III Cohorte/GRUPO 2- Valentina",
+      "carpeta": "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 2- Valentina",
       "tipo": "Curso",
       "marca": "Curso IA Sector Legal",
       "programa": "Curso en IA en el Sector Legal, Grupo 2",
@@ -154,7 +162,8 @@
       "horario": {
         "inicio": "18:00",
         "fin": "20:00"
-      }
+      },
+      "periodo": "2026-2"
     }
   ]
 }

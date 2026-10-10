@@ -44,3 +44,23 @@
 .pie a { color: var(--felt-2); }
 @media (max-width: 720px) { .portada-hub h1 { max-width: none; } }
 .tabla-pend .sin { color: var(--ink-2); font-style: italic; }
+
+.periodo { margin-bottom: 22px; }
+.periodo h3 { font: 700 .8rem/1 var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--felt-2); margin-bottom: 10px; }
+.periodo ul { display: grid; gap: 10px; }
+.periodo li { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 18px; background: var(--paper); color: var(--ink); border-radius: var(--r-tag); box-shadow: var(--sombra-chica); }
+.periodo li > span { flex: 1 1 260px; display: grid; gap: 3px; }
+.periodo li small { color: var(--ink-2); }
+.periodo .btn { padding: 9px 14px; font-size: .86rem; border-color: var(--ink-2); color: var(--ink); }
+.periodo .btn:hover { background: var(--paper-2); border-color: var(--ink); }
+.pasos { display: grid; gap: 10px; max-width: 70ch; margin: 14px 0 18px 1.3em; list-style: decimal; color: var(--felt); }
+.pasos li { padding-left: 4px; }
+#registro .btn.rojo { background: var(--red); border-color: var(--red); color: #fff; }
+#registro .btn.rojo:hover { background: var(--red-hot); }
+.alertas { display: grid; gap: 10px; max-width: 760px; margin-top: 18px; }
+.alertas .alerta { display: flex; gap: 10px; padding: 12px 14px; border-radius: 8px; background: var(--amber); color: var(--amber-ink); font-weight: 600; font-size: .92rem; }
+.sin-registrar { max-width: 760px; margin-top: 22px; }
+.sin-registrar h3 { font: 700 1.05rem/1.2 var(--font-display); margin-bottom: 4px; }
+.sin-registrar ul { display: grid; gap: 8px; margin-top: 10px; }
+.sin-registrar li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 12px 16px; background: var(--paper); color: var(--ink); border-radius: var(--r-tag); }
+.sin-registrar a { color: var(--ink); font-weight: 600; }

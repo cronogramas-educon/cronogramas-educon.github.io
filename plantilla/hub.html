@@ -19,7 +19,7 @@
     <div class="dentro">
       <span class="marca">Educación Continua</span>
       <nav class="nav" aria-label="Secciones">
-        <a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#cambios">Cambios de fecha</a>
+        <a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#cambios">Cambios de fecha</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a><a href="#registro">Cursos y periodos</a>
       </nav>
     </div>
   </header>
@@ -36,6 +36,19 @@
       <p class="nota">Lo que falta en cada Excel. Cuando lo llenes en SharePoint, la página lo toma sola en un par de minutos.</p>
       <div class="tabla-envoltura" id="tabla-pendientes"></div></section>
     <section class="seccion" id="cambios"><h2>Cambios de fecha recientes</h2><div id="lista-cambios"></div></section>
+    <section class="seccion" id="archivo" hidden><h2>Archivo</h2>
+      <p class="nota">Los cursos terminan solos y pasan aquí. Su página sigue abierta en modo lectura con el mismo enlace.</p>
+      <div id="archivo-lista"></div></section>
+    <section class="seccion" id="registro"><h2>Cursos y periodos</h2>
+      <p class="nota">Aquí se agrega un curso o se abre un periodo nuevo, sin tocar GitHub. Todo sale del Excel <strong>Registro de cursos</strong>.</p>
+      <ol class="pasos">
+        <li>Crea en SharePoint la carpeta del periodo y la de cada curso, con su Excel <em>Cuadro de horas módulos y profesores</em> adentro.</li>
+        <li>Abre el Excel de registro, copia las filas del periodo anterior y cambia solo el <strong>Periodo</strong> y la <strong>Carpeta del periodo</strong> (y lo que sea distinto). Para un curso nuevo, escribe una fila nueva. Guarda.</li>
+        <li>En un par de minutos el curso aparece arriba, con su enlace para estudiantes. Guarda también el Excel del curso para que se publique su cronograma.</li>
+      </ol>
+      <p><a class="btn rojo" id="registro-abrir" href="#" target="_blank" rel="noopener" hidden>Abrir el Excel Registro de cursos</a></p>
+      <div id="registro-estado" aria-live="polite"></div>
+      <p class="nota" id="registro-pie"></p></section>
   </main>
   <footer class="pie"><div class="dentro"><p id="pie-carpeta"></p><p id="refresco" aria-live="off"></p></div></footer>
   <script type="importmap">{"imports":{"__BASE__js/hub.js":"__BASE__js/hub.js?v=__V__","__BASE__js/ui.js":"__BASE__js/ui.js?v=__V__","__BASE__js/iconos.js":"__BASE__js/iconos.js?v=__V__","__BASE__js/utils-fecha.js":"__BASE__js/utils-fecha.js?v=__V__"}}</script>

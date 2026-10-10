@@ -22,6 +22,7 @@ Por qué así: el inquilino de la Universidad no permite vínculos "Cualquier pe
 
 - Repositorio público `cronogramas-educon/cronogramas-educon.github.io`, dentro de la organización neutra de GitHub `cronogramas-educon`, de modo que las direcciones no llevan el nombre de una persona (antes `cronograma-compliance-2026-2` y `cursos-educacion-continua-2026`).
 - Settings > Pages > Source: **GitHub Actions**.
+- Organización nueva: en Settings > Third-party access > OAuth application policy debe decir "No restrictions". Con "Access restricted" el conector de GitHub de Power Automate recibe "Forbidden" al enviar el aviso.
 - Variable del repositorio `MODO_ENTRADA = json` (heredada; el workflow ya solo trabaja en este modo). No existe el secreto `EXCEL_URL`.
 
 ## 2. Registro de cursos
@@ -36,16 +37,18 @@ Un flujo vigila toda la carpeta `EDU CONTINUA 2026`. Cuatro pasos:
 
 1. **SharePoint, Cuando se crea o modifica un archivo (solo propiedades).** Sitio `https://unisabanaedu.sharepoint.com/sites/Especializaciones`, biblioteca `Documents`, sin carpeta. En Configuración tiene **una condición de desencadenador**:
    `@and(contains(triggerOutputs()?['body/{FilenameWithExtension}'], 'Cuadro de horas'), contains(triggerOutputs()?['body/{Path}'], 'EDU CONTINUA 2026'))`
-   Si se renombra un archivo para que ya no empiece por `Cuadro de horas`, deja de disparar.
+   Si se renombra un archivo para que ya no empiece por `Cuadro de horas`, deja de disparar. El Excel **Registro de cursos** (carpeta EDU CONTINUA 2026) también debe disparar el flujo: la condición lo incluye con un `or` sobre el nombre `Registro de cursos`.
 2. **Excel Online (Business), Enumerar filas presentes en una tabla.** Ubicación: el sitio Especializaciones. Biblioteca: `Documentos`. **Archivo: contenido dinámico `Identifier` del paso 1** (`@{triggerOutputs()?['body/{Identifier}']}`), de modo que lee el Excel que cambió. **Tabla: el nombre `Table1`** (no el identificador interno: ese cambia de un archivo a otro).
 3. **Seleccionar.** Arma las 10 columnas. Excel Online codifica el punto de los encabezados: `No.` llega como `No_x002e_` y `No. de clase` como `No_x002e_ de clase`. El procesador decodifica estos nombres.
 4. **GitHub, Create a repository dispatch event.** Propietario `cronogramas-educon` y repositorio `cronogramas-educon.github.io`, evento `excel-actualizado` y carga útil:
    ```
    { "ruta": "@{triggerOutputs()?['body/{Path}']}", "modificado": "@{utcNow()}",
-     "filas": "@{string(body('Select'))}" }
+     "filas": "@{if(contains(triggerOutputs()?['body/{FilenameWithExtension}'], 'Registro de cursos'), string(body('List_rows_present_in_a_table')?['value']), string(body('Select')))}" }
    ```
 
 Fechas: el conector las entrega como número serial de Excel en texto (por ejemplo `"46296"`). El procesador las convierte.
+
+El Excel de registro no pasa por el paso Seleccionar (sus columnas son otras): el flujo manda las filas tal como las entrega Excel Online y el workflow las reconoce porque traen la columna `Carpeta del curso`. Su tabla también se llama `Table1`.
 
 Requisito de cada Excel: hoja `DISTRIBUCIÓN HORAS` con una tabla de Excel llamada **`Table1`** y los encabezados exactos de A a J.
 

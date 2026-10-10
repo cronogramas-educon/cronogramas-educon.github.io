@@ -1,7 +1,8 @@
 name: Actualizar datos
 
-# Un solo flujo de Power Automate avisa de cualquier Excel de EDU CONTINUA 2026 (evento excel-actualizado) con la ruta de su carpeta
-# y las filas de la tabla. Aquí se reconoce el curso por esa ruta (config/cursos.json), se reconstruyen solo sus datos y se publica el sitio.
+# Un solo flujo de Power Automate avisa de cualquier Excel de EDU CONTINUA (evento excel-actualizado) con la ruta de su carpeta
+# y las filas de la tabla. Si el Excel es el Registro de cursos se actualiza config/cursos.json. Si es el de un curso se reconoce por su ruta,
+# se reconstruyen solo sus datos y se publica el sitio.
 on:
   repository_dispatch:
     types: [excel-actualizado]
@@ -40,28 +41,21 @@ jobs:
       - name: Pruebas de datos y registro de cursos
         run: pytest tests/test_datos.py tests/test_cursos.py -q
 
-      - name: Reconocer el curso y leer las filas
+      - name: Reconocer el aviso (registro de cursos o Excel de un curso)
         if: github.event_name == 'repository_dispatch'
         id: fuente
-        run: |
-          # La carga útil se lee del archivo del evento, nunca de una variable de entorno: así no se imprime en el registro público
-          python - <<'PY'
-          import json, os, sys
-          sys.path.insert(0, "scripts")
-          import cursos
-          p = json.load(open(os.environ["GITHUB_EVENT_PATH"])).get("client_payload")
-          if not p:
-              print("::error::El evento no trae client_payload. Usa el evento excel-actualizado del flujo de Power Automate con la ruta y las filas.")
-              sys.exit(1)
-          filas = p.get("filas", p) if isinstance(p, dict) else p
-          json.dump(json.loads(filas) if isinstance(filas, str) else filas, open("fuente.json", "w"))
-          ruta = p.get("ruta", "") if isinstance(p, dict) else ""
-          curso = cursos.resolver(ruta) if ruta else "compliance-anticorrupcion"  # el flujo anterior no mandaba ruta
-          if not curso:
-              print("::warning::La carpeta del Excel no está en config/cursos.json: no se actualiza ningún curso. Ruta recibida: " + ruta)
-          out = open(os.environ["GITHUB_OUTPUT"], "a")
-          out.write(f"curso={curso or ''}\nmodificado={p.get('modificado', '') if isinstance(p, dict) else ''}\n")
-          PY
+        # La carga útil se lee del archivo del evento, nunca de una variable de entorno: así no se imprime en el registro público
+        run: python scripts/cursos.py recibir "$GITHUB_EVENT_PATH"
+
+      - name: Aplicar el Excel Registro de cursos
+        if: steps.fuente.outputs.tipo == 'registro'
+        id: registro
+        continue-on-error: true
+        run: python scripts/cursos.py registro fuente.json
+
+      - name: Anotar la carpeta sin registrar
+        if: steps.fuente.outputs.tipo == 'ninguno'
+        run: python scripts/cursos.py sinregistrar "$GITHUB_EVENT_PATH"
 
       - name: Validar y construir el curso
         if: steps.fuente.outputs.curso != ''
@@ -86,7 +80,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cursos
+          git add cursos config estado
           if git diff --cached --quiet; then
             echo "hay=false" >> "$GITHUB_OUTPUT"
           else
@@ -110,7 +104,7 @@ jobs:
           fi
 
       - name: Marcar la ejecución como fallida si el Excel no se pudo leer
-        if: steps.construir.outcome == 'failure'
+        if: steps.construir.outcome == 'failure' || steps.registro.outcome == 'failure'
         run: exit 1
 
   desplegar:
