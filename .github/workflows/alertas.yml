@@ -1,8 +1,8 @@
 name: Alertas del día anterior
 
 # Todos los días a las 3:00 p. m. de Colombia calcula qué le falta a las clases de mañana (docente, enlace de Teams), los choques y los Excel con error.
-# APAGADO por defecto: solo publica la alerta (una incidencia que un flujo de Power Automate convierte en correo) si la variable del repositorio
-# ALERTAS_ACTIVAS vale true. Ejecutado a mano con "enviar" en falso solo muestra el texto en el resumen, sin publicar nada.
+# APAGADO por defecto: solo publica la alerta si la variable del repositorio ALERTAS_ACTIVAS vale true. Publicar = crear una incidencia en el
+# repositorio PRIVADO avisos-internos (con el secreto AVISOS_TOKEN), que un flujo de Power Automate convierte en correo. Ejecutado a mano con "enviar" en falso solo muestra el texto en el resumen, sin publicar nada.
 on:
   schedule:
     - cron: '0 20 * * *'
@@ -15,7 +15,6 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   alertas:
@@ -45,13 +44,16 @@ jobs:
       - name: Publicar la alerta
         if: steps.calc.outputs.hay == 'true' && ((github.event_name == 'schedule' && vars.ALERTAS_ACTIVAS == 'true') || (github.event_name == 'workflow_dispatch' && inputs.enviar))
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.AVISOS_TOKEN }}
+          COLA: ${{ github.repository_owner }}/avisos-internos
+          RESPONSABLE: ${{ vars.RESPONSABLE_AVISOS }}
           TITULO: ${{ steps.calc.outputs.titulo }}
         run: |
-          gh label create alerta-cronogramas --color B60205 --description "Alerta diaria que se envía por correo" 2>/dev/null || true
-          url=$(gh issue create --title "$TITULO" --body-file alerta.html --label alerta-cronogramas)
+          if [ -z "$GH_TOKEN" ]; then echo "Falta el secreto AVISOS_TOKEN: no se publicó nada." >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          gh label create alerta-cronogramas -R "$COLA" --color B60205 2>/dev/null || true
+          url=$(gh issue create -R "$COLA" --title "$TITULO" --body-file alerta.html --label alerta-cronogramas --assignee "$RESPONSABLE")
           gh issue close "$url" --comment "Procesada."
-          echo "Alerta publicada: $url" >> "$GITHUB_STEP_SUMMARY"
+          echo "Alerta publicada en la cola interna." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Aviso de que no se publicó
         if: steps.calc.outputs.hay == 'true' && !((github.event_name == 'schedule' && vars.ALERTAS_ACTIVAS == 'true') || (github.event_name == 'workflow_dispatch' && inputs.enviar))

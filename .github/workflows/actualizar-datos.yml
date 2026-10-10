@@ -13,7 +13,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
   pages: write
   id-token: write
 
@@ -79,20 +78,24 @@ jobs:
       - name: Avisos de cambio de fecha a los estudiantes (grupo de Teams)
         if: steps.fuente.outputs.curso != ''
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.AVISOS_TOKEN }}
+          COLA: ${{ github.repository_owner }}/avisos-internos
+          RESPONSABLE: ${{ vars.RESPONSABLE_AVISOS }}
           CURSO: ${{ steps.fuente.outputs.curso }}
           ACTIVOS: ${{ vars.AVISOS_ESTUDIANTES }}
         # APAGADO por defecto: sin AVISOS_ESTUDIANTES=true solo se anotan los cambios como vistos y no se publica nada.
-        # Cada aviso es una incidencia que un flujo de Power Automate publica en el grupo de Teams del curso.
+        # Cada aviso es una incidencia en el repositorio PRIVADO avisos-internos que un flujo de Power Automate publica en el grupo de Teams del curso.
         run: |
           python scripts/avisos.py "$CURSO" avisos.json
           n=$(jq length avisos.json)
-          if [ "$n" -gt 0 ] && [ "$ACTIVOS" = "true" ]; then
-            gh label create aviso-estudiantes --color 0E8A16 --description "Aviso a estudiantes por Teams" 2>/dev/null || true
+          if [ "$n" -gt 0 ] && [ "$ACTIVOS" = "true" ] && [ -z "$GH_TOKEN" ]; then
+            echo "Hay $n aviso(s) para estudiantes pero falta el secreto AVISOS_TOKEN. No se publicó nada." >> "$GITHUB_STEP_SUMMARY"
+          elif [ "$n" -gt 0 ] && [ "$ACTIVOS" = "true" ]; then
+            gh label create aviso-estudiantes -R "$COLA" --color 0E8A16 2>/dev/null || true
             jq -c '.[]' avisos.json | while read -r a; do
-              url=$(gh issue create --title "$(jq -r .titulo <<<"$a")" --body "$(jq -r .cuerpo <<<"$a")" --label aviso-estudiantes)
+              url=$(gh issue create -R "$COLA" --title "$(jq -r .titulo <<<"$a")" --body "$(jq -r .cuerpo <<<"$a")" --label aviso-estudiantes --assignee "$RESPONSABLE")
               gh issue close "$url" --comment "Procesado."
-              echo "Aviso publicado: $url" >> "$GITHUB_STEP_SUMMARY"
+              echo "Aviso publicado en la cola interna." >> "$GITHUB_STEP_SUMMARY"
             done
           elif [ "$n" -gt 0 ]; then
             echo "Hay $n aviso(s) de cambio de fecha para estudiantes, pero el envío está apagado (AVISOS_ESTUDIANTES no es true). No se publicó nada." >> "$GITHUB_STEP_SUMMARY"
