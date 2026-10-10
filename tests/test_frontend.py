@@ -344,3 +344,46 @@ def test_sitio_base_enlaza_el_registro_de_cursos(pagina, servidor, sitio):
     assert pagina.locator("#archivo").is_hidden()
     assert "sharepoint.com" in pagina.locator("#registro-abrir").get_attribute("href")
     assert "EDU%20CONTINUA%202026" in pagina.locator("#pie-carpeta a").get_attribute("href")
+
+
+# --- sitio base: urgentes, semáforo, agenda con choques y reportes
+def abrir_hub(pagina, servidor, sitio, ahora):
+    pagina.goto(f"{servidor}/{sitio['hub']}/index.html?ahora={ahora}")
+    pagina.wait_for_selector(".curso")
+
+
+def test_hub_urgentes_y_semaforo(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    u = pagina.inner_text("#urgente-lista")
+    assert "Derecho Laboral" in u and "Docente" in u and "Enlace de Teams" in u
+    laboral = pagina.locator(".curso", has_text="Derecho Laboral")
+    assert "rojo" in laboral.locator(".semaforo").get_attribute("class") and "requiere atención" in laboral.inner_text().lower()
+    assert pagina.locator(".curso .semaforo").count() == 2 and pagina.errores == []
+
+
+def test_hub_agenda_reportes_y_csv(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    assert pagina.locator("#agenda-lista .dia-agenda").count() >= 1 and "dos clases a la vez" in pagina.inner_text("#agenda-lista")  # el sitio de prueba repite el mismo Excel en dos cursos, así que hay choques reales
+    assert "Diplomado Derecho Laboral" in pagina.inner_text("#rep-cursos") and "estimada" in pagina.inner_text("#rep-cursos")
+    assert pagina.locator("#rep-docentes tbody tr").count() >= 3 and pagina.locator("#rep-meses tbody tr").count() >= 2
+    pagina.select_option("#rep-periodo", "2026-2")
+    with pagina.expect_download() as d:
+        pagina.click("#rep-csv")
+    txt = Path(d.value.path()).read_text(encoding="utf-8")
+    assert txt.startswith("﻿Tipo;Nombre;Periodo;Clases;Horas") and "\nDocente;" in txt and "\nCurso;Diplomado Derecho Laboral;2026-2;" in txt and "\nMes;2026-10;" in txt
+
+
+def test_analisis_detecta_choques_y_horas(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    r = pagina.evaluate("""async () => {
+      const m = await import('../../js/hub-analisis.js');
+      const cl = (id, ini, fin, prof, pat = '') => ({ id, clase: 'CLASE ' + id, fecha: ini.slice(0, 10), inicio: ini, fin, profesores: prof, asistentePat: pat, linkTeams: 'x', horas: null });
+      const curso = (n, clases) => ({ c: { id: n, programaCorto: n, periodo: '2026-2' }, d: { clases } });
+      const rs = [curso('A', [cl(1, '2026-10-05T18:00:00-05:00', '2026-10-05T20:00:00-05:00', ['Ana Gómez'], 'Luis'), cl(2, '2026-10-06T18:00:00-05:00', '2026-10-06T20:00:00-05:00', ['SABANA'])]),
+                  curso('B', [cl(1, '2026-10-05T19:00:00-05:00', '2026-10-05T21:00:00-05:00', ['ana gomez'], 'Luis'), cl(2, '2026-10-06T19:00:00-05:00', '2026-10-06T21:00:00-05:00', ['SABANA'])])];
+      const t = new Date('2026-10-02T10:00:00-05:00');
+      return { ch: m.choques(rs, t).map((k) => [k.rol, k.a.curso.id, k.b.curso.id]), h: m.horasDe(rs[0].d.clases[0]), hx: m.horasDe({ horas: 3, inicio: 'a', fin: 'b' }), csv: m.csv(['a', 'b'], [['x;y', 'z"w']]) };
+    }""")
+    assert r["ch"] == [["Docente", "A", "B"], ["Asistente PAT", "A", "B"]]  # el docente institucional SABANA no choca consigo mismo
+    assert r["h"] == {"h": 2, "estimada": True} and r["hx"] == {"h": 3, "estimada": False}
+    assert r["csv"] == '﻿a;b\r\n"x;y";"z""w"'

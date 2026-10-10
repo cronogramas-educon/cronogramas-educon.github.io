@@ -16,6 +16,15 @@ Los enlaces del periodo anterior no cambian: cuando termina la última clase, es
 
 Si una fila del registro tiene un error (falta el nombre, una hora mal escrita), el sitio de administración lo avisa en **Cursos y periodos** y esa fila no se procesa. Si alguien guarda el Excel de un curso cuya carpeta no está en el registro, la carpeta aparece en esa misma sección como pendiente de registrar.
 
+## Qué muestra el sitio de administración
+
+- **Urgente, próximos 14 días.** Las clases de todos los cursos a las que todavía les falta docente, asistente o enlace de Teams, por fecha.
+- **Semáforo por curso.** Rojo: el Excel no se pudo leer, o una clase de hoy o mañana no tiene docente o enlace de Teams. Ámbar: falta algo en los próximos 14 días o el curso aún no tiene cronograma. Verde: nada urgente. El asistente PAT faltante nunca pone en rojo.
+- **Agenda de las próximas 4 semanas** de todos los cursos, con un aviso si un docente o un asistente tiene dos clases a la vez (en el mismo curso o en cursos distintos).
+- **Reportes de horas** por docente, por curso y por mes, filtrables por periodo. Se descargan para Excel (archivo CSV) o se guardan en PDF. Las horas salen de la columna Horas del Excel. Donde esa casilla está vacía se calculan con el horario del curso y quedan marcadas como estimadas. Una clase con dos docentes cuenta completa para cada uno.
+
+La plantilla en blanco de un curso (con validaciones de día, fecha, horas y enlace) se regenera con `python scripts/generar_plantilla_xlsx.py SALIDA.xlsx`. Se copia a la carpeta del curso y se renombra a `Cuadro de horas módulos y profesores.xlsx`.
+
 ## Qué sí puedes cambiar
 
 Dentro de la tabla (hoja `DISTRIBUCIÓN HORAS`, columnas A a J):

@@ -19,7 +19,7 @@
     <div class="dentro">
       <span class="marca">Educación Continua</span>
       <nav class="nav" aria-label="Secciones">
-        <a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#cambios">Cambios de fecha</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a><a href="#registro">Cursos y periodos</a>
+        <a href="#urgente">Urgente</a><a href="#cursos">Cursos</a><a href="#agenda">Agenda</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a><a href="#registro">Cursos y periodos</a>
       </nav>
     </div>
   </header>
@@ -31,11 +31,27 @@
       <p class="lead" id="resumen"></p>
       <p class="nota-hub">Cada curso tiene su propio enlace para estudiantes. Desde ese enlace no se puede llegar a otro curso ni a esta página. Pásales únicamente el enlace de su curso.</p>
     </section>
+    <section class="seccion" id="urgente"><h2>Urgente, próximos 14 días</h2>
+      <p class="nota">Clases de las próximas dos semanas a las que todavía les falta docente, asistente o enlace de Teams, de todos los cursos.</p>
+      <div id="urgente-lista" aria-live="polite"></div></section>
     <section class="seccion" id="cursos"><h2>Cursos</h2><div class="cursos-grid" id="cursos-lista" aria-live="polite"></div></section>
     <section class="seccion" id="pendientes"><h2>Pendientes por confirmar</h2>
       <p class="nota">Lo que falta en cada Excel. Cuando lo llenes en SharePoint, la página lo toma sola en un par de minutos.</p>
       <div class="tabla-envoltura" id="tabla-pendientes"></div></section>
+    <section class="seccion" id="agenda"><h2>Agenda de las próximas 4 semanas</h2>
+      <p class="nota">Todas las clases de todos los cursos, en orden. Arriba aparecen los choques si un docente o asistente tiene dos clases a la vez.</p>
+      <div id="agenda-lista" aria-live="polite"></div></section>
     <section class="seccion" id="cambios"><h2>Cambios de fecha recientes</h2><div id="lista-cambios"></div></section>
+    <section class="seccion" id="reportes"><h2>Reportes de horas</h2>
+      <p class="nota" id="rep-nota"></p>
+      <div class="barra-reporte">
+        <label class="campo-rep"><span>Periodo</span><select id="rep-periodo"></select></label>
+        <button class="btn" type="button" id="rep-csv">Descargar para Excel</button>
+        <button class="btn" type="button" id="rep-pdf">Imprimir o guardar en PDF</button>
+      </div>
+      <h3 class="sub-rep">Por docente</h3><div id="rep-docentes"></div>
+      <h3 class="sub-rep">Por curso</h3><div id="rep-cursos"></div>
+      <h3 class="sub-rep">Por mes</h3><div id="rep-meses"></div></section>
     <section class="seccion" id="archivo" hidden><h2>Archivo</h2>
       <p class="nota">Los cursos terminan solos y pasan aquí. Su página sigue abierta en modo lectura con el mismo enlace.</p>
       <div id="archivo-lista"></div></section>
@@ -51,7 +67,7 @@
       <p class="nota" id="registro-pie"></p></section>
   </main>
   <footer class="pie"><div class="dentro"><p id="pie-carpeta"></p><p id="refresco" aria-live="off"></p></div></footer>
-  <script type="importmap">{"imports":{"__BASE__js/hub.js":"__BASE__js/hub.js?v=__V__","__BASE__js/ui.js":"__BASE__js/ui.js?v=__V__","__BASE__js/iconos.js":"__BASE__js/iconos.js?v=__V__","__BASE__js/utils-fecha.js":"__BASE__js/utils-fecha.js?v=__V__"}}</script>
+  <script type="importmap">{"imports":{"__BASE__js/hub.js":"__BASE__js/hub.js?v=__V__","__BASE__js/hub-analisis.js":"__BASE__js/hub-analisis.js?v=__V__","__BASE__js/ui.js":"__BASE__js/ui.js?v=__V__","__BASE__js/iconos.js":"__BASE__js/iconos.js?v=__V__","__BASE__js/utils-fecha.js":"__BASE__js/utils-fecha.js?v=__V__"}}</script>
   <script type="module" src="__BASE__js/hub.js?v=__V__"></script>
 </body>
 </html>

@@ -64,3 +64,46 @@
 .sin-registrar ul { display: grid; gap: 8px; margin-top: 10px; }
 .sin-registrar li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 12px 16px; background: var(--paper); color: var(--ink); border-radius: var(--r-tag); }
 .sin-registrar a { color: var(--ink); font-weight: 600; }
+
+.semaforo { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: -4px 0 -2px; font: 700 .8rem/1.2 var(--font-display); letter-spacing: .04em; text-transform: uppercase; }
+.semaforo i { width: 11px; height: 11px; border-radius: 50%; flex: none; background: currentColor; }
+.semaforo small { flex-basis: 100%; font: 500 .84rem/1.35 var(--font-body, inherit); letter-spacing: 0; text-transform: none; color: var(--ink-2); }
+.semaforo.verde { color: #1D5C3A; }
+.semaforo.ambar { color: var(--amber-ink); }
+.semaforo.rojo { color: var(--red); }
+.ok-nota { display: flex; align-items: center; gap: 8px; color: var(--felt); font-weight: 600; }
+.tabla-pend th small { display: block; margin-top: 2px; font-weight: 500; color: var(--ink-2); }
+.dia-agenda { margin-top: 18px; }
+.dia-agenda h3 { font: 700 .82rem/1 var(--font-display); letter-spacing: .08em; text-transform: uppercase; color: var(--felt-2); margin-bottom: 8px; }
+.dia-agenda ul { display: grid; gap: 8px; }
+.dia-agenda li { display: flex; gap: 16px; padding: 12px 16px; background: var(--paper); color: var(--ink); border-radius: var(--r-tag); }
+.dia-agenda .h { flex: none; min-width: 9.5em; font-weight: 700; }
+.dia-agenda small { display: block; color: var(--ink-2); margin-top: 2px; }
+.barra-reporte { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; margin: 14px 0 6px; }
+.campo-rep { display: grid; gap: 4px; font-size: .85rem; color: var(--felt-2); }
+.campo-rep select { padding: 10px 12px; border-radius: 10px; border: 1.5px solid var(--felt-2); background: var(--paper); color: var(--ink); font: inherit; }
+.barra-reporte .btn { padding: 10px 14px; font-size: .88rem; }
+.sub-rep { margin: 22px 0 8px; font: 700 1.05rem/1.2 var(--font-display); color: var(--felt); }
+@media (max-width: 720px) { .dia-agenda li { flex-direction: column; gap: 4px; } }
+@media print {
+  .hub > section:not(#reportes), .hub > .hilo, .cabecera, .portada-hub, .pie, .barra-reporte .btn { display: none !important; }
+  body, .tablero { background: #fff !important; color: #000 !important; }
+  #reportes h2, #reportes h3, #reportes .nota, .campo-rep { color: #000 !important; }
+  .tabla-envoltura { box-shadow: none; overflow: visible; }
+  .tabla-pend { min-width: 0; }
+}
+
+.resumen-sec { margin-bottom: 10px; color: var(--felt); }
+.mas { margin-top: 12px; }
+.mas > summary { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 16px; border: 1.5px solid var(--felt-2); border-radius: var(--r-pill); color: var(--felt); font-weight: 700; font-size: .9rem; cursor: pointer; list-style: none; }
+.mas > summary::-webkit-details-marker { display: none; }
+.mas > summary:hover { border-color: var(--felt); }
+.mas[open] > summary { margin-bottom: 12px; }
+@media print { .mas { display: block; } .mas > summary { display: none; } }
+
+.tabla-urg td .n { display: inline-block; margin: 0 4px 4px 0; }
+@media (max-width: 720px) {
+  .tabla-urg { min-width: 0; }
+  .tabla-urg th, .tabla-urg td { padding: 12px 10px; }
+  .tabla-urg thead th:nth-child(4), .tabla-urg td:nth-child(4) { display: none; }
+}

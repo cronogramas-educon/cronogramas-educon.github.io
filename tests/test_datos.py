@@ -290,3 +290,13 @@ def test_json_con_encabezados_codificados_de_excel_online(raiz, tmp_path):
     p.write_text(json.dumps(filas, default=str), encoding="utf-8")
     datos, _ = cd.construir(p, raiz, modo_json=True, ahora=T0)
     assert datos["meta"]["totalClases"] == 35 and datos["clases"][0]["id"] == 1
+
+
+def test_plantilla_maestra_cumple_el_formato(tmp_path):
+    import generar_plantilla_xlsx as gp
+    from openpyxl import load_workbook
+    f = tmp_path / "p.xlsx"
+    gp.main(f)
+    ws = load_workbook(f)[cd.HOJA]
+    assert [ws.cell(2, j).value for j in range(1, 11)] == cd.COLS and "Table1" in ws.tables
+    assert len(ws.data_validations.dataValidation) == 5
