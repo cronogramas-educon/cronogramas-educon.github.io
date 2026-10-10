@@ -276,7 +276,7 @@ def test_curso_incompleto_hoja_de_impresion_y_ics_sin_enlace(pagina, urlb):
     with pagina.expect_download() as d:
         pagina.click("[data-ics-todas]")
     txt = Path(d.value.path()).read_text(encoding="utf-8").replace("\n ", "")  # las líneas largas del .ics vienen plegadas
-    assert "\nURL:" not in txt and "Docente: por confirmar" in txt and "X-WR-CALNAME:Derecho Laboral\n" in txt
+    assert "\nURL:" not in txt and "Docente: por confirmar" in txt and "X-WR-CALNAME:Diplomado Derecho Laboral\n" in txt
 
 
 def test_una_pagina_no_lee_la_copia_de_otra(navegador, servidor, sitio):

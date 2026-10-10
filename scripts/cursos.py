@@ -42,9 +42,16 @@ def resolver(ruta, reg=None):
     return mejor["id"] if mejor else None
 
 
+def con_tipo(nombre, tipo):
+    """'Derecho Laboral' + 'Diplomado' da 'Diplomado Derecho Laboral', para que nunca se confunda un curso con un diplomado. No duplica el tipo."""
+    return nombre if _norm(nombre).startswith(_norm(tipo)) else f"{tipo} {nombre}"
+
+
 def config_curso(c, g):
     h = dict(c["horario"], zona=g["zona"], desfase=g["desfase"])
     cfg = {k: c[k] for k in CAMPOS_CURSO if k in c}
+    for k in ("programa", "programaCorto"):
+        cfg[k] = con_tipo(c[k], c["tipo"])
     cfg.update(universidad=g["universidad"], facultad=g["facultad"], horario=h, uidSufijo=f"cronograma-{c['id']}",
                mostrarLinksTeams=g["mostrarLinksTeams"], diasAvisoCambio=g["diasAvisoCambio"],
                profesoresInstitucionales=g["profesoresInstitucionales"], siglas=g["siglas"], id=c["id"])
@@ -295,9 +302,9 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
             shutil.copy(origen / "estado/error.json", destino / "estado/error.json")
         desc = f"Cuándo es tu próxima clase, quién la dicta y el enlace para entrar. {c['programa']}."
         (destino / "index.html").write_text(_html(
-            raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(c["programaCorto"]), DESC=_esc(desc)), encoding="utf-8")
+            raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(con_tipo(c["programaCorto"], c["tipo"])), DESC=_esc(desc)), encoding="utf-8")
         resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
-                        "tieneError": (origen / "estado/error.json").exists(), "programa": c["programa"], "programaCorto": c["programaCorto"], "tipo": c["tipo"],
+                        "tieneError": (origen / "estado/error.json").exists(), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
                         "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{g['sharepointBase']}/{c['carpeta']}", safe=":/")})
     hub = salida / "g" / g["adminCodigo"]
     hub.mkdir(parents=True)

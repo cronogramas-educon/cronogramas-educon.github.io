@@ -179,3 +179,15 @@ def test_registro_con_encabezado_danado_se_avisa_sin_tocar_nada():
     assert cu.es_registro(filas)
     avisos, cambios = cu.fusionar(reg, filas)
     assert len(avisos) == 8 and cambios == [] and reg == REG
+
+
+def test_el_nombre_siempre_dice_si_es_curso_o_diplomado(sitio):
+    assert cu.con_tipo("Derecho Laboral", "Diplomado") == "Diplomado Derecho Laboral"
+    assert cu.con_tipo("Curso en IA", "Curso") == "Curso en IA"                       # no se duplica
+    assert cu.con_tipo("Diplomado en Derecho Laboral", "Diplomado") == "Diplomado en Derecho Laboral"
+    for c in REG["cursos"]:
+        cfg = cu.config_curso(c, REG["global"])
+        assert cfg["programaCorto"].startswith(c["tipo"]) and cfg["programa"].startswith(c["tipo"]), c["id"]
+    meta = json.loads((sitio / "g" / REG["global"]["adminCodigo"] / "cursos.json").read_text(encoding="utf-8"))
+    assert all(c["programaCorto"].startswith(c["tipo"]) for c in meta["cursos"])
+    assert "<title>Diplomado Derecho Laboral" in (sitio / cu.sitio_ruta(next(c for c in REG["cursos"] if c["id"] == "derecho-laboral")) / "index.html").read_text(encoding="utf-8")

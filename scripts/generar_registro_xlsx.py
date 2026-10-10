@@ -32,7 +32,7 @@ AYUDA = [
     "QUÉ ESCRIBIR EN CADA COLUMNA",
     "Periodo: el semestre o ciclo, por ejemplo 2026-2.",
     "Carpeta del periodo y Carpeta del curso: los nombres exactos de las carpetas en SharePoint, tal como se ven. Si el curso está dentro de otra carpeta, escribe las dos separadas por una barra, por ejemplo IA en el seclegal III Cohorte/GRUPO 1- Laura.",
-    "Tipo: Diplomado o Curso.",
+    "Tipo: Diplomado o Curso. Se antepone solo al nombre en todo el sitio (por ejemplo Diplomado Derecho Laboral), así que no lo escribas dentro del nombre.",
     "Nombre del curso: el nombre corto que verán los estudiantes como título.",
     "Nombre completo: el nombre oficial del programa. Si lo dejas vacío se usa el nombre del curso.",
     "Modalidad: por ejemplo Remota (Microsoft Teams). Si lo dejas vacío aparece Por confirmar.",
