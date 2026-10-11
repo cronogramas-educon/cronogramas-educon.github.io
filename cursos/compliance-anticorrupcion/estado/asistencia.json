@@ -1,10 +1,10 @@
 {
- "actualizado": "2026-10-11T11:56:38-05:00",
+ "actualizado": "2026-10-11T11:56:52-05:00",
  "programadas": 35,
  "dictadas": 6,
  "permitidas": 7,
  "estudiantes": 14,
- "promedio": 0.9718,
+ "promedio": 0.9722,
  "porEstado": {
   "Perdió el mínimo": 0,
   "En riesgo": 0,
@@ -12,7 +12,7 @@
   "Al día": 14,
   "Aprobó": 0
  },
- "sinMarcar": 13,
+ "sinMarcar": 12,
  "porClase": [
   {
    "clase": 1,
@@ -59,7 +59,7 @@
   {
    "clase": 8,
    "estado": "Dictada",
-   "asistieron": 1,
+   "asistieron": 2,
    "de": 14
   },
   {
@@ -310,7 +310,7 @@
   {
    "n": 10,
    "estado": "Al día",
-   "asistio": 5,
+   "asistio": 6,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
