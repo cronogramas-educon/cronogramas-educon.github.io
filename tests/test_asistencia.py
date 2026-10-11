@@ -31,7 +31,7 @@ def test_resumen_ordena_por_urgencia_y_no_lleva_nombres():
     assert r["porEstado"]["En riesgo"] == 1 and r["porEstado"]["Perdió el mínimo"] == 1
     assert r["promedio"] == pytest.approx(10 / 16)
     assert [c["estado"] for c in r["porClase"][:5]] == ["Dictada"] * 4 + ["Sin dictar"]
-    assert r["porClase"][0]["asistieron"] == 3
+    assert r["porClase"][0]["asistieron"] == 3 and r["porClase"][0]["marcadas"] == 4
     texto = json.dumps(r, ensure_ascii=False)
     for secreto in ("Ana", "Pérez", "Beto", "Carla", "Dario", "1020304050"):
         assert secreto not in texto

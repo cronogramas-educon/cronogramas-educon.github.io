@@ -150,3 +150,4 @@
 @media (max-width: 720px) { .tabla-asis th, .tabla-asis td { padding: 10px 8px; white-space: normal; } .tabla-asis thead th:nth-child(6), .tabla-asis td:nth-child(6) { display: none; } }
 @media print { #asistencia { display: none !important; } }
 .curso .teams-av a { display: flex; align-items: center; gap: 8px; color: inherit; font-weight: 600; }
+.asis-barras li.incompleta i { background: repeating-linear-gradient(45deg, var(--navy-700) 0 3px, var(--paper-2) 3px 6px); outline: 1px dashed var(--navy-700); outline-offset: -1px; }

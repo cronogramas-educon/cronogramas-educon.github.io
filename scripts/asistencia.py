@@ -68,7 +68,7 @@ def resumir(filas, ahora=None):
     for k in claves:
         marcas = [_ent(f.get(k)) for f in est]
         marcas = [m for m in marcas if m is not None]
-        por_clase.append({"clase": int(k.split()[1]), "estado": "Dictada" if marcas else "Sin dictar", "asistieron": sum(1 for m in marcas if m == 1), "de": len(est)})
+        por_clase.append({"clase": int(k.split()[1]), "estado": "Dictada" if marcas else "Sin dictar", "asistieron": sum(1 for m in marcas if m == 1), "marcadas": len(marcas), "de": len(est)})
     ahora = ahora or datetime.now(BOGOTA)
     return {"actualizado": ahora.isoformat(timespec="seconds"), "programadas": programadas, "dictadas": dictadas, "permitidas": permitidas,
             "estudiantes": len(est), "promedio": round(asistio_t / (asistio_t + faltas_t), 4) if asistio_t + faltas_t else None,

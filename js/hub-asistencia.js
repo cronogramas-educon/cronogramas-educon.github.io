@@ -19,11 +19,12 @@ function barras(a) {
   const mayor = a.porClase.filter((c) => c.estado === 'Dictada');
   if (!mayor.length) return '';
   const celdas = a.porClase.map((c) => c.estado === 'Dictada'
-    ? `<li title="Clase ${c.clase}: ${c.asistieron} de ${c.de}"><i style="height:${c.de ? Math.max(6, Math.round(100 * c.asistieron / c.de)) : 6}%"></i><span>${c.clase}</span></li>`
+    ? `<li${c.marcadas < c.de ? ' class="incompleta"' : ''} title="Clase ${c.clase}: ${c.asistieron} de ${c.de}${c.marcadas < c.de ? `, faltan por marcar ${c.de - c.marcadas}` : ''}"><i style="height:${c.de ? Math.max(6, Math.round(100 * c.asistieron / c.de)) : 6}%"></i><span>${c.clase}</span></li>`
     : `<li class="vacia" title="Clase ${c.clase}: aún sin marcar"><i></i><span>${c.clase}</span></li>`).join('');
-  const peor = mayor.reduce((m, c) => (c.asistieron / c.de < m.asistieron / m.de ? c : m), mayor[0]);
+  const completas = mayor.filter((c) => c.marcadas >= c.de);
+  const peor = (completas.length ? completas : mayor).reduce((m, c) => (c.asistieron / c.de < m.asistieron / m.de ? c : m), (completas.length ? completas : mayor)[0]);
   return `<div class="asis-barras"><p class="asis-sub">Quiénes asistieron a cada clase</p>
-    <ol role="img" aria-label="Asistencia por clase. La más baja fue la clase ${peor.clase}, con ${peor.asistieron} de ${peor.de}.">${celdas}</ol></div>`;
+    <ol role="img" aria-label="Asistencia por clase. La más baja fue la clase ${peor.clase}, con ${peor.asistieron} de ${peor.de}.${mayor.length > completas.length ? ' Algunas clases tienen la asistencia sin terminar de marcar.' : ''}">${celdas}</ol></div>`;
 }
 
 export function tarjetaAsistencia(r, t = ahora()) {
