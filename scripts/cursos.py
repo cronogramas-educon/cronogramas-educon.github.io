@@ -14,6 +14,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote, unquote
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from asistencia import aplicar as aplicar_asistencia, es_asistencia
+
 RAIZ = Path(__file__).resolve().parent.parent
 CAMPOS_CURSO = ("programa", "programaCorto", "tipo", "marca", "modalidad", "urlPaginaOficial", "periodo", "cohorte")
 
@@ -282,9 +285,14 @@ def recibir(evento, fuente="fuente.json", salida=None):
     Path(fuente).write_text(json.dumps(filas), encoding="utf-8")
     ruta = p.get("ruta", "") if isinstance(p, dict) else ""
     mod = p.get("modificado", "") if isinstance(p, dict) else ""
-    curso = None
+    curso = asistencia = None
     if es_registro(filas):
         tipo = "registro"
+    elif es_asistencia(filas):  # el Excel de asistencia de un curso: se reconoce por sus columnas y la carpeta por la ruta
+        asistencia = resolver(ruta) if ruta else None
+        tipo = "asistencia" if asistencia else "ninguno"
+        if not asistencia:
+            print("::warning::La carpeta del Excel de asistencia no está en el registro de cursos. Ruta recibida: " + ruta)
     else:
         curso = resolver(ruta) if ruta else "compliance-anticorrupcion"  # el flujo anterior no mandaba ruta
         tipo = "curso" if curso else "ninguno"
@@ -292,7 +300,7 @@ def recibir(evento, fuente="fuente.json", salida=None):
             print("::warning::La carpeta del Excel no está en el registro: no se actualiza ningún curso. Agrégala en el Excel Registro de cursos. Ruta recibida: " + ruta)
     if salida:
         with open(salida, "a") as o:
-            o.write(f"tipo={tipo}\ncurso={curso or ''}\nmodificado={mod}\n")
+            o.write(f"tipo={tipo}\ncurso={curso or ''}\nasistencia={asistencia or ''}\nmodificado={mod}\n")
     return tipo, curso, mod
 
 
@@ -320,7 +328,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
     neutro = _html(raiz / "plantilla/raiz.html", V=version)
     (salida / "index.html").write_text(neutro, encoding="utf-8")
     (salida / "404.html").write_text(neutro, encoding="utf-8")
-    resumen = []
+    resumen, asistencias = [], {}
     for c in reg["cursos"]:
         origen, destino = raiz / "cursos" / c["id"], salida / sitio_ruta(c)
         destino.mkdir(parents=True)
@@ -332,14 +340,20 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
         if (origen / "estado/error.json").exists():  # solo lo lee el sitio base de administración
             (destino / "estado").mkdir()
             shutil.copy(origen / "estado/error.json", destino / "estado/error.json")
+        if (origen / "estado/asistencia.json").exists():  # la asistencia va solo en la carpeta de administración (código no adivinable), nunca en la página de estudiantes
+            asistencias[c["id"]] = origen / "estado/asistencia.json"
         desc = f"Cuándo es tu próxima clase, quién la dicta y el enlace para entrar. {c['programa']}."
         (destino / "index.html").write_text(_html(
             raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(con_tipo(c["programaCorto"], c["tipo"])), DESC=_esc(desc)), encoding="utf-8")
         resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "cohorte": c.get("cohorte", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
-                        "tieneError": (origen / "estado/error.json").exists(), "avisosTeams": bool(c.get("teams")), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
+                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "avisosTeams": bool(c.get("teams")), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
                         "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{base_sharepoint(c['carpeta'], g)}/{c['carpeta']}", safe=":/")})
     hub = salida / "g" / g["adminCodigo"]
     hub.mkdir(parents=True)
+    if asistencias:
+        (hub / "asistencia").mkdir()
+        for cid, arch in asistencias.items():
+            shutil.copy(arch, hub / "asistencia" / f"{cid}.json")
     enlace = lambda carpeta: quote(f"{base_sharepoint(carpeta, g)}/{carpeta}", safe=":/")
     leer = lambda nombre, defecto: json.loads((raiz / "estado" / nombre).read_text(encoding="utf-8")) if (raiz / "estado" / nombre).exists() else defecto
     reciente = max(reg["cursos"], key=lambda c: c.get("periodo", ""))["carpeta"].split("/")[0] if reg["cursos"] else ""
@@ -369,6 +383,12 @@ def main():
         avisos, cambios = aplicar_registro(sys.argv[2])
         print("\n".join(cambios) or "Sin cambios en el registro.")
         print("\n".join(f"::warning::{a}" for a in avisos))
+    elif cmd == "asistencia":  # cursos.py asistencia fuente.json CURSO
+        try:
+            r, cambio = aplicar_asistencia(json.loads(Path(sys.argv[2]).read_text(encoding="utf-8")), RAIZ / "cursos" / sys.argv[3])
+        except ValueError as e:
+            sys.exit(f"::error::{e}")
+        print(f"Asistencia de {sys.argv[3]}: {r['estudiantes']} estudiantes, {r['dictadas']} de {r['programadas']} clases dictadas. " + ("Actualizada." if cambio else "Sin cambios."))
     elif cmd == "sinregistrar":
         p = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8")).get("client_payload") or {}
         if isinstance(p, dict) and p.get("ruta"):

@@ -53,6 +53,13 @@ jobs:
         continue-on-error: true
         run: python scripts/cursos.py registro fuente.json
 
+      - name: Aplicar la asistencia del curso
+        if: steps.fuente.outputs.tipo == 'asistencia'
+        id: asistencia
+        continue-on-error: true
+        # Solo se guarda un resumen sin nombres ni documentos (Estudiante N). La carga útil nunca se imprime.
+        run: python scripts/cursos.py asistencia fuente.json "${{ steps.fuente.outputs.asistencia }}"
+
       - name: Anotar la carpeta sin registrar
         if: steps.fuente.outputs.tipo == 'ninguno'
         run: python scripts/cursos.py sinregistrar "$GITHUB_EVENT_PATH"
@@ -129,7 +136,7 @@ jobs:
           fi
 
       - name: Marcar la ejecución como fallida si el Excel no se pudo leer
-        if: steps.construir.outcome == 'failure' || steps.registro.outcome == 'failure'
+        if: steps.construir.outcome == 'failure' || steps.registro.outcome == 'failure' || steps.asistencia.outcome == 'failure'
         run: exit 1
 
   desplegar:

@@ -60,7 +60,7 @@ def test_alerta_de_faltantes_sin_pat_por_defecto(repo):
 
 def test_sin_alertas_cuando_manana_no_hay_clase(repo):
     a = al.calcular(repo, date(2030, 1, 1))
-    assert a == {"fecha": "2030-01-02", "hasta": "2030-01-02", "faltantes": [], "choques": [], "errores": []} and not al.hay(a)
+    assert a == {"fecha": "2030-01-02", "hasta": "2030-01-02", "faltantes": [], "choques": [], "errores": [], "asistencia": []} and not al.hay(a)
 
 
 def test_alerta_de_choque_error_y_registro(repo):
@@ -129,3 +129,27 @@ def test_revision_semanal_incluye_los_proximos_7_dias(repo):
     assert al.semanal(a) and not al.semanal(al.calcular(repo, HOY))
     assert len(a["faltantes"]) >= len(al.calcular(repo, HOY)["faltantes"])
     assert "revisión semanal" in al.titulo(a) and "https://" not in al.html(a)
+
+
+def _asistencia(repo, curso, dictadas, lista):
+    (repo / "cursos" / curso / "estado/asistencia.json").write_text(json.dumps({
+        "porClase": [{"clase": i, "estado": "Dictada" if i in dictadas else "Sin dictar", "asistieron": 1, "de": 1} for i in (1, 2)], "lista": lista}), encoding="utf-8")
+
+
+def test_alerta_de_asistencia_sin_marcar_diaria_y_seguimiento_solo_en_la_semanal(repo):
+    d = json.loads(datos(repo, A).read_text(encoding="utf-8"))
+    d["clases"][0] = _clase(1, "2026-10-10", "18:00", "20:00", "Apoyo")  # ya pasó y no tiene asistencia
+    datos(repo, A).write_text(json.dumps(d), encoding="utf-8")
+    _asistencia(repo, A, dictadas=[], lista=[{"n": 7, "estado": "En riesgo", "quedan": 0}, {"n": 2, "estado": "Al día", "quedan": 5}])
+    diaria = al.calcular(repo, hoy=HOY)
+    assert al.hay(diaria) and diaria["asistencia"][0]["sinRegistrar"] == [{"clase": 1, "fecha": "2026-10-10"}] and diaria["asistencia"][0]["seguimiento"] == []
+    semanal = al.calcular(repo, hoy=HOY, dias=7)
+    assert [x["n"] for x in semanal["asistencia"][0]["seguimiento"]] == [7]
+    cuerpo = al.html(semanal)
+    assert "Estudiante 7" in cuerpo and "en riesgo" in cuerpo and "sin asistencia marcada en la clase 1" in cuerpo
+
+
+def test_sin_excel_de_asistencia_o_con_todo_marcado_no_hay_alerta_de_asistencia(repo):
+    assert al.calcular(repo, hoy=HOY)["asistencia"] == []
+    _asistencia(repo, A, dictadas=[1, 2], lista=[{"n": 1, "estado": "Al día", "quedan": 5}])
+    assert al.calcular(repo, hoy=HOY, dias=7)["asistencia"] == []

@@ -17,6 +17,7 @@ from textos import fecha_larga, horario, lista_y
 RAIZ = cu.RAIZ
 BOGOTA = timezone(timedelta(hours=-5))
 INSTITUCIONAL = {"sabana"}
+SEGUIR = ("Perdió el mínimo", "En riesgo", "Atención")
 
 
 def _json(ruta):
@@ -59,14 +60,32 @@ def calcular(raiz=RAIZ, hoy=None, incluir_pat=False, dias=1):
                 choques.append({"rol": rol, "nombre": x[2], "a": f"{previo[1]} ({horario(previo[0])})", "b": f"{x[1]} ({horario(x[0])})"})
             if datetime.fromisoformat(x[0]["fin"]) > datetime.fromisoformat(previo[0]["fin"]):
                 previo = x
+    asistencia = _asistencia(raiz, reg, hoy, con_seguimiento=dias > 1)
     reg_estado = _json(raiz / "estado/registro.json")
     if reg_estado and reg_estado.get("error"):
         errores.append({"curso": "Excel Registro de cursos", "mensaje": reg_estado["error"]})
-    return {"fecha": manana, "hasta": hasta, "faltantes": faltantes, "choques": choques, "errores": errores}
+    return {"fecha": manana, "hasta": hasta, "faltantes": faltantes, "choques": choques, "errores": errores, "asistencia": asistencia}
+
+
+def _asistencia(raiz, reg, hoy, con_seguimiento):
+    """Por curso con Excel de asistencia: clases ya pasadas sin asistencia marcada (siempre) y, en la revisión semanal, quién está por perder.
+    Solo número de lista y estado: nunca nombres."""
+    out = []
+    for c in reg["cursos"]:
+        a = _json(raiz / "cursos" / c["id"] / "estado/asistencia.json")
+        d = _json(raiz / "cursos" / c["id"] / "data/data.json")
+        if not a or not d:
+            continue
+        dictadas = {x["clase"] for x in a["porClase"] if x["estado"] == "Dictada"}
+        sin = [{"clase": cl["id"], "fecha": cl["fecha"]} for cl in d["clases"] if cl["fecha"] < hoy.isoformat() and cl["id"] not in dictadas]
+        seguir = [{"n": x["n"], "estado": x["estado"], "quedan": max(x["quedan"], 0)} for x in a["lista"] if x["estado"] in SEGUIR] if con_seguimiento else []
+        if sin or seguir:
+            out.append({"curso": cu.con_tipo(c["programaCorto"], c["tipo"]), "sinRegistrar": sin, "seguimiento": seguir})
+    return out
 
 
 def hay(a):
-    return bool(a["faltantes"] or a["choques"] or a["errores"])
+    return bool(a["faltantes"] or a["choques"] or a["errores"] or a["asistencia"])
 
 
 def semanal(a):
@@ -89,6 +108,14 @@ def html(a):
     if a["choques"]:
         partes.append("<h3>Dos clases a la vez</h3><ul>" + "".join(
             f"<li>El {e(x['rol'])} <strong>{e(x['nombre'])}</strong> tiene {e(x['a'])} y {e(x['b'])}.</li>" for x in a["choques"]) + "</ul>")
+    if a["asistencia"]:
+        items = []
+        for x in a["asistencia"]:
+            if x["sinRegistrar"]:
+                items.append(f"<li><strong>{e(x['curso'])}</strong>: sin asistencia marcada en " + e(lista_y([f"la clase {y['clase']} ({fecha_larga(y['fecha'])})" for y in x["sinRegistrar"]])) + ". Si se reprogramó, cambia la fecha en el Excel del curso.</li>")
+            if x["seguimiento"]:
+                items.append(f"<li><strong>{e(x['curso'])}</strong>, estudiantes a quienes conviene escribirles: " + e(lista_y([f"Estudiante {y['n']} ({y['estado'].lower()}, le quedan {y['quedan']} {'falta' if y['quedan'] == 1 else 'faltas'})" for y in x["seguimiento"]])) + ". El nombre está en el Excel de asistencia.</li>")
+        partes.append("<h3>Asistencia</h3><ul>" + "".join(items) + "</ul>")
     if a["errores"]:
         partes.append("<h3>Excel que no se pudo leer</h3><ul>" + "".join(
             f"<li><strong>{e(x['curso'])}</strong>: {e(x['mensaje'])}. Se conserva la última versión buena.</li>" for x in a["errores"]) + "</ul>")
@@ -102,7 +129,7 @@ def main(argv):
     hoy = date.fromisoformat(fecha) - timedelta(days=1) if fecha else None  # --fecha es el día de las clases
     a = calcular(hoy=hoy, dias=7 if "--semana" in argv else 1)
     Path(salida).write_text(html(a), encoding="utf-8")
-    print(titulo(a) + "\n" + (f"{len(a['faltantes'])} clases con datos por confirmar, {len(a['choques'])} choques, {len(a['errores'])} Excel con error." if hay(a) else "Sin alertas para " + ("los próximos 7 días." if semanal(a) else "mañana.")))
+    print(titulo(a) + "\n" + (f"{len(a['faltantes'])} clases con datos por confirmar, {len(a['choques'])} choques, {len(a['errores'])} Excel con error, {len(a['asistencia'])} cursos con asistencia por atender." if hay(a) else "Sin alertas para " + ("los próximos 7 días." if semanal(a) else "mañana.")))
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a") as o:
             o.write(f"hay={'true' if hay(a) else 'false'}\ntitulo={titulo(a)}\n")

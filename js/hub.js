@@ -3,6 +3,7 @@ import { esc, rangos, ic, norm } from './ui.js';
 import { addDias, ahora, estadoClase, fechaLarga, fechaLargaAnio, haceCuanto, cambioVigente, cap, hoyISO, mesAnio } from './utils-fecha.js';
 import { horario } from './ui.js';
 import { urgentes, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
+import { tarjetaAsistencia, resumenAsistencia, urgentesAsistencia } from './hub-asistencia.js';
 
 const $ = (id) => document.getElementById(id);
 const CFG = { diasAvisoCambio: 14 };
@@ -58,6 +59,7 @@ function tarjeta(r) {
     ${d ? `<div class="barra" role="img" aria-label="${r.hechas} de ${d.clases.length} clases realizadas"><i style="width:${Math.round(100 * r.hechas / d.clases.length)}%"></i></div>
     <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. Datos publicados ${esc(haceCuanto(d.meta.generadoEn))}.</p>` : ''}
     <p class="teams-av">${c.avisosTeams ? `${ic('check')}Avisos de cambio de fecha por el grupo de Teams` : `${ic('warning')}Sin grupo de Teams para avisos a estudiantes`}</p>
+    ${r.asis ? (() => { const n = urgentesAsistencia(r).length; return `<p class="teams-av"><a href="#asistencia">${ic(n ? 'warning' : 'check')}${n ? `Asistencia: ${n} ${n === 1 ? 'estudiante por atender' : 'estudiantes por atender'}` : 'Asistencia al día'}</a></p>`; })() : ''}
     <p class="falta ${n ? '' : 'ok'}">${n ? `${ic('warning')}${n === 1 ? 'Falta confirmar 1 dato' : `Faltan confirmar ${n} datos`}` : `${ic('check')}Nada por confirmar`}</p>
     <div class="acciones-curso">
       <a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Abrir sitio${ic('arrow-up-right')}</a>
@@ -172,8 +174,8 @@ const csvReporte = () => {
 
 async function pintar(meta) {
   const rs = await Promise.all(meta.cursos.map(async (c) => {
-    const [d, error] = await Promise.all([c.tieneDatos && traer(`${new URL(`${c.ruta}/data/data.json`, BASE)}`), c.tieneError && traer(`${new URL(`${c.ruta}/estado/error.json`, BASE)}`)]);
-    return analizar(c, d, error);
+    const [d, error, asis] = await Promise.all([c.tieneDatos && traer(`${new URL(`${c.ruta}/data/data.json`, BASE)}`), c.tieneError && traer(`${new URL(`${c.ruta}/estado/error.json`, BASE)}`), c.tieneAsistencia && traer(`asistencia/${c.id}.json`)]);
+    return Object.assign(analizar(c, d, error), { asis: asis || null });
   }));
   ultimosRs = rs;
   const activos = rs.filter((r) => r.estado !== 'terminado');
@@ -181,6 +183,7 @@ async function pintar(meta) {
   activosVivos = activos;
   filtrosCursos(activos);
   pintarCursos();
+  seccionAsistencia(activos);
   tablaPendientes(activos);
   listaCambios(activos);
   archivo(rs.filter((r) => r.estado === 'terminado'));
@@ -189,6 +192,15 @@ async function pintar(meta) {
   seccionReportes(rs);
   registro(meta);
   $('refresco').textContent = `Actualizado ${fechaLargaAnio(hoyISO())}`;
+}
+
+/** Asistencia por curso. La sección solo aparece si algún curso activo tiene el Excel de asistencia publicado. */
+function seccionAsistencia(activos) {
+  const con = activos.filter((r) => r.c.tieneAsistencia);
+  $('asistencia').hidden = $('nav-asistencia').hidden = !con.length;
+  if (!con.length) return;
+  $('asis-resumen').textContent = resumenAsistencia(con);
+  $('asis-lista').innerHTML = con.map((r) => tarjetaAsistencia(r)).join('');
 }
 
 /** Filtros de la lista de cursos: texto, periodo y cohorte, y semáforo. Solo aparecen cuando hay más de unos pocos cursos. */
