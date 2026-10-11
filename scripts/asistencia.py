@@ -13,8 +13,17 @@ BOGOTA = timezone(timedelta(hours=-5))
 NOMBRE, REQUERIDAS = "Nombre del estudiante", ("Asistió", "Faltas", "Faltas que le quedan", "Estado")
 
 
+def _clave(k):
+    """Excel Online codifica los encabezados con símbolos: "N°" llega como "N_x00b0_" y "% hasta hoy" como "_x0025_ hasta hoy"."""
+    return re.sub(r"_x([0-9a-fA-F]{4})_", lambda m: chr(int(m.group(1), 16)), str(k))
+
+
+def normalizar(filas):
+    return [{_clave(k): v for k, v in f.items()} if isinstance(f, dict) else f for f in filas] if isinstance(filas, list) else filas
+
+
 def es_asistencia(filas):
-    return isinstance(filas, list) and any(isinstance(f, dict) and NOMBRE in f and "Clase 1" in f for f in filas)
+    return isinstance(filas, list) and any(isinstance(f, dict) and NOMBRE in f and "Clase 1" in f for f in normalizar(filas))
 
 
 def _num(v):
@@ -35,7 +44,7 @@ def _ent(v):
 
 def resumir(filas, ahora=None):
     """Resumen sin nombres. Lanza ValueError con un mensaje claro si el Excel no trae las columnas calculadas."""
-    est = [f for f in filas if isinstance(f, dict) and str(f.get(NOMBRE) or "").strip()]
+    est = [f for f in normalizar(filas) if isinstance(f, dict) and str(f.get(NOMBRE) or "").strip()]
     if not est:
         raise ValueError("El Excel de asistencia no tiene estudiantes: escribe sus nombres en la hoja Asistencia.")
     falta = [c for c in REQUERIDAS if c not in est[0]]

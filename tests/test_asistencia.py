@@ -67,3 +67,11 @@ def test_recibir_reconoce_el_excel_de_asistencia_por_sus_columnas(tmp_path):
     assert cu.recibir(e, tmp_path / "f.json")[:2] == (("asistencia", None))
     e.write_text(json.dumps({"client_payload": {"ruta": "Docs/EDU CONTINUA 2099/Otro", "filas": json.dumps(FILAS)}}), encoding="utf-8")
     assert cu.recibir(e, tmp_path / "f.json")[0] == "ninguno"
+
+
+def test_encabezados_codificados_por_excel_online():
+    """Power Automate entrega "N°" como N_x00b0_ y "% hasta hoy" como _x0025_ hasta hoy."""
+    codif = [{k.replace("°", "_x00b0_").replace("%", "_x0025_"): v for k, v in f.items()} for f in FILAS]
+    assert asi.es_asistencia(codif)
+    r = asi.resumir(codif)
+    assert [x["n"] for x in r["lista"]] == [3, 2, 4, 1] and r["lista"][0]["porcentaje"] == 0.25
