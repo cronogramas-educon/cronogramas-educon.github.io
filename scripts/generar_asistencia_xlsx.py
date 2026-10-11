@@ -114,7 +114,7 @@ def _hoja_resumen(wb, curso, n, ult_asist, hoja_asist="Asistencia"):
 
     seccion(3, "Reglas (las celdas amarillas se pueden cambiar)")
     fila("minimo", "Asistencia mínima para certificar", 0.8, "", "0%", True)
-    fila("horas", "Horas por sesión", 3, "", "0.#", True)
+    fila("horas", "Horas por sesión", 3, "", "General", True)
     fila("atencion", "Marcar Atención cuando use este % de las faltas permitidas", 0.5, "Con 7 faltas permitidas, Atención empieza en la falta 4.", "0%", True)
     fila("riesgo", "Marcar En riesgo cuando use este % de las faltas permitidas", 0.8, "Con 7 faltas permitidas, En riesgo empieza en la falta 6 (queda una).", "0%", True)
     seccion(9, "Cuentas automáticas (no se editan)")
@@ -186,7 +186,7 @@ def _hoja_asistencia(wb, curso, clases, estudiantes):
             "Faltas": f'=IF({nom}="","",SUMPRODUCT(({estr}="Dictada")*({fila}=0)*({fila}<>"")))',
             "Sin marcar": f'=IF({nom}="","",{RES("dictadas")}-{a}-{f_})',
             "Faltas que le quedan": f'=IF({nom}="","",{RES("permitidas")}-{f_})',
-            "% hasta hoy": f'=IF(OR({nom}="",{a}+{f_}=0),"",{a}/({a}+{f_}))',
+            "% hasta hoy": f'=IF({nom}="","",IF({a}+{f_}=0,"",{a}/({a}+{f_})))',
             "Puede llegar hasta": f'=IF({nom}="","",({RES("programadas")}-{f_})/{RES("programadas")})',
             "Clases programadas": f'=IF({nom}="","",{RES("programadas")})',
         }
@@ -212,7 +212,7 @@ def _hoja_asistencia(wb, curso, clases, estudiantes):
         "Faltas": f'IF({nom_t}="","",SUMPRODUCT(({est_t}="Dictada")*({fila_t}=0)*({fila_t}<>"")))',
         "Sin marcar": f'IF({nom_t}="","",{RES("dictadas")}-{a_t}-{f_t})',
         "Faltas que le quedan": f'IF({nom_t}="","",{RES("permitidas")}-{f_t})',
-        "% hasta hoy": f'IF(OR({nom_t}="",{a_t}+{f_t}=0),"",{a_t}/({a_t}+{f_t}))',
+        "% hasta hoy": f'IF({nom_t}="","",IF({a_t}+{f_t}=0,"",{a_t}/({a_t}+{f_t})))',
         "Puede llegar hasta": f'IF({nom_t}="","",({RES("programadas")}-{f_t})/{RES("programadas")})',
         "Clases programadas": f'IF({nom_t}="","",{RES("programadas")})',
         "Estado": (f'IF({nom_t}="","",IF({f_t}>{RES("permitidas")},"Perdió el mínimo",IF({RES("pendientes")}=0,"Aprobó",'
