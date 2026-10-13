@@ -10,9 +10,9 @@
     "horasCompletas": true,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
-    "hash": "456f04b04af0797f",
-    "generadoEn": "2026-10-13T15:55:39Z",
-    "fuenteModificadaEn": "2026-10-13T15:55:21.4919156Z"
+    "hash": "925b511e99799613",
+    "generadoEn": "2026-10-13T16:20:02Z",
+    "fuenteModificadaEn": "2026-10-13T16:19:45.2728138Z"
   },
   "clases": [
     {
@@ -122,7 +122,7 @@
       "profesores": [
         "Melissa Dukuara"
       ],
-      "dia": "Miércoles",
+      "dia": "Lunes",
       "diaCalculado": "Lunes",
       "fecha": "2026-10-19",
       "asistentePat": "Fabián Alberto Córdoba Almendrales",
