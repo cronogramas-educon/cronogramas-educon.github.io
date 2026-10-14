@@ -10,9 +10,9 @@
     "horasCompletas": true,
     "inicio": "2026-10-01",
     "fin": "2026-11-03",
-    "hash": "80616126ac50b926",
-    "generadoEn": "2026-10-14T20:54:00Z",
-    "fuenteModificadaEn": "2026-10-14T20:53:42.2896052Z"
+    "hash": "b1726eb3a2212b4f",
+    "generadoEn": "2026-10-14T20:55:16Z",
+    "fuenteModificadaEn": "2026-10-14T20:54:59.1644695Z"
   },
   "clases": [
     {
@@ -467,7 +467,7 @@
       "diaCalculado": "Martes",
       "fecha": "2026-10-20",
       "asistentePat": "Sofia Cabrera",
-      "linkTeams": "",
+      "linkTeams": "https://teams.microsoft.com/meet/286654106845141?p=vO1V2xmMIHDOAPgLe3",
       "cambio": null,
       "inicio": "2026-10-20T18:00:00-05:00",
       "fin": "2026-10-20T21:00:00-05:00",
@@ -525,7 +525,7 @@
       "diaCalculado": "Jueves",
       "fecha": "2026-10-22",
       "asistentePat": "Sofia Cabrera",
-      "linkTeams": "https://teams.microsoft.com/meet/244103860226081?p=1dB5hEvoFmYYe3pOgR",
+      "linkTeams": "",
       "cambio": null,
       "inicio": "2026-10-22T18:00:00-05:00",
       "fin": "2026-10-22T21:00:00-05:00",
