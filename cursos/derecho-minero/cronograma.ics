@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:clase-01@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261001T180000
 DTEND;TZID=America/Bogota:20261001T210000
@@ -32,7 +32,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-02@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261001T180000
 DTEND;TZID=America/Bogota:20261001T210000
@@ -52,7 +52,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-03@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261006T180000
 DTEND;TZID=America/Bogota:20261006T210000
@@ -73,7 +73,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-04@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261006T180000
 DTEND;TZID=America/Bogota:20261006T210000
@@ -93,7 +93,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-05@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261007T180000
 DTEND;TZID=America/Bogota:20261007T210000
@@ -114,7 +114,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-06@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261007T180000
 DTEND;TZID=America/Bogota:20261007T210000
@@ -134,7 +134,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-07@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261008T180000
 DTEND;TZID=America/Bogota:20261008T210000
@@ -155,7 +155,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-08@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261008T180000
 DTEND;TZID=America/Bogota:20261008T210000
@@ -175,7 +175,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-09@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261013T180000
 DTEND;TZID=America/Bogota:20261013T210000
@@ -196,7 +196,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-10@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261013T180000
 DTEND;TZID=America/Bogota:20261013T210000
@@ -216,7 +216,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-11@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261014T180000
 DTEND;TZID=America/Bogota:20261014T210000
@@ -238,7 +238,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-12@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261014T180000
 DTEND;TZID=America/Bogota:20261014T210000
@@ -258,7 +258,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-13@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261015T180000
 DTEND;TZID=America/Bogota:20261015T210000
@@ -281,7 +281,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-14@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261015T180000
 DTEND;TZID=America/Bogota:20261015T210000
@@ -303,7 +303,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-15@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261020T180000
 DTEND;TZID=America/Bogota:20261020T210000
@@ -325,7 +325,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-16@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261020T180000
 DTEND;TZID=America/Bogota:20261020T210000
@@ -347,7 +347,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-17@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261021T180000
 DTEND;TZID=America/Bogota:20261021T210000
@@ -371,7 +371,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-18@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261022T180000
 DTEND;TZID=America/Bogota:20261022T210000
@@ -394,7 +394,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-19@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261027T180000
 DTEND;TZID=America/Bogota:20261027T210000
@@ -405,8 +405,10 @@ DESCRIPTION:MÓDULO 5: TENDENCIAS\, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍ
  ovación tecnológica aplicada al monitoreo y control ambiental\n- Casos d
  e éxito en minería responsable\n- Proyecciones del sector y desafíos pa
  ra la próxima década\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: S
- ofia Cabrera
+ ofia Cabrera\n\nUnirme en Teams: https://teams.microsoft.com/meet/28314244
+ 5179401?p=cd7QjifA3iEwt7HduE
 LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/283142445179401?p=cd7QjifA3iEwt7HduE
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 19 comienza en 30 minutos
@@ -415,7 +417,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-20@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261027T180000
 DTEND;TZID=America/Bogota:20261027T210000
@@ -425,8 +427,10 @@ DESCRIPTION:MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA\n\nTema:\n- Tip
  activos\, contrabando\, corrupción\n- Procedimiento penal y medidas caute
  lares\n- Jurisprudencia relevante en materia penal minera\n- Estudio de ca
  sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco\nAsist
- ente PAT: Sofia Cabrera
+ ente PAT: Sofia Cabrera\n\nUnirme en Teams: https://teams.microsoft.com/me
+ et/283142445179401?p=cd7QjifA3iEwt7HduE
 LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/283142445179401?p=cd7QjifA3iEwt7HduE
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 20 comienza en 30 minutos
@@ -435,7 +439,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-21@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261028T180000
 DTEND;TZID=America/Bogota:20261028T210000
@@ -446,8 +450,10 @@ DESCRIPTION:MÓDULO 5: TENDENCIAS\, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍ
  ovación tecnológica aplicada al monitoreo y control ambiental\n- Casos d
  e éxito en minería responsable\n- Proyecciones del sector y desafíos pa
  ra la próxima década\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: S
- ofia Cabrera
+ ofia Cabrera\n\nUnirme en Teams: https://teams.microsoft.com/meet/29470328
+ 6545813?p=Gba5O3nlfNHglyQXlC
 LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/294703286545813?p=Gba5O3nlfNHglyQXlC
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 21 comienza en 30 minutos
@@ -456,7 +462,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-22@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261028T180000
 DTEND;TZID=America/Bogota:20261028T210000
@@ -466,8 +472,10 @@ DESCRIPTION:MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA\n\nTema:\n- Tip
  activos\, contrabando\, corrupción\n- Procedimiento penal y medidas caute
  lares\n- Jurisprudencia relevante en materia penal minera\n- Estudio de ca
  sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco\nAsist
- ente PAT: Sofia Cabrera
+ ente PAT: Sofia Cabrera\n\nUnirme en Teams: https://teams.microsoft.com/me
+ et/294703286545813?p=Gba5O3nlfNHglyQXlC
 LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/294703286545813?p=Gba5O3nlfNHglyQXlC
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 22 comienza en 30 minutos
@@ -476,7 +484,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-23@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261029T180000
 DTEND;TZID=America/Bogota:20261029T210000
@@ -487,8 +495,10 @@ DESCRIPTION:MÓDULO 5: TENDENCIAS\, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍ
  ovación tecnológica aplicada al monitoreo y control ambiental\n- Casos d
  e éxito en minería responsable\n- Proyecciones del sector y desafíos pa
  ra la próxima década\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: S
- ofia Cabrera
+ ofia Cabrera\n\nUnirme en Teams: https://teams.microsoft.com/meet/21982034
+ 9007278?p=6AjQJ7s0GLneGilTx5
 LOCATION:Microsoft Teams
+URL:https://teams.microsoft.com/meet/219820349007278?p=6AjQJ7s0GLneGilTx5
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Clase 23 comienza en 30 minutos
@@ -497,7 +507,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-24@cronograma-derecho-minero
-DTSTAMP:20261014T205535Z
+DTSTAMP:20261014T205656Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261103T180000
 DTEND;TZID=America/Bogota:20261103T210000
