@@ -3,7 +3,7 @@ VERSION:2.0
 PRODID:-//Cronograma Educacion Continua//ES
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:Derecho Minero Ambiental
+X-WR-CALNAME:Curso Derecho Minero Ambiental
 X-WR-TIMEZONE:America/Bogota
 BEGIN:VTIMEZONE
 TZID:America/Bogota
@@ -16,13 +16,13 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:clase-01@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261001T180000
 DTEND;TZID=America/Bogota:20261001T210000
-SUMMARY:Clase 1: Derecho Minero Ambiental
+SUMMARY:Clase 1: Curso Derecho Minero Ambiental
 DESCRIPTION:PRESENTACIÓN GENERAL DEL CURSO\n\nTema:\n\nDocente: Gerardo Be
- rnal Gamboa
+ rnal Gamboa\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -32,17 +32,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-02@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261001T180000
 DTEND;TZID=America/Bogota:20261001T210000
-SUMMARY:Clase 2: Derecho Minero Ambiental
+SUMMARY:Clase 2: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIE
  NTAL\n\nTema:\n- Licenciamiento ambiental: requisitos\, procedimientos y c
  ambios recientes\n- Permisos y autorizaciones conexas\n- Fiscalización y 
  control administrativo en minería\n- Procedimientos sancionatorios ambien
  tales: etapas\, plazos y recursos\n- Casos prácticos y análisis de exped
- ientes reales\n\nDocente: Edna Arcón Reyes
+ ientes reales\n\nDocente: Edna Arcón Reyes\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -52,18 +52,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-03@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261006T180000
 DTEND;TZID=America/Bogota:20261006T210000
-SUMMARY:Clase 3: Derecho Minero Ambiental
+SUMMARY:Clase 3: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AM
  BIENTAL\n\nTema:\n- Constitución Política y principios rectores en mater
  ia minera y ambiental\n- Estructura institucional y competencias: ANM\, Mi
  nMinas\, MinAmbiente\, ANLA\, CAR\n- Reformas recientes al Código de Mina
  s y normativa ambiental\n- Jurisprudencia relevante del último quinquenio
  \n- Tendencias regulatorias y retos normativos actuales\n\nDocente: Camilo
-  Andrés Tovar Perilla
+  Andrés Tovar Perilla\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -73,16 +73,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-04@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261006T180000
 DTEND;TZID=America/Bogota:20261006T210000
-SUMMARY:Clase 4: Derecho Minero Ambiental
+SUMMARY:Clase 4: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA\n\nTema:\n- Tip
  ificación de delitos ambientales y mineros\n- Delitos conexos: lavado de 
  activos\, contrabando\, corrupción\n- Procedimiento penal y medidas caute
  lares\n- Jurisprudencia relevante en materia penal minera\n- Estudio de ca
- sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco
+ sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco\nAsist
+ ente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -92,18 +93,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-05@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261007T180000
 DTEND;TZID=America/Bogota:20261007T210000
-SUMMARY:Clase 5: Derecho Minero Ambiental
+SUMMARY:Clase 5: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AM
  BIENTAL\n\nTema:\n- Constitución Política y principios rectores en mater
  ia minera y ambiental\n- Estructura institucional y competencias: ANM\, Mi
  nMinas\, MinAmbiente\, ANLA\, CAR\n- Reformas recientes al Código de Mina
  s y normativa ambiental\n- Jurisprudencia relevante del último quinquenio
  \n- Tendencias regulatorias y retos normativos actuales\n\nDocente: Camilo
-  Andrés Tovar Perilla
+  Andrés Tovar Perilla\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -113,17 +114,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-06@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261007T180000
 DTEND;TZID=America/Bogota:20261007T210000
-SUMMARY:Clase 6: Derecho Minero Ambiental
+SUMMARY:Clase 6: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIE
  NTAL\n\nTema:\n- Licenciamiento ambiental: requisitos\, procedimientos y c
  ambios recientes\n- Permisos y autorizaciones conexas\n- Fiscalización y 
  control administrativo en minería\n- Procedimientos sancionatorios ambien
  tales: etapas\, plazos y recursos\n- Casos prácticos y análisis de exped
- ientes reales\n\nDocente: Edna Arcón Reyes
+ ientes reales\n\nDocente: Edna Arcón Reyes\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -133,18 +134,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-07@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261008T180000
 DTEND;TZID=America/Bogota:20261008T210000
-SUMMARY:Clase 7: Derecho Minero Ambiental
+SUMMARY:Clase 7: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AM
  BIENTAL\n\nTema:\n- Constitución Política y principios rectores en mater
  ia minera y ambiental\n- Estructura institucional y competencias: ANM\, Mi
  nMinas\, MinAmbiente\, ANLA\, CAR\n- Reformas recientes al Código de Mina
  s y normativa ambiental\n- Jurisprudencia relevante del último quinquenio
  \n- Tendencias regulatorias y retos normativos actuales\n\nDocente: Camilo
-  Andrés Tovar Perilla
+  Andrés Tovar Perilla\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -154,17 +155,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-08@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261008T180000
 DTEND;TZID=America/Bogota:20261008T210000
-SUMMARY:Clase 8: Derecho Minero Ambiental
+SUMMARY:Clase 8: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIE
  NTAL\n\nTema:\n- Licenciamiento ambiental: requisitos\, procedimientos y c
  ambios recientes\n- Permisos y autorizaciones conexas\n- Fiscalización y 
  control administrativo en minería\n- Procedimientos sancionatorios ambien
  tales: etapas\, plazos y recursos\n- Casos prácticos y análisis de exped
- ientes reales\n\nDocente: Edna Arcón Reyes
+ ientes reales\n\nDocente: Edna Arcón Reyes\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -174,18 +175,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-09@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261013T180000
 DTEND;TZID=America/Bogota:20261013T210000
-SUMMARY:Clase 9: Derecho Minero Ambiental
+SUMMARY:Clase 9: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AM
  BIENTAL\n\nTema:\n- Constitución Política y principios rectores en mater
  ia minera y ambiental\n- Estructura institucional y competencias: ANM\, Mi
  nMinas\, MinAmbiente\, ANLA\, CAR\n- Reformas recientes al Código de Mina
  s y normativa ambiental\n- Jurisprudencia relevante del último quinquenio
  \n- Tendencias regulatorias y retos normativos actuales\n\nDocente: Camilo
-  Andrés Tovar Perilla
+  Andrés Tovar Perilla\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -195,16 +196,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-10@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261013T180000
 DTEND;TZID=America/Bogota:20261013T210000
-SUMMARY:Clase 10: Derecho Minero Ambiental
+SUMMARY:Clase 10: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA\n\nTema:\n- Tip
  ificación de delitos ambientales y mineros\n- Delitos conexos: lavado de 
  activos\, contrabando\, corrupción\n- Procedimiento penal y medidas caute
  lares\n- Jurisprudencia relevante en materia penal minera\n- Estudio de ca
- sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco
+ sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco\nAsist
+ ente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -214,18 +216,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-11@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261014T180000
 DTEND;TZID=America/Bogota:20261014T210000
-SUMMARY:Clase 11: Derecho Minero Ambiental
+SUMMARY:Clase 11: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 4: COMUNIDADES\, FORMALIZACIÓN\, CONTRATACIÓN MINERA 
  Y ENFOQUE DIFERENCIAL\n\nTema:\n- Consulta previa y derechos de comunidade
  s étnicas\n- Negociación con comunidades y resolución de conflictos soc
  ioambientales\n- Contratos de operación y de cuentas en participación: a
  spectos legales y prácticos\n- Inclusión de cláusulas con enfoque difer
  encial y de sostenibilidad\n- Casos reales y buenas prácticas en la gesti
- ón contractual\n\nDocente: Gerardo Bernal Gamboa
+ ón contractual\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: Sofia Ca
+ brera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -235,17 +238,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-12@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261014T180000
 DTEND;TZID=America/Bogota:20261014T210000
-SUMMARY:Clase 12: Derecho Minero Ambiental
+SUMMARY:Clase 12: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 2: PROCEDIMIENTOS ADMINISTRATIVOS Y SANCIONATORIO AMBIE
  NTAL\n\nTema:\n- Licenciamiento ambiental: requisitos\, procedimientos y c
  ambios recientes\n- Permisos y autorizaciones conexas\n- Fiscalización y 
  control administrativo en minería\n- Procedimientos sancionatorios ambien
  tales: etapas\, plazos y recursos\n- Casos prácticos y análisis de exped
- ientes reales\n\nDocente: Edna Arcón Reyes
+ ientes reales\n\nDocente: Edna Arcón Reyes\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -255,18 +258,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-13@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261015T180000
 DTEND;TZID=America/Bogota:20261015T210000
-SUMMARY:Clase 13: Derecho Minero Ambiental
+SUMMARY:Clase 13: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 1: MARCO JURÍDICO Y ACTUALIZACIÓN NORMATIVA MINERO AM
  BIENTAL\n\nTema:\n- Constitución Política y principios rectores en mater
  ia minera y ambiental\n- Estructura institucional y competencias: ANM\, Mi
  nMinas\, MinAmbiente\, ANLA\, CAR\n- Reformas recientes al Código de Mina
  s y normativa ambiental\n- Jurisprudencia relevante del último quinquenio
  \n- Tendencias regulatorias y retos normativos actuales\n\nDocente: Camilo
-  Andrés Tovar Perilla
+  Andrés Tovar Perilla\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -276,16 +279,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-14@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261015T180000
 DTEND;TZID=America/Bogota:20261015T210000
-SUMMARY:Clase 14: Derecho Minero Ambiental
+SUMMARY:Clase 14: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA\n\nTema:\n- Tip
  ificación de delitos ambientales y mineros\n- Delitos conexos: lavado de 
  activos\, contrabando\, corrupción\n- Procedimiento penal y medidas caute
  lares\n- Jurisprudencia relevante en materia penal minera\n- Estudio de ca
- sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco
+ sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco\nAsist
+ ente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -295,18 +299,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-15@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261020T180000
 DTEND;TZID=America/Bogota:20261020T210000
-SUMMARY:Clase 15: Derecho Minero Ambiental
+SUMMARY:Clase 15: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 4: COMUNIDADES\, FORMALIZACIÓN\, CONTRATACIÓN MINERA 
  Y ENFOQUE DIFERENCIAL\n\nTema:\n- Consulta previa y derechos de comunidade
  s étnicas\n- Negociación con comunidades y resolución de conflictos soc
  ioambientales\n- Contratos de operación y de cuentas en participación: a
  spectos legales y prácticos\n- Inclusión de cláusulas con enfoque difer
  encial y de sostenibilidad\n- Casos reales y buenas prácticas en la gesti
- ón contractual\n\nDocente: Gerardo Bernal Gamboa
+ ón contractual\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: Sofia Ca
+ brera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -316,16 +321,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-16@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261020T180000
 DTEND;TZID=America/Bogota:20261020T210000
-SUMMARY:Clase 16: Derecho Minero Ambiental
+SUMMARY:Clase 16: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA\n\nTema:\n- Tip
  ificación de delitos ambientales y mineros\n- Delitos conexos: lavado de 
  activos\, contrabando\, corrupción\n- Procedimiento penal y medidas caute
  lares\n- Jurisprudencia relevante en materia penal minera\n- Estudio de ca
- sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco
+ sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco\nAsist
+ ente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -335,18 +341,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-17@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261021T180000
 DTEND;TZID=America/Bogota:20261021T210000
-SUMMARY:Clase 17: Derecho Minero Ambiental
+SUMMARY:Clase 17: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 4: COMUNIDADES\, FORMALIZACIÓN\, CONTRATACIÓN MINERA 
  Y ENFOQUE DIFERENCIAL\n\nTema:\n- Consulta previa y derechos de comunidade
  s étnicas\n- Negociación con comunidades y resolución de conflictos soc
  ioambientales\n- Contratos de operación y de cuentas en participación: a
  spectos legales y prácticos\n- Inclusión de cláusulas con enfoque difer
  encial y de sostenibilidad\n- Casos reales y buenas prácticas en la gesti
- ón contractual\n\nDocente: Gerardo Bernal Gamboa
+ ón contractual\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: Sofia Ca
+ brera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -356,17 +363,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-18@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261022T180000
 DTEND;TZID=America/Bogota:20261022T210000
-SUMMARY:Clase 18: Derecho Minero Ambiental
+SUMMARY:Clase 18: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 5: TENDENCIAS\, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍ
  A\n\nTema:\n- Estándares internacionales de sostenibilidad minera\n- Mine
  ría y transición energética: minerales críticos y oportunidades\n- Inn
  ovación tecnológica aplicada al monitoreo y control ambiental\n- Casos d
  e éxito en minería responsable\n- Proyecciones del sector y desafíos pa
- ra la próxima década\n\nDocente: Gerardo Bernal Gamboa
+ ra la próxima década\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: S
+ ofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -376,17 +384,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-19@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261027T180000
 DTEND;TZID=America/Bogota:20261027T210000
-SUMMARY:Clase 19: Derecho Minero Ambiental
+SUMMARY:Clase 19: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 5: TENDENCIAS\, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍ
  A\n\nTema:\n- Estándares internacionales de sostenibilidad minera\n- Mine
  ría y transición energética: minerales críticos y oportunidades\n- Inn
  ovación tecnológica aplicada al monitoreo y control ambiental\n- Casos d
  e éxito en minería responsable\n- Proyecciones del sector y desafíos pa
- ra la próxima década\n\nDocente: Gerardo Bernal Gamboa
+ ra la próxima década\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: S
+ ofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -396,16 +405,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-20@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261027T180000
 DTEND;TZID=America/Bogota:20261027T210000
-SUMMARY:Clase 20: Derecho Minero Ambiental
+SUMMARY:Clase 20: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA\n\nTema:\n- Tip
  ificación de delitos ambientales y mineros\n- Delitos conexos: lavado de 
  activos\, contrabando\, corrupción\n- Procedimiento penal y medidas caute
  lares\n- Jurisprudencia relevante en materia penal minera\n- Estudio de ca
- sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco
+ sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco\nAsist
+ ente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -415,17 +425,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-21@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261028T180000
 DTEND;TZID=America/Bogota:20261028T210000
-SUMMARY:Clase 21: Derecho Minero Ambiental
+SUMMARY:Clase 21: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 5: TENDENCIAS\, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍ
  A\n\nTema:\n- Estándares internacionales de sostenibilidad minera\n- Mine
  ría y transición energética: minerales críticos y oportunidades\n- Inn
  ovación tecnológica aplicada al monitoreo y control ambiental\n- Casos d
  e éxito en minería responsable\n- Proyecciones del sector y desafíos pa
- ra la próxima década\n\nDocente: Gerardo Bernal Gamboa
+ ra la próxima década\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: S
+ ofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -435,16 +446,17 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-22@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261028T180000
 DTEND;TZID=America/Bogota:20261028T210000
-SUMMARY:Clase 22: Derecho Minero Ambiental
+SUMMARY:Clase 22: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 3: DERECHO PENAL APLICADO A LA MINERÍA\n\nTema:\n- Tip
  ificación de delitos ambientales y mineros\n- Delitos conexos: lavado de 
  activos\, contrabando\, corrupción\n- Procedimiento penal y medidas caute
  lares\n- Jurisprudencia relevante en materia penal minera\n- Estudio de ca
- sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco
+ sos y simulación de audiencias\n\nDocente: Jessica Pacheco Pacheco\nAsist
+ ente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -454,17 +466,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-23@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261029T180000
 DTEND;TZID=America/Bogota:20261029T210000
-SUMMARY:Clase 23: Derecho Minero Ambiental
+SUMMARY:Clase 23: Curso Derecho Minero Ambiental
 DESCRIPTION:MÓDULO 5: TENDENCIAS\, INNOVACIÓN Y SOSTENIBILIDAD EN MINERÍ
  A\n\nTema:\n- Estándares internacionales de sostenibilidad minera\n- Mine
  ría y transición energética: minerales críticos y oportunidades\n- Inn
  ovación tecnológica aplicada al monitoreo y control ambiental\n- Casos d
  e éxito en minería responsable\n- Proyecciones del sector y desafíos pa
- ra la próxima década\n\nDocente: Gerardo Bernal Gamboa
+ ra la próxima década\n\nDocente: Gerardo Bernal Gamboa\nAsistente PAT: S
+ ofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -474,18 +487,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clase-24@cronograma-derecho-minero
-DTSTAMP:20261002T210630Z
+DTSTAMP:20261014T205231Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261103T180000
 DTEND;TZID=America/Bogota:20261103T210000
-SUMMARY:Clase 24: Derecho Minero Ambiental
+SUMMARY:Clase 24: Curso Derecho Minero Ambiental
 DESCRIPTION:TALLER TRANSVERSAL INTEGRADOR FINAL\n\nTema:\n- Estándares int
  ernacionales de sostenibilidad minera\n- Minería y transición energétic
  a: minerales críticos y oportunidades\n- Innovación tecnológica aplicad
  a al monitoreo y control ambiental\n- Casos de éxito en minería responsa
  ble\n- Proyecciones del sector y desafíos para la próxima década\n\nDoc
  ente: Camilo Andrés Tovar Perilla\, Jessica Pacheco Pacheco\, Edna Arcón
-  Reyes y Gerardo Bernal Gamboa
+  Reyes y Gerardo Bernal Gamboa\nAsistente PAT: Sofia Cabrera
 LOCATION:Microsoft Teams
 BEGIN:VALARM
 ACTION:DISPLAY
