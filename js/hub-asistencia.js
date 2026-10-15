@@ -97,6 +97,44 @@ export function htmlTablero(rs, t = ahora()) {
   }).join('')}</div>`;
 }
 
+/** Resultado final del curso según el Excel de asistencia. Solo existe cuando el curso terminó o ya se dictaron todas las clases. */
+export function cierre(r) {
+  const a = r.asis;
+  const completo = !!a && a.programadas > 0 && a.dictadas >= a.programadas;
+  if (!a || !(r.estado === 'terminado' || completo)) return null;
+  const aprueban = a.lista.filter((x) => x.estado === 'Aprobó');
+  const noAprueban = a.lista.filter((x) => x.estado === 'Perdió el mínimo');
+  const porDefinir = a.lista.filter((x) => x.estado !== 'Aprobó' && x.estado !== 'Perdió el mínimo');
+  return { aprueban, noAprueban, porDefinir, definitivo: !porDefinir.length && completo && !a.sinMarcar };
+}
+
+const numeros = (lista) => (lista.length ? lista.map((x) => x.n).sort((p, q) => p - q).join(', ') : 'Nadie');
+
+export function htmlCierre(r) {
+  const k = cierre(r);
+  const { c, asis: a } = r;
+  const aviso = k.definitivo ? '' : `<p class="alerta" role="alert">${ic('warning')}<span>El resultado es provisional: ${a.dictadas < a.programadas ? `faltan por dictar o marcar ${a.programadas - a.dictadas} ${a.programadas - a.dictadas === 1 ? 'clase' : 'clases'} en el Excel de asistencia` : 'hay casillas sin marcar en el Excel de asistencia'}. Cuando estén completas, esta lista se actualiza sola.</span></p>`;
+  return `<details class="asis-fila cierre ${k.definitivo ? 'verde' : 'ambar'}" data-curso="${esc(c.id)}"><summary class="asis-resumen-fila"><span class="asis-punto"></span>
+    <span class="asis-curso"><strong>${esc(c.programaCorto)}</strong><small>${esc(etiquetaPeriodo(c))}${r.estado === 'terminado' ? ', terminado' : ''}</small></span>
+    <span class="asis-avance">${k.aprueban.length} aprueban<small>${k.noAprueban.length} no aprueban</small></span>
+    <span class="asis-prom">${k.definitivo ? '<span class="asis-ok-mini">Resultado final</span>' : '<span class="est-asis atencion">Provisional</span>'}</span><span></span><span class="asis-abrir" aria-hidden="true"></span></summary>
+    <div class="asis-detalle">${aviso}
+      <div class="cierre-cols"><div class="cierre-col aprueba"><h4>Aprueban <span>${k.aprueban.length}</span></h4><p>${numeros(k.aprueban)}</p></div>
+        <div class="cierre-col no-aprueba"><h4>No aprueban <span>${k.noAprueban.length}</span></h4><p>${numeros(k.noAprueban)}</p></div>
+        ${k.porDefinir.length ? `<div class="cierre-col por-definir"><h4>Por definir <span>${k.porDefinir.length}</span></h4><p>${numeros(k.porDefinir)}</p></div>` : ''}</div>
+      <p class="nota">Los números son los de la lista en el Excel de asistencia, donde están los nombres. Para certificar hacen falta ${a.programadas - a.permitidas} de ${a.programadas} clases.</p>
+      <p><button class="btn" type="button" data-cierre="${esc(c.id)}">${ic('arrow-up-right')}<span>Descargar para certificación</span></button></p></div></details>`;
+}
+
+/** CSV para pasar a certificación: un renglón por número de lista, sin nombres. */
+export function filasCierre(r) {
+  const k = cierre(r);
+  const { c, asis: a } = r;
+  const filas = [...k.aprueban.map((x) => [x, 'Aprueba']), ...k.noAprueban.map((x) => [x, 'No aprueba']), ...k.porDefinir.map((x) => [x, 'Por definir'])].sort((p, q) => p[0].n - q[0].n);
+  return filas.map(([x, res]) => [c.programaCorto, c.periodo || '', c.cohorte || '', x.n, res, x.asistio, x.faltas, a.programadas, Math.round((100 * x.asistio) / a.programadas) + ' %', k.definitivo ? 'Sí' : 'No']);
+}
+export const TITULOS_CIERRE = ['Curso', 'Periodo', 'Cohorte', 'Número de lista', 'Resultado', 'Clases asistidas', 'Faltas', 'Clases programadas', 'Asistencia final', 'Resultado definitivo'];
+
 /** Resumen de una línea para la portada de la sección. */
 export function resumenAsistencia(rs) {
   const con = rs.filter((r) => r.asis);

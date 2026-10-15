@@ -43,6 +43,16 @@ def _filas_asistencia():
     return [fila(1, [1] * 8 + [0] * 0, "Al día"), fila(2, [1, 0, 0, 1, 0, 0, 1, 1], "Atención"), fila(3, [0, 0, 0, 0, 0, 0, 1, 1], "En riesgo")]
 
 
+def _filas_cierre():
+    """Curso B terminado de dictar (3 clases, 1 falta permitida): un estudiante aprueba y otro no."""
+    def fila(n, marcas, estado):
+        f = {"N°": n, "Nombre del estudiante": f"Estudiante de prueba {n}", "Asistió": marcas.count(1), "Faltas": marcas.count(0), "Sin marcar": 0,
+             "Faltas que le quedan": 1 - marcas.count(0), "% hasta hoy": marcas.count(1) / 3, "Puede llegar hasta": marcas.count(1) / 3, "Estado": estado, "Clases programadas": 3}
+        f.update({f"Clase {i + 1}": marcas[i] for i in range(3)})
+        return f
+    return [fila(1, [1, 1, 1], "Aprobó"), fila(2, [1, 0, 1], "Aprobó"), fila(3, [0, 0, 1], "Perdió el mínimo")]
+
+
 @pytest.fixture(scope="session")
 def sitio(tmp_path_factory):
     t = tmp_path_factory.mktemp("repo")
@@ -58,6 +68,7 @@ def sitio(tmp_path_factory):
     cd.construir(t / "incompleto.xlsx", t / "cursos" / B, ahora=T0)
     (t / "cursos" / B / "estado/error.json").write_text(json.dumps({"mensaje": "Falta la columna Profesor", "en": "2026-10-01T12:00:00Z"}), encoding="utf-8")
     asistencia.aplicar(_filas_asistencia(), t / "cursos" / A)
+    asistencia.aplicar(_filas_cierre(), t / "cursos" / B)
     out = cu.armar_sitio(t / "_sitio", "test", raiz=t)
     por = {c["id"]: c for c in reg["cursos"]}
     return {"dir": out, "a": cu.sitio_ruta(por[A]), "b": cu.sitio_ruta(por[B]), "hub": f"g/{reg['global']['adminCodigo']}",

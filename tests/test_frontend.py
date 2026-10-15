@@ -394,13 +394,47 @@ def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
     pagina.wait_for_selector("#asis-bandeja tbody tr")
     assert not pagina.locator("#asistencia").get_attribute("hidden")
     filas = pagina.locator("#asis-bandeja tbody tr")
-    assert filas.count() == 2 and "En riesgo" in filas.nth(0).inner_text() and "N.º 3" in filas.nth(0).inner_text() and "Atención" in filas.nth(1).inner_text()
+    assert filas.count() == 3 and "Perdió el mínimo" in filas.nth(0).inner_text() and "En riesgo" in filas.nth(1).inner_text() and "N.º 3" in filas.nth(1).inner_text() and "Atención" in filas.nth(2).inner_text()
     assert "Estudiante de prueba" not in pagina.inner_text("#asistencia")
-    assert pagina.locator("#asis-lista .asis-fila.rojo").count() == 1
-    pagina.locator("#asis-lista summary").first.click()
-    assert "28 de 35" in pagina.inner_text("#asis-lista") and pagina.locator(".asis-barras li").count() == 35
-    pagina.locator("[data-contactado]").first.check()
+    assert pagina.locator("#asis-lista .asis-fila.rojo").count() == 2
+    pagina.locator("#asis-lista details", has_text="Compliance").locator("summary").click()
+    assert "28 de 35" in pagina.inner_text("#asis-lista") and pagina.locator("#asis-lista details", has_text="Compliance").locator(".asis-barras li").count() == 35
+    pagina.locator("[data-contactado]").first.check()  # la primera es la de Derecho Laboral, que perdió el mínimo
     assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#asis-lista details[open]").count() == 1
     pagina.reload()
     pagina.wait_for_selector("#asis-bandeja tbody tr")
     assert pagina.locator("[data-contactado]").first.is_checked() and pagina.errores == []
+
+
+def test_hub_buscador_global_encuentra_curso_docente_y_clase(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    docente = json.loads(sitio["datos_a"].read_text(encoding="utf-8"))["clases"][0]["profesores"][0]
+    apellido = docente.split()[-1]
+    pagina.fill("#bg-q", "laboral")
+    assert "Derecho Laboral" in pagina.inner_text("#bg-resultados")
+    pagina.fill("#bg-q", apellido)
+    r = pagina.inner_text("#bg-resultados")
+    assert docente in r and "Docente" in r and "Ver clase" in r
+    assert "docente=" in pagina.locator(".bg-links a").first.get_attribute("href")
+    pagina.fill("#bg-q", "zzzxyz")
+    assert "No encontré nada" in pagina.inner_text("#bg-resultados")
+    pagina.fill("#bg-q", "")
+    assert pagina.inner_text("#bg-resultados") == ""
+    pagina.keyboard.press("Escape")
+    pagina.locator("body").click(position={"x": 5, "y": 400})
+    pagina.keyboard.press("/")
+    assert pagina.evaluate("document.activeElement.id") == "bg-q" and pagina.errores == []
+
+
+def test_hub_cierre_de_curso_lista_y_descarga(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    pagina.wait_for_selector("#asis-cierres details")
+    fila = pagina.locator("#asis-cierres details", has_text="Derecho Laboral")
+    fila.locator("summary").click()
+    assert "Resultado final" in fila.inner_text() and "Estudiante de prueba" not in fila.inner_text()
+    assert pagina.locator(".cierre-col.aprueba p").inner_text() == "1, 2" and pagina.locator(".cierre-col.no-aprueba p").inner_text() == "3"
+    with pagina.expect_download() as d:
+        fila.locator("[data-cierre]").click()
+    texto = Path(d.value.path()).read_text(encoding="utf-8-sig")
+    assert d.value.suggested_filename.startswith("cierre-") and "Número de lista;Resultado" in texto
+    assert ";1;Aprueba;" in texto and ";3;No aprueba;" in texto and "Estudiante de prueba" not in texto and pagina.errores == []

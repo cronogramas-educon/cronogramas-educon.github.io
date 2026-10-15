@@ -3,7 +3,8 @@ import { esc, rangos, ic, norm } from './ui.js';
 import { addDias, ahora, estadoClase, fechaLarga, fechaLargaAnio, haceCuanto, cambioVigente, cap, hoyISO, mesAnio } from './utils-fecha.js';
 import { horario } from './ui.js';
 import { urgentes, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
-import { resumenAsistencia, urgentesAsistencia, bandeja, htmlBandeja, htmlTablero, nivelAsistencia } from './hub-asistencia.js';
+import { resumenAsistencia, urgentesAsistencia, bandeja, htmlBandeja, htmlTablero, nivelAsistencia, cierre, htmlCierre, filasCierre, TITULOS_CIERRE } from './hub-asistencia.js';
+import { buscar, htmlResultados } from './hub-buscador.js';
 
 const $ = (id) => document.getElementById(id);
 const CFG = { diasAvisoCambio: 14 };
@@ -183,7 +184,7 @@ async function pintar(meta) {
   activosVivos = activos;
   filtrosCursos(activos);
   pintarCursos();
-  seccionAsistencia(activos);
+  seccionAsistencia(activos, rs);
   tablaPendientes(activos);
   listaCambios(activos);
   archivo(rs.filter((r) => r.estado === 'terminado'));
@@ -191,6 +192,7 @@ async function pintar(meta) {
   seccionAgenda(activos);
   seccionReportes(rs);
   registro(meta);
+  buscarGlobal();
   $('refresco').textContent = `Actualizado ${fechaLargaAnio(hoyISO())}`;
 }
 
@@ -201,10 +203,18 @@ const leerContactados = () => { try { return new Set(JSON.parse(localStorage.get
 const guardarContactados = (set) => { try { localStorage.setItem(LLAVE_CONTACTADOS, JSON.stringify([...set])); } catch { /* sin almacenamiento: la marca dura mientras la página esté abierta */ } };
 let contactados = leerContactados();
 
-function seccionAsistencia(activos) {
+function seccionAsistencia(activos, todos) {
   asisCursos = activos.filter((r) => r.c.tieneAsistencia);
-  $('asistencia').hidden = $('nav-asistencia').hidden = !asisCursos.length;
-  if (!asisCursos.length) return;
+  const cierres = todos.filter((r) => r.asis && cierre(r));
+  $('asistencia').hidden = $('nav-asistencia').hidden = !asisCursos.length && !cierres.length;
+  $('asis-cierres-t').hidden = $('asis-cierres-nota').hidden = !cierres.length;
+  $('asis-cierres').innerHTML = cierres.map(htmlCierre).join('');
+  if (!asisCursos.length) {
+    $('asis-bandeja').innerHTML = '<p class="nota">No hay cursos activos con asistencia publicada.</p>';
+    $('asis-lista').innerHTML = $('asis-conteo').textContent = $('asis-resumen').textContent = '';
+    $('asis-filtros').hidden = true;
+    return;
+  }
   const grupos = [...new Set(asisCursos.map((r) => etiquetaPeriodo(r.c)))].sort().reverse();
   const previo = $('asis-grupo').value;
   $('asis-grupo').innerHTML = `<option value="">Todos</option>${grupos.map((g) => `<option value="${esc(g)}"${g === previo ? ' selected' : ''}>${esc(g)}</option>`).join('')}`;
@@ -254,6 +264,11 @@ async function copiar(texto) {
   return ok;
 }
 
+/** Buscador global: cursos, docentes y clases de todos los cursos, incluidos los terminados. */
+function buscarGlobal() {
+  $('bg-resultados').innerHTML = htmlResultados(buscar(ultimosRs, $('bg-q').value));
+}
+
 async function arrancar() {
   const meta = await traer('cursos.json');
   if (!meta) { $('cursos-lista').innerHTML = '<p class="nota">No se pudo cargar la lista de cursos.</p>'; return; }
@@ -267,6 +282,21 @@ async function arrancar() {
     contactados[c.checked ? 'add' : 'delete'](c.dataset.contactado);
     guardarContactados(contactados);
     pintarAsistencia();
+  });
+  $('bg-q').addEventListener('input', buscarGlobal);
+  $('bg-q').addEventListener('keydown', (e) => { if (e.key === 'Escape') { $('bg-q').value = ''; buscarGlobal(); } });
+  $('nav-buscar').addEventListener('click', () => setTimeout(() => $('bg-q').focus({ preventScroll: true }), 50));
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName)) return;
+    e.preventDefault();
+    $('buscar').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    $('bg-q').focus({ preventScroll: true });
+  });
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-cierre]');
+    if (!b) return;
+    const r = ultimosRs.find((x) => x.c.id === b.dataset.cierre);
+    if (r && cierre(r)) descargar(`cierre-${r.c.id}.csv`, csv(TITULOS_CIERRE, filasCierre(r)));
   });
   $('rep-periodo').onchange = (e) => { periodoSel = e.target.value; seccionReportes(ultimosRs); };
   $('rep-csv').onclick = () => descargar(`reporte-horas${periodoSel ? `-${periodoSel}` : ''}.csv`, csvReporte());
