@@ -299,4 +299,21 @@ def test_plantilla_maestra_cumple_el_formato(tmp_path):
     gp.main(f)
     ws = load_workbook(f)[cd.HOJA]
     assert [ws.cell(2, j).value for j in range(1, 11)] == cd.COLS and "Table1" in ws.tables
-    assert len(ws.data_validations.dataValidation) == 5
+    assert len(ws.data_validations.dataValidation) == 6 and ws.cell(2, 11).value == "Situación" and ws.tables["Table1"].ref == "A2:K3"
+
+
+def test_clase_cancelada_sale_del_computo_y_conserva_los_numeros(raiz, tmp_path):
+    """La columna K (Situación) = Cancelada saca la clase de horas, asistencia y calendario sin renumerar las demás."""
+    def cancelar(ws):
+        ws.cell(2, 11).value = cd.SITUACION
+        ws.cell(fila_de(ws, 3), 11).value = "Cancelada"
+    base, _ = cd.construir(FIX, raiz, ahora=T0)
+    otra = tmp_path / "otra"
+    (otra / "config").mkdir(parents=True)
+    shutil.copy(CFG_RUTA, otra / "config")
+    datos, _ = cd.construir(xlsx_con(tmp_path, "cancelada.xlsx", cancelar), otra, ahora=T0)
+    ids = [c["id"] for c in datos["clases"]]
+    assert datos["meta"]["totalClases"] == base["meta"]["totalClases"] - 1 and 3 not in ids and 4 in ids
+    assert [c["id"] for c in datos["canceladas"]] == [3] and datos["canceladas"][0]["fecha"]
+    ics = (otra / "cronograma.ics").read_text()
+    assert "clase-03@" not in ics and "clase-04@" in ics

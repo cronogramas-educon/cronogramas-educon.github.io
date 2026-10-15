@@ -317,7 +317,7 @@ def _hoja_instrucciones(wb, curso):
     f = _seccion(ay, f + 1, "6. Cuando algo cambia")
     for txt in ("Se agrega una clase o cambia una fecha: se hace en el Cuadro de horas. El sitio la toma sola. Aquí solo sube Clases del curso en la hoja Resumen, si la clase es nueva.",
                 "Una clase se reprograma: cambia su fecha en el Cuadro; la clase conserva su número y sus marcas. Deja sus casillas vacías hasta que se dicte.",
-                "Una clase se cancela: no la borres del Cuadro por tu cuenta, porque las demás cambiarían de número y las marcas quedarían desplazadas. Avisa a quien administra el sitio.",
+                "Una clase se cancela: en el Cuadro de horas, columna Situación de esa fila, elige Cancelada. Deja de contar para las faltas permitidas y las demás conservan su número. No borres la fila.",
                 "Una clase pasa a Dictada sola en cuanto tiene alguna marca."):
         _texto(ay, f, 2, 5, "•  " + txt, 40)
         f += 1

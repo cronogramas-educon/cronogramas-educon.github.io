@@ -60,7 +60,7 @@ function pintar() {
     if (!cs.length) v.insertAdjacentHTML('afterbegin', vacio());
     if (estado.foco) { v.querySelector(`[data-fecha="${estado.foco}"]`)?.focus(); estado.foco = null; }
   }
-  renderAvisos($('avisos'), datos.clases, cfg, ctx.t);
+  renderAvisos($('avisos'), datos.clases, cfg, ctx.t, datos.canceladas);
   firma = firmaEstados();
 }
 

@@ -12,6 +12,7 @@ from pathlib import Path
 
 HOJA = "DISTRIBUCIÓN HORAS"
 COLS = ["No.", "Unidad", "Tema", "Horas", "No. de clase", "Profesor", "Día", "Fecha", "Asistente PAT", "Link de reunión"]
+SITUACION = "Situación"  # columna K, opcional: "Cancelada" saca la clase del cómputo (conserva su número "No.")
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 BOGOTA = timezone(timedelta(hours=-5))  # sin horario de verano
 
@@ -78,8 +79,9 @@ def leer_xlsx(ruta):
         vistos = {limpiar(c.value) for r in range(1, 15) for c in ws[r][:10]}
         faltan = [c for c in COLS if c not in vistos]
         raise ErrorDatos(f"No se encontró la fila de encabezados exactos A:J. Columnas que faltan: {faltan or 'orden distinto'}")
-    # solo A:J, se ignora todo lo que esté fuera
-    return [[ws.cell(r, c).value for c in range(1, 11)] for r in range(hdr + 1, ws.max_row + 1)]
+    # A:J más la Situación (K) si existe; se ignora todo lo demás
+    k = limpiar(ws.cell(hdr, 11).value) == SITUACION
+    return [[ws.cell(r, c).value for c in range(1, 12 if k else 11)] for r in range(hdr + 1, ws.max_row + 1)]
 
 
 def leer_json(ruta):
@@ -92,7 +94,7 @@ def leer_json(ruta):
     datos = [{deco(k): v for k, v in d.items()} for d in datos]
     if datos and not set(COLS) <= set(datos[0]):
         raise ErrorDatos(f"El JSON no trae las columnas obligatorias: {[c for c in COLS if c not in datos[0]]}")
-    return [[d.get(c) for c in COLS] for d in datos]
+    return [[d.get(c) for c in COLS] + [d.get(SITUACION)] for d in datos]
 
 
 def hhmm_a_min(h):
@@ -135,8 +137,14 @@ def entero_o_none(v):
     return int(n) if n == int(n) and n > 0 else None
 
 
+def cancelada(v):
+    return len(v) > 10 and limpiar(v[10]).lower().startswith("cancelad")
+
+
 def filas_a_clases(filas, cfg):
-    clases, avisos, ant_tema, ant_raw = [], [], "", ""
+    """Devuelve (clases, avisos, canceladas). Una clase marcada Cancelada en la columna Situación no es una clase del curso: no cuenta en horas,
+    asistencia, calendario ni alertas, pero conserva su número, así que las demás no se renumeran."""
+    clases, avisos, canceladas, ant_tema, ant_raw = [], [], [], "", ""
     for v in filas:
         if not v[4] or not str(v[4]).strip().upper().startswith("CLASE"):
             continue  # fila TOTAL, vacías y residuos
@@ -144,6 +152,13 @@ def filas_a_clases(filas, cfg):
             num = int(float(v[0]))
         except (TypeError, ValueError):
             raise ErrorDatos(f"{limpiar(v[4])}: 'No.' no es un número ({v[0]!r})")
+        if cancelada(v):
+            try:
+                f = fecha_a_date(v[7]).isoformat()
+            except ErrorDatos:
+                f = ""
+            canceladas.append({"id": num, "clase": limpiar(v[4]), "unidad": limpiar(v[1]), "fecha": f})
+            continue
         horas = entero_o_none(v[3])
         tema, heredado = limpiar(v[2]), False
         if not tema:
@@ -168,7 +183,7 @@ def filas_a_clases(filas, cfg):
         clases.append(c)
     if not clases:
         raise ErrorDatos("No se encontró ninguna clase (filas con 'CLASE' en la columna 'No. de clase').")
-    ids = [c["id"] for c in clases]
+    ids = [c["id"] for c in clases] + [c["id"] for c in canceladas]
     dup = sorted({i for i in ids if ids.count(i) > 1})
     if dup:
         raise ErrorDatos(f"Identificadores 'No.' duplicados: {dup}")
@@ -179,7 +194,7 @@ def filas_a_clases(filas, cfg):
         n = sum(1 for c in clases if vacio(c))
         if n:
             avisos.append(f"{n} de {len(clases)} clases sin {etiqueta}")
-    return clases, avisos
+    return clases, avisos, canceladas
 
 
 def hoy_bogota(ahora):
@@ -238,7 +253,7 @@ def aplicar_cambios(clases, estado, ahora, dias_aviso):
     return estado, activos
 
 
-def armar(clases, cfg, cambios, ahora, modificado=""):
+def armar(clases, cfg, cambios, ahora, modificado="", canceladas=()):
     unidades, vistos = [], {}
     for c in clases:
         if not c["unidadSlug"]:
@@ -249,7 +264,7 @@ def armar(clases, cfg, cambios, ahora, modificado=""):
             unidades.append(u)
         u["clases"].append(c["id"])
         u["horas"] += c["horas"] or 0
-    base = {"clases": clases, "programa": cfg["programa"], "horario": cfg["horario"]}
+    base = {"clases": clases, "programa": cfg["programa"], "horario": cfg["horario"], **({"canceladas": list(canceladas)} if canceladas else {})}
     hash_ = hashlib.sha256(json.dumps(base, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
     return {
         "meta": {
@@ -262,7 +277,7 @@ def armar(clases, cfg, cambios, ahora, modificado=""):
         "clases": clases, "unidades": unidades,
         "profesores": sorted({p for c in clases for p in c["profesores"]}),
         "asistentesPat": sorted({c["asistentePat"] for c in clases if c["asistentePat"]}),
-        "cambios": cambios,
+        "cambios": cambios, "canceladas": list(canceladas),
     }
 
 
@@ -272,11 +287,11 @@ def construir(entrada, raiz, modo_json=False, ahora=None, modificado=""):
     ahora = ahora or datetime.now(timezone.utc)
     cfg = json.loads((raiz / "config/contenido.json").read_text(encoding="utf-8"))
     filas = leer_json(entrada) if modo_json else leer_xlsx(entrada)
-    clases, avisos = filas_a_clases(filas, cfg)
+    clases, avisos, canceladas = filas_a_clases(filas, cfg)
     ruta_estado = raiz / "estado/cambios.json"
     estado = json.loads(ruta_estado.read_text(encoding="utf-8")) if ruta_estado.exists() else None
     estado, activos = aplicar_cambios(clases, estado, ahora, cfg["diasAvisoCambio"])
-    datos = armar(clases, cfg, activos, ahora, modificado)
+    datos = armar(clases, cfg, activos, ahora, modificado, canceladas)
     ruta_datos = raiz / "data/data.json"
     if ruta_datos.exists() and json.loads(ruta_datos.read_text(encoding="utf-8"))["meta"]["hash"] == datos["meta"]["hash"]:
         return None, avisos

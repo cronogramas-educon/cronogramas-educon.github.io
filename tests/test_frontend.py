@@ -187,6 +187,18 @@ def test_aviso_de_cambio_y_entendido(pagina, base, sitio):
     assert pagina.locator("#avisos").is_hidden() and "reprogramada" in pagina.locator(".fila[data-id='7']").inner_text().lower()
 
 
+def test_aviso_de_clase_cancelada(pagina, base, sitio):
+    d = json.loads(sitio["datos_a"].read_text(encoding="utf-8"))
+    d["canceladas"] = [{"id": 99, "clase": "CLASE 99", "unidad": "", "fecha": "2026-10-20"}]
+    pagina.route("**/data/data.json*", lambda r: r.fulfill(json=d))
+    abrir(pagina, base, "ahora=2026-10-11T10:00:00-05:00&vista=lista")
+    assert "Clase cancelada: la Clase 99 del martes 20 de octubre no se dicta" in pagina.inner_text("#avisos")
+    pagina.click("[data-entendido]")
+    pagina.reload()
+    pagina.wait_for_selector(".fila", state="attached")
+    assert pagina.locator("#avisos").is_hidden()
+
+
 def test_sin_red_usa_ultima_copia(navegador, base):
     ctx = navegador.new_context()
     p = ctx.new_page()

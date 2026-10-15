@@ -13,7 +13,7 @@ Se genera con `python scripts/generar_asistencia_xlsx.py DATOS.json SALIDA.xlsx`
 Hojas: **Instrucciones**, **Asistencia** (tabla `Table1`, una columna por clase), **Resumen** (reglas y cuentas) y **Cronograma** (fecha y situación de cada clase).
 
 - Se marca 1 (asistió) o 0 (faltó). Una clase con alguna marca pasa sola a Dictada. Una clase sin marcas no se ha dictado.
-- Una clase reprogramada o cancelada se indica en la hoja Cronograma. Las canceladas dejan de contar en el total.
+- Una clase **cancelada** se marca en el Cuadro de horas, columna K "Situación" = Cancelada (no se borra la fila). Deja de contar en horas, asistencia, calendario y alertas, la página de estudiantes avisa, y las demás clases conservan su número. Una clase reprogramada solo cambia de fecha en el Cuadro.
 - **El Cuadro de horas manda.** El número de clases sale del Cuadro: si se agrega, quita o reprograma una clase allí, el sitio recalcula las faltas permitidas y el estado de cada estudiante sin tocar este Excel. Del Excel de asistencia el sitio solo toma las marcas 1 o 0 de las columnas Clase 1, Clase 2, etc. (la clase N del Cuadro es la columna Clase N).
 - Las columnas grises del Excel (Asistió, Faltas, Estado, "Clases del curso"...) son una ayuda para quien lo llena. El sitio no las lee y las recalcula con las mismas reglas; si alguna vez difieren, vale el sitio. No hace falta escribir "Clases del curso".
 
