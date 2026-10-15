@@ -16,7 +16,7 @@ def test_registro_sin_repetidos():
     for k in ("id", "codigo", "carpeta"):
         assert len({c[k] for c in cs}) == len(cs), k
     assert all(len(c["codigo"]) >= 8 for c in cs) and len(REG["global"]["adminCodigo"]) >= 10
-    assert len(cs) == 8
+    assert len(cs) >= 8
 
 
 def test_config_de_cada_curso_esta_sincronizada():
@@ -72,7 +72,7 @@ def test_pagina_de_curso_no_enlaza_a_otros_cursos(sitio):
 
 def test_cursos_json_del_sitio_base(sitio):
     meta = json.loads((sitio / "g" / REG["global"]["adminCodigo"] / "cursos.json").read_text(encoding="utf-8"))
-    assert len(meta["cursos"]) == 8
+    assert len(meta["cursos"]) == len(REG["cursos"])
     laboral = next(c for c in meta["cursos"] if c["id"] == "derecho-laboral")
     assert laboral["carpetaSharePoint"].endswith("/EDU%20CONTINUA%202026/Dip%20en%20Derecho%20Laboral")
     assert laboral["ruta"].startswith("c/derecho-laboral-")
@@ -108,7 +108,7 @@ def test_registro_crea_curso_nuevo_con_codigo_y_conserva_los_existentes():
     reg = _copia()
     nuevo = dict(REG["cursos"][0], carpeta="EDU CONTINUA 2027-1/Dip Compliance Anti- Corrupción", periodo="2027-1")
     avisos, cambios = cu.fusionar(reg, [_fila(c) for c in REG["cursos"]] + [_fila(nuevo)])
-    assert avisos == [] and len(cambios) == 1 and len(reg["cursos"]) == 9
+    assert avisos == [] and len(cambios) == 1 and len(reg["cursos"]) == len(REG["cursos"]) + 1
     n = reg["cursos"][-1]
     assert n["id"] == "compliance-anti-corrupcion-y-anti-lavado-2027-1" and len(n["codigo"]) == 8
     assert n["codigo"] not in {c["codigo"] for c in REG["cursos"]} and n["horario"] == REG["cursos"][0]["horario"]
@@ -178,7 +178,7 @@ def test_registro_con_encabezado_danado_se_avisa_sin_tocar_nada():
         del f["Carpeta_x0020_del_x0020_curso"]
     assert cu.es_registro(filas)
     avisos, cambios = cu.fusionar(reg, filas)
-    assert len(avisos) == 8 and cambios == [] and reg == REG
+    assert len(avisos) == len(REG["cursos"]) and cambios == [] and reg == REG
 
 
 def test_el_nombre_siempre_dice_si_es_curso_o_diplomado(sitio):
@@ -238,4 +238,4 @@ def test_la_cohorte_se_toma_de_la_ruta_si_el_registro_no_tiene_la_columna():
     assert [x["carpeta"] for x in nuevos] == ["EDU CONTINUA 2026/2026-2/Cohorte 1/Diplomado X", "EDU CONTINUA 2026/2026-2/Cohorte 2/Diplomado X"]
     assert len({x["id"] for x in nuevos}) == 2 and nuevos[0]["id"].endswith("cohorte-1")
     assert cu.resolver("/sites/Especializaciones/Documentos compartidos/ESPECIALIZACIONES 2014 - 2023/EDU CONTINUA 2026/2026-2/Cohorte 2/Diplomado X/a.xlsx", reg) == nuevos[1]["id"]
-    assert not any(x.get("cohorte") for x in reg["cursos"][:base])  # los cursos de siempre no cambian
+    assert not any(x.get("cohorte") for x in reg["cursos"][:8])  # los 8 cursos de siempre no cambian
