@@ -3,12 +3,12 @@
 
   python scripts/generar_asistencia_xlsx.py --plantilla SALIDA.xlsx      plantilla en blanco para copiar a cada curso nuevo
   python scripts/generar_asistencia_xlsx.py DATOS.json SALIDA.xlsx       un curso con sus datos
-DATOS.json: {"curso": "...", "minimo": 0.8, "horas": 3, "clases": [{"fecha": "2026-10-01", "situacion": "", "nueva": ""}, ...],
+DATOS.json: {"curso": "...", "minimo": 0.8, "clases": [{"fecha": "2026-10-01", "situacion": "", "nueva": ""}, ...],
              "estudiantes": [{"documento": "", "nombre": "...", "marcas": [1, 0, null, ...]}, ...]}
 Los datos de estudiantes no viven en el repositorio (es público): el JSON se escribe fuera de él.
 
 El archivo cabe hasta 40 clases. Cuántas tiene el curso lo dice la tabla Parametros de la hoja Resumen (fila "Clases del curso"):
-un flujo de Power Automate la llena solo con el formulario de registro, o se escribe a mano. Las columnas de clases que sobran quedan "Sin programar".
+se escribe a mano (el sitio ya la toma del Cuadro de horas; aquí solo afecta los colores del archivo). Las columnas de clases que sobran quedan "Sin programar".
 Hojas: Instrucciones, Asistencia (tabla Table1, una columna por clase), Resumen (tabla Parametros y cuentas) y Cronograma (fechas y situación de cada clase).
 Las cuentas son fórmulas: el sitio lee las columnas calculadas (scripts/asistencia.py)."""
 import json, sys
@@ -35,9 +35,9 @@ CALCULADAS = ["Asistió", "Faltas", "Sin marcar", "Faltas que le quedan", "% has
 SEGUIMIENTO = ["Contactado", "En conversación", "Resuelto"]
 ESTADOS = {"Al día": ("E2F0D9", "375623"), "Atención": ("FFF2CC", "7F6000"), "En riesgo": ("FBE0D6", "C00000"),
            "Perdió el mínimo": ("C00000", "FFFFFF"), "Aprobó": ("DDEBF7", "1F3864"), "Falta configurar": ("F2F2F2", "7F7F7F")}
-# filas de la hoja Resumen: la tabla Parametros va de la 4 (encabezado) a la 10; las cuentas, debajo
-R = {"curso": 5, "clases": 6, "horas": 7, "minimo": 8, "atencion": 9, "riesgo": 10,
-     "programadas": 13, "dictadas": 14, "pendientes": 15, "mimas": 16, "permitidas": 17, "horas_curso": 18, "estudiantes": 19, "promedio": 20, "sinmarcar": 28}
+# filas de la hoja Resumen: la tabla Parametros va de la 4 (encabezado) a la 8; las cuentas, debajo
+R = {"clases": 5, "minimo": 6, "atencion": 7, "riesgo": 8,
+     "programadas": 11, "dictadas": 12, "pendientes": 13, "mimas": 14, "permitidas": 15, "estudiantes": 16, "promedio": 17, "sinmarcar": 26}
 RES = lambda k: f"Resumen!$C${R[k]}"
 ULT_CL = colletra(COL0 + MAXC - 1)     # última columna de clases (AQ)
 COL = {nombre: colletra(COL0 + MAXC + k) for k, nombre in enumerate(CALCULADAS + ["Seguimiento"])}
@@ -97,7 +97,7 @@ def _hoja_cronograma(wb, clases):
     ws.freeze_panes = "A6"
 
 
-def _hoja_resumen(wb, curso, n_clases, minimo, horas):
+def _hoja_resumen(wb, n_clases, minimo):
     ws = wb.create_sheet("Resumen")
     ws.sheet_view.showGridLines = False
     _banner(ws, "Resumen de asistencia", 4)
@@ -120,22 +120,20 @@ def _hoja_resumen(wb, curso, n_clases, minimo, horas):
         _celda(ws, f"D{r}", nota, color="595959", wrap=True)
         ws.row_dimensions[r].height = 30 if len(nota) > 80 else 22
 
-    seccion(3, "Datos del curso (las celdas amarillas se pueden cambiar)")
+    seccion(3, "Datos de este archivo (las celdas amarillas se pueden cambiar)")
     # tabla Parametros: un flujo de Power Automate puede actualizar sus filas por el nombre del dato
-    datos = [("curso", "Curso", curso, "El nombre del curso. Se llena solo con el formulario de registro.", "@"),
-             ("clases", "Clases del curso", n_clases, "Cuántas clases tiene en total, contando las que se reprogramen. Máximo 40. Se llena solo con el formulario de registro.", "0"),
-             ("horas", "Horas por sesión", horas, "Cuántas horas dura cada clase.", "General"),
+    datos = [("clases", "Clases del curso", n_clases, "Cuántas clases tiene el curso en el Cuadro de horas (el número de la última clase). Máximo 40. El sitio ya lo toma del Cuadro: aquí solo sirve para los colores y el Estado de este archivo.", "0"),
              ("minimo", "Asistencia mínima", minimo, "Porcentaje mínimo de clases para certificar.", "0%"),
              ("atencion", "Aviso de atención", 0.5, "Marca Atención cuando use este % de las faltas permitidas. Con 7 permitidas, empieza en la falta 4.", "0%"),
              ("riesgo", "Aviso de riesgo", 0.8, "Marca En riesgo cuando use este % de las faltas permitidas. Con 7 permitidas, empieza en la falta 6 (queda una).", "0%")]
     for j, h in enumerate(("Dato", "Valor", "Nota"), 2):
         _celda(ws, f"{colletra(j)}4", h, bold=True, color="FFFFFF", fill=AZUL, h="center" if j == 3 else None, indent=1 if j != 3 else 0)
-    for k, etiqueta, valor, nota, fmt in ((d[0], d[1], d[2], d[3], d[4]) for d in datos):
+    for k, etiqueta, valor, nota, fmt in datos:
         r = R[k]
         _celda(ws, f"B{r}", etiqueta, indent=1)
         _celda(ws, f"C{r}", valor, bold=True, h="center", fill="FFF2CC", color=AZUL, fmt=fmt)
         _celda(ws, f"D{r}", nota, color="595959", wrap=True)
-        ws.row_dimensions[r].height = 30 if len(nota) > 80 else 22
+        ws.row_dimensions[r].height = 44 if len(nota) > 150 else 30 if len(nota) > 80 else 22
     t = Table(displayName="Parametros", ref=f"B4:D{R['riesgo']}")
     t.tableStyleInfo = TableStyleInfo(name="TableStyleLight1", showRowStripes=False)
     ws.add_table(t)
@@ -146,19 +144,18 @@ def _hoja_resumen(wb, curso, n_clases, minimo, horas):
     dv.add(f"C{R['clases']}")
     ws.conditional_formatting.add(f"C{R['clases']}", FormulaRule(formula=[f'C{R["clases"]}=""'], fill=PatternFill("solid", bgColor=ROSA, fgColor=ROSA)))
 
-    seccion(12, "Cuentas automáticas (no se editan)")
+    seccion(10, "Cuentas automáticas (no se editan)")
     cuenta("programadas", "Sesiones programadas", f'=IF(N(C{R["clases"]})=0,0,C{R["clases"]}-COUNTIF({est},"Cancelada"))', "Las clases del curso menos las canceladas.")
     cuenta("dictadas", "Sesiones dictadas", f'=COUNTIF({est},"Dictada")', "Una clase cuenta como dictada cuando tiene alguna marca en la hoja Asistencia.")
     cuenta("pendientes", "Sesiones por dictar", f"=C{R['programadas']}-C{R['dictadas']}")
     cuenta("mimas", "Asistencias mínimas para certificar", f"=ROUNDUP(ROUND(C{R['programadas']}*C{R['minimo']},6),0)", "Se redondea hacia arriba.")
     cuenta("permitidas", "Faltas permitidas", f"=C{R['programadas']}-C{R['mimas']}", "Con más faltas que estas ya no se llega al mínimo.")
-    cuenta("horas_curso", "Horas del curso", f"=C{R['programadas']}*C{R['horas']}")
     cuenta("estudiantes", "Estudiantes", f'=COUNTA(Asistencia!$C${PRIMERA}:$C${PRIMERA + HOLGURA})')
     cuenta("promedio", "Asistencia promedio hasta hoy", f'=IFERROR(SUM({rango("Asistió")})/(SUM({rango("Asistió")})+SUM({rango("Faltas")})),"")', "", "0.0%")
-    seccion(22, "Estudiantes por estado")
+    seccion(19, "Estudiantes por estado")
     for k, nombre in enumerate(("Al día", "Atención", "En riesgo", "Perdió el mínimo", "Aprobó")):
         fondo, letra = ESTADOS[nombre]
-        r = 23 + k
+        r = 20 + k
         _celda(ws, f"B{r}", nombre, bold=True, color=letra, fill=fondo, indent=1)
         _celda(ws, f"C{r}", f'=COUNTIF({rango("Estado")},"{nombre}")', bold=True, h="center", color=AZUL, fill=GRIS)
     _celda(ws, f"B{R['sinmarcar']}", "Casillas sin marcar en clases ya dictadas", indent=1)
@@ -172,7 +169,7 @@ def _hoja_asistencia(wb, curso, estudiantes, hay_clases):
     hay = max(len(estudiantes) + 6, 12)           # filas con fórmulas: los estudiantes y algunas libres
     ult = PRIMERA + hay - 1
     _banner(ws, "Asistencia", 14)
-    _celda(ws, "A3", "Marca 1 si asistió y 0 si faltó. Una clase sin marcas todavía no se dictó. Detalle en la hoja Instrucciones.", color="595959")
+    _celda(ws, "A3", "Cada clase es una columna.  1 = asistió (verde)  ·  0 = faltó (rojo)  ·  vacío = aún no se marca. Una clase sin ninguna marca todavía no se dictó. Las columnas grises se calculan solas: no las escribas.", color="595959")
     _celda(ws, "C4", "Estado de la sesión", bold=True, h="right", color=AZUL)
     _celda(ws, "C5", "Fecha", bold=True, h="right", color=AZUL)
     cab = ["N°", "Documento", "Nombre del estudiante"] + [f"Clase {i}" for i in range(1, MAXC + 1)] + CALCULADAS + ["Seguimiento"]
@@ -284,16 +281,22 @@ def _hoja_instrucciones(wb, curso):
         ay.cell(2, c).fill = PatternFill("solid", fgColor=ROJO)
     ay.row_dimensions[1].height = 48
     ay.row_dimensions[2].height = 5
-    _texto(ay, 3, 2, 5, "Aquí se marca quién asistió a cada clase. Las cuentas, los avisos y el sitio de administración se calculan solos a partir de estas marcas.", 38)
-    f = _seccion(ay, 5, "1. Para empezar, una sola vez")
-    f = _paso(ay, f, "1", "En la hoja Resumen mira la tabla de arriba. Si el curso se creó con el formulario de registro, el nombre y el número de clases ya están. Si no, escribe cuántas clases tiene en la celda Clases del curso.")
-    f = _paso(ay, f, "2", "En la hoja Asistencia escribe los nombres de los estudiantes en la columna Nombre del estudiante. Puedes pegar toda la lista desde el Excel de matriculados.")
-    f = _paso(ay, f, "3", "Opcional: en la hoja Cronograma pega las fechas de las clases, para verlas sobre cada columna.")
-    f = _seccion(ay, f + 1, "2. Después de cada clase")
-    f = _paso(ay, f, "1", "En la hoja Asistencia escribe 1 (asistió) o 0 (faltó) a cada estudiante, en la columna de esa clase.")
+    _texto(ay, 3, 2, 5, "Este archivo guarda una sola cosa: quién asistió a cada clase. Todo lo demás (fechas, módulos, profesores, número de clases) sale del Cuadro de horas del curso, y el sitio de administración calcula los avisos solo.", 44, negrita=True, color=AZUL)
+    f = _seccion(ay, 5, "1. Qué va en cada archivo")
+    for titulo, txt in (("Cuadro de horas", "Es la fuente principal: las clases, sus fechas, módulos, profesores y horas. Si algo de eso cambia, se cambia allá, nunca aquí."),
+                        ("Este archivo", "Solo los nombres de los estudiantes y un 1 o un 0 por clase. Es el único lugar donde están los nombres."),
+                        ("Sitio de administración", "Junta las dos cosas y muestra faltas permitidas, estados y alertas. Nunca muestra nombres: solo el número de lista, por ejemplo Estudiante 7.")):
+        _texto(ay, f, 2, 2, titulo, 40, negrita=True, color=AZUL, fondo=GRIS)
+        _texto(ay, f, 3, 5, txt, 40, fondo=GRIS)
+        f += 1
+    f = _seccion(ay, f + 1, "2. Para empezar, una sola vez")
+    f = _paso(ay, f, "1", "En la hoja Asistencia escribe los nombres en la columna Nombre del estudiante. Puedes pegar toda la lista desde el Excel de matriculados. El documento es opcional.")
+    f = _paso(ay, f, "2", "En la hoja Resumen escribe en Clases del curso cuántas clases hay en el Cuadro de horas (el número de la última). Sirve para los colores de este archivo; el sitio ya lo toma del Cuadro.")
+    f = _seccion(ay, f + 1, "3. Después de cada clase")
+    f = _paso(ay, f, "1", "En la hoja Asistencia, en la columna de esa clase, escribe 1 a quien asistió y 0 a quien faltó. No dejes casillas vacías en una clase ya dictada.")
     f = _paso(ay, f, "2", "Guarda. No hay botón de enviar: el sitio de administración se actualiza solo en unos minutos.")
-    f = _paso(ay, f, "3", "Mira la columna Estado. Quien aparece en Atención o En riesgo es a quien conviene escribirle antes de que pierda. Anota en Seguimiento cómo va el contacto.")
-    f = _seccion(ay, f + 1, "3. Qué significa cada estado")
+    f = _paso(ay, f, "3", "Mira la columna Estado. A quien aparece en Atención o En riesgo conviene escribirle antes de que pierda. Anota en Seguimiento cómo va el contacto.")
+    f = _seccion(ay, f + 1, "4. Qué significa cada estado")
     for texto, fondo, color in (("Al día: ha faltado poco, lejos del límite.", "E2F0D9", "375623"),
                                 ("Atención: ya usó la mitad o más de las faltas permitidas.", "FFF2CC", "7F6000"),
                                 ("En riesgo: le queda una falta o ninguna. Una más y pierde el certificado.", "FBE0D6", "C00000"),
@@ -301,32 +304,32 @@ def _hoja_instrucciones(wb, curso):
                                 ("Aprobó: terminó el curso y cumplió el mínimo.", "DDEBF7", "1F3864")):
         _texto(ay, f, 2, 5, texto, 26, negrita=True, color=color, fondo=fondo)
         f += 1
-    _texto(ay, f, 2, 5, "Los avisos se calculan sobre las faltas permitidas del curso, no sobre un número fijo. Así sirven igual para un diplomado de 35 clases que para un curso de 8. Los umbrales se cambian en la hoja Resumen.", 40, color="595959")
+    _texto(ay, f, 2, 5, "Los avisos se calculan sobre las faltas permitidas del curso, no sobre un número fijo: sirven igual para 35 clases que para 8. Para certificar se necesita asistir al 80 % de las clases.", 40, color="595959")
     f += 1
-    f = _seccion(ay, f + 1, "4. Cómo se leen las cuentas")
+    f = _seccion(ay, f + 1, "5. Cómo se leen las columnas grises (no se escriben)")
     for txt in ("Faltas que le quedan: cuántas veces más puede faltar sin perder el mínimo.",
                 "Puede llegar hasta: el mejor porcentaje posible si no falta a nada más.",
                 "% hasta hoy: su asistencia solo con las clases ya dictadas.",
-                "Sin marcar: clases ya dictadas en las que su casilla está vacía. Debe ser 0: si no, falta marcarla.",
-                "Seguimiento: una nota libre (Contactado, En conversación, Resuelto) para el equipo."):
+                "Sin marcar: clases ya dictadas con su casilla vacía. Debe ser 0: si no, falta marcarla.",
+                "Seguimiento: nota libre (Contactado, En conversación, Resuelto) para el equipo."):
         _texto(ay, f, 2, 5, "•  " + txt, 24)
         f += 1
-    f = _seccion(ay, f + 1, "5. Cuando una clase cambia")
-    for i, txt in enumerate(("Clase reprogramada: en la hoja Cronograma elige Reprogramada en su Situación y escribe la nueva fecha. Deja sus casillas vacías hasta que se dicte.",
-                             "Clase cancelada: en la hoja Cronograma elige Cancelada. Deja de contar en el total, así que cambian las faltas permitidas.",
-                             "Una clase pasa a Dictada sola en cuanto tiene alguna marca."), 1):
-        f = _paso(ay, f, str(i), txt, 36)
-    f = _seccion(ay, f + 1, "6. Estudiantes nuevos o que se retiran")
-    for txt in ("Para agregar a alguien, escribe su nombre en la primera fila libre debajo de la lista. La tabla se extiende y las cuentas se llenan solas.",
-                "Si alguien se retira, no borres su fila: deja sus marcas. Si hay que quitarlo de las cuentas, borra solo su nombre y las demás casillas quedan guardadas en el historial de versiones de SharePoint.",
-                "El documento es opcional, pero ayuda a distinguir a dos personas con nombres parecidos."):
+    f = _seccion(ay, f + 1, "6. Cuando algo cambia")
+    for txt in ("Se agrega una clase o cambia una fecha: se hace en el Cuadro de horas. El sitio la toma sola. Aquí solo sube Clases del curso en la hoja Resumen, si la clase es nueva.",
+                "Una clase se reprograma: cambia su fecha en el Cuadro; la clase conserva su número y sus marcas. Deja sus casillas vacías hasta que se dicte.",
+                "Una clase se cancela: no la borres del Cuadro por tu cuenta, porque las demás cambiarían de número y las marcas quedarían desplazadas. Avisa a quien administra el sitio.",
+                "Una clase pasa a Dictada sola en cuanto tiene alguna marca."):
         _texto(ay, f, 2, 5, "•  " + txt, 40)
         f += 1
-    f = _seccion(ay, f + 1, "7. Importante")
+    f = _seccion(ay, f + 1, "7. Estudiantes nuevos o que se retiran")
+    for txt in ("Para agregar a alguien, escribe su nombre en la primera fila libre debajo de la lista. La tabla se extiende y las cuentas se llenan solas.",
+                "Si alguien se retira, no borres su fila: deja sus marcas. Si hay que quitarlo de las cuentas, borra solo su nombre; lo demás queda en el historial de versiones de SharePoint."):
+        _texto(ay, f, 2, 5, "•  " + txt, 40)
+        f += 1
+    f = _seccion(ay, f + 1, "8. Importante")
     for txt in ("No cambies los nombres de las columnas Clase 1, Clase 2, etc. ni los de las columnas grises: el sitio los usa para leer el archivo.",
-                "Las columnas grises y la fila Estado de la sesión se calculan solas. No las escribas.",
-                "El archivo cabe hasta 40 clases. Las columnas que sobran aparecen en gris, como Sin programar.",
-                "El sitio de administración nunca muestra nombres: solo el número de lista (por ejemplo Estudiante 7). El nombre se consulta aquí, en este archivo."):
+                "La hoja Cronograma es opcional y solo sirve para ver fechas sobre cada columna. Las fechas oficiales son las del Cuadro de horas.",
+                "El archivo cabe hasta 40 clases. Las columnas que sobran aparecen en gris, como Sin programar."):
         _texto(ay, f, 2, 5, "•  " + txt, 40)
         f += 1
     ay.page_setup.orientation, ay.page_setup.fitToWidth, ay.page_setup.fitToHeight = "portrait", 1, 0
@@ -337,7 +340,7 @@ def construir(d, salida):
     wb = Workbook()
     clases = d.get("clases", [])
     _hoja_asistencia(wb, d["curso"], d.get("estudiantes", []), bool(clases))
-    _hoja_resumen(wb, d["curso"], len(clases) or None, d.get("minimo", 0.8), d.get("horas", 3))
+    _hoja_resumen(wb, len(clases) or None, d.get("minimo", 0.8))
     _hoja_cronograma(wb, clases)
     _hoja_instrucciones(wb, d["curso"])
     wb.move_sheet("Instrucciones", offset=-3)
