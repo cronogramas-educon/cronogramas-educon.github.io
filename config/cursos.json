@@ -170,6 +170,22 @@
         "fin": "20:00"
       },
       "periodo": "2026-2"
+    },
+    {
+      "id": "prueba-3-2026-2-cohorte-1-primera-vez-en-el-semestre",
+      "codigo": "inqba8kr",
+      "carpeta": "EDU CONTINUA 2026/2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Prueba 3",
+      "tipo": "Diplomado",
+      "programa": "Prueba 3",
+      "programaCorto": "Prueba 3",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "",
+      "periodo": "2026-2",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "22:00"
+      },
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     }
   ]
 }
