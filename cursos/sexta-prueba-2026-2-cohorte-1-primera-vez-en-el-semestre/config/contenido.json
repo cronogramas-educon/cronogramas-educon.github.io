@@ -1,0 +1,43 @@
+{
+  "programa": "Diplomado Sexta prueba",
+  "programaCorto": "Diplomado Sexta prueba",
+  "tipo": "Diplomado",
+  "modalidad": "Remota (Microsoft Teams)",
+  "urlPaginaOficial": "",
+  "periodo": "2026-2",
+  "cohorte": "Cohorte 1 (primera vez en el semestre)",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "horario": {
+    "inicio": "07:00",
+    "fin": "20:30",
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "uidSufijo": "cronograma-sexta-prueba-2026-2-cohorte-1-primera-vez-en-el-semestre",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "sexta-prueba-2026-2-cohorte-1-primera-vez-en-el-semestre"
+}

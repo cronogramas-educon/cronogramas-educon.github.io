@@ -171,6 +171,26 @@
         "fin": "20:00"
       },
       "periodo": "2026-2"
+    },
+    {
+      "id": "sexta-prueba-2026-2-cohorte-1-primera-vez-en-el-semestre",
+      "codigo": "7xnq1c4v",
+      "carpeta": "EDU CONTINUA 2026/2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Sexta prueba",
+      "tipo": "Diplomado",
+      "programa": "Sexta prueba",
+      "programaCorto": "Sexta prueba",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "",
+      "periodo": "2026-2",
+      "horario": {
+        "inicio": "07:00",
+        "fin": "20:30"
+      },
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "teams": {
+        "equipo": "232bb2aa-7986-4d18-ae3b-634a3a6cdb83",
+        "canal": "19:Li0e0VsuiDYxqmkZdW2ERtFtaYvAZz1-QLcXCNsoJNA1@thread.tacv2"
+      }
     }
   ]
 }
