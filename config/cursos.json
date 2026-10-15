@@ -186,6 +186,22 @@
         "fin": "22:00"
       },
       "cohorte": "Cohorte 1 (primera vez en el semestre)"
+    },
+    {
+      "id": "prueba-4-2026-2-cohorte-1-primera-vez-en-el-semestre",
+      "codigo": "hbyyds0f",
+      "carpeta": "EDU CONTINUA 2026/2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Prueba 4",
+      "tipo": "Diplomado",
+      "programa": "Prueba 4",
+      "programaCorto": "Prueba 4",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "",
+      "periodo": "2026-2",
+      "horario": {
+        "inicio": "07:00",
+        "fin": "20:30"
+      },
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     }
   ]
 }
