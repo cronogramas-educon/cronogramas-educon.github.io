@@ -43,9 +43,18 @@
       <p class="nota" id="cur-conteo" aria-live="polite"></p>
       <div class="cursos-grid" id="cursos-lista" aria-live="polite"></div></section>
     <section class="seccion" id="asistencia" hidden><h2>Asistencia</h2>
-      <p class="nota">Cómo va la asistencia en cada curso, según el Excel de asistencia de su carpeta. Para certificar, cada estudiante necesita asistir como mínimo al 80 % de las clases. Los avisos se calculan sobre las faltas permitidas de cada curso, así que valen igual para un diplomado largo que para un curso corto.</p>
+      <p class="nota">Cómo va la asistencia, según el Excel de asistencia de la carpeta de cada curso. Para certificar, cada estudiante necesita asistir como mínimo al 80 % de las clases. Los avisos se calculan sobre las faltas permitidas de cada curso, así que valen igual para un diplomado largo que para un curso corto.</p>
       <p class="resumen-sec" id="asis-resumen" aria-live="polite"></p>
-      <div class="cursos-grid asis-grid" id="asis-lista" aria-live="polite"></div></section>
+      <h3 class="sub-rep">A quién escribirle</h3>
+      <div id="asis-bandeja" aria-live="polite"></div>
+      <h3 class="sub-rep">Cursos</h3>
+      <div class="filtros-cursos" id="asis-filtros" hidden>
+        <label class="campo-rep"><span>Buscar un curso</span><input id="asis-buscar" type="search" placeholder="Nombre del curso" autocomplete="off"></label>
+        <label class="campo-rep"><span>Periodo y cohorte</span><select id="asis-grupo"></select></label>
+        <label class="campo-rep check-rep"><span>Mostrar</span><span class="check-linea"><input id="asis-solo" type="checkbox"> Solo cursos con alertas</span></label>
+      </div>
+      <p class="nota" id="asis-conteo" aria-live="polite"></p>
+      <div id="asis-lista" aria-live="polite"></div></section>
     <section class="seccion" id="pendientes"><h2>Pendientes por confirmar</h2>
       <p class="nota">Lo que falta en cada Excel. Cuando lo llenes en SharePoint, la página lo toma sola en un par de minutos.</p>
       <div class="tabla-envoltura" id="tabla-pendientes"></div></section>

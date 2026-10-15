@@ -8,6 +8,7 @@ from openpyxl import load_workbook
 
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
+import asistencia
 import construir_datos as cd
 import cursos as cu
 
@@ -32,6 +33,16 @@ def _excel_incompleto(destino):
     wb.save(destino)
 
 
+def _filas_asistencia():
+    """Tres estudiantes del curso A (35 clases, 7 faltas permitidas): uno en riesgo, uno en atención y uno al día. Sin nombres reales."""
+    def fila(n, marcas, estado):
+        f = {"N°": n, "Nombre del estudiante": f"Estudiante de prueba {n}", "Asistió": marcas.count(1), "Faltas": marcas.count(0), "Sin marcar": 0,
+             "Faltas que le quedan": 7 - marcas.count(0), "% hasta hoy": marcas.count(1) / len(marcas), "Puede llegar hasta": (35 - marcas.count(0)) / 35, "Estado": estado, "Clases programadas": 35}
+        f.update({f"Clase {i + 1}": (marcas[i] if i < len(marcas) else "") for i in range(35)})
+        return f
+    return [fila(1, [1] * 8 + [0] * 0, "Al día"), fila(2, [1, 0, 0, 1, 0, 0, 1, 1], "Atención"), fila(3, [0, 0, 0, 0, 0, 0, 1, 1], "En riesgo")]
+
+
 @pytest.fixture(scope="session")
 def sitio(tmp_path_factory):
     t = tmp_path_factory.mktemp("repo")
@@ -46,6 +57,7 @@ def sitio(tmp_path_factory):
     _excel_incompleto(t / "incompleto.xlsx")
     cd.construir(t / "incompleto.xlsx", t / "cursos" / B, ahora=T0)
     (t / "cursos" / B / "estado/error.json").write_text(json.dumps({"mensaje": "Falta la columna Profesor", "en": "2026-10-01T12:00:00Z"}), encoding="utf-8")
+    asistencia.aplicar(_filas_asistencia(), t / "cursos" / A)
     out = cu.armar_sitio(t / "_sitio", "test", raiz=t)
     por = {c["id"]: c for c in reg["cursos"]}
     return {"dir": out, "a": cu.sitio_ruta(por[A]), "b": cu.sitio_ruta(por[B]), "hub": f"g/{reg['global']['adminCodigo']}",

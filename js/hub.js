@@ -3,7 +3,7 @@ import { esc, rangos, ic, norm } from './ui.js';
 import { addDias, ahora, estadoClase, fechaLarga, fechaLargaAnio, haceCuanto, cambioVigente, cap, hoyISO, mesAnio } from './utils-fecha.js';
 import { horario } from './ui.js';
 import { urgentes, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
-import { tarjetaAsistencia, resumenAsistencia, urgentesAsistencia } from './hub-asistencia.js';
+import { resumenAsistencia, urgentesAsistencia, bandeja, htmlBandeja, htmlTablero, nivelAsistencia } from './hub-asistencia.js';
 
 const $ = (id) => document.getElementById(id);
 const CFG = { diasAvisoCambio: 14 };
@@ -194,13 +194,35 @@ async function pintar(meta) {
   $('refresco').textContent = `Actualizado ${fechaLargaAnio(hoyISO())}`;
 }
 
-/** Asistencia por curso. La sección solo aparece si algún curso activo tiene el Excel de asistencia publicado. */
+/** Asistencia: bandeja de seguimiento de todos los cursos y un tablero con una fila por curso. Solo aparece si algún curso activo tiene el Excel de asistencia publicado. */
+let asisCursos = [];
+const LLAVE_CONTACTADOS = 'asistencia-contactados';
+const leerContactados = () => { try { return new Set(JSON.parse(localStorage.getItem(LLAVE_CONTACTADOS) || '[]')); } catch { return new Set(); } };
+const guardarContactados = (set) => { try { localStorage.setItem(LLAVE_CONTACTADOS, JSON.stringify([...set])); } catch { /* sin almacenamiento: la marca dura mientras la página esté abierta */ } };
+let contactados = leerContactados();
+
 function seccionAsistencia(activos) {
-  const con = activos.filter((r) => r.c.tieneAsistencia);
-  $('asistencia').hidden = $('nav-asistencia').hidden = !con.length;
-  if (!con.length) return;
-  $('asis-resumen').textContent = resumenAsistencia(con);
-  $('asis-lista').innerHTML = con.map((r) => tarjetaAsistencia(r)).join('');
+  asisCursos = activos.filter((r) => r.c.tieneAsistencia);
+  $('asistencia').hidden = $('nav-asistencia').hidden = !asisCursos.length;
+  if (!asisCursos.length) return;
+  const grupos = [...new Set(asisCursos.map((r) => etiquetaPeriodo(r.c)))].sort().reverse();
+  const previo = $('asis-grupo').value;
+  $('asis-grupo').innerHTML = `<option value="">Todos</option>${grupos.map((g) => `<option value="${esc(g)}"${g === previo ? ' selected' : ''}>${esc(g)}</option>`).join('')}`;
+  $('asis-filtros').hidden = asisCursos.length < 4;
+  $('asis-resumen').textContent = resumenAsistencia(asisCursos);
+  pintarAsistencia();
+}
+
+function pintarAsistencia() {
+  const lista = bandeja(asisCursos);
+  const hechos = new Set([...contactados].filter((id) => lista.some((x) => x.id === id))); // una marca de un estudiante que ya no está en la lista se descarta
+  $('asis-bandeja').innerHTML = htmlBandeja(lista, hechos);
+  const q = norm($('asis-buscar').value || '').trim(), g = $('asis-grupo').value, solo = $('asis-solo').checked;
+  const vis = asisCursos.filter((r) => (!q || norm(r.c.programaCorto).includes(q)) && (!g || etiquetaPeriodo(r.c) === g) && (!solo || ['rojo', 'ambar'].includes(nivelAsistencia(r))));
+  const abiertos = new Set([...document.querySelectorAll('#asis-lista details[open]')].map((d) => d.dataset.curso));
+  $('asis-lista').innerHTML = vis.length ? htmlTablero(vis) : '<p class="nota">Ningún curso coincide con el filtro.</p>';
+  for (const d of document.querySelectorAll('#asis-lista details')) d.open = abiertos.has(d.dataset.curso);
+  $('asis-conteo').textContent = asisCursos.length >= 4 ? `Mostrando ${vis.length} de ${asisCursos.length} cursos con asistencia.` : '';
 }
 
 /** Filtros de la lista de cursos: texto, periodo y cohorte, y semáforo. Solo aparecen cuando hay más de unos pocos cursos. */
@@ -238,6 +260,14 @@ async function arrancar() {
   $('pie-carpeta').innerHTML = `<a href="${esc(meta.carpetaActual)}" target="_blank" rel="noopener">Abrir la carpeta ${esc(meta.nombreCarpetaActual)} en SharePoint</a>`;
   await pintar(meta);
   for (const id of ['cur-buscar', 'cur-grupo', 'cur-semaforo']) $(id).addEventListener(id === 'cur-buscar' ? 'input' : 'change', pintarCursos);
+  for (const id of ['asis-buscar', 'asis-grupo', 'asis-solo']) $(id).addEventListener(id === 'asis-buscar' ? 'input' : 'change', pintarAsistencia);
+  document.addEventListener('change', (e) => {
+    const c = e.target.closest('[data-contactado]');
+    if (!c) return;
+    contactados[c.checked ? 'add' : 'delete'](c.dataset.contactado);
+    guardarContactados(contactados);
+    pintarAsistencia();
+  });
   $('rep-periodo').onchange = (e) => { periodoSel = e.target.value; seccionReportes(ultimosRs); };
   $('rep-csv').onclick = () => descargar(`reporte-horas${periodoSel ? `-${periodoSel}` : ''}.csv`, csvReporte());
   $('rep-pdf').onclick = () => window.print();

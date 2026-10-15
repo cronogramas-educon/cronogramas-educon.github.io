@@ -27,27 +27,74 @@ function barras(a) {
     <ol role="img" aria-label="Asistencia por clase. La más baja fue la clase ${peor.clase}, con ${peor.asistieron} de ${peor.de}.${mayor.length > completas.length ? ' Algunas clases tienen la asistencia sin terminar de marcar.' : ''}">${celdas}</ol></div>`;
 }
 
-export function tarjetaAsistencia(r, t = ahora()) {
-  const { c, asis: a } = r;
-  const titulo = `<header><p class="tipo">${esc(c.periodo ? `Periodo ${c.periodo}${c.cohorte ? `, ${c.cohorte}` : ''}` : c.tipo)}</p></header><h3>${esc(c.programaCorto)}</h3>`;
-  if (!a) return `<article class="asis papel" data-curso="${esc(c.id)}">${titulo}<p class="asis-vacio">Este curso aún no tiene asistencia publicada. Aparece al guardar el Excel de asistencia en su carpeta.</p></article>`;
+const etiquetaPeriodo = (c) => (c.periodo ? `Periodo ${c.periodo}${c.cohorte ? `, ${c.cohorte}` : ''}` : c.tipo);
+
+/** Semáforo del curso: rojo si alguien está en riesgo o ya perdió el mínimo, ámbar si hay Atención o asistencia sin marcar, verde si todo va bien. */
+export function nivelAsistencia(r, t = ahora()) {
+  const a = r.asis;
+  if (!a) return 'gris';
+  if ((a.porEstado['En riesgo'] || 0) + (a.porEstado['Perdió el mínimo'] || 0)) return 'rojo';
+  return a.porEstado.Atención || a.sinMarcar || sinRegistrar(r, t).length ? 'ambar' : 'verde';
+}
+const ORDEN_NIVEL = { rojo: 0, ambar: 1, verde: 2, gris: 3 };
+const NIVEL_TXT = { rojo: 'Requiere atención', ambar: 'Por revisar', verde: 'Todo en orden', gris: 'Sin asistencia publicada' };
+
+/** Estudiantes a quienes conviene escribirles, de todos los cursos, de más a menos urgente. */
+export function bandeja(rs) {
+  const orden = ['Perdió el mínimo', 'En riesgo', 'Atención'];
+  return rs.flatMap((r) => urgentesAsistencia(r).map((x) => ({ ...x, r, id: `${r.c.id}|${x.n}|${x.faltas}` })))
+    .sort((p, q) => orden.indexOf(p.estado) - orden.indexOf(q.estado) || p.quedan - q.quedan || p.r.c.programaCorto.localeCompare(q.r.c.programaCorto) || p.n - q.n);
+}
+
+/** Texto listo para pegar. No lleva nombre: quien lo envía lo escribe donde dice [nombre]. */
+export function mensajeSeguimiento(x) {
+  const q = Math.max(x.quedan, 0);
+  const cierre = x.estado === 'Perdió el mínimo'
+    ? 'Con las clases que llevamos ya no se alcanza el mínimo de asistencia para certificar, y quisiera que hablemos de cómo seguir.'
+    : `Te ${q === 1 ? 'queda 1 falta' : `quedan ${q} faltas`} antes de no alcanzar el mínimo de asistencia para certificar.`;
+  return `Hola [nombre], te escribo del ${x.r.c.programaCorto}. Llevas ${x.faltas} ${x.faltas === 1 ? 'falta' : 'faltas'} en las clases. ${cierre} ¿Todo bien? Cuéntame si pasó algo y miramos cómo te podemos apoyar.`;
+}
+
+export function htmlBandeja(lista, hechos = new Set()) {
+  if (!lista.length) return `<p class="ok-nota asis-ok">${ic('check')}<span>Nadie está cerca de perder el mínimo de asistencia por ahora.</span></p>`;
+  const pendientes = lista.filter((x) => !hechos.has(x.id)).length;
+  return `<div class="tabla-envoltura"><table class="tabla-pend tabla-asis"><caption>${pendientes} por contactar${lista.length > pendientes ? `, ${lista.length - pendientes} ya ${lista.length - pendientes === 1 ? 'contactado' : 'contactados'}` : ''}. De más a menos urgente.</caption>
+    <thead><tr><th scope="col">Estudiante</th><th scope="col">Curso</th><th scope="col">Faltas</th><th scope="col">Le quedan</th><th scope="col">Seguimiento</th></tr></thead>
+    <tbody>${lista.map((x) => `<tr${hechos.has(x.id) ? ' class="hecho"' : ''}><th scope="row"><span class="est-asis ${CLASE_ESTADO[x.estado]}">${esc(x.estado)}</span> N.º ${x.n}</th><td>${esc(x.r.c.programaCorto)}<small>${esc(etiquetaPeriodo(x.r.c))}</small></td><td>${x.faltas}</td><td>${Math.max(x.quedan, 0)}</td>
+      <td><div class="acciones-asis"><button class="btn" type="button" data-copiar="${esc(mensajeSeguimiento(x))}">${ic('link-simple')}<span>Copiar mensaje</span></button>
+      <label class="contactado"><input type="checkbox" data-contactado="${esc(x.id)}"${hechos.has(x.id) ? ' checked' : ''}> Contactado</label></div></td></tr>`).join('')}</tbody></table></div>
+    <p class="nota">El número es el de la lista en el Excel de asistencia, donde está el nombre. La marca Contactado se guarda en este navegador y se reinicia si el estudiante vuelve a faltar.</p>`;
+}
+
+function detalle(r, t) {
+  const a = r.asis;
   const minimo = a.programadas - a.permitidas;
-  const seguir = urgentesAsistencia(r);
   const pasadas = sinRegistrar(r, t);
   const fichas = ['Perdió el mínimo', 'En riesgo', 'Atención', 'Al día', 'Aprobó'].filter((e) => a.porEstado[e]).map((e) => `<li class="${CLASE_ESTADO[e]}"><strong>${a.porEstado[e]}</strong> ${esc(e.toLowerCase())}</li>`).join('');
   const avisos = [
     pasadas.length ? `${pasadas.length === 1 ? 'La clase' : 'Las clases'} ${pasadas.map((x) => `${x.id} (${fechaLarga(x.fecha)})`).join(', ')} ya ${pasadas.length === 1 ? 'pasó' : 'pasaron'} y no ${pasadas.length === 1 ? 'tiene' : 'tienen'} asistencia marcada. Si se reprogramó, cambia la fecha en el Excel del curso; si se dictó, marca la asistencia.` : '',
     a.sinMarcar ? `Hay ${a.sinMarcar} ${a.sinMarcar === 1 ? 'casilla sin marcar' : 'casillas sin marcar'} en clases ya dictadas. Las cuentas quedan incompletas hasta marcarlas con 1 o 0.` : '',
   ].filter(Boolean).map((x) => `<p class="alerta" role="alert">${ic('warning')}<span>${x}</span></p>`).join('');
-  const tabla = seguir.length
-    ? `<div class="tabla-envoltura"><table class="tabla-pend tabla-asis"><caption>A quién conviene escribirle, de más a menos urgente</caption>
-      <thead><tr><th scope="col">Estudiante</th><th scope="col">Estado</th><th scope="col">Faltas</th><th scope="col">Le quedan</th><th scope="col">Asistencia hasta hoy</th><th scope="col">Puede llegar hasta</th></tr></thead>
-      <tbody>${seguir.map((x) => `<tr><th scope="row">Estudiante ${x.n}</th><td><span class="est-asis ${CLASE_ESTADO[x.estado]}">${esc(x.estado)}</span></td><td>${x.faltas}</td><td>${x.quedan < 0 ? '0' : x.quedan}</td><td>${pct(x.porcentaje)}</td><td>${pct(x.puedeLlegar)}</td></tr>`).join('')}</tbody></table></div>
-      <p class="nota">El número es el de la lista en el Excel de asistencia, donde está el nombre.</p>`
-    : `<p class="ok-nota asis-ok">${ic('check')}<span>${a.dictadas ? 'Nadie está cerca de perder por ahora.' : 'Aún no se ha dictado ninguna clase.'}</span></p>`;
-  return `<article class="asis papel" data-curso="${esc(c.id)}">${titulo}
-    <p class="asis-linea">Van <strong>${a.dictadas} de ${a.programadas}</strong> clases dictadas. Asistencia promedio: <strong>${pct(a.promedio)}</strong>. Para certificar hay que asistir al menos a ${minimo} clases: se puede faltar hasta ${a.permitidas} ${a.permitidas === 1 ? 'vez' : 'veces'}.</p>
-    <ul class="asis-fichas">${fichas}</ul>${avisos}${tabla}${barras(a)}</article>`;
+  return `<p class="asis-linea">Para certificar hay que asistir al menos a <strong>${minimo}</strong> de ${a.programadas} clases: se puede faltar hasta <strong>${a.permitidas}</strong> ${a.permitidas === 1 ? 'vez' : 'veces'}. Van ${a.dictadas} clases dictadas, con ${a.estudiantes} estudiantes.</p>
+    <ul class="asis-fichas">${fichas}</ul>${avisos}${barras(a)}`;
+}
+
+/** Una fila por curso, de más a menos urgente. Al abrirla se despliega el detalle. */
+export function htmlTablero(rs, t = ahora()) {
+  const filas = rs.map((r) => ({ r, nivel: nivelAsistencia(r, t) })).sort((p, q) => ORDEN_NIVEL[p.nivel] - ORDEN_NIVEL[q.nivel] || p.r.c.programaCorto.localeCompare(q.r.c.programaCorto));
+  return `<div class="asis-tablero">${filas.map(({ r, nivel }) => {
+    const { c, asis: a } = r;
+    if (!a) return `<div class="asis-fila gris"><div class="asis-resumen-fila"><span class="asis-punto"></span><span class="asis-curso"><strong>${esc(c.programaCorto)}</strong><small>${esc(etiquetaPeriodo(c))}</small></span><span class="asis-nota-fila">Sin asistencia publicada. Aparece al guardar el Excel de asistencia en su carpeta.</span></div></div>`;
+    const alerta = (a.porEstado['Perdió el mínimo'] || 0) + (a.porEstado['En riesgo'] || 0);
+    const atencion = a.porEstado.Atención || 0;
+    return `<details class="asis-fila ${nivel}" data-curso="${esc(c.id)}"><summary class="asis-resumen-fila"><span class="asis-punto" title="${NIVEL_TXT[nivel]}"></span>
+      <span class="asis-curso"><strong>${esc(c.programaCorto)}</strong><small>${esc(etiquetaPeriodo(c))}</small></span>
+      <span class="asis-avance">${a.dictadas} de ${a.programadas}<small>clases</small></span>
+      <span class="asis-prom"><span class="barra" role="img" aria-label="Asistencia promedio ${pct(a.promedio)}"><i style="width:${Math.round((a.promedio || 0) * 100)}%"></i></span>${pct(a.promedio)}</span>
+      <span class="asis-pills">${alerta ? `<span class="est-asis riesgo" title="En riesgo o perdieron el mínimo">${alerta}</span>` : ''}${atencion ? `<span class="est-asis atencion" title="En atención">${atencion}</span>` : ''}${!alerta && !atencion ? '<span class="asis-ok-mini">Al día</span>' : ''}</span>
+      <span class="asis-abrir" aria-hidden="true"></span></summary>
+      <div class="asis-detalle">${detalle(r, t)}</div></details>`;
+  }).join('')}</div>`;
 }
 
 /** Resumen de una línea para la portada de la sección. */

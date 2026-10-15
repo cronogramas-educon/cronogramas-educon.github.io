@@ -387,3 +387,20 @@ def test_analisis_detecta_choques_y_horas(pagina, servidor, sitio):
     assert r["ch"] == [["Docente", "A", "B"], ["Asistente PAT", "A", "B"]]  # el docente institucional SABANA no choca consigo mismo
     assert r["h"] == {"h": 2, "estimada": True} and r["hx"] == {"h": 3, "estimada": False}
     assert r["csv"] == '﻿a;b\r\n"x;y";"z""w"'
+
+
+def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    pagina.wait_for_selector("#asis-bandeja tbody tr")
+    assert not pagina.locator("#asistencia").get_attribute("hidden")
+    filas = pagina.locator("#asis-bandeja tbody tr")
+    assert filas.count() == 2 and "En riesgo" in filas.nth(0).inner_text() and "N.º 3" in filas.nth(0).inner_text() and "Atención" in filas.nth(1).inner_text()
+    assert "Estudiante de prueba" not in pagina.inner_text("#asistencia")
+    assert pagina.locator("#asis-lista .asis-fila.rojo").count() == 1
+    pagina.locator("#asis-lista summary").first.click()
+    assert "28 de 35" in pagina.inner_text("#asis-lista") and pagina.locator(".asis-barras li").count() == 35
+    pagina.locator("[data-contactado]").first.check()
+    assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#asis-lista details[open]").count() == 1
+    pagina.reload()
+    pagina.wait_for_selector("#asis-bandeja tbody tr")
+    assert pagina.locator("[data-contactado]").first.is_checked() and pagina.errores == []
