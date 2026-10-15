@@ -32,7 +32,8 @@
     "zona": "America/Bogota",
     "desfase": "-05:00",
     "registroRuta": "EDU CONTINUA 2026/Registro de cursos.xlsx",
-    "urlSitio": "https://cronogramas-educon.github.io"
+    "urlSitio": "https://cronogramas-educon.github.io",
+    "formularioRegistro": "https://forms.office.com/Pages/ResponsePage.aspx?id=MRalrP4ADUmRqxY--HJg7gmrWKJ7rXJGl5aIelqZJvlUN1g5UEhNSVZVMlE2VUZaSlJTSlBWNE5GWC4u"
   },
   "cursos": [
     {
@@ -170,38 +171,6 @@
         "fin": "20:00"
       },
       "periodo": "2026-2"
-    },
-    {
-      "id": "prueba-3-2026-2-cohorte-1-primera-vez-en-el-semestre",
-      "codigo": "inqba8kr",
-      "carpeta": "EDU CONTINUA 2026/2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Prueba 3",
-      "tipo": "Diplomado",
-      "programa": "Prueba 3",
-      "programaCorto": "Prueba 3",
-      "modalidad": "Remota (Microsoft Teams)",
-      "urlPaginaOficial": "",
-      "periodo": "2026-2",
-      "horario": {
-        "inicio": "18:00",
-        "fin": "22:00"
-      },
-      "cohorte": "Cohorte 1 (primera vez en el semestre)"
-    },
-    {
-      "id": "prueba-4-2026-2-cohorte-1-primera-vez-en-el-semestre",
-      "codigo": "hbyyds0f",
-      "carpeta": "EDU CONTINUA 2026/2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Prueba 4",
-      "tipo": "Diplomado",
-      "programa": "Prueba 4",
-      "programaCorto": "Prueba 4",
-      "modalidad": "Remota (Microsoft Teams)",
-      "urlPaginaOficial": "",
-      "periodo": "2026-2",
-      "horario": {
-        "inicio": "07:00",
-        "fin": "20:30"
-      },
-      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     }
   ]
 }
