@@ -51,6 +51,9 @@ def resumir(filas, ahora=None):
     if falta:
         raise ValueError("Al Excel de asistencia le faltan columnas: " + ", ".join(falta) + ". No cambies los encabezados de las columnas grises.")
     claves = sorted((k for k in est[0] if re.fullmatch(r"Clase \d+", str(k))), key=lambda k: int(k.split()[1]))
+    ncl = _ent(est[0].get("Clases del curso"))  # el archivo trae 40 columnas de clases: solo cuentan las del curso
+    if ncl:
+        claves = claves[:ncl]
     primero = est[0]
     permitidas = _ent(primero["Faltas que le quedan"]) + _ent(primero["Faltas"])
     programadas = _ent(primero.get("Clases programadas")) or len(claves)
@@ -62,7 +65,8 @@ def resumir(filas, ahora=None):
         asistio_t, faltas_t = asistio_t + a, faltas_t + fa
         por_estado[e] = por_estado.get(e, 0) + 1
         lista.append({"n": _ent(f.get("N°")) or i, "estado": e, "asistio": a, "faltas": fa, "quedan": _ent(f["Faltas que le quedan"]),
-                      "porcentaje": _num(f.get("% hasta hoy")), "puedeLlegar": _num(f.get("Puede llegar hasta"))})
+                      "porcentaje": _num(f.get("% hasta hoy")), "puedeLlegar": _num(f.get("Puede llegar hasta")),
+                      "seguimiento": str(f.get("Seguimiento") or "").strip()})
     lista.sort(key=lambda x: (ESTADOS.index(x["estado"]) if x["estado"] in ESTADOS else len(ESTADOS), x["quedan"] if x["quedan"] is not None else 99, x["n"]))
     por_clase = []
     for k in claves:

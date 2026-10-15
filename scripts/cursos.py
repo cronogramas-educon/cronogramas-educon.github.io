@@ -176,6 +176,10 @@ def fusionar(reg, filas):
         # un periodo puede abrir los mismos cursos varias veces: cada apertura es una cohorte, una carpeta dentro del periodo
         carpeta = "/".join(x.strip("/") for x in (d["carpetaPeriodo"], d.get("cohorte", ""), d["carpetaCurso"]) if x)
         llave = _norm(carpeta)
+        if not d.get("cohorte"):  # sin la columna Cohorte, la cohorte se toma de la ruta (por ejemplo 2026-2/Cohorte 1/Diplomado X)
+            m = re.search(r"(?:^|/)(cohorte[^/]*)(?:/|$)", d["carpetaCurso"], re.I)
+            if m:
+                d["cohorteRuta"] = m.group(1).strip()
         if llave in vistas:
             avisos.append(f"Fila {n}: la carpeta {carpeta} está repetida. Se usó solo la primera.")
             continue
@@ -199,7 +203,7 @@ def fusionar(reg, filas):
             if falta:
                 avisos.append(f"Fila {n}: falta {', '.join(falta)}. El curso nuevo no se creó.")
                 continue
-            base = "-".join(x for x in (_slug(d["programaCorto"]), _slug(d["periodo"]), _slug(d.get("cohorte", ""))) if x)
+            base = "-".join(x for x in (_slug(d["programaCorto"]), _slug(d["periodo"]), _slug(d.get("cohorte") or d.get("cohorteRuta", ""))) if x)
             i, k = base, 2
             while i in ids:
                 i, k = f"{base}-{k}", k + 1
@@ -209,8 +213,8 @@ def fusionar(reg, filas):
             c = {"id": i, "codigo": cod, "carpeta": carpeta, "tipo": d.get("tipo", "Curso"), "programa": d.get("programa", d["programaCorto"]),
                  "programaCorto": d["programaCorto"], "modalidad": d.get("modalidad", "Por confirmar"),
                  "urlPaginaOficial": d.get("urlPaginaOficial", ""), "periodo": d["periodo"], "horario": h}
-            if d.get("cohorte"):
-                c["cohorte"] = d["cohorte"]
+            if d.get("cohorte") or d.get("cohorteRuta"):
+                c["cohorte"] = d.get("cohorte") or d["cohorteRuta"]
             if equipo:
                 c["teams"] = equipo
             cursos.append(c)
