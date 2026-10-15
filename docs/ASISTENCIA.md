@@ -14,7 +14,8 @@ Hojas: **Instrucciones**, **Asistencia** (tabla `Table1`, una columna por clase)
 
 - Se marca 1 (asistió) o 0 (faltó). Una clase con alguna marca pasa sola a Dictada. Una clase sin marcas no se ha dictado.
 - Una clase reprogramada o cancelada se indica en la hoja Cronograma. Las canceladas dejan de contar en el total.
-- Las columnas grises se calculan solas: Asistió, Faltas, Sin marcar, Faltas que le quedan, % hasta hoy, Puede llegar hasta, Estado y Clases programadas. El sitio lee esas columnas: el Excel manda.
+- **El Cuadro de horas manda.** El número de clases sale del Cuadro: si se agrega, quita o reprograma una clase allí, el sitio recalcula las faltas permitidas y el estado de cada estudiante sin tocar este Excel. Del Excel de asistencia el sitio solo toma las marcas 1 o 0 de las columnas Clase 1, Clase 2, etc. (la clase N del Cuadro es la columna Clase N).
+- Las columnas grises del Excel (Asistió, Faltas, Estado, "Clases del curso"...) son una ayuda para quien lo llena. El sitio no las lee y las recalcula con las mismas reglas; si alguna vez difieren, vale el sitio. No hace falta escribir "Clases del curso".
 
 ## Cuándo se avisa
 
@@ -27,7 +28,7 @@ Las reglas se calculan sobre las **faltas permitidas** del curso, no sobre un n�
 - **Perdió el mínimo**: ya superó las faltas permitidas.
 - **Aprobó**: terminaron todas las clases y cumplió el mínimo.
 
-Los umbrales de Atención y En riesgo (50 % y 80 %) se cambian en la hoja Resumen.
+Los umbrales (80 % para certificar, 50 % para Atención y 80 % para En riesgo) están en `scripts/asistencia.py` (`MINIMO`, `ATENCION`, `RIESGO`).
 
 ## Qué se publica y qué no
 

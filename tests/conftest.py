@@ -44,13 +44,13 @@ def _filas_asistencia():
 
 
 def _filas_cierre():
-    """Curso B terminado de dictar (3 clases, 1 falta permitida): un estudiante aprueba y otro no."""
+    """Curso B terminado de dictar (5 clases, 1 falta permitida): un estudiante aprueba y otro no."""
     def fila(n, marcas, estado):
         f = {"N°": n, "Nombre del estudiante": f"Estudiante de prueba {n}", "Asistió": marcas.count(1), "Faltas": marcas.count(0), "Sin marcar": 0,
-             "Faltas que le quedan": 1 - marcas.count(0), "% hasta hoy": marcas.count(1) / 3, "Puede llegar hasta": marcas.count(1) / 3, "Estado": estado, "Clases programadas": 3}
-        f.update({f"Clase {i + 1}": marcas[i] for i in range(3)})
+             "Faltas que le quedan": 1 - marcas.count(0), "% hasta hoy": marcas.count(1) / 5, "Puede llegar hasta": marcas.count(1) / 5, "Estado": estado, "Clases programadas": 5}
+        f.update({f"Clase {i + 1}": marcas[i] for i in range(5)})
         return f
-    return [fila(1, [1, 1, 1], "Aprobó"), fila(2, [1, 0, 1], "Aprobó"), fila(3, [0, 0, 1], "Perdió el mínimo")]
+    return [fila(1, [1] * 5, "Aprobó"), fila(2, [1, 0, 1, 1, 1], "Aprobó"), fila(3, [0, 0, 1, 1, 1], "Perdió el mínimo")]
 
 
 @pytest.fixture(scope="session")
@@ -68,7 +68,14 @@ def sitio(tmp_path_factory):
     cd.construir(t / "incompleto.xlsx", t / "cursos" / B, ahora=T0)
     (t / "cursos" / B / "estado/error.json").write_text(json.dumps({"mensaje": "Falta la columna Profesor", "en": "2026-10-01T12:00:00Z"}), encoding="utf-8")
     asistencia.aplicar(_filas_asistencia(), t / "cursos" / A)
+    # el Cuadro manda el número de clases: el curso B de la prueba se calcula como de 5 clases y luego recupera su Cuadro completo
+    datos_b = t / "cursos" / B / "data/data.json"
+    completo = datos_b.read_text(encoding="utf-8")
+    d3 = json.loads(completo)
+    d3["clases"] = d3["clases"][:5]
+    datos_b.write_text(json.dumps(d3), encoding="utf-8")
     asistencia.aplicar(_filas_cierre(), t / "cursos" / B)
+    datos_b.write_text(completo, encoding="utf-8")
     out = cu.armar_sitio(t / "_sitio", "test", raiz=t)
     por = {c["id"]: c for c in reg["cursos"]}
     return {"dir": out, "a": cu.sitio_ruta(por[A]), "b": cu.sitio_ruta(por[B]), "hub": f"g/{reg['global']['adminCodigo']}",

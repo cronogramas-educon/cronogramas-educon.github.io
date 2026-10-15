@@ -316,6 +316,10 @@ def main():
             print(f"CAMBIO: {x['clase']} pasó de {x['fechaAnterior']} a {x['fechaNueva']} (original {x['fechaOriginal']})")
         print(f"OK: {m['totalClases']} clases, {m['horasTotales']} horas{'' if m['horasCompletas'] else ' (incompletas)'}, {len(datos['unidades'])} unidades, "
               f"{m['inicio']} a {m['fin']}, {len(datos['cambios'])} cambios activos")
+        from asistencia import recalcular  # el Cuadro manda: la asistencia se vuelve a calcular con sus clases
+        r, cambio = recalcular(a.raiz)
+        if cambio:
+            print(f"ASISTENCIA: recalculada con las {r['programadas']} clases del Cuadro de horas")
 
 
 if __name__ == "__main__":

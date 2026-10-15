@@ -75,3 +75,24 @@ def test_encabezados_codificados_por_excel_online():
     assert asi.es_asistencia(codif)
     r = asi.resumir(codif)
     assert [x["n"] for x in r["lista"]] == [3, 2, 4, 1] and r["lista"][0]["porcentaje"] == 0.25
+
+
+def test_el_cuadro_de_horas_manda_el_numero_de_clases(tmp_path):
+    """Agregar una clase al Cuadro cambia faltas permitidas y estados sin tocar el Excel de asistencia."""
+    cur = tmp_path / "c"
+    (cur / "data").mkdir(parents=True)
+    filas = [fila(1, "Ana", [1, 1, 1, 1], "x", 0, 0), fila(2, "Beto", [1, 0, 0, 1], "x", 2, 0)]
+    for f in filas:
+        f["Clases del curso"] = 3  # dato viejo del Excel: se ignora
+    def cuadro(n):
+        (cur / "data/data.json").write_text(json.dumps({"clases": [{"id": i} for i in range(1, n + 1)]}))
+    cuadro(10)
+    r, _ = asi.aplicar(filas, cur)
+    assert (r["programadas"], r["permitidas"]) == (10, 2)
+    assert {x["n"]: x["estado"] for x in r["lista"]} == {1: "Al día", 2: "En riesgo"}
+    assert "Ana" not in json.dumps(r)
+    cuadro(20)  # el Cuadro crece a 20 clases: permitidas 4, Beto pasa a Atención
+    r, cambio = asi.recalcular(cur)
+    assert cambio and (r["programadas"], r["permitidas"]) == (20, 4)
+    assert {x["n"]: x["estado"] for x in r["lista"]}[2] == "Atención"
+    assert len(r["porClase"]) == 20

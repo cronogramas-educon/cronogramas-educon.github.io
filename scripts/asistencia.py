@@ -4,12 +4,13 @@
 El Excel manda: las cuentas y el estado de cada estudiante salen de sus columnas calculadas (Faltas, Faltas que le quedan, Estado...).
 Aquí solo se resumen y se les quita el nombre y el documento: en el sitio el estudiante es "Estudiante N", con N su número de lista.
 """
-import json, re
+import json, math, re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ESTADOS = ["Perdió el mínimo", "En riesgo", "Atención", "Al día", "Aprobó"]  # de más a menos urgente
 BOGOTA = timezone(timedelta(hours=-5))
+MINIMO, ATENCION, RIESGO = 0.8, 0.5, 0.8  # reglas de certificación y de aviso (ver docs/ASISTENCIA.md)
 NOMBRE, REQUERIDAS = "Nombre del estudiante", ("Asistió", "Faltas", "Faltas que le quedan", "Estado")
 
 
@@ -42,11 +43,49 @@ def _ent(v):
     return None if n is None else int(round(n))
 
 
-def resumir(filas, ahora=None):
+def _estado(faltas, permitidas, termino):
+    if faltas > permitidas:
+        return "Perdió el mínimo"
+    if termino:
+        return "Aprobó"
+    usado = faltas / permitidas if permitidas else 0
+    return "En riesgo" if usado >= RIESGO and faltas else "Atención" if usado >= ATENCION and faltas else "Al día"
+
+
+def desde_cuadro(est, clases, ahora):
+    """El Cuadro de horas manda: las clases (cuántas son, su número) salen de él; del Excel de asistencia solo se toman las marcas 1 o 0.
+    Todo lo demás (faltas permitidas, estado, porcentajes) se calcula aquí, igual que lo hacía el Excel."""
+    ids = [c["id"] for c in clases]
+    programadas = len(ids)
+    permitidas = programadas - math.ceil(MINIMO * programadas - 1e-9)
+    marcas = [{i: _ent(f.get(f"Clase {i}")) for i in ids if _ent(f.get(f"Clase {i}")) in (0, 1)} for f in est]
+    dictadas_ids = {i for m in marcas for i in m}
+    termino = programadas > 0 and len(dictadas_ids) >= programadas
+    lista, por_estado, asistio_t, faltas_t, sin_t = [], {e: 0 for e in ESTADOS}, 0, 0, 0
+    for n, (f, m) in enumerate(zip(est, marcas), 1):
+        a, fa = sum(v == 1 for v in m.values()), sum(v == 0 for v in m.values())
+        sin = len(dictadas_ids - set(m))
+        e = _estado(fa, permitidas, termino and not sin)
+        asistio_t, faltas_t, sin_t = asistio_t + a, faltas_t + fa, sin_t + sin
+        por_estado[e] += 1
+        lista.append({"n": _ent(f.get("N°")) or n, "estado": e, "asistio": a, "faltas": fa, "quedan": permitidas - fa,
+                      "porcentaje": a / (a + fa) if a + fa else None, "puedeLlegar": (programadas - fa) / programadas if programadas else None,
+                      "seguimiento": str(f.get("Seguimiento") or "").strip(), "marcas": {str(i): v for i, v in m.items()}})
+    lista.sort(key=lambda x: (ESTADOS.index(x["estado"]), x["quedan"], x["n"]))
+    por_clase = [{"clase": i, "estado": "Dictada" if i in dictadas_ids else "Sin dictar", "asistieron": sum(m.get(i) == 1 for m in marcas),
+                  "marcadas": sum(i in m for m in marcas), "de": len(est)} for i in ids]
+    return {"actualizado": ahora.isoformat(timespec="seconds"), "programadas": programadas, "dictadas": len(dictadas_ids), "permitidas": permitidas,
+            "estudiantes": len(est), "promedio": round(asistio_t / (asistio_t + faltas_t), 4) if asistio_t + faltas_t else None,
+            "porEstado": por_estado, "sinMarcar": sin_t, "porClase": por_clase, "lista": lista}
+
+
+def resumir(filas, ahora=None, clases=None):
     """Resumen sin nombres. Lanza ValueError con un mensaje claro si el Excel no trae las columnas calculadas."""
     est = [f for f in normalizar(filas) if isinstance(f, dict) and str(f.get(NOMBRE) or "").strip()]
     if not est:
         raise ValueError("El Excel de asistencia no tiene estudiantes: escribe sus nombres en la hoja Asistencia.")
+    if clases:
+        return desde_cuadro(est, clases, ahora or datetime.now(BOGOTA))
     falta = [c for c in REQUERIDAS if c not in est[0]]
     if falta:
         raise ValueError("Al Excel de asistencia le faltan columnas: " + ", ".join(falta) + ". No cambies los encabezados de las columnas grises.")
@@ -79,10 +118,32 @@ def resumir(filas, ahora=None):
             "porEstado": por_estado, "sinMarcar": sum(_ent(f.get("Sin marcar")) or 0 for f in est), "porClase": por_clase, "lista": lista}
 
 
+def _clases(carpeta_curso):
+    d = Path(carpeta_curso) / "data/data.json"
+    return json.loads(d.read_text(encoding="utf-8")).get("clases") if d.exists() else None
+
+
+def recalcular(carpeta_curso, ahora=None):
+    """Vuelve a calcular la asistencia con las clases actuales del Cuadro de horas, a partir de las marcas ya guardadas (sin nombres).
+    Se llama cuando cambia el Cuadro: agregar o quitar una clase se refleja sin tocar el Excel de asistencia."""
+    arch = Path(carpeta_curso) / "estado/asistencia.json"
+    clases = _clases(carpeta_curso)
+    if not arch.exists() or not clases:
+        return None, False
+    previo = json.loads(arch.read_text(encoding="utf-8"))
+    if not all("marcas" in x for x in previo.get("lista", [])) or not previo.get("lista"):
+        return None, False
+    filas = [{"N°": x["n"], NOMBRE: "x", "Seguimiento": x.get("seguimiento", ""), **{f"Clase {i}": v for i, v in x["marcas"].items()}} for x in previo["lista"]]
+    return _escribir(resumir(filas, ahora, clases), arch)
+
+
 def aplicar(filas, carpeta_curso, ahora=None):
     """Escribe estado/asistencia.json del curso. Si el Excel no sirve, conserva el anterior y lanza ValueError."""
-    r = resumir(filas, ahora)
-    arch = Path(carpeta_curso) / "estado/asistencia.json"
+    r = resumir(filas, ahora, _clases(carpeta_curso))
+    return _escribir(r, Path(carpeta_curso) / "estado/asistencia.json")
+
+
+def _escribir(r, arch):
     arch.parent.mkdir(parents=True, exist_ok=True)
     if arch.exists():  # sin cambios no se reescribe (la hora de actualización no cuenta)
         previo = json.loads(arch.read_text(encoding="utf-8"))
