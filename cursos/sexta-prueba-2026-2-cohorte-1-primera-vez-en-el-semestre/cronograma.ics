@@ -17,7 +17,7 @@ END:VTIMEZONE
 BEGIN:VEVENT
 UID:clase-01@cronograma-sexta-prueba-2026-2-cohorte-1-primera-vez-en-el-sem
  estre
-DTSTAMP:20261016T135226Z
+DTSTAMP:20261016T140003Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261020T070000
 DTEND;TZID=America/Bogota:20261020T203000
@@ -36,7 +36,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:clase-02@cronograma-sexta-prueba-2026-2-cohorte-1-primera-vez-en-el-sem
  estre
-DTSTAMP:20261016T135226Z
+DTSTAMP:20261016T140003Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261022T070000
 DTEND;TZID=America/Bogota:20261022T203000
@@ -53,28 +53,9 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:clase-03@cronograma-sexta-prueba-2026-2-cohorte-1-primera-vez-en-el-sem
- estre
-DTSTAMP:20261016T135226Z
-SEQUENCE:0
-DTSTART;TZID=America/Bogota:20261027T070000
-DTEND;TZID=America/Bogota:20261027T203000
-SUMMARY:Clase 3: Diplomado Sexta prueba
-DESCRIPTION:Módulo de prueba\n\nTema:\n- Tema de prueba 3\n\nDocente: Prof
- esor de prueba\nAsistente PAT: Asistente de prueba\n\nUnirme en Teams: htt
- ps://teams.microsoft.com/l/meetup-join/prueba
-LOCATION:Microsoft Teams
-URL:https://teams.microsoft.com/l/meetup-join/prueba
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Clase 3 comienza en 30 minutos
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:clase-04@cronograma-sexta-prueba-2026-2-cohorte-1-primera-vez-en-el-sem
  estre
-DTSTAMP:20261016T135226Z
+DTSTAMP:20261016T140003Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261029T070000
 DTEND;TZID=America/Bogota:20261029T203000
@@ -93,7 +74,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:clase-05@cronograma-sexta-prueba-2026-2-cohorte-1-primera-vez-en-el-sem
  estre
-DTSTAMP:20261016T135226Z
+DTSTAMP:20261016T140003Z
 SEQUENCE:0
 DTSTART;TZID=America/Bogota:20261103T070000
 DTEND;TZID=America/Bogota:20261103T203000
