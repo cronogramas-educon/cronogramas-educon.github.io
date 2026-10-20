@@ -212,6 +212,26 @@
         "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 2- Valentina",
         "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Curso IA en el Sector Legal, Grupo 2"
       ]
+    },
+    {
+      "id": "prueba-migracion-educo-2026-2-cohorte-1-primera-vez-en-el-semestre",
+      "codigo": "c5acxi5o",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Prueba Migración Educo",
+      "tipo": "Diplomado",
+      "programa": "Diplomado de Prueba de Migración Educo",
+      "programaCorto": "Prueba Migración Educo",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "",
+      "periodo": "2026-2",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "21:00"
+      },
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "teams": {
+        "equipo": "bc3161d2-8a87-442c-9edb-943227f4255d",
+        "canal": "19:0BzBdFnJpqIGTxzlc_OEQ1hA2AqRhxkfrJNWTQ_yW-Q1@thread.tacv2"
+      }
     }
   ]
 }
