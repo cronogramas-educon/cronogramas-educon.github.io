@@ -31,7 +31,7 @@
     ],
     "zona": "America/Bogota",
     "desfase": "-05:00",
-    "registroRuta": "EDU CONTINUA 2026/Registro de cursos.xlsx",
+    "registroRuta": "Registro de cursos.xlsx",
     "urlSitio": "https://cronogramas-educon.github.io",
     "formularioRegistro": "https://forms.office.com/Pages/ResponsePage.aspx?id=MRalrP4ADUmRqxY--HJg7gmrWKJ7rXJGl5aIelqZJvlUN1g5UEhNSVZVMlE2VUZaSlJTSlBWNE5GWC4u"
   },
@@ -39,7 +39,7 @@
     {
       "id": "compliance-anticorrupcion",
       "codigo": "s9hv2xzn",
-      "carpeta": "EDU CONTINUA 2026/Dip Compliance Anti- Corrupción",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance Anti-corrupción y Anti-lavado",
       "tipo": "Diplomado",
       "marca": "Diplomado Compliance",
       "programa": "Diplomado Compliance Anti-corrupción y Anti-lavado, más allá de las Normas y la Teoría",
@@ -54,12 +54,16 @@
       "teams": {
         "equipo": "d675843f-951b-4337-8de5-1d25e510b144",
         "canal": "19:oE9nYUX5BgFCdcDqvAcLqtcgyqA5D1DPwl66NyZaTdU1@thread.tacv2"
-      }
+      },
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "carpetasAnteriores": [
+        "EDU CONTINUA 2026/Dip Compliance Anti- Corrupción"
+      ]
     },
     {
       "id": "compliance-gobierno-corporativo",
       "codigo": "2oz2s1tr",
-      "carpeta": "EDU CONTINUA 2026/Dip Compliance y Gobierno Corp",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance y Gobierno Corporativo en la práctica",
       "tipo": "Diplomado",
       "marca": "Diplomado Gobierno Corporativo",
       "programa": "Diplomado en Compliance y Gobierno Corporativo en la práctica: poder y riesgo",
@@ -70,12 +74,16 @@
         "inicio": "18:00",
         "fin": "21:00"
       },
-      "periodo": "2026-2"
+      "periodo": "2026-2",
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "carpetasAnteriores": [
+        "EDU CONTINUA 2026/Dip Compliance y Gobierno Corp"
+      ]
     },
     {
       "id": "conflictos-societarios",
       "codigo": "4r8orv53",
-      "carpeta": "EDU CONTINUA 2026/Curs Gest de Conflictos Societarios",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Curso Gestión de Conflictos Societarios",
       "tipo": "Curso",
       "marca": "Curso Conflictos Societarios",
       "programa": "Curso de gestión de conflictos societarios",
@@ -86,12 +94,16 @@
         "inicio": "18:00",
         "fin": "20:00"
       },
-      "periodo": "2026-2"
+      "periodo": "2026-2",
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "carpetasAnteriores": [
+        "EDU CONTINUA 2026/Curs Gest de Conflictos Societarios"
+      ]
     },
     {
       "id": "contratacion-estatal",
       "codigo": "0j7kfcl9",
-      "carpeta": "EDU CONTINUA 2026/Dip en Contratación Estatal",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Contratación Estatal",
       "tipo": "Diplomado",
       "marca": "Diplomado Contratación Estatal",
       "programa": "Diplomado Contratación Estatal",
@@ -102,12 +114,16 @@
         "inicio": "18:00",
         "fin": "21:00"
       },
-      "periodo": "2026-2"
+      "periodo": "2026-2",
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "carpetasAnteriores": [
+        "EDU CONTINUA 2026/Dip en Contratación Estatal"
+      ]
     },
     {
       "id": "derecho-laboral",
       "codigo": "y7qoa6f2",
-      "carpeta": "EDU CONTINUA 2026/Dip en Derecho Laboral",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Derecho Laboral",
       "tipo": "Diplomado",
       "marca": "Diplomado Derecho Laboral",
       "programa": "Diplomado en Derecho Laboral",
@@ -122,12 +138,16 @@
         },
         "duracionPorDefecto": 1
       },
-      "periodo": "2026-2"
+      "periodo": "2026-2",
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "carpetasAnteriores": [
+        "EDU CONTINUA 2026/Dip en Derecho Laboral"
+      ]
     },
     {
       "id": "derecho-minero",
       "codigo": "ojw5wrjr",
-      "carpeta": "EDU CONTINUA 2026/Curso en Derecho Minero",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Curso Derecho Minero Ambiental",
       "tipo": "Curso",
       "marca": "Curso Derecho Minero",
       "programa": "Curso de Actualización en Derecho Minero Ambiental",
@@ -138,12 +158,16 @@
         "inicio": "18:00",
         "fin": "21:00"
       },
-      "periodo": "2026-2"
+      "periodo": "2026-2",
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "carpetasAnteriores": [
+        "EDU CONTINUA 2026/Curso en Derecho Minero"
+      ]
     },
     {
       "id": "ia-sector-legal-grupo-1",
       "codigo": "6te3wc5r",
-      "carpeta": "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 1- Laura",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Curso IA en el Sector Legal, Grupo 1",
       "tipo": "Curso",
       "marca": "Curso IA Sector Legal",
       "programa": "Curso en IA en el Sector Legal, Grupo 1",
@@ -154,12 +178,16 @@
         "inicio": "18:00",
         "fin": "20:00"
       },
-      "periodo": "2026-2"
+      "periodo": "2026-2",
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "carpetasAnteriores": [
+        "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 1- Laura"
+      ]
     },
     {
       "id": "ia-sector-legal-grupo-2",
       "codigo": "ey0cmnrj",
-      "carpeta": "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 2- Valentina",
+      "carpeta": "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Curso IA en el Sector Legal, Grupo 2",
       "tipo": "Curso",
       "marca": "Curso IA Sector Legal",
       "programa": "Curso en IA en el Sector Legal, Grupo 2",
@@ -170,7 +198,11 @@
         "inicio": "18:00",
         "fin": "20:00"
       },
-      "periodo": "2026-2"
+      "periodo": "2026-2",
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "carpetasAnteriores": [
+        "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 2- Valentina"
+      ]
     }
   ]
 }

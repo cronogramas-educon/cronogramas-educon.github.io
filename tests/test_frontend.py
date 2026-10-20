@@ -259,7 +259,7 @@ def urlb(servidor, sitio):
 def test_curso_incompleto_muestra_por_confirmar(pagina, urlb):
     abrir(pagina, urlb, "ahora=2026-09-20T10:00:00-05:00&vista=lista")
     assert pagina.errores == []
-    assert "cohorte" not in pagina.inner_text("#lead").lower() and pagina.inner_text("#lead").startswith("Diplomado.")
+    assert pagina.inner_text("#lead").startswith("Diplomado.") and "Cohorte 1 (primera vez en el semestre)" in pagina.inner_text("#lead")
     assert pagina.locator("#temario").is_hidden() and pagina.locator("#nav [href='#temario']").is_hidden()
     assert pagina.locator("#f-unidad").is_hidden() is True or pagina.locator("#f-unidad").locator("xpath=..").is_hidden()
     assert pagina.locator(".fila").first.locator(".fila-prof").inner_text() == "Por confirmar"
@@ -355,7 +355,7 @@ def test_sitio_base_enlaza_el_registro_de_cursos(pagina, servidor, sitio):
     pagina.wait_for_selector(".curso")
     assert pagina.locator("#archivo").is_hidden()
     assert "sharepoint.com" in pagina.locator("#registro-abrir").get_attribute("href")
-    assert "EDU%20CONTINUA%202026" in pagina.locator("#pie-carpeta a").get_attribute("href")
+    assert "EduContinua%202026-2" in pagina.locator("#pie-carpeta a").get_attribute("href")
 
 
 # --- sitio base: urgentes, semáforo, agenda con choques y reportes
@@ -382,7 +382,7 @@ def test_hub_agenda_reportes_y_csv(pagina, servidor, sitio):
     with pagina.expect_download() as d:
         pagina.click("#rep-csv")
     txt = Path(d.value.path()).read_text(encoding="utf-8")
-    assert txt.startswith("﻿Tipo;Nombre;Periodo;Clases;Horas") and "\nDocente;" in txt and "\nCurso;Diplomado Derecho Laboral;2026-2;" in txt and "\nMes;2026-10;" in txt
+    assert txt.startswith("﻿Tipo;Nombre;Periodo;Clases;Horas") and "\nDocente;" in txt and "\nCurso;Diplomado Derecho Laboral" in txt and ";2026-2;" in txt and "\nMes;2026-10;" in txt
 
 
 def test_analisis_detecta_choques_y_horas(pagina, servidor, sitio):

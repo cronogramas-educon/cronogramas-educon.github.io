@@ -39,9 +39,11 @@ def resolver(ruta, reg=None):
     reg = reg or registro()
     ruta = "/" + _norm(ruta) + "/"
     mejor = None
+    largo = 0
     for c in reg["cursos"]:
-        if "/" + _norm(c["carpeta"]) + "/" in ruta and (mejor is None or len(c["carpeta"]) > len(mejor["carpeta"])):
-            mejor = c
+        for carpeta in [c["carpeta"], *c.get("carpetasAnteriores", [])]:  # las carpetas anteriores siguen valiendo mientras dura la migración
+            if "/" + _norm(carpeta) + "/" in ruta and len(carpeta) > largo:
+                mejor, largo = c, len(carpeta)
     return mejor["id"] if mejor else None
 
 
@@ -162,7 +164,7 @@ def _horario(d, previo):
 def fusionar(reg, filas):
     """Aplica las filas del Excel de registro sobre el registro. Nunca borra cursos ni cambia códigos. Devuelve (avisos, cambios)."""
     cursos = reg["cursos"]
-    por = {_norm(c["carpeta"]): c for c in cursos}
+    por = {_norm(k): c for c in cursos for k in [c["carpeta"], *c.get("carpetasAnteriores", [])]}
     codigos = {c["codigo"] for c in cursos} | {reg["global"]["adminCodigo"]}
     ids = {c["id"] for c in cursos}
     avisos, cambios, vistas = [], [], set()

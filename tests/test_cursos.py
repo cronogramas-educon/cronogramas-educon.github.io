@@ -34,6 +34,7 @@ def test_config_de_cada_curso_esta_sincronizada():
     ("edu continua 2026/ia en el seclegal iii cohorte/grupo 2- valentina/", "ia-sector-legal-grupo-2"),
     ("EDU CONTINUA 2026/Curso en Derecho Minero", "derecho-minero"),
     ("EDU CONTINUA 2026/IA en el seclegal III Cohorte", None),      # carpeta madre: sin grupo no se sabe de cuál es
+    ("EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Derecho Laboral/Material de clases/x.pdf", "derecho-laboral"),  # carpeta nueva
     ("EDU CONTINUA 2026/DIP COMPLIANCE 2026-1", None),              # cohorte anterior, no registrada
     ("EDU CONTINUA 2026/Dip en Derecho Laboral Viejo", None),       # el nombre debe coincidir como carpeta completa
 ])
@@ -74,7 +75,7 @@ def test_cursos_json_del_sitio_base(sitio):
     meta = json.loads((sitio / "g" / REG["global"]["adminCodigo"] / "cursos.json").read_text(encoding="utf-8"))
     assert len(meta["cursos"]) == len(REG["cursos"])
     laboral = next(c for c in meta["cursos"] if c["id"] == "derecho-laboral")
-    assert laboral["carpetaSharePoint"].endswith("/EDU%20CONTINUA%202026/Dip%20en%20Derecho%20Laboral")
+    assert laboral["carpetaSharePoint"].endswith("/EduContinua%202026-2/Cohorte%201%20%28primera%20vez%20en%20el%20semestre%29/Diplomado%20Derecho%20Laboral")
     assert laboral["ruta"].startswith("c/derecho-laboral-")
 
 
@@ -238,4 +239,4 @@ def test_la_cohorte_se_toma_de_la_ruta_si_el_registro_no_tiene_la_columna():
     assert [x["carpeta"] for x in nuevos] == ["EDU CONTINUA 2026/2026-2/Cohorte 1/Diplomado X", "EDU CONTINUA 2026/2026-2/Cohorte 2/Diplomado X"]
     assert len({x["id"] for x in nuevos}) == 2 and nuevos[0]["id"].endswith("cohorte-1")
     assert cu.resolver("/sites/Especializaciones/Documentos compartidos/ESPECIALIZACIONES 2014 - 2023/EDU CONTINUA 2026/2026-2/Cohorte 2/Diplomado X/a.xlsx", reg) == nuevos[1]["id"]
-    assert not any(x.get("cohorte") for x in reg["cursos"][:8])  # los 8 cursos de siempre no cambian
+    assert all(x["cohorte"].startswith("Cohorte 1") for x in reg["cursos"][:8])  # los 8 cursos de siempre tienen su cohorte y no cambian
