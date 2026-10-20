@@ -58,7 +58,8 @@
       "cohorte": "Cohorte 1 (primera vez en el semestre)",
       "carpetasAnteriores": [
         "EDU CONTINUA 2026/Dip Compliance Anti- Corrupción",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance Anti-corrupción y Anti-lavado"
+        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance Anti-corrupción y Anti-lavado",
+        "EDU CONTINUA 2025/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance Anti-corrupción y Anti-lavado"
       ]
     },
     {
@@ -211,22 +212,6 @@
         "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 2- Valentina",
         "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Curso IA en el Sector Legal, Grupo 2"
       ]
-    },
-    {
-      "id": "compliance-anti-corrupcion-y-anti-lavado-2026-2-cohorte-1-primera-vez-en-el-semestre",
-      "codigo": "9n0yiqjw",
-      "carpeta": "EDU CONTINUA 2025/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance Anti-corrupción y Anti-lavado",
-      "tipo": "Diplomado",
-      "programa": "Diplomado Compliance Anti-corrupción y Anti-lavado, más allá de las Normas y la Teoría",
-      "programaCorto": "Compliance Anti-corrupción y Anti-lavado",
-      "modalidad": "Remota (Microsoft Teams)",
-      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/diplomado/diplomado-compliance-anti-corrupcion-y-anti-lavado-mas-alla-de-las-normas-y-la-teoria",
-      "periodo": "2026-2",
-      "horario": {
-        "inicio": "17:00",
-        "fin": "20:00"
-      },
-      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     }
   ]
 }
