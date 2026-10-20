@@ -206,3 +206,8 @@
 .btn.btn-pendiente:active { transform: none; }
 .pendiente-nota { flex-basis: 100%; margin: 0; color: var(--felt-2); font-size: .95rem; }
 .apoyo { color: var(--felt); }
+
+.contactos-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 12px; }
+.contacto { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border: 1px solid var(--line, rgba(255,255,255,.18)); border-radius: 10px; }
+.contacto span { opacity: .8; font-size: .9rem; }
+.contacto a { overflow-wrap: anywhere; }

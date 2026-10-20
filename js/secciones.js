@@ -35,3 +35,9 @@ export function sobre(el, d, cfg) {
     ? `<a class="btn" href="${esc(cfg.urlPaginaOficial)}" target="_blank" rel="noopener noreferrer">Inscripción y valores${ic('arrow-up-right')}</a>` : '';
   el.innerHTML = `<p>La Universidad puede ajustar el cronograma. Esta página siempre muestra la versión vigente.</p>${link}`;
 }
+
+/** Personas de la Facultad a quienes escribir por temas logísticos o administrativos. Cada una: nombre, cargo y correo institucional. */
+export function contactos(el, lista) {
+  el.innerHTML = lista.map((p) => `<div class="contacto"><strong>${esc(p.nombre)}</strong><span>${esc(p.cargo)}</span>`
+    + `<a href="mailto:${esc(p.correo)}">${esc(p.correo)}</a></div>`).join('');
+}

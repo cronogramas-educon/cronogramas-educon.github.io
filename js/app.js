@@ -82,6 +82,10 @@ function estaticos() {
   sec.plan($('plan-lista'), datos, plan);
   sec.docentes($('docentes-lista'), datos);
   sec.apoyo($('apoyo'), datos);
+  const hayContactos = Array.isArray(cfg.contactos) && cfg.contactos.length > 0;
+  $('contacto').hidden = !hayContactos;
+  $('nav').querySelector('[href="#contacto"]').hidden = !hayContactos;
+  if (hayContactos) sec.contactos($('contactos-lista'), cfg.contactos);
   sec.sobre($('sobre-contenido'), datos, cfg);
   $('pie-nombre').textContent = [cfg.universidad, cfg.facultad].filter(Boolean).join(', ');
   const opt = (v, t, title) => `<option value="${esc(v)}"${title ? ` title="${esc(title)}"` : ''}>${esc(t)}</option>`;

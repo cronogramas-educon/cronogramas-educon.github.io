@@ -240,3 +240,14 @@ def test_la_cohorte_se_toma_de_la_ruta_si_el_registro_no_tiene_la_columna():
     assert len({x["id"] for x in nuevos}) == 2 and nuevos[0]["id"].endswith("cohorte-1")
     assert cu.resolver("/sites/Especializaciones/Documentos compartidos/ESPECIALIZACIONES 2014 - 2023/EDU CONTINUA 2026/2026-2/Cohorte 2/Diplomado X/a.xlsx", reg) == nuevos[1]["id"]
     assert all(x["cohorte"].startswith("Cohorte 1") for x in reg["cursos"][:8])  # los 8 cursos de siempre tienen su cohorte y no cambian
+
+
+def test_contactos_del_curso_mandan_sobre_los_generales():
+    g = {"zona": "z", "desfase": 0, "universidad": "U", "facultad": "F", "mostrarLinksTeams": True, "diasAvisoCambio": 14,
+         "profesoresInstitucionales": [], "siglas": []}
+    c = {"id": "x", "tipo": "Curso", "programa": "X", "programaCorto": "X", "horario": {"inicio": "18:00", "fin": "20:00"}}
+    gen = [{"nombre": "A", "cargo": "Gestora", "correo": "a@unisabana.edu.co"}]
+    propio = [{"nombre": "B", "cargo": "Jefa", "correo": "b@unisabana.edu.co"}]
+    assert "contactos" not in cu.config_curso(c, g)
+    assert cu.config_curso(c, {**g, "contactos": gen})["contactos"] == gen
+    assert cu.config_curso({**c, "contactos": propio}, {**g, "contactos": gen})["contactos"] == propio

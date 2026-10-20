@@ -66,6 +66,9 @@ def config_curso(c, g):
     cfg.update(universidad=g["universidad"], facultad=g["facultad"], horario=h, uidSufijo=f"cronograma-{c['id']}",
                mostrarLinksTeams=g["mostrarLinksTeams"], diasAvisoCambio=g["diasAvisoCambio"],
                profesoresInstitucionales=g["profesoresInstitucionales"], siglas=g["siglas"], id=c["id"])
+    contactos = c.get("contactos") or g.get("contactos")  # los del curso mandan sobre los generales; sin contactos la sección no aparece
+    if contactos:
+        cfg["contactos"] = contactos
     return cfg
 
 
