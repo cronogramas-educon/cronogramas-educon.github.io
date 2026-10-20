@@ -8,119 +8,27 @@
     "totalClases": 34,
     "horasTotales": 102,
     "horasCompletas": true,
-    "inicio": "2026-10-01",
-    "fin": "2026-11-27",
-    "hash": "1e6c5c7259c097e5",
-    "generadoEn": "2026-10-02T21:03:34Z",
-    "fuenteModificadaEn": "2026-10-02T21:03:17.4307642Z"
+    "inicio": "2026-10-08",
+    "fin": "2026-12-04",
+    "hash": "33d4bcc3a93a3e0e",
+    "generadoEn": "2026-10-20T23:55:42Z",
+    "fuenteModificadaEn": "2026-10-20T23:55:27.2504735Z"
   },
   "clases": [
     {
       "id": 1,
-      "clase": "CLASE 1",
-      "unidad": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
-      "unidadSlug": "modulo-1-gobierno-corporativo-en-la-practica",
-      "tema": "Concepto y evolución del gobierno corporativo. Introducción y contexto del programa.",
+      "clase": "CLASE",
+      "unidad": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
+      "unidadSlug": "modulo-5-arquitectura-del-cumplimiento",
+      "tema": "Compliance como sistema organizacional.",
       "temaPuntos": [
-        "Concepto y evolución del gobierno corporativo. Introducción y contexto del programa."
+        "Compliance como sistema organizacional."
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "",
-      "profesores": [],
-      "dia": "Jueves",
-      "diaCalculado": "Jueves",
-      "fecha": "2026-10-01",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-10-01T18:00:00-05:00",
-      "fin": "2026-10-01T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 2,
-      "clase": "CLASE 2",
-      "unidad": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
-      "unidadSlug": "modulo-1-gobierno-corporativo-en-la-practica",
-      "tema": "Gobierno corporativo formal vs. dinámicas reales.",
-      "temaPuntos": [
-        "Gobierno corporativo formal vs. dinámicas reales."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "",
-      "profesores": [],
-      "dia": "Viernes",
-      "diaCalculado": "Viernes",
-      "fecha": "2026-10-02",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-10-02T18:00:00-05:00",
-      "fin": "2026-10-02T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 3,
-      "clase": "CLASE 3",
-      "unidad": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
-      "unidadSlug": "modulo-1-gobierno-corporativo-en-la-practica",
-      "tema": "Estructuras de gobierno: junta directiva, administración y control.",
-      "temaPuntos": [
-        "Estructuras de gobierno: junta directiva, administración y control."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "",
-      "profesores": [],
-      "dia": "Martes",
-      "diaCalculado": "Martes",
-      "fecha": "2026-10-06",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-10-06T18:00:00-05:00",
-      "fin": "2026-10-06T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 4,
-      "clase": "CLASE 4",
-      "unidad": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
-      "unidadSlug": "modulo-1-gobierno-corporativo-en-la-practica",
-      "tema": "Rol del abogado y de los profesionales en la organización. Introducción a la toma de decisiones en entornos corporativos.",
-      "temaPuntos": [
-        "Rol del abogado y de los profesionales en la organización. Introducción a la toma de decisiones en entornos corporativos."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "",
-      "profesores": [],
-      "dia": "Miércoles",
-      "diaCalculado": "Miércoles",
-      "fecha": "2026-10-07",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-10-07T18:00:00-05:00",
-      "fin": "2026-10-07T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 5,
-      "clase": "CLASE 5",
-      "unidad": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
-      "unidadSlug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
-      "tema": "Función y dinámica de las juntas directivas.",
-      "temaPuntos": [
-        "Función y dinámica de las juntas directivas."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "Alejandro Mejía",
+      "profesor": "María Camila González",
       "profesores": [
-        "Alejandro Mejía"
+        "María Camila González"
       ],
       "dia": "Jueves",
       "diaCalculado": "Jueves",
@@ -130,22 +38,22 @@
       "cambio": null,
       "inicio": "2026-10-08T18:00:00-05:00",
       "fin": "2026-10-08T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 6,
-      "clase": "CLASE 6",
-      "unidad": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
-      "unidadSlug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
-      "tema": "Preparación y presentación de información en escenarios de decisión.",
+      "id": 2,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
+      "unidadSlug": "modulo-5-arquitectura-del-cumplimiento",
+      "tema": "Integración de programas de cumplimiento.",
       "temaPuntos": [
-        "Preparación y presentación de información en escenarios de decisión."
+        "Integración de programas de cumplimiento."
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Alejandro Mejía",
+      "profesor": "María Camila González",
       "profesores": [
-        "Alejandro Mejía"
+        "María Camila González"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
@@ -155,22 +63,22 @@
       "cambio": null,
       "inicio": "2026-10-09T18:00:00-05:00",
       "fin": "2026-10-09T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 7,
-      "clase": "CLASE 7",
-      "unidad": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
-      "unidadSlug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
-      "tema": "Qué comunicar, cómo comunicar y qué evitar.",
+      "id": 3,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
+      "unidadSlug": "modulo-5-arquitectura-del-cumplimiento",
+      "tema": "Gobierno corporativo como eje articulador.",
       "temaPuntos": [
-        "Qué comunicar, cómo comunicar y qué evitar."
+        "Gobierno corporativo como eje articulador."
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Alejandro Mejía",
+      "profesor": "María Camila González",
       "profesores": [
-        "Alejandro Mejía"
+        "María Camila González"
       ],
       "dia": "Martes",
       "diaCalculado": "Martes",
@@ -180,22 +88,22 @@
       "cambio": null,
       "inicio": "2026-10-13T18:00:00-05:00",
       "fin": "2026-10-13T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 8,
-      "clase": "CLASE 8",
-      "unidad": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
-      "unidadSlug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
-      "tema": "Manejo de presión, exposición y responsabilidad. Construcción de criterio en escenarios complejos.",
+      "id": 4,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
+      "unidadSlug": "modulo-5-arquitectura-del-cumplimiento",
+      "tema": "Cultura de cumplimiento y ética empresarial. Modelos de implementación.",
       "temaPuntos": [
-        "Manejo de presión, exposición y responsabilidad. Construcción de criterio en escenarios complejos."
+        "Cultura de cumplimiento y ética empresarial. Modelos de implementación."
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Alejandro Mejía",
+      "profesor": "María Camila González",
       "profesores": [
-        "Alejandro Mejía"
+        "María Camila González"
       ],
       "dia": "Miércoles",
       "diaCalculado": "Miércoles",
@@ -205,11 +113,11 @@
       "cambio": null,
       "inicio": "2026-10-14T18:00:00-05:00",
       "fin": "2026-10-14T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 9,
-      "clase": "CLASE 9",
+      "id": 5,
+      "clase": "CLASE",
       "unidad": "MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOCIADOS",
       "unidadSlug": "modulo-3-responsabilidad-de-administradores-y-riesgos-asocia",
       "tema": "Deberes fiduciarios y responsabilidad de administradores.",
@@ -218,9 +126,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Daniel Berdugo",
+      "profesor": "Freddy Navarrete",
       "profesores": [
-        "Daniel Berdugo"
+        "Freddy Navarrete"
       ],
       "dia": "Jueves",
       "diaCalculado": "Jueves",
@@ -230,11 +138,11 @@
       "cambio": null,
       "inicio": "2026-10-15T18:00:00-05:00",
       "fin": "2026-10-15T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 10,
-      "clase": "CLASE 10",
+      "id": 6,
+      "clase": "CLASE",
       "unidad": "MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOCIADOS",
       "unidadSlug": "modulo-3-responsabilidad-de-administradores-y-riesgos-asocia",
       "tema": "Responsabilidad civil, penal y administrativa.",
@@ -243,9 +151,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Daniel Berdugo",
+      "profesor": "Freddy Navarrete",
       "profesores": [
-        "Daniel Berdugo"
+        "Freddy Navarrete"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
@@ -255,11 +163,11 @@
       "cambio": null,
       "inicio": "2026-10-16T18:00:00-05:00",
       "fin": "2026-10-16T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 11,
-      "clase": "CLASE 11",
+      "id": 7,
+      "clase": "CLASE",
       "unidad": "MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOCIADOS",
       "unidadSlug": "modulo-3-responsabilidad-de-administradores-y-riesgos-asocia",
       "tema": "Riesgos reputacionales. Mecanismos de protección y prevención.",
@@ -268,23 +176,28 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Daniel Berdugo",
+      "profesor": "Freddy Navarrete",
       "profesores": [
-        "Daniel Berdugo"
+        "Freddy Navarrete"
       ],
       "dia": "Martes",
       "diaCalculado": "Martes",
       "fecha": "2026-10-20",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-13",
+        "fechaOriginal": "2026-10-13",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-10-20T18:00:00-05:00",
       "fin": "2026-10-20T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 12,
-      "clase": "CLASE 12",
+      "id": 8,
+      "clase": "CLASE",
       "unidad": "MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOCIADOS",
       "unidadSlug": "modulo-3-responsabilidad-de-administradores-y-riesgos-asocia",
       "tema": "Casos relevantes: aplicación práctica de la responsabilidad de administradores.",
@@ -293,23 +206,28 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Daniel Berdugo",
+      "profesor": "Freddy Navarrete",
       "profesores": [
-        "Daniel Berdugo"
+        "Freddy Navarrete"
       ],
       "dia": "Miércoles",
       "diaCalculado": "Miércoles",
       "fecha": "2026-10-21",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-14",
+        "fechaOriginal": "2026-10-14",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-10-21T18:00:00-05:00",
       "fin": "2026-10-21T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 13,
-      "clase": "CLASE 13",
+      "id": 9,
+      "clase": "CLASE",
       "unidad": "MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES",
       "unidadSlug": "modulo-6-gestion-de-riesgos-y-toma-de-decisiones",
       "tema": "Tipologías de riesgo: legal, reputacional, operativo y estratégico.",
@@ -327,19 +245,24 @@
       "fecha": "2026-10-22",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-15",
+        "fechaOriginal": "2026-10-15",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-10-22T18:00:00-05:00",
       "fin": "2026-10-22T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 14,
-      "clase": "CLASE 14",
+      "id": 10,
+      "clase": "CLASE",
       "unidad": "MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES",
       "unidadSlug": "modulo-6-gestion-de-riesgos-y-toma-de-decisiones",
-      "tema": "Identificación, análisis y evaluación de riesgos.",
+      "tema": "Identificación de riesgos.",
       "temaPuntos": [
-        "Identificación, análisis y evaluación de riesgos."
+        "Identificación de riesgos."
       ],
       "temaHeredado": false,
       "horas": 3,
@@ -352,19 +275,24 @@
       "fecha": "2026-10-23",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-16",
+        "fechaOriginal": "2026-10-16",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-10-23T18:00:00-05:00",
       "fin": "2026-10-23T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 15,
-      "clase": "CLASE 15",
+      "id": 11,
+      "clase": "CLASE",
       "unidad": "MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES",
       "unidadSlug": "modulo-6-gestion-de-riesgos-y-toma-de-decisiones",
-      "tema": "Herramientas de priorización. Estrategias de gestión: mitigación, transferencia y aceptación.",
+      "tema": "Análisis y evaluación de riesgos.",
       "temaPuntos": [
-        "Herramientas de priorización. Estrategias de gestión: mitigación, transferencia y aceptación."
+        "Análisis y evaluación de riesgos."
       ],
       "temaHeredado": false,
       "horas": 3,
@@ -377,19 +305,24 @@
       "fecha": "2026-10-27",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-20",
+        "fechaOriginal": "2026-10-20",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-10-27T18:00:00-05:00",
       "fin": "2026-10-27T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 16,
-      "clase": "CLASE 16",
+      "id": 12,
+      "clase": "CLASE",
       "unidad": "MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES",
       "unidadSlug": "modulo-6-gestion-de-riesgos-y-toma-de-decisiones",
-      "tema": "Relación entre riesgo y decisión empresarial. Aplicación práctica.",
+      "tema": "Herramientas de priorización. Estrategias de gestión: mitigación, transferencia y aceptación.",
       "temaPuntos": [
-        "Relación entre riesgo y decisión empresarial. Aplicación práctica."
+        "Herramientas de priorización. Estrategias de gestión: mitigación, transferencia y aceptación."
       ],
       "temaHeredado": false,
       "horas": 3,
@@ -402,239 +335,49 @@
       "fecha": "2026-10-28",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-21",
+        "fechaOriginal": "2026-10-21",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-10-28T18:00:00-05:00",
       "fin": "2026-10-28T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 17,
-      "clase": "CLASE 17",
-      "unidad": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
-      "unidadSlug": "modulo-5-arquitectura-del-cumplimiento",
-      "tema": "Compliance como sistema organizacional.",
+      "id": 13,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES",
+      "unidadSlug": "modulo-6-gestion-de-riesgos-y-toma-de-decisiones",
+      "tema": "Relación entre riesgo y decisión empresarial. Aplicación práctica.",
       "temaPuntos": [
-        "Compliance como sistema organizacional."
+        "Relación entre riesgo y decisión empresarial. Aplicación práctica."
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "María Camila González",
+      "profesor": "Melissa Alejandra Dukuara",
       "profesores": [
-        "María Camila González"
+        "Melissa Alejandra Dukuara"
       ],
       "dia": "Jueves",
       "diaCalculado": "Jueves",
       "fecha": "2026-10-29",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-22",
+        "fechaOriginal": "2026-10-22",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-10-29T18:00:00-05:00",
       "fin": "2026-10-29T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 18,
-      "clase": "CLASE 18",
-      "unidad": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
-      "unidadSlug": "modulo-5-arquitectura-del-cumplimiento",
-      "tema": "Integración de programas de cumplimiento.",
-      "temaPuntos": [
-        "Integración de programas de cumplimiento."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "María Camila González",
-      "profesores": [
-        "María Camila González"
-      ],
-      "dia": "Viernes",
-      "diaCalculado": "Viernes",
-      "fecha": "2026-10-30",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-10-30T18:00:00-05:00",
-      "fin": "2026-10-30T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 19,
-      "clase": "CLASE 19",
-      "unidad": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
-      "unidadSlug": "modulo-5-arquitectura-del-cumplimiento",
-      "tema": "Gobierno corporativo como eje articulador.",
-      "temaPuntos": [
-        "Gobierno corporativo como eje articulador."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "María Camila González",
-      "profesores": [
-        "María Camila González"
-      ],
-      "dia": "Martes",
-      "diaCalculado": "Martes",
-      "fecha": "2026-11-03",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-03T18:00:00-05:00",
-      "fin": "2026-11-03T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 20,
-      "clase": "CLASE 20",
-      "unidad": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
-      "unidadSlug": "modulo-5-arquitectura-del-cumplimiento",
-      "tema": "Cultura de cumplimiento y ética empresarial. Modelos de implementación.",
-      "temaPuntos": [
-        "Cultura de cumplimiento y ética empresarial. Modelos de implementación."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "María Camila González",
-      "profesores": [
-        "María Camila González"
-      ],
-      "dia": "Miércoles",
-      "diaCalculado": "Miércoles",
-      "fecha": "2026-11-04",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-04T18:00:00-05:00",
-      "fin": "2026-11-04T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 21,
-      "clase": "CLASE 21",
-      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
-      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
-      "tema": "Comunicación en escenarios de alta dirección.",
-      "temaPuntos": [
-        "Comunicación en escenarios de alta dirección."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "José Luis Jerez",
-      "profesores": [
-        "José Luis Jerez"
-      ],
-      "dia": "Jueves",
-      "diaCalculado": "Jueves",
-      "fecha": "2026-11-05",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-05T18:00:00-05:00",
-      "fin": "2026-11-05T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 22,
-      "clase": "CLASE 22",
-      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
-      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
-      "tema": "Estructuración del mensaje para la toma de decisiones.",
-      "temaPuntos": [
-        "Estructuración del mensaje para la toma de decisiones."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "José Luis Jerez",
-      "profesores": [
-        "José Luis Jerez"
-      ],
-      "dia": "Viernes",
-      "diaCalculado": "Viernes",
-      "fecha": "2026-11-06",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-06T18:00:00-05:00",
-      "fin": "2026-11-06T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 23,
-      "clase": "CLASE 23",
-      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
-      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
-      "tema": "Técnicas de persuasión aplicadas al entorno corporativo. Lenguaje verbal y no verbal en contextos de presión.",
-      "temaPuntos": [
-        "Técnicas de persuasión aplicadas al entorno corporativo. Lenguaje verbal y no verbal en contextos de presión."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "José Luis Jerez",
-      "profesores": [
-        "José Luis Jerez"
-      ],
-      "dia": "Martes",
-      "diaCalculado": "Martes",
-      "fecha": "2026-11-10",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-10T18:00:00-05:00",
-      "fin": "2026-11-10T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 24,
-      "clase": "CLASE 24",
-      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
-      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
-      "tema": "Manejo de objeciones y preguntas difíciles. Control del discurso y seguridad al intervenir.",
-      "temaPuntos": [
-        "Manejo de objeciones y preguntas difíciles. Control del discurso y seguridad al intervenir."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "José Luis Jerez",
-      "profesores": [
-        "José Luis Jerez"
-      ],
-      "dia": "Miércoles",
-      "diaCalculado": "Miércoles",
-      "fecha": "2026-11-11",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-11T18:00:00-05:00",
-      "fin": "2026-11-11T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 25,
-      "clase": "CLASE 25",
-      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
-      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
-      "tema": "Construcción de narrativa estratégica. Aplicación práctica en escenarios de decisión.",
-      "temaPuntos": [
-        "Construcción de narrativa estratégica. Aplicación práctica en escenarios de decisión."
-      ],
-      "temaHeredado": false,
-      "horas": 3,
-      "profesor": "José Luis Jerez",
-      "profesores": [
-        "José Luis Jerez"
-      ],
-      "dia": "Jueves",
-      "diaCalculado": "Jueves",
-      "fecha": "2026-11-12",
-      "asistentePat": "",
-      "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-12T18:00:00-05:00",
-      "fin": "2026-11-12T21:00:00-05:00",
-      "secuencia": 0
-    },
-    {
-      "id": 26,
-      "clase": "CLASE 26",
+      "id": 14,
+      "clase": "CLASE",
       "unidad": "MÓDULO 7 – GOBIERNO CORPORATIVO, CULTURA E IMPACTO ORGANIZACIONAL",
       "unidadSlug": "modulo-7-gobierno-corporativo-cultura-e-impacto-organizacion",
       "tema": "Cultura organizacional como activo estratégico.",
@@ -649,17 +392,22 @@
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
-      "fecha": "2026-11-13",
+      "fecha": "2026-10-30",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-13T18:00:00-05:00",
-      "fin": "2026-11-13T21:00:00-05:00",
-      "secuencia": 0
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-23",
+        "fechaOriginal": "2026-10-23",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-10-30T18:00:00-05:00",
+      "fin": "2026-10-30T21:00:00-05:00",
+      "secuencia": 1
     },
     {
-      "id": 27,
-      "clase": "CLASE 27",
+      "id": 15,
+      "clase": "CLASE",
       "unidad": "MÓDULO 7 – GOBIERNO CORPORATIVO, CULTURA E IMPACTO ORGANIZACIONAL",
       "unidadSlug": "modulo-7-gobierno-corporativo-cultura-e-impacto-organizacion",
       "tema": "Responsabilidad social vs. responsabilidad empresarial. ESG desde una perspectiva práctica.",
@@ -674,17 +422,22 @@
       ],
       "dia": "Martes",
       "diaCalculado": "Martes",
-      "fecha": "2026-11-17",
+      "fecha": "2026-11-03",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-17T18:00:00-05:00",
-      "fin": "2026-11-17T21:00:00-05:00",
-      "secuencia": 0
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-27",
+        "fechaOriginal": "2026-10-27",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-03T18:00:00-05:00",
+      "fin": "2026-11-03T21:00:00-05:00",
+      "secuencia": 1
     },
     {
-      "id": 28,
-      "clase": "CLASE 28",
+      "id": 16,
+      "clase": "CLASE",
       "unidad": "MÓDULO 7 – GOBIERNO CORPORATIVO, CULTURA E IMPACTO ORGANIZACIONAL",
       "unidadSlug": "modulo-7-gobierno-corporativo-cultura-e-impacto-organizacion",
       "tema": "Impacto reputacional y sostenibilidad. Gobierno corporativo como generador de valor.",
@@ -699,17 +452,22 @@
       ],
       "dia": "Miércoles",
       "diaCalculado": "Miércoles",
-      "fecha": "2026-11-18",
+      "fecha": "2026-11-04",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-18T18:00:00-05:00",
-      "fin": "2026-11-18T21:00:00-05:00",
-      "secuencia": 0
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-28",
+        "fechaOriginal": "2026-10-28",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-04T18:00:00-05:00",
+      "fin": "2026-11-04T21:00:00-05:00",
+      "secuencia": 1
     },
     {
-      "id": 29,
-      "clase": "CLASE 29",
+      "id": 17,
+      "clase": "CLASE",
       "unidad": "MÓDULO 7 – GOBIERNO CORPORATIVO, CULTURA E IMPACTO ORGANIZACIONAL",
       "unidadSlug": "modulo-7-gobierno-corporativo-cultura-e-impacto-organizacion",
       "tema": "Relación con proveedores y aliados. Casos prácticos.",
@@ -724,17 +482,262 @@
       ],
       "dia": "Jueves",
       "diaCalculado": "Jueves",
+      "fecha": "2026-11-05",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-29",
+        "fechaOriginal": "2026-10-29",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-05T18:00:00-05:00",
+      "fin": "2026-11-05T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 18,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
+      "unidadSlug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
+      "tema": "Función y dinámica de las juntas directivas.",
+      "temaPuntos": [
+        "Función y dinámica de las juntas directivas."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Alejandro Mejía",
+      "profesores": [
+        "Alejandro Mejía"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-06",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-30",
+        "fechaOriginal": "2026-10-30",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-06T18:00:00-05:00",
+      "fin": "2026-11-06T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 19,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
+      "unidadSlug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
+      "tema": "Preparación y presentación de información en escenarios de decisión.",
+      "temaPuntos": [
+        "Preparación y presentación de información en escenarios de decisión."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Alejandro Mejía",
+      "profesores": [
+        "Alejandro Mejía"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-10",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-03",
+        "fechaOriginal": "2026-11-03",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-10T18:00:00-05:00",
+      "fin": "2026-11-10T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 20,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
+      "unidadSlug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
+      "tema": "Qué comunicar, cómo comunicar y qué evitar.",
+      "temaPuntos": [
+        "Qué comunicar, cómo comunicar y qué evitar."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Alejandro Mejía",
+      "profesores": [
+        "Alejandro Mejía"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-11",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-04",
+        "fechaOriginal": "2026-11-04",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-11T18:00:00-05:00",
+      "fin": "2026-11-11T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 21,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
+      "unidadSlug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
+      "tema": "Manejo de presión, exposición y responsabilidad. Construcción de criterio en escenarios complejos.",
+      "temaPuntos": [
+        "Manejo de presión, exposición y responsabilidad. Construcción de criterio en escenarios complejos."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Alejandro Mejía",
+      "profesores": [
+        "Alejandro Mejía"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-12",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-05",
+        "fechaOriginal": "2026-11-05",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-12T18:00:00-05:00",
+      "fin": "2026-11-12T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 22,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
+      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
+      "tema": "Comunicación en escenarios de alta dirección. Estructuración del mensaje para la toma de decisiones.",
+      "temaPuntos": [
+        "Comunicación en escenarios de alta dirección. Estructuración del mensaje para la toma de decisiones."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "José Luis Jerez",
+      "profesores": [
+        "José Luis Jerez"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-13",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-06",
+        "fechaOriginal": "2026-11-06",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-13T18:00:00-05:00",
+      "fin": "2026-11-13T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 23,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
+      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
+      "tema": "Técnicas de persuasión aplicadas al entorno corporativo.",
+      "temaPuntos": [
+        "Técnicas de persuasión aplicadas al entorno corporativo."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "José Luis Jerez",
+      "profesores": [
+        "José Luis Jerez"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-11-17",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-10",
+        "fechaOriginal": "2026-11-10",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-17T18:00:00-05:00",
+      "fin": "2026-11-17T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 24,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
+      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
+      "tema": "Lenguaje verbal y no verbal en contextos de presión. Manejo de objeciones y preguntas difíciles.",
+      "temaPuntos": [
+        "Lenguaje verbal y no verbal en contextos de presión. Manejo de objeciones y preguntas difíciles."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "José Luis Jerez",
+      "profesores": [
+        "José Luis Jerez"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-11-18",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-11",
+        "fechaOriginal": "2026-11-11",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-11-18T18:00:00-05:00",
+      "fin": "2026-11-18T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 25,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
+      "unidadSlug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
+      "tema": "Control del discurso y seguridad al intervenir. Construcción de narrativa estratégica.",
+      "temaPuntos": [
+        "Control del discurso y seguridad al intervenir. Construcción de narrativa estratégica."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "José Luis Jerez",
+      "profesores": [
+        "José Luis Jerez"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
       "fecha": "2026-11-19",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-12",
+        "fechaOriginal": "2026-11-12",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-11-19T18:00:00-05:00",
       "fin": "2026-11-19T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 30,
-      "clase": "CLASE 30",
+      "id": 26,
+      "clase": "CLASE",
       "unidad": "MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL",
       "unidadSlug": "modulo-8-crisis-empresarial-y-gestion-reputacional",
       "tema": "Tipología de crisis empresariales.",
@@ -752,14 +755,19 @@
       "fecha": "2026-11-20",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-13",
+        "fechaOriginal": "2026-11-13",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-11-20T18:00:00-05:00",
       "fin": "2026-11-20T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 31,
-      "clase": "CLASE 31",
+      "id": 27,
+      "clase": "CLASE",
       "unidad": "MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL",
       "unidadSlug": "modulo-8-crisis-empresarial-y-gestion-reputacional",
       "tema": "Manejo de crisis desde el gobierno corporativo.",
@@ -777,14 +785,19 @@
       "fecha": "2026-11-24",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-17",
+        "fechaOriginal": "2026-11-17",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-11-24T18:00:00-05:00",
       "fin": "2026-11-24T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 32,
-      "clase": "CLASE 32",
+      "id": 28,
+      "clase": "CLASE",
       "unidad": "MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL",
       "unidadSlug": "modulo-8-crisis-empresarial-y-gestion-reputacional",
       "tema": "Rol del área legal y de cumplimiento.",
@@ -802,14 +815,19 @@
       "fecha": "2026-11-25",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-18",
+        "fechaOriginal": "2026-11-18",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-11-25T18:00:00-05:00",
       "fin": "2026-11-25T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 33,
-      "clase": "CLASE 33",
+      "id": 29,
+      "clase": "CLASE",
       "unidad": "MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL",
       "unidadSlug": "modulo-8-crisis-empresarial-y-gestion-reputacional",
       "tema": "Toma de decisiones bajo presión. Estrategias de contención y respuesta.",
@@ -827,14 +845,19 @@
       "fecha": "2026-11-26",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-19",
+        "fechaOriginal": "2026-11-19",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-11-26T18:00:00-05:00",
       "fin": "2026-11-26T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
     },
     {
-      "id": 34,
-      "clase": "CLASE 34",
+      "id": 30,
+      "clase": "CLASE",
       "unidad": "MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL",
       "unidadSlug": "modulo-8-crisis-empresarial-y-gestion-reputacional",
       "tema": "Caso práctico integrador / simulación de crisis empresarial y cierre del diplomado.",
@@ -843,26 +866,151 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Daniel Tocarruncho y Melissa Dukuara",
+      "profesor": "Daniel Tocarruncho y Melissa Alejandra Dukuara",
       "profesores": [
         "Daniel Tocarruncho",
-        "Melissa Dukuara"
+        "Melissa Alejandra Dukuara"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
       "fecha": "2026-11-27",
       "asistentePat": "",
       "linkTeams": "",
-      "cambio": null,
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-20",
+        "fechaOriginal": "2026-11-20",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
       "inicio": "2026-11-27T18:00:00-05:00",
       "fin": "2026-11-27T21:00:00-05:00",
-      "secuencia": 0
+      "secuencia": 1
+    },
+    {
+      "id": 31,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
+      "unidadSlug": "modulo-1-gobierno-corporativo-en-la-practica",
+      "tema": "Concepto y evolución del gobierno corporativo. Introducción y contexto del programa.",
+      "temaPuntos": [
+        "Concepto y evolución del gobierno corporativo. Introducción y contexto del programa."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Gustavo Adolfo Cruz M",
+      "profesores": [
+        "Gustavo Adolfo Cruz M"
+      ],
+      "dia": "Martes",
+      "diaCalculado": "Martes",
+      "fecha": "2026-12-01",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-24",
+        "fechaOriginal": "2026-11-24",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-12-01T18:00:00-05:00",
+      "fin": "2026-12-01T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 32,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
+      "unidadSlug": "modulo-1-gobierno-corporativo-en-la-practica",
+      "tema": "Gobierno corporativo formal vs. dinámicas reales.",
+      "temaPuntos": [
+        "Gobierno corporativo formal vs. dinámicas reales."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Gustavo Adolfo Cruz M",
+      "profesores": [
+        "Gustavo Adolfo Cruz M"
+      ],
+      "dia": "Miércoles",
+      "diaCalculado": "Miércoles",
+      "fecha": "2026-12-02",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-25",
+        "fechaOriginal": "2026-11-25",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-12-02T18:00:00-05:00",
+      "fin": "2026-12-02T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 33,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
+      "unidadSlug": "modulo-1-gobierno-corporativo-en-la-practica",
+      "tema": "Estructuras de gobierno: junta directiva, administración y control.",
+      "temaPuntos": [
+        "Estructuras de gobierno: junta directiva, administración y control."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Gustavo Adolfo Cruz M",
+      "profesores": [
+        "Gustavo Adolfo Cruz M"
+      ],
+      "dia": "Jueves",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-12-03",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-26",
+        "fechaOriginal": "2026-11-26",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-12-03T18:00:00-05:00",
+      "fin": "2026-12-03T21:00:00-05:00",
+      "secuencia": 1
+    },
+    {
+      "id": 34,
+      "clase": "CLASE",
+      "unidad": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
+      "unidadSlug": "modulo-1-gobierno-corporativo-en-la-practica",
+      "tema": "Rol del abogado y de los profesionales en la organización. Introducción a la toma de decisiones en entornos corporativos.",
+      "temaPuntos": [
+        "Rol del abogado y de los profesionales en la organización. Introducción a la toma de decisiones en entornos corporativos."
+      ],
+      "temaHeredado": false,
+      "horas": 3,
+      "profesor": "Gustavo Adolfo Cruz M",
+      "profesores": [
+        "Gustavo Adolfo Cruz M"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-12-04",
+      "asistentePat": "",
+      "linkTeams": "",
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-27",
+        "fechaOriginal": "2026-11-27",
+        "detectadoEn": "2026-10-20T23:55:42Z"
+      },
+      "inicio": "2026-12-04T18:00:00-05:00",
+      "fin": "2026-12-04T21:00:00-05:00",
+      "secuencia": 1
     }
   ],
   "unidades": [
     {
-      "slug": "modulo-1-gobierno-corporativo-en-la-practica",
-      "nombre": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
+      "slug": "modulo-5-arquitectura-del-cumplimiento",
+      "nombre": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
       "clases": [
         1,
         2,
@@ -872,8 +1020,8 @@
       "horas": 12
     },
     {
-      "slug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
-      "nombre": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
+      "slug": "modulo-3-responsabilidad-de-administradores-y-riesgos-asocia",
+      "nombre": "MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOCIADOS",
       "clases": [
         5,
         6,
@@ -883,47 +1031,14 @@
       "horas": 12
     },
     {
-      "slug": "modulo-3-responsabilidad-de-administradores-y-riesgos-asocia",
-      "nombre": "MÓDULO 3 – RESPONSABILIDAD DE ADMINISTRADORES Y RIESGOS ASOCIADOS",
+      "slug": "modulo-6-gestion-de-riesgos-y-toma-de-decisiones",
+      "nombre": "MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES",
       "clases": [
         9,
         10,
         11,
-        12
-      ],
-      "horas": 12
-    },
-    {
-      "slug": "modulo-6-gestion-de-riesgos-y-toma-de-decisiones",
-      "nombre": "MÓDULO 6 – GESTIÓN DE RIESGOS Y TOMA DE DECISIONES",
-      "clases": [
-        13,
-        14,
-        15,
-        16
-      ],
-      "horas": 12
-    },
-    {
-      "slug": "modulo-5-arquitectura-del-cumplimiento",
-      "nombre": "MÓDULO 5 – ARQUITECTURA DEL CUMPLIMIENTO",
-      "clases": [
-        17,
-        18,
-        19,
-        20
-      ],
-      "horas": 12
-    },
-    {
-      "slug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
-      "nombre": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
-      "clases": [
-        21,
-        22,
-        23,
-        24,
-        25
+        12,
+        13
       ],
       "horas": 15
     },
@@ -931,10 +1046,32 @@
       "slug": "modulo-7-gobierno-corporativo-cultura-e-impacto-organizacion",
       "nombre": "MÓDULO 7 – GOBIERNO CORPORATIVO, CULTURA E IMPACTO ORGANIZACIONAL",
       "clases": [
-        26,
-        27,
-        28,
-        29
+        14,
+        15,
+        16,
+        17
+      ],
+      "horas": 12
+    },
+    {
+      "slug": "modulo-2-interaccion-con-juntas-directivas-y-toma-de-decisio",
+      "nombre": "MÓDULO 2 – INTERACCIÓN CON JUNTAS DIRECTIVAS Y TOMA DE DECISIONES",
+      "clases": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "horas": 12
+    },
+    {
+      "slug": "modulo-4-comunicacion-estrategica-e-influencia-en-entornos-d",
+      "nombre": "MÓDULO 4 – COMUNICACIÓN ESTRATÉGICA E INFLUENCIA EN ENTORNOS DE DECISIÓN",
+      "clases": [
+        22,
+        23,
+        24,
+        25
       ],
       "horas": 12
     },
@@ -942,25 +1079,290 @@
       "slug": "modulo-8-crisis-empresarial-y-gestion-reputacional",
       "nombre": "MÓDULO 8 – CRISIS EMPRESARIAL Y GESTIÓN REPUTACIONAL",
       "clases": [
-        30,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "horas": 15
+    },
+    {
+      "slug": "modulo-1-gobierno-corporativo-en-la-practica",
+      "nombre": "MÓDULO 1 – GOBIERNO CORPORATIVO EN LA PRÁCTICA",
+      "clases": [
         31,
         32,
         33,
         34
       ],
-      "horas": 15
+      "horas": 12
     }
   ],
   "profesores": [
     "Alejandro Mejía",
-    "Daniel Berdugo",
     "Daniel Tocarruncho",
+    "Freddy Navarrete",
+    "Gustavo Adolfo Cruz M",
     "José Luis Jerez",
     "Julio Ernesto Calderón",
     "María Camila González",
-    "Melissa Alejandra Dukuara",
-    "Melissa Dukuara"
+    "Melissa Alejandra Dukuara"
   ],
   "asistentesPat": [],
-  "cambios": []
+  "cambios": [
+    {
+      "id": 7,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-13",
+      "fechaAnterior": "2026-10-13",
+      "fechaNueva": "2026-10-20",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 8,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-14",
+      "fechaAnterior": "2026-10-14",
+      "fechaNueva": "2026-10-21",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 9,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-15",
+      "fechaAnterior": "2026-10-15",
+      "fechaNueva": "2026-10-22",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 10,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-16",
+      "fechaAnterior": "2026-10-16",
+      "fechaNueva": "2026-10-23",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 11,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-20",
+      "fechaAnterior": "2026-10-20",
+      "fechaNueva": "2026-10-27",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 12,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-21",
+      "fechaAnterior": "2026-10-21",
+      "fechaNueva": "2026-10-28",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 13,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-22",
+      "fechaAnterior": "2026-10-22",
+      "fechaNueva": "2026-10-29",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 14,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-23",
+      "fechaAnterior": "2026-10-23",
+      "fechaNueva": "2026-10-30",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 15,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-27",
+      "fechaAnterior": "2026-10-27",
+      "fechaNueva": "2026-11-03",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 16,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-28",
+      "fechaAnterior": "2026-10-28",
+      "fechaNueva": "2026-11-04",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 17,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-29",
+      "fechaAnterior": "2026-10-29",
+      "fechaNueva": "2026-11-05",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 18,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-10-30",
+      "fechaAnterior": "2026-10-30",
+      "fechaNueva": "2026-11-06",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 19,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-03",
+      "fechaAnterior": "2026-11-03",
+      "fechaNueva": "2026-11-10",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 20,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-04",
+      "fechaAnterior": "2026-11-04",
+      "fechaNueva": "2026-11-11",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 21,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-05",
+      "fechaAnterior": "2026-11-05",
+      "fechaNueva": "2026-11-12",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 22,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-06",
+      "fechaAnterior": "2026-11-06",
+      "fechaNueva": "2026-11-13",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 23,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-10",
+      "fechaAnterior": "2026-11-10",
+      "fechaNueva": "2026-11-17",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 24,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-11",
+      "fechaAnterior": "2026-11-11",
+      "fechaNueva": "2026-11-18",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 25,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-12",
+      "fechaAnterior": "2026-11-12",
+      "fechaNueva": "2026-11-19",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 26,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-13",
+      "fechaAnterior": "2026-11-13",
+      "fechaNueva": "2026-11-20",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 27,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-17",
+      "fechaAnterior": "2026-11-17",
+      "fechaNueva": "2026-11-24",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 28,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-18",
+      "fechaAnterior": "2026-11-18",
+      "fechaNueva": "2026-11-25",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 29,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-19",
+      "fechaAnterior": "2026-11-19",
+      "fechaNueva": "2026-11-26",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 30,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-20",
+      "fechaAnterior": "2026-11-20",
+      "fechaNueva": "2026-11-27",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 31,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-24",
+      "fechaAnterior": "2026-11-24",
+      "fechaNueva": "2026-12-01",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 32,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-25",
+      "fechaAnterior": "2026-11-25",
+      "fechaNueva": "2026-12-02",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 33,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-26",
+      "fechaAnterior": "2026-11-26",
+      "fechaNueva": "2026-12-03",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    },
+    {
+      "id": 34,
+      "clase": "CLASE",
+      "fechaOriginal": "2026-11-27",
+      "fechaAnterior": "2026-11-27",
+      "fechaNueva": "2026-12-04",
+      "detectadoEn": "2026-10-20T23:55:42Z",
+      "resuelto": false
+    }
+  ],
+  "canceladas": []
 }
