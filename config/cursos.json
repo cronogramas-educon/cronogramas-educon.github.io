@@ -212,26 +212,6 @@
         "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 2- Valentina",
         "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Curso IA en el Sector Legal, Grupo 2"
       ]
-    },
-    {
-      "id": "prueba-formulario-educo-2026-2-cohorte-4-cuarta-vez-en-el-semestre",
-      "codigo": "ajqpojpl",
-      "carpeta": "EduContinua 2026-2/Cohorte 4 (cuarta vez en el semestre)/Diplomado Prueba Formulario Educo",
-      "tipo": "Diplomado",
-      "programa": "Diplomado de Prueba del Formulario Educo",
-      "programaCorto": "Prueba Formulario Educo",
-      "modalidad": "Remota (Microsoft Teams)",
-      "urlPaginaOficial": "",
-      "periodo": "2026-2",
-      "horario": {
-        "inicio": "15:00",
-        "fin": "20:00"
-      },
-      "cohorte": "Cohorte 4 (cuarta vez en el semestre)",
-      "teams": {
-        "equipo": "f32857b8-1eac-479c-8a8c-da0dbaedec19",
-        "canal": "19:yFrwf-C9HVmYBy8QMTLY8I5Gq3pMcTYxqwictkAGLlo1@thread.tacv2"
-      }
     }
   ]
 }
