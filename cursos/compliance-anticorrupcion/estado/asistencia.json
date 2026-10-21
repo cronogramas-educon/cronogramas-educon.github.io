@@ -1,10 +1,10 @@
 {
- "actualizado": "2026-10-20T20:24:15-05:00",
+ "actualizado": "2026-10-20T20:43:54-05:00",
  "programadas": 35,
- "dictadas": 5,
+ "dictadas": 9,
  "permitidas": 7,
  "estudiantes": 14,
- "promedio": 0.9714,
+ "promedio": 0.9524,
  "porEstado": {
   "Perdió el mínimo": 0,
   "En riesgo": 0,
@@ -37,9 +37,9 @@
   },
   {
    "clase": 4,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 11,
+   "marcadas": 14,
    "de": 14
   },
   {
@@ -58,16 +58,16 @@
   },
   {
    "clase": 7,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 13,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 8,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
@@ -79,9 +79,9 @@
   },
   {
    "clase": 10,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
@@ -262,196 +262,114 @@
  ],
  "lista": [
   {
+   "n": 11,
+   "estado": "Al día",
+   "asistio": 7,
+   "faltas": 2,
+   "quedan": 5,
+   "porcentaje": 0.7777777777777778,
+   "puedeLlegar": 0.9428571428571428,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 0,
+    "5": 1,
+    "6": 1,
+    "7": 0,
+    "8": 1,
+    "10": 1
+   }
+  },
+  {
    "n": 2,
    "estado": "Al día",
-   "asistio": 4,
+   "asistio": 8,
    "faltas": 1,
    "quedan": 6,
-   "porcentaje": 0.8,
+   "porcentaje": 0.8888888888888888,
    "puedeLlegar": 0.9714285714285714,
    "seguimiento": "",
    "marcas": {
     "1": 1,
     "2": 0,
     "3": 1,
+    "4": 1,
     "5": 1,
-    "6": 1
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
    }
   },
   {
-   "n": 8,
+   "n": 3,
    "estado": "Al día",
-   "asistio": 4,
+   "asistio": 8,
    "faltas": 1,
    "quedan": 6,
-   "porcentaje": 0.8,
+   "porcentaje": 0.8888888888888888,
    "puedeLlegar": 0.9714285714285714,
    "seguimiento": "",
    "marcas": {
     "1": 1,
     "2": 1,
     "3": 1,
+    "4": 0,
     "5": 1,
-    "6": 0
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
    }
   },
   {
-   "n": 1,
+   "n": 8,
    "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
+   "asistio": 8,
+   "faltas": 1,
+   "quedan": 6,
+   "porcentaje": 0.8888888888888888,
+   "puedeLlegar": 0.9714285714285714,
    "seguimiento": "",
    "marcas": {
     "1": 1,
     "2": 1,
     "3": 1,
+    "4": 1,
     "5": 1,
-    "6": 1
-   }
-  },
-  {
-   "n": 3,
-   "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "5": 1,
-    "6": 1
-   }
-  },
-  {
-   "n": 4,
-   "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "5": 1,
-    "6": 1
-   }
-  },
-  {
-   "n": 5,
-   "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "5": 1,
-    "6": 1
-   }
-  },
-  {
-   "n": 6,
-   "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "5": 1,
-    "6": 1
-   }
-  },
-  {
-   "n": 7,
-   "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "5": 1,
-    "6": 1
-   }
-  },
-  {
-   "n": 9,
-   "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "5": 1,
-    "6": 1
-   }
-  },
-  {
-   "n": 10,
-   "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "5": 1,
-    "6": 1
-   }
-  },
-  {
-   "n": 11,
-   "estado": "Al día",
-   "asistio": 5,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "5": 1,
-    "6": 1
+    "6": 0,
+    "7": 1,
+    "8": 1,
+    "10": 1
    }
   },
   {
    "n": 12,
    "estado": "Al día",
-   "asistio": 5,
+   "asistio": 8,
+   "faltas": 1,
+   "quedan": 6,
+   "porcentaje": 0.8888888888888888,
+   "puedeLlegar": 0.9714285714285714,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 0,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
+   }
+  },
+  {
+   "n": 1,
+   "estado": "Al día",
+   "asistio": 9,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -461,14 +379,144 @@
     "1": 1,
     "2": 1,
     "3": 1,
+    "4": 1,
     "5": 1,
-    "6": 1
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
+   }
+  },
+  {
+   "n": 4,
+   "estado": "Al día",
+   "asistio": 9,
+   "faltas": 0,
+   "quedan": 7,
+   "porcentaje": 1.0,
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
+   }
+  },
+  {
+   "n": 5,
+   "estado": "Al día",
+   "asistio": 9,
+   "faltas": 0,
+   "quedan": 7,
+   "porcentaje": 1.0,
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
+   }
+  },
+  {
+   "n": 6,
+   "estado": "Al día",
+   "asistio": 9,
+   "faltas": 0,
+   "quedan": 7,
+   "porcentaje": 1.0,
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
+   }
+  },
+  {
+   "n": 7,
+   "estado": "Al día",
+   "asistio": 9,
+   "faltas": 0,
+   "quedan": 7,
+   "porcentaje": 1.0,
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
+   }
+  },
+  {
+   "n": 9,
+   "estado": "Al día",
+   "asistio": 9,
+   "faltas": 0,
+   "quedan": 7,
+   "porcentaje": 1.0,
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
+   }
+  },
+  {
+   "n": 10,
+   "estado": "Al día",
+   "asistio": 9,
+   "faltas": 0,
+   "quedan": 7,
+   "porcentaje": 1.0,
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
    }
   },
   {
    "n": 13,
    "estado": "Al día",
-   "asistio": 5,
+   "asistio": 9,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -478,14 +526,18 @@
     "1": 1,
     "2": 1,
     "3": 1,
+    "4": 1,
     "5": 1,
-    "6": 1
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
    }
   },
   {
    "n": 14,
    "estado": "Al día",
-   "asistio": 5,
+   "asistio": 9,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -495,8 +547,12 @@
     "1": 1,
     "2": 1,
     "3": 1,
+    "4": 1,
     "5": 1,
-    "6": 1
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1
    }
   }
  ]
