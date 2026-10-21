@@ -1,10 +1,10 @@
 {
- "actualizado": "2026-10-11T11:56:52-05:00",
+ "actualizado": "2026-10-20T20:24:15-05:00",
  "programadas": 35,
- "dictadas": 6,
+ "dictadas": 5,
  "permitidas": 7,
  "estudiantes": 14,
- "promedio": 0.9722,
+ "promedio": 0.9714,
  "porEstado": {
   "Perdió el mínimo": 0,
   "En riesgo": 0,
@@ -12,216 +12,251 @@
   "Al día": 14,
   "Aprobó": 0
  },
- "sinMarcar": 12,
+ "sinMarcar": 0,
  "porClase": [
   {
    "clase": 1,
    "estado": "Dictada",
    "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 2,
    "estado": "Dictada",
    "asistieron": 13,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 3,
    "estado": "Dictada",
    "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 4,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 5,
    "estado": "Dictada",
    "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 6,
    "estado": "Dictada",
    "asistieron": 13,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 7,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 8,
-   "estado": "Dictada",
-   "asistieron": 2,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 9,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 10,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 11,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 12,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 13,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 14,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 15,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 16,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 17,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 18,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 19,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 20,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 21,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 22,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 23,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 24,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 25,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 26,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 27,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 28,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 29,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 30,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 31,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 32,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 33,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 34,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   },
   {
    "clase": 35,
    "estado": "Sin dictar",
    "asistieron": 0,
+   "marcadas": 0,
    "de": 14
   }
  ],
@@ -233,7 +268,15 @@
    "faltas": 1,
    "quedan": 6,
    "porcentaje": 0.8,
-   "puedeLlegar": 0.971428571428571
+   "puedeLlegar": 0.9714285714285714,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 0,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 8,
@@ -242,7 +285,15 @@
    "faltas": 1,
    "quedan": 6,
    "porcentaje": 0.8,
-   "puedeLlegar": 0.971428571428571
+   "puedeLlegar": 0.9714285714285714,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 0
+   }
   },
   {
    "n": 1,
@@ -251,7 +302,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 3,
@@ -260,7 +319,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 4,
@@ -269,7 +336,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 5,
@@ -278,7 +353,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 6,
@@ -287,7 +370,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 7,
@@ -296,25 +387,49 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 9,
    "estado": "Al día",
-   "asistio": 6,
+   "asistio": 5,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 10,
    "estado": "Al día",
-   "asistio": 6,
+   "asistio": 5,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 11,
@@ -323,7 +438,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 12,
@@ -332,7 +455,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 13,
@@ -341,7 +472,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   },
   {
    "n": 14,
@@ -350,7 +489,15 @@
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
-   "puedeLlegar": 1.0
+   "puedeLlegar": 1.0,
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "5": 1,
+    "6": 1
+   }
   }
  ]
 }
