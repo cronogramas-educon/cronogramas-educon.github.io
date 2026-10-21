@@ -404,11 +404,12 @@ def test_analisis_detecta_choques_y_horas(pagina, servidor, sitio):
 
 def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    pagina.click("#asis-seguimiento summary")
     pagina.wait_for_selector("#asis-bandeja tbody tr")
-    assert not pagina.locator("#asistencia").get_attribute("hidden")
+    assert pagina.locator("#asistencia").count() == 0  # ya no hay una sección de asistencia aparte
     filas = pagina.locator("#asis-bandeja tbody tr")
     assert filas.count() == 3 and "Perdió el mínimo" in filas.nth(0).inner_text() and "En riesgo" in filas.nth(1).inner_text() and "N.º 3" in filas.nth(1).inner_text() and "Atención" in filas.nth(2).inner_text()
-    assert "Estudiante de prueba" not in pagina.inner_text("#asistencia") and pagina.locator("#asis-lista").count() == 0  # el detalle por curso ya no es una lista aparte
+    assert "Estudiante de prueba" not in pagina.inner_text("body") and pagina.locator("#asis-lista").count() == 0  # el detalle por curso ya no es una lista aparte
     assert pagina.locator("#cursos-lista .curso-asis.rojo").count() == 2
     compliance = pagina.locator("#cursos-lista .curso", has_text="Compliance")
     compliance.locator(".curso-asis summary").click()
@@ -416,6 +417,7 @@ def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
     pagina.locator("[data-contactado]").first.check()  # la primera es la de Derecho Laboral, que perdió el mínimo
     assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#cursos-lista .curso-asis[open]").count() == 1
     pagina.reload()
+    pagina.click("#asis-seguimiento summary")
     pagina.wait_for_selector("#asis-bandeja tbody tr")
     assert pagina.locator("[data-contactado]").first.is_checked() and pagina.errores == []
 
@@ -442,8 +444,9 @@ def test_hub_buscador_global_encuentra_curso_docente_y_clase(pagina, servidor, s
 
 def test_hub_cierre_de_curso_lista_y_descarga(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
-    pagina.wait_for_selector("#asis-cierres details")
-    fila = pagina.locator("#asis-cierres details", has_text="Derecho Laboral")
+    tarjeta = pagina.locator("#cursos-lista .curso", has_text="Derecho Laboral")
+    tarjeta.locator(".curso-asis > summary").click()
+    fila = tarjeta.locator("details.cierre")
     fila.locator("summary").click()
     assert "Resultado final" in fila.inner_text() and "Estudiante de prueba" not in fila.inner_text()
     assert pagina.locator(".cierre-col.aprueba p").inner_text() == "1, 2" and pagina.locator(".cierre-col.no-aprueba p").inner_text() == "3"

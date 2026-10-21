@@ -106,7 +106,7 @@ function archivo(rs) {
     const url = urlCurso(r.c);
     return `<li><span><strong>${esc(r.c.programaCorto)}</strong><small>${esc(r.c.tipo)}${r.c.cohorte ? `, ${esc(r.c.cohorte)}` : ''}, terminó el ${esc(fechaLargaAnio(r.d.meta.fin))}</small></span>
       <a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Abrir${ic('arrow-up-right')}</a>
-      <button class="btn" type="button" data-copiar="${esc(url)}">${ic('link-simple')}<span>Copiar enlace</span></button></li>`;
+      <button class="btn" type="button" data-copiar="${esc(url)}">${ic('link-simple')}<span>Copiar enlace</span></button>${r.asis && cierre(r) ? htmlCierre(r) : ''}</li>`;
   }).join('')}</ul></div>`).join('');
 }
 
@@ -198,7 +198,7 @@ async function pintar(meta) {
   activosVivos = activos;
   filtrosCursos(activos);
   pintarCursos();
-  seccionAsistencia(activos, rs);
+  seccionAsistencia(activos);
   tablaPendientes(activos);
   listaCambios(activos);
   archivo(rs.filter((r) => r.estado === 'terminado'));
@@ -221,14 +221,13 @@ const leerContactados = () => { try { return new Set(JSON.parse(localStorage.get
 const guardarContactados = (set) => { try { localStorage.setItem(LLAVE_CONTACTADOS, JSON.stringify([...set])); } catch { /* sin almacenamiento: la marca dura mientras la página esté abierta */ } };
 let contactados = leerContactados();
 
-function seccionAsistencia(activos, todos) {
+function seccionAsistencia(activos) {
   asisCursos = activos.filter((r) => r.c.tieneAsistencia);
-  const cierres = todos.filter((r) => r.asis && cierre(r));
-  $('asistencia').hidden = $('nav-asistencia').hidden = !asisCursos.length && !cierres.length;
-  $('asis-cierres-t').hidden = $('asis-cierres-nota').hidden = !cierres.length;
-  $('asis-cierres').innerHTML = cierres.map(htmlCierre).join('');
-  $('asis-resumen').textContent = asisCursos.length ? resumenAsistencia(asisCursos) : '';
-  if (!asisCursos.length) { $('asis-bandeja').innerHTML = '<p class="nota">No hay cursos activos con asistencia publicada.</p>'; return; }
+  $('asis-seguimiento').hidden = !asisCursos.length;
+  if (!asisCursos.length) return;
+  const n = bandeja(asisCursos).length;
+  $('asis-cuenta').textContent = n;
+  $('asis-resumen').textContent = n ? resumenAsistencia(asisCursos) : '';
   pintarAsistencia();
 }
 

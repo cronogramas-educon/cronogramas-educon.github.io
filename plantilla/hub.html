@@ -20,7 +20,7 @@
     <div class="dentro">
       <span class="marca">Educación Continua</span>
       <nav class="nav nav-hub" id="nav-hub" aria-label="Secciones">
-        <a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#asistencia" id="nav-asistencia" hidden>Asistencia</a><a href="#pendientes">Pendientes</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
+        <a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
       </nav>
       <a class="btn-registrar" href="#registro">Cursos y periodos</a>
     </div>
@@ -47,7 +47,10 @@
     </section>
     <section class="seccion" id="urgente"><h2>Urgente, próximos 14 días</h2>
       <p class="nota">Clases a las que les falta docente, asistente o enlace de Teams, y choques de horario, de todos los cursos.</p>
-      <div id="urgente-lista" aria-live="polite"><div class="esqueleto" aria-hidden="true"><i></i><i></i><i></i></div></div></section>
+      <div id="urgente-lista" aria-live="polite"><div class="esqueleto" aria-hidden="true"><i></i><i></i><i></i></div></div>
+      <details class="mas" id="asis-seguimiento" hidden><summary>Estudiantes por contactar por asistencia <span class="cuenta" id="asis-cuenta"></span></summary>
+        <p class="resumen-sec" id="asis-resumen" aria-live="polite"></p>
+        <div id="asis-bandeja" aria-live="polite"></div></details></section>
     <section class="seccion" id="cursos"><h2>Cursos</h2>
       <div class="filtros-cursos" id="filtros-cursos" hidden>
         <label class="campo-rep"><span>Buscar un curso</span><input id="cur-buscar" type="search" placeholder="Nombre del curso" autocomplete="off"></label>
@@ -56,15 +59,6 @@
       </div>
       <p class="nota" id="cur-conteo" aria-live="polite"></p>
       <div class="cursos-grid" id="cursos-lista" aria-live="polite"><div class="esqueleto esqueleto-tarjetas" aria-hidden="true"><i></i><i></i><i></i></div></div></section>
-    <section class="seccion" id="asistencia" hidden><h2>Asistencia</h2>
-      <p class="nota">Seguimiento según el Excel de asistencia de cada curso. Para certificar hace falta asistir al menos al 80 % de las clases. El detalle de cada curso está en su tarjeta, en <a href="#cursos">Cursos</a>.</p>
-      <details class="mas ayuda"><summary>Cómo se calculan los avisos</summary><p class="nota">Los avisos se calculan sobre las faltas permitidas de cada curso, así que valen igual para un diplomado largo que para un curso corto.</p></details>
-      <p class="resumen-sec" id="asis-resumen" aria-live="polite"></p>
-      <h3 class="sub-rep">A quién escribirle</h3>
-      <div id="asis-bandeja" aria-live="polite"></div>
-      <h3 class="sub-rep" id="asis-cierres-t" hidden>Cierre de curso</h3>
-      <p class="nota" id="asis-cierres-nota" hidden>Cuando un curso termina, aquí aparece quiénes aprueban y quiénes no, y se puede descargar la lista para pasarla a certificación.</p>
-      <div id="asis-cierres" class="asis-tablero"></div></section>
     <section class="seccion" id="pendientes"><h2>Pendientes por confirmar</h2>
       <p class="nota">Lo que falta en el Excel de cada curso. Al llenarlo en SharePoint, aquí se actualiza solo.</p>
       <div class="tabla-envoltura" id="tabla-pendientes"></div></section>

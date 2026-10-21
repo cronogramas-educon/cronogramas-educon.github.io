@@ -87,7 +87,7 @@ export function htmlAsistenciaCurso(r, t = ahora()) {
   return `<details class="curso-asis ${nivel}" data-asis-curso="${esc(r.c.id)}"><summary><span class="asis-punto" title="${NIVEL_TXT[nivel]}" aria-hidden="true"></span>
     <span class="ca-texto"><strong>Asistencia</strong><small>${a.dictadas} de ${a.programadas} clases dictadas, promedio ${pct(a.promedio)}</small></span>
     ${por ? `<span class="est-asis ${alerta ? 'riesgo' : 'atencion'}">${por} por atender</span>` : nivel === 'verde' ? '<span class="asis-ok-mini">Al día</span>' : '<span class="est-asis atencion">Por revisar</span>'}<span class="asis-abrir" aria-hidden="true"></span></summary>
-    <div class="asis-detalle">${detalle(r, t)}</div></details>`;
+    <div class="asis-detalle">${detalle(r, t)}${cierre(r) ? htmlCierre(r) : ''}</div></details>`;
 }
 
 /** Resultado final del curso según el Excel de asistencia. Solo existe cuando el curso terminó o ya se dictaron todas las clases. */

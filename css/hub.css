@@ -186,7 +186,7 @@
   .asis-barras li span { display: none; }
   .asis-barras li:nth-child(5n) span { display: block; }
 }
-@media print { #asistencia { display: none !important; } }
+@media print { #asis-seguimiento, .curso-asis { display: none !important; } }
 
 /* Buscador global */
 .buscador-global { margin-top: 28px; max-width: 760px; }
@@ -352,3 +352,6 @@
 .curso-asis .asis-linea, .curso-asis .alerta { max-width: none; overflow-wrap: anywhere; }
 .curso-asis .asis-barras li span { display: none; }
 .curso-asis .asis-barras li:nth-child(5n) span { display: block; }
+
+.periodo li .asis-fila { flex: 1 1 100%; box-shadow: none; border: 1px solid var(--paper-2); }
+#asis-seguimiento .resumen-sec { margin-top: 4px; }
