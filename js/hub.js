@@ -3,7 +3,7 @@ import { esc, rangos, ic, norm } from './ui.js';
 import { addDias, ahora, estadoClase, fechaLarga, fechaLargaAnio, haceCuanto, cambioVigente, cap, hoyISO, mesAnio } from './utils-fecha.js';
 import { horario } from './ui.js';
 import { urgentes, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
-import { resumenAsistencia, urgentesAsistencia, bandeja, htmlBandeja, htmlTablero, nivelAsistencia, cierre, htmlCierre, filasCierre, TITULOS_CIERRE } from './hub-asistencia.js';
+import { resumenAsistencia, bandeja, htmlBandeja, htmlAsistenciaCurso, cierre, htmlCierre, filasCierre, TITULOS_CIERRE } from './hub-asistencia.js';
 import { buscar, htmlResultados } from './hub-buscador.js';
 
 const $ = (id) => document.getElementById(id);
@@ -62,7 +62,7 @@ function tarjeta(r) {
     ${d ? `<div class="barra" role="img" aria-label="${r.hechas} de ${d.clases.length} clases realizadas"><i style="width:${Math.round(100 * r.hechas / d.clases.length)}%"></i></div>
     <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. Datos publicados ${esc(haceCuanto(d.meta.generadoEn))}.</p>` : ''}
     <p class="teams-av">${c.avisosTeams ? `${ic('check')}Avisos de cambio de fecha por el grupo de Teams` : `${ic('warning')}Sin grupo de Teams para avisos a estudiantes`}</p>
-    ${r.asis ? (() => { const n = urgentesAsistencia(r).length; return `<p class="teams-av"><a href="#asistencia">${ic(n ? 'warning' : 'check')}${n ? `Asistencia: ${n} ${n === 1 ? 'estudiante por atender' : 'estudiantes por atender'}` : 'Asistencia al día'}</a></p>`; })() : ''}
+    ${htmlAsistenciaCurso(r)}
     <p class="falta ${n ? '' : 'ok'}">${n ? `${ic('warning')}${n === 1 ? 'Falta confirmar 1 dato' : `Faltan confirmar ${n} datos`}` : `${ic('check')}Nada por confirmar`}</p>
     <div class="acciones-curso">
       <a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Abrir sitio${ic('arrow-up-right')}</a>
@@ -227,30 +227,16 @@ function seccionAsistencia(activos, todos) {
   $('asistencia').hidden = $('nav-asistencia').hidden = !asisCursos.length && !cierres.length;
   $('asis-cierres-t').hidden = $('asis-cierres-nota').hidden = !cierres.length;
   $('asis-cierres').innerHTML = cierres.map(htmlCierre).join('');
-  if (!asisCursos.length) {
-    $('asis-bandeja').innerHTML = '<p class="nota">No hay cursos activos con asistencia publicada.</p>';
-    $('asis-lista').innerHTML = $('asis-conteo').textContent = $('asis-resumen').textContent = '';
-    $('asis-filtros').hidden = true;
-    return;
-  }
-  const grupos = [...new Set(asisCursos.map((r) => etiquetaPeriodo(r.c)))].sort().reverse();
-  const previo = $('asis-grupo').value;
-  $('asis-grupo').innerHTML = `<option value="">Todos</option>${grupos.map((g) => `<option value="${esc(g)}"${g === previo ? ' selected' : ''}>${esc(g)}</option>`).join('')}`;
-  $('asis-filtros').hidden = asisCursos.length < 4;
-  $('asis-resumen').textContent = resumenAsistencia(asisCursos);
+  $('asis-resumen').textContent = asisCursos.length ? resumenAsistencia(asisCursos) : '';
+  if (!asisCursos.length) { $('asis-bandeja').innerHTML = '<p class="nota">No hay cursos activos con asistencia publicada.</p>'; return; }
   pintarAsistencia();
 }
 
+/** La bandeja de seguimiento junta a los estudiantes de todos los cursos; el detalle de cada curso está en su tarjeta. */
 function pintarAsistencia() {
   const lista = bandeja(asisCursos);
   const hechos = new Set([...contactados].filter((id) => lista.some((x) => x.id === id))); // una marca de un estudiante que ya no está en la lista se descarta
   $('asis-bandeja').innerHTML = htmlBandeja(lista, hechos);
-  const q = norm($('asis-buscar').value || '').trim(), g = $('asis-grupo').value, solo = $('asis-solo').checked;
-  const vis = asisCursos.filter((r) => (!q || norm(r.c.programaCorto).includes(q)) && (!g || etiquetaPeriodo(r.c) === g) && (!solo || ['rojo', 'ambar'].includes(nivelAsistencia(r))));
-  const abiertos = new Set([...document.querySelectorAll('#asis-lista details[open]')].map((d) => d.dataset.curso));
-  $('asis-lista').innerHTML = vis.length ? htmlTablero(vis) : '<p class="nota">Ningún curso coincide con el filtro.</p>';
-  for (const d of document.querySelectorAll('#asis-lista details')) d.open = abiertos.has(d.dataset.curso);
-  $('asis-conteo').textContent = asisCursos.length >= 4 ? `Mostrando ${vis.length} de ${asisCursos.length} cursos con asistencia.` : '';
 }
 
 /** Filtros de la lista de cursos: texto, periodo y cohorte, y semáforo. Solo aparecen cuando hay más de unos pocos cursos. */
@@ -266,8 +252,10 @@ function pintarCursos() {
   const g = $('cur-grupo').value;
   const sem = $('cur-semaforo').value;
   const vis = activosVivos.filter((r) => (!q || norm(r.c.programaCorto).includes(q)) && (!g || etiquetaPeriodo(r.c) === g) && (!sem || salud(r, ahora()).nivel === sem));
+  const abiertos = new Set([...document.querySelectorAll('#cursos-lista [data-asis-curso][open]')].map((d) => d.dataset.asisCurso));
   $('cursos-lista').innerHTML = vis.length ? vis.map(tarjeta).join('')
     : `<p class="nota">${activosVivos.length ? 'Ningún curso coincide con el filtro.' : 'No hay cursos activos. Agrega los del nuevo periodo en el Excel de registro.'}</p>`;
+  for (const d of document.querySelectorAll('#cursos-lista [data-asis-curso]')) d.open = abiertos.has(d.dataset.asisCurso);
   $('cur-conteo').textContent = activosVivos.length >= 4 ? `Mostrando ${vis.length} de ${activosVivos.length} cursos activos.` : '';
 }
 
@@ -300,7 +288,6 @@ async function arrancar() {
   $('pie-carpeta').innerHTML = `<a href="${esc(meta.carpetaActual)}" target="_blank" rel="noopener">Abrir la carpeta ${esc(meta.nombreCarpetaActual)} en SharePoint</a>`;
   await pintar(meta);
   for (const id of ['cur-buscar', 'cur-grupo', 'cur-semaforo']) $(id).addEventListener(id === 'cur-buscar' ? 'input' : 'change', pintarCursos);
-  for (const id of ['asis-buscar', 'asis-grupo', 'asis-solo']) $(id).addEventListener(id === 'asis-buscar' ? 'input' : 'change', pintarAsistencia);
   document.addEventListener('change', (e) => {
     const c = e.target.closest('[data-contactado]');
     if (!c) return;

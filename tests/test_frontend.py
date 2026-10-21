@@ -408,12 +408,13 @@ def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
     assert not pagina.locator("#asistencia").get_attribute("hidden")
     filas = pagina.locator("#asis-bandeja tbody tr")
     assert filas.count() == 3 and "Perdió el mínimo" in filas.nth(0).inner_text() and "En riesgo" in filas.nth(1).inner_text() and "N.º 3" in filas.nth(1).inner_text() and "Atención" in filas.nth(2).inner_text()
-    assert "Estudiante de prueba" not in pagina.inner_text("#asistencia")
-    assert pagina.locator("#asis-lista .asis-fila.rojo").count() == 2
-    pagina.locator("#asis-lista details", has_text="Compliance").locator("summary").click()
-    assert "28 de 35" in pagina.inner_text("#asis-lista") and pagina.locator("#asis-lista details", has_text="Compliance").locator(".asis-barras li").count() == 35
+    assert "Estudiante de prueba" not in pagina.inner_text("#asistencia") and pagina.locator("#asis-lista").count() == 0  # el detalle por curso ya no es una lista aparte
+    assert pagina.locator("#cursos-lista .curso-asis.rojo").count() == 2
+    compliance = pagina.locator("#cursos-lista .curso", has_text="Compliance")
+    compliance.locator(".curso-asis summary").click()
+    assert "28 de 35" in compliance.inner_text() and compliance.locator(".asis-barras li").count() == 35
     pagina.locator("[data-contactado]").first.check()  # la primera es la de Derecho Laboral, que perdió el mínimo
-    assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#asis-lista details[open]").count() == 1
+    assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#cursos-lista .curso-asis[open]").count() == 1
     pagina.reload()
     pagina.wait_for_selector("#asis-bandeja tbody tr")
     assert pagina.locator("[data-contactado]").first.is_checked() and pagina.errores == []

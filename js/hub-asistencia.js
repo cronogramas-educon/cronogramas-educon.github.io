@@ -36,7 +36,6 @@ export function nivelAsistencia(r, t = ahora()) {
   if ((a.porEstado['En riesgo'] || 0) + (a.porEstado['Perdió el mínimo'] || 0)) return 'rojo';
   return a.porEstado.Atención || a.sinMarcar || sinRegistrar(r, t).length ? 'ambar' : 'verde';
 }
-const ORDEN_NIVEL = { rojo: 0, ambar: 1, verde: 2, gris: 3 };
 const NIVEL_TXT = { rojo: 'Requiere atención', ambar: 'Por revisar', verde: 'Todo en orden', gris: 'Sin asistencia publicada' };
 
 /** Estudiantes a quienes conviene escribirles, de todos los cursos, de más a menos urgente. */
@@ -79,22 +78,16 @@ function detalle(r, t) {
     <ul class="asis-fichas">${fichas}</ul>${avisos}${barras(a)}`;
 }
 
-/** Una fila por curso, de más a menos urgente. Al abrirla se despliega el detalle. */
-export function htmlTablero(rs, t = ahora()) {
-  const filas = rs.map((r) => ({ r, nivel: nivelAsistencia(r, t) })).sort((p, q) => ORDEN_NIVEL[p.nivel] - ORDEN_NIVEL[q.nivel] || p.r.c.programaCorto.localeCompare(q.r.c.programaCorto));
-  return `<div class="asis-tablero">${filas.map(({ r, nivel }) => {
-    const { c, asis: a } = r;
-    if (!a) return `<div class="asis-fila gris"><div class="asis-resumen-fila"><span class="asis-punto"></span><span class="asis-curso"><strong>${esc(c.programaCorto)}</strong><small>${esc(etiquetaPeriodo(c))}</small></span><span class="asis-nota-fila">Sin asistencia publicada. Aparece al guardar el Excel de asistencia en su carpeta.</span></div></div>`;
-    const alerta = (a.porEstado['Perdió el mínimo'] || 0) + (a.porEstado['En riesgo'] || 0);
-    const atencion = a.porEstado.Atención || 0;
-    return `<details class="asis-fila ${nivel}" data-curso="${esc(c.id)}"><summary class="asis-resumen-fila"><span class="asis-punto" title="${NIVEL_TXT[nivel]}"></span>
-      <span class="asis-curso"><strong>${esc(c.programaCorto)}</strong><small>${esc(etiquetaPeriodo(c))}</small></span>
-      <span class="asis-avance">${a.dictadas} de ${a.programadas}<small>clases</small></span>
-      <span class="asis-prom"><span class="barra" role="img" aria-label="Asistencia promedio ${pct(a.promedio)}"><i style="width:${Math.round((a.promedio || 0) * 100)}%"></i></span>${pct(a.promedio)}</span>
-      <span class="asis-pills">${alerta ? `<span class="est-asis riesgo" title="En riesgo o perdieron el mínimo">${alerta}</span>` : ''}${atencion ? `<span class="est-asis atencion" title="En atención">${atencion}</span>` : ''}${!alerta && !atencion ? '<span class="asis-ok-mini">Al día</span>' : ''}</span>
-      <span class="asis-abrir" aria-hidden="true"></span></summary>
-      <div class="asis-detalle">${detalle(r, t)}</div></details>`;
-  }).join('')}</div>`;
+/** Bloque plegable de asistencia que va dentro de la tarjeta de cada curso. */
+export function htmlAsistenciaCurso(r, t = ahora()) {
+  const a = r.asis;
+  if (!a) return '';
+  const nivel = nivelAsistencia(r, t);
+  const alerta = (a.porEstado['Perdió el mínimo'] || 0) + (a.porEstado['En riesgo'] || 0), atencion = a.porEstado.Atención || 0, por = alerta + atencion;
+  return `<details class="curso-asis ${nivel}" data-asis-curso="${esc(r.c.id)}"><summary><span class="asis-punto" title="${NIVEL_TXT[nivel]}" aria-hidden="true"></span>
+    <span class="ca-texto"><strong>Asistencia</strong><small>${a.dictadas} de ${a.programadas} clases dictadas, promedio ${pct(a.promedio)}</small></span>
+    ${por ? `<span class="est-asis ${alerta ? 'riesgo' : 'atencion'}">${por} por atender</span>` : nivel === 'verde' ? '<span class="asis-ok-mini">Al día</span>' : '<span class="est-asis atencion">Por revisar</span>'}<span class="asis-abrir" aria-hidden="true"></span></summary>
+    <div class="asis-detalle">${detalle(r, t)}</div></details>`;
 }
 
 /** Resultado final del curso según el Excel de asistencia. Solo existe cuando el curso terminó o ya se dictaron todas las clases. */

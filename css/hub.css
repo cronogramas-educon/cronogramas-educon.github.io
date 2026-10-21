@@ -333,3 +333,22 @@
 @media (hover: none) { .atajo { display: none; } }
 #urgente-lista, #cursos-lista { margin-top: 14px; }
 @media (max-width: 720px) { .nav-hub { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); padding-right: 24px; } }
+
+/* Asistencia dentro de la tarjeta de cada curso */
+.curso-asis { padding-top: 10px; border-top: 1px dashed var(--ink-2); }
+.curso-asis > summary { display: flex; align-items: center; gap: 10px; min-height: 44px; cursor: pointer; list-style: none; }
+.curso-asis > summary::-webkit-details-marker { display: none; }
+.curso-asis > summary:hover .ca-texto strong { text-decoration: underline; text-underline-offset: .2em; }
+.ca-texto { flex: 1; display: grid; gap: 1px; min-width: 0; }
+.ca-texto strong { font: 800 .98rem/1.2 var(--font-display); }
+.ca-texto small { color: var(--ink-2); font-size: .84rem; }
+.curso-asis .asis-detalle { padding: 8px 0 4px; }
+.curso-asis .asis-punto { flex: none; }
+.curso-asis.rojo .asis-punto { background: var(--red); }
+.curso-asis.ambar .asis-punto { background: var(--amber); outline: 1px solid var(--amber-ink); }
+.curso-asis.verde .asis-punto { background: #2E8B57; }
+.curso-asis[open] .asis-abrir::after { transform: rotate(-135deg); }
+.curso-asis .asis-detalle { grid-template-columns: minmax(0, 1fr); }
+.curso-asis .asis-linea, .curso-asis .alerta { max-width: none; overflow-wrap: anywhere; }
+.curso-asis .asis-barras li span { display: none; }
+.curso-asis .asis-barras li:nth-child(5n) span { display: block; }
