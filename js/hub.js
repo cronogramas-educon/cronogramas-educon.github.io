@@ -17,7 +17,7 @@ const urlCurso = (c) => new URL(`${c.ruta}/`, BASE).href;
 
 function analizar(c, d, error) {
   const t = ahora();
-  const r = { c, d: d || null, error: error || null, estado: 'sin-datos', proxima: null, hechas: 0, falta: { prof: [], pat: [], link: [] }, cambios: [] };
+  const r = { c, d: d || null, error: error || null, fallo: !!c.tieneDatos && !d, estado: 'sin-datos', proxima: null, hechas: 0, falta: { prof: [], pat: [], link: [] }, cambios: [] };
   if (!d) return r;
   const cs = d.clases;
   r.hechas = cs.filter((x) => estadoClase(x, t) === 'pasada').length;
@@ -47,7 +47,9 @@ function tarjeta(r) {
   const { c, d, error } = r;
   const prox = r.proxima
     ? `<p class="prox"><span>Próxima</span><strong>${esc(cap(r.proxima.clase.toLowerCase()))}</strong>, ${esc(fechaLarga(r.proxima.fecha))}, ${esc(horario(r.proxima))}<br>${r.proxima.profesores.length ? esc(r.proxima.profesores.join(' y ')) : '<em class="pendiente">Docente por confirmar</em>'}</p>`
-    : d ? '<p class="prox"><span>Estado</span>Todas las clases ya se realizaron.</p>' : '<p class="prox"><span>Estado</span>Aún no hay datos publicados. Se publican al guardar el Excel.</p>';
+    : d ? '<p class="prox"><span>Estado</span>Todas las clases ya se realizaron.</p>'
+    : r.fallo ? `<p class="prox"><span>Estado</span>${ic('warning')} No se pudieron cargar los datos de este curso. Prueba con «Actualizar ahora».</p>`
+    : '<p class="prox"><span>Estado</span>Aún no hay datos publicados. Se publican al guardar el Excel.</p>';
   const url = urlCurso(c);
   const n = pendientesTxt(r).length;
   const sa = salud(r, ahora());
@@ -85,7 +87,7 @@ function tablaPendientes(rs) {
 function listaCambios(rs) {
   const cs = rs.flatMap((r) => r.cambios);
   $('lista-cambios').innerHTML = cs.length
-    ? `<ul class="cambios">${cs.map((x) => `<li><strong>${esc(x.curso.programaCorto)}</strong>: ${esc(cap(x.clase.toLowerCase()))} pasó del ${esc(fechaLarga(x.cambio.fechaAnterior))} al ${esc(fechaLarga(x.fecha))}. <small>Detectado ${esc(haceCuanto(x.cambio.detectadoEn))}.</small></li>`).join('')}</ul>`
+    ? `<ul class="cambios">${cs.map((x) => `<li>${ic('warning')}<span><strong>${esc(x.curso.programaCorto)}</strong>: ${esc(cap(x.clase.toLowerCase()))} pasó del ${esc(fechaLarga(x.cambio.fechaAnterior))} al ${esc(fechaLarga(x.fecha))}. <small>Detectado ${esc(haceCuanto(x.cambio.detectadoEn))}.</small></span></li>`).join('')}</ul>`
     : '<p class="nota">No hay cambios de fecha vigentes en ningún curso.</p>';
 }
 
@@ -124,26 +126,34 @@ function registro(meta) {
 const hora = (c) => horario(c);
 const filaClase = (x) => `<strong>${esc(x.curso.programaCorto)}</strong>, ${esc(cap(x.c.clase.toLowerCase()))}`;
 
-/** Lo que hay que resolver ya: clases de los próximos 14 días a las que les falta algo, de todos los cursos juntos. */
+const FALTA_TXT = { Docente: 'Sin docente', 'Asistente PAT': 'Sin asistente', 'Enlace de Teams': 'Sin enlace de Teams' };
+
+/** Lo que hay que resolver ya: clases de los próximos 14 días a las que les falta algo y choques de horario, de todos los cursos juntos. */
 function seccionUrgente(rs) {
-  const u = urgentes(rs, ahora());
-  const fila = (x) => `<tr><th scope="row">${esc(fechaLarga(x.c.fecha))}<small>${esc(hora(x.c))}</small></th><td>${filaClase(x)}</td><td>${x.faltas.map((f) => `<span class="n">${esc(f)}</span>`).join(' ')}</td><td><a href="${esc(x.curso.carpetaSharePoint)}" target="_blank" rel="noopener">Abrir carpeta</a></td></tr>`;
-  const tabla = (xs) => `<div class="tabla-envoltura"><table class="tabla-pend tabla-urg"><thead><tr><th>Fecha</th><th>Curso</th><th>Falta confirmar</th><th>Excel</th></tr></thead><tbody>${xs.map(fila).join('')}</tbody></table></div>`;
-  $('urgente-lista').innerHTML = u.length
-    ? `<p class="resumen-sec"><strong>${u.length}</strong> ${u.length === 1 ? 'clase' : 'clases'} en los próximos 14 días con datos sin confirmar.</p>${tabla(u.slice(0, 8))}${u.length > 8 ? `<details class="mas"><summary>Ver las ${u.length - 8} restantes</summary>${tabla(u.slice(8))}</details>` : ''}`
-    : `<p class="nota ok-nota">${ic('check')}Nada urgente: las clases de los próximos 14 días tienen docente, asistente y enlace.</p>`;
+  const t = ahora(), u = urgentes(rs, t), ch = choques(rs, t), hoy = hoyISO(t), manana = addDias(hoy, 1);
+  const n = u.length + ch.length;
+  $('ins-urgente').hidden = !n;
+  $('ins-urgente').innerHTML = n ? `${n}<span class="solo-lectores"> ${n === 1 ? 'asunto urgente' : 'asuntos urgentes'}</span>` : '';
+  const dia = (f) => (f === hoy ? '<em class="cuando">Hoy</em>' : f === manana ? '<em class="cuando">Mañana</em>' : '');
+  const item = (x) => `<li><span class="urg-fecha">${dia(x.c.fecha)}<strong>${esc(fechaLarga(x.c.fecha))}</strong><small>${esc(hora(x.c))}</small></span>
+    <span class="urg-clase">${filaClase(x)}</span>
+    <span class="urg-faltas">${x.faltas.map((f) => `<span class="falta-chip">${ic('warning')}${esc(FALTA_TXT[f] ?? f)}</span>`).join('')}</span>
+    <a class="urg-enlace" href="${esc(x.curso.carpetaSharePoint)}" target="_blank" rel="noopener">${ic('folder-open')}Corregir en SharePoint</a></li>`;
+  const lista = (xs) => `<ul class="urg-lista">${xs.map(item).join('')}</ul>`;
+  const aviso = ch.length
+    ? `<div class="urg-choques"><h3 class="sub-rep">Choques de horario <span class="cuenta">${ch.length}</span></h3><ul class="alertas">${ch.map((k) => `<li class="alerta" role="alert">${ic('warning')}<span><strong>${esc(k.rol)} ${esc(k.nombre)}</strong> tiene dos clases a la vez el ${esc(fechaLarga(k.a.c.fecha))}: ${esc(k.a.curso.programaCorto)} (${esc(hora(k.a.c))}) y ${esc(k.b.curso.programaCorto)} (${esc(hora(k.b.c))}).</span></li>`).join('')}</ul></div>` : '';
+  $('urgente-lista').innerHTML = n
+    ? `<p class="resumen-sec">${u.length ? `<strong>${u.length}</strong> ${u.length === 1 ? 'clase' : 'clases'} con datos sin confirmar` : 'Todas las clases tienen sus datos'}${ch.length ? `, <strong>${ch.length}</strong> ${ch.length === 1 ? 'choque' : 'choques'} de horario` : ''}.</p>${aviso}${u.length ? `<h3 class="sub-rep">Datos por confirmar <span class="cuenta">${u.length}</span></h3>${lista(u.slice(0, 8))}${u.length > 8 ? `<details class="mas"><summary>Ver las ${u.length - 8} restantes</summary>${lista(u.slice(8))}</details>` : ''}` : ''}`
+    : `<p class="vacio-ok">${ic('check')}<span><strong>Todo en orden.</strong> Las clases de los próximos 14 días tienen docente, asistente y enlace, y no hay choques de horario.</span></p>`;
 }
 
 /** Agenda de las próximas 4 semanas de todos los cursos, con los choques de docentes o asistentes arriba. */
 function seccionAgenda(rs) {
-  const t = ahora(), ch = choques(rs, t), ag = agenda(rs, t);
-  const aviso = ch.length
-    ? `<ul class="alertas">${ch.map((k) => `<li class="alerta" role="alert">${ic('warning')}<span><strong>${esc(k.rol)} ${esc(k.nombre)}</strong> tiene dos clases a la vez el ${esc(fechaLarga(k.a.c.fecha))}: ${esc(k.a.curso.programaCorto)} (${esc(hora(k.a.c))}) y ${esc(k.b.curso.programaCorto)} (${esc(hora(k.b.c))}).</span></li>`).join('')}</ul>`
-    : `<p class="nota ok-nota">${ic('check')}Sin choques: ningún docente ni asistente tiene dos clases a la vez.</p>`;
+  const t = ahora(), ag = agenda(rs, t);
   const dia = ([f, lista]) => `<div class="dia-agenda"><h3>${esc(cap(fechaLarga(f)))}</h3><ul>${lista.map((x) => `<li><span class="h">${esc(hora(x.c))}</span><span>${filaClase(x)}<small>${x.c.profesores.length ? esc(x.c.profesores.join(' y ')) : '<em class="pendiente">Docente por confirmar</em>'}</small></span></li>`).join('')}</ul></div>`;
   const tope = addDias(hoyISO(t), 7);
   const pronto = [...Map.groupBy(ag.filter((x) => x.c.fecha <= tope), (x) => x.c.fecha)], luego = [...Map.groupBy(ag.filter((x) => x.c.fecha > tope), (x) => x.c.fecha)];
-  $('agenda-lista').innerHTML = aviso + (ag.length
+  $('agenda-lista').innerHTML = (ag.length
     ? `${pronto.map(dia).join('') || '<p class="nota">No hay clases en los próximos 7 días.</p>'}${luego.length ? `<details class="mas"><summary>Ver las semanas siguientes (${luego.reduce((n, [, l]) => n + l.length, 0)} clases)</summary>${luego.map(dia).join('')}</details>` : ''}`
     : '<p class="nota">No hay clases programadas en las próximas 4 semanas.</p>');
 }
@@ -157,7 +167,8 @@ function seccionReportes(rs) {
   const rep = reportes(sel, ahora());
   const tabla = (cab, filas) => `<div class="tabla-envoltura"><table class="tabla-pend"><thead><tr>${cab.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${filas.map((f) => `<tr>${f.map((c, i) => (i ? `<td>${c}</td>` : `<th scope="row">${c}</th>`)).join('')}</tr>`).join('')}</tbody></table></div>`;
   const n1 = (e) => String(Math.round(e * 10) / 10).replace('.', ',');
-  $('rep-docentes').innerHTML = `<details class="mas"><summary>Ver los ${rep.docentes.length} docentes</summary>${tabla(['Docente', 'Clases', 'Horas', 'Ya realizadas', 'Cursos'], rep.docentes.map((e) => [esc(e.k), e.clases, esc(horasTxt(e)), n1(e.hechas), esc(e.cursos.join(', '))]))}</details>`;
+  $('rep-docentes').innerHTML = tabla(['Docente', 'Clases', 'Horas', 'Ya realizadas', 'Cursos'], rep.docentes.map((e) => [esc(e.k), e.clases, esc(horasTxt(e)), n1(e.hechas), esc(e.cursos.join(', '))]));
+  $('rep-sel').textContent = `Mostrando: ${periodoSel ? `periodo ${periodoSel}` : 'todos los periodos'}. ${rep.docentes.length} ${rep.docentes.length === 1 ? 'docente' : 'docentes'}, ${rep.cursos.length} ${rep.cursos.length === 1 ? 'curso' : 'cursos'}.`;
   $('rep-cursos').innerHTML = tabla(['Curso', 'Periodo', 'Clases', 'Horas', 'Docentes'], rep.cursos.map((e) => [esc(e.nombre), esc(e.periodo || 'Por confirmar'), e.clases, esc(horasTxt(e)), e.docentes]));
   $('rep-meses').innerHTML = tabla(['Mes', 'Clases', 'Horas'], rep.meses.map((e) => [esc(cap(mesAnio(e.k))), e.clases, esc(horasTxt(e))]));
   $('rep-nota').textContent = 'Las horas salen de la columna Horas del Excel. Donde esa casilla está vacía se calculan con el horario del curso y se marcan como estimadas. Una clase con dos docentes cuenta completa para cada uno.';
@@ -179,6 +190,9 @@ async function pintar(meta) {
     return Object.assign(analizar(c, d, error), { asis: asis || null });
   }));
   ultimosRs = rs;
+  const fallos = rs.filter((r) => r.fallo);
+  $('aviso-carga').hidden = !fallos.length;
+  $('aviso-carga').innerHTML = fallos.length ? `${ic('warning')}<span>No se pudieron cargar los datos de ${fallos.length} ${fallos.length === 1 ? 'curso' : 'cursos'} (${esc(fallos.map((r) => r.c.programaCorto).join(', '))}). Lo que ves puede estar incompleto.</span><button class="btn" type="button" data-reintentar>Reintentar</button>` : '';
   const activos = rs.filter((r) => r.estado !== 'terminado');
   resumen(activos, rs.length - activos.length);
   activosVivos = activos;
@@ -193,7 +207,11 @@ async function pintar(meta) {
   seccionReportes(rs);
   registro(meta);
   buscarGlobal();
-  $('refresco').textContent = `Actualizado ${fechaLargaAnio(hoyISO())}`;
+  const publicados = rs.map((r) => r.d?.meta.generadoEn).filter(Boolean).sort().at(-1);
+  const hh = new Date().toLocaleTimeString('es-CO', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' });
+  $('act-texto').textContent = `${publicados ? `Último cambio publicado ${haceCuanto(publicados)}. ` : ''}Página revisada a las ${hh}`;
+  $('refresco').textContent = `Revisado ${fechaLargaAnio(hoyISO())}, ${hh}`;
+  document.getElementById('inicio').removeAttribute('aria-busy');
 }
 
 /** Asistencia: bandeja de seguimiento de todos los cursos y un tablero con una fila por curso. Solo aparece si algún curso activo tiene el Excel de asistencia publicado. */
@@ -271,7 +289,14 @@ function buscarGlobal() {
 
 async function arrancar() {
   const meta = await traer('cursos.json');
-  if (!meta) { $('cursos-lista').innerHTML = '<p class="nota">No se pudo cargar la lista de cursos.</p>'; return; }
+  if (!meta) {
+    const err = '<div class="error-carga" role="alert"><span>No se pudo cargar la información. Puede ser tu conexión o que el sitio esté actualizándose.</span><button class="btn" type="button" data-reintentar>Reintentar</button></div>';
+    $('cursos-lista').innerHTML = $('urgente-lista').innerHTML = err;
+    $('act-texto').textContent = 'No se pudo cargar la información.';
+    return;
+  }
+  document.querySelectorAll('[data-ic]').forEach((e) => { e.outerHTML = ic(e.dataset.ic); });
+  $('inicio').setAttribute('aria-busy', 'true');
   $('pie-carpeta').innerHTML = `<a href="${esc(meta.carpetaActual)}" target="_blank" rel="noopener">Abrir la carpeta ${esc(meta.nombreCarpetaActual)} en SharePoint</a>`;
   await pintar(meta);
   for (const id of ['cur-buscar', 'cur-grupo', 'cur-semaforo']) $(id).addEventListener(id === 'cur-buscar' ? 'input' : 'change', pintarCursos);
@@ -308,6 +333,58 @@ async function arrancar() {
     const t = b.querySelector('span'); const antes = t.textContent;
     t.textContent = ok ? 'Enlace copiado' : 'Copia el enlace de abajo'; setTimeout(() => { t.textContent = antes; }, 1800);
   });
-  setInterval(() => { if (document.visibilityState === 'visible') pintar(meta); }, 60000);
+  const refrescar = async () => { const m = await traer('cursos.json'); if (m) await pintar(m); };
+  setInterval(() => { if (document.visibilityState === 'visible') refrescar(); }, 60000);
+  document.addEventListener('click', async (e) => {
+    const a = e.target.closest('#act-ahora');
+    const r = e.target.closest('[data-reintentar]');
+    if (!a && !r) return;
+    const b = a || r, antes = b.textContent;
+    b.disabled = true; b.textContent = 'Actualizando…';
+    await refrescar();
+    if (b.isConnected) { b.disabled = false; b.textContent = antes; }
+  });
+  pestanasReportes();
+  navegacion();
+}
+
+/** Pestañas de los reportes: una tabla a la vez, con flechas del teclado. */
+function pestanasReportes() {
+  const tabs = [...document.querySelectorAll('#reportes [role=tab]')];
+  const abrir = (t, foco) => {
+    for (const x of tabs) {
+      const on = x === t;
+      x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+      $(x.getAttribute('aria-controls')).hidden = !on;
+    }
+    if (foco) t.focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => abrir(t));
+    t.addEventListener('keydown', (e) => {
+      const paso = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (paso) { e.preventDefault(); abrir(tabs[(i + paso + tabs.length) % tabs.length], true); }
+      if (e.key === 'Home') { e.preventDefault(); abrir(tabs[0], true); }
+      if (e.key === 'End') { e.preventDefault(); abrir(tabs.at(-1), true); }
+    });
+  });
+}
+
+/** Menú fijo que marca la sección que se está leyendo, y botón para volver arriba. */
+function navegacion() {
+  const enlaces = new Map([...document.querySelectorAll('#nav-hub a')].map((a) => [a.getAttribute('href').slice(1), a]));
+  const marcar = (id) => { for (const [k, a] of enlaces) { if (k === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); } };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      const vis = es.filter((x) => x.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (vis) marcar(vis.target.id === 'buscar' ? 'buscar' : vis.target.id);
+    }, { rootMargin: '-20% 0px -65% 0px' });
+    for (const id of [...enlaces.keys(), 'registro']) { const el = $(id); if (el) io.observe(el); }
+  }
+  const subir = $('subir');
+  const mostrar = () => { subir.hidden = window.scrollY < 700; };
+  window.addEventListener('scroll', mostrar, { passive: true });
+  subir.addEventListener('click', () => window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+  mostrar();
 }
 arrancar();

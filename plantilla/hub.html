@@ -15,30 +15,39 @@
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="caucho" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="r"/><feColorMatrix in="r" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3.4 0 0 0 2.9" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
+  <a class="omitir" href="#inicio">Saltar al contenido</a>
   <header class="cabecera">
     <div class="dentro">
       <span class="marca">Educación Continua</span>
-      <nav class="nav" aria-label="Secciones">
-        <a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente</a><a href="#cursos">Cursos</a><a href="#asistencia" id="nav-asistencia" hidden>Asistencia</a><a href="#agenda">Agenda</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a><a href="#registro">Cursos y periodos</a>
+      <nav class="nav nav-hub" id="nav-hub" aria-label="Secciones">
+        <a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#asistencia" id="nav-asistencia" hidden>Asistencia</a><a href="#pendientes">Pendientes</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
       </nav>
+      <a class="btn-registrar" href="#registro">Cursos y periodos</a>
     </div>
   </header>
   <main class="tablero hub" id="inicio">
     <div class="hilo" aria-hidden="true"></div>
     <section class="portada-hub">
-      <p class="solo-admin">Solo para administración</p>
       <h1>Cronogramas de cursos y diplomados</h1>
       <p class="lead" id="resumen"></p>
-      <p class="nota-hub">Cada curso tiene su propio enlace para estudiantes. Desde ese enlace no se puede llegar a otro curso ni a esta página. Pásales únicamente el enlace de su curso.</p>
+      <p class="actualizacion" id="actualizacion" aria-live="polite"><span id="act-texto">Cargando los cursos…</span> <button class="enlace-btn" type="button" id="act-ahora">Actualizar ahora</button></p>
+      <div class="aviso-carga" id="aviso-carga" role="alert" hidden></div>
       <div class="buscador-global" id="buscar" role="search">
-        <label class="campo-rep" for="bg-q"><span>Buscar en todos los cursos</span></label>
-        <input id="bg-q" type="search" placeholder="Un curso, un docente o una clase. Atajo: la tecla /" autocomplete="off">
+        <label class="campo-rep" for="bg-q"><span>Buscar en todos los cursos <small class="atajo">Atajo: tecla /</small></span></label>
+        <input id="bg-q" type="search" placeholder="Un curso, un docente o una clase" autocomplete="off">
         <div id="bg-resultados" aria-live="polite"></div>
       </div>
+      <details class="mas ayuda"><summary>¿Cómo funciona esta página?</summary>
+        <ul>
+          <li>Cuando alguien guarda el Excel de un curso, esta página se actualiza sola en unos minutos.</li>
+          <li>Cada curso tiene su propio enlace para estudiantes. Desde él no se llega a otros cursos ni a esta página: pásales solo el enlace de su curso.</li>
+          <li>Esta página es para el equipo. No compartas su dirección.</li>
+        </ul>
+      </details>
     </section>
     <section class="seccion" id="urgente"><h2>Urgente, próximos 14 días</h2>
-      <p class="nota">Clases de las próximas dos semanas a las que todavía les falta docente, asistente o enlace de Teams, de todos los cursos.</p>
-      <div id="urgente-lista" aria-live="polite"></div></section>
+      <p class="nota">Clases a las que les falta docente, asistente o enlace de Teams, y choques de horario, de todos los cursos.</p>
+      <div id="urgente-lista" aria-live="polite"><div class="esqueleto" aria-hidden="true"><i></i><i></i><i></i></div></div></section>
     <section class="seccion" id="cursos"><h2>Cursos</h2>
       <div class="filtros-cursos" id="filtros-cursos" hidden>
         <label class="campo-rep"><span>Buscar un curso</span><input id="cur-buscar" type="search" placeholder="Nombre del curso" autocomplete="off"></label>
@@ -46,9 +55,10 @@
         <label class="campo-rep"><span>Estado</span><select id="cur-semaforo"><option value="">Todos</option><option value="rojo">Requieren atención</option><option value="ambar">Por revisar</option><option value="verde">Todo en orden</option></select></label>
       </div>
       <p class="nota" id="cur-conteo" aria-live="polite"></p>
-      <div class="cursos-grid" id="cursos-lista" aria-live="polite"></div></section>
+      <div class="cursos-grid" id="cursos-lista" aria-live="polite"><div class="esqueleto esqueleto-tarjetas" aria-hidden="true"><i></i><i></i><i></i></div></div></section>
     <section class="seccion" id="asistencia" hidden><h2>Asistencia</h2>
-      <p class="nota">Cómo va la asistencia, según el Excel de asistencia de la carpeta de cada curso. Para certificar, cada estudiante necesita asistir como mínimo al 80 % de las clases. Los avisos se calculan sobre las faltas permitidas de cada curso, así que valen igual para un diplomado largo que para un curso corto.</p>
+      <p class="nota">Seguimiento según el Excel de asistencia de cada curso. Para certificar hace falta asistir al menos al 80 % de las clases.</p>
+      <details class="mas ayuda"><summary>Cómo se calculan los avisos</summary><p class="nota">Los avisos se calculan sobre las faltas permitidas de cada curso, así que valen igual para un diplomado largo que para un curso corto.</p></details>
       <p class="resumen-sec" id="asis-resumen" aria-live="polite"></p>
       <h3 class="sub-rep">A quién escribirle</h3>
       <div id="asis-bandeja" aria-live="polite"></div>
@@ -64,36 +74,46 @@
       <p class="nota" id="asis-cierres-nota" hidden>Cuando un curso termina, aquí aparece quiénes aprueban y quiénes no, y se puede descargar la lista para pasarla a certificación.</p>
       <div id="asis-cierres" class="asis-tablero"></div></section>
     <section class="seccion" id="pendientes"><h2>Pendientes por confirmar</h2>
-      <p class="nota">Lo que falta en cada Excel. Cuando lo llenes en SharePoint, la página lo toma sola en un par de minutos.</p>
+      <p class="nota">Lo que falta en el Excel de cada curso. Al llenarlo en SharePoint, aquí se actualiza solo.</p>
       <div class="tabla-envoltura" id="tabla-pendientes"></div></section>
     <section class="seccion" id="agenda"><h2>Agenda de las próximas 4 semanas</h2>
-      <p class="nota">Todas las clases de todos los cursos, en orden. Arriba aparecen los choques si un docente o asistente tiene dos clases a la vez.</p>
+      <p class="nota">Todas las clases de todos los cursos, en orden de fecha.</p>
       <div id="agenda-lista" aria-live="polite"></div></section>
     <section class="seccion" id="cambios"><h2>Cambios de fecha recientes</h2><div id="lista-cambios"></div></section>
     <section class="seccion" id="reportes"><h2>Reportes de horas</h2>
-      <p class="nota" id="rep-nota"></p>
+      <details class="mas ayuda"><summary>Cómo se calculan las horas</summary><p class="nota" id="rep-nota"></p></details>
       <div class="barra-reporte">
         <label class="campo-rep"><span>Periodo</span><select id="rep-periodo"></select></label>
-        <button class="btn" type="button" id="rep-csv">Descargar para Excel</button>
-        <button class="btn" type="button" id="rep-pdf">Imprimir o guardar en PDF</button>
+        <button class="btn" type="button" id="rep-csv"><span data-ic="download-simple"></span>Descargar para Excel</button>
+        <button class="btn" type="button" id="rep-pdf"><span data-ic="printer"></span>Imprimir o guardar en PDF</button>
       </div>
-      <h3 class="sub-rep">Por docente</h3><div id="rep-docentes"></div>
-      <h3 class="sub-rep">Por curso</h3><div id="rep-cursos"></div>
-      <h3 class="sub-rep">Por mes</h3><div id="rep-meses"></div></section>
+      <p class="nota" id="rep-sel" aria-live="polite"></p>
+      <div class="pestanas" role="tablist" aria-label="Tipo de reporte">
+        <button type="button" role="tab" id="tab-docentes" aria-selected="true" aria-controls="panel-docentes">Por docente</button>
+        <button type="button" role="tab" id="tab-cursos" aria-selected="false" aria-controls="panel-cursos" tabindex="-1">Por curso</button>
+        <button type="button" role="tab" id="tab-meses" aria-selected="false" aria-controls="panel-meses" tabindex="-1">Por mes</button>
+      </div>
+      <div role="tabpanel" id="panel-docentes" aria-labelledby="tab-docentes" data-titulo="Por docente"><div id="rep-docentes"></div></div>
+      <div role="tabpanel" id="panel-cursos" aria-labelledby="tab-cursos" data-titulo="Por curso" hidden><div id="rep-cursos"></div></div>
+      <div role="tabpanel" id="panel-meses" aria-labelledby="tab-meses" data-titulo="Por mes" hidden><div id="rep-meses"></div></div></section>
     <section class="seccion" id="archivo" hidden><h2>Archivo</h2>
       <p class="nota">Los cursos terminan solos y pasan aquí. Su página sigue abierta en modo lectura con el mismo enlace.</p>
       <div id="archivo-lista"></div></section>
     <section class="seccion" id="registro"><h2>Cursos y periodos</h2>
-      <p class="nota">Aquí se agrega un curso o se abre un periodo nuevo, sin tocar GitHub. Todo sale del Excel <strong>Registro de cursos</strong>.</p>
-      <ol class="pasos">
-        <li>La forma más fácil: el botón <strong>Registrar curso nuevo</strong>. Llenas el formulario y el sistema crea solo la carpeta del curso en el sitio EduContinua de SharePoint, con su Excel listo, y la página del curso.</li>
-        <li>O, si prefieres, abre el Excel de registro y escribe una fila por curso. Para un periodo nuevo copia las filas del anterior y cambia el <strong>Periodo</strong> y la <strong>Carpeta del periodo</strong>. Si dentro del mismo periodo se vuelven a abrir cursos, copia sus filas y cambia solo la <strong>Cohorte</strong> (Cohorte 1, Cohorte 2). Guarda.</li>
-        <li>En un par de minutos el curso aparece arriba, con su enlace para estudiantes. Guarda también el Excel del curso para que se publique su cronograma.</li>
-      </ol>
-      <p class="acciones-registro"><a class="btn rojo" id="registro-formulario" href="#" target="_blank" rel="noopener" hidden>Registrar curso nuevo (formulario)</a> <a class="btn" id="registro-abrir" href="#" target="_blank" rel="noopener" hidden>Abrir el Excel Registro de cursos</a></p>
+      <p class="nota">Para abrir un curso nuevo, llena el formulario. El sistema crea la carpeta, el Excel de horas, el de asistencia y la página del curso.</p>
+      <p class="acciones-registro"><a class="btn rojo grande" id="registro-formulario" href="#" target="_blank" rel="noopener" hidden>Registrar curso nuevo</a></p>
+      <details class="mas ayuda"><summary>Otra forma: desde el Excel de registro</summary>
+        <ol class="pasos">
+          <li>Abre el Excel <strong>Registro de cursos</strong> y escribe una fila por curso. Guarda.</li>
+          <li>Para un periodo nuevo, copia las filas del anterior y cambia <strong>Periodo</strong> y <strong>Carpeta del periodo</strong>. Si se vuelven a abrir cursos en el mismo periodo, cambia solo la <strong>Cohorte</strong>.</li>
+          <li>En unos minutos el curso aparece en esta página con su enlace para estudiantes. Después llena el Excel del curso para publicar su cronograma.</li>
+        </ol>
+        <p class="acciones-registro"><a class="btn" id="registro-abrir" href="#" target="_blank" rel="noopener" hidden>Abrir el Excel Registro de cursos</a></p>
+      </details>
       <div id="registro-estado" aria-live="polite"></div>
       <p class="nota" id="registro-pie"></p></section>
   </main>
+  <button class="subir" id="subir" type="button" aria-label="Volver arriba" hidden><span data-ic="caret-down" class="giro"></span></button>
   <footer class="pie"><div class="dentro"><p id="pie-carpeta"></p><p id="refresco" aria-live="off"></p></div></footer>
   <script type="importmap">{"imports":{"__BASE__js/hub.js":"__BASE__js/hub.js?v=__V__","__BASE__js/hub-analisis.js":"__BASE__js/hub-analisis.js?v=__V__","__BASE__js/hub-asistencia.js":"__BASE__js/hub-asistencia.js?v=__V__","__BASE__js/hub-buscador.js":"__BASE__js/hub-buscador.js?v=__V__","__BASE__js/ui.js":"__BASE__js/ui.js?v=__V__","__BASE__js/iconos.js":"__BASE__js/iconos.js?v=__V__","__BASE__js/utils-fecha.js":"__BASE__js/utils-fecha.js?v=__V__"}}</script>
   <script type="module" src="__BASE__js/hub.js?v=__V__"></script>

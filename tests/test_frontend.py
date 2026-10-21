@@ -367,7 +367,8 @@ def abrir_hub(pagina, servidor, sitio, ahora):
 def test_hub_urgentes_y_semaforo(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     u = pagina.inner_text("#urgente-lista")
-    assert "Derecho Laboral" in u and "Docente" in u and "Enlace de Teams" in u
+    assert "Derecho Laboral" in u and "sin docente" in u.lower() and "sin enlace de teams" in u.lower()
+    assert "dos clases a la vez" in u and pagina.locator("#ins-urgente").is_visible()  # el sitio de prueba repite el mismo Excel en dos cursos, así que hay choques reales
     laboral = pagina.locator(".curso", has_text="Derecho Laboral")
     assert "rojo" in laboral.locator(".semaforo").get_attribute("class") and "requiere atención" in laboral.inner_text().lower()
     assert pagina.locator(".curso .semaforo").count() == 2 and pagina.errores == []
@@ -375,7 +376,7 @@ def test_hub_urgentes_y_semaforo(pagina, servidor, sitio):
 
 def test_hub_agenda_reportes_y_csv(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
-    assert pagina.locator("#agenda-lista .dia-agenda").count() >= 1 and "dos clases a la vez" in pagina.inner_text("#agenda-lista")  # el sitio de prueba repite el mismo Excel en dos cursos, así que hay choques reales
+    assert pagina.locator("#agenda-lista .dia-agenda").count() >= 1
     assert "Diplomado Derecho Laboral" in pagina.inner_text("#rep-cursos") and "estimada" in pagina.inner_text("#rep-cursos")
     assert pagina.locator("#rep-docentes tbody tr").count() >= 3 and pagina.locator("#rep-meses tbody tr").count() >= 2
     pagina.select_option("#rep-periodo", "2026-2")
@@ -450,3 +451,24 @@ def test_hub_cierre_de_curso_lista_y_descarga(pagina, servidor, sitio):
     texto = Path(d.value.path()).read_text(encoding="utf-8-sig")
     assert d.value.suggested_filename.startswith("cierre-") and "Número de lista;Resultado" in texto
     assert ";1;Aprueba;" in texto and ";3;No aprueba;" in texto and "Estudiante de prueba" not in texto and pagina.errores == []
+
+
+def test_hub_navegacion_pestanas_y_estados(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    enlaces = pagina.locator("#nav-hub a:visible").all_inner_texts()
+    for s_ in ("Buscar", "Urgente", "Cursos", "Pendientes", "Agenda", "Cambios", "Reportes"):
+        assert any(e.startswith(s_) for e in enlaces), s_
+    assert pagina.locator(".btn-registrar").is_visible() and pagina.locator("#inicio[aria-busy]").count() == 0
+    assert "Último cambio publicado" in pagina.inner_text("#act-texto") or "Página revisada" in pagina.inner_text("#act-texto")
+    # pestañas de reportes: una tabla a la vez y navegación con flechas
+    assert pagina.locator("#panel-docentes").is_visible() and not pagina.locator("#panel-cursos").is_visible()
+    pagina.locator("#tab-docentes").focus()
+    pagina.keyboard.press("ArrowRight")
+    assert pagina.locator("#panel-cursos").is_visible() and pagina.locator("#tab-cursos").get_attribute("aria-selected") == "true"
+    # volver arriba aparece al bajar y el menú marca la sección
+    pagina.evaluate("window.scrollTo(0, document.getElementById('reportes').offsetTop)")
+    pagina.wait_for_selector("#subir:not([hidden])")
+    pagina.wait_for_selector("#nav-hub a[aria-current]")
+    pagina.click("#subir")
+    pagina.wait_for_function("window.scrollY < 50")
+    assert pagina.errores == []
