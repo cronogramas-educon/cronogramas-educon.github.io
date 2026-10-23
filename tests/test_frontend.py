@@ -502,6 +502,11 @@ def test_hub_mensaje_de_bienvenida_vista_previa_y_boton_de_envio(pagina, servido
 
 
 def test_hub_bienvenida_sin_formulario_lo_avisa(pagina, servidor, sitio):
+    def sin_formulario(ruta):
+        meta = ruta.fetch().json()
+        meta["formularioBienvenida"] = ""
+        ruta.fulfill(json=meta)
+    pagina.route("**/g/*/cursos.json*", sin_formulario)
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     tarjeta = pagina.locator("#cursos-lista .curso", has_text="Compliance")
     tarjeta.locator("[data-bienv-curso] > summary").click()
