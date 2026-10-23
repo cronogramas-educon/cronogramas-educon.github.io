@@ -33,7 +33,8 @@
     "desfase": "-05:00",
     "registroRuta": "Registro de cursos.xlsx",
     "urlSitio": "https://cronogramas-educon.github.io",
-    "formularioRegistro": "https://forms.cloud.microsoft/r/qNefZ5RPE1"
+    "formularioRegistro": "https://forms.cloud.microsoft/r/qNefZ5RPE1",
+    "formularioBienvenida": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=MRalrP4ADUmRqxY--HJg7stWv4lHx5VLhBpzmemdo1lUQ0NBNUxUMTNZT01RUDlUVkRFTzZRUjJXVC4u&r59e0b3dc1f5b428d95b49ee3cb75eb65="
   },
   "cursos": [
     {
