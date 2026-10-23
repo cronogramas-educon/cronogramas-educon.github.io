@@ -1,0 +1,43 @@
+{
+  "programa": "Curso PRUEBA Bienvenida 4 Teams (borrar)",
+  "programaCorto": "Curso PRUEBA Bienvenida 4",
+  "tipo": "Curso",
+  "modalidad": "Remota (Microsoft Teams)",
+  "urlPaginaOficial": "",
+  "periodo": "2028-2",
+  "cohorte": "Cohorte 1 (primera vez en el semestre)",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "horario": {
+    "inicio": "15:00",
+    "fin": "17:00",
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "uidSufijo": "cronograma-prueba-bienvenida-4-2028-2-cohorte-1-primera-vez-en-el-semestre",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "prueba-bienvenida-4-2028-2-cohorte-1-primera-vez-en-el-semestre"
+}
