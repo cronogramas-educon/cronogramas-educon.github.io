@@ -31,7 +31,8 @@ def test_mensaje_lleva_los_datos_reales_del_curso():
     assert "<li>Gestión ESG y ALA/CFT</li>" in m and "<li>Ética</li>" in m  # el módulo en mayúsculas pasa a oración y conserva las siglas
     assert "lunes y martes de 6:00 p. m. a 9:00 p. m.; sábado de 8:00 a. m. a 11:00 a. m." in m
     assert "https://ejemplo.github.io/c/demo-abc12345/" in m and "WhatsApp" not in m
-    assert "PAT (Programa Aprendamos a Trabajar):</b> {{PAT}}" in m and "Gestora Logística:</b> {{GESTORA}}" in m  # los nombres los escribe quien envía, en el formulario
+    assert "PAT (Programa Aprendamos a Trabajar):</b> {{PAT}}" in m and "Gestora Logística:</b> {{GESTORA}}" in m
+    assert m.count("{{NOTA}}") == 1 and m.index("{{NOTA}}") < m.index("exitoso ciclo")  # la nota opcional va justo antes del cierre  # los nombres los escribe quien envía, en el formulario
 
 
 def test_mensaje_no_inventa_lo_que_falta():

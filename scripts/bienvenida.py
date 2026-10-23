@@ -5,7 +5,7 @@ Uso: python scripts/bienvenida.py generar        escribe bienvenidas/<id>.json d
      python scripts/bienvenida.py ver CURSO      muestra el texto de un curso, sin enviar nada
 El texto sale de la plantilla "Mensaje de bienvenida" del equipo, con los datos reales del curso (fechas, horas, horario, módulos y
 estudiante PAT). La gestora logística y el estudiante PAT no van fijos: el mensaje lleva los marcadores {{GESTORA}} y {{PAT}} y quien lo envía escribe
-los nombres en el formulario (el hub los prellena con el PAT del Excel si existe). Lo demás no se inventa.
+los nombres en el formulario (el hub los prellena con el PAT del Excel si existe). Un tercer marcador, {{NOTA}}, es un aviso opcional propio del curso. Lo demás no se inventa.
 bienvenidas/<id>.json lleva {equipo, canal, mensaje}: un flujo de Power Automate lo lee, reemplaza los marcadores con las respuestas del formulario y publica el mensaje en el canal General del equipo.
 Este script no envía nada.
 """
@@ -17,7 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import cursos as cu
 
-PAT, GESTORA = "{{PAT}}", "{{GESTORA}}"  # los reemplaza el flujo con lo que se escribe en el formulario
+PAT, GESTORA, NOTA = "{{PAT}}", "{{GESTORA}}", "{{NOTA}}"  # los reemplaza el flujo con lo que se escribe en el formulario (la nota es opcional: sin texto desaparece)
 RAIZ = Path(__file__).resolve().parent.parent
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
@@ -98,6 +98,7 @@ def mensaje(c, d, g, url):
 <li><b>Novedades administrativas:</b> Los trámites de aplazamiento, devolución o cancelación se rigen según el Reglamento de Estudiantes de la Universidad de La Sabana.</li></ul>
 <p><b>📲 ¿Dudas o inconvenientes con Teams?</b></p>
 <p>Si presentan dificultades para ingresar a las salas de clase o alguna consulta logística, pueden escribirnos directamente por este medio.</p>
+{NOTA}
 <p>¡Les deseamos un exitoso ciclo de aprendizaje y una experiencia muy enriquecedora! 🚀🌟</p>"""
 
 

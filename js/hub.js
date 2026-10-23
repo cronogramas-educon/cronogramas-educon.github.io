@@ -52,7 +52,7 @@ function bienvenidaHtml(c, pat) {
   const url = formBienvenida ? `${formBienvenida}${encodeURIComponent(`"${c.id}"`)}${q(preguntasBienv.pat, pat)}` : '';
   return `<details class="curso-asis curso-bienv" data-bienv-curso="${esc(c.id)}"><summary><span class="ca-texto"><strong>Mensaje de bienvenida</strong><small>Para el equipo de Teams de este curso</small></span><span class="asis-abrir" aria-hidden="true"></span></summary>
     <div class="asis-detalle"><div class="bienv-cuerpo">${cacheBienvenida.get(c.id) ?? '<p class="nota">Cargando el mensaje…</p>'}</div>
-    <p class="bienv-aviso">Se publica en el canal General del equipo de este curso. Al pulsar el botón se abre un formulario donde escribes el nombre de la gestora logística y del estudiante PAT (el PAT viene escrito si ya está en el Excel). Revisa el mensaje antes de enviarlo y no lo envíes dos veces.</p>
+    <p class="bienv-aviso">Se publica en el canal General del equipo de este curso. Al pulsar el botón se abre un formulario donde escribes el nombre de la gestora logística y del estudiante PAT (el PAT viene escrito si ya está en el Excel) y, si quieres, una nota adicional para ese curso. Revisa el mensaje antes de enviarlo y no lo envíes dos veces.</p>
     ${url ? `<a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Enviar al grupo de Teams${ic('arrow-up-right')}</a>` : '<p class="alerta">Falta configurar el formulario de envío.</p>'}</div></details>`;
 }
 
@@ -350,7 +350,7 @@ async function arrancar() {
     const d = e.target;
     if (!d.matches?.('.curso-bienv') || !d.open) return;
     const id = d.dataset.bienvCurso;
-    if (!cacheBienvenida.has(id)) cacheBienvenida.set(id, (await traer(`bienvenida/${id}.json`))?.mensaje?.replace(/\{\{(PAT|GESTORA)\}\}/g, '<mark>[nombre que escribes al enviar]</mark>') ?? '<p class="nota">No se pudo cargar el mensaje. Prueba con «Actualizar ahora».</p>');
+    if (!cacheBienvenida.has(id)) cacheBienvenida.set(id, (await traer(`bienvenida/${id}.json`))?.mensaje?.replace(/\{\{NOTA\}\}/g, '').replace(/\{\{(PAT|GESTORA)\}\}/g, '<mark>[nombre que escribes al enviar]</mark>') ?? '<p class="nota">No se pudo cargar el mensaje. Prueba con «Actualizar ahora».</p>');
     const el = d.querySelector('.bienv-cuerpo');
     if (el) el.innerHTML = cacheBienvenida.get(id);
   }, true);
