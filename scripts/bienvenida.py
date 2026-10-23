@@ -4,8 +4,9 @@
 Uso: python scripts/bienvenida.py generar        escribe bienvenidas/<id>.json de cada curso con grupo de Teams y datos publicados
      python scripts/bienvenida.py ver CURSO      muestra el texto de un curso, sin enviar nada
 El texto sale de la plantilla "Mensaje de bienvenida" del equipo, con los datos reales del curso (fechas, horas, horario, módulos y
-estudiante PAT). Lo que no existe en el Excel no se inventa: sin gestora logística configurada la línea no sale, sin estudiante PAT dice "Por confirmar".
-bienvenidas/<id>.json lleva {equipo, canal, mensaje}: un flujo de Power Automate lo lee y publica el mensaje en el canal General del equipo.
+estudiante PAT). La gestora logística y el estudiante PAT no van fijos: el mensaje lleva los marcadores {{GESTORA}} y {{PAT}} y quien lo envía escribe
+los nombres en el formulario (el hub los prellena con el PAT del Excel si existe). Lo demás no se inventa.
+bienvenidas/<id>.json lleva {equipo, canal, mensaje}: un flujo de Power Automate lo lee, reemplaza los marcadores con las respuestas del formulario y publica el mensaje en el canal General del equipo.
 Este script no envía nada.
 """
 import json, re, sys
@@ -16,6 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import cursos as cu
 
+PAT, GESTORA = "{{PAT}}", "{{GESTORA}}"  # los reemplaza el flujo con lo que se escribe en el formulario
 RAIZ = Path(__file__).resolve().parent.parent
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
@@ -73,8 +75,6 @@ def mensaje(c, d, g, url):
             f"<p>Abordaremos {len(unidades)} {'módulo principal' if len(unidades) == 1 else 'módulos principales'}:</p><ul>{''.join(f'<li>{escape(u)}</li>' for u in unidades)}</ul>"
     else:
         contenido = f"<p>{f'A lo largo de las {horas} horas abordaremos' if horas else 'Abordaremos'} los temas del cronograma, que pueden consultar en la página del curso.</p>"
-    pat = _lista(d["asistentesPat"]) if d.get("asistentesPat") else "Por confirmar"
-    gestora = g.get("gestoraLogistica")
     return f"""<p><b>¡Bienvenid@s al {nombre} de la Universidad de La Sabana! 🎓✨</b></p>
 <p>Agradecemos su confianza en la Facultad de Estudios Jurídicos, Políticos e Internacionales para continuar fortaleciendo su desarrollo personal y profesional.</p>
 <p>Para asegurar una excelente experiencia académica y logística, compartimos la información clave del curso:</p>
@@ -92,7 +92,7 @@ def mensaje(c, d, g, url):
 <li><b>Entrega del certificado:</b> El certificado en formato PDF se enviará al correo electrónico registrado en un plazo máximo de 40 días hábiles posteriores a la finalización del curso.</li></ul>
 <p><b>🤝 Acompañamiento Logístico y Administrativo</b></p>
 <p>Durante todo el programa contarán con el apoyo constante del equipo de coordinación y logística:</p>
-<ul><li><b>Estudiante PAT (Programa Aprendamos a Trabajar):</b> {escape(pat)}</li>{f'<li><b>Gestora Logística:</b> {escape(gestora)}</li>' if gestora else ''}</ul>
+<ul><li><b>Estudiante PAT (Programa Aprendamos a Trabajar):</b> {PAT}</li><li><b>Gestora Logística:</b> {GESTORA}</li></ul>
 <p><b>ℹ️ Términos y Trámites Institucionales</b></p>
 <ul><li><b>Ajustes:</b> La Universidad de La Sabana se reserva el derecho de realizar modificaciones en la programación o en la plantilla docente por razones de fuerza mayor, las cuales serán notificadas previamente.</li>
 <li><b>Novedades administrativas:</b> Los trámites de aplazamiento, devolución o cancelación se rigen según el Reglamento de Estudiantes de la Universidad de La Sabana.</li></ul>

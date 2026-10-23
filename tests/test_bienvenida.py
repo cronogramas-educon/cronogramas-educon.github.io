@@ -30,13 +30,13 @@ def test_mensaje_lleva_los_datos_reales_del_curso():
     assert "del 5 de octubre al 17 de noviembre de 2026" in m and "12 horas" in m and "2 módulos principales" in m
     assert "<li>Gestión ESG y ALA/CFT</li>" in m and "<li>Ética</li>" in m  # el módulo en mayúsculas pasa a oración y conserva las siglas
     assert "lunes y martes de 6:00 p. m. a 9:00 p. m.; sábado de 8:00 a. m. a 11:00 a. m." in m
-    assert "Ana Pat y Luis Pat" in m and "https://ejemplo.github.io/c/demo-abc12345/" in m
-    assert "WhatsApp" not in m and "Gestora Logística" not in m  # sin gestora configurada la línea no sale
+    assert "https://ejemplo.github.io/c/demo-abc12345/" in m and "WhatsApp" not in m
+    assert "PAT (Programa Aprendamos a Trabajar):</b> {{PAT}}" in m and "Gestora Logística:</b> {{GESTORA}}" in m  # los nombres los escribe quien envía, en el formulario
 
 
 def test_mensaje_no_inventa_lo_que_falta():
-    m = bv.mensaje(C, datos(unidades=[], asistentesPat=[]), dict(G, gestoraLogistica="Gestora de Prueba"), "u")
-    assert "Por confirmar" in m and "los temas del cronograma" in m and "módulos principales" not in m and "Gestora Logística:</b> Gestora de Prueba" in m
+    m = bv.mensaje(C, datos(unidades=[], asistentesPat=[]), G, "u")
+    assert "los temas del cronograma" in m and "módulos principales" not in m
     parcial = datos()
     parcial["meta"]["horasCompletas"] = False
     assert "aproximadamente 12 horas" in bv.mensaje(C, parcial, G, "u")

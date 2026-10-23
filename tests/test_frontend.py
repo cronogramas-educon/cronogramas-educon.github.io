@@ -486,6 +486,7 @@ def test_hub_mensaje_de_bienvenida_vista_previa_y_boton_de_envio(pagina, servido
     def con_formulario(ruta):
         meta = ruta.fetch().json()
         meta["formularioBienvenida"] = "https://forms.example/r?id=1&r5="
+        meta["preguntasBienvenida"] = {"gestora": "rG", "pat": "rP"}
         ruta.fulfill(json=meta)
     pagina.route("**/g/*/cursos.json*", con_formulario)
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
@@ -496,7 +497,10 @@ def test_hub_mensaje_de_bienvenida_vista_previa_y_boton_de_envio(pagina, servido
     assert "Universidad de La Sabana" in cuerpo and "Datos Generales del Curso" in cuerpo and "WhatsApp" not in cuerpo
     assert "no lo envíes dos veces" in tarjeta.inner_text()
     # el curso va ya elegido en el enlace del formulario
-    assert tarjeta.locator(".curso-bienv a.btn").get_attribute("href") == "https://forms.example/r?id=1&r5=%22compliance-anticorrupcion%22"
+    assert "nombre que escribes al enviar" in cuerpo and "{{" not in cuerpo  # los marcadores no se ven crudos en la vista previa
+    href = tarjeta.locator(".curso-bienv a.btn").get_attribute("href")
+    assert href.startswith("https://forms.example/r?id=1&r5=%22compliance-anticorrupcion%22")
+    assert "&rP=%22" in href and "&rG=" not in href  # el PAT del Excel va prellenado; la gestora la escribe quien envía
     # los identificadores del equipo de Teams nunca llegan al navegador
     assert "d675843f" not in pagina.content() and pagina.errores == []
 
