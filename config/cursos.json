@@ -180,6 +180,26 @@
       },
       "periodo": "2026-2",
       "cohorte": "Cohorte 1 (primera vez en el semestre)"
+    },
+    {
+      "id": "prueba-bienvenida-2028-2-cohorte-1-primera-vez-en-el-semestre",
+      "codigo": "3vjogtbz",
+      "carpeta": "EduContinua 2028-2/Cohorte 1 (primera vez en el semestre)/Curso PRUEBA Bienvenida",
+      "tipo": "Curso",
+      "programa": "PRUEBA Bienvenida Teams (borrar)",
+      "programaCorto": "PRUEBA Bienvenida",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "",
+      "periodo": "2028-2",
+      "horario": {
+        "inicio": "15:00",
+        "fin": "17:00"
+      },
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "teams": {
+        "equipo": "9a5bb423-ccb8-439f-991a-558fbb165e1a",
+        "canal": "19:15X0hVI_E-UyEidiyDyWjnXtAOlmA52_VteXpmqB2Vw1@thread.tacv2"
+      }
     }
   ]
 }
