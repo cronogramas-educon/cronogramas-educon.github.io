@@ -414,12 +414,12 @@ def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
     filas = pagina.locator("#asis-bandeja tbody tr")
     assert filas.count() == 3 and "Perdió el mínimo" in filas.nth(0).inner_text() and "En riesgo" in filas.nth(1).inner_text() and "N.º 3" in filas.nth(1).inner_text() and "Atención" in filas.nth(2).inner_text()
     assert "Estudiante de prueba" not in pagina.inner_text("body") and pagina.locator("#asis-lista").count() == 0  # el detalle por curso ya no es una lista aparte
-    assert pagina.locator("#cursos-lista .curso-asis.rojo").count() == 2
+    assert pagina.locator("#cursos-lista [data-asis-curso].rojo").count() == 2
     compliance = pagina.locator("#cursos-lista .curso", has_text="Compliance")
-    compliance.locator(".curso-asis summary").click()
+    compliance.locator("[data-asis-curso] summary").click()
     assert "28 de 35" in compliance.inner_text() and compliance.locator(".asis-barras li").count() == 35
     pagina.locator("[data-contactado]").first.check()  # la primera es la de Derecho Laboral, que perdió el mínimo
-    assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#cursos-lista .curso-asis[open]").count() == 1
+    assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#cursos-lista [data-asis-curso][open]").count() == 1
     pagina.reload()
     pagina.click("#asis-seguimiento summary")
     pagina.wait_for_selector("#asis-bandeja tbody tr")
@@ -449,7 +449,7 @@ def test_hub_buscador_global_encuentra_curso_docente_y_clase(pagina, servidor, s
 def test_hub_cierre_de_curso_lista_y_descarga(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     tarjeta = pagina.locator("#cursos-lista .curso", has_text="Derecho Laboral")
-    tarjeta.locator(".curso-asis > summary").click()
+    tarjeta.locator("[data-asis-curso] > summary").click()
     fila = tarjeta.locator("details.cierre")
     fila.locator("summary").click()
     assert "Resultado final" in fila.inner_text() and "Estudiante de prueba" not in fila.inner_text()
@@ -480,3 +480,30 @@ def test_hub_navegacion_pestanas_y_estados(pagina, servidor, sitio):
     pagina.click("#subir")
     pagina.wait_for_function("window.scrollY < 50")
     assert pagina.errores == []
+
+
+def test_hub_mensaje_de_bienvenida_vista_previa_y_boton_de_envio(pagina, servidor, sitio):
+    def con_formulario(ruta):
+        meta = ruta.fetch().json()
+        meta["formularioBienvenida"] = "https://forms.example/r?id=1&r5="
+        ruta.fulfill(json=meta)
+    pagina.route("**/g/*/cursos.json*", con_formulario)
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    tarjeta = pagina.locator("#cursos-lista .curso", has_text="Compliance")
+    tarjeta.locator("[data-bienv-curso] > summary").click()
+    pagina.wait_for_function("document.querySelector('[data-bienv-curso] .bienv-cuerpo').innerText.includes('Bienvenid')")
+    cuerpo = tarjeta.locator(".bienv-cuerpo").inner_text()
+    assert "Universidad de La Sabana" in cuerpo and "Datos Generales del Curso" in cuerpo and "WhatsApp" not in cuerpo
+    assert "no lo envíes dos veces" in tarjeta.inner_text()
+    # el curso va ya elegido en el enlace del formulario
+    assert tarjeta.locator(".curso-bienv a.btn").get_attribute("href") == "https://forms.example/r?id=1&r5=%22compliance-anticorrupcion%22"
+    # los identificadores del equipo de Teams nunca llegan al navegador
+    assert "d675843f" not in pagina.content() and pagina.errores == []
+
+
+def test_hub_bienvenida_sin_formulario_lo_avisa(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    tarjeta = pagina.locator("#cursos-lista .curso", has_text="Compliance")
+    tarjeta.locator("[data-bienv-curso] > summary").click()
+    assert "Falta configurar el formulario de envío" in tarjeta.inner_text()
+    assert "aún no se puede enviar la bienvenida" in pagina.locator("#cursos-lista .curso", has_text="Derecho Laboral").inner_text()  # sin equipo de Teams

@@ -43,6 +43,18 @@ const pendientesTxt = (r) => [
 
 const etiquetaPeriodo = (c) => (c.periodo ? `Periodo ${c.periodo}${c.cohorte ? `, ${c.cohorte}` : ''}` : c.tipo);
 
+let formBienvenida = '';
+const cacheBienvenida = new Map();
+/** Vista previa del mensaje de bienvenida y botón que abre el formulario de envío con el curso ya elegido. */
+function bienvenidaHtml(c) {
+  if (!c.bienvenida) return `<p class="teams-av">${ic('warning')}Sin equipo de Teams o sin cronograma: aún no se puede enviar la bienvenida</p>`;
+  const url = formBienvenida ? `${formBienvenida}${encodeURIComponent(`"${c.id}"`)}` : '';
+  return `<details class="curso-asis curso-bienv" data-bienv-curso="${esc(c.id)}"><summary><span class="ca-texto"><strong>Mensaje de bienvenida</strong><small>Para el equipo de Teams de este curso</small></span><span class="asis-abrir" aria-hidden="true"></span></summary>
+    <div class="asis-detalle"><div class="bienv-cuerpo">${cacheBienvenida.get(c.id) ?? '<p class="nota">Cargando el mensaje…</p>'}</div>
+    <p class="bienv-aviso">Se publica en el canal General del equipo de este curso. Revisa el mensaje antes de enviarlo y no lo envíes dos veces.</p>
+    ${url ? `<a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Enviar al grupo de Teams${ic('arrow-up-right')}</a>` : '<p class="alerta">Falta configurar el formulario de envío.</p>'}</div></details>`;
+}
+
 function tarjeta(r) {
   const { c, d, error } = r;
   const prox = r.proxima
@@ -62,6 +74,7 @@ function tarjeta(r) {
     ${d ? `<div class="barra" role="img" aria-label="${r.hechas} de ${d.clases.length} clases realizadas"><i style="width:${Math.round(100 * r.hechas / d.clases.length)}%"></i></div>
     <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. Datos publicados ${esc(haceCuanto(d.meta.generadoEn))}.</p>` : ''}
     ${htmlAsistenciaCurso(r)}
+    ${bienvenidaHtml(c)}
     <p class="falta ${n ? '' : 'ok'}">${n ? `${ic('warning')}${n === 1 ? 'Falta confirmar 1 dato' : `Faltan confirmar ${n} datos`}` : `${ic('check')}Nada por confirmar`}</p>
     <div class="acciones-curso">
       <a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Abrir sitio${ic('arrow-up-right')}</a>
@@ -184,6 +197,7 @@ const csvReporte = () => {
 };
 
 async function pintar(meta) {
+  formBienvenida = meta.formularioBienvenida || '';
   const rs = await Promise.all(meta.cursos.map(async (c) => {
     const [d, error, asis] = await Promise.all([c.tieneDatos && traer(`${new URL(`${c.ruta}/data/data.json`, BASE)}`), c.tieneError && traer(`${new URL(`${c.ruta}/estado/error.json`, BASE)}`), c.tieneAsistencia && traer(`asistencia/${c.id}.json`)]);
     return Object.assign(analizar(c, d, error), { asis: asis || null });
@@ -250,10 +264,11 @@ function pintarCursos() {
   const g = $('cur-grupo').value;
   const sem = $('cur-semaforo').value;
   const vis = activosVivos.filter((r) => (!q || norm(r.c.programaCorto).includes(q)) && (!g || etiquetaPeriodo(r.c) === g) && (!sem || salud(r, ahora()).nivel === sem));
-  const abiertos = new Set([...document.querySelectorAll('#cursos-lista [data-asis-curso][open]')].map((d) => d.dataset.asisCurso));
+  const llave = (d) => (d.dataset.asisCurso ? `a:${d.dataset.asisCurso}` : `b:${d.dataset.bienvCurso}`);
+  const abiertos = new Set([...document.querySelectorAll('#cursos-lista details[open][data-asis-curso], #cursos-lista details[open][data-bienv-curso]')].map(llave));
   $('cursos-lista').innerHTML = vis.length ? vis.map(tarjeta).join('')
     : `<p class="nota">${activosVivos.length ? 'Ningún curso coincide con el filtro.' : 'No hay cursos activos. Agrega los del nuevo periodo en el Excel de registro.'}</p>`;
-  for (const d of document.querySelectorAll('#cursos-lista [data-asis-curso]')) d.open = abiertos.has(d.dataset.asisCurso);
+  for (const d of document.querySelectorAll('#cursos-lista details[data-asis-curso], #cursos-lista details[data-bienv-curso]')) d.open = abiertos.has(llave(d));
   $('cur-conteo').textContent = activosVivos.length >= 4 ? `Mostrando ${vis.length} de ${activosVivos.length} cursos activos.` : '';
 }
 
@@ -329,6 +344,14 @@ async function arrancar() {
     await refrescar();
     if (b.isConnected) { b.disabled = false; b.textContent = antes; }
   });
+  document.addEventListener('toggle', async (e) => {
+    const d = e.target;
+    if (!d.matches?.('.curso-bienv') || !d.open) return;
+    const id = d.dataset.bienvCurso;
+    if (!cacheBienvenida.has(id)) cacheBienvenida.set(id, (await traer(`bienvenida/${id}.json`))?.mensaje ?? '<p class="nota">No se pudo cargar el mensaje. Prueba con «Actualizar ahora».</p>');
+    const el = d.querySelector('.bienv-cuerpo');
+    if (el) el.innerHTML = cacheBienvenida.get(id);
+  }, true);
   pestanasReportes();
   navegacion();
 }

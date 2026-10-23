@@ -355,3 +355,12 @@
 
 .periodo li .asis-fila { flex: 1 1 100%; box-shadow: none; border: 1px solid var(--paper-2); }
 #asis-seguimiento .resumen-sec { margin-top: 4px; }
+
+/* Mensaje de bienvenida dentro de la tarjeta del curso */
+.curso-bienv .bienv-cuerpo { max-height: 320px; overflow: auto; padding: 12px 14px; border-radius: 10px; background: var(--paper-2); font-size: .9rem; line-height: 1.5; }
+.curso-bienv .bienv-cuerpo p { margin-bottom: 8px; }
+.curso-bienv .bienv-cuerpo ul { margin: 0 0 8px 1.1em; list-style: disc; }
+.curso-bienv .bienv-cuerpo a { color: var(--ink); }
+.bienv-aviso { color: var(--ink-2); font-size: .86rem; }
+.curso-bienv .btn.rojo { justify-self: start; }
+@media print { .curso-bienv { display: none !important; } }
