@@ -31,6 +31,13 @@ def limpiar(s):
     return re.sub(r"[ \t ]+", " ", str(s)).strip() if s is not None else ""
 
 
+SEPARADORES = re.compile(r"\s+y\s+|\s*[/;+]\s*|\s*\n\s*")  # varios docentes o asistentes en una misma casilla: "Ana y Luis", "Ana / Luis", "Ana; Luis", "Ana + Luis"
+
+
+def personas(s):
+    return [p for p in (limpiar(x) for x in SEPARADORES.split(str(s or ""))) if p]
+
+
 def puntos(tema):
     partes = [p.strip() for p in re.split(r"\s{2,}|\n", str(tema)) if p.strip()]
     out, i = [], 0
@@ -171,7 +178,7 @@ def filas_a_clases(filas, cfg):
             "id": num, "clase": limpiar(v[4]), "unidad": limpiar(v[1]), "unidadSlug": slug(limpiar(v[1])),
             "tema": tema, "temaPuntos": puntos(ant_raw), "temaHeredado": heredado, "horas": horas,
             "profesor": limpiar(v[5]),
-            "profesores": [p for p in (limpiar(x) for x in re.split(r"\s+y\s+", limpiar(v[5]))) if p],
+            "profesores": personas(v[5]),
             "dia": limpiar(v[6]), "diaCalculado": calc, "fecha": d.isoformat(),
             "asistentePat": limpiar(v[8]), "linkTeams": limpiar(v[9]), "cambio": None,
         }
@@ -276,7 +283,7 @@ def armar(clases, cfg, cambios, ahora, modificado="", canceladas=()):
         },
         "clases": clases, "unidades": unidades,
         "profesores": sorted({p for c in clases for p in c["profesores"]}),
-        "asistentesPat": sorted({c["asistentePat"] for c in clases if c["asistentePat"]}),
+        "asistentesPat": sorted({a for c in clases for a in personas(c["asistentePat"])}),
         "cambios": cambios, "canceladas": list(canceladas),
     }
 

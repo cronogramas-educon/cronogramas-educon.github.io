@@ -34,7 +34,7 @@ COLS = [
     ("Hora de fin", 13, "Opcional", "A qué hora terminan. Si lo dejas vacío, cada clase termina según las horas de su Excel del curso.", "21:00", "Hora con dos puntos. Vacío = según las horas del Excel del curso"),
     ("Inicio del sábado", 17, "Opcional", "Solo si los sábados empiezan a otra hora y dejaste vacía la Hora de fin.", "08:00", "Solo si los sábados empiezan a otra hora (y la Hora de fin está vacía)"),
     ("Página oficial", 60, "Opcional", "La dirección de la página del programa en unisabana.edu.co.", "https://www.unisabana.edu.co/programas/...", "Dirección completa, empieza por https://"),
-    ("Grupo de Teams", 50, "Opcional", "El enlace del grupo de Teams del curso, para avisar a los estudiantes de los cambios de fecha. En Teams: los tres puntos del equipo, Obtener vínculo al equipo.", "https://teams.microsoft.com/l/team/...", "Enlace de Obtener vínculo al equipo, en Teams"),
+    ("Grupo de Teams", 50, "Opcional", "El enlace del equipo de Teams del curso. Lo escribe el sistema al crear el curso con el formulario; no hace falta llenarlo a mano. En Teams: los tres puntos del equipo, Obtener vínculo al equipo.", "https://teams.microsoft.com/l/team/...", "Enlace de Obtener vínculo al equipo, en Teams"),
     ("Clave", 30, "Automático", "Identifica la fila para que el sistema escriba el Estado. Se calcula sola con las carpetas. No la edites.", "EduContinua 2026-2/Cohorte 1/Dip en Derecho Laboral", "Se calcula sola, no la edites"),
     ("Estado", 34, "Automático", "Lo escribe el sistema cuando prepara la carpeta y el Excel del curso. No lo edites.", "Listo: carpeta y Excel creados", "Lo escribe el sistema, no lo edites"),
 ]

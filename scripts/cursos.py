@@ -41,7 +41,7 @@ def resolver(ruta, reg=None):
     mejor = None
     largo = 0
     for c in reg["cursos"]:
-        for carpeta in [c["carpeta"], *c.get("carpetasAnteriores", [])]:  # las carpetas anteriores siguen valiendo mientras dura la migración
+        for carpeta in [c["carpeta"]]:
             if "/" + _norm(carpeta) + "/" in ruta and len(carpeta) > largo:
                 mejor, largo = c, len(carpeta)
     return mejor["id"] if mejor else None
@@ -84,7 +84,7 @@ def sincronizar(raiz=RAIZ):
 
 COLUMNAS = {"periodo": "periodo", "carpetadelperiodo": "carpetaPeriodo", "cohorte": "cohorte", "carpetadelcurso": "carpetaCurso", "tipo": "tipo",
             "nombredelcurso": "programaCorto", "nombrecompleto": "programa", "modalidad": "modalidad", "horadeinicio": "inicio",
-            "horadefin": "fin", "iniciodelsabado": "sabado", "paginaoficial": "urlPaginaOficial", "grupodeteams": "enlaceTeams"}
+            "horadefin": "fin", "iniciodelsabado": "sabado", "paginaoficial": "urlPaginaOficial"}
 ETIQUETA = {"programaCorto": "Nombre del curso", "inicio": "Hora de inicio", "periodo": "Periodo"}
 
 
@@ -128,18 +128,6 @@ def _hhmm(v):
     return f"{h:02d}:{mi:02d}"
 
 
-def parse_equipo(enlace):
-    """Del enlace 'Obtener vínculo al equipo' de Teams saca el equipo y el canal General: {'equipo': guid, 'canal': '19:...@thread.tacv2'}."""
-    from urllib.parse import parse_qs, urlparse
-    u = urlparse(str(enlace).strip())
-    partes = [p for p in u.path.split("/") if p]
-    equipo = (parse_qs(u.query).get("groupId") or [""])[0]
-    canal = unquote(partes[partes.index("team") + 1]) if "team" in partes and partes.index("team") + 1 < len(partes) else ""
-    if "teams" not in (u.hostname or "") or not re.fullmatch(r"[0-9a-f-]{36}", equipo) or not re.fullmatch(r"19:[\w.-]+@thread\.[a-z0-9]+", canal):
-        raise ValueError("el enlace del grupo de Teams no se entiende: usa 'Obtener vínculo al equipo' en Teams")
-    return {"equipo": equipo, "canal": canal}
-
-
 def _fila(f):
     d = {}
     for k, v in f.items():
@@ -167,7 +155,7 @@ def _horario(d, previo):
 def fusionar(reg, filas):
     """Aplica las filas del Excel de registro sobre el registro. Nunca borra cursos ni cambia códigos. Devuelve (avisos, cambios)."""
     cursos = reg["cursos"]
-    por = {_norm(k): c for c in cursos for k in [c["carpeta"], *c.get("carpetasAnteriores", [])]}
+    por = {_norm(c["carpeta"]): c for c in cursos}
     codigos = {c["codigo"] for c in cursos} | {reg["global"]["adminCodigo"]}
     ids = {c["id"] for c in cursos}
     avisos, cambios, vistas = [], [], set()
@@ -197,12 +185,6 @@ def fusionar(reg, filas):
             continue
         if "tipo" in d:
             d["tipo"] = d["tipo"].capitalize()
-        equipo = None
-        if "enlaceTeams" in d:
-            try:
-                equipo = parse_equipo(d["enlaceTeams"])
-            except ValueError as e:
-                avisos.append(f"Fila {n}: {e}. El resto de la fila sí se procesó.")
         if c is None:
             falta = [ETIQUETA[k] for k in ("programaCorto", "inicio", "periodo") if k not in d]
             if falta:
@@ -220,8 +202,6 @@ def fusionar(reg, filas):
                  "urlPaginaOficial": d.get("urlPaginaOficial", ""), "periodo": d["periodo"], "horario": h}
             if d.get("cohorte") or d.get("cohorteRuta"):
                 c["cohorte"] = d.get("cohorte") or d["cohorteRuta"]
-            if equipo:
-                c["teams"] = equipo
             cursos.append(c)
             ids.add(i); codigos.add(cod); por[llave] = c
             cambios.append(f"Curso nuevo: {c['programaCorto']} ({c['periodo']})")
@@ -230,9 +210,6 @@ def fusionar(reg, filas):
             if k in d and c.get(k) != d[k]:
                 c[k] = d[k]
                 cambios.append(f"{c['programaCorto']}: cambió {k}")
-        if equipo and c.get("teams") != equipo:
-            c["teams"] = equipo
-            cambios.append(f"{c['programaCorto']}: cambió el grupo de Teams")
         if h != c["horario"]:
             c["horario"] = h
             cambios.append(f"{c['programaCorto']}: cambió el horario")
@@ -355,7 +332,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
         (destino / "index.html").write_text(_html(
             raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(con_tipo(c["programaCorto"], c["tipo"])), DESC=_esc(desc)), encoding="utf-8")
         resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "cohorte": c.get("cohorte", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
-                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "avisosTeams": bool(c.get("teams")), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
+                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
                         "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{base_sharepoint(c['carpeta'], g)}/{c['carpeta']}", safe=":/")})
     hub = salida / "g" / g["adminCodigo"]
     hub.mkdir(parents=True)

@@ -51,16 +51,7 @@
         "fin": "20:00"
       },
       "periodo": "2026-2",
-      "teams": {
-        "equipo": "d675843f-951b-4337-8de5-1d25e510b144",
-        "canal": "19:oE9nYUX5BgFCdcDqvAcLqtcgyqA5D1DPwl66NyZaTdU1@thread.tacv2"
-      },
-      "cohorte": "Cohorte 1 (primera vez en el semestre)",
-      "carpetasAnteriores": [
-        "EDU CONTINUA 2026/Dip Compliance Anti- Corrupción",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance Anti-corrupción y Anti-lavado",
-        "EDU CONTINUA 2025/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance Anti-corrupción y Anti-lavado"
-      ]
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     },
     {
       "id": "compliance-gobierno-corporativo",
@@ -77,11 +68,7 @@
         "fin": "21:00"
       },
       "periodo": "2026-2",
-      "cohorte": "Cohorte 1 (primera vez en el semestre)",
-      "carpetasAnteriores": [
-        "EDU CONTINUA 2026/Dip Compliance y Gobierno Corp",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Diplomado Compliance y Gobierno Corporativo en la práctica"
-      ]
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     },
     {
       "id": "conflictos-societarios",
@@ -98,11 +85,7 @@
         "fin": "20:00"
       },
       "periodo": "2026-2",
-      "cohorte": "Cohorte 1 (primera vez en el semestre)",
-      "carpetasAnteriores": [
-        "EDU CONTINUA 2026/Curs Gest de Conflictos Societarios",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Curso Gestión de Conflictos Societarios"
-      ]
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     },
     {
       "id": "contratacion-estatal",
@@ -119,11 +102,7 @@
         "fin": "21:00"
       },
       "periodo": "2026-2",
-      "cohorte": "Cohorte 1 (primera vez en el semestre)",
-      "carpetasAnteriores": [
-        "EDU CONTINUA 2026/Dip en Contratación Estatal",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Diplomado Contratación Estatal"
-      ]
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     },
     {
       "id": "derecho-laboral",
@@ -144,11 +123,7 @@
         "duracionPorDefecto": 1
       },
       "periodo": "2026-2",
-      "cohorte": "Cohorte 1 (primera vez en el semestre)",
-      "carpetasAnteriores": [
-        "EDU CONTINUA 2026/Dip en Derecho Laboral",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Diplomado Derecho Laboral"
-      ]
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     },
     {
       "id": "derecho-minero",
@@ -165,11 +140,7 @@
         "fin": "21:00"
       },
       "periodo": "2026-2",
-      "cohorte": "Cohorte 1 (primera vez en el semestre)",
-      "carpetasAnteriores": [
-        "EDU CONTINUA 2026/Curso en Derecho Minero",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Curso Derecho Minero Ambiental"
-      ]
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     },
     {
       "id": "ia-sector-legal-grupo-1",
@@ -186,11 +157,7 @@
         "fin": "20:00"
       },
       "periodo": "2026-2",
-      "cohorte": "Cohorte 1 (primera vez en el semestre)",
-      "carpetasAnteriores": [
-        "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 1- Laura",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Curso IA en el Sector Legal, Grupo 1"
-      ]
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     },
     {
       "id": "ia-sector-legal-grupo-2",
@@ -207,11 +174,7 @@
         "fin": "20:00"
       },
       "periodo": "2026-2",
-      "cohorte": "Cohorte 1 (primera vez en el semestre)",
-      "carpetasAnteriores": [
-        "EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 2- Valentina",
-        "EDU CONTINUA 2026/Cohorte 1 (primera vez en el semestre)/Curso IA en el Sector Legal, Grupo 2"
-      ]
+      "cohorte": "Cohorte 1 (primera vez en el semestre)"
     }
   ]
 }

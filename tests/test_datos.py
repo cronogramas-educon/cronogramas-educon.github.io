@@ -317,3 +317,14 @@ def test_clase_cancelada_sale_del_computo_y_conserva_los_numeros(raiz, tmp_path)
     assert [c["id"] for c in datos["canceladas"]] == [3] and datos["canceladas"][0]["fecha"]
     ics = (otra / "cronograma.ics").read_text()
     assert "clase-03@" not in ics and "clase-04@" in ics
+
+
+def test_varios_docentes_y_asistentes_en_una_misma_casilla(tmp_path, raiz):
+    def poner(ws):
+        ws["F3"].value = "Ana Gómez y Luis Pérez"
+        ws["F4"].value = "Ana Gómez / Luis Pérez; Eva Ruiz + Sol Mora"
+        ws["I3"].value = "Mia Cano y Teo Díaz"
+    datos, _ = cd.construir(xlsx_con(tmp_path, "m.xlsx", poner), raiz, ahora=T0)
+    assert datos["clases"][0]["profesores"] == ["Ana Gómez", "Luis Pérez"]
+    assert datos["clases"][1]["profesores"] == ["Ana Gómez", "Luis Pérez", "Eva Ruiz", "Sol Mora"]
+    assert {"Mia Cano", "Teo Díaz"} <= set(datos["asistentesPat"])

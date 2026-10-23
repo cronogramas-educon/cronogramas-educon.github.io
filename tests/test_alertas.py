@@ -1,4 +1,4 @@
-"""Alertas del día anterior y avisos a estudiantes: se calculan, nunca se envían desde aquí."""
+"""Alertas del día anterior: se calculan, nunca se envían desde aquí."""
 import json, shutil, sys
 from datetime import date
 from pathlib import Path
@@ -8,7 +8,6 @@ import pytest
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
 import alertas as al
-import avisos as av
 import cursos as cu
 
 A, B = "compliance-anticorrupcion", "derecho-laboral"
@@ -81,75 +80,3 @@ def test_docente_institucional_no_choca_consigo_mismo(repo):
     clase_de_manana(repo, A, linkTeams="x", profesores=["SABANA"])
     clase_de_manana(repo, B, linkTeams="x", profesores=["SABANA"], inicio=f"{MANANA}T18:00:00-05:00", fin=f"{MANANA}T19:00:00-05:00")
     assert al.calcular(repo, HOY)["choques"] == []
-
-
-# ---- avisos a estudiantes
-def agregar_cambio(repo, curso, **extra):
-    ruta = repo / "cursos" / curso / "estado/cambios.json"
-    e = json.loads(ruta.read_text(encoding="utf-8"))
-    d = json.loads(datos(repo, curso).read_text(encoding="utf-8"))
-    c = next(c for c in d["clases"] if c["fecha"] == MANANA)
-    e["cambios"].append(dict({"id": c["id"], "clase": c["clase"], "fechaOriginal": "2026-10-10", "fechaAnterior": "2026-10-10", "fechaNueva": MANANA,
-                              "detectadoEn": "2026-10-12T15:00:00Z", "resuelto": False}, **extra))
-    ruta.write_text(json.dumps(e), encoding="utf-8")
-
-
-def test_avisos_linea_base_y_un_aviso_por_cambio(repo):
-    assert av.pendientes(repo, A, HOY) == []                      # primera vez: línea base, nada que avisar
-    assert (repo / "cursos" / A / "estado/avisados.json").exists()
-    agregar_cambio(repo, A)
-    r = av.pendientes(repo, A, HOY)
-    assert len(r) == 1
-    t = r[0]
-    assert t["cuerpo"].startswith("<!-- equipo:d675843f-951b-4337-8de5-1d25e510b144 canal:19:oE9nYUX5BgFCdcDqvAcLqtcgyqA5D1DPwl66NyZaTdU1@thread.tacv2 -->")
-    assert "era el sábado 10 de octubre y ahora es el <strong>martes 13 de octubre, " in t["cuerpo"] and "p. m." in t["cuerpo"]
-    assert "Diplomado Compliance Anti-corrupción y Anti-lavado" in t["titulo"] and "/c/compliance-anticorrupcion-s9hv2xzn/" in t["cuerpo"]
-    assert av.pendientes(repo, A, HOY) == []                      # ya visto: no se repite
-
-
-def test_avisos_curso_sin_grupo_de_teams_se_anota_pero_no_se_avisa(repo):
-    av.pendientes(repo, B, HOY)
-    agregar_cambio(repo, B)
-    assert av.pendientes(repo, B, HOY) == []
-    visto = json.loads((repo / "cursos" / B / "estado/avisados.json").read_text(encoding="utf-8"))
-    assert any(k.startswith(f"{json.loads(datos(repo, B).read_text(encoding='utf-8'))['clases'][0]['id']}|") or "|2026-10-13|" in k for k in visto)
-
-
-def test_avisos_no_avisa_cambios_resueltos_ni_de_clases_pasadas(repo):
-    av.pendientes(repo, A, HOY)
-    agregar_cambio(repo, A, resuelto=True)
-    assert av.pendientes(repo, A, HOY) == []
-    agregar_cambio(repo, A, detectadoEn="2026-10-12T16:00:00Z", fechaNueva="2026-10-13")
-    assert av.pendientes(repo, A, date(2026, 10, 20)) == []        # la clase ya pasó
-
-
-def test_revision_semanal_incluye_los_proximos_7_dias(repo):
-    clase_de_manana(repo, A, linkTeams="", profesores=[], profesor="", asistentePat="")
-    a = al.calcular(repo, HOY, dias=7)
-    assert al.semanal(a) and not al.semanal(al.calcular(repo, HOY))
-    assert len(a["faltantes"]) >= len(al.calcular(repo, HOY)["faltantes"])
-    assert "revisión semanal" in al.titulo(a) and "https://" not in al.html(a)
-
-
-def _asistencia(repo, curso, dictadas, lista):
-    (repo / "cursos" / curso / "estado/asistencia.json").write_text(json.dumps({
-        "porClase": [{"clase": i, "estado": "Dictada" if i in dictadas else "Sin dictar", "asistieron": 1, "de": 1} for i in (1, 2)], "lista": lista}), encoding="utf-8")
-
-
-def test_alerta_de_asistencia_sin_marcar_diaria_y_seguimiento_solo_en_la_semanal(repo):
-    d = json.loads(datos(repo, A).read_text(encoding="utf-8"))
-    d["clases"][0] = _clase(1, "2026-10-10", "18:00", "20:00", "Apoyo")  # ya pasó y no tiene asistencia
-    datos(repo, A).write_text(json.dumps(d), encoding="utf-8")
-    _asistencia(repo, A, dictadas=[], lista=[{"n": 7, "estado": "En riesgo", "quedan": 0}, {"n": 2, "estado": "Al día", "quedan": 5}])
-    diaria = al.calcular(repo, hoy=HOY)
-    assert al.hay(diaria) and diaria["asistencia"][0]["sinRegistrar"] == [{"clase": 1, "fecha": "2026-10-10"}] and diaria["asistencia"][0]["seguimiento"] == []
-    semanal = al.calcular(repo, hoy=HOY, dias=7)
-    assert [x["n"] for x in semanal["asistencia"][0]["seguimiento"]] == [7]
-    cuerpo = al.html(semanal)
-    assert "Estudiante 7" in cuerpo and "en riesgo" in cuerpo and "sin asistencia marcada en la clase 1" in cuerpo
-
-
-def test_sin_excel_de_asistencia_o_con_todo_marcado_no_hay_alerta_de_asistencia(repo):
-    assert al.calcular(repo, hoy=HOY)["asistencia"] == []
-    _asistencia(repo, A, dictadas=[1, 2], lista=[{"n": 1, "estado": "Al día", "quedan": 5}])
-    assert al.calcular(repo, hoy=HOY, dias=7)["asistencia"] == []

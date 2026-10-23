@@ -63,7 +63,7 @@ def test_aplicar_no_reescribe_sin_cambios_y_conserva_ante_error(tmp_path):
 
 def test_recibir_reconoce_el_excel_de_asistencia_por_sus_columnas(tmp_path):
     e = tmp_path / "e.json"
-    e.write_text(json.dumps({"client_payload": {"ruta": "Docs/ESP/EDU CONTINUA 2026/Dip en Derecho Laboral", "filas": json.dumps(FILAS)}}), encoding="utf-8")
+    e.write_text(json.dumps({"client_payload": {"ruta": "Docs/EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Derecho Laboral", "filas": json.dumps(FILAS)}}), encoding="utf-8")
     assert cu.recibir(e, tmp_path / "f.json")[:2] == (("asistencia", None))
     e.write_text(json.dumps({"client_payload": {"ruta": "Docs/EDU CONTINUA 2099/Otro", "filas": json.dumps(FILAS)}}), encoding="utf-8")
     assert cu.recibir(e, tmp_path / "f.json")[0] == "ninguno"

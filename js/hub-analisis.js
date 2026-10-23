@@ -3,6 +3,7 @@ import { norm } from './ui.js';
 import { addDias, estadoClase, hoyISO } from './utils-fecha.js';
 
 const INSTITUCIONAL = new Set(['sabana']); // "SABANA" es la universidad, no una persona que pueda chocar consigo misma
+const SEPARADORES = /\s+y\s+|\s*[/;+]\s*/; // varios asistentes en una misma casilla
 const FALTAS = [['Docente', (c) => !c.profesores.length], ['Asistente PAT', (c) => !c.asistentePat], ['Enlace de Teams', (c) => !c.linkTeams]];
 
 const clases = (rs) => rs.filter((r) => r.d).flatMap((r) => r.d.clases.map((c) => ({ c, curso: r.c })));
@@ -40,7 +41,7 @@ export function choques(rs, t) {
   const por = new Map();
   for (const x of clases(rs)) {
     if (estadoClase(x.c, t) === 'pasada') continue;
-    const gente = [...x.c.profesores.map((p) => ['Docente', p]), ...(x.c.asistentePat ? [['Asistente PAT', x.c.asistentePat]] : [])];
+    const gente = [...x.c.profesores.map((p) => ['Docente', p]), ...x.c.asistentePat.split(SEPARADORES).map((a) => a.trim()).filter(Boolean).map((a) => ['Asistente PAT', a])];
     for (const [rol, nombre] of gente) {
       const k = norm(nombre).trim();
       if (INSTITUCIONAL.has(k)) continue;
@@ -53,7 +54,8 @@ export function choques(rs, t) {
     lista.sort((a, b) => a.c.inicio.localeCompare(b.c.inicio));
     let previo = lista[0];
     for (const x of lista.slice(1)) {
-      if (Date.parse(x.c.inicio) < Date.parse(previo.c.fin)) out.push({ rol, nombre, a: previo, b: x });
+      // dos clases del mismo curso a la misma hora son una sesión paralela a propósito, no un choque: solo cuentan los cruces entre cursos distintos
+      if (Date.parse(x.c.inicio) < Date.parse(previo.c.fin) && x.curso.id !== previo.curso.id) out.push({ rol, nombre, a: previo, b: x });
       if (Date.parse(x.c.fin) > Date.parse(previo.c.fin)) previo = x;
     }
   }

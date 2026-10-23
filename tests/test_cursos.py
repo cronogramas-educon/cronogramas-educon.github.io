@@ -25,18 +25,20 @@ def test_config_de_cada_curso_esta_sincronizada():
         assert json.loads(ruta.read_text(encoding="utf-8")) == cu.config_curso(c, REG["global"]), f"{c['id']}: corre 'python scripts/cursos.py sincronizar'"
 
 
+C1 = "EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)"
+
+
 @pytest.mark.parametrize("ruta,esperado", [
-    ("/ESPECIALIZACIONES 2014 - 2023/EDU CONTINUA 2026/Dip en Derecho Laboral", "derecho-laboral"),
-    ("Documentos compartidos/ESPECIALIZACIONES 2014 - 2023/EDU CONTINUA 2026/Dip en Derecho Laboral/", "derecho-laboral"),
-    ("/ESPECIALIZACIONES%202014%20-%202023/EDU%20CONTINUA%202026/Dip%20Compliance%20Anti-%20Corrupci%C3%B3n", "compliance-anticorrupcion"),
-    ("EDU CONTINUA 2026/Dip Compliance y Gobierno Corp", "compliance-gobierno-corporativo"),
-    ("EDU CONTINUA 2026/IA en el seclegal III Cohorte/GRUPO 1- Laura", "ia-sector-legal-grupo-1"),
-    ("edu continua 2026/ia en el seclegal iii cohorte/grupo 2- valentina/", "ia-sector-legal-grupo-2"),
-    ("EDU CONTINUA 2026/Curso en Derecho Minero", "derecho-minero"),
-    ("EDU CONTINUA 2026/IA en el seclegal III Cohorte", None),      # carpeta madre: sin grupo no se sabe de cuál es
-    ("EduContinua 2026-2/Cohorte 1 (primera vez en el semestre)/Diplomado Derecho Laboral/Material de clases/x.pdf", "derecho-laboral"),  # carpeta nueva
-    ("EDU CONTINUA 2026/DIP COMPLIANCE 2026-1", None),              # cohorte anterior, no registrada
-    ("EDU CONTINUA 2026/Dip en Derecho Laboral Viejo", None),       # el nombre debe coincidir como carpeta completa
+    (f"{C1}/Diplomado Derecho Laboral", "derecho-laboral"),
+    (f"/sites/EduContinuaDerecho/Documentos compartidos/{C1}/Diplomado Derecho Laboral/Material de clases/x.pdf", "derecho-laboral"),
+    ("/EduContinua%202026-2/Cohorte%201%20(primera%20vez%20en%20el%20semestre)/Diplomado%20Derecho%20Laboral/a.xlsx", "derecho-laboral"),
+    (f"{C1}/Diplomado Compliance y Gobierno Corporativo en la práctica", "compliance-gobierno-corporativo"),
+    (f"{C1}/Curso IA en el Sector Legal, Grupo 1", "ia-sector-legal-grupo-1"),
+    (f"{C1.lower()}/curso ia en el sector legal, grupo 2/", "ia-sector-legal-grupo-2"),
+    (f"{C1}/Curso Derecho Minero Ambiental", "derecho-minero"),
+    (f"{C1}/Curso IA en el Sector Legal", None),        # sin el grupo no se sabe de cuál es
+    ("EDU CONTINUA 2026/Dip en Derecho Laboral", None),  # las rutas del sitio viejo ya no se reconocen
+    (f"{C1}/Diplomado Derecho Laboral Viejo", None),     # el nombre debe coincidir como carpeta completa
 ])
 def test_resolver(ruta, esperado):
     assert cu.resolver(ruta, REG) == esperado
@@ -114,7 +116,7 @@ def test_registro_crea_curso_nuevo_con_codigo_y_conserva_los_existentes():
     assert n["id"] == "compliance-anti-corrupcion-y-anti-lavado-2027-1" and len(n["codigo"]) == 8
     assert n["codigo"] not in {c["codigo"] for c in REG["cursos"]} and n["horario"] == REG["cursos"][0]["horario"]
     assert cu.resolver("Documentos/EDU CONTINUA 2027-1/Dip Compliance Anti- Corrupción", reg) == n["id"]  # no se confunde con el de 2026
-    assert cu.resolver("Documentos/EDU CONTINUA 2026/Dip Compliance Anti- Corrupción", reg) == "compliance-anticorrupcion"
+    assert cu.resolver("Documentos/EDU CONTINUA 2026/Dip Compliance Anti- Corrupción", reg) is None  # la ruta del sitio viejo ya no cuenta
 
 
 def test_registro_actualiza_campos_pero_no_cambia_id_ni_codigo():
@@ -151,7 +153,7 @@ def test_recibir_distingue_registro_curso_y_carpeta_sin_registrar(tmp_path):
         return e
     f = tmp_path / "f.json"
     assert cu.recibir(evento("Docs/EDU CONTINUA - Registro de cursos", [_fila(REG["cursos"][0])]), f)[0] == "registro"
-    assert cu.recibir(evento("Docs/ESP/EDU CONTINUA 2026/Dip en Derecho Laboral", [{"Profesor": "A"}]), f)[:2] == ("curso", "derecho-laboral")
+    assert cu.recibir(evento(f"Docs/{C1}/Diplomado Derecho Laboral", [{"Profesor": "A"}]), f)[:2] == ("curso", "derecho-laboral")
     assert cu.recibir(evento("Docs/ESP/EDU CONTINUA 2027-1/Curso Nuevo", [{"Profesor": "A"}]), f)[:2] == ("ninguno", None)
     cu.anotar_sin_registrar("Docs/ESP/EDU CONTINUA 2027-1/Curso%20Nuevo", tmp_path)
     cu.anotar_sin_registrar("Docs/ESP/EDU CONTINUA 2027-1/Curso Nuevo", tmp_path)
@@ -194,23 +196,6 @@ def test_el_nombre_siempre_dice_si_es_curso_o_diplomado(sitio):
     assert "<title>Diplomado Derecho Laboral" in (sitio / cu.sitio_ruta(next(c for c in REG["cursos"] if c["id"] == "derecho-laboral")) / "index.html").read_text(encoding="utf-8")
 
 
-LINK_TEAMS = "https://teams.microsoft.com/l/team/19%3AoE9nYUX5BgFCdcDqvAcLqtcgyqA5D1DPwl66NyZaTdU1%40thread.tacv2/conversations?groupId=d675843f-951b-4337-8de5-1d25e510b144&tenantId=aca51631-00fe-490d-91ab-163ef87260ee"
-
-
-def test_registro_lee_el_grupo_de_teams_y_avisa_si_no_se_entiende():
-    reg = _copia()
-    nuevo = dict(REG["cursos"][1], carpeta="EDU CONTINUA 2027-1/Otro", periodo="2027-1")
-    avisos, cambios = cu.fusionar(reg, [_fila(nuevo, Grupo_x0020_de_x0020_Teams=LINK_TEAMS), _fila(REG["cursos"][2], Grupo_x0020_de_x0020_Teams="hola")])
-    assert reg["cursos"][-1]["teams"] == {"equipo": "d675843f-951b-4337-8de5-1d25e510b144", "canal": "19:oE9nYUX5BgFCdcDqvAcLqtcgyqA5D1DPwl66NyZaTdU1@thread.tacv2"}
-    assert len(avisos) == 1 and "grupo de Teams" in avisos[0] and "teams" not in reg["cursos"][2]
-
-
-def test_los_ids_de_teams_no_llegan_a_las_paginas_publicas(sitio):
-    meta = (sitio / "g" / REG["global"]["adminCodigo"] / "cursos.json").read_text(encoding="utf-8")
-    assert '"avisosTeams": true' in meta and "d675843f" not in meta
-    for c in REG["cursos"]:
-        for arch in ("index.html", "config/contenido.json"):
-            assert "d675843f" not in (sitio / cu.sitio_ruta(c) / arch).read_text(encoding="utf-8")
 
 
 def test_una_cohorte_nueva_del_mismo_curso_en_el_mismo_periodo_es_otro_curso():

@@ -395,9 +395,13 @@ def test_analisis_detecta_choques_y_horas(pagina, servidor, sitio):
       const rs = [curso('A', [cl(1, '2026-10-05T18:00:00-05:00', '2026-10-05T20:00:00-05:00', ['Ana Gómez'], 'Luis'), cl(2, '2026-10-06T18:00:00-05:00', '2026-10-06T20:00:00-05:00', ['SABANA'])]),
                   curso('B', [cl(1, '2026-10-05T19:00:00-05:00', '2026-10-05T21:00:00-05:00', ['ana gomez'], 'Luis'), cl(2, '2026-10-06T19:00:00-05:00', '2026-10-06T21:00:00-05:00', ['SABANA'])])];
       const t = new Date('2026-10-02T10:00:00-05:00');
-      return { ch: m.choques(rs, t).map((k) => [k.rol, k.a.curso.id, k.b.curso.id]), h: m.horasDe(rs[0].d.clases[0]), hx: m.horasDe({ horas: 3, inicio: 'a', fin: 'b' }), csv: m.csv(['a', 'b'], [['x;y', 'z"w']]) };
+      // sesión paralela: dos clases del mismo curso a la misma hora con la misma asistente no son un choque; un asistente de varios nombres sí choca por cada nombre
+      const par = [curso('P', [cl(1, '2026-10-07T18:00:00-05:00', '2026-10-07T21:00:00-05:00', ['Ana Gómez'], 'Sofía'), cl(2, '2026-10-07T18:00:00-05:00', '2026-10-07T21:00:00-05:00', ['Luis Pérez'], 'Sofía')])];
+      const multi = [curso('M', [cl(1, '2026-10-08T18:00:00-05:00', '2026-10-08T20:00:00-05:00', ['X'], 'Sofía y Teo')]), curso('N', [cl(1, '2026-10-08T19:00:00-05:00', '2026-10-08T21:00:00-05:00', ['Y'], 'Teo')])];
+      return { paralela: m.choques(par, t).length, multi: m.choques(multi, t).map((k) => [k.rol, k.nombre]), ch: m.choques(rs, t).map((k) => [k.rol, k.a.curso.id, k.b.curso.id]), h: m.horasDe(rs[0].d.clases[0]), hx: m.horasDe({ horas: 3, inicio: 'a', fin: 'b' }), csv: m.csv(['a', 'b'], [['x;y', 'z"w']]) };
     }""")
     assert r["ch"] == [["Docente", "A", "B"], ["Asistente PAT", "A", "B"]]  # el docente institucional SABANA no choca consigo mismo
+    assert r["paralela"] == 0 and r["multi"] == [["Asistente PAT", "Teo"]]
     assert r["h"] == {"h": 2, "estimada": True} and r["hx"] == {"h": 3, "estimada": False}
     assert r["csv"] == '﻿a;b\r\n"x;y";"z""w"'
 

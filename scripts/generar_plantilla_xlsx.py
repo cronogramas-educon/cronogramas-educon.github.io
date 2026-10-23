@@ -28,6 +28,8 @@ AYUDA = [
     "Unidad: el nombre del módulo, repetido en cada clase de ese módulo. Si no hay unidades, déjala en blanco.",
     "Tema: un tema por línea dentro de la celda (Alt + Enter para el salto de línea).",
     "Horas: número entero. Si lo dejas en blanco, la hora de fin se calcula con el horario del curso.",
+    "Profesor y Asistente PAT: si dos personas dictan o acompañan juntas la misma clase, escribe los dos nombres en la misma casilla, separados por ' y ' (también sirven / ; +). Ejemplo: Ana Gómez y Luis Pérez.",
+    "Sesiones paralelas o clases compartidas: si dos docentes se reparten una misma sesión, escribe cada uno en su propia fila (cada una con sus horas, su tema y el mismo link). La página los muestra a la misma hora y no se marca como choque. Los choques solo se avisan entre cursos distintos.",
     "Fecha: una fecha real de Excel. El Día se corrige solo en la página si no coincide.",
     "Link de reunión: la dirección completa de Teams, que empieza por https://",
     "Situación (columna K): déjala vacía mientras la clase siga. Si se cancela, elige Cancelada: la clase deja de contar en horas, asistencia y calendario, y la página avisa. NO borres la fila ni cambies los números: las demás clases conservan su número y la asistencia sigue alineada.",
