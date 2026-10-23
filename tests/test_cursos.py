@@ -236,3 +236,17 @@ def test_contactos_del_curso_mandan_sobre_los_generales():
     assert "contactos" not in cu.config_curso(c, g)
     assert cu.config_curso(c, {**g, "contactos": gen})["contactos"] == gen
     assert cu.config_curso({**c, "contactos": propio}, {**g, "contactos": gen})["contactos"] == propio
+
+
+def test_sitio_marca_la_bienvenida_ya_enviada(tmp_path):
+    import shutil
+    raiz = tmp_path / "r"
+    shutil.copytree(cu.RAIZ, raiz, ignore=shutil.ignore_patterns(".git", ".venv", "node_modules", "__pycache__", ".pytest_cache", "_sitio"))
+    cid = cu.registro(raiz)["cursos"][0]["id"]
+    (raiz / "estado/bienvenidas-enviadas.json").write_text(json.dumps({cid: {"fecha": "2026-10-23T17:49:00Z"}}), encoding="utf-8")
+    s = cu.armar_sitio(tmp_path / "s", "v", raiz)
+    meta = json.loads((s / "g" / REG["global"]["adminCodigo"] / "cursos.json").read_text(encoding="utf-8"))
+    por_id = {c["id"]: c for c in meta["cursos"]}
+    assert por_id[cid]["bienvenidaEnviada"] == "2026-10-23T17:49:00Z"
+    assert all(c["bienvenidaEnviada"] == "" for k, c in por_id.items() if k != cid)
+    assert "alguien@" not in json.dumps(meta)

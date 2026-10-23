@@ -50,10 +50,11 @@ function bienvenidaHtml(c, pat) {
   if (!c.bienvenida) return `<p class="teams-av">${ic('warning')}Sin equipo de Teams o sin cronograma: aún no se puede enviar la bienvenida</p>`;
   const q = (id, v) => (id && v ? `&${id}=${encodeURIComponent(`"${v}"`)}` : '');
   const url = formBienvenida ? `${formBienvenida}${encodeURIComponent(`"${c.id}"`)}${q(preguntasBienv.pat, pat)}` : '';
-  return `<details class="curso-asis curso-bienv" data-bienv-curso="${esc(c.id)}"><summary><span class="ca-texto"><strong>Mensaje de bienvenida</strong><small>Para el equipo de Teams de este curso</small></span><span class="asis-abrir" aria-hidden="true"></span></summary>
+  return `<details class="curso-asis curso-bienv" data-bienv-curso="${esc(c.id)}"><summary><span class="ca-texto"><strong>Mensaje de bienvenida</strong><small>${c.bienvenidaEnviada ? 'Ya enviado al equipo de Teams' : 'Para el equipo de Teams de este curso'}</small></span><span class="asis-abrir" aria-hidden="true"></span></summary>
     <div class="asis-detalle"><div class="bienv-cuerpo">${cacheBienvenida.get(c.id) ?? '<p class="nota">Cargando el mensaje…</p>'}</div>
     <p class="bienv-aviso">Se publica en el canal General del equipo de este curso. Al pulsar el botón se abre un formulario donde escribes el nombre de la gestora logística y del estudiante PAT (el PAT viene escrito si ya está en el Excel) y, si quieres, una nota adicional para ese curso. Revisa el mensaje antes de enviarlo y no lo envíes dos veces.</p>
-    ${url ? `<a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Enviar al grupo de Teams${ic('arrow-up-right')}</a>` : '<p class="alerta">Falta configurar el formulario de envío.</p>'}</div></details>`;
+    ${c.bienvenidaEnviada ? `<p class="bienv-enviada">${ic('check')}Ya se envió el ${esc(fechaLargaAnio(c.bienvenidaEnviada.slice(0, 10)))}. El sistema no publica una segunda vez; si de verdad hay que repetirla, avisa a quien administra el sistema.</p>`
+      : url ? `<a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Enviar al grupo de Teams${ic('arrow-up-right')}</a>` : '<p class="alerta">Falta configurar el formulario de envío.</p>'}</div></details>`;
 }
 
 function tarjeta(r) {

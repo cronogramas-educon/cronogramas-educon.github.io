@@ -362,5 +362,6 @@
 .curso-bienv .bienv-cuerpo ul { margin: 0 0 8px 1.1em; list-style: disc; }
 .curso-bienv .bienv-cuerpo a { color: var(--ink); }
 .bienv-aviso { color: var(--ink-2); font-size: .86rem; }
+.bienv-enviada { display: flex; gap: .5rem; align-items: flex-start; margin: 0; padding: .6rem .8rem; border-radius: 8px; background: var(--felt); color: var(--ink); font-size: .9rem; }
 .curso-bienv .btn.rojo { justify-self: start; }
 @media print { .curso-bienv { display: none !important; } }

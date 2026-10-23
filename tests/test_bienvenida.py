@@ -64,3 +64,22 @@ def test_generar_escribe_solo_cursos_con_grupo_y_cronograma(tmp_path):
     f = json.loads((tmp_path / "bienvenidas" / f"{reg['cursos'][0]['id']}.json").read_text(encoding="utf-8"))
     assert f["equipo"] == C["teams"]["equipo"] and f["canal"] == C["teams"]["canal"] and "Bienvenid@s" in f["mensaje"]
     assert [p.name for p in (tmp_path / "bienvenidas").glob("*.json")] == [f"{reg['cursos'][0]['id']}.json"]  # el resto, incluido el viejo, se limpia
+
+
+def _evento(tmp_path, **payload):
+    f = tmp_path / "ev.json"
+    f.write_text(json.dumps({"client_payload": payload}), encoding="utf-8")
+    return f
+
+
+def test_registrar_anota_curso_y_fecha_sin_datos_personales(tmp_path):
+    (tmp_path / "config").mkdir()
+    (tmp_path / "estado").mkdir()
+    (tmp_path / "config/cursos.json").write_text((RAIZ / "config/cursos.json").read_text(encoding="utf-8"), encoding="utf-8")
+    cid = cu.registro(RAIZ)["cursos"][0]["id"]
+    assert bv.registrar(_evento(tmp_path, curso=cid, fecha="2026-10-23T17:49:00Z", por="alguien@unisabana.edu.co"), tmp_path) == cid
+    assert bv.registrar(_evento(tmp_path, curso=cid, fecha="2026-11-01T10:00:00Z"), tmp_path) == cid  # un aviso repetido no cambia la fecha
+    guardado = json.loads((tmp_path / "estado/bienvenidas-enviadas.json").read_text(encoding="utf-8"))
+    assert guardado == {cid: {"fecha": "2026-10-23T17:49:00Z"}}  # solo curso y fecha: quién lo envió queda solo en el formulario
+    assert bv.registrar(_evento(tmp_path, curso="no-existe", fecha="2026-10-23T17:49:00Z"), tmp_path) is None
+    assert bv.registrar(_evento(tmp_path, curso=cid, fecha="ayer"), tmp_path) is None

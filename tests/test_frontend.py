@@ -516,3 +516,20 @@ def test_hub_bienvenida_sin_formulario_lo_avisa(pagina, servidor, sitio):
     tarjeta.locator("[data-bienv-curso] > summary").click()
     assert "Falta configurar el formulario de envío" in tarjeta.inner_text()
     assert "aún no se puede enviar la bienvenida" in pagina.locator("#cursos-lista .curso", has_text="Derecho Laboral").inner_text()  # sin equipo de Teams
+
+
+def test_hub_bienvenida_ya_enviada_no_ofrece_el_boton(pagina, servidor, sitio):
+    def enviada(ruta):
+        meta = ruta.fetch().json()
+        meta["formularioBienvenida"] = "https://forms.example/r?id=1&r5="
+        for c in meta["cursos"]:
+            if c["id"] == "compliance-anticorrupcion":
+                c["bienvenidaEnviada"] = "2026-10-23T17:49:00Z"
+        ruta.fulfill(json=meta)
+    pagina.route("**/g/*/cursos.json*", enviada)
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    tarjeta = pagina.locator("#cursos-lista .curso", has_text="Compliance")
+    assert "Ya enviado al equipo de Teams" in tarjeta.locator("[data-bienv-curso] > summary").inner_text()
+    tarjeta.locator("[data-bienv-curso] > summary").click()
+    assert "Ya se envió el viernes 23 de octubre de 2026" in tarjeta.locator(".bienv-enviada").inner_text()
+    assert tarjeta.locator(".curso-bienv a.btn").count() == 0 and pagina.errores == []

@@ -2,12 +2,14 @@
 """Mensaje de bienvenida de un curso, listo para publicar en su equipo de Teams.
 
 Uso: python scripts/bienvenida.py generar        escribe bienvenidas/<id>.json de cada curso con grupo de Teams y datos publicados
+     python scripts/bienvenida.py registrar EVENTO  anota en estado/bienvenidas-enviadas.json que el flujo publicó la bienvenida de un curso
      python scripts/bienvenida.py ver CURSO      muestra el texto de un curso, sin enviar nada
 El texto sale de la plantilla "Mensaje de bienvenida" del equipo, con los datos reales del curso (fechas, horas, horario, módulos y
 estudiante PAT). La gestora logística y el estudiante PAT no van fijos: el mensaje lleva los marcadores {{GESTORA}} y {{PAT}} y quien lo envía escribe
 los nombres en el formulario (el hub los prellena con el PAT del Excel si existe). Un tercer marcador, {{NOTA}}, es un aviso opcional propio del curso. Lo demás no se inventa.
 bienvenidas/<id>.json lleva {equipo, canal, mensaje}: un flujo de Power Automate lo lee, reemplaza los marcadores con las respuestas del formulario y publica el mensaje en el canal General del equipo.
-Este script no envía nada.
+Este script no envía nada. El registro de envíos solo guarda curso y fecha (nunca quién lo envió; eso queda en las respuestas del formulario): el flujo lo consulta
+para no publicar dos veces y el sitio de administración lo muestra.
 """
 import json, re, sys
 from datetime import date
@@ -133,9 +135,25 @@ def generar(raiz=RAIZ):
     return escritos
 
 
+def registrar(evento, raiz=RAIZ):
+    """Lee el aviso del flujo (client_payload con curso y fecha) y anota el envío. Devuelve el id anotado o None si el curso no existe."""
+    p = json.loads(Path(evento).read_text(encoding="utf-8")).get("client_payload") or {}
+    curso, fecha = p.get("curso", ""), p.get("fecha", "")
+    if curso not in {c["id"] for c in cu.registro(raiz)["cursos"]} or not re.fullmatch(r"\d{4}-\d\d-\d\dT[\d:.]+Z?[+\-\d:]*", fecha):
+        print("::warning::Aviso de bienvenida enviada con curso o fecha inválidos; no se anotó.")
+        return None
+    f = Path(raiz) / "estado/bienvenidas-enviadas.json"
+    datos = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    datos.setdefault(curso, {"fecha": fecha})  # el primer envío manda: un aviso repetido no cambia la fecha
+    f.write_text(json.dumps(datos, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return curso
+
+
 if __name__ == "__main__":
     if sys.argv[1:2] == ["generar"]:
         print("\n".join(generar()) or "ningún curso con grupo de Teams y cronograma")
+    elif sys.argv[1:2] == ["registrar"] and len(sys.argv) == 3:
+        registrar(sys.argv[2])
     elif sys.argv[1:2] == ["ver"] and len(sys.argv) == 3:
         reg = cu.registro()
         c = next((x for x in reg["cursos"] if x["id"] == sys.argv[2]), None)

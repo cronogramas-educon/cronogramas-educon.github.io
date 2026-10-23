@@ -1,11 +1,12 @@
 name: Actualizar datos
 
+# El flujo de bienvenida a Teams avisa con bienvenida-enviada para dejar constancia (estado/bienvenidas-enviadas.json) y que el sitio lo muestre.
 # Un solo flujo de Power Automate avisa de cualquier Excel de EDU CONTINUA (evento excel-actualizado) con la ruta de su carpeta
 # y las filas de la tabla. Si el Excel es el Registro de cursos se actualiza config/cursos.json. Si es el de un curso se reconoce por su ruta,
 # se reconstruyen solo sus datos y se publica el sitio.
 on:
   repository_dispatch:
-    types: [excel-actualizado]
+    types: [excel-actualizado, bienvenida-enviada]
   workflow_dispatch:
   push:
     branches: [main]
@@ -41,8 +42,12 @@ jobs:
       - name: Pruebas de datos y registro de cursos
         run: pytest tests/test_datos.py tests/test_cursos.py tests/test_alertas.py -q
 
+      - name: Anotar la bienvenida enviada por el flujo de Teams
+        if: github.event.action == 'bienvenida-enviada'
+        run: python scripts/bienvenida.py registrar "$GITHUB_EVENT_PATH"
+
       - name: Reconocer el aviso (registro de cursos o Excel de un curso)
-        if: github.event_name == 'repository_dispatch'
+        if: github.event.action == 'excel-actualizado'
         id: fuente
         # La carga útil se lee del archivo del evento, nunca de una variable de entorno: así no se imprime en el registro público
         run: python scripts/cursos.py recibir "$GITHUB_EVENT_PATH"

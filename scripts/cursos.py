@@ -339,6 +339,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
     (salida / "404.html").write_text(neutro, encoding="utf-8")
     import bienvenida  # aquí y no arriba: bienvenida importa este módulo
     resumen, asistencias, bienvenidas = [], {}, {}
+    enviadas = json.loads((raiz / "estado/bienvenidas-enviadas.json").read_text(encoding="utf-8")) if (raiz / "estado/bienvenidas-enviadas.json").exists() else {}
     for c in reg["cursos"]:
         origen, destino = raiz / "cursos" / c["id"], salida / sitio_ruta(c)
         destino.mkdir(parents=True)
@@ -359,7 +360,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
         (destino / "index.html").write_text(_html(
             raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(con_tipo(c["programaCorto"], c["tipo"])), DESC=_esc(desc)), encoding="utf-8")
         resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "cohorte": c.get("cohorte", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
-                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "bienvenida": c["id"] in bienvenidas, "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
+                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "bienvenida": c["id"] in bienvenidas, "bienvenidaEnviada": enviadas.get(c["id"], {}).get("fecha", ""), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
                         "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{base_sharepoint(c['carpeta'], g)}/{c['carpeta']}", safe=":/")})
     hub = salida / "g" / g["adminCodigo"]
     hub.mkdir(parents=True)
