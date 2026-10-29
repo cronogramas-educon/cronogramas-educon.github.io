@@ -2,7 +2,7 @@
 """Asistencia de un curso, desde las filas de la tabla del Excel "Formato de asistencia" (ver generar_asistencia_xlsx.py).
 
 El Excel manda: las cuentas y el estado de cada estudiante salen de sus columnas calculadas (Faltas, Faltas que le quedan, Estado...).
-Aquí solo se resumen y se les quita el nombre y el documento: en el sitio el estudiante es "Estudiante N", con N su número de lista.
+Aquí solo se resumen y se les quita el nombre y el documento: en el sitio se publica solo "Nombre + primer apellido" (etiqueta) y el número de lista; el hub de administración los muestra como "Estudiante N".
 """
 import json, math, re
 from datetime import datetime, timedelta, timezone
@@ -25,6 +25,12 @@ def normalizar(filas):
 
 def es_asistencia(filas):
     return isinstance(filas, list) and any(isinstance(f, dict) and NOMBRE in f and "Clase 1" in f for f in normalizar(filas))
+
+
+def etiqueta(nombre):
+    """Nombre + primer apellido, lo único del nombre que se publica. Con 4 o más palabras: 1.ª y 3.ª (dos nombres, dos apellidos); con 3: 1.ª y 2.ª; ponytail: un nombre compuesto con un solo apellido de 3 palabras sale mal, se corrige en el Excel."""
+    w = str(nombre or "").split()
+    return " ".join(w[:1] + w[2:3] if len(w) >= 4 else w[:2])
 
 
 def _num(v):
@@ -68,7 +74,7 @@ def desde_cuadro(est, clases, ahora):
         e = _estado(fa, permitidas, termino and not sin)
         asistio_t, faltas_t, sin_t = asistio_t + a, faltas_t + fa, sin_t + sin
         por_estado[e] += 1
-        lista.append({"n": _ent(f.get("N°")) or n, "estado": e, "asistio": a, "faltas": fa, "quedan": permitidas - fa,
+        lista.append({"n": _ent(f.get("N°")) or n, "etiqueta": etiqueta(f[NOMBRE]), "estado": e, "asistio": a, "faltas": fa, "quedan": permitidas - fa,
                       "porcentaje": a / (a + fa) if a + fa else None, "puedeLlegar": (programadas - fa) / programadas if programadas else None,
                       "seguimiento": str(f.get("Seguimiento") or "").strip(), "marcas": {str(i): v for i, v in m.items()}})
     lista.sort(key=lambda x: (ESTADOS.index(x["estado"]), x["quedan"], x["n"]))
@@ -103,7 +109,7 @@ def resumir(filas, ahora=None, clases=None):
         a, fa = _ent(f["Asistió"]) or 0, _ent(f["Faltas"]) or 0
         asistio_t, faltas_t = asistio_t + a, faltas_t + fa
         por_estado[e] = por_estado.get(e, 0) + 1
-        lista.append({"n": _ent(f.get("N°")) or i, "estado": e, "asistio": a, "faltas": fa, "quedan": _ent(f["Faltas que le quedan"]),
+        lista.append({"n": _ent(f.get("N°")) or i, "etiqueta": etiqueta(f[NOMBRE]), "estado": e, "asistio": a, "faltas": fa, "quedan": _ent(f["Faltas que le quedan"]),
                       "porcentaje": _num(f.get("% hasta hoy")), "puedeLlegar": _num(f.get("Puede llegar hasta")),
                       "seguimiento": str(f.get("Seguimiento") or "").strip()})
     lista.sort(key=lambda x: (ESTADOS.index(x["estado"]) if x["estado"] in ESTADOS else len(ESTADOS), x["quedan"] if x["quedan"] is not None else 99, x["n"]))
@@ -133,7 +139,7 @@ def recalcular(carpeta_curso, ahora=None):
     previo = json.loads(arch.read_text(encoding="utf-8"))
     if not all("marcas" in x for x in previo.get("lista", [])) or not previo.get("lista"):
         return None, False
-    filas = [{"N°": x["n"], NOMBRE: "x", "Seguimiento": x.get("seguimiento", ""), **{f"Clase {i}": v for i, v in x["marcas"].items()}} for x in previo["lista"]]
+    filas = [{"N°": x["n"], NOMBRE: x.get("etiqueta") or "x", "Seguimiento": x.get("seguimiento", ""), **{f"Clase {i}": v for i, v in x["marcas"].items()}} for x in previo["lista"]]
     return _escribir(resumir(filas, ahora, clases), arch)
 
 

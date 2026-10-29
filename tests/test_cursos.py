@@ -269,4 +269,4 @@ def test_sitio_lleva_el_enlace_de_la_encuesta_a_cada_curso(tmp_path):
 
 def test_asistencia_publica_del_estudiante_no_lleva_seguimiento_ni_nombres(sitio):
     pub = json.loads((sitio / cu.sitio_ruta(next(c for c in cu.registro()["cursos"] if c["id"] == "compliance-anticorrupcion")) / "asistencia.json").read_text(encoding="utf-8"))
-    assert pub["lista"] and all(set(x) == {"n", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas"} for x in pub["lista"])
+    assert pub["lista"] and all(set(x) == {"n", "etiqueta", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas"} for x in pub["lista"])

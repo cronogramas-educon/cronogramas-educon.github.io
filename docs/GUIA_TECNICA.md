@@ -46,7 +46,7 @@ GitHub Actions "alertas"  --> incidencias en cronogramas-educon/avisos-internos
 El flujo "Alertas de cronogramas por correo" lee esas incidencias y envía el correo.
 ```
 
-El repositorio es público y los registros de Actions también. Por eso la carga útil del evento se lee desde `GITHUB_EVENT_PATH` y jamás desde una variable de entorno (GitHub imprime esas variables en el registro). No cambiar eso. El sitio no guarda nombres de estudiantes: en la asistencia solo existe "Estudiante N". La página de cada curso publica `asistencia.json` (solo n, estado, asistió, faltas, quedan, porcentaje y marcas; sin seguimiento interno) y la sección «Mi asistencia» muestra la fila del número de lista que el estudiante escribe, sin código de seguridad (decisión del usuario: los compañeros pueden ver la asistencia de los demás).
+El repositorio es público y los registros de Actions también. Por eso la carga útil del evento se lee desde `GITHUB_EVENT_PATH` y jamás desde una variable de entorno (GitHub imprime esas variables en el registro). No cambiar eso. El sitio no guarda documentos ni nombres completos: la asistencia guarda "Nombre + primer apellido" (`etiqueta`, calculada en `asistencia.etiqueta`: con 4 o más palabras toma la 1.ª y la 3.ª, con 3 la 1.ª y la 2.ª) y el hub los muestra como "Estudiante N". La página de cada curso publica `asistencia.json` (solo n, estado, asistió, faltas, quedan, porcentaje y marcas; sin seguimiento interno) y la sección «Mi asistencia» muestra la fila del nombre o número de lista que el estudiante escribe, sin código de seguridad (decisión del usuario: los compañeros pueden ver la asistencia de los demás).
 
 ## 4. SharePoint
 

@@ -33,8 +33,7 @@ def test_resumen_ordena_por_urgencia_y_no_lleva_nombres():
     assert [c["estado"] for c in r["porClase"][:5]] == ["Dictada"] * 4 + ["Sin dictar"]
     assert r["porClase"][0]["asistieron"] == 3 and r["porClase"][0]["marcadas"] == 4
     texto = json.dumps(r, ensure_ascii=False)
-    for secreto in ("Ana", "Pérez", "Beto", "Carla", "Dario", "1020304050"):
-        assert secreto not in texto
+    assert "1020304050" not in texto and all(len(x["etiqueta"].split()) <= 2 for x in r["lista"])  # el documento nunca; del nombre, solo Nombre + primer apellido
 
 
 def test_sin_columnas_calculadas_o_sin_estudiantes_avisa_claro():
@@ -90,9 +89,13 @@ def test_el_cuadro_de_horas_manda_el_numero_de_clases(tmp_path):
     r, _ = asi.aplicar(filas, cur)
     assert (r["programadas"], r["permitidas"]) == (10, 2)
     assert {x["n"]: x["estado"] for x in r["lista"]} == {1: "Al día", 2: "En riesgo"}
-    assert "Ana" not in json.dumps(r)
+    assert "Ana" not in json.dumps(r["porClase"]) and "Pérez" not in json.dumps(r)
     cuadro(20)  # el Cuadro crece a 20 clases: permitidas 4, Beto pasa a Atención
     r, cambio = asi.recalcular(cur)
     assert cambio and (r["programadas"], r["permitidas"]) == (20, 4)
     assert {x["n"]: x["estado"] for x in r["lista"]}[2] == "Atención"
     assert len(r["porClase"]) == 20
+
+
+def test_etiqueta_es_nombre_y_primer_apellido():
+    assert [asi.etiqueta(n) for n in ("Ana María Gómez Pérez", "Ana Gómez Pérez", "Ana Gómez", "Ana", "")] == ["Ana Gómez", "Ana Gómez", "Ana Gómez", "Ana", ""]
