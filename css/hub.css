@@ -386,7 +386,7 @@
 
 /* ---- Cierre del curso ---- */
 .lista-cierre { display: grid; gap: 8px; margin: 0 0 10px; padding: 0; list-style: none; }
-.lista-cierre li { display: flex; gap: .6rem; align-items: flex-start; }
-.lista-cierre li.pend { color: var(--amber-ink); }
+.lista-cierre .paso { display: flex; gap: .6rem; align-items: flex-start; margin: 0; }
+.lista-cierre .paso.pend { color: var(--amber-ink); }
 .lista-cierre label { display: flex; gap: .6rem; align-items: flex-start; cursor: pointer; }
 .lista-cierre input { margin-top: .25em; }

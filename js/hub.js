@@ -76,8 +76,8 @@ function listaCierre(r) {
   const hechos = auto.filter(([ok]) => ok).length + manual.filter(([id]) => mias[id]).length, total = auto.length + manual.length;
   const msj = encuestaUrl ? `Hola, gracias por acompañarnos en el ${r.c.programaCorto}. Cuéntanos cómo te fue, tu opinión nos ayuda a mejorar: ${encuestaUrl}` : '';
   return `<details class="curso-asis curso-cierre" data-cierre-lista="${esc(r.c.id)}"><summary><span class="ca-texto"><strong>Cierre del curso</strong><small>${hechos} de ${total} pasos listos</small></span><span class="asis-abrir" aria-hidden="true"></span></summary>
-    <div class="asis-detalle"><ul class="lista-cierre">${auto.map(([ok, t]) => `<li class="${ok ? 'ok' : 'pend'}">${ok ? ic('check') : ic('warning')}<span>${esc(t)}</span></li>`).join('')}
-    ${manual.map(([id, t]) => `<li><label><input type="checkbox" data-cierre-marca="${esc(r.c.id)}|${id}"${mias[id] ? ' checked' : ''}><span>${esc(t)}</span></label></li>`).join('')}</ul>
+    <div class="asis-detalle"><div class="lista-cierre">${auto.map(([ok, t]) => `<p class="paso ${ok ? 'ok' : 'pend'}">${ok ? ic('check') : ic('warning')}<span>${esc(t)}</span></p>`).join('')}
+    ${manual.map(([id, t]) => `<p class="paso"><label><input type="checkbox" data-cierre-marca="${esc(r.c.id)}|${id}"${mias[id] ? ' checked' : ''}><span>${esc(t)}</span></label></p>`).join('')}</div>
     ${msj ? `<p class="acciones-registro"><button class="btn" type="button" data-copiar="${esc(msj)}">${ic('link-simple')}<span>Copiar mensaje de la encuesta</span></button></p>` : '<p class="nota">Cuando se configure el enlace de la encuesta, aquí aparece el mensaje listo para copiar.</p>'}
     <p class="nota">Los pasos marcados por el equipo se guardan solo en este navegador.</p></div></details>`;
 }
@@ -377,8 +377,8 @@ async function arrancar() {
     const [curso, paso] = m.dataset.cierreMarca.split('|');
     marcasCierre[curso] = { ...marcasCierre[curso], [paso]: m.checked };
     guardarCierre(marcasCierre);
-    const det = m.closest('details'), n = [...det.querySelectorAll('li')].filter((li) => li.classList.contains('ok') || li.querySelector('input:checked')).length;
-    det.querySelector('summary small').textContent = `${n} de ${det.querySelectorAll('li').length} pasos listos`;
+    const det = m.closest('details'), pasos = [...det.querySelectorAll('.paso')], n = pasos.filter((x) => x.classList.contains('ok') || x.querySelector('input:checked')).length;
+    det.querySelector('summary small').textContent = `${n} de ${pasos.length} pasos listos`;
   });
   $('msj-cuando').onchange = () => seccionMensajes(activosVivos);
   document.addEventListener('click', async (e) => {
