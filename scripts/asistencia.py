@@ -30,7 +30,7 @@ def es_asistencia(filas):
 def etiqueta(nombre):
     """Nombre + primer apellido, lo único del nombre que se publica. Con 4 o más palabras: 1.ª y 3.ª (dos nombres, dos apellidos); con 3: 1.ª y 2.ª; ponytail: un nombre compuesto con un solo apellido de 3 palabras sale mal, se corrige en el Excel."""
     w = str(nombre or "").split()
-    return " ".join(w[:1] + w[2:3] if len(w) >= 4 else w[:2])
+    return " ".join(w[:1] + w[2:3] if len(w) >= 4 else w[:2]).title()  # el Excel suele venir en mayúsculas
 
 
 def _num(v):

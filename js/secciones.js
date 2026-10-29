@@ -64,13 +64,20 @@ export async function miAsistencia(seccion, nav, entrada, salida) {
   try { const r = await fetch(`asistencia.json?m=${Math.floor(Date.now() / 60000)}`, { cache: 'no-store' }); if (!r.ok) return; a = await r.json(); } catch { return; }
   seccion.hidden = nav.hidden = false;
   const plano = (t) => String(t ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  const NIVEL = { 'Aprobó': 'ok', 'Al día': 'ok', Atención: 'atencion', 'En riesgo': 'riesgo', 'Perdió el mínimo': 'riesgo' };
   const ficha = (x) => {
-    const hechas = Object.keys(x.marcas).map(Number).sort((p, q) => p - q);
-    const q = Math.max(x.quedan ?? 0, 0);
-    return `<div class="tarjeta asis-mia"><h3>${esc(x.etiqueta || `N.º ${x.n}`)}: ${esc(x.estado)}</h3>
-      <p>Asististe a <strong>${x.asistio}</strong> clases y faltaste a <strong>${x.faltas}</strong>${a.dictadas ? ` de ${a.dictadas} dictadas` : ''}. ${x.estado === 'Perdió el mínimo' ? 'Ya no se alcanza el 80 % exigido para certificar.' : `Te ${q === 1 ? 'queda 1 falta' : `quedan ${q} faltas`} antes de no alcanzar el 80 % exigido para certificar.`}</p>
-      <ul class="asis-marcas">${hechas.map((k) => `<li class="${x.marcas[k] === 1 ? 'si' : 'no'}">Clase ${k}: ${x.marcas[k] === 1 ? 'asististe' : 'faltaste'}</li>`).join('')}</ul>
-      <p class="asis-fecha">Actualizado: ${esc((a.actualizado || '').slice(0, 10))}</p></div>`;
+    const marcas = Object.keys(x.marcas).map(Number).sort((p, q) => p - q);
+    const q = Math.max(x.quedan ?? 0, 0), total = x.faltas + q;
+    const tramos = Array.from({ length: Math.min(total, 24) }, (_, k) => `<i class="${k < x.faltas ? 'gasto' : ''}"></i>`).join('');
+    const frase = x.estado === 'Perdió el mínimo' ? 'Con las clases que llevamos ya no se alcanza el 80 % exigido para certificar.'
+      : q === 0 ? 'No te quedan faltas: otra inasistencia haría que no alcances el 80 % exigido.' : `Puedes faltar a ${q === 1 ? '1 clase más' : `${q} clases más`} y aún alcanzar el 80 % exigido para certificar.`;
+    return `<article class="asis-ficha nivel-${NIVEL[x.estado] || 'ok'}">
+      <header><h3>${esc(x.etiqueta || `N.º ${x.n}`)}</h3><span class="asis-sello">${esc(x.estado)}</span></header>
+      <dl class="asis-cifras"><div><dt>Asististe</dt><dd>${x.asistio}</dd></div><div><dt>Faltaste</dt><dd>${x.faltas}</dd></div><div><dt>Te quedan</dt><dd>${q}</dd></div></dl>
+      <div class="asis-medidor" role="img" aria-label="Has usado ${x.faltas} de ${total} faltas permitidas"><div class="asis-tramos">${tramos}</div><p>Faltas usadas: ${x.faltas} de ${total} permitidas</p></div>
+      <p class="asis-frase">${frase}</p>
+      <ol class="asis-clases" aria-label="Asistencia clase por clase">${marcas.map((k) => `<li class="${x.marcas[k] === 1 ? 'si' : 'no'}" title="Clase ${k}: ${x.marcas[k] === 1 ? 'asististe' : 'faltaste'}"><b>${k}</b><span>${x.marcas[k] === 1 ? 'Asistí' : 'Falté'}</span></li>`).join('')}</ol>
+      <p class="asis-fecha">Actualizado el ${esc((a.actualizado || '').slice(0, 10))}${a.dictadas ? `, con ${a.dictadas} clases dictadas` : ''}.</p></article>`;
   };
   const ver = () => {
     const t = plano(entrada.value);

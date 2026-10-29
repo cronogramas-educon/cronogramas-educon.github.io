@@ -15,7 +15,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from asistencia import aplicar as aplicar_asistencia, es_asistencia
+from asistencia import aplicar as aplicar_asistencia, es_asistencia, etiqueta
 
 RAIZ = Path(__file__).resolve().parent.parent
 CAMPOS_CURSO = ("programa", "programaCorto", "tipo", "marca", "modalidad", "urlPaginaOficial", "periodo", "cohorte")
@@ -361,7 +361,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
             asistencias[c["id"]] = origen / "estado/asistencia.json"
             a = json.loads(asistencias[c["id"]].read_text(encoding="utf-8"))
             publica = {k: a[k] for k in ("actualizado", "programadas", "dictadas", "permitidas", "estudiantes") if k in a}
-            publica["lista"] = sorted(({k: x.get(k) for k in ("n", "etiqueta", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas")} for x in a["lista"]), key=lambda x: x["n"])
+            publica["lista"] = sorted(({k: (etiqueta(x.get(k)) if k == "etiqueta" else x.get(k)) for k in ("n", "etiqueta", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas")} for x in a["lista"]), key=lambda x: x["n"])
             (destino / "asistencia.json").write_text(json.dumps(publica, ensure_ascii=False), encoding="utf-8")
         texto = bienvenida.del_curso(c, g, raiz) if c.get("teams") else None
         if texto:  # el texto es el mismo que publica el flujo; solo la vista previa del sitio de administración, nunca los identificadores de Teams
