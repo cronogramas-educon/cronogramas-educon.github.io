@@ -59,7 +59,7 @@ def test_alerta_de_faltantes_sin_pat_por_defecto(repo):
 
 def test_sin_alertas_cuando_manana_no_hay_clase(repo):
     a = al.calcular(repo, date(2030, 1, 1))
-    assert a == {"fecha": "2030-01-02", "hasta": "2030-01-02", "faltantes": [], "choques": [], "errores": [], "asistencia": []} and not al.hay(a)
+    assert a == {"fecha": "2030-01-02", "hasta": "2030-01-02", "faltantes": [], "choques": [], "errores": [], "asistencia": [], "semana": [], "terminan": []} and not al.hay(a)
 
 
 def test_alerta_de_choque_error_y_registro(repo):
@@ -80,3 +80,16 @@ def test_docente_institucional_no_choca_consigo_mismo(repo):
     clase_de_manana(repo, A, linkTeams="x", profesores=["SABANA"])
     clase_de_manana(repo, B, linkTeams="x", profesores=["SABANA"], inicio=f"{MANANA}T18:00:00-05:00", fin=f"{MANANA}T19:00:00-05:00")
     assert al.calcular(repo, HOY)["choques"] == []
+
+
+def test_resumen_semanal_sale_siempre_y_no_publica_personas(repo):
+    a = al.calcular(repo, hoy=HOY, dias=7)
+    assert al.hay(a) and al.semanal(a) and al.titulo(a).startswith("Resumen semanal de cronogramas")
+    h = al.html(a)
+    assert "Clases de la semana" in h and "Cursos que terminan pronto" in h and "Dos clases a la vez" in h  # el mismo docente en dos cursos a la misma hora
+    assert len(a["semana"]) == 2 and a["semana"][0]["clases"][0]["fecha"] == MANANA and {t["fin"] for t in a["terminan"]} == {MANANA}
+    nuevo = h.split("<h3>Pendientes")[0]  # las secciones nuevas del resumen no llevan docentes, asistentes ni enlaces
+    assert "Docente Uno" not in nuevo and "teams.microsoft.com" not in h and "Apoyo" not in nuevo
+    vacio = al.html(al.calcular(repo, hoy=date(2026, 11, 1), dias=7))
+    assert "No hay clases programadas esta semana" in vacio and "Nada pendiente" in vacio and al.hay(al.calcular(repo, hoy=date(2026, 11, 1), dias=7))
+    assert not al.hay(al.calcular(repo, hoy=date(2026, 10, 1)))  # el aviso diario sigue sin salir si no hay nada que decir

@@ -568,3 +568,30 @@ def test_pagina_de_estudiantes_trae_la_informacion_del_curso(pagina, base):
     assert "80 %" in info and "40 días hábiles" in info and "grupo del curso" in info
     assert pagina.locator("#info-contenido .tarjeta").count() == 7 and pagina.locator('#nav a[href="#info"]').count() == 1
     assert pagina.errores == []
+
+
+def test_al_terminar_el_curso_aparece_la_encuesta_solo_si_hay_enlace(pagina, base):
+    def con_encuesta(ruta):
+        cfg = ruta.fetch().json()
+        cfg["encuesta"] = "https://forms.example/encuesta"
+        ruta.fulfill(json=cfg)
+    abrir(pagina, base, "ahora=2026-12-05T10:00:00-05:00")
+    assert pagina.locator("#panel a[href*='encuesta']").count() == 0  # sin enlace configurado no se muestra nada
+    pagina.route("**/config/contenido.json*", con_encuesta)
+    abrir(pagina, base, "ahora=2026-12-05T10:00:00-05:00")
+    assert pagina.locator("#panel a", has_text="Responder la encuesta").get_attribute("href") == "https://forms.example/encuesta"
+    abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
+    assert pagina.locator("#panel a", has_text="Responder la encuesta").count() == 0  # mientras el curso sigue, no hay encuesta
+    assert pagina.errores == []
+
+
+def test_hub_lista_de_cierre_de_un_curso_que_termino(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-11-30T10:00:00-05:00")  # al curso de prueba le quedan 4 días (termina el 4 de diciembre)
+    lista = pagina.locator("[data-cierre-lista]").first
+    assert lista.count() == 1 and "pasos listos" in lista.locator("summary").inner_text()
+    lista.locator("summary").click()
+    antes = lista.locator("summary small").inner_text()
+    lista.locator("input[data-cierre-marca$='|cert']").check()
+    assert lista.locator("summary small").inner_text() != antes
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")  # en pleno curso no hay lista de cierre
+    assert pagina.locator("[data-cierre-lista]").count() == 0 and pagina.errores == []

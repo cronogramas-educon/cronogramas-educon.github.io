@@ -64,7 +64,28 @@ def calcular(raiz=RAIZ, hoy=None, incluir_pat=False, dias=1):
     reg_estado = _json(raiz / "estado/registro.json")
     if reg_estado and reg_estado.get("error"):
         errores.append({"curso": "Excel Registro de cursos", "mensaje": reg_estado["error"]})
-    return {"fecha": manana, "hasta": hasta, "faltantes": faltantes, "choques": choques, "errores": errores, "asistencia": asistencia}
+    semana, terminan = _semana(raiz, reg, hoy) if dias > 1 else ([], [])
+    return {"fecha": manana, "hasta": hasta, "faltantes": faltantes, "choques": choques, "errores": errores, "asistencia": asistencia, "semana": semana, "terminan": terminan}
+
+
+def _semana(raiz, reg, hoy, dias_aviso=14):
+    """Resumen de la semana: clases de los próximos 7 días por curso (solo curso, clase, fecha y hora) y cursos que terminan en los próximos `dias_aviso` días.
+    Nunca docentes ni enlaces: el texto se publica en una incidencia de un repositorio público."""
+    manana, hasta, limite = (hoy + timedelta(days=1)).isoformat(), (hoy + timedelta(days=7)).isoformat(), (hoy + timedelta(days=dias_aviso)).isoformat()
+    semana, terminan = [], []
+    for c in reg["cursos"]:
+        d = _json(raiz / "cursos" / c["id"] / "data/data.json")
+        if not d or not d["clases"]:
+            continue
+        nombre = cu.con_tipo(c["programaCorto"], c["tipo"])
+        proximas = [cl for cl in d["clases"] if manana <= cl["fecha"] <= hasta]
+        if proximas:
+            semana.append({"curso": nombre, "clases": [{"clase": cl["clase"].capitalize(), "fecha": cl["fecha"], "horario": horario(cl)} for cl in sorted(proximas, key=lambda x: x["inicio"])]})
+        fin = max(cl["fecha"] for cl in d["clases"])
+        if manana <= fin <= limite:
+            terminan.append({"curso": nombre, "fin": fin, "quedan": sum(1 for cl in d["clases"] if cl["fecha"] >= manana)})
+    terminan.sort(key=lambda x: x["fin"])
+    return semana, terminan
 
 
 def _asistencia(raiz, reg, hoy, con_seguimiento):
@@ -85,7 +106,7 @@ def _asistencia(raiz, reg, hoy, con_seguimiento):
 
 
 def hay(a):
-    return bool(a["faltantes"] or a["choques"] or a["errores"] or a["asistencia"])
+    return semanal(a) or bool(a["faltantes"] or a["choques"] or a["errores"] or a["asistencia"])  # el resumen del lunes sale siempre
 
 
 def semanal(a):
@@ -94,14 +115,22 @@ def semanal(a):
 
 def titulo(a):
     if semanal(a):
-        return f"Alerta de cronogramas: revisión semanal, del {fecha_larga(a['fecha'])} al {fecha_larga(a['hasta'])}"
+        return f"Resumen semanal de cronogramas, del {fecha_larga(a['fecha'])} al {fecha_larga(a['hasta'])}"
     return f"Alerta de cronogramas: clases del {fecha_larga(a['fecha'])}"
 
 
 def html(a):
     e = escape
     cuando = f"los próximos días, <strong>del {e(fecha_larga(a['fecha']))} al {e(fecha_larga(a['hasta']))}</strong>" if semanal(a) else f"<strong>mañana, {e(fecha_larga(a['fecha']))}</strong>"
-    partes = [f"<p>Estas son las alertas para las clases de {cuando}.</p>"]
+    partes = [f"<p>Este es el resumen de {cuando}.</p>" if semanal(a) else f"<p>Estas son las alertas para las clases de {cuando}.</p>"]
+    if semanal(a):
+        partes.append("<h3>Clases de la semana</h3>" + ("<ul>" + "".join(
+            f"<li><strong>{e(x['curso'])}</strong>, {len(x['clases'])} {'clase' if len(x['clases']) == 1 else 'clases'}: " + e("; ".join(f"{y['clase']}, {fecha_larga(y['fecha'])}, {y['horario']}" for y in x["clases"])) + ".</li>" for x in a["semana"]) + "</ul>"
+            if a["semana"] else "<p>No hay clases programadas esta semana.</p>"))
+        if a["terminan"]:
+            partes.append("<h3>Cursos que terminan pronto</h3><ul>" + "".join(
+                f"<li><strong>{e(x['curso'])}</strong> termina el {e(fecha_larga(x['fin']))} (quedan {x['quedan']} {'clase' if x['quedan'] == 1 else 'clases'}). Conviene preparar certificados y encuesta.</li>" for x in a["terminan"]) + "</ul>")
+        partes.append("<h3>Pendientes</h3>" + ("" if (a["faltantes"] or a["choques"] or a["errores"] or a["asistencia"]) else "<p>Nada pendiente: las clases de la semana tienen sus datos y no hay choques ni Excel con error.</p>"))
     if a["faltantes"]:
         partes.append("<h3>Falta confirmar</h3><ul>" + "".join(
             f"<li><strong>{e(x['curso'])}</strong>, {e(x['clase'])}{(' del ' + e(fecha_larga(x['fecha']))) if semanal(a) else ''} ({e(x['horario'])}): falta {e(lista_y(x['falta']))}.</li>" for x in a["faltantes"]) + "</ul>")
@@ -129,7 +158,7 @@ def main(argv):
     hoy = date.fromisoformat(fecha) - timedelta(days=1) if fecha else None  # --fecha es el día de las clases
     a = calcular(hoy=hoy, dias=7 if "--semana" in argv else 1)
     Path(salida).write_text(html(a), encoding="utf-8")
-    print(titulo(a) + "\n" + (f"{len(a['faltantes'])} clases con datos por confirmar, {len(a['choques'])} choques, {len(a['errores'])} Excel con error, {len(a['asistencia'])} cursos con asistencia por atender." if hay(a) else "Sin alertas para " + ("los próximos 7 días." if semanal(a) else "mañana.")))
+    print(titulo(a) + "\n" + (f"{len(a['faltantes'])} clases con datos por confirmar, {len(a['choques'])} choques, {len(a['errores'])} Excel con error, {len(a['asistencia'])} cursos con asistencia por atender." if hay(a) else "Sin alertas para mañana."))
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a") as o:
             o.write(f"hay={'true' if hay(a) else 'false'}\ntitulo={titulo(a)}\n")

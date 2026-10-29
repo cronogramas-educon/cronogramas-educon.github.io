@@ -250,3 +250,18 @@ def test_sitio_marca_la_bienvenida_ya_enviada(tmp_path):
     assert por_id[cid]["bienvenidaEnviada"] == "2026-10-23T17:49:00Z"
     assert all(c["bienvenidaEnviada"] == "" for k, c in por_id.items() if k != cid)
     assert "alguien@" not in json.dumps(meta)
+
+
+def test_sitio_lleva_el_enlace_de_la_encuesta_a_cada_curso(tmp_path):
+    import shutil
+    raiz = tmp_path / "r"
+    shutil.copytree(cu.RAIZ, raiz, ignore=shutil.ignore_patterns(".git", ".venv", "node_modules", "__pycache__", ".pytest_cache", "_sitio"))
+    reg = json.loads((raiz / "config/cursos.json").read_text(encoding="utf-8"))
+    reg["global"]["encuestaSatisfaccion"] = "https://forms.example/encuesta"
+    (raiz / "config/cursos.json").write_text(json.dumps(reg, ensure_ascii=False), encoding="utf-8")
+    s = cu.armar_sitio(tmp_path / "s", "v", raiz)
+    for c in reg["cursos"]:
+        cfg = json.loads((s / cu.sitio_ruta(c) / "config/contenido.json").read_text(encoding="utf-8"))
+        assert cfg["encuesta"] == "https://forms.example/encuesta"
+    s2 = cu.armar_sitio(tmp_path / "s2", "v", cu.RAIZ)  # sin enlace configurado, ningún curso lo trae
+    assert all("encuesta" not in json.loads((s2 / cu.sitio_ruta(c) / "config/contenido.json").read_text(encoding="utf-8")) for c in reg["cursos"])

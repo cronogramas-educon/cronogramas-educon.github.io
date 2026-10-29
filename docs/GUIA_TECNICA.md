@@ -129,6 +129,16 @@ Reglas de asistencia: mínimo 80 % (`MINIMO = 0.8`); estados Perdió el mínimo,
 
 **Avisos del hub.** «Urgente» muestra primero lo de hoy y mañana clase por clase, y el resto agrupado por curso (con cuántas clases tienen cada falta). Si un curso en marcha lleva 7 días o más sin guardarse el Excel y ya tuvo clases desde entonces, su tarjeta lo avisa (no cambia el semáforo).
 
+**Mensaje del día para WhatsApp (hub, sección «Mensaje del día»).** Arma en el navegador el texto de la plantilla 3 del equipo («Muy buenos días… tenemos programada la clase N del curso… horario, profesor, enlace… Los esperamos») con los datos del Excel, para hoy o para mañana, un mensaje por clase y un botón «Copiar mensaje». Lo que falta (docente o enlace) sale como «Por confirmar» y se avisa. No envía nada. Código: `mensajeWhatsapp` y `clasesDelDia` en `js/hub-analisis.js`.
+
+**Resumen semanal.** Cada lunes la incidencia/correo sale siempre (ver `docs/ALERTAS.md`), con las clases de la semana por curso (sin docentes ni enlaces), los cursos que terminan en 14 días y lo pendiente.
+
+**Cierre del curso (hub).** La tarjeta de un curso que termina en 7 días o ya terminó trae «Cierre del curso»: dos pasos que se comprueban solos (clases realizadas, asistencia final) y tres que marca el equipo (certificados, encuesta, horas); las marcas se guardan en el navegador de quien las hace. Con `global.encuestaSatisfaccion` configurado, ofrece el mensaje de la encuesta listo para copiar.
+
+**Encuesta de satisfacción.** `global.encuestaSatisfaccion` en `config/cursos.json` (vacío hasta crear la encuesta en Microsoft Forms con la cuenta educofdcp y permitir respuestas de cualquier persona). Con enlace, `armar_sitio` lo agrega a la configuración de cada curso y la página de estudiantes lo muestra solo cuando el curso termina.
+
+**Información del curso (estudiantes).** Sección con asistencia, certificado, grabaciones, material, conexión, cambios y ayuda (`INFO_CURSO` en `js/secciones.js`); un curso puede cambiarla con `infoCurso` en su configuración.
+
 ## 8. Operación diaria
 
 - Abrir un curso: llenar el formulario "Nuevo curso o diplomado de Educación Continua" (enlace en `global.formularioRegistro` de `config/cursos.json`). El flujo crea todo. Después cargar el cronograma en el Excel del curso.

@@ -41,7 +41,7 @@ export function tick() {
   const t = ahora();
   const c = proximaDe(clases, t);
   if (!c) {
-    if (clave !== 'fin') { clave = 'fin'; el.innerHTML = `<div class="tag-proxima papel fin"><div class="tag-info"><h2>${meta.tipo === 'Diplomado' ? 'El diplomado ha finalizado' : 'El curso ha finalizado'}</h2><p class="tag-datos">Gracias por acompañarnos. Las clases anteriores siguen en el cronograma.</p></div></div>`; }
+    if (clave !== 'fin') { clave = 'fin'; el.innerHTML = `<div class="tag-proxima papel fin"><div class="tag-info"><h2>${meta.tipo === 'Diplomado' ? 'El diplomado ha finalizado' : 'El curso ha finalizado'}</h2><p class="tag-datos">Gracias por acompañarnos. Las clases anteriores siguen en el cronograma.</p>${cfg.encuesta ? `<p class="tag-datos">Cuéntanos cómo te fue: tu opinión nos ayuda a mejorar.</p><a class="btn rojo" href="${esc(cfg.encuesta)}" target="_blank" rel="noopener noreferrer">Responder la encuesta${ic('arrow-up-right')}</a>` : ''}</div></div>`; }
     return;
   }
   const estado = estadoClase(c, t);

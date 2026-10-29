@@ -346,6 +346,11 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
         for d in ("config", "data"):
             if (origen / d).exists():
                 shutil.copytree(origen / d, destino / d)
+        cfg_est = destino / "config/contenido.json"
+        if g.get("encuestaSatisfaccion") and cfg_est.exists():  # un solo enlace para todos los cursos: la página de cada curso lo muestra al terminar
+            ce = json.loads(cfg_est.read_text(encoding="utf-8"))
+            ce["encuesta"] = g["encuestaSatisfaccion"]
+            cfg_est.write_text(json.dumps(ce, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         if (origen / "cronograma.ics").exists():
             shutil.copy(origen / "cronograma.ics", destino / "cronograma.ics")
         if (origen / "estado/error.json").exists():  # solo lo lee el sitio base de administración
@@ -377,7 +382,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
     reciente = max(reg["cursos"], key=lambda c: c.get("periodo", ""))["carpeta"].split("/")[0] if reg["cursos"] else ""
     sin = [dict(x, enlace=enlace(x["carpeta"])) for x in leer("sin-registrar.json", []) if not resolver(x["carpeta"], reg)]
     meta = {"cursos": resumen, "sharepointBase": quote(g["sharepointBase"], safe=":/"), "carpetaActual": enlace(reciente), "nombreCarpetaActual": reciente,
-            "sinRegistrar": sin, "formularioRegistro": g.get("formularioRegistro", ""), "formularioBienvenida": g.get("formularioBienvenida", ""), "preguntasBienvenida": g.get("preguntasBienvenida", {}), "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=(quote(g["registroUrl"], safe=":/") if g.get("registroUrl") else enlace(g["registroRuta"]) if g.get("registroRuta") else "") + "?web=1")}
+            "sinRegistrar": sin, "formularioRegistro": g.get("formularioRegistro", ""), "formularioBienvenida": g.get("formularioBienvenida", ""), "preguntasBienvenida": g.get("preguntasBienvenida", {}), "encuestaSatisfaccion": g.get("encuestaSatisfaccion", ""), "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=(quote(g["registroUrl"], safe=":/") if g.get("registroUrl") else enlace(g["registroRuta"]) if g.get("registroRuta") else "") + "?web=1")}
     (hub / "cursos.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
     (hub / "index.html").write_text(_html(raiz / "plantilla/hub.html", V=version, BASE="../../"), encoding="utf-8")
     return salida

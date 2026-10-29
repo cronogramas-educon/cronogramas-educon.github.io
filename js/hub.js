@@ -43,7 +43,7 @@ const pendientesTxt = (r) => [
 
 const etiquetaPeriodo = (c) => (c.periodo ? `Periodo ${c.periodo}${c.cohorte ? `, ${c.cohorte}` : ''}` : c.tipo);
 
-let formBienvenida = '', preguntasBienv = {};
+let formBienvenida = '', preguntasBienv = {}, encuestaUrl = '';
 const cacheBienvenida = new Map();
 /** Vista previa del mensaje de bienvenida y botón que abre el formulario de envío con el curso ya elegido. */
 function bienvenidaHtml(c, pat) {
@@ -55,6 +55,31 @@ function bienvenidaHtml(c, pat) {
     <p class="bienv-aviso">Se publica en el canal General del equipo de este curso. Al pulsar el botón se abre un formulario donde escribes el nombre de la gestora logística y del estudiante PAT (el PAT viene escrito si ya está en el Excel) y, si quieres, una nota adicional para ese curso. Revisa el mensaje antes de enviarlo y no lo envíes dos veces.</p>
     ${c.bienvenidaEnviada ? `<p class="bienv-enviada">${ic('check')}Ya se envió el ${esc(fechaLargaAnio(c.bienvenidaEnviada.slice(0, 10)))}. El sistema no publica una segunda vez; si de verdad hay que repetirla, avisa a quien administra el sistema.</p>`
       : url ? `<a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Enviar al grupo de Teams${ic('arrow-up-right')}</a>` : '<p class="alerta">Falta configurar el formulario de envío.</p>'}</div></details>`;
+}
+
+/** Lista de cierre de un curso que termina en 7 días o ya terminó: lo que se comprueba solo y lo que marca el equipo (se guarda en este navegador). */
+const LLAVE_CIERRE = 'cierre-curso';
+const leerCierre = () => { try { return JSON.parse(localStorage.getItem(LLAVE_CIERRE) || '{}'); } catch { return {}; } };
+const guardarCierre = (o) => { try { localStorage.setItem(LLAVE_CIERRE, JSON.stringify(o)); } catch { /* sin almacenamiento: la marca dura mientras la página esté abierta */ } };
+let marcasCierre = leerCierre();
+function listaCierre(r) {
+  const d = r.d;
+  if (!d?.clases.length) return '';
+  const fin = d.clases.at(-1).fecha, falta = (Date.parse(`${fin}T12:00:00Z`) - Date.parse(`${hoyISO(ahora())}T12:00:00Z`)) / 864e5;
+  if (!(r.estado === 'terminado' || falta <= 7)) return '';
+  const k = r.asis && cierre(r), hechas = r.hechas === d.clases.length;
+  const auto = [
+    [hechas, `Clases realizadas: ${r.hechas} de ${d.clases.length}${hechas ? '' : `. La última es el ${fechaLarga(fin)}`}`],
+    [!!k?.definitivo, !r.asis ? 'Asistencia: este curso no tiene Excel de asistencia publicado' : k ? (k.definitivo ? 'Asistencia final completa' : 'Asistencia provisional: faltan clases o casillas por marcar') : 'Asistencia: se cierra cuando se dicta la última clase']];
+  const manual = [['cert', `Certificados enviados${k ? ` (${k.aprueban.length} ${k.aprueban.length === 1 ? 'aprueba' : 'aprueban'})` : ''}`], ['enc', 'Encuesta de satisfacción enviada'], ['horas', 'Horas de los docentes revisadas en Reportes']];
+  const mias = marcasCierre[r.c.id] ?? {};
+  const hechos = auto.filter(([ok]) => ok).length + manual.filter(([id]) => mias[id]).length, total = auto.length + manual.length;
+  const msj = encuestaUrl ? `Hola, gracias por acompañarnos en el ${r.c.programaCorto}. Cuéntanos cómo te fue, tu opinión nos ayuda a mejorar: ${encuestaUrl}` : '';
+  return `<details class="curso-asis curso-cierre" data-cierre-lista="${esc(r.c.id)}"><summary><span class="ca-texto"><strong>Cierre del curso</strong><small>${hechos} de ${total} pasos listos</small></span><span class="asis-abrir" aria-hidden="true"></span></summary>
+    <div class="asis-detalle"><ul class="lista-cierre">${auto.map(([ok, t]) => `<li class="${ok ? 'ok' : 'pend'}">${ok ? ic('check') : ic('warning')}<span>${esc(t)}</span></li>`).join('')}
+    ${manual.map(([id, t]) => `<li><label><input type="checkbox" data-cierre-marca="${esc(r.c.id)}|${id}"${mias[id] ? ' checked' : ''}><span>${esc(t)}</span></label></li>`).join('')}</ul>
+    ${msj ? `<p class="acciones-registro"><button class="btn" type="button" data-copiar="${esc(msj)}">${ic('link-simple')}<span>Copiar mensaje de la encuesta</span></button></p>` : '<p class="nota">Cuando se configure el enlace de la encuesta, aquí aparece el mensaje listo para copiar.</p>'}
+    <p class="nota">Los pasos marcados por el equipo se guardan solo en este navegador.</p></div></details>`;
 }
 
 function tarjeta(r) {
@@ -77,6 +102,7 @@ function tarjeta(r) {
     <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. Datos publicados ${esc(haceCuanto(d.meta.generadoEn))}.</p>${sg ? `<p class="meta-viejo">${ic('warning')}<span>Desde el último guardado del Excel ya se ${sg.desde === 1 ? 'dictó 1 clase' : `dictaron ${sg.desde} clases`}. Revisa que asistencia, docentes y enlaces estén al día.</span></p>` : ''}` : ''}
     ${htmlAsistenciaCurso(r)}
     ${bienvenidaHtml(c, d?.asistentesPat?.join(' y '))}
+    ${listaCierre(r)}
     <p class="falta ${n ? '' : 'ok'}">${n ? `${ic('warning')}${n === 1 ? 'Falta confirmar 1 dato' : `Faltan confirmar ${n} datos`}` : `${ic('check')}Nada por confirmar`}</p>
     <div class="acciones-curso">
       <a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Abrir sitio${ic('arrow-up-right')}</a>
@@ -120,7 +146,7 @@ function archivo(rs) {
     const url = urlCurso(r.c);
     return `<li><span><strong>${esc(r.c.programaCorto)}</strong><small>${esc(r.c.tipo)}${r.c.cohorte ? `, ${esc(r.c.cohorte)}` : ''}, terminó el ${esc(fechaLargaAnio(r.d.meta.fin))}</small></span>
       <a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Abrir${ic('arrow-up-right')}</a>
-      <button class="btn" type="button" data-copiar="${esc(url)}">${ic('link-simple')}<span>Copiar enlace</span></button>${r.asis && cierre(r) ? htmlCierre(r) : ''}</li>`;
+      <button class="btn" type="button" data-copiar="${esc(url)}">${ic('link-simple')}<span>Copiar enlace</span></button>${listaCierre(r)}${r.asis && cierre(r) ? htmlCierre(r) : ''}</li>`;
   }).join('')}</ul></div>`).join('');
 }
 
@@ -218,6 +244,7 @@ const csvReporte = () => {
 async function pintar(meta) {
   formBienvenida = meta.formularioBienvenida || '';
   preguntasBienv = meta.preguntasBienvenida || {};
+  encuestaUrl = meta.encuestaSatisfaccion || '';
   const rs = await Promise.all(meta.cursos.map(async (c) => {
     const [d, error, asis] = await Promise.all([c.tieneDatos && traer(`${new URL(`${c.ruta}/data/data.json`, BASE)}`), c.tieneError && traer(`${new URL(`${c.ruta}/estado/error.json`, BASE)}`), c.tieneAsistencia && traer(`asistencia/${c.id}.json`)]);
     return Object.assign(analizar(c, d, error), { asis: asis || null });
@@ -343,6 +370,15 @@ async function arrancar() {
     if (!b) return;
     const r = ultimosRs.find((x) => x.c.id === b.dataset.cierre);
     if (r && cierre(r)) descargar(`cierre-${r.c.id}.csv`, csv(TITULOS_CIERRE, filasCierre(r)));
+  });
+  document.addEventListener('change', (e) => {
+    const m = e.target.closest?.('[data-cierre-marca]');
+    if (!m) return;
+    const [curso, paso] = m.dataset.cierreMarca.split('|');
+    marcasCierre[curso] = { ...marcasCierre[curso], [paso]: m.checked };
+    guardarCierre(marcasCierre);
+    const det = m.closest('details'), n = [...det.querySelectorAll('li')].filter((li) => li.classList.contains('ok') || li.querySelector('input:checked')).length;
+    det.querySelector('summary small').textContent = `${n} de ${det.querySelectorAll('li').length} pasos listos`;
   });
   $('msj-cuando').onchange = () => seccionMensajes(activosVivos);
   document.addEventListener('click', async (e) => {

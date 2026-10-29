@@ -26,7 +26,9 @@ Todos los días a las 3:00 p. m. de Colombia, `.github/workflows/alertas.yml` re
 - Un docente o asistente tiene dos clases a la vez.
 - Un Excel de curso o el Excel de registro no se pudo leer.
 
-**Revisión semanal:** los lunes a las 8:00 a. m. (Colombia) el mismo workflow revisa los próximos 7 días con las mismas reglas y publica una incidencia aparte, "revisión semanal", con la fecha de cada clase. Usa la misma variable `ALERTAS_ACTIVAS`.
+**Resumen semanal (cambia en octubre de 2026):** los lunes sale **siempre**, aunque no haya problemas. Lleva las clases de la semana por curso (fecha y hora, sin docentes ni enlaces), los cursos que terminan en los próximos 14 días y, debajo, lo pendiente (datos que faltan, choques, asistencia y Excel con error). El diario sigue saliendo solo si hay algo que decir.
+
+**Revisión semanal (alertas):** los lunes a las 8:00 a. m. (Colombia) el mismo workflow revisa los próximos 7 días con las mismas reglas y publica una incidencia aparte, "revisión semanal", con la fecha de cada clase. Usa la misma variable `ALERTAS_ACTIVAS`.
 
 Destino: `educofdcp@unisabana.edu.co`. El destinatario vive en el flujo `Alertas de cronogramas por correo`, no en el repositorio.
 
