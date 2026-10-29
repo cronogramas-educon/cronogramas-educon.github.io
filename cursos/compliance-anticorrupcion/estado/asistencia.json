@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-20T20:43:54-05:00",
+ "actualizado": "2026-10-29T15:42:33-05:00",
  "programadas": 35,
  "dictadas": 9,
  "permitidas": 7,
@@ -263,6 +263,7 @@
  "lista": [
   {
    "n": 11,
+   "etiqueta": "MARIA RAMON",
    "estado": "Al día",
    "asistio": 7,
    "faltas": 2,
@@ -284,6 +285,7 @@
   },
   {
    "n": 2,
+   "etiqueta": "ANDREA ORELLANO",
    "estado": "Al día",
    "asistio": 8,
    "faltas": 1,
@@ -305,6 +307,7 @@
   },
   {
    "n": 3,
+   "etiqueta": "ANDREA FONTALVO",
    "estado": "Al día",
    "asistio": 8,
    "faltas": 1,
@@ -326,6 +329,7 @@
   },
   {
    "n": 8,
+   "etiqueta": "ESMERALDA ROMERO",
    "estado": "Al día",
    "asistio": 8,
    "faltas": 1,
@@ -347,6 +351,7 @@
   },
   {
    "n": 12,
+   "etiqueta": "MONICA CUESTAS",
    "estado": "Al día",
    "asistio": 8,
    "faltas": 1,
@@ -368,6 +373,7 @@
   },
   {
    "n": 1,
+   "etiqueta": "ALEJANDRA ZULOAGA",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
@@ -389,6 +395,7 @@
   },
   {
    "n": 4,
+   "etiqueta": "ANDREA SANCHEZ",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
@@ -410,6 +417,7 @@
   },
   {
    "n": 5,
+   "etiqueta": "ANDRES DIAZ",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
@@ -431,6 +439,7 @@
   },
   {
    "n": 6,
+   "etiqueta": "EBLIN SALAMANCA",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
@@ -452,6 +461,7 @@
   },
   {
    "n": 7,
+   "etiqueta": "EDGAR MEDINA",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
@@ -473,6 +483,7 @@
   },
   {
    "n": 9,
+   "etiqueta": "MARIA GONZALEZ",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
@@ -494,6 +505,7 @@
   },
   {
    "n": 10,
+   "etiqueta": "MARIA ECHAVARRIA",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
@@ -515,6 +527,7 @@
   },
   {
    "n": 13,
+   "etiqueta": "NELSON MOLINA",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
@@ -536,6 +549,7 @@
   },
   {
    "n": 14,
+   "etiqueta": "SIMARIK PATIÑO",
    "estado": "Al día",
    "asistio": 9,
    "faltas": 0,
