@@ -1,6 +1,7 @@
 // Cálculos del sitio de administración sobre los datos de todos los cursos. Sin DOM: reciben los resultados de analizar() y devuelven datos.
 import { norm } from './ui.js';
-import { addDias, estadoClase, hoyISO } from './utils-fecha.js';
+import { addDias, estadoClase, hoyISO, MESES, partes } from './utils-fecha.js';
+import { horario } from './ui.js';
 
 const INSTITUCIONAL = new Set(['sabana']); // "SABANA" es la universidad, no una persona que pueda chocar consigo misma
 const SEPARADORES = /\s+y\s+|\s*[/;+]\s*/; // varios asistentes en una misma casilla
@@ -113,4 +114,28 @@ export const horasTxt = (e) => `${num(e.horas)}${e.estimadas ? ` (${e.estimadas}
 export function csv(titulos, filas) {
   const celda = (v) => { const s = String(v ?? ''); return /[;"\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
   return '﻿' + [titulos, ...filas].map((f) => f.map(celda).join(';')).join('\r\n');
+}
+
+/** Clases de un día (ISO) de todos los cursos, por hora, sin las ya canceladas. */
+export function clasesDelDia(rs, iso) {
+  return clases(rs).filter(({ c }) => c.fecha === iso).sort((a, b) => a.c.inicio.localeCompare(b.c.inicio));
+}
+
+/** Mensaje para el grupo de WhatsApp de la clase (plantilla 3 del equipo) con los datos del Excel. `cuando` es 'hoy' o 'mañana'. Lo que falta sale como «Por confirmar» y se devuelve en `faltan`. */
+export function mensajeWhatsapp({ c, curso }, cuando = 'hoy') {
+  const p = partes(c.fecha), fecha = `${p.d} de ${MESES[p.m - 1]} de ${p.y}`;
+  const numero = String(c.clase).match(/\d+/)?.[0], clase = numero ? `la clase ${numero}` : 'la clase';
+  const profesores = c.profesores.join(' y '), faltan = [];
+  if (!profesores) faltan.push('docente');
+  if (!c.linkTeams) faltan.push('enlace de la clase');
+  const texto = [
+    cuando === 'hoy' ? 'Muy buenos días 😁' : 'Muy buenas tardes 😁',
+    'Espero que se encuentren muy bien.',
+    `👉🏼Les recuerdo que ${cuando === 'hoy' ? 'el día de hoy' : 'mañana'}, ${fecha}, tenemos programada ${clase} del ${curso.programaCorto}.`,
+    'A continuación, les comparto la información detallada:',
+    `⏰ Horario: ${horario(c)} (hora de Colombia)`,
+    `👩🏻‍🏫${c.profesores.length > 1 ? 'Profesores' : 'Profesor'}: ${profesores || 'Por confirmar'}`,
+    `🔗 Enlace de la clase: ${c.linkTeams || 'Por confirmar'}`,
+    'Los esperamos 🤓'].join('\n');
+  return { texto, faltan };
 }

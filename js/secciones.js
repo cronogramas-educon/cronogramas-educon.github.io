@@ -30,6 +30,22 @@ export function apoyo(el, d) {
   el.innerHTML = n.length ? `En las sesiones de Teams te acompañan <strong>${esc(n.join(' y '))}</strong>.` : 'Quién te acompaña en las sesiones de Teams está por confirmar.';
 }
 
+/** Lo que un estudiante necesita saber del curso. El texto es el mismo de la bienvenida; un curso puede cambiarlo con `infoCurso` (lista de {titulo, texto}) en su configuración. */
+export const INFO_CURSO = [
+  { titulo: 'Asistencia', texto: 'Se exige una asistencia mínima del 80 % de las clases programadas para optar al certificado. Si superas el 20 % de inasistencias, no se expide la certificación.' },
+  { titulo: 'Certificado', texto: 'El certificado en PDF se envía al correo electrónico registrado en un plazo máximo de 40 días hábiles después de terminar el curso.' },
+  { titulo: 'Grabaciones', texto: 'Las sesiones se graban solo para control interno de la Universidad; por políticas institucionales no se comparten con los estudiantes.' },
+  { titulo: 'Material de apoyo', texto: 'Oportunamente se compartirá un enlace a la carpeta compartida. Que haya diapositivas o guías depende del criterio de cada docente.' },
+  { titulo: 'Conexión', texto: 'Conéctate 5 minutos antes y revisa tu conexión a internet. El enlace de cada clase está en esta página.' },
+  { titulo: 'Cambios y trámites', texto: 'La Universidad puede modificar la programación o a los docentes por fuerza mayor, con aviso previo. Los aplazamientos, devoluciones o cancelaciones se rigen por el Reglamento de Estudiantes.' },
+  { titulo: 'Ayuda', texto: 'Si no puedes entrar a una clase o tienes una duda logística, escríbenos por el grupo del curso.' },
+];
+
+export function infoCurso(el, cfg) {
+  const lista = cfg.infoCurso ?? INFO_CURSO;
+  el.innerHTML = lista.map((x) => `<div class="tarjeta"><h3>${esc(x.titulo)}</h3><p>${esc(x.texto)}</p></div>`).join('');
+}
+
 export function sobre(el, d, cfg) {
   const link = cfg.urlPaginaOficial
     ? `<a class="btn" href="${esc(cfg.urlPaginaOficial)}" target="_blank" rel="noopener noreferrer">Inscripción y valores${ic('arrow-up-right')}</a>` : '';

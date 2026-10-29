@@ -211,3 +211,9 @@
 .contacto { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border: 1px solid var(--line, rgba(255,255,255,.18)); border-radius: 10px; }
 .contacto span { opacity: .8; font-size: .9rem; }
 .contacto a { overflow-wrap: anywhere; }
+
+/* ---- Información del curso (sitio de estudiantes) ---- */
+.rejilla-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.rejilla-info .tarjeta { padding: 16px 18px; border: 1px solid var(--line, rgba(255,255,255,.18)); border-radius: 10px; }
+.rejilla-info h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.rejilla-info p { margin: 0; opacity: .92; line-height: 1.5; }

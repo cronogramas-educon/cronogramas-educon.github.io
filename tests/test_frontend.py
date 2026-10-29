@@ -549,3 +549,22 @@ def test_hub_avisa_si_el_excel_lleva_dias_sin_guardarse(pagina, servidor, sitio)
     abrir_hub(pagina, servidor, sitio, "2026-12-01T10:00:00-05:00")
     assert pagina.locator("#cursos-lista .meta-viejo").count() >= 1
     assert "último guardado del Excel" in pagina.locator("#cursos-lista .meta-viejo").first.inner_text() and pagina.errores == []
+
+
+def test_hub_mensaje_de_whatsapp_del_dia(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-06T08:00:00-05:00")
+    assert pagina.locator("#msj-lista .msj-clase").count() >= 1
+    texto = pagina.locator("#msj-lista .msj-texto").first.inner_text()
+    assert texto.startswith("Muy buenos días") and "Les recuerdo que el día de hoy, 6 de octubre de 2026" in texto
+    assert "⏰ Horario:" in texto and "(hora de Colombia)" in texto and "Profesor" in texto and "🔗 Enlace de la clase:" in texto and texto.endswith("Los esperamos 🤓")
+    pagina.select_option("#msj-cuando", "mañana")
+    assert "mañana, 7 de octubre de 2026" in pagina.locator("#msj-lista").inner_text() or "No hay clases" in pagina.locator("#msj-lista").inner_text()
+    assert pagina.errores == []
+
+
+def test_pagina_de_estudiantes_trae_la_informacion_del_curso(pagina, base):
+    abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
+    info = pagina.inner_text("#info-contenido")
+    assert "80 %" in info and "40 días hábiles" in info and "grupo del curso" in info
+    assert pagina.locator("#info-contenido .tarjeta").count() == 7 and pagina.locator('#nav a[href="#info"]').count() == 1
+    assert pagina.errores == []

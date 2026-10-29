@@ -2,7 +2,7 @@
 import { esc, rangos, ic, norm } from './ui.js';
 import { addDias, ahora, estadoClase, fechaLarga, fechaLargaAnio, haceCuanto, cambioVigente, cap, hoyISO, mesAnio } from './utils-fecha.js';
 import { horario } from './ui.js';
-import { urgentes, agruparUrgentes, sinGuardar, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
+import { urgentes, clasesDelDia, mensajeWhatsapp, agruparUrgentes, sinGuardar, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
 import { resumenAsistencia, bandeja, htmlBandeja, htmlAsistenciaCurso, cierre, htmlCierre, filasCierre, TITULOS_CIERRE } from './hub-asistencia.js';
 import { buscar, htmlResultados } from './hub-buscador.js';
 
@@ -165,6 +165,19 @@ function seccionUrgente(rs) {
     : `<p class="vacio-ok">${ic('check')}<span><strong>Todo en orden.</strong> Las clases de los próximos 14 días tienen docente, asistente y enlace, y no hay choques de horario.</span></p>`;
 }
 
+/** Mensaje de WhatsApp de cada clase de hoy o de mañana, con botón para copiarlo. */
+function seccionMensajes(rs) {
+  const cuando = $('msj-cuando').value, iso = addDias(hoyISO(ahora()), cuando === 'hoy' ? 0 : 1);
+  const xs = clasesDelDia(rs, iso);
+  $('msj-lista').innerHTML = xs.length ? xs.map((x, i) => {
+    const m = mensajeWhatsapp(x, cuando);
+    return `<article class="msj-clase"><h3>${esc(x.curso.programaCorto)}<small>${esc(cap(x.c.clase.toLowerCase()))}, ${esc(hora(x.c))}</small></h3>
+      ${m.faltan.length ? `<p class="alerta" role="alert">${ic('warning')}<span>Falta ${esc(m.faltan.join(' y '))} en el Excel. Puedes copiar el mensaje igual o corregirlo antes en SharePoint.</span></p>` : ''}
+      <pre class="msj-texto" id="msj-${i}">${esc(m.texto)}</pre>
+      <p class="acciones-registro"><button class="btn rojo" type="button" data-copiar-msj="msj-${i}">${ic('link-simple')}<span>Copiar mensaje</span></button></p></article>`;
+  }).join('') : `<p class="nota">No hay clases programadas ${cuando === 'hoy' ? 'para hoy' : 'para mañana'}.</p>`;
+}
+
 /** Agenda de las próximas 4 semanas de todos los cursos, con los choques de docentes o asistentes arriba. */
 function seccionAgenda(rs) {
   const t = ahora(), ag = agenda(rs, t);
@@ -223,6 +236,7 @@ async function pintar(meta) {
   listaCambios(activos);
   archivo(rs.filter((r) => r.estado === 'terminado'));
   seccionUrgente(activos);
+  seccionMensajes(activos);
   seccionAgenda(activos);
   seccionReportes(rs);
   registro(meta);
@@ -329,6 +343,14 @@ async function arrancar() {
     if (!b) return;
     const r = ultimosRs.find((x) => x.c.id === b.dataset.cierre);
     if (r && cierre(r)) descargar(`cierre-${r.c.id}.csv`, csv(TITULOS_CIERRE, filasCierre(r)));
+  });
+  $('msj-cuando').onchange = () => seccionMensajes(activosVivos);
+  document.addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-copiar-msj]');
+    if (!b) return;
+    const ok = await copiar(document.getElementById(b.dataset.copiarMsj).textContent);
+    const t = b.querySelector('span'), antes = t.textContent;
+    t.textContent = ok ? 'Mensaje copiado' : 'Selecciona el texto y cópialo'; setTimeout(() => { t.textContent = antes; }, 1800);
   });
   $('rep-periodo').onchange = (e) => { periodoSel = e.target.value; seccionReportes(ultimosRs); };
   $('rep-csv').onclick = () => descargar(`reporte-horas${periodoSel ? `-${periodoSel}` : ''}.csv`, csvReporte());

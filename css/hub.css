@@ -377,3 +377,9 @@
 .bienv-enviada { display: flex; gap: .5rem; align-items: flex-start; margin: 0; padding: .6rem .8rem; border-radius: 8px; background: var(--felt); color: var(--ink); font-size: .9rem; }
 .curso-bienv .btn.rojo { justify-self: start; }
 @media print { .curso-bienv { display: none !important; } }
+
+/* ---- Mensaje del día para WhatsApp ---- */
+.msj-clase { margin: 14px 0; padding: 16px 18px; background: var(--paper); color: var(--ink); border-radius: var(--r-tag); box-shadow: var(--sombra-chica); }
+.msj-clase h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0 0 8px; }
+.msj-clase h3 small { color: var(--ink-2); font-weight: 600; }
+.msj-texto { margin: 10px 0; padding: 14px 16px; border-radius: 10px; background: var(--felt); font: inherit; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.55; }

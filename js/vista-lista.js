@@ -40,7 +40,7 @@ function fila(c, ctx) {
     <button class="fila-cab" type="button" aria-expanded="${abierta}" aria-controls="cuerpo-${c.id}">
       <span class="fecha-bloque"><small>${esc(diaNombre(c.fecha).slice(0, 3))}</small><b>${p.d}</b><small>${esc(MESES[p.m - 1].slice(0, 3))}</small></span>
       <span class="fila-titulo"><strong>${resaltar(cap(c.clase.toLowerCase()), q)}</strong>
-        ${ctx.mostrarUnidad && c.unidad ? `<span class="unidad-txt" title="${esc(legible(c.unidad))}">${resaltar(legible(c.unidad), q)}</span>` : ''}</span>
+        ${ctx.mostrarUnidad && c.unidad ? `<span class="unidad-txt" title="${esc(legible(c.unidad))}">${resaltar(legible(c.unidad), q)}</span>` : ''}${!c.unidad && !(c.temaPuntos || []).length ? '<span class="unidad-txt pendiente">Tema por confirmar</span>' : ''}</span>
       <span class="fila-prof${c.profesores.length ? '' : ' pendiente'}">${c.profesores.length ? resaltar(c.profesores.join(' y '), q) : PENDIENTE}</span>
       <span class="fila-estados">${insignias(c, estado, esProxima, repro)}</span>
       ${ic('caret-down')}

@@ -20,7 +20,7 @@
     <div class="dentro">
       <span class="marca">Educación Continua</span>
       <nav class="nav nav-hub" id="nav-hub" aria-label="Secciones">
-        <a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
+        <a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#mensajes">Mensaje del día</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
       </nav>
       <a class="btn-registrar" href="#registro">Cursos y periodos</a>
     </div>
@@ -62,6 +62,10 @@
     <section class="seccion" id="pendientes"><h2>Pendientes por confirmar</h2>
       <p class="nota">Lo que falta en el Excel de cada curso. Al llenarlo en SharePoint, aquí se actualiza solo.</p>
       <div class="tabla-envoltura" id="tabla-pendientes"></div></section>
+    <section class="seccion" id="mensajes"><h2>Mensaje del día para WhatsApp</h2>
+      <p class="nota">El aviso de cada clase con horario, docente y enlace, listo para pegar en el grupo. Sale de los datos del Excel; si falta algo, queda como «Por confirmar» y aquí se avisa.</p>
+      <div class="barra-reporte"><label class="campo-rep"><span>¿Para cuándo?</span><select id="msj-cuando"><option value="hoy">Hoy</option><option value="mañana">Mañana</option></select></label></div>
+      <div id="msj-lista" aria-live="polite"></div></section>
     <section class="seccion" id="agenda"><h2>Agenda de las próximas 4 semanas</h2>
       <p class="nota">Todas las clases de todos los cursos, en orden de fecha.</p>
       <div id="agenda-lista" aria-live="polite"></div></section>
