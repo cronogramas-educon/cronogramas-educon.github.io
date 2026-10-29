@@ -287,10 +287,22 @@
 .urg-faltas { display: flex; flex-wrap: wrap; gap: 6px; }
 .falta-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: var(--r-pill); background: var(--amber); color: var(--amber-ink); font-size: .84rem; font-weight: 700; }
 .urg-enlace { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; color: var(--ink); font-weight: 700; font-size: .9rem; }
+.urg-cursos { display: grid; gap: 10px; }
+.urg-curso { background: var(--paper); color: var(--ink); border-radius: var(--r-tag); box-shadow: var(--sombra-chica); }
+.urg-curso > summary { display: grid; grid-template-columns: minmax(10em, .9fr) minmax(0, 1.6fr) auto; align-items: center; gap: 8px 18px; padding: 14px 18px; cursor: pointer; list-style: none; }
+.urg-curso > summary::-webkit-details-marker { display: none; }
+.urg-curso-nombre { display: grid; gap: 2px; }
+.urg-curso-nombre small { color: var(--ink-2); }
+.urg-curso > .urg-lista { padding: 0 14px 6px; }
+.urg-curso .urg-lista li { box-shadow: none; background: var(--felt); }
+.urg-pie { margin: 0; padding: 0 18px 12px; }
+.meta-viejo { display: flex; gap: .5rem; align-items: flex-start; margin: .4rem 0 0; padding: .5rem .7rem; border-radius: 8px; background: var(--amber); color: var(--amber-ink); font-size: .86rem; font-weight: 600; }
 .urg-choques { margin-bottom: 20px; }
 .urg-choques .alertas { margin-top: 8px; }
 @media (max-width: 860px) {
   .urg-lista li { grid-template-columns: 1fr; gap: 6px; padding: 14px 16px; }
+  .urg-curso > summary { grid-template-columns: 1fr auto; }
+  .urg-curso > summary .urg-faltas { grid-column: 1 / -1; grid-row: 2; }
   .urg-fecha { grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 10px; }
 }
 

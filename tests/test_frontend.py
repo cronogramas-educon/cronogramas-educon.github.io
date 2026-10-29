@@ -533,3 +533,19 @@ def test_hub_bienvenida_ya_enviada_no_ofrece_el_boton(pagina, servidor, sitio):
     tarjeta.locator("[data-bienv-curso] > summary").click()
     assert "Ya se envió el viernes 23 de octubre de 2026" in tarjeta.locator(".bienv-enviada").inner_text()
     assert tarjeta.locator(".curso-bienv a.btn").count() == 0 and pagina.errores == []
+
+
+def test_hub_urgentes_agrupados_por_curso(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    grupos = pagina.locator("#urgente-lista .urg-curso")
+    assert grupos.count() >= 1
+    resumen = grupos.first.locator("summary").inner_text().lower()
+    assert "clases sin confirmar" in resumen and " en " in resumen and "clase" in resumen  # conteo de cada falta, no una fila por clase repetida
+    assert grupos.first.locator("li").count() >= 1 and pagina.errores == []
+
+
+def test_hub_avisa_si_el_excel_lleva_dias_sin_guardarse(pagina, servidor, sitio):
+    # el sitio de prueba se generó hace tiempo respecto a esta fecha: ya hubo clases desde el último guardado
+    abrir_hub(pagina, servidor, sitio, "2026-12-01T10:00:00-05:00")
+    assert pagina.locator("#cursos-lista .meta-viejo").count() >= 1
+    assert "último guardado del Excel" in pagina.locator("#cursos-lista .meta-viejo").first.inner_text() and pagina.errores == []

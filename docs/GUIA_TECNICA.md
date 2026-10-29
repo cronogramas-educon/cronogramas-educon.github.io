@@ -125,6 +125,10 @@ python3 -m http.server 8000 --directory _sitio
 
 Reglas de asistencia: mínimo 80 % (`MINIMO = 0.8`); estados Perdió el mínimo, En riesgo, Atención, Al día y Aprobó, con alertas relativas a las faltas permitidas. Todos los cursos son virtuales. Las marcas se guardan sin nombres.
 
+**Alias de nombres.** Si una misma persona aparece escrita de dos maneras en los Excel (por ejemplo «Melissa Dukuara» y «Melissa Alejandra Dukuara»), los reportes de horas la cuentan como dos. En `config/cursos.json`, dentro de `global`, `aliasPersonas` es una tabla `{"variante": "nombre oficial"}` (se ignoran tildes y mayúsculas); `construir_datos.py` la aplica a docentes y asistentes al reconstruir cada curso, en las páginas de estudiantes y en el hub. Vacía por defecto. El cambio se ve cuando se vuelve a guardar el Excel de cada curso.
+
+**Avisos del hub.** «Urgente» muestra primero lo de hoy y mañana clase por clase, y el resto agrupado por curso (con cuántas clases tienen cada falta). Si un curso en marcha lleva 7 días o más sin guardarse el Excel y ya tuvo clases desde entonces, su tarjeta lo avisa (no cambia el semáforo).
+
 ## 8. Operación diaria
 
 - Abrir un curso: llenar el formulario "Nuevo curso o diplomado de Educación Continua" (enlace en `global.formularioRegistro` de `config/cursos.json`). El flujo crea todo. Después cargar el cronograma en el Excel del curso.

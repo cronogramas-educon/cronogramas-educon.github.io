@@ -328,3 +328,19 @@ def test_varios_docentes_y_asistentes_en_una_misma_casilla(tmp_path, raiz):
     assert datos["clases"][0]["profesores"] == ["Ana Gómez", "Luis Pérez"]
     assert datos["clases"][1]["profesores"] == ["Ana Gómez", "Luis Pérez", "Eva Ruiz", "Sol Mora"]
     assert {"Mia Cano", "Teo Díaz"} <= set(datos["asistentesPat"])
+
+
+def test_alias_de_nombres_unifica_variantes(tmp_path, raiz):
+    def poner(ws):
+        ws["F3"].value = "melissa dukuara"
+        ws["F4"].value = "Melissa Alejandra Dukuara y Luis Pérez"
+        ws["F5"].value = "Ana Gómez / Luis Pérez"  # sin alias: el texto original no cambia
+        ws["I3"].value = "Mía Cano"
+    cfg = dict(CFG, aliasPersonas={"Melissa Dukuara": "Melissa Alejandra Dukuara", "Mia Cano": "Mia Cano Ruiz"})
+    (raiz / "config/contenido.json").write_text(json.dumps(cfg, ensure_ascii=False), encoding="utf-8")
+    datos, _ = cd.construir(xlsx_con(tmp_path, "m.xlsx", poner), raiz, ahora=T0)
+    c = datos["clases"]
+    assert c[0]["profesores"] == ["Melissa Alejandra Dukuara"] and c[0]["profesor"] == "Melissa Alejandra Dukuara"  # sin tildes ni mayúsculas
+    assert c[1]["profesores"] == ["Melissa Alejandra Dukuara", "Luis Pérez"]
+    assert c[2]["profesor"] == "Ana Gómez / Luis Pérez" and c[2]["profesores"] == ["Ana Gómez", "Luis Pérez"]
+    assert c[0]["asistentePat"] == "Mia Cano Ruiz" and "Mia Cano Ruiz" in datos["asistentesPat"]

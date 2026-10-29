@@ -38,6 +38,22 @@ def personas(s):
     return [p for p in (limpiar(x) for x in SEPARADORES.split(str(s or ""))) if p]
 
 
+def _clave(nombre):
+    return re.sub(r"\s+", " ", "".join(ch for ch in unicodedata.normalize("NFD", str(nombre)) if unicodedata.category(ch) != "Mn")).strip().casefold()
+
+
+def con_alias(crudo, alias):
+    """Lista de personas de una casilla con los alias aplicados, y el texto: el original si ningún alias cambió nada, o la lista unida con ' y '."""
+    mapa = {_clave(k): v for k, v in (alias or {}).items()}
+    base = personas(crudo)
+    lista = []
+    for n in base:
+        n = mapa.get(_clave(n), n)
+        if n not in lista:
+            lista.append(n)
+    return lista, (limpiar(crudo) if lista == base else " y ".join(lista))
+
+
 def puntos(tema):
     partes = [p.strip() for p in re.split(r"\s{2,}|\n", str(tema)) if p.strip()]
     out, i = [], 0
@@ -149,6 +165,7 @@ def cancelada(v):
 
 
 def filas_a_clases(filas, cfg):
+    alias = cfg.get("aliasPersonas", {})
     """Devuelve (clases, avisos, canceladas). Una clase marcada Cancelada en la columna Situación no es una clase del curso: no cuenta en horas,
     asistencia, calendario ni alertas, pero conserva su número, así que las demás no se renumeran."""
     clases, avisos, canceladas, ant_tema, ant_raw = [], [], [], "", ""
@@ -177,10 +194,10 @@ def filas_a_clases(filas, cfg):
         c = {
             "id": num, "clase": limpiar(v[4]), "unidad": limpiar(v[1]), "unidadSlug": slug(limpiar(v[1])),
             "tema": tema, "temaPuntos": puntos(ant_raw), "temaHeredado": heredado, "horas": horas,
-            "profesor": limpiar(v[5]),
-            "profesores": personas(v[5]),
+            "profesor": con_alias(v[5], alias)[1],
+            "profesores": con_alias(v[5], alias)[0],
             "dia": limpiar(v[6]), "diaCalculado": calc, "fecha": d.isoformat(),
-            "asistentePat": limpiar(v[8]), "linkTeams": limpiar(v[9]), "cambio": None,
+            "asistentePat": con_alias(v[8], alias)[1], "linkTeams": limpiar(v[9]), "cambio": None,
         }
         if c["dia"] and c["dia"] != calc:
             avisos.append(f"{c['clase']} dice '{c['dia']}' pero {c['fecha']} es {calc} (se muestra {calc})")
@@ -293,6 +310,10 @@ def construir(entrada, raiz, modo_json=False, ahora=None, modificado=""):
     raiz = Path(raiz)
     ahora = ahora or datetime.now(timezone.utc)
     cfg = json.loads((raiz / "config/contenido.json").read_text(encoding="utf-8"))
+    # alias de nombres: una sola tabla para todos los cursos, en config/cursos.json (global.aliasPersonas); si no existe, no se aplica ninguno
+    global_ = Path(raiz).resolve().parent.parent / "config/cursos.json"
+    if global_.exists() and "aliasPersonas" not in cfg:
+        cfg["aliasPersonas"] = json.loads(global_.read_text(encoding="utf-8")).get("global", {}).get("aliasPersonas", {})
     filas = leer_json(entrada) if modo_json else leer_xlsx(entrada)
     clases, avisos, canceladas = filas_a_clases(filas, cfg)
     ruta_estado = raiz / "estado/cambios.json"

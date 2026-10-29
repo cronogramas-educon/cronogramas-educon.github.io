@@ -18,6 +18,26 @@ export function urgentes(rs, t, dias = 14) {
     .sort((a, b) => a.c.inicio.localeCompare(b.c.inicio));
 }
 
+/** Un curso en marcha cuyo Excel lleva `umbral` días o más sin guardarse y ya tuvo clases desde entonces: probablemente falta actualizar asistencia, docentes o enlaces. */
+export function sinGuardar(r, t, umbral = 7) {
+  if (!r.d || r.estado === 'terminado' || !r.d.meta.generadoEn) return null;
+  const gen = r.d.meta.generadoEn.slice(0, 10), dias = Math.floor((Date.parse(`${hoyISO(t)}T12:00:00Z`) - Date.parse(`${gen}T12:00:00Z`)) / 864e5);
+  const desde = r.d.clases.filter((c) => c.fecha > gen && estadoClase(c, t) === 'pasada').length;
+  return dias >= umbral && desde ? { dias, desde } : null;
+}
+
+/** Las clases urgentes juntas por curso: cuántas clases tienen cada falta y cuál es la primera. Los cursos con clases más cercanas van primero. */
+export function agruparUrgentes(u) {
+  const por = new Map();
+  for (const x of u) {
+    const g = por.get(x.curso.id) ?? { curso: x.curso, items: [], conteo: new Map() };
+    g.items.push(x);
+    x.faltas.forEach((f) => g.conteo.set(f, (g.conteo.get(f) ?? 0) + 1));
+    por.set(x.curso.id, g);
+  }
+  return [...por.values()].sort((a, b) => a.items[0].c.inicio.localeCompare(b.items[0].c.inicio));
+}
+
 /** Semáforo de un curso: rojo si no se pudo leer el Excel o a una clase de hoy o mañana le falta docente o enlace (sin eso los estudiantes no entran), ámbar si falta algo en 14 días o no hay datos. */
 export function salud(r, t) {
   if (r.error) return { nivel: 'rojo', texto: 'Requiere atención', motivo: 'El último guardado del Excel no se pudo leer' };

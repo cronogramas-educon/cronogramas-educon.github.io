@@ -2,7 +2,7 @@
 import { esc, rangos, ic, norm } from './ui.js';
 import { addDias, ahora, estadoClase, fechaLarga, fechaLargaAnio, haceCuanto, cambioVigente, cap, hoyISO, mesAnio } from './utils-fecha.js';
 import { horario } from './ui.js';
-import { urgentes, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
+import { urgentes, agruparUrgentes, sinGuardar, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
 import { resumenAsistencia, bandeja, htmlBandeja, htmlAsistenciaCurso, cierre, htmlCierre, filasCierre, TITULOS_CIERRE } from './hub-asistencia.js';
 import { buscar, htmlResultados } from './hub-buscador.js';
 
@@ -66,7 +66,7 @@ function tarjeta(r) {
     : '<p class="prox"><span>Estado</span>Aún no hay datos publicados. Se publican al guardar el Excel.</p>';
   const url = urlCurso(c);
   const n = pendientesTxt(r).length;
-  const sa = salud(r, ahora());
+  const sa = salud(r, ahora()), sg = sinGuardar(r, ahora());
   return `<article class="curso papel" data-curso="${esc(c.id)}">
     <p class="semaforo ${sa.nivel}" title="${esc(sa.motivo)}"><i aria-hidden="true"></i>${esc(sa.texto)}<small>${esc(sa.motivo)}</small></p>
     <header><span class="sello ${r.estado === 'en-curso' ? 'hoy' : r.estado === 'terminado' ? 'pasada' : 'proxima'}">${ETIQ[r.estado]}</span><p class="tipo">${esc(etiquetaPeriodo(c))}</p></header>
@@ -74,7 +74,7 @@ function tarjeta(r) {
     ${error ? `<p class="alerta" role="alert">${ic('warning')}<span>El último guardado del Excel no se pudo leer y se conserva la versión anterior: ${esc(error.mensaje)}</span></p>` : ''}
     ${prox}
     ${d ? `<div class="barra" role="img" aria-label="${r.hechas} de ${d.clases.length} clases realizadas"><i style="width:${Math.round(100 * r.hechas / d.clases.length)}%"></i></div>
-    <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. Datos publicados ${esc(haceCuanto(d.meta.generadoEn))}.</p>` : ''}
+    <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. Datos publicados ${esc(haceCuanto(d.meta.generadoEn))}.</p>${sg ? `<p class="meta-viejo">${ic('warning')}<span>Desde el último guardado del Excel ya se ${sg.desde === 1 ? 'dictó 1 clase' : `dictaron ${sg.desde} clases`}. Revisa que asistencia, docentes y enlaces estén al día.</span></p>` : ''}` : ''}
     ${htmlAsistenciaCurso(r)}
     ${bienvenidaHtml(c, d?.asistentesPat?.join(' y '))}
     <p class="falta ${n ? '' : 'ok'}">${n ? `${ic('warning')}${n === 1 ? 'Falta confirmar 1 dato' : `Faltan confirmar ${n} datos`}` : `${ic('check')}Nada por confirmar`}</p>
@@ -156,8 +156,12 @@ function seccionUrgente(rs) {
   const lista = (xs) => `<ul class="urg-lista">${xs.map(item).join('')}</ul>`;
   const aviso = ch.length
     ? `<div class="urg-choques"><h3 class="sub-rep">Choques de horario <span class="cuenta">${ch.length}</span></h3><ul class="alertas">${ch.map((k) => `<li class="alerta" role="alert">${ic('warning')}<span><strong>${esc(k.rol)} ${esc(k.nombre)}</strong> tiene dos clases a la vez el ${esc(fechaLarga(k.a.c.fecha))}: ${esc(k.a.curso.programaCorto)} (${esc(hora(k.a.c))}) y ${esc(k.b.curso.programaCorto)} (${esc(hora(k.b.c))}).</span></li>`).join('')}</ul></div>` : '';
+  const pronto = u.filter((x) => x.c.fecha <= manana), luego = u.filter((x) => x.c.fecha > manana);
+  const grupo = (g) => `<details class="urg-curso"><summary><span class="urg-curso-nombre"><strong>${esc(g.curso.programaCorto)}</strong><small>${g.items.length} ${g.items.length === 1 ? 'clase' : 'clases'} sin confirmar, desde ${esc(fechaLarga(g.items[0].c.fecha))}</small></span>
+    <span class="urg-faltas">${[...g.conteo].map(([f, n]) => `<span class="falta-chip">${ic('warning')}${esc(FALTA_TXT[f] ?? f)} en ${n} ${n === 1 ? 'clase' : 'clases'}</span>`).join('')}</span><span class="asis-abrir" aria-hidden="true"></span></summary>
+    ${lista(g.items)}<p class="urg-pie"><a class="urg-enlace" href="${esc(g.curso.carpetaSharePoint)}" target="_blank" rel="noopener">${ic('folder-open')}Corregir en SharePoint</a></p></details>`;
   $('urgente-lista').innerHTML = n
-    ? `<p class="resumen-sec">${u.length ? `<strong>${u.length}</strong> ${u.length === 1 ? 'clase' : 'clases'} con datos sin confirmar` : 'Todas las clases tienen sus datos'}${ch.length ? `, <strong>${ch.length}</strong> ${ch.length === 1 ? 'choque' : 'choques'} de horario` : ''}.</p>${aviso}${u.length ? `<h3 class="sub-rep">Datos por confirmar <span class="cuenta">${u.length}</span></h3>${lista(u.slice(0, 8))}${u.length > 8 ? `<details class="mas"><summary>Ver las ${u.length - 8} restantes</summary>${lista(u.slice(8))}</details>` : ''}` : ''}`
+    ? `<p class="resumen-sec">${u.length ? `<strong>${u.length}</strong> ${u.length === 1 ? 'clase' : 'clases'} con datos sin confirmar, en <strong>${new Set(u.map((x) => x.curso.id)).size}</strong> ${new Set(u.map((x) => x.curso.id)).size === 1 ? 'curso' : 'cursos'}` : 'Todas las clases tienen sus datos'}${ch.length ? `, <strong>${ch.length}</strong> ${ch.length === 1 ? 'choque' : 'choques'} de horario` : ''}.</p>${aviso}${pronto.length ? `<h3 class="sub-rep">Hoy y mañana <span class="cuenta">${pronto.length}</span></h3>${lista(pronto)}` : ''}${luego.length ? `<h3 class="sub-rep">Por curso, próximos 14 días <span class="cuenta">${luego.length}</span></h3><div class="urg-cursos">${agruparUrgentes(luego).map(grupo).join('')}</div>` : ''}`
     : `<p class="vacio-ok">${ic('check')}<span><strong>Todo en orden.</strong> Las clases de los próximos 14 días tienen docente, asistente y enlace, y no hay choques de horario.</span></p>`;
 }
 
