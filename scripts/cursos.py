@@ -347,9 +347,10 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
             if (origen / d).exists():
                 shutil.copytree(origen / d, destino / d)
         cfg_est = destino / "config/contenido.json"
-        if g.get("encuestaSatisfaccion") and cfg_est.exists():  # un solo enlace para todos los cursos: la página de cada curso lo muestra al terminar
+        encuesta = c.get("encuesta") or g.get("encuestaSatisfaccion")  # la del curso (docentes propios) manda sobre la general
+        if encuesta and cfg_est.exists():  # la página de cada curso la muestra al terminar
             ce = json.loads(cfg_est.read_text(encoding="utf-8"))
-            ce["encuesta"] = g["encuestaSatisfaccion"]
+            ce["encuesta"] = encuesta
             cfg_est.write_text(json.dumps(ce, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         if (origen / "cronograma.ics").exists():
             shutil.copy(origen / "cronograma.ics", destino / "cronograma.ics")
@@ -369,7 +370,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
         (destino / "index.html").write_text(_html(
             raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(con_tipo(c["programaCorto"], c["tipo"])), DESC=_esc(desc)), encoding="utf-8")
         resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "cohorte": c.get("cohorte", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
-                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "bienvenida": c["id"] in bienvenidas, "bienvenidaEnviada": enviadas.get(c["id"], {}).get("fecha", ""), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"],
+                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "bienvenida": c["id"] in bienvenidas, "bienvenidaEnviada": enviadas.get(c["id"], {}).get("fecha", ""), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"], "encuesta": c.get("encuesta", ""),
                         "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{base_sharepoint(c['carpeta'], g)}/{c['carpeta']}", safe=":/")})
     hub = salida / "g" / g["adminCodigo"]
     hub.mkdir(parents=True)

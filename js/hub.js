@@ -74,7 +74,8 @@ function listaCierre(r) {
   const manual = [['cert', `Certificados enviados${k ? ` (${k.aprueban.length} ${k.aprueban.length === 1 ? 'aprueba' : 'aprueban'})` : ''}`], ['enc', 'Encuesta de satisfacción enviada'], ['horas', 'Horas de los docentes revisadas en Reportes']];
   const mias = marcasCierre[r.c.id] ?? {};
   const hechos = auto.filter(([ok]) => ok).length + manual.filter(([id]) => mias[id]).length, total = auto.length + manual.length;
-  const msj = encuestaUrl ? `Hola, gracias por acompañarnos en el ${r.c.programaCorto}. Cuéntanos cómo te fue, tu opinión nos ayuda a mejorar: ${encuestaUrl}` : '';
+  const url = r.c.encuesta || encuestaUrl;
+  const msj = url ? `Hola, gracias por acompañarnos en el ${r.c.programaCorto}. Cuéntanos cómo te fue, tu opinión nos ayuda a mejorar: ${url}` : '';
   return `<details class="curso-asis curso-cierre" data-cierre-lista="${esc(r.c.id)}"><summary><span class="ca-texto"><strong>Cierre del curso</strong><small>${hechos} de ${total} pasos listos</small></span><span class="asis-abrir" aria-hidden="true"></span></summary>
     <div class="asis-detalle"><div class="lista-cierre">${auto.map(([ok, t]) => `<p class="paso ${ok ? 'ok' : 'pend'}">${ok ? ic('check') : ic('warning')}<span>${esc(t)}</span></p>`).join('')}
     ${manual.map(([id, t]) => `<p class="paso"><label><input type="checkbox" data-cierre-marca="${esc(r.c.id)}|${id}"${mias[id] ? ' checked' : ''}><span>${esc(t)}</span></label></p>`).join('')}</div>
