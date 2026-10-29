@@ -217,3 +217,10 @@
 .rejilla-info .tarjeta { padding: 16px 18px; border: 1px solid var(--line, rgba(255,255,255,.18)); border-radius: 10px; }
 .rejilla-info h3 { margin: 0 0 6px; font-size: 1.05rem; }
 .rejilla-info p { margin: 0; opacity: .92; line-height: 1.5; }
+
+/* ---- Mi asistencia (sitio de estudiantes) ---- */
+.asis-mia { padding: 16px 18px; border: 1px solid var(--line, rgba(255,255,255,.18)); border-radius: 10px; margin-top: 12px; }
+.asis-marcas { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.asis-marcas li { padding: 4px 10px; border-radius: 999px; font-size: .9rem; border: 1px solid currentColor; }
+.asis-marcas .no { font-weight: 700; }
+.asis-fecha { font-size: .85rem; opacity: .75; }

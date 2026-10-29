@@ -595,3 +595,14 @@ def test_hub_lista_de_cierre_de_un_curso_que_termino(pagina, servidor, sitio):
     assert lista.locator("summary small").inner_text() != antes
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")  # en pleno curso no hay lista de cierre
     assert pagina.locator("[data-cierre-lista]").count() == 0 and pagina.errores == []
+
+
+def test_pagina_de_estudiantes_mi_asistencia_por_numero_de_lista(pagina, base):
+    abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
+    assert pagina.locator("#asistencia").is_visible()
+    pagina.fill("#asis-n", "3")
+    r = pagina.inner_text("#asis-resultado")
+    assert "En riesgo" in r and "Clase 1: faltaste" in r and "Estudiante" not in r
+    pagina.fill("#asis-n", "99")
+    assert "No encontramos ese número" in pagina.inner_text("#asis-resultado")
+    assert pagina.errores == []

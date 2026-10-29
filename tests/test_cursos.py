@@ -265,3 +265,8 @@ def test_sitio_lleva_el_enlace_de_la_encuesta_a_cada_curso(tmp_path):
         assert cfg["encuesta"] == "https://forms.example/encuesta"
     s2 = cu.armar_sitio(tmp_path / "s2", "v", cu.RAIZ)  # sin enlace configurado, ningún curso lo trae
     assert all("encuesta" not in json.loads((s2 / cu.sitio_ruta(c) / "config/contenido.json").read_text(encoding="utf-8")) for c in reg["cursos"])
+
+
+def test_asistencia_publica_del_estudiante_no_lleva_seguimiento_ni_nombres(sitio):
+    pub = json.loads((sitio / cu.sitio_ruta(next(c for c in cu.registro()["cursos"] if c["id"] == "compliance-anticorrupcion")) / "asistencia.json").read_text(encoding="utf-8"))
+    assert pub["lista"] and all(set(x) == {"n", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas"} for x in pub["lista"])

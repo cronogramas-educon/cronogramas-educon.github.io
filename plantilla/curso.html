@@ -27,7 +27,7 @@
       <a class="marca" href="#inicio" id="marca"></a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><span data-ic="list"></span>Menú</button>
       <nav class="nav" id="nav" aria-label="Secciones">
-        <a href="#cronograma">Cronograma</a><a href="#temario">Temario</a><a href="#docentes">Docentes</a><a href="#info">Información</a><a href="#contacto" hidden>Contacto</a>
+        <a href="#cronograma">Cronograma</a><a href="#temario">Temario</a><a href="#docentes">Docentes</a><a href="#asistencia" hidden>Mi asistencia</a><a href="#info">Información</a><a href="#contacto" hidden>Contacto</a>
       </nav>
     </div>
   </header>
@@ -89,6 +89,10 @@
       <details class="temario"><summary class="btn">Ver los temas de cada unidad<span data-ic="caret-down"></span></summary><div class="unidades" id="plan-lista"></div></details>
     </section>
     <section class="seccion" id="docentes"><h2>Docentes</h2><div class="docentes-lista" id="docentes-lista"></div><p class="apoyo" id="apoyo"></p></section>
+    <section class="seccion" id="asistencia" hidden><h2>Mi asistencia</h2>
+      <p>Escribe tu número de lista (el N° de la lista de asistencia del curso) para ver cómo vas. Aquí no aparecen nombres.</p>
+      <label class="campo">Número de lista <input id="asis-n" type="number" min="1" inputmode="numeric" autocomplete="off"></label>
+      <div id="asis-resultado" aria-live="polite"></div></section>
     <section class="seccion" id="info"><h2>Información del curso</h2><div class="rejilla-info" id="info-contenido"></div></section>
     <section class="seccion" id="contacto" hidden><h2>Contacto</h2><p class="apoyo">Para temas de logística o administrativos, escribe a:</p><div class="contactos-lista" id="contactos-lista"></div></section>
     <section class="seccion" id="sobre"><h2>Sobre el programa</h2><div class="sobre" id="sobre-contenido"></div></section>

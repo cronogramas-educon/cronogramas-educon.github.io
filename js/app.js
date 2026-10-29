@@ -87,6 +87,7 @@ function estaticos() {
   $('nav').querySelector('[href="#contacto"]').hidden = !hayContactos;
   if (hayContactos) sec.contactos($('contactos-lista'), cfg.contactos);
   sec.infoCurso($('info-contenido'), cfg);
+  sec.miAsistencia($('asistencia'), $('nav').querySelector('[href="#asistencia"]'), $('asis-n'), $('asis-resultado'));
   sec.sobre($('sobre-contenido'), datos, cfg);
   $('pie-nombre').textContent = [cfg.universidad, cfg.facultad].filter(Boolean).join(', ');
   const opt = (v, t, title) => `<option value="${esc(v)}"${title ? ` title="${esc(title)}"` : ''}>${esc(t)}</option>`;

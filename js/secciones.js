@@ -57,3 +57,22 @@ export function contactos(el, lista) {
   el.innerHTML = lista.map((p) => `<div class="contacto"><strong>${esc(p.nombre)}</strong><span>${esc(p.cargo)}</span>`
     + `<a href="mailto:${esc(p.correo)}">${esc(p.correo)}</a></div>`).join('');
 }
+
+/** "Mi asistencia": el estudiante escribe su número de lista y ve su fila. Sin asistencia publicada, la sección queda oculta. */
+export async function miAsistencia(seccion, nav, entrada, salida) {
+  let a;
+  try { const r = await fetch(`asistencia.json?m=${Math.floor(Date.now() / 60000)}`, { cache: 'no-store' }); if (!r.ok) return; a = await r.json(); } catch { return; }
+  seccion.hidden = nav.hidden = false;
+  const ver = () => {
+    const x = a.lista.find((e) => e.n === Number(entrada.value));
+    if (!entrada.value) { salida.innerHTML = ''; return; }
+    if (!x) { salida.innerHTML = '<p class="asis-vacio">No encontramos ese número de lista. Pídelo a la coordinación del curso.</p>'; return; }
+    const hechas = Object.keys(x.marcas).map(Number).sort((p, q) => p - q);
+    const q = Math.max(x.quedan ?? 0, 0);
+    salida.innerHTML = `<div class="tarjeta asis-mia"><h3>${esc(x.estado)}</h3>
+      <p>Asististe a <strong>${x.asistio}</strong> clases y faltaste a <strong>${x.faltas}</strong>${a.dictadas ? ` de ${a.dictadas} dictadas` : ''}. ${x.estado === 'Perdió el mínimo' ? 'Ya no se alcanza el 80 % exigido para certificar.' : `Te ${q === 1 ? 'queda 1 falta' : `quedan ${q} faltas`} antes de no alcanzar el 80 % exigido para certificar.`}</p>
+      <ul class="asis-marcas">${hechas.map((k) => `<li class="${x.marcas[k] === 1 ? 'si' : 'no'}">Clase ${k}: ${x.marcas[k] === 1 ? 'asististe' : 'faltaste'}</li>`).join('')}</ul>
+      <p class="asis-fecha">Actualizado: ${esc((a.actualizado || '').slice(0, 10))}</p></div>`;
+  };
+  entrada.addEventListener('input', ver);
+}
