@@ -10,9 +10,9 @@
     "horasCompletas": true,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
-    "hash": "1decd15abb7143cb",
-    "generadoEn": "2026-10-30T19:07:09Z",
-    "fuenteModificadaEn": "2026-10-30T18:59:01.7162842Z"
+    "hash": "43387c37e6654253",
+    "generadoEn": "2026-10-30T19:21:52Z",
+    "fuenteModificadaEn": "2026-10-30T19:21:35.8482434Z"
   },
   "clases": [
     {
@@ -443,19 +443,14 @@
         "Camilo Jaimes P"
       ],
       "dia": "Viernes",
-      "diaCalculado": "Sábado",
-      "fecha": "2026-10-31",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-10-30",
       "asistentePat": "Fabián Alberto Córdoba Almendrales",
       "linkTeams": "https://teams.microsoft.com/meet/251547305811663?p=zvo7CotqqGRkwFghMa",
-      "cambio": {
-        "tipo": "fecha",
-        "fechaAnterior": "2026-10-30",
-        "fechaOriginal": "2026-10-30",
-        "detectadoEn": "2026-10-30T19:07:09Z"
-      },
-      "inicio": "2026-10-31T17:00:00-05:00",
-      "fin": "2026-10-31T20:00:00-05:00",
-      "secuencia": 1
+      "cambio": null,
+      "inicio": "2026-10-30T17:00:00-05:00",
+      "fin": "2026-10-30T20:00:00-05:00",
+      "secuencia": 2
     },
     {
       "id": 17,
@@ -1121,16 +1116,6 @@
     "Fabián Alberto Córdoba Almendrales",
     "Jenier Sebastián Achury Gómez"
   ],
-  "cambios": [
-    {
-      "id": 16,
-      "clase": "CLASE 16",
-      "fechaOriginal": "2026-10-30",
-      "fechaAnterior": "2026-10-30",
-      "fechaNueva": "2026-10-31",
-      "detectadoEn": "2026-10-30T19:07:09Z",
-      "resuelto": false
-    }
-  ],
+  "cambios": [],
   "canceladas": []
 }
