@@ -257,13 +257,23 @@ def test_sitio_lleva_el_enlace_de_la_encuesta_a_cada_curso(tmp_path):
     raiz = tmp_path / "r"
     shutil.copytree(cu.RAIZ, raiz, ignore=shutil.ignore_patterns(".git", ".venv", "node_modules", "__pycache__", ".pytest_cache", "_sitio"))
     reg = json.loads((raiz / "config/cursos.json").read_text(encoding="utf-8"))
+    for c in reg["cursos"]:  # los datos reales ya traen encuestas propias: la prueba no depende de ellos
+        c.pop("encuesta", None)
     reg["global"]["encuestaSatisfaccion"] = "https://forms.example/encuesta"
     (raiz / "config/cursos.json").write_text(json.dumps(reg, ensure_ascii=False), encoding="utf-8")
     s = cu.armar_sitio(tmp_path / "s", "v", raiz)
     for c in reg["cursos"]:
         cfg = json.loads((s / cu.sitio_ruta(c) / "config/contenido.json").read_text(encoding="utf-8"))
         assert cfg["encuesta"] == "https://forms.example/encuesta"
-    s2 = cu.armar_sitio(tmp_path / "s2", "v", cu.RAIZ)  # sin enlace configurado, ningún curso lo trae
+    reg["cursos"][0]["encuesta"] = "https://forms.example/propia"  # la del curso manda sobre la general, también en el hub
+    (raiz / "config/cursos.json").write_text(json.dumps(reg, ensure_ascii=False), encoding="utf-8")
+    s3 = cu.armar_sitio(tmp_path / "s3", "v", raiz)
+    assert json.loads((s3 / cu.sitio_ruta(reg["cursos"][0]) / "config/contenido.json").read_text(encoding="utf-8"))["encuesta"] == "https://forms.example/propia"
+    reg["global"]["encuestaSatisfaccion"] = ""
+    for c in reg["cursos"]:
+        c.pop("encuesta", None)
+    (raiz / "config/cursos.json").write_text(json.dumps(reg, ensure_ascii=False), encoding="utf-8")
+    s2 = cu.armar_sitio(tmp_path / "s2", "v", raiz)  # sin ningún enlace configurado, ningún curso lo trae
     assert all("encuesta" not in json.loads((s2 / cu.sitio_ruta(c) / "config/contenido.json").read_text(encoding="utf-8")) for c in reg["cursos"])
 
 
