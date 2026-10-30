@@ -123,7 +123,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requiremen
 python3 -m http.server 8000 --directory _sitio
 ```
 
-Reglas de asistencia: mínimo 80 % (`MINIMO = 0.8`); estados Perdió el mínimo, En riesgo, Atención, Al día y Aprobó, con alertas relativas a las faltas permitidas. Todos los cursos son virtuales. Las marcas se guardan sin nombres.
+Reglas de asistencia: mínimo 80 % (`MINIMO = 0.8`); estados Perdió el mínimo, En riesgo, Atención, Al día y Aprobó, con alertas relativas a las faltas permitidas. Todos los cursos son virtuales. Las marcas se guardan con la etiqueta Nombre + primer apellido, sin documentos.
 
 **Alias de nombres.** Si una misma persona aparece escrita de dos maneras en los Excel (por ejemplo «Melissa Dukuara» y «Melissa Alejandra Dukuara»), los reportes de horas la cuentan como dos. En `config/cursos.json`, dentro de `global`, `aliasPersonas` es una tabla `{"variante": "nombre oficial"}` (se ignoran tildes y mayúsculas); `construir_datos.py` la aplica a docentes y asistentes al reconstruir cada curso, en las páginas de estudiantes y en el hub. Vacía por defecto. El cambio se ve cuando se vuelve a guardar el Excel de cada curso.
 

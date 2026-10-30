@@ -3,7 +3,7 @@
 El sitio de administración muestra cómo va la asistencia de cada curso, a partir de un Excel que se guarda en la carpeta del curso, junto al Cuadro de horas.
 
 ```
-Excel de asistencia (SharePoint)  →  flujo de Power Automate (evento excel-actualizado)  →  GitHub guarda un resumen sin nombres  →  sección Asistencia del sitio
+Excel de asistencia (SharePoint)  →  flujo de Power Automate (evento excel-actualizado)  →  GitHub guarda el resumen  →  sección Asistencia del hub y «Mi asistencia» de cada curso
 ```
 
 ## El Excel
@@ -32,7 +32,7 @@ Los umbrales (80 % para certificar, 50 % para Atención y 80 % para En riesgo) e
 
 ## Qué se publica y qué no
 
-El flujo manda todas las filas de la tabla, nombres incluidos. `scripts/asistencia.py` guarda en `cursos/<curso>/estado/asistencia.json` solo un resumen con el número de lista ("Estudiante 7"), sin nombres ni documentos, y el sitio lo publica únicamente dentro de la carpeta de administración (`g/<código>/asistencia/`), nunca en la página de estudiantes. El nombre de cada número se consulta en el Excel. La carga útil no se imprime en el registro de Actions.
+El flujo manda todas las filas de la tabla, nombres incluidos. `scripts/asistencia.py` guarda en `cursos/<curso>/estado/asistencia.json` un resumen con el número de lista y la etiqueta «Nombre + primer apellido» (con 4 o más palabras, la 1.ª y la 3.ª; con 3, la 1.ª y la 2.ª; con inicial mayúscula), sin documentos. El hub (`g/<código>/asistencia/`) lo muestra como «Estudiante 7». Cada página de curso publica `asistencia.json` con n, etiqueta, estado, asistió, faltas, quedan, porcentaje y marcas (sin seguimiento interno) para la sección «Mi asistencia», sin código de seguridad por decisión de la coordinación. La carga útil no se imprime en el registro de Actions.
 
 ## Alertas
 
