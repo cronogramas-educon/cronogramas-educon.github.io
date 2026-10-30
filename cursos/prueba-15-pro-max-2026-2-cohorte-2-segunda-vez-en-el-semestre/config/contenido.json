@@ -1,0 +1,43 @@
+{
+  "programa": "Diplomado Prueba 15 pro max",
+  "programaCorto": "Diplomado Prueba 15 pro max",
+  "tipo": "Diplomado",
+  "modalidad": "Remota (Microsoft Teams)",
+  "urlPaginaOficial": "",
+  "periodo": "2026-2",
+  "cohorte": "Cohorte 2 (segunda vez en el semestre)",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "horario": {
+    "inicio": "18:00",
+    "fin": "21:00",
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "uidSufijo": "cronograma-prueba-15-pro-max-2026-2-cohorte-2-segunda-vez-en-el-semestre",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "prueba-15-pro-max-2026-2-cohorte-2-segunda-vez-en-el-semestre"
+}

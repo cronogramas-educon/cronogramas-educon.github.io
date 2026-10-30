@@ -187,6 +187,26 @@
       },
       "periodo": "2026-2",
       "cohorte": "Cohorte 1 (primera vez en el semestre)"
+    },
+    {
+      "id": "prueba-15-pro-max-2026-2-cohorte-2-segunda-vez-en-el-semestre",
+      "codigo": "b9147m1y",
+      "carpeta": "EduContinua 2026-2/Cohorte 2 (segunda vez en el semestre)/Diplomado Prueba 15 pro max",
+      "tipo": "Diplomado",
+      "programa": "Prueba 15 pro max",
+      "programaCorto": "Prueba 15 pro max",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "",
+      "periodo": "2026-2",
+      "horario": {
+        "inicio": "18:00",
+        "fin": "21:00"
+      },
+      "cohorte": "Cohorte 2 (segunda vez en el semestre)",
+      "teams": {
+        "equipo": "048548df-5199-41ef-9932-7994f198226b",
+        "canal": "19:y6HelA3RYz7gldqFkuknZMLnjKJkRt31WHcSFT9yL4Q1@thread.tacv2"
+      }
     }
   ]
 }
