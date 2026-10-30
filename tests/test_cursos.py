@@ -270,3 +270,18 @@ def test_sitio_lleva_el_enlace_de_la_encuesta_a_cada_curso(tmp_path):
 def test_asistencia_publica_del_estudiante_no_lleva_seguimiento_ni_nombres(sitio):
     pub = json.loads((sitio / cu.sitio_ruta(next(c for c in cu.registro()["cursos"] if c["id"] == "compliance-anticorrupcion")) / "asistencia.json").read_text(encoding="utf-8"))
     assert pub["lista"] and all(set(x) == {"n", "etiqueta", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas"} for x in pub["lista"])
+
+
+def test_registro_toma_la_encuesta_del_curso_y_rechaza_enlaces_que_no_son_de_forms():
+    reg = _copia()
+    c0 = REG["cursos"][0]
+    avisos, cambios = cu.fusionar(reg, [_fila(c0, Encuesta_x0020_de_x0020_satisfacci_x00f3_n="https://forms.cloud.microsoft/r/abc")])
+    assert avisos == [] and reg["cursos"][0]["encuesta"] == "https://forms.cloud.microsoft/r/abc" and cambios == [f"{c0['programaCorto']}: cambió encuesta"]
+    avisos, _ = cu.fusionar(reg, [_fila(c0, Encuesta_x0020_de_x0020_satisfacci_x00f3_n="https://malo.example/x")])
+    assert "Microsoft Forms" in avisos[0] and reg["cursos"][0]["encuesta"] == "https://forms.cloud.microsoft/r/abc"
+
+
+def test_aviso_sin_ruta_no_escribe_en_ningun_curso(tmp_path):
+    e = tmp_path / "e.json"
+    e.write_text(json.dumps({"client_payload": {"filas": json.dumps([{"Profesor": "A"}])}}), encoding="utf-8")
+    assert cu.recibir(e, tmp_path / "f.json")[:2] == ("ninguno", None)

@@ -605,6 +605,8 @@ def test_pagina_de_estudiantes_mi_asistencia_por_numero_de_lista(pagina, base):
     assert "EN RIESGO" in r and "Estudiante Prueba" in r and "Te quedan" in r and pagina.locator("#asis-resultado .asis-clases li.no").count() == 6
     pagina.fill("#asis-n", "ESTUDIÁNTE prueba")  # sin tildes ni mayúsculas; coinciden los tres
     assert pagina.locator("#asis-resultado .asis-ficha").count() == 3
+    pagina.fill("#asis-n", "es")
+    assert "al menos 3 letras" in pagina.inner_text("#asis-resultado")
     pagina.fill("#asis-n", "99")
     assert "No encontramos ese nombre o número" in pagina.inner_text("#asis-resultado")
     assert pagina.errores == []

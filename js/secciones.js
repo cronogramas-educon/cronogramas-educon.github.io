@@ -82,6 +82,7 @@ export async function miAsistencia(seccion, nav, entrada, salida) {
   const ver = () => {
     const t = plano(entrada.value);
     if (!t) { salida.innerHTML = ''; return; }
+    if (t.length < 3 && !/^\d+$/.test(t)) { salida.innerHTML = '<p class="asis-vacio">Escribe al menos 3 letras de tu nombre, o tu número de lista.</p>'; return; }
     const hallados = a.lista.filter((x) => String(x.n) === t || plano(x.etiqueta).includes(t));
     salida.innerHTML = hallados.length ? hallados.slice(0, 8).map(ficha).join('') : '<p class="asis-vacio">No encontramos ese nombre o número. Escríbelo como Nombre y primer apellido, o consulta tu número con la coordinación del curso.</p>';
   };

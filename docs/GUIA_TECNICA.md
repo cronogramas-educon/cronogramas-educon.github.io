@@ -164,3 +164,5 @@ Reglas de asistencia: mínimo 80 % (`MINIMO = 0.8`); estados Perdió el mínimo,
 1. Renovar `AVISOS_TOKEN` antes del 21 de octubre de 2027 (token fine-grained de `EducontinuaFEJPI`, solo el repositorio `avisos-internos`, Issues en lectura y escritura).
 2. Copropietarios en los equipos de Teams de cada curso.
 3. Retirar la cuenta vieja y el registro viejo del sitio Especializaciones cuando ya no se necesiten: ningún flujo activo depende de ellos.
+
+**Encuesta por curso desde el Registro.** El Excel `Registro de cursos` acepta una columna opcional `Encuesta de satisfacción` (enlace de Microsoft Forms, `https://forms.cloud.microsoft/...` o `forms.office...`); `fusionar` la guarda en `cursos[].encuesta` y avisa si el enlace no es de Forms. Manda sobre `global.encuestaSatisfaccion`. Forms no ofrece una API oficial para crear encuestas con todas sus secciones desde un botón del sitio; el camino es duplicar la plantilla de educofdcp y pegar el enlace en esa columna.

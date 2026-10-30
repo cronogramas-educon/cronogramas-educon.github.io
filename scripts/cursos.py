@@ -84,7 +84,7 @@ def sincronizar(raiz=RAIZ):
 
 COLUMNAS = {"periodo": "periodo", "carpetadelperiodo": "carpetaPeriodo", "cohorte": "cohorte", "carpetadelcurso": "carpetaCurso", "tipo": "tipo",
             "nombredelcurso": "programaCorto", "nombrecompleto": "programa", "modalidad": "modalidad", "horadeinicio": "inicio",
-            "horadefin": "fin", "iniciodelsabado": "sabado", "paginaoficial": "urlPaginaOficial", "grupodeteams": "enlaceTeams"}
+            "horadefin": "fin", "iniciodelsabado": "sabado", "paginaoficial": "urlPaginaOficial", "grupodeteams": "enlaceTeams", "encuestadesatisfaccion": "encuesta"}
 ETIQUETA = {"programaCorto": "Nombre del curso", "inicio": "Hora de inicio", "periodo": "Periodo"}
 
 
@@ -222,11 +222,16 @@ def fusionar(reg, filas):
                 c["cohorte"] = d.get("cohorte") or d["cohorteRuta"]
             if equipo:
                 c["teams"] = equipo
+            if d.get("encuesta") and re.match(r"https://forms\.(office|cloud\.microsoft)", d["encuesta"]):
+                c["encuesta"] = d["encuesta"]
             cursos.append(c)
             ids.add(i); codigos.add(cod); por[llave] = c
             cambios.append(f"Curso nuevo: {c['programaCorto']} ({c['periodo']})")
             continue
-        for k in ("tipo", "programa", "programaCorto", "modalidad", "urlPaginaOficial", "periodo", "cohorte"):
+        if "encuesta" in d and not re.match(r"https://forms\.(office|cloud\.microsoft)", d["encuesta"]):
+            avisos.append(f"Fila {n}: el enlace de la encuesta debe ser de Microsoft Forms (https://forms.cloud.microsoft/...). Se ignoró.")
+            d.pop("encuesta")
+        for k in ("tipo", "programa", "programaCorto", "modalidad", "urlPaginaOficial", "periodo", "cohorte", "encuesta"):
             if k in d and c.get(k) != d[k]:
                 c[k] = d[k]
                 cambios.append(f"{c['programaCorto']}: cambió {k}")
@@ -303,10 +308,10 @@ def recibir(evento, fuente="fuente.json", salida=None):
         if not asistencia:
             print("::warning::La carpeta del Excel de asistencia no está en el registro de cursos. Ruta recibida: " + ruta)
     else:
-        curso = resolver(ruta) if ruta else "compliance-anticorrupcion"  # el flujo anterior no mandaba ruta
+        curso = resolver(ruta) if ruta else None  # sin ruta no se sabe de qué curso es: no se escribe en ninguno
         tipo = "curso" if curso else "ninguno"
         if not curso:
-            print("::warning::La carpeta del Excel no está en el registro: no se actualiza ningún curso. Agrégala en el Excel Registro de cursos. Ruta recibida: " + ruta)
+            print("::warning::" + ("La carpeta del Excel no está en el registro: no se actualiza ningún curso. Agrégala en el Excel Registro de cursos. Ruta recibida: " + ruta if ruta else "El aviso no trae la ruta de la carpeta: no se actualiza ningún curso."))
     if salida:
         with open(salida, "a") as o:
             o.write(f"tipo={tipo}\ncurso={curso or ''}\nasistencia={asistencia or ''}\nmodificado={mod}\n")

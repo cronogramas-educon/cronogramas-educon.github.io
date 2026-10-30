@@ -40,7 +40,7 @@ jobs:
         run: pip install -r requirements.txt pytest icalendar
 
       - name: Pruebas de datos y registro de cursos
-        run: pytest tests/test_datos.py tests/test_cursos.py tests/test_alertas.py -q
+        run: pytest tests/test_datos.py tests/test_cursos.py tests/test_alertas.py tests/test_asistencia.py tests/test_bienvenida.py -q
 
       - name: Anotar la bienvenida enviada por el flujo de Teams
         if: github.event.action == 'bienvenida-enviada'
@@ -62,7 +62,7 @@ jobs:
         if: steps.fuente.outputs.tipo == 'asistencia'
         id: asistencia
         continue-on-error: true
-        # Solo se guarda un resumen sin nombres ni documentos (Estudiante N). La carga útil nunca se imprime.
+        # Se guarda el resumen (Nombre + primer apellido, sin documentos). La carga útil nunca se imprime.
         run: python scripts/cursos.py asistencia fuente.json "${{ steps.fuente.outputs.asistencia }}"
 
       - name: Anotar la carpeta sin registrar
@@ -100,10 +100,13 @@ jobs:
             echo "hay=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Actualizar datos desde el Excel"
+            subido=false
             for i in 1 2 3 4; do
-              git pull --rebase origin main && git push origin HEAD:main && break
+              if git pull --rebase origin main && git push origin HEAD:main; then subido=true; break; fi
               sleep $((i * 3))
             done
+            # si no se pudo subir, la ejecución falla a la vista en vez de dar por publicados datos que se perderían
+            [ "$subido" = true ] || { echo "::error::No se pudo subir el commit con los datos después de 4 intentos."; exit 1; }
             echo "hay=true" >> "$GITHUB_OUTPUT"
           fi
 
