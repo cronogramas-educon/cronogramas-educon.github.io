@@ -10,9 +10,9 @@
     "horasCompletas": true,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
-    "hash": "925b511e99799613",
-    "generadoEn": "2026-10-13T16:20:02Z",
-    "fuenteModificadaEn": "2026-10-13T16:19:45.2728138Z"
+    "hash": "1decd15abb7143cb",
+    "generadoEn": "2026-10-30T19:07:09Z",
+    "fuenteModificadaEn": "2026-10-30T18:59:01.7162842Z"
   },
   "clases": [
     {
@@ -127,12 +127,7 @@
       "fecha": "2026-10-19",
       "asistentePat": "Fabián Alberto Córdoba Almendrales",
       "linkTeams": "https://teams.microsoft.com/meet/238328520074627?p=f59ZOV8sReDjl8ITl5",
-      "cambio": {
-        "tipo": "fecha",
-        "fechaAnterior": "2026-10-07",
-        "fechaOriginal": "2026-10-07",
-        "detectadoEn": "2026-10-13T15:55:39Z"
-      },
+      "cambio": null,
       "inicio": "2026-10-19T17:00:00-05:00",
       "fin": "2026-10-19T20:00:00-05:00",
       "secuencia": 1
@@ -448,14 +443,19 @@
         "Camilo Jaimes P"
       ],
       "dia": "Viernes",
-      "diaCalculado": "Viernes",
-      "fecha": "2026-10-30",
+      "diaCalculado": "Sábado",
+      "fecha": "2026-10-31",
       "asistentePat": "Fabián Alberto Córdoba Almendrales",
       "linkTeams": "https://teams.microsoft.com/meet/251547305811663?p=zvo7CotqqGRkwFghMa",
-      "cambio": null,
-      "inicio": "2026-10-30T17:00:00-05:00",
-      "fin": "2026-10-30T20:00:00-05:00",
-      "secuencia": 0
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-10-30",
+        "fechaOriginal": "2026-10-30",
+        "detectadoEn": "2026-10-30T19:07:09Z"
+      },
+      "inicio": "2026-10-31T17:00:00-05:00",
+      "fin": "2026-10-31T20:00:00-05:00",
+      "secuencia": 1
     },
     {
       "id": 17,
@@ -1123,13 +1123,14 @@
   ],
   "cambios": [
     {
-      "id": 4,
-      "clase": "CLASE 4",
-      "fechaOriginal": "2026-10-07",
-      "fechaAnterior": "2026-10-07",
-      "fechaNueva": "2026-10-19",
-      "detectadoEn": "2026-10-13T15:55:39Z",
+      "id": 16,
+      "clase": "CLASE 16",
+      "fechaOriginal": "2026-10-30",
+      "fechaAnterior": "2026-10-30",
+      "fechaNueva": "2026-10-31",
+      "detectadoEn": "2026-10-30T19:07:09Z",
       "resuelto": false
     }
-  ]
+  ],
+  "canceladas": []
 }
