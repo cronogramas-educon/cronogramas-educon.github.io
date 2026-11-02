@@ -5,6 +5,7 @@ import { horario } from './ui.js';
 import { urgentes, clasesDelDia, mensajeWhatsapp, agruparUrgentes, sinGuardar, salud, agenda, choques, reportes, horasTxt, csv } from './hub-analisis.js';
 import { resumenAsistencia, bandeja, htmlBandeja, htmlAsistenciaCurso, cierre, htmlCierre, filasCierre, TITULOS_CIERRE } from './hub-asistencia.js';
 import { buscar, htmlResultados } from './hub-buscador.js';
+import { fila, indicadores, htmlIndicadores, htmlMatriz, guardadoTxt } from './hub-panorama.js';
 
 const $ = (id) => document.getElementById(id);
 const CFG = { diasAvisoCambio: 14 };
@@ -91,7 +92,7 @@ function tarjeta(r) {
     : r.fallo ? `<p class="prox"><span>Estado</span>${ic('warning')} No se pudieron cargar los datos de este curso. Prueba con «Actualizar ahora».</p>`
     : '<p class="prox"><span>Estado</span>Aún no hay datos publicados. Se publican al guardar el Excel.</p>';
   const url = urlCurso(c);
-  const n = pendientesTxt(r).length;
+  const pt = pendientesTxt(r);
   const sa = salud(r, ahora()), sg = sinGuardar(r, ahora());
   return `<article class="curso papel" data-curso="${esc(c.id)}">
     <p class="semaforo ${sa.nivel}" title="${esc(sa.motivo)}"><i aria-hidden="true"></i>${esc(sa.texto)}<small>${esc(sa.motivo)}</small></p>
@@ -100,18 +101,22 @@ function tarjeta(r) {
     ${error ? `<p class="alerta" role="alert">${ic('warning')}<span>El último guardado del Excel no se pudo leer y se conserva la versión anterior: ${esc(error.mensaje)}</span></p>` : ''}
     ${prox}
     ${d ? `<div class="barra" role="img" aria-label="${r.hechas} de ${d.clases.length} clases realizadas"><i style="width:${Math.round(100 * r.hechas / d.clases.length)}%"></i></div>
-    <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. Datos publicados ${esc(haceCuanto(d.meta.generadoEn))}.</p>${sg ? `<p class="meta-viejo">${ic('warning')}<span>Desde el último guardado del Excel ya se ${sg.desde === 1 ? 'dictó 1 clase' : `dictaron ${sg.desde} clases`}. Revisa que asistencia, docentes y enlaces estén al día.</span></p>` : ''}` : ''}
-    ${htmlAsistenciaCurso(r)}
-    ${bienvenidaHtml(c, d?.asistentesPat?.join(' y '))}
-    ${listaCierre(r)}
-    <p class="falta ${n ? '' : 'ok'}">${n ? `${ic('warning')}${n === 1 ? 'Falta confirmar 1 dato' : `Faltan confirmar ${n} datos`}` : `${ic('check')}Nada por confirmar`}</p>
+    <p class="meta">${r.hechas} de ${d.clases.length} clases realizadas. ${esc(guardadoTxt(d))}.</p>${sg ? `<p class="meta-viejo">${ic('warning')}<span>Desde el último guardado del Excel ya se ${sg.desde === 1 ? 'dictó 1 clase' : `dictaron ${sg.desde} clases`}. Revisa que asistencia, docentes y enlaces estén al día.</span></p>` : ''}` : ''}
     <div class="acciones-curso">
       <a class="btn rojo" href="${esc(url)}" target="_blank" rel="noopener">Abrir sitio${ic('arrow-up-right')}</a>
       <button class="btn" type="button" data-copiar="${esc(url)}">${ic('link-simple')}<span>Copiar enlace</span></button>
-      <a class="btn" href="${esc(c.carpetaSharePoint)}" target="_blank" rel="noopener">${ic('folder-open')}Carpeta en SharePoint</a>
-      ${c.urlPaginaOficial ? `<a class="btn" href="${esc(c.urlPaginaOficial)}" target="_blank" rel="noopener">Página oficial${ic('arrow-up-right')}</a>` : ''}
     </div>
-    <p class="enlace-est"><small>Enlace para estudiantes</small><code>${esc(url)}</code></p>
+    <details class="curso-mas" data-mas-curso="${esc(c.id)}"><summary><span class="ca-texto"><strong>Ver el detalle</strong><small>Asistencia, bienvenida, cierre, datos por confirmar y enlaces</small></span><span class="asis-abrir" aria-hidden="true"></span></summary>
+      <div class="mas-cuerpo">
+        ${htmlAsistenciaCurso(r)}
+        ${bienvenidaHtml(c, d?.asistentesPat?.join(' y '))}
+        ${listaCierre(r)}
+        <div class="falta ${pt.length ? '' : 'ok'}">${pt.length ? `${ic('warning')}<span>Datos por confirmar en las clases que faltan:</span><ul>${pt.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : `${ic('check')}<span>Nada por confirmar</span>`}</div>
+        <div class="acciones-curso">
+          <a class="btn" href="${esc(c.carpetaSharePoint)}" target="_blank" rel="noopener">${ic('folder-open')}Carpeta en SharePoint</a>
+          ${c.urlPaginaOficial ? `<a class="btn" href="${esc(c.urlPaginaOficial)}" target="_blank" rel="noopener">Página oficial${ic('arrow-up-right')}</a>` : ''}
+        </div>
+      </div></details>
   </article>`;
 }
 
@@ -133,10 +138,9 @@ function listaCambios(rs) {
 }
 
 function resumen(rs, archivados) {
-  const en = rs.filter((r) => r.estado === 'en-curso').length, por = rs.filter((r) => r.estado !== 'en-curso').length;
-  const faltas = rs.reduce((a, r) => a + pendientesTxt(r).length, 0);
+  const en = rs.filter((r) => r.estado === 'en-curso').length, por = rs.filter((r) => r.estado === 'por-empezar').length, sin = rs.filter((r) => r.estado === 'sin-datos').length;
   const errores = rs.filter((r) => r.error).length;
-  $('resumen').innerHTML = `<strong>${rs.length} ${rs.length === 1 ? 'curso activo' : 'cursos activos'}.</strong> ${en} en curso, ${por} por empezar. ${faltas ? `${faltas} datos por confirmar.` : 'Nada por confirmar.'}${archivados ? ` ${archivados} en el archivo.` : ''}${errores ? ` <span class="mal">${errores} con error al leer el Excel.</span>` : ''}`;
+  $('resumen').innerHTML = `<strong>${rs.length} ${rs.length === 1 ? 'curso activo' : 'cursos activos'}.</strong> ${en} en curso, ${por} por empezar${sin ? `, ${sin} sin cronograma` : ''}.${archivados ? ` ${archivados} en el archivo.` : ''}${errores ? ` <span class="mal">${errores} con error al leer el Excel.</span>` : ''}`;
 }
 
 /** Cursos terminados: pasan solos al archivo, agrupados por periodo, con su página en modo lectura. */
@@ -259,6 +263,7 @@ async function pintar(meta) {
   activosVivos = activos;
   filtrosCursos(activos);
   pintarCursos();
+  pintarPanorama(activos);
   seccionAsistencia(activos);
   tablaPendientes(activos);
   listaCambios(activos);
@@ -267,6 +272,7 @@ async function pintar(meta) {
   seccionMensajes(activos);
   seccionAgenda(activos);
   seccionReportes(rs);
+  cuentasPlegables(activos);
   registro(meta);
   buscarGlobal();
   const publicados = rs.map((r) => r.d?.meta.generadoEn).filter(Boolean).sort().at(-1);
@@ -274,6 +280,39 @@ async function pintar(meta) {
   $('act-texto').textContent = `${publicados ? `Último cambio publicado ${haceCuanto(publicados)}. ` : ''}Página revisada a las ${hh}`;
   $('refresco').textContent = `Revisado ${fechaLargaAnio(hoyISO())}, ${hh}`;
   document.getElementById('inicio').removeAttribute('aria-busy');
+}
+
+/** Panorama: indicadores y matriz de cursos. El filtro y el orden de la matriz se conservan al refrescar. */
+let filtroPan = { nivel: '', orden: 'estado' };
+function pintarPanorama(activos) {
+  const t = ahora();
+  $('pan-kpis').innerHTML = htmlIndicadores(indicadores(activos, t));
+  $('panorama-matriz').innerHTML = activos.length ? htmlMatriz(activos.map((r) => fila(r, t)), filtroPan, t) : '<p class="nota">No hay cursos activos. Agrega los del nuevo periodo en el Excel de registro.</p>';
+}
+
+/** Los resúmenes de las secciones plegadas dicen qué hay adentro sin tener que abrirlas. */
+function cuentasPlegables(activos) {
+  const t = ahora(), cambios = activos.reduce((n, r) => n + r.cambios.length, 0), con = activos.filter((r) => pendientesTxt(r).length).length, ag = agenda(activos, t).length;
+  $('cuenta-cambios').textContent = cambios ? `${cambios} ${cambios === 1 ? 'vigente' : 'vigentes'}` : 'Ninguno';
+  $('cuenta-pendientes').textContent = con ? `${con} ${con === 1 ? 'curso' : 'cursos'}` : 'Todo completo';
+  $('cuenta-agenda').textContent = `${ag} ${ag === 1 ? 'clase' : 'clases'}`;
+}
+
+/** Abre una sección plegada cuando alguien llega a ella por el menú o por un indicador. */
+function abrirDestino(hash) {
+  const el = hash.length > 1 ? document.getElementById(hash.slice(1)) : null;
+  if (el?.matches('details.plegable')) el.open = true;
+}
+
+/** Lleva de la matriz al detalle del curso: quita los filtros que lo esconderían, abre su detalle y lo resalta un momento. */
+function irACurso(id) {
+  if ($('cur-buscar').value || $('cur-grupo').value || $('cur-semaforo').value) { $('cur-buscar').value = $('cur-grupo').value = $('cur-semaforo').value = ''; pintarCursos(); }
+  const art = document.querySelector(`#cursos-lista .curso[data-curso="${CSS.escape(id)}"]`);
+  if (!art) return;
+  art.querySelector('.curso-mas').open = true;
+  art.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  art.classList.add('resaltado');
+  setTimeout(() => art.classList.remove('resaltado'), 2200);
 }
 
 /** Asistencia: bandeja de seguimiento de todos los cursos y un tablero con una fila por curso. Solo aparece si algún curso activo tiene el Excel de asistencia publicado. */
@@ -313,11 +352,11 @@ function pintarCursos() {
   const g = $('cur-grupo').value;
   const sem = $('cur-semaforo').value;
   const vis = activosVivos.filter((r) => (!q || norm(r.c.programaCorto).includes(q)) && (!g || etiquetaPeriodo(r.c) === g) && (!sem || salud(r, ahora()).nivel === sem));
-  const llave = (d) => (d.dataset.asisCurso ? `a:${d.dataset.asisCurso}` : `b:${d.dataset.bienvCurso}`);
-  const abiertos = new Set([...document.querySelectorAll('#cursos-lista details[open][data-asis-curso], #cursos-lista details[open][data-bienv-curso]')].map(llave));
+  const llave = (d) => (d.dataset.asisCurso ? `a:${d.dataset.asisCurso}` : d.dataset.bienvCurso ? `b:${d.dataset.bienvCurso}` : d.dataset.masCurso ? `m:${d.dataset.masCurso}` : `c:${d.dataset.cierreLista}`);
+  const abiertos = new Set([...document.querySelectorAll('#cursos-lista details[open][data-asis-curso], #cursos-lista details[open][data-bienv-curso], #cursos-lista details[open][data-mas-curso], #cursos-lista details[open][data-cierre-lista]')].map(llave));
   $('cursos-lista').innerHTML = vis.length ? vis.map(tarjeta).join('')
     : `<p class="nota">${activosVivos.length ? 'Ningún curso coincide con el filtro.' : 'No hay cursos activos. Agrega los del nuevo periodo en el Excel de registro.'}</p>`;
-  for (const d of document.querySelectorAll('#cursos-lista details[data-asis-curso], #cursos-lista details[data-bienv-curso]')) d.open = abiertos.has(llave(d));
+  for (const d of document.querySelectorAll('#cursos-lista details[data-asis-curso], #cursos-lista details[data-bienv-curso], #cursos-lista details[data-mas-curso], #cursos-lista details[data-cierre-lista]')) d.open = abiertos.has(llave(d));
   $('cur-conteo').textContent = activosVivos.length >= 4 ? `Mostrando ${vis.length} de ${activosVivos.length} cursos activos.` : '';
 }
 
@@ -357,6 +396,15 @@ async function arrancar() {
     guardarContactados(contactados);
     pintarAsistencia();
   });
+  document.addEventListener('click', (e) => {
+    const n = e.target.closest('[data-pan-nivel]'), o = e.target.closest('[data-pan-orden]'), ir = e.target.closest('[data-ir-curso]'), a = e.target.closest('a[href^="#"]');
+    if (n) { filtroPan.nivel = filtroPan.nivel === n.dataset.panNivel ? '' : n.dataset.panNivel; pintarPanorama(activosVivos); }
+    else if (o) { filtroPan.orden = o.dataset.panOrden; pintarPanorama(activosVivos); }
+    else if (ir) irACurso(ir.dataset.irCurso);
+    else if (a) abrirDestino(a.getAttribute('href'));
+  });
+  window.addEventListener('hashchange', () => abrirDestino(location.hash));
+  abrirDestino(location.hash);
   $('bg-q').addEventListener('input', buscarGlobal);
   $('bg-q').addEventListener('keydown', (e) => { if (e.key === 'Escape') { $('bg-q').value = ''; buscarGlobal(); } });
   $('nav-buscar').addEventListener('click', () => setTimeout(() => $('bg-q').focus({ preventScroll: true }), 50));

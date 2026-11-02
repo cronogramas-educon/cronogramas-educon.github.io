@@ -20,7 +20,7 @@
     <div class="dentro">
       <span class="marca">Educación Continua</span>
       <nav class="nav nav-hub" id="nav-hub" aria-label="Secciones">
-        <a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#mensajes">Mensaje del día</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
+        <a href="#panorama">Panorama</a><a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#mensajes">Mensaje del día</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
       </nav>
       <a class="btn-registrar" href="#registro">Cursos y periodos</a>
     </div>
@@ -45,13 +45,18 @@
         </ul>
       </details>
     </section>
+    <section class="seccion" id="panorama"><h2>Panorama general</h2>
+      <p class="nota">Lo más importante de todos los cursos en una sola vista. Toca un indicador o un curso para ir a su detalle.</p>
+      <div id="pan-kpis" aria-live="polite"><div class="esqueleto" aria-hidden="true"><i></i><i></i><i></i></div></div>
+      <div id="panorama-matriz" aria-live="polite"></div></section>
     <section class="seccion" id="urgente"><h2>Urgente, próximos 14 días</h2>
       <p class="nota">Clases a las que les falta docente, asistente o enlace de Teams, y choques de horario, de todos los cursos.</p>
       <div id="urgente-lista" aria-live="polite"><div class="esqueleto" aria-hidden="true"><i></i><i></i><i></i></div></div>
       <details class="mas" id="asis-seguimiento" hidden><summary>Estudiantes por contactar por asistencia <span class="cuenta" id="asis-cuenta"></span></summary>
         <p class="resumen-sec" id="asis-resumen" aria-live="polite"></p>
         <div id="asis-bandeja" aria-live="polite"></div></details></section>
-    <section class="seccion" id="cursos"><h2>Cursos</h2>
+    <section class="seccion" id="cursos"><h2>Detalle por curso</h2>
+      <p class="nota">Cada curso muestra lo esencial. Ábrelo con «Ver el detalle» para ver su asistencia, el mensaje de bienvenida, el cierre y sus enlaces.</p>
       <div class="filtros-cursos" id="filtros-cursos" hidden>
         <label class="campo-rep"><span>Buscar un curso</span><input id="cur-buscar" type="search" placeholder="Nombre del curso" autocomplete="off"></label>
         <label class="campo-rep"><span>Periodo y cohorte</span><select id="cur-grupo"></select></label>
@@ -59,18 +64,18 @@
       </div>
       <p class="nota" id="cur-conteo" aria-live="polite"></p>
       <div class="cursos-grid" id="cursos-lista" aria-live="polite"><div class="esqueleto esqueleto-tarjetas" aria-hidden="true"><i></i><i></i><i></i></div></div></section>
-    <section class="seccion" id="pendientes"><h2>Pendientes por confirmar</h2>
+    <details class="seccion plegable" id="pendientes"><summary><h2>Pendientes por confirmar</h2><span class="plg-cuenta" id="cuenta-pendientes"></span><span class="asis-abrir" aria-hidden="true"></span></summary><div class="plg-cuerpo">
       <p class="nota">Lo que falta en el Excel de cada curso. Al llenarlo en SharePoint, aquí se actualiza solo.</p>
-      <div class="tabla-envoltura" id="tabla-pendientes"></div></section>
+      <div class="tabla-envoltura" id="tabla-pendientes"></div></div></details>
     <section class="seccion" id="mensajes"><h2>Mensaje del día para WhatsApp</h2>
       <p class="nota">El aviso de cada clase con horario, docente y enlace, listo para pegar en el grupo. Sale de los datos del Excel; si falta algo, queda como «Por confirmar» y aquí se avisa.</p>
       <div class="barra-reporte"><label class="campo-rep"><span>¿Para cuándo?</span><select id="msj-cuando"><option value="hoy">Hoy</option><option value="mañana">Mañana</option></select></label></div>
       <div id="msj-lista" aria-live="polite"></div></section>
-    <section class="seccion" id="agenda"><h2>Agenda de las próximas 4 semanas</h2>
+    <details class="seccion plegable" id="agenda"><summary><h2>Agenda de las próximas 4 semanas</h2><span class="plg-cuenta" id="cuenta-agenda"></span><span class="asis-abrir" aria-hidden="true"></span></summary><div class="plg-cuerpo">
       <p class="nota">Todas las clases de todos los cursos, en orden de fecha.</p>
-      <div id="agenda-lista" aria-live="polite"></div></section>
-    <section class="seccion" id="cambios"><h2>Cambios de fecha recientes</h2><div id="lista-cambios"></div></section>
-    <section class="seccion" id="reportes"><h2>Reportes de horas</h2>
+      <div id="agenda-lista" aria-live="polite"></div></div></details>
+    <details class="seccion plegable" id="cambios"><summary><h2>Cambios de fecha recientes</h2><span class="plg-cuenta" id="cuenta-cambios"></span><span class="asis-abrir" aria-hidden="true"></span></summary><div class="plg-cuerpo"><div id="lista-cambios"></div></div></details>
+    <details class="seccion plegable" id="reportes"><summary><h2>Reportes de horas</h2><span class="plg-cuenta" id="cuenta-reportes"></span><span class="asis-abrir" aria-hidden="true"></span></summary><div class="plg-cuerpo">
       <details class="mas ayuda"><summary>Cómo se calculan las horas</summary><p class="nota" id="rep-nota"></p></details>
       <div class="barra-reporte">
         <label class="campo-rep"><span>Periodo</span><select id="rep-periodo"></select></label>
@@ -85,7 +90,7 @@
       </div>
       <div role="tabpanel" id="panel-docentes" aria-labelledby="tab-docentes" data-titulo="Por docente"><div id="rep-docentes"></div></div>
       <div role="tabpanel" id="panel-cursos" aria-labelledby="tab-cursos" data-titulo="Por curso" hidden><div id="rep-cursos"></div></div>
-      <div role="tabpanel" id="panel-meses" aria-labelledby="tab-meses" data-titulo="Por mes" hidden><div id="rep-meses"></div></div></section>
+      <div role="tabpanel" id="panel-meses" aria-labelledby="tab-meses" data-titulo="Por mes" hidden><div id="rep-meses"></div></div></div></details>
     <section class="seccion" id="archivo" hidden><h2>Archivo</h2>
       <p class="nota">Los cursos terminan solos y pasan aquí. Su página sigue abierta en modo lectura con el mismo enlace.</p>
       <div id="archivo-lista"></div></section>
@@ -105,7 +110,7 @@
   </main>
   <button class="subir" id="subir" type="button" aria-label="Volver arriba" hidden><span data-ic="caret-down" class="giro"></span></button>
   <footer class="pie"><div class="dentro"><p id="pie-carpeta"></p><p id="refresco" aria-live="off"></p></div></footer>
-  <script type="importmap">{"imports":{"__BASE__js/hub.js":"__BASE__js/hub.js?v=__V__","__BASE__js/hub-analisis.js":"__BASE__js/hub-analisis.js?v=__V__","__BASE__js/hub-asistencia.js":"__BASE__js/hub-asistencia.js?v=__V__","__BASE__js/hub-buscador.js":"__BASE__js/hub-buscador.js?v=__V__","__BASE__js/ui.js":"__BASE__js/ui.js?v=__V__","__BASE__js/iconos.js":"__BASE__js/iconos.js?v=__V__","__BASE__js/utils-fecha.js":"__BASE__js/utils-fecha.js?v=__V__"}}</script>
+  <script type="importmap">{"imports":{"__BASE__js/hub.js":"__BASE__js/hub.js?v=__V__","__BASE__js/hub-analisis.js":"__BASE__js/hub-analisis.js?v=__V__","__BASE__js/hub-asistencia.js":"__BASE__js/hub-asistencia.js?v=__V__","__BASE__js/hub-panorama.js":"__BASE__js/hub-panorama.js?v=__V__","__BASE__js/hub-buscador.js":"__BASE__js/hub-buscador.js?v=__V__","__BASE__js/ui.js":"__BASE__js/ui.js?v=__V__","__BASE__js/iconos.js":"__BASE__js/iconos.js?v=__V__","__BASE__js/utils-fecha.js":"__BASE__js/utils-fecha.js?v=__V__"}}</script>
   <script type="module" src="__BASE__js/hub.js?v=__V__"></script>
 </body>
 </html>

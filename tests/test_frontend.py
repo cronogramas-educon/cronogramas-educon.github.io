@@ -314,11 +314,12 @@ def test_sitio_base_muestra_cursos_pendientes_y_errores(pagina, servidor, sitio)
     assert "El último guardado del Excel no se pudo leer" in tarjeta.inner_text() and "Falta la columna Profesor" in tarjeta.inner_text()
     assert tarjeta.locator("a:has-text('Abrir sitio')").get_attribute("href").endswith(f"/{sitio['b']}/")
     assert "sharepoint.com" in tarjeta.locator("a:has-text('Carpeta en SharePoint')").get_attribute("href")
+    pagina.evaluate("document.querySelectorAll('details.plegable').forEach((d) => { d.open = true; })")  # las secciones largas llegan plegadas
     tabla = pagina.inner_text("#tabla-pendientes")
     assert "clases 1 a 3" in tabla and "Completo" in tabla  # docente falta en 1 a 3; el otro curso está completo
     assert "1 con error" in pagina.inner_text("#resumen")
-    tarjeta.locator("[data-copiar]").click()
-    tarjeta.locator("[data-copiar] span:text('Enlace copiado')").wait_for(timeout=4000)
+    tarjeta.locator("[data-copiar]").first.click()
+    tarjeta.locator("[data-copiar] span:text('Enlace copiado')").first.wait_for(timeout=4000)
     assert "No hay cambios de fecha" in pagina.inner_text("#lista-cambios")
 
 
@@ -364,6 +365,13 @@ def abrir_hub(pagina, servidor, sitio, ahora):
     pagina.wait_for_selector(".curso")
 
 
+def abrir_detalle(tarjeta):
+    """El detalle de cada curso (asistencia, bienvenida, cierre) está dentro de «Ver el detalle»."""
+    mas = tarjeta.locator(".curso-mas").first
+    if mas.get_attribute("open") is None:
+        mas.locator("> summary").click()
+
+
 def test_hub_urgentes_y_semaforo(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     u = pagina.inner_text("#urgente-lista")
@@ -376,6 +384,8 @@ def test_hub_urgentes_y_semaforo(pagina, servidor, sitio):
 
 def test_hub_agenda_reportes_y_csv(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    assert not pagina.locator("#reportes").evaluate("d => d.open") and "clases" in pagina.inner_text("#cuenta-agenda")  # plegadas, con su resumen
+    pagina.evaluate("document.querySelectorAll('details.plegable').forEach((d) => { d.open = true; })")
     assert pagina.locator("#agenda-lista .dia-agenda").count() >= 1
     assert "Diplomado Derecho Laboral" in pagina.inner_text("#rep-cursos") and "estimada" in pagina.inner_text("#rep-cursos")
     assert pagina.locator("#rep-docentes tbody tr").count() >= 3 and pagina.locator("#rep-meses tbody tr").count() >= 2
@@ -411,13 +421,17 @@ def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
     pagina.click("#asis-seguimiento summary")
     pagina.wait_for_selector("#asis-bandeja tbody tr")
     assert pagina.locator("#asistencia").count() == 0  # ya no hay una sección de asistencia aparte
+    assert "Estudiante Prueba" in pagina.inner_text("#asis-bandeja")  # el nombre que publica el Excel (Nombre + primer apellido), con su número de lista
     filas = pagina.locator("#asis-bandeja tbody tr")
     assert filas.count() == 3 and "Perdió el mínimo" in filas.nth(0).inner_text() and "En riesgo" in filas.nth(1).inner_text() and "N.º 3" in filas.nth(1).inner_text() and "Atención" in filas.nth(2).inner_text()
-    assert "Estudiante de prueba" not in pagina.inner_text("body") and pagina.locator("#asis-lista").count() == 0  # el detalle por curso ya no es una lista aparte
+    assert pagina.locator("#asis-lista").count() == 0  # el detalle por curso ya no es una lista aparte
     assert pagina.locator("#cursos-lista [data-asis-curso].rojo").count() == 2
     compliance = pagina.locator("#cursos-lista .curso", has_text="Compliance")
+    abrir_detalle(compliance)
     compliance.locator("[data-asis-curso] summary").click()
-    assert "28 de 35" in compliance.inner_text() and compliance.locator(".asis-barras li").count() == 35
+    assert "28 de 35" in compliance.inner_text() and "cómo se lee esto" in compliance.inner_text().lower()
+    assert compliance.locator(".mx tbody tr").count() == 3 and compliance.locator(".mx tbody tr").first.locator("th").inner_text().startswith("Estudiante Prueba")  # matriz: un renglón por estudiante
+    assert compliance.locator(".mx tbody tr .m.no").count() >= 1 and compliance.locator(".reparto i").count() >= 2
     pagina.locator("[data-contactado]").first.check()  # la primera es la de Derecho Laboral, que perdió el mínimo
     assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#cursos-lista [data-asis-curso][open]").count() == 1
     pagina.reload()
@@ -449,25 +463,29 @@ def test_hub_buscador_global_encuentra_curso_docente_y_clase(pagina, servidor, s
 def test_hub_cierre_de_curso_lista_y_descarga(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     tarjeta = pagina.locator("#cursos-lista .curso", has_text="Derecho Laboral")
+    abrir_detalle(tarjeta)
     tarjeta.locator("[data-asis-curso] > summary").click()
     fila = tarjeta.locator("details.cierre")
     fila.locator("summary").click()
-    assert "Resultado final" in fila.inner_text() and "Estudiante de prueba" not in fila.inner_text()
-    assert pagina.locator(".cierre-col.aprueba p").inner_text() == "1, 2" and pagina.locator(".cierre-col.no-aprueba p").inner_text() == "3"
+    assert "Resultado final" in fila.inner_text()
+    assert pagina.locator(".cierre-col.aprueba p").inner_text() == "Estudiante Prueba (N.º 1), Estudiante Prueba (N.º 2)" and pagina.locator(".cierre-col.no-aprueba p").inner_text() == "Estudiante Prueba (N.º 3)"
     with pagina.expect_download() as d:
         fila.locator("[data-cierre]").click()
     texto = Path(d.value.path()).read_text(encoding="utf-8-sig")
     assert d.value.suggested_filename.startswith("cierre-") and "Número de lista;Resultado" in texto
-    assert ";1;Aprueba;" in texto and ";3;No aprueba;" in texto and "Estudiante de prueba" not in texto and pagina.errores == []
+    assert ";1;Aprueba;" in texto and ";3;No aprueba;" in texto and texto.splitlines()[0].endswith("Nombre") and "Estudiante Prueba" in texto and pagina.errores == []
 
 
 def test_hub_navegacion_pestanas_y_estados(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     enlaces = pagina.locator("#nav-hub a:visible").all_inner_texts()
-    for s_ in ("Buscar", "Urgente", "Cursos", "Pendientes", "Agenda", "Cambios", "Reportes"):
+    for s_ in ("Panorama", "Buscar", "Urgente", "Cursos", "Pendientes", "Agenda", "Cambios", "Reportes"):
         assert any(e.startswith(s_) for e in enlaces), s_
     assert pagina.locator(".btn-registrar").is_visible() and pagina.locator("#inicio[aria-busy]").count() == 0
     assert "Último cambio publicado" in pagina.inner_text("#act-texto") or "Página revisada" in pagina.inner_text("#act-texto")
+    # los reportes llegan plegados y se abren al ir a ellos desde el menú
+    assert not pagina.locator("#panel-docentes").is_visible()
+    pagina.click('#nav-hub a[href="#reportes"]')
     # pestañas de reportes: una tabla a la vez y navegación con flechas
     assert pagina.locator("#panel-docentes").is_visible() and not pagina.locator("#panel-cursos").is_visible()
     pagina.locator("#tab-docentes").focus()
@@ -491,6 +509,7 @@ def test_hub_mensaje_de_bienvenida_vista_previa_y_boton_de_envio(pagina, servido
     pagina.route("**/g/*/cursos.json*", con_formulario)
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     tarjeta = pagina.locator("#cursos-lista .curso", has_text="Compliance")
+    abrir_detalle(tarjeta)
     tarjeta.locator("[data-bienv-curso] > summary").click()
     pagina.wait_for_function("document.querySelector('[data-bienv-curso] .bienv-cuerpo').innerText.includes('Bienvenid')")
     cuerpo = tarjeta.locator(".bienv-cuerpo").inner_text()
@@ -513,9 +532,12 @@ def test_hub_bienvenida_sin_formulario_lo_avisa(pagina, servidor, sitio):
     pagina.route("**/g/*/cursos.json*", sin_formulario)
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     tarjeta = pagina.locator("#cursos-lista .curso", has_text="Compliance")
+    abrir_detalle(tarjeta)
     tarjeta.locator("[data-bienv-curso] > summary").click()
     assert "Falta configurar el formulario de envío" in tarjeta.inner_text()
-    assert "aún no se puede enviar la bienvenida" in pagina.locator("#cursos-lista .curso", has_text="Derecho Laboral").inner_text()  # sin equipo de Teams
+    laboral = pagina.locator("#cursos-lista .curso", has_text="Derecho Laboral")
+    abrir_detalle(laboral)
+    assert "aún no se puede enviar la bienvenida" in laboral.inner_text()  # sin equipo de Teams
 
 
 def test_hub_bienvenida_ya_enviada_no_ofrece_el_boton(pagina, servidor, sitio):
@@ -529,6 +551,7 @@ def test_hub_bienvenida_ya_enviada_no_ofrece_el_boton(pagina, servidor, sitio):
     pagina.route("**/g/*/cursos.json*", enviada)
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     tarjeta = pagina.locator("#cursos-lista .curso", has_text="Compliance")
+    abrir_detalle(tarjeta)
     assert "Ya enviado al equipo de Teams" in tarjeta.locator("[data-bienv-curso] > summary").inner_text()
     tarjeta.locator("[data-bienv-curso] > summary").click()
     assert "Ya se envió el viernes 23 de octubre de 2026" in tarjeta.locator(".bienv-enviada").inner_text()
@@ -587,6 +610,7 @@ def test_al_terminar_el_curso_aparece_la_encuesta_solo_si_hay_enlace(pagina, bas
 
 def test_hub_lista_de_cierre_de_un_curso_que_termino(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-11-30T10:00:00-05:00")  # al curso de prueba le quedan 4 días (termina el 4 de diciembre)
+    abrir_detalle(pagina.locator("#cursos-lista .curso", has=pagina.locator("[data-cierre-lista]")).first)
     lista = pagina.locator("[data-cierre-lista]").first
     assert lista.count() == 1 and "pasos listos" in lista.locator("summary").inner_text()
     lista.locator("summary").click()
@@ -610,3 +634,26 @@ def test_pagina_de_estudiantes_mi_asistencia_por_numero_de_lista(pagina, base):
     pagina.fill("#asis-n", "99")
     assert "No encontramos ese nombre o número" in pagina.inner_text("#asis-resultado")
     assert pagina.errores == []
+
+
+def test_hub_panorama_indicadores_matriz_filtro_orden_y_salto_al_curso(pagina, servidor, sitio):
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    assert pagina.locator("#panorama").evaluate("e => e.getBoundingClientRect().top") < pagina.locator("#urgente").evaluate("e => e.getBoundingClientRect().top")  # el panorama va primero
+    k = pagina.inner_text("#pan-kpis").lower()  # los títulos van en mayúsculas por estilo
+    assert "cursos activos" in k and "urgentes" in k and "estudiantes por atender" in k and "cambios de fecha" in k
+    filas = pagina.locator(".pan-matriz tbody tr")
+    assert filas.count() == 2 and "requiere atención" in pagina.inner_text(".pan-matriz").lower() and "por atender" in pagina.inner_text(".pan-matriz")
+    pagina.click('[data-pan-nivel="rojo"]')  # una ficha filtra y vuelve a pulsarse para quitar el filtro
+    assert pagina.locator(".pan-matriz tbody tr").count() == 1 and "Derecho Laboral" in pagina.inner_text(".pan-matriz tbody") and pagina.locator('[data-pan-nivel="rojo"]').get_attribute("aria-pressed") == "true"
+    pagina.click('[data-pan-nivel="verde"]')  # otro filtro reemplaza al anterior
+    assert pagina.locator(".pan-matriz tbody tr").count() == 1 and "Compliance" in pagina.inner_text(".pan-matriz tbody")
+    pagina.click('[data-pan-nivel="ambar"]')
+    assert "Ningún curso coincide" in pagina.inner_text(".pan-matriz")
+    pagina.click('[data-pan-nivel="ambar"]')  # pulsar la ficha activa quita el filtro
+    assert pagina.locator(".pan-matriz tbody tr").count() == 2
+    pagina.click('[data-pan-orden="curso"]')
+    nombres = pagina.locator(".pan-matriz tbody .pan-nombre").all_inner_texts()
+    assert nombres == sorted(nombres, key=str.casefold) and pagina.locator('[data-pan-orden="curso"]').locator("xpath=..").get_attribute("aria-sort") == "ascending"
+    pagina.locator(".pan-matriz [data-ir-curso]", has_text="Compliance").click()  # salta al detalle del curso y lo abre
+    pagina.wait_for_selector("#cursos-lista .curso[data-curso] .curso-mas[open]")
+    assert pagina.locator("#cursos-lista .curso", has_text="Compliance").locator(".curso-mas").get_attribute("open") is not None and pagina.errores == []

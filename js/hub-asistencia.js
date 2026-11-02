@@ -1,8 +1,10 @@
-// Sección Asistencia del sitio de administración. Los estudiantes son "Estudiante N" (su número de lista en el Excel): nunca se muestran nombres.
-import { esc, ic } from './ui.js';
+// Asistencia en el sitio de administración. Cada estudiante se muestra como «Nombre + primer apellido» (la misma etiqueta que ve en su página) y su número de lista; el documento nunca se publica.
+import { esc, ic, rangos } from './ui.js';
 import { ahora, estadoClase, fechaLarga } from './utils-fecha.js';
 
+export const nombre = (x) => x.etiqueta || `Estudiante ${x.n}`;
 const pct = (x) => (x == null ? 'Sin datos' : `${Math.round(x * 100)} %`);
+const ESTADOS = ['Perdió el mínimo', 'En riesgo', 'Atención', 'Al día', 'Aprobó'];
 const SEGUIR = ['Perdió el mínimo', 'En riesgo', 'Atención']; // a quienes conviene escribirles
 const CLASE_ESTADO = { 'Perdió el mínimo': 'perdio', 'En riesgo': 'riesgo', Atención: 'atencion', 'Al día': 'aldia', Aprobó: 'aprobo' };
 
@@ -14,18 +16,6 @@ export function sinRegistrar(r, t = ahora()) {
 }
 
 export const urgentesAsistencia = (r) => (r.asis ? r.asis.lista.filter((x) => SEGUIR.includes(x.estado)) : []);
-
-function barras(a) {
-  const mayor = a.porClase.filter((c) => c.estado === 'Dictada');
-  if (!mayor.length) return '';
-  const celdas = a.porClase.map((c) => c.estado === 'Dictada'
-    ? `<li${c.marcadas < c.de ? ' class="incompleta"' : ''} title="Clase ${c.clase}: ${c.asistieron} de ${c.de}${c.marcadas < c.de ? `, faltan por marcar ${c.de - c.marcadas}` : ''}"><i style="height:${c.de ? Math.max(6, Math.round(100 * c.asistieron / c.de)) : 6}%"></i><span>${c.clase}</span></li>`
-    : `<li class="vacia" title="Clase ${c.clase}: aún sin marcar"><i></i><span>${c.clase}</span></li>`).join('');
-  const completas = mayor.filter((c) => c.marcadas >= c.de);
-  const peor = (completas.length ? completas : mayor).reduce((m, c) => (c.asistieron / c.de < m.asistieron / m.de ? c : m), (completas.length ? completas : mayor)[0]);
-  return `<div class="asis-barras"><p class="asis-sub">Quiénes asistieron a cada clase</p>
-    <ol role="img" aria-label="Asistencia por clase. La más baja fue la clase ${peor.clase}, con ${peor.asistieron} de ${peor.de}.${mayor.length > completas.length ? ' Algunas clases tienen la asistencia sin terminar de marcar.' : ''}">${celdas}</ol></div>`;
-}
 
 const etiquetaPeriodo = (c) => (c.periodo ? `Periodo ${c.periodo}${c.cohorte ? `, ${c.cohorte}` : ''}` : c.tipo);
 
@@ -45,13 +35,14 @@ export function bandeja(rs) {
     .sort((p, q) => orden.indexOf(p.estado) - orden.indexOf(q.estado) || p.quedan - q.quedan || p.r.c.programaCorto.localeCompare(q.r.c.programaCorto) || p.n - q.n);
 }
 
-/** Texto listo para pegar. No lleva nombre: quien lo envía lo escribe donde dice [nombre]. */
+/** Texto listo para pegar, con el primer nombre del estudiante (o [nombre] si el Excel aún no lo trae). */
 export function mensajeSeguimiento(x) {
   const q = Math.max(x.quedan, 0);
   const cierre = x.estado === 'Perdió el mínimo'
     ? 'Con las clases que llevamos ya no se alcanza el mínimo de asistencia para certificar, y quisiera que hablemos de cómo seguir.'
     : `Te ${q === 1 ? 'queda 1 falta' : `quedan ${q} faltas`} antes de no alcanzar el mínimo de asistencia para certificar.`;
-  return `Hola [nombre], te escribo del ${x.r.c.programaCorto}. Llevas ${x.faltas} ${x.faltas === 1 ? 'falta' : 'faltas'} en las clases. ${cierre} ¿Todo bien? Cuéntame si pasó algo y miramos cómo te podemos apoyar.`;
+  const pila = x.etiqueta ? x.etiqueta.split(' ')[0] : '[nombre]';
+  return `Hola ${pila}, te escribo del ${x.r.c.programaCorto}. Llevas ${x.faltas} ${x.faltas === 1 ? 'falta' : 'faltas'} en las clases. ${cierre} ¿Todo bien? Cuéntame si pasó algo y miramos cómo te podemos apoyar.`;
 }
 
 export function htmlBandeja(lista, hechos = new Set()) {
@@ -59,23 +50,48 @@ export function htmlBandeja(lista, hechos = new Set()) {
   const pendientes = lista.filter((x) => !hechos.has(x.id)).length;
   return `<div class="tabla-envoltura"><table class="tabla-pend tabla-asis"><caption>${pendientes} por contactar${lista.length > pendientes ? `, ${lista.length - pendientes} ya ${lista.length - pendientes === 1 ? 'contactado' : 'contactados'}` : ''}. De más a menos urgente.</caption>
     <thead><tr><th scope="col">Estudiante</th><th scope="col">Curso</th><th scope="col">Faltas</th><th scope="col">Le quedan</th><th scope="col">Seguimiento</th></tr></thead>
-    <tbody>${lista.map((x) => `<tr${hechos.has(x.id) ? ' class="hecho"' : ''}><th scope="row"><span class="est-asis ${CLASE_ESTADO[x.estado]}">${esc(x.estado)}</span> N.º ${x.n}</th><td>${esc(x.r.c.programaCorto)}<small>${esc(etiquetaPeriodo(x.r.c))}</small></td><td>${x.faltas}</td><td>${Math.max(x.quedan, 0)}</td>
+    <tbody>${lista.map((x) => `<tr${hechos.has(x.id) ? ' class="hecho"' : ''}><th scope="row"><span class="est-asis ${CLASE_ESTADO[x.estado]}">${esc(x.estado)}</span> ${esc(nombre(x))}<small>N.º ${x.n}</small></th><td>${esc(x.r.c.programaCorto)}<small>${esc(etiquetaPeriodo(x.r.c))}</small></td><td>${x.faltas}</td><td>${Math.max(x.quedan, 0)}</td>
       <td><div class="acciones-asis"><button class="btn" type="button" data-copiar="${esc(mensajeSeguimiento(x))}">${ic('link-simple')}<span>Copiar mensaje</span></button>
       <label class="contactado"><input type="checkbox" data-contactado="${esc(x.id)}"${hechos.has(x.id) ? ' checked' : ''}> Contactado</label></div></td></tr>`).join('')}</tbody></table></div>
-    <p class="nota">El número es el de la lista en el Excel de asistencia, donde está el nombre. La marca Contactado se guarda en este navegador y se reinicia si el estudiante vuelve a faltar.</p>`;
+    <p class="nota">El número es el de la lista en el Excel de asistencia. La marca Contactado se guarda en este navegador y se reinicia si el estudiante vuelve a faltar.</p>`;
 }
 
+const ESTADOS_AYUDA = [
+  ['Aprobó', 'aprobo', 'Ya completó el curso con el mínimo de asistencia.'],
+  ['Al día', 'aldia', 'Va bien: le sobran faltas.'],
+  ['Atención', 'atencion', 'Ya usó la mitad de las faltas que puede tener.'],
+  ['En riesgo', 'riesgo', 'Casi no le quedan faltas: otra o dos y no certifica.'],
+  ['Perdió el mínimo', 'perdio', 'Ya no alcanza el 80 % aunque asista a todo lo que queda.'],
+];
+
+/** Explicación y cifras del curso, reparto de estudiantes por estado y la matriz estudiante por clase. */
 function detalle(r, t) {
   const a = r.asis;
   const minimo = a.programadas - a.permitidas;
   const pasadas = sinRegistrar(r, t);
-  const fichas = ['Perdió el mínimo', 'En riesgo', 'Atención', 'Al día', 'Aprobó'].filter((e) => a.porEstado[e]).map((e) => `<li class="${CLASE_ESTADO[e]}"><strong>${a.porEstado[e]}</strong> ${esc(e.toLowerCase())}</li>`).join('');
+  const dictadas = a.porClase.filter((c) => c.estado === 'Dictada');
+  const total = a.estudiantes || 1;
   const avisos = [
-    pasadas.length ? `${pasadas.length === 1 ? 'La clase' : 'Las clases'} ${pasadas.map((x) => `${x.id} (${fechaLarga(x.fecha)})`).join(', ')} ya ${pasadas.length === 1 ? 'pasó' : 'pasaron'} y no ${pasadas.length === 1 ? 'tiene' : 'tienen'} asistencia marcada. Si se reprogramó, cambia la fecha en el Excel del curso; si se dictó, marca la asistencia.` : '',
+    pasadas.length ? `${pasadas.length === 1 ? 'La clase' : 'Las clases'} ${rangos(pasadas.map((x) => x.id))} (${pasadas.length === 1 ? 'del' : 'desde el'} ${fechaLarga(pasadas[0].fecha)}${pasadas.length > 1 ? ` ${'hasta el'} ${fechaLarga(pasadas.at(-1).fecha)}` : ''}) ya ${pasadas.length === 1 ? 'pasó' : 'pasaron'} según el cronograma y no ${pasadas.length === 1 ? 'tiene' : 'tienen'} asistencia marcada. Si se reprogramó, cambia la fecha en el Excel del curso; si se dictó, marca la asistencia.` : '',
     a.sinMarcar ? `Hay ${a.sinMarcar} ${a.sinMarcar === 1 ? 'casilla sin marcar' : 'casillas sin marcar'} en clases ya dictadas. Las cuentas quedan incompletas hasta marcarlas con 1 o 0.` : '',
   ].filter(Boolean).map((x) => `<p class="alerta" role="alert">${ic('warning')}<span>${x}</span></p>`).join('');
-  return `<p class="asis-linea">Para certificar hay que asistir al menos a <strong>${minimo}</strong> de ${a.programadas} clases: se puede faltar hasta <strong>${a.permitidas}</strong> ${a.permitidas === 1 ? 'vez' : 'veces'}. Van ${a.dictadas} clases dictadas, con ${a.estudiantes} estudiantes.</p>
-    <ul class="asis-fichas">${fichas}</ul>${avisos}${barras(a)}`;
+  const reparto = ESTADOS_AYUDA.filter(([e]) => a.porEstado[e]).map(([e, k]) => `<i class="${k}" style="flex:${a.porEstado[e]}" title="${esc(e)}: ${a.porEstado[e]}"></i>`).join('');
+  const leyenda = ESTADOS_AYUDA.filter(([e]) => a.porEstado[e]).map(([e, k, ayuda]) => `<li><span class="est-asis ${k}">${esc(e)}</span><strong>${a.porEstado[e]}</strong><small>${esc(ayuda)}</small></li>`).join('');
+  const orden = [...a.lista].sort((p, q) => ESTADOS.indexOf(p.estado) - ESTADOS.indexOf(q.estado) || p.n - q.n);
+  const celda = (v) => (v === 1 ? `<td class="m si" title="Asistió"><span class="solo-lectores">Asistió</span><i aria-hidden="true"></i></td>` : v === 0 ? `<td class="m no" title="Faltó"><span class="solo-lectores">Faltó</span><i aria-hidden="true"></i></td>` : '<td class="m sin" title="Sin marcar"><span class="solo-lectores">Sin marcar</span></td>');
+  const cuerpo = orden.map((x) => `<tr><th scope="row"><span class="mx-nombre">${esc(nombre(x))}</span><small>N.º ${x.n}</small></th>${dictadas.map((c) => celda(x.marcas?.[c.clase] ?? null)).join('')}
+      <td class="mx-faltas"><strong>${x.faltas}</strong> <small>de ${a.permitidas}</small></td><td><span class="est-asis ${CLASE_ESTADO[x.estado]}">${esc(x.estado)}</span></td></tr>`).join('');
+  const pie = dictadas.map((c) => `<td class="mx-pie" title="Clase ${c.clase}: ${c.asistieron} de ${c.de}">${c.de ? Math.round(100 * c.asistieron / c.de) : 0}<small> %</small></td>`).join('');
+  const matriz = dictadas.length ? `<div class="mx-envoltura" tabindex="0" role="region" aria-label="Asistencia de cada estudiante a cada clase dictada"><table class="mx">
+      <thead><tr><th scope="col">Estudiante</th>${dictadas.map((c) => `<th scope="col" title="Clase ${c.clase}">${c.clase}</th>`).join('')}<th scope="col">Faltas</th><th scope="col">Estado</th></tr></thead>
+      <tbody>${cuerpo}</tbody><tfoot><tr><th scope="row">Asistieron</th>${pie}<td></td><td></td></tr></tfoot></table></div>
+    <p class="mx-clave"><span class="cl si"><i></i></span>Asistió <span class="cl no"><i></i></span>Faltó <span class="cl sin"></span>Sin marcar. Los números de arriba son las clases dictadas; el porcentaje de abajo es cuántos asistieron a cada una.</p>` : '<p class="nota">Todavía no se ha marcado la asistencia de ninguna clase.</p>';
+  return `<div class="asis-explica"><h4>¿Cómo se lee esto?</h4>
+      <p>Para certificar, cada estudiante debe asistir al menos al <strong>80 %</strong> de las clases: <strong>${minimo} de ${a.programadas}</strong>. Eso significa que puede faltar <strong>hasta ${a.permitidas}</strong> ${a.permitidas === 1 ? 'vez' : 'veces'} en todo el curso. El estado de cada persona compara sus faltas con ese límite.</p></div>
+    <ul class="asis-kpis"><li><strong>${a.dictadas}<small> de ${a.programadas}</small></strong><span>clases con asistencia marcada</span></li><li><strong>${pct(a.promedio)}</strong><span>promedio de asistencia</span></li><li><strong>${a.estudiantes}</strong><span>estudiantes en la lista</span></li></ul>
+    ${avisos}
+    <div class="asis-reparto"><h4>Cómo van los ${a.estudiantes} estudiantes</h4><div class="reparto" role="img" aria-label="${ESTADOS_AYUDA.filter(([e]) => a.porEstado[e]).map(([e]) => `${a.porEstado[e]} ${e.toLowerCase()}`).join(', ')}">${reparto}</div><ul class="leyenda">${leyenda}</ul></div>
+    <div class="asis-matriz"><h4>Quién asistió a cada clase</h4>${matriz}</div>`;
 }
 
 /** Bloque plegable de asistencia que va dentro de la tarjeta de cada curso. */
@@ -85,7 +101,7 @@ export function htmlAsistenciaCurso(r, t = ahora()) {
   const nivel = nivelAsistencia(r, t);
   const alerta = (a.porEstado['Perdió el mínimo'] || 0) + (a.porEstado['En riesgo'] || 0), atencion = a.porEstado.Atención || 0, por = alerta + atencion;
   return `<details class="curso-asis ${nivel}" data-asis-curso="${esc(r.c.id)}"><summary><span class="asis-punto" title="${NIVEL_TXT[nivel]}" aria-hidden="true"></span>
-    <span class="ca-texto"><strong>Asistencia</strong><small>${a.dictadas} de ${a.programadas} clases dictadas, promedio ${pct(a.promedio)}</small></span>
+    <span class="ca-texto"><strong>Asistencia</strong><small>${a.dictadas} de ${a.programadas} clases con asistencia, promedio ${pct(a.promedio)}</small></span>
     ${por ? `<span class="est-asis ${alerta ? 'riesgo' : 'atencion'}">${por} por atender</span>` : nivel === 'verde' ? '<span class="asis-ok-mini">Al día</span>' : '<span class="est-asis atencion">Por revisar</span>'}<span class="asis-abrir" aria-hidden="true"></span></summary>
     <div class="asis-detalle">${detalle(r, t)}${cierre(r) ? htmlCierre(r) : ''}</div></details>`;
 }
@@ -101,7 +117,7 @@ export function cierre(r) {
   return { aprueban, noAprueban, porDefinir, definitivo: !porDefinir.length && completo && !a.sinMarcar };
 }
 
-const numeros = (lista) => (lista.length ? lista.map((x) => x.n).sort((p, q) => p - q).join(', ') : 'Nadie');
+const numeros = (lista) => (lista.length ? lista.slice().sort((p, q) => p.n - q.n).map((x) => `${nombre(x)} (N.º ${x.n})`).join(', ') : 'Nadie');
 
 export function htmlCierre(r) {
   const k = cierre(r);
@@ -115,18 +131,18 @@ export function htmlCierre(r) {
       <div class="cierre-cols"><div class="cierre-col aprueba"><h4>Aprueban <span>${k.aprueban.length}</span></h4><p>${numeros(k.aprueban)}</p></div>
         <div class="cierre-col no-aprueba"><h4>No aprueban <span>${k.noAprueban.length}</span></h4><p>${numeros(k.noAprueban)}</p></div>
         ${k.porDefinir.length ? `<div class="cierre-col por-definir"><h4>Por definir <span>${k.porDefinir.length}</span></h4><p>${numeros(k.porDefinir)}</p></div>` : ''}</div>
-      <p class="nota">Los números son los de la lista en el Excel de asistencia, donde están los nombres. Para certificar hacen falta ${a.programadas - a.permitidas} de ${a.programadas} clases.</p>
+      <p class="nota">El número es el de la lista en el Excel de asistencia. Para certificar hacen falta ${a.programadas - a.permitidas} de ${a.programadas} clases.</p>
       <p><button class="btn" type="button" data-cierre="${esc(c.id)}">${ic('arrow-up-right')}<span>Descargar para certificación</span></button></p></div></details>`;
 }
 
-/** CSV para pasar a certificación: un renglón por número de lista, sin nombres. */
+/** CSV para pasar a certificación: un renglón por estudiante, con número de lista y nombre (sin documento). */
 export function filasCierre(r) {
   const k = cierre(r);
   const { c, asis: a } = r;
   const filas = [...k.aprueban.map((x) => [x, 'Aprueba']), ...k.noAprueban.map((x) => [x, 'No aprueba']), ...k.porDefinir.map((x) => [x, 'Por definir'])].sort((p, q) => p[0].n - q[0].n);
-  return filas.map(([x, res]) => [c.programaCorto, c.periodo || '', c.cohorte || '', x.n, res, x.asistio, x.faltas, a.programadas, Math.round((100 * x.asistio) / a.programadas) + ' %', k.definitivo ? 'Sí' : 'No']);
+  return filas.map(([x, res]) => [c.programaCorto, c.periodo || '', c.cohorte || '', x.n, res, x.asistio, x.faltas, a.programadas, Math.round((100 * x.asistio) / a.programadas) + ' %', k.definitivo ? 'Sí' : 'No', nombre(x)]);
 }
-export const TITULOS_CIERRE = ['Curso', 'Periodo', 'Cohorte', 'Número de lista', 'Resultado', 'Clases asistidas', 'Faltas', 'Clases programadas', 'Asistencia final', 'Resultado definitivo'];
+export const TITULOS_CIERRE = ['Curso', 'Periodo', 'Cohorte', 'Número de lista', 'Resultado', 'Clases asistidas', 'Faltas', 'Clases programadas', 'Asistencia final', 'Resultado definitivo', 'Nombre'];
 
 /** Resumen de una línea para la portada de la sección. */
 export function resumenAsistencia(rs) {
