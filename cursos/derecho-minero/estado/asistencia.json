@@ -1,0 +1,463 @@
+{
+ "actualizado": "2026-11-03T12:05:48-05:00",
+ "programadas": 24,
+ "dictadas": 0,
+ "permitidas": 4,
+ "estudiantes": 21,
+ "promedio": null,
+ "porEstado": {
+  "Perdió el mínimo": 0,
+  "En riesgo": 0,
+  "Atención": 0,
+  "Al día": 21,
+  "Aprobó": 0
+ },
+ "sinMarcar": 0,
+ "porClase": [
+  {
+   "clase": 1,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 2,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 3,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 4,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 5,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 6,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 7,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 8,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 9,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 10,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 11,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 12,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 13,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 14,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 15,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 16,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 17,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 18,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 19,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 20,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 21,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 22,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 23,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  },
+  {
+   "clase": 24,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 21
+  }
+ ],
+ "lista": [
+  {
+   "n": 1,
+   "etiqueta": "Ana Alvarez",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "c357fbedd18e073d93cd25adf0cea61d",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 2,
+   "etiqueta": "Armando Sanguino",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "d8251cb8bd2fb30b1ab1ccaad70e47f6",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 3,
+   "etiqueta": "Catalina Barrera",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "aba33b275103c688e7346d403ce57d46",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 4,
+   "etiqueta": "Cesar Ruiz",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "c32e9fecf4332b756afe14d071f239ea",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 5,
+   "etiqueta": "Consuelo Pilar",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "571823a6f92d7476ce86d89d7dba2e61",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 6,
+   "etiqueta": "Felipe Velasquez",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "a25a9c978ed1cae4c57dfdb1c3e413c2",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 7,
+   "etiqueta": "Gustavo Parra",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "aa0f63e5f07e53309461e08d60ebd45d",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 8,
+   "etiqueta": "Jenny Gomez",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "66b61a9aa7f5f0c1c9d616314979353e",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 9,
+   "etiqueta": "Jhon Anderson",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "1c50684911bafab0fc1fe7c6551ca9f5",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 10,
+   "etiqueta": "Jonny Fandiño",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "f08c1916debbe33e1084d6c34b4787af",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 11,
+   "etiqueta": "Karen Barreto",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "37c25717796e73254fdf9d4ddcd0be65",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 12,
+   "etiqueta": "Karen Caballero",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "15d616add24a5c61a39d0bb1585495db",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 13,
+   "etiqueta": "Leidy Ramirez",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "8db56a9517c9f541937fdf8d0ec1f938",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 14,
+   "etiqueta": "Leon Jairo",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "e4878408ac9ecc90774418c0ef5d17da",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 15,
+   "etiqueta": "Lina Cuevas",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "f380933d0df7d41c8aa6da2384fac4f2",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 16,
+   "etiqueta": "Moises Mejia",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "26c36ef54e36bd5e367fd93b4b291832",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 17,
+   "etiqueta": "Nayibe Cala",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "f19767d076852eb29ebbd96731b2b095",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 18,
+   "etiqueta": "Nicolle Velandia",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "cc7e596d5ca9fc0f9ada0de36c38d851",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 19,
+   "etiqueta": "Oscar Mendez",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "a34685cfc13d3c5c5c563c6e6ec8d4ad",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 20,
+   "etiqueta": "Rosa Castañeda",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "6272095550b74fb4701c8a875b414d67",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 21,
+   "etiqueta": "Veronica Arango",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 4,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "c3c2370c23d0da3fc54b1d10b0c91c30",
+   "seguimiento": "",
+   "marcas": {}
+  }
+ ],
+ "sal": "derecho-minero",
+ "sinCedula": 0
+}
