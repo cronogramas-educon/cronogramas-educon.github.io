@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-30T14:07:09-05:00",
+ "actualizado": "2026-11-03T10:07:54-05:00",
  "programadas": 35,
  "dictadas": 9,
  "permitidas": 7,
@@ -270,6 +270,7 @@
    "quedan": 5,
    "porcentaje": 0.7777777777777778,
    "puedeLlegar": 0.9428571428571428,
+   "clave": "252d65900f75d2976e784baa519eac6e",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -292,6 +293,7 @@
    "quedan": 6,
    "porcentaje": 0.8888888888888888,
    "puedeLlegar": 0.9714285714285714,
+   "clave": "232ff1ca8684bf3bc640a5ced4553578",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -314,6 +316,7 @@
    "quedan": 6,
    "porcentaje": 0.8888888888888888,
    "puedeLlegar": 0.9714285714285714,
+   "clave": "5f783084696cca7735305b4d8764613b",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -336,6 +339,7 @@
    "quedan": 6,
    "porcentaje": 0.8888888888888888,
    "puedeLlegar": 0.9714285714285714,
+   "clave": "81bab3d47fa0ac48bf76550fb9caaf99",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -358,6 +362,7 @@
    "quedan": 6,
    "porcentaje": 0.8888888888888888,
    "puedeLlegar": 0.9714285714285714,
+   "clave": "ed8cae19471c735c85ca8367cc57a9b5",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -380,6 +385,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "1fb46d3e1b8b5561ae6908b6b00c7edf",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -402,6 +408,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "16f68a9c68f96f48a52bd6a5fb6ea6a9",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -424,6 +431,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "b9c4bac4ef33c8d4e179809df29b4727",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -446,6 +454,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "153a28317e4c0bc36f48624ce7229971",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -468,6 +477,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "5dc2ab339560c0bdb7b65f32de4bda45",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -490,6 +500,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "b882a0bd1001d36a8f9d26aeb0232737",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -512,6 +523,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "6658d58d2ea67817638eef8b4fe8bf79",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -534,6 +546,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "e91a5998c4f9c4ae8be22c1ef9bf0e42",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -556,6 +569,7 @@
    "quedan": 7,
    "porcentaje": 1.0,
    "puedeLlegar": 1.0,
+   "clave": "8e51759d7d4b7cf4ccfbb81f02274cc2",
    "seguimiento": "",
    "marcas": {
     "1": 1,
@@ -569,5 +583,7 @@
     "10": 1
    }
   }
- ]
+ ],
+ "sal": "compliance-anticorrupcion",
+ "sinCedula": 0
 }
