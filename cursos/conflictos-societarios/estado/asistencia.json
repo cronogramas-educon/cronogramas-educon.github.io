@@ -1,0 +1,225 @@
+{
+ "actualizado": "2026-11-03T12:05:37-05:00",
+ "programadas": 16,
+ "dictadas": 0,
+ "permitidas": 3,
+ "estudiantes": 7,
+ "promedio": null,
+ "porEstado": {
+  "Perdió el mínimo": 0,
+  "En riesgo": 0,
+  "Atención": 0,
+  "Al día": 7,
+  "Aprobó": 0
+ },
+ "sinMarcar": 0,
+ "porClase": [
+  {
+   "clase": 1,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 2,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 3,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 4,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 5,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 6,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 7,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 8,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 9,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 10,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 11,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 12,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 13,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 14,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 15,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  },
+  {
+   "clase": 16,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 7
+  }
+ ],
+ "lista": [
+  {
+   "n": 1,
+   "etiqueta": "Alexandra Uribe",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 3,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "fdf4ac51aae67d44c2f41aa9eca10c52",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 2,
+   "etiqueta": "Andres Rincon",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 3,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "523e6bf7cd6f075bb139578b5925f56c",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 3,
+   "etiqueta": "Eliana Carmen",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 3,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "0763dba5197c5f66fa30bdb22e5fa5ac",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 4,
+   "etiqueta": "Karina Montagut",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 3,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "404fce9fd9020be3caa618a8a68d2d35",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 5,
+   "etiqueta": "Luis Alcazar",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 3,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "29408ac44e480387c78c0dd0cb43963c",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 6,
+   "etiqueta": "Mauricio Carvajal",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 3,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "c3ebf52effdf123af6b23fc9a368b8ed",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 7,
+   "etiqueta": "Tania Reyes",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 3,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "be8e3985871d9a71653f9dbdf0ffa40e",
+   "seguimiento": "",
+   "marcas": {}
+  }
+ ],
+ "sal": "conflictos-societarios",
+ "sinCedula": 0
+}
