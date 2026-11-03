@@ -1,0 +1,429 @@
+{
+ "actualizado": "2026-11-03T12:05:40-05:00",
+ "programadas": 34,
+ "dictadas": 0,
+ "permitidas": 6,
+ "estudiantes": 13,
+ "promedio": null,
+ "porEstado": {
+  "Perdió el mínimo": 0,
+  "En riesgo": 0,
+  "Atención": 0,
+  "Al día": 13,
+  "Aprobó": 0
+ },
+ "sinMarcar": 0,
+ "porClase": [
+  {
+   "clase": 1,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 2,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 3,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 4,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 5,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 6,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 7,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 8,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 9,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 10,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 11,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 12,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 13,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 14,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 15,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 16,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 17,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 18,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 19,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 20,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 21,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 22,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 23,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 24,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 25,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 26,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 27,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 28,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 29,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 30,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 31,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 32,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 33,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  },
+  {
+   "clase": 34,
+   "estado": "Sin dictar",
+   "asistieron": 0,
+   "marcadas": 0,
+   "de": 13
+  }
+ ],
+ "lista": [
+  {
+   "n": 1,
+   "etiqueta": "Ana Acevedo",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "3d6631a171d953401996f16a676b24c5",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 2,
+   "etiqueta": "Andrea Bustamante",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "96df6f5f44f450861e25923554497b20",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 3,
+   "etiqueta": "Deysy Herrera",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "5fba96a9b9d47e7430cc85ad65753ec9",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 4,
+   "etiqueta": "Esteban Delgado",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "9947444e71e7b0e5ad7a07181e61415b",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 5,
+   "etiqueta": "Felipe Lopez",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "1638755d277b6b8b30116790f8404d62",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 6,
+   "etiqueta": "Juan Rodriguez",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "ea9dde88170b5b667e945c5947745e5f",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 7,
+   "etiqueta": "Lucia Echeverry",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "ca6020c70dc1101fd2dd8dd0b187eeab",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 8,
+   "etiqueta": "Maria Muñoz",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "75f73d57946ea14bf0f96ff58dc5093a",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 9,
+   "etiqueta": "Mariana Giraldo",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "c4cfb985900a549121c97f87a5097fe8",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 10,
+   "etiqueta": "Roberto Parra",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "6cc76de04a8a7f6f4105125d897beab2",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 11,
+   "etiqueta": "Sandy Diaz",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "244045f0dc6f6f348cc5635cf2ba41a2",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 12,
+   "etiqueta": "Santiago Carrillo",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "2797cddfdfb2aeb2cff1931018f16f36",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 13,
+   "etiqueta": "Viviana Leon",
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 6,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "87609886104a68fa084ef79043b9bf0b",
+   "seguimiento": "",
+   "marcas": {}
+  }
+ ],
+ "sal": "compliance-gobierno-corporativo",
+ "sinCedula": 0
+}
