@@ -35,7 +35,7 @@ def etiqueta(nombre):
 
 
 def cedula(v):
-    """Solo los dígitos (en Excel llega como 1004351170, "1.004.351.170" o 1004351170.0); menos de 5 no es una cédula."""
+    """Solo los dígitos (en Excel llega como 1234567890, "1.234.567.890" o 1234567890.0); menos de 5 no es una cédula."""
     d = re.sub(r"\D", "", str(int(v)) if isinstance(v, float) and v.is_integer() else str(v or ""))
     return d if len(d) >= 5 else ""
 
