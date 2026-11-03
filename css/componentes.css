@@ -2,6 +2,8 @@
 .avisos { position: relative; z-index: 2; background: var(--amber); color: var(--amber-ink); }
 .avisos .dentro, .aviso-red .dentro { max-width: 1240px; margin: 0 auto; padding: 12px clamp(16px, 4vw, 40px); display: flex; gap: 16px; align-items: center; justify-content: space-between; }
 .avisos ul { display: grid; gap: 4px; font-weight: 700; }
+.avisos ul { max-height: min(40vh, 320px); overflow-y: auto; padding-right: 4px; }
+@media (max-width: 640px) { .avisos .dentro { flex-direction: column; align-items: stretch; } .avisos .btn { width: 100%; } }
 .avisos .btn { border-color: var(--amber-ink); color: var(--amber-ink); flex-shrink: 0; padding: 9px 16px; }
 .avisos .btn:hover { background: rgba(90, 59, 0, .12); }
 .aviso-red { position: relative; z-index: 2; background: var(--navy-800); color: var(--felt); font-size: .9rem; }
