@@ -1,4 +1,4 @@
-// Asistencia en el sitio de administración. Cada estudiante se muestra como «Nombre + primer apellido» (la misma etiqueta que ve en su página) y su número de lista; el documento nunca se publica.
+// Asistencia en el sitio de administración. Cada estudiante se muestra como «Nombre + primer apellido» y su número de lista; la cédula nunca se publica (en la página del curso, el estudiante se encuentra con ella).
 import { esc, ic, rangos } from './ui.js';
 import { ahora, estadoClase, fechaLarga } from './utils-fecha.js';
 
@@ -73,6 +73,7 @@ function detalle(r, t) {
   const total = a.estudiantes || 1;
   const avisos = [
     pasadas.length ? `${pasadas.length === 1 ? 'La clase' : 'Las clases'} ${rangos(pasadas.map((x) => x.id))} (${pasadas.length === 1 ? 'del' : 'desde el'} ${fechaLarga(pasadas[0].fecha)}${pasadas.length > 1 ? ` ${'hasta el'} ${fechaLarga(pasadas.at(-1).fecha)}` : ''}) ya ${pasadas.length === 1 ? 'pasó' : 'pasaron'} según el cronograma y no ${pasadas.length === 1 ? 'tiene' : 'tienen'} asistencia marcada. Si se reprogramó, cambia la fecha en el Excel del curso; si se dictó, marca la asistencia.` : '',
+    a.sinCedula ? `${a.sinCedula === 1 ? 'Un estudiante no tiene' : `${a.sinCedula} estudiantes no tienen`} cédula en el Excel de asistencia, así que ${a.sinCedula === 1 ? 'no puede' : 'no pueden'} consultar su asistencia en la página del curso. Escríbela en la columna Cédula.` : '',
     a.sinMarcar ? `Hay ${a.sinMarcar} ${a.sinMarcar === 1 ? 'casilla sin marcar' : 'casillas sin marcar'} en clases ya dictadas. Las cuentas quedan incompletas hasta marcarlas con 1 o 0.` : '',
   ].filter(Boolean).map((x) => `<p class="alerta" role="alert">${ic('warning')}<span>${x}</span></p>`).join('');
   const reparto = ESTADOS_AYUDA.filter(([e]) => a.porEstado[e]).map(([e, k]) => `<i class="${k}" style="flex:${a.porEstado[e]}" title="${esc(e)}: ${a.porEstado[e]}"></i>`).join('');

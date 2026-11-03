@@ -621,18 +621,22 @@ def test_hub_lista_de_cierre_de_un_curso_que_termino(pagina, servidor, sitio):
     assert pagina.locator("[data-cierre-lista]").count() == 0 and pagina.errores == []
 
 
-def test_pagina_de_estudiantes_mi_asistencia_por_numero_de_lista(pagina, base):
+def test_pagina_de_estudiantes_mi_asistencia_por_cedula(pagina, base):
     abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
     assert pagina.locator("#asistencia").is_visible()
-    pagina.fill("#asis-n", "3")
+    pagina.fill("#asis-n", "1000000003")  # la del estudiante en riesgo de la prueba
+    pagina.wait_for_selector("#asis-resultado .asis-ficha")
     r = pagina.inner_text("#asis-resultado")
-    assert "EN RIESGO" in r and "Estudiante Prueba" in r and "Te quedan" in r and pagina.locator("#asis-resultado .asis-clases li.no").count() == 6
-    pagina.fill("#asis-n", "ESTUDIÁNTE prueba")  # sin tildes ni mayúsculas; coinciden los tres
-    assert pagina.locator("#asis-resultado .asis-ficha").count() == 3
-    pagina.fill("#asis-n", "es")
-    assert "al menos 3 letras" in pagina.inner_text("#asis-resultado")
-    pagina.fill("#asis-n", "99")
-    assert "No encontramos ese nombre o número" in pagina.inner_text("#asis-resultado")
+    assert "EN RIESGO" in r and "Te quedan" in r and pagina.locator("#asis-resultado .asis-clases li.no").count() == 6
+    assert "estudiante" not in r.lower().replace("tu asistencia", "") and pagina.locator("#asis-resultado .asis-ficha").count() == 1  # sin nombre
+    pagina.fill("#asis-n", "1.000.000.001")  # con puntos también
+    pagina.wait_for_function("document.querySelector('#asis-resultado .asis-sello')?.textContent.toLowerCase().includes('al día')")
+    pagina.fill("#asis-n", "1234")
+    assert "cédula completo" in pagina.inner_text("#asis-resultado")
+    pagina.fill("#asis-n", "99999999")
+    pagina.wait_for_selector("#asis-resultado .asis-vacio:has-text('No encontramos esa cédula')")
+    pagina.fill("#asis-n", "Estudiante prueba")  # el nombre ya no sirve para buscar
+    assert "cédula" in pagina.inner_text("#asis-resultado") and pagina.locator("#asis-resultado .asis-ficha").count() == 0
     assert pagina.errores == []
 
 

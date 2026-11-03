@@ -4,7 +4,7 @@
   python scripts/generar_asistencia_xlsx.py --plantilla SALIDA.xlsx      plantilla en blanco para copiar a cada curso nuevo
   python scripts/generar_asistencia_xlsx.py DATOS.json SALIDA.xlsx       un curso con sus datos
 DATOS.json: {"curso": "...", "minimo": 0.8, "clases": [{"fecha": "2026-10-01", "situacion": "", "nueva": ""}, ...],
-             "estudiantes": [{"documento": "", "nombre": "...", "marcas": [1, 0, null, ...]}, ...]}
+             "estudiantes": [{"cedula": "", "nombre": "...", "marcas": [1, 0, null, ...]}, ...]}
 Los datos de estudiantes no viven en el repositorio (es público): el JSON se escribe fuera de él.
 
 El archivo cabe hasta 40 clases. Cuántas tiene el curso lo dice la tabla Parametros de la hoja Resumen (fila "Clases del curso"):
@@ -172,7 +172,7 @@ def _hoja_asistencia(wb, curso, estudiantes, hay_clases):
     _celda(ws, "A3", "Cada clase es una columna.  1 = asistió (verde)  ·  0 = faltó (rojo)  ·  vacío = aún no se marca. Una clase sin ninguna marca todavía no se dictó. Las columnas grises se calculan solas: no las escribas.", color="595959")
     _celda(ws, "C4", "Estado de la sesión", bold=True, h="right", color=AZUL)
     _celda(ws, "C5", "Fecha", bold=True, h="right", color=AZUL)
-    cab = ["N°", "Documento", "Nombre del estudiante"] + [f"Clase {i}" for i in range(1, MAXC + 1)] + CALCULADAS + ["Seguimiento"]
+    cab = ["N°", "Cédula", "Nombre del estudiante"] + [f"Clase {i}" for i in range(1, MAXC + 1)] + CALCULADAS + ["Seguimiento"]
     for j, h in enumerate(cab, 1):
         marca = j <= COL0 + MAXC - 1
         _celda(ws, f"{colletra(j)}6", h, bold=True, h="center", wrap=True, color="FFFFFF" if marca else ("1F3864" if h == "Seguimiento" else "595959"),
@@ -193,7 +193,7 @@ def _hoja_asistencia(wb, curso, estudiantes, hay_clases):
         r = PRIMERA + k
         e = estudiantes[k] if k < len(estudiantes) else None
         _celda(ws, f"A{r}", (k + 1) if e else None, h="center", color="595959")
-        _celda(ws, f"B{r}", (e or {}).get("documento") or None, h="center", fmt="@")
+        _celda(ws, f"B{r}", ((e or {}).get("cedula") or (e or {}).get("documento")) or None, h="center", fmt="@")
         _celda(ws, f"C{r}", (e or {}).get("nombre"), bold=bool(e))
         marcas = (e or {}).get("marcas", [])
         for i in range(MAXC):
@@ -285,12 +285,12 @@ def _hoja_instrucciones(wb, curso):
     f = _seccion(ay, 5, "1. Qué va en cada archivo")
     for titulo, txt in (("Cuadro de horas", "Es la fuente principal: las clases, sus fechas, módulos, profesores y horas. Si algo de eso cambia, se cambia allá, nunca aquí."),
                         ("Este archivo", "Solo los nombres de los estudiantes y un 1 o un 0 por clase. Es el único lugar donde están los nombres."),
-                        ("Sitio de administración", "Junta las dos cosas y muestra faltas permitidas, estados y alertas. Nunca muestra nombres: solo el número de lista, por ejemplo Estudiante 7.")):
+                        ("Sitio de administración", "Junta las dos cosas y muestra faltas permitidas, estados y alertas. Muestra el nombre y el número de lista; la cédula nunca se publica, solo una huella con la que cada estudiante se encuentra.")):
         _texto(ay, f, 2, 2, titulo, 40, negrita=True, color=AZUL, fondo=GRIS)
         _texto(ay, f, 3, 5, txt, 40, fondo=GRIS)
         f += 1
     f = _seccion(ay, f + 1, "2. Para empezar, una sola vez")
-    f = _paso(ay, f, "1", "En la hoja Asistencia escribe los nombres en la columna Nombre del estudiante. Puedes pegar toda la lista desde el Excel de matriculados. El documento es opcional.")
+    f = _paso(ay, f, "1", "En la hoja Asistencia escribe los nombres en la columna Nombre del estudiante. Puedes pegar toda la lista desde el Excel de matriculados. Escribe también su cédula (solo números): con ella cada estudiante encuentra su asistencia en el sitio. Sin cédula no puede consultarla.")
     f = _paso(ay, f, "2", "En la hoja Resumen escribe en Clases del curso cuántas clases hay en el Cuadro de horas (el número de la última). Sirve para los colores de este archivo; el sitio ya lo toma del Cuadro.")
     f = _seccion(ay, f + 1, "3. Después de cada clase")
     f = _paso(ay, f, "1", "En la hoja Asistencia, en la columna de esa clase, escribe 1 a quien asistió y 0 a quien faltó. No dejes casillas vacías en una clase ya dictada.")

@@ -2,15 +2,16 @@
 """Asistencia de un curso, desde las filas de la tabla del Excel "Formato de asistencia" (ver generar_asistencia_xlsx.py).
 
 El Excel manda: las cuentas y el estado de cada estudiante salen de sus columnas calculadas (Faltas, Faltas que le quedan, Estado...).
-Aquí solo se resumen y se les quita el nombre y el documento: en el sitio se publica solo "Nombre + primer apellido" (etiqueta) y el número de lista; el hub de administración los muestra como "Estudiante N".
+Aquí solo se resumen y se les quita el nombre y la cédula: del hub se ve "Nombre + primer apellido" (etiqueta) y el número de lista; la cédula nunca se guarda ni se publica, solo su huella (clave) con la que cada estudiante encuentra su fila en el sitio.
 """
-import json, math, re
+import hashlib, json, math, re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ESTADOS = ["Perdió el mínimo", "En riesgo", "Atención", "Al día", "Aprobó"]  # de más a menos urgente
 BOGOTA = timezone(timedelta(hours=-5))
 MINIMO, ATENCION, RIESGO = 0.8, 0.5, 0.8  # reglas de certificación y de aviso (ver docs/ASISTENCIA.md)
+CEDULA, VUELTAS = ("Cédula", "Documento"), 100_000  # columna del Excel (se acepta el nombre anterior) y costo de la huella: la página la repite en el navegador (js/secciones.js)
 NOMBRE, REQUERIDAS = "Nombre del estudiante", ("Asistió", "Faltas", "Faltas que le quedan", "Estado")
 
 
@@ -31,6 +32,33 @@ def etiqueta(nombre):
     """Nombre + primer apellido, lo único del nombre que se publica. Con 4 o más palabras: 1.ª y 3.ª (dos nombres, dos apellidos); con 3: 1.ª y 2.ª; ponytail: un nombre compuesto con un solo apellido de 3 palabras sale mal, se corrige en el Excel."""
     w = str(nombre or "").split()
     return " ".join(w[:1] + w[2:3] if len(w) >= 4 else w[:2]).title()  # el Excel suele venir en mayúsculas
+
+
+def cedula(v):
+    """Solo los dígitos (en Excel llega como 1004351170, "1.004.351.170" o 1004351170.0); menos de 5 no es una cédula."""
+    d = re.sub(r"\D", "", str(int(v)) if isinstance(v, float) and v.is_integer() else str(v or ""))
+    return d if len(d) >= 5 else ""
+
+
+def clave(ced, sal):
+    """Huella de la cédula, propia de cada curso (sal): PBKDF2 para que adivinar cédulas una por una cueste. ponytail: 100 mil vueltas frenan, no impiden; la confidencialidad es la de una cédula que ya conocen sus compañeros."""
+    return hashlib.pbkdf2_hmac("sha256", ced.encode(), sal.encode(), VUELTAS, 16).hex()
+
+
+def _clave_de(f, sal):
+    if f.get("_clave"):  # al recalcular con el Cuadro ya no hay cédulas, solo la huella guardada
+        return f["_clave"]
+    ced = cedula(next((f[k] for k in CEDULA if f.get(k) not in (None, "")), ""))
+    return clave(ced, sal) if ced and sal else ""
+
+
+def _con_claves(r, sal):
+    """Cierra el resumen: sal del curso, cuántos estudiantes no tienen cédula y error si dos comparten la misma."""
+    usadas = [x["clave"] for x in r["lista"] if x["clave"]]
+    if len(usadas) != len(set(usadas)):
+        raise ValueError("Dos estudiantes del Excel de asistencia tienen la misma cédula: revisa la columna Cédula.")
+    r["sal"], r["sinCedula"] = sal or "", len(r["lista"]) - len(usadas)
+    return r
 
 
 def _num(v):
@@ -58,7 +86,7 @@ def _estado(faltas, permitidas, termino):
     return "En riesgo" if usado >= RIESGO and faltas else "Atención" if usado >= ATENCION and faltas else "Al día"
 
 
-def desde_cuadro(est, clases, ahora):
+def desde_cuadro(est, clases, ahora, sal=None):
     """El Cuadro de horas manda: las clases (cuántas son, su número) salen de él; del Excel de asistencia solo se toman las marcas 1 o 0.
     Todo lo demás (faltas permitidas, estado, porcentajes) se calcula aquí, igual que lo hacía el Excel."""
     ids = [c["id"] for c in clases]
@@ -75,23 +103,23 @@ def desde_cuadro(est, clases, ahora):
         asistio_t, faltas_t, sin_t = asistio_t + a, faltas_t + fa, sin_t + sin
         por_estado[e] += 1
         lista.append({"n": _ent(f.get("N°")) or n, "etiqueta": etiqueta(f[NOMBRE]), "estado": e, "asistio": a, "faltas": fa, "quedan": permitidas - fa,
-                      "porcentaje": a / (a + fa) if a + fa else None, "puedeLlegar": (programadas - fa) / programadas if programadas else None,
+                      "porcentaje": a / (a + fa) if a + fa else None, "puedeLlegar": (programadas - fa) / programadas if programadas else None, "clave": _clave_de(f, sal),
                       "seguimiento": str(f.get("Seguimiento") or "").strip(), "marcas": {str(i): v for i, v in m.items()}})
     lista.sort(key=lambda x: (ESTADOS.index(x["estado"]), x["quedan"], x["n"]))
     por_clase = [{"clase": i, "estado": "Dictada" if i in dictadas_ids else "Sin dictar", "asistieron": sum(m.get(i) == 1 for m in marcas),
                   "marcadas": sum(i in m for m in marcas), "de": len(est)} for i in ids]
-    return {"actualizado": ahora.isoformat(timespec="seconds"), "programadas": programadas, "dictadas": len(dictadas_ids), "permitidas": permitidas,
+    return _con_claves({"actualizado": ahora.isoformat(timespec="seconds"), "programadas": programadas, "dictadas": len(dictadas_ids), "permitidas": permitidas,
             "estudiantes": len(est), "promedio": round(asistio_t / (asistio_t + faltas_t), 4) if asistio_t + faltas_t else None,
-            "porEstado": por_estado, "sinMarcar": sin_t, "porClase": por_clase, "lista": lista}
+            "porEstado": por_estado, "sinMarcar": sin_t, "porClase": por_clase, "lista": lista}, sal)
 
 
-def resumir(filas, ahora=None, clases=None):
+def resumir(filas, ahora=None, clases=None, sal=None):
     """Resumen sin nombres. Lanza ValueError con un mensaje claro si el Excel no trae las columnas calculadas."""
     est = [f for f in normalizar(filas) if isinstance(f, dict) and str(f.get(NOMBRE) or "").strip()]
     if not est:
         raise ValueError("El Excel de asistencia no tiene estudiantes: escribe sus nombres en la hoja Asistencia.")
     if clases:
-        return desde_cuadro(est, clases, ahora or datetime.now(BOGOTA))
+        return desde_cuadro(est, clases, ahora or datetime.now(BOGOTA), sal)
     falta = [c for c in REQUERIDAS if c not in est[0]]
     if falta:
         raise ValueError("Al Excel de asistencia le faltan columnas: " + ", ".join(falta) + ". No cambies los encabezados de las columnas grises.")
@@ -110,7 +138,7 @@ def resumir(filas, ahora=None, clases=None):
         asistio_t, faltas_t = asistio_t + a, faltas_t + fa
         por_estado[e] = por_estado.get(e, 0) + 1
         lista.append({"n": _ent(f.get("N°")) or i, "etiqueta": etiqueta(f[NOMBRE]), "estado": e, "asistio": a, "faltas": fa, "quedan": _ent(f["Faltas que le quedan"]),
-                      "porcentaje": _num(f.get("% hasta hoy")), "puedeLlegar": _num(f.get("Puede llegar hasta")),
+                      "porcentaje": _num(f.get("% hasta hoy")), "puedeLlegar": _num(f.get("Puede llegar hasta")), "clave": _clave_de(f, sal),
                       "seguimiento": str(f.get("Seguimiento") or "").strip()})
     lista.sort(key=lambda x: (ESTADOS.index(x["estado"]) if x["estado"] in ESTADOS else len(ESTADOS), x["quedan"] if x["quedan"] is not None else 99, x["n"]))
     por_clase = []
@@ -119,9 +147,9 @@ def resumir(filas, ahora=None, clases=None):
         marcas = [m for m in marcas if m is not None]
         por_clase.append({"clase": int(k.split()[1]), "estado": "Dictada" if marcas else "Sin dictar", "asistieron": sum(1 for m in marcas if m == 1), "marcadas": len(marcas), "de": len(est)})
     ahora = ahora or datetime.now(BOGOTA)
-    return {"actualizado": ahora.isoformat(timespec="seconds"), "programadas": programadas, "dictadas": dictadas, "permitidas": permitidas,
+    return _con_claves({"actualizado": ahora.isoformat(timespec="seconds"), "programadas": programadas, "dictadas": dictadas, "permitidas": permitidas,
             "estudiantes": len(est), "promedio": round(asistio_t / (asistio_t + faltas_t), 4) if asistio_t + faltas_t else None,
-            "porEstado": por_estado, "sinMarcar": sum(_ent(f.get("Sin marcar")) or 0 for f in est), "porClase": por_clase, "lista": lista}
+            "porEstado": por_estado, "sinMarcar": sum(_ent(f.get("Sin marcar")) or 0 for f in est), "porClase": por_clase, "lista": lista}, sal)
 
 
 def _clases(carpeta_curso):
@@ -139,13 +167,13 @@ def recalcular(carpeta_curso, ahora=None):
     previo = json.loads(arch.read_text(encoding="utf-8"))
     if not all("marcas" in x for x in previo.get("lista", [])) or not previo.get("lista"):
         return None, False
-    filas = [{"N°": x["n"], NOMBRE: x.get("etiqueta") or "x", "Seguimiento": x.get("seguimiento", ""), **{f"Clase {i}": v for i, v in x["marcas"].items()}} for x in previo["lista"]]
-    return _escribir(resumir(filas, ahora, clases), arch)
+    filas = [{"N°": x["n"], NOMBRE: x.get("etiqueta") or "x", "Seguimiento": x.get("seguimiento", ""), "_clave": x.get("clave", ""), **{f"Clase {i}": v for i, v in x["marcas"].items()}} for x in previo["lista"]]
+    return _escribir(resumir(filas, ahora, clases, previo.get("sal") or Path(carpeta_curso).name), arch)
 
 
 def aplicar(filas, carpeta_curso, ahora=None):
     """Escribe estado/asistencia.json del curso. Si el Excel no sirve, conserva el anterior y lanza ValueError."""
-    r = resumir(filas, ahora, _clases(carpeta_curso))
+    r = resumir(filas, ahora, _clases(carpeta_curso), Path(carpeta_curso).name)  # la sal es la carpeta del curso: no se repite entre cursos
     return _escribir(r, Path(carpeta_curso) / "estado/asistencia.json")
 
 

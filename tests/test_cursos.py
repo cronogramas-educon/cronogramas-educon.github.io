@@ -1,11 +1,12 @@
 """Registro de cursos, resolución de carpetas de SharePoint y armado del sitio multicurso."""
-import json, sys
+import json, shutil, sys
 from pathlib import Path
 
 import pytest
 
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
+import asistencia as asi
 import cursos as cu
 
 REG = cu.registro()
@@ -277,9 +278,18 @@ def test_sitio_lleva_el_enlace_de_la_encuesta_a_cada_curso(tmp_path):
     assert all("encuesta" not in json.loads((s2 / cu.sitio_ruta(c) / "config/contenido.json").read_text(encoding="utf-8")) for c in reg["cursos"])
 
 
-def test_asistencia_publica_del_estudiante_no_lleva_seguimiento_ni_nombres(sitio):
-    pub = json.loads((sitio / cu.sitio_ruta(next(c for c in cu.registro()["cursos"] if c["id"] == "compliance-anticorrupcion")) / "asistencia.json").read_text(encoding="utf-8"))
-    assert pub["lista"] and all(set(x) == {"n", "etiqueta", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas"} for x in pub["lista"])
+def test_asistencia_publica_del_estudiante_no_lleva_seguimiento_ni_nombres(tmp_path):
+    raiz = tmp_path / "r"  # con datos propios: la prueba no depende de la asistencia real del repositorio
+    shutil.copytree(cu.RAIZ, raiz, ignore=shutil.ignore_patterns(".git", ".venv", "node_modules", "__pycache__", ".pytest_cache", "_sitio"))
+    c = next(c for c in cu.registro(raiz)["cursos"] if c["id"] == "compliance-anticorrupcion")
+    filas = [{"N°": n, "Cédula": f"100000000{n}", "Nombre del estudiante": f"Ana Maria Gomez Perez {n}", "Seguimiento": "llamar", "Clase 1": 1, "Clase 2": n % 2} for n in (1, 2, 3)]
+    filas.append({"N°": 4, "Nombre del estudiante": "Sin Cedula Rojas", "Clase 1": 1})  # sin cédula: no se publica, el hub lo avisa
+    asi.aplicar(filas, raiz / "cursos" / c["id"])
+    pub = json.loads((cu.armar_sitio(tmp_path / "s", "v", raiz) / cu.sitio_ruta(c) / "asistencia.json").read_text(encoding="utf-8"))
+    assert len(pub["lista"]) == 3 and all(set(x) == {"clave", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas"} for x in pub["lista"])
+    assert pub["sal"] == c["id"] and [x["clave"] for x in pub["lista"]] == sorted(x["clave"] for x in pub["lista"])  # sin el orden del Excel
+    texto = json.dumps(pub)
+    assert "100000000" not in texto and "Gomez" not in texto and "llamar" not in texto
 
 
 def test_registro_toma_la_encuesta_del_curso_y_rechaza_enlaces_que_no_son_de_forms():

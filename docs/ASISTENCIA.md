@@ -32,7 +32,9 @@ Los umbrales (80 % para certificar, 50 % para Atención y 80 % para En riesgo) e
 
 ## Qué se publica y qué no
 
-El flujo manda todas las filas de la tabla, nombres incluidos. `scripts/asistencia.py` guarda en `cursos/<curso>/estado/asistencia.json` un resumen con el número de lista y la etiqueta «Nombre + primer apellido» (con 4 o más palabras, la 1.ª y la 3.ª; con 3, la 1.ª y la 2.ª; con inicial mayúscula), sin documentos. El hub (`g/<código>/asistencia/`) lo muestra como «Estudiante 7». Cada página de curso publica `asistencia.json` con n, etiqueta, estado, asistió, faltas, quedan, porcentaje y marcas (sin seguimiento interno) para la sección «Mi asistencia», sin código de seguridad por decisión de la coordinación. La carga útil no se imprime en el registro de Actions.
+El flujo manda todas las filas de la tabla, nombres y cédulas incluidos (en el Excel, columna **Cédula**; también se acepta el encabezado anterior «Documento»). `scripts/asistencia.py` guarda en `cursos/<curso>/estado/asistencia.json` un resumen con el número de lista, la etiqueta «Nombre + primer apellido» (con 4 o más palabras, la 1.ª y la 3.ª; con 3, la 1.ª y la 2.ª; con inicial mayúscula) y la **huella** de la cédula (PBKDF2-SHA256, 100 mil vueltas, sal = id del curso). La cédula nunca se escribe en el repositorio. El hub (`g/<código>/asistencia/`) muestra a cada estudiante por su nombre.
+
+Cada página de curso publica `asistencia.json` solo con la sal y, por estudiante, la huella, estado, asistió, faltas, quedan, porcentaje y marcas: sin nombres, sin número de lista y sin seguimiento interno, en orden de huella. En «Mi asistencia» el estudiante escribe su cédula (solo números o con puntos); el navegador calcula la huella y muestra su fila. Un estudiante sin cédula en el Excel no puede consultar (el hub lo avisa); dos filas con la misma cédula hacen fallar la actualización con un mensaje claro. Es una confidencialidad modesta: quien ya conoce una cédula puede ver esa asistencia. La carga útil no se imprime en el registro de Actions.
 
 ## Alertas
 

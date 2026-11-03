@@ -58,12 +58,17 @@ export function contactos(el, lista) {
     + `<a href="mailto:${esc(p.correo)}">${esc(p.correo)}</a></div>`).join('');
 }
 
-/** "Mi asistencia": el estudiante busca su nombre (Nombre + primer apellido) o su número de lista y ve su fila. Sin asistencia publicada, la sección queda oculta. */
+/** "Mi asistencia": el estudiante escribe su cédula y ve solo su fila (se encuentra por la huella de la cédula; la página no publica nombres ni cédulas). Sin asistencia publicada, la sección queda oculta. */
 export async function miAsistencia(seccion, nav, entrada, salida) {
   let a;
   try { const r = await fetch(`asistencia.json?m=${Math.floor(Date.now() / 60000)}`, { cache: 'no-store' }); if (!r.ok) return; a = await r.json(); } catch { return; }
   seccion.hidden = nav.hidden = false;
-  const plano = (t) => String(t ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  // la huella de la cédula (misma cuenta que scripts/asistencia.py: PBKDF2-SHA256, 100 mil vueltas, sal del curso, 16 bytes) es lo único que está publicado
+  const huella = async (ced) => {
+    const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(ced), 'PBKDF2', false, ['deriveBits']);
+    const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: new TextEncoder().encode(a.sal || ''), iterations: 100000 }, base, 128);
+    return [...new Uint8Array(bits)].map((b) => b.toString(16).padStart(2, '0')).join('');
+  };
   const NIVEL = { 'Aprobó': 'ok', 'Al día': 'ok', Atención: 'atencion', 'En riesgo': 'riesgo', 'Perdió el mínimo': 'riesgo' };
   const ficha = (x) => {
     const marcas = Object.keys(x.marcas).map(Number).sort((p, q) => p - q);
@@ -72,19 +77,21 @@ export async function miAsistencia(seccion, nav, entrada, salida) {
     const frase = x.estado === 'Perdió el mínimo' ? 'Con las clases que llevamos ya no se alcanza el 80 % exigido para certificar.'
       : q === 0 ? 'No te quedan faltas: otra inasistencia haría que no alcances el 80 % exigido.' : `Puedes faltar a ${q === 1 ? '1 clase más' : `${q} clases más`} y aún alcanzar el 80 % exigido para certificar.`;
     return `<article class="asis-ficha nivel-${NIVEL[x.estado] || 'ok'}">
-      <header><h3>${esc(x.etiqueta || `N.º ${x.n}`)}</h3><span class="asis-sello">${esc(x.estado)}</span></header>
+      <header><h3>Tu asistencia</h3><span class="asis-sello">${esc(x.estado)}</span></header>
       <dl class="asis-cifras"><div><dt>Asististe</dt><dd>${x.asistio}</dd></div><div><dt>Faltaste</dt><dd>${x.faltas}</dd></div><div><dt>Te quedan</dt><dd>${q}</dd></div></dl>
       <div class="asis-medidor" role="img" aria-label="Has usado ${x.faltas} de ${total} faltas permitidas"><div class="asis-tramos">${tramos}</div><p>Faltas usadas: ${x.faltas} de ${total} permitidas</p></div>
       <p class="asis-frase">${frase}</p>
       <ol class="asis-clases" aria-label="Asistencia clase por clase">${marcas.map((k) => `<li class="${x.marcas[k] === 1 ? 'si' : 'no'}" title="Clase ${k}: ${x.marcas[k] === 1 ? 'asististe' : 'faltaste'}"><b>${k}</b><span>${x.marcas[k] === 1 ? 'Asistí' : 'Falté'}</span></li>`).join('')}</ol>
       <p class="asis-fecha">Actualizado el ${esc((a.actualizado || '').slice(0, 10))}${a.dictadas ? `, con ${a.dictadas} clases dictadas` : ''}.</p></article>`;
   };
-  const ver = () => {
-    const t = plano(entrada.value);
-    if (!t) { salida.innerHTML = ''; return; }
-    if (t.length < 3 && !/^\d+$/.test(t)) { salida.innerHTML = '<p class="asis-vacio">Escribe al menos 3 letras de tu nombre, o tu número de lista.</p>'; return; }
-    const hallados = a.lista.filter((x) => String(x.n) === t || plano(x.etiqueta).includes(t));
-    salida.innerHTML = hallados.length ? hallados.slice(0, 8).map(ficha).join('') : '<p class="asis-vacio">No encontramos ese nombre o número. Escríbelo como Nombre y primer apellido, o consulta tu número con la coordinación del curso.</p>';
+  let turno = 0;
+  const ver = async () => {
+    const ced = entrada.value.replace(/\D/g, ''), mio = ++turno;
+    if (!entrada.value.trim()) { salida.innerHTML = ''; return; }
+    if (ced.length < 5) { salida.innerHTML = '<p class="asis-vacio">Escribe tu número de cédula completo, sin puntos ni espacios.</p>'; return; }
+    const k = await huella(ced), x = a.lista.find((e) => e.clave === k);
+    if (mio !== turno) return;  // llegó otra tecla mientras se calculaba
+    salida.innerHTML = x ? ficha(x) : '<p class="asis-vacio">No encontramos esa cédula en este curso. Revisa que la hayas escrito completa o escribe a la coordinación para que la verifiquen.</p>';
   };
   entrada.addEventListener('input', ver);
 }

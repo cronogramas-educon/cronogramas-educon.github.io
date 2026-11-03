@@ -10,8 +10,8 @@ import asistencia as asi
 import cursos as cu
 
 
-def fila(n, nombre, marcas, estado, faltas, quedan, programadas=10, doc="1020304050"):
-    f = {"N°": n, "Documento": doc, "Nombre del estudiante": nombre, "Asistió": sum(m == 1 for m in marcas), "Faltas": faltas,
+def fila(n, nombre, marcas, estado, faltas, quedan, programadas=10, doc=None):
+    f = {"N°": n, "Documento": doc if doc is not None else f"10203040{n:02d}", "Nombre del estudiante": nombre, "Asistió": sum(m == 1 for m in marcas), "Faltas": faltas,
          "Sin marcar": 0, "Faltas que le quedan": quedan, "% hasta hoy": 1 - faltas / max(len(marcas), 1), "Puede llegar hasta": (programadas - faltas) / programadas,
          "Estado": estado, "Clases programadas": programadas}
     for i in range(programadas):
@@ -33,7 +33,20 @@ def test_resumen_ordena_por_urgencia_y_no_lleva_nombres():
     assert [c["estado"] for c in r["porClase"][:5]] == ["Dictada"] * 4 + ["Sin dictar"]
     assert r["porClase"][0]["asistieron"] == 3 and r["porClase"][0]["marcadas"] == 4
     texto = json.dumps(r, ensure_ascii=False)
-    assert "1020304050" not in texto and all(len(x["etiqueta"].split()) <= 2 for x in r["lista"])  # el documento nunca; del nombre, solo Nombre + primer apellido
+    assert "10203040" not in texto and all(len(x["etiqueta"].split()) <= 2 for x in r["lista"])  # el documento nunca; del nombre, solo Nombre + primer apellido
+
+
+def test_claves_de_cedula_sin_la_cedula_y_sin_repetidas(tmp_path):
+    f = [fila(1, "Ana Pérez", [1, 1], "Al día", 0, 2, doc=1020304050.0), fila(2, "Beto Ruiz", [1, 0], "Atención", 1, 1, doc="1.020.304.051"), fila(3, "Sin cédula", [1], "Al día", 0, 2, doc="")]
+    r = asi.resumir(f, sal="curso-x")
+    k = {x["n"]: x["clave"] for x in r["lista"]}
+    assert k[1] == asi.clave("1020304050", "curso-x") and k[2] == asi.clave("1020304051", "curso-x") and k[3] == "" and r["sinCedula"] == 1
+    assert asi.clave("1020304050", "otro") != k[1] and "1020304050" not in json.dumps(r)
+    with pytest.raises(ValueError, match="misma cédula"):
+        asi.resumir([fila(1, "A", [1], "Al día", 0, 2, doc="55555"), fila(2, "B", [1], "Al día", 0, 2, doc="55.555")], sal="x")
+    asi.aplicar(f, tmp_path / "mi-curso")  # recalcular con el Cuadro conserva las claves sin tener las cédulas
+    antes = json.loads((tmp_path / "mi-curso/estado/asistencia.json").read_text(encoding="utf-8"))
+    assert antes["sal"] == "mi-curso" and sorted(x["clave"] for x in antes["lista"])[1:] == sorted([asi.clave("1020304050", "mi-curso"), asi.clave("1020304051", "mi-curso")])
 
 
 def test_sin_columnas_calculadas_o_sin_estudiantes_avisa_claro():

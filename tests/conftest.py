@@ -36,7 +36,7 @@ def _excel_incompleto(destino):
 def _filas_asistencia():
     """Tres estudiantes del curso A (35 clases, 7 faltas permitidas): uno en riesgo, uno en atención y uno al día. Sin nombres reales."""
     def fila(n, marcas, estado):
-        f = {"N°": n, "Nombre del estudiante": f"Estudiante de prueba {n}", "Asistió": marcas.count(1), "Faltas": marcas.count(0), "Sin marcar": 0,
+        f = {"N°": n, "Cédula": f"100000000{n}", "Nombre del estudiante": f"Estudiante de prueba {n}", "Asistió": marcas.count(1), "Faltas": marcas.count(0), "Sin marcar": 0,
              "Faltas que le quedan": 7 - marcas.count(0), "% hasta hoy": marcas.count(1) / len(marcas), "Puede llegar hasta": (35 - marcas.count(0)) / 35, "Estado": estado, "Clases programadas": 35}
         f.update({f"Clase {i + 1}": (marcas[i] if i < len(marcas) else "") for i in range(35)})
         return f
@@ -46,7 +46,7 @@ def _filas_asistencia():
 def _filas_cierre():
     """Curso B terminado de dictar (5 clases, 1 falta permitida): un estudiante aprueba y otro no."""
     def fila(n, marcas, estado):
-        f = {"N°": n, "Nombre del estudiante": f"Estudiante de prueba {n}", "Asistió": marcas.count(1), "Faltas": marcas.count(0), "Sin marcar": 0,
+        f = {"N°": n, "Cédula": f"100000000{n}", "Nombre del estudiante": f"Estudiante de prueba {n}", "Asistió": marcas.count(1), "Faltas": marcas.count(0), "Sin marcar": 0,
              "Faltas que le quedan": 1 - marcas.count(0), "% hasta hoy": marcas.count(1) / 5, "Puede llegar hasta": marcas.count(1) / 5, "Estado": estado, "Clases programadas": 5}
         f.update({f"Clase {i + 1}": marcas[i] for i in range(5)})
         return f
