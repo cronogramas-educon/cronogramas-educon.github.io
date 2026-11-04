@@ -1,10 +1,10 @@
 {
- "actualizado": "2026-11-03T10:07:54-05:00",
+ "actualizado": "2026-11-04T17:46:36-05:00",
  "programadas": 35,
- "dictadas": 9,
+ "dictadas": 15,
  "permitidas": 7,
  "estudiantes": 14,
- "promedio": 0.9524,
+ "promedio": 0.9619,
  "porEstado": {
   "Perdió el mínimo": 0,
   "En riesgo": 0,
@@ -86,9 +86,9 @@
   },
   {
    "clase": 11,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
@@ -100,37 +100,37 @@
   },
   {
    "clase": 13,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 14,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 13,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 15,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 16,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
    "clase": 17,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 13,
+   "marcadas": 14,
    "de": 14
   },
   {
@@ -265,11 +265,11 @@
    "n": 11,
    "etiqueta": "Maria Ramon",
    "estado": "Al día",
-   "asistio": 7,
-   "faltas": 2,
-   "quedan": 5,
-   "porcentaje": 0.7777777777777778,
-   "puedeLlegar": 0.9428571428571428,
+   "asistio": 12,
+   "faltas": 3,
+   "quedan": 4,
+   "porcentaje": 0.8,
+   "puedeLlegar": 0.9142857142857143,
    "clave": "252d65900f75d2976e784baa519eac6e",
    "seguimiento": "",
    "marcas": {
@@ -281,17 +281,23 @@
     "6": 1,
     "7": 0,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 0
    }
   },
   {
    "n": 2,
    "etiqueta": "Andrea Orellano",
    "estado": "Al día",
-   "asistio": 8,
+   "asistio": 14,
    "faltas": 1,
    "quedan": 6,
-   "porcentaje": 0.8888888888888888,
+   "porcentaje": 0.9333333333333333,
    "puedeLlegar": 0.9714285714285714,
    "clave": "232ff1ca8684bf3bc640a5ced4553578",
    "seguimiento": "",
@@ -304,17 +310,23 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 3,
    "etiqueta": "Andrea Fontalvo",
    "estado": "Al día",
-   "asistio": 8,
+   "asistio": 14,
    "faltas": 1,
    "quedan": 6,
-   "porcentaje": 0.8888888888888888,
+   "porcentaje": 0.9333333333333333,
    "puedeLlegar": 0.9714285714285714,
    "clave": "5f783084696cca7735305b4d8764613b",
    "seguimiento": "",
@@ -327,17 +339,52 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
+   }
+  },
+  {
+   "n": 5,
+   "etiqueta": "Andres Diaz",
+   "estado": "Al día",
+   "asistio": 14,
+   "faltas": 1,
+   "quedan": 6,
+   "porcentaje": 0.9333333333333333,
+   "puedeLlegar": 0.9714285714285714,
+   "clave": "b9c4bac4ef33c8d4e179809df29b4727",
+   "seguimiento": "",
+   "marcas": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 0,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 8,
    "etiqueta": "Esmeralda Romero",
    "estado": "Al día",
-   "asistio": 8,
+   "asistio": 14,
    "faltas": 1,
    "quedan": 6,
-   "porcentaje": 0.8888888888888888,
+   "porcentaje": 0.9333333333333333,
    "puedeLlegar": 0.9714285714285714,
    "clave": "81bab3d47fa0ac48bf76550fb9caaf99",
    "seguimiento": "",
@@ -350,17 +397,23 @@
     "6": 0,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 12,
    "etiqueta": "Monica Cuestas",
    "estado": "Al día",
-   "asistio": 8,
+   "asistio": 14,
    "faltas": 1,
    "quedan": 6,
-   "porcentaje": 0.8888888888888888,
+   "porcentaje": 0.9333333333333333,
    "puedeLlegar": 0.9714285714285714,
    "clave": "ed8cae19471c735c85ca8367cc57a9b5",
    "seguimiento": "",
@@ -373,14 +426,20 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 1,
    "etiqueta": "Alejandra Zuloaga",
    "estado": "Al día",
-   "asistio": 9,
+   "asistio": 15,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -396,14 +455,20 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 4,
    "etiqueta": "Andrea Sanchez",
    "estado": "Al día",
-   "asistio": 9,
+   "asistio": 15,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -419,37 +484,20 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
-   }
-  },
-  {
-   "n": 5,
-   "etiqueta": "Andres Diaz",
-   "estado": "Al día",
-   "asistio": 9,
-   "faltas": 0,
-   "quedan": 7,
-   "porcentaje": 1.0,
-   "puedeLlegar": 1.0,
-   "clave": "b9c4bac4ef33c8d4e179809df29b4727",
-   "seguimiento": "",
-   "marcas": {
-    "1": 1,
-    "2": 1,
-    "3": 1,
-    "4": 1,
-    "5": 1,
-    "6": 1,
-    "7": 1,
-    "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 6,
    "etiqueta": "Eblin Salamanca",
    "estado": "Al día",
-   "asistio": 9,
+   "asistio": 15,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -465,14 +513,20 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 7,
    "etiqueta": "Edgar Medina",
    "estado": "Al día",
-   "asistio": 9,
+   "asistio": 15,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -488,14 +542,20 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 9,
    "etiqueta": "Maria Gonzalez",
    "estado": "Al día",
-   "asistio": 9,
+   "asistio": 15,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -511,14 +571,20 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 10,
    "etiqueta": "Maria Echavarria",
    "estado": "Al día",
-   "asistio": 9,
+   "asistio": 15,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -534,14 +600,20 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 13,
    "etiqueta": "Nelson Molina",
    "estado": "Al día",
-   "asistio": 9,
+   "asistio": 15,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -557,14 +629,20 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   },
   {
    "n": 14,
    "etiqueta": "Simarik Patiño",
    "estado": "Al día",
-   "asistio": 9,
+   "asistio": 15,
    "faltas": 0,
    "quedan": 7,
    "porcentaje": 1.0,
@@ -580,7 +658,13 @@
     "6": 1,
     "7": 1,
     "8": 1,
-    "10": 1
+    "10": 1,
+    "11": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1
    }
   }
  ],
