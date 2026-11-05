@@ -421,7 +421,7 @@ def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
     pagina.click("#asis-seguimiento summary")
     pagina.wait_for_selector("#asis-bandeja tbody tr")
     assert pagina.locator("#asistencia").count() == 0  # ya no hay una sección de asistencia aparte
-    assert "Estudiante Prueba" in pagina.inner_text("#asis-bandeja")  # el nombre que publica el Excel (Nombre + primer apellido), con su número de lista
+    assert "Estudiante 3" in pagina.inner_text("#asis-bandeja")  # solo el número de lista: el sitio no guarda nombres
     filas = pagina.locator("#asis-bandeja tbody tr")
     assert filas.count() == 3 and "Perdió el mínimo" in filas.nth(0).inner_text() and "En riesgo" in filas.nth(1).inner_text() and "N.º 3" in filas.nth(1).inner_text() and "Atención" in filas.nth(2).inner_text()
     assert pagina.locator("#asis-lista").count() == 0  # el detalle por curso ya no es una lista aparte
@@ -430,7 +430,7 @@ def test_hub_asistencia_bandeja_tablero_y_contactado(pagina, servidor, sitio):
     abrir_detalle(compliance)
     compliance.locator("[data-asis-curso] summary").click()
     assert "28 de 35" in compliance.inner_text() and "cómo se lee esto" in compliance.inner_text().lower()
-    assert compliance.locator(".mx tbody tr").count() == 3 and compliance.locator(".mx tbody tr").first.locator("th").inner_text().startswith("Estudiante Prueba")  # matriz: un renglón por estudiante
+    assert compliance.locator(".mx tbody tr").count() == 3 and compliance.locator(".mx tbody tr").first.locator("th").inner_text().startswith("Estudiante ")  # matriz: un renglón por estudiante
     assert compliance.locator(".mx tbody tr .m.no").count() >= 1 and compliance.locator(".reparto i").count() >= 2
     pagina.locator("[data-contactado]").first.check()  # la primera es la de Derecho Laboral, que perdió el mínimo
     assert "1 ya contactado" in pagina.inner_text("#asis-bandeja caption").lower() and pagina.locator("#cursos-lista [data-asis-curso][open]").count() == 1
@@ -468,12 +468,12 @@ def test_hub_cierre_de_curso_lista_y_descarga(pagina, servidor, sitio):
     fila = tarjeta.locator("details.cierre")
     fila.locator("summary").click()
     assert "Resultado final" in fila.inner_text()
-    assert pagina.locator(".cierre-col.aprueba p").inner_text() == "Estudiante Prueba (N.º 1), Estudiante Prueba (N.º 2)" and pagina.locator(".cierre-col.no-aprueba p").inner_text() == "Estudiante Prueba (N.º 3)"
+    assert pagina.locator(".cierre-col.aprueba p").inner_text() == "Estudiante 1 (N.º 1), Estudiante 2 (N.º 2)" and pagina.locator(".cierre-col.no-aprueba p").inner_text() == "Estudiante 3 (N.º 3)"
     with pagina.expect_download() as d:
         fila.locator("[data-cierre]").click()
     texto = Path(d.value.path()).read_text(encoding="utf-8-sig")
     assert d.value.suggested_filename.startswith("cierre-") and "Número de lista;Resultado" in texto
-    assert ";1;Aprueba;" in texto and ";3;No aprueba;" in texto and texto.splitlines()[0].endswith("Nombre") and "Estudiante Prueba" in texto and pagina.errores == []
+    assert ";1;Aprueba;" in texto and ";3;No aprueba;" in texto and texto.splitlines()[0].endswith("Nombre") and "Estudiante 1" in texto and pagina.errores == []
 
 
 def test_hub_navegacion_pestanas_y_estados(pagina, servidor, sitio):

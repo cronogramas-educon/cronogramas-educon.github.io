@@ -62,7 +62,7 @@ jobs:
         if: steps.fuente.outputs.tipo == 'asistencia'
         id: asistencia
         continue-on-error: true
-        # Se guarda el resumen (Nombre + primer apellido, sin documentos). La carga útil nunca se imprime.
+        # Se guarda el resumen (sin nombres ni documentos). La carga útil nunca se imprime.
         run: python scripts/cursos.py asistencia fuente.json "${{ steps.fuente.outputs.asistencia }}"
 
       - name: Anotar la carpeta sin registrar

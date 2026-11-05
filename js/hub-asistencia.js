@@ -1,8 +1,8 @@
-// Asistencia en el sitio de administración. Cada estudiante se muestra como «Nombre + primer apellido» y su número de lista; la cédula nunca se publica (en la página del curso, el estudiante se encuentra con ella).
+// Asistencia en el sitio de administración. Cada estudiante se muestra solo por su número de lista («Estudiante N»); ni el nombre ni la cédula se publican (en la página del curso, el estudiante se encuentra con ella).
 import { esc, ic, rangos } from './ui.js';
 import { ahora, estadoClase, fechaLarga } from './utils-fecha.js';
 
-export const nombre = (x) => x.etiqueta || `Estudiante ${x.n}`;
+export const nombre = (x) => `Estudiante ${x.n}`;
 const pct = (x) => (x == null ? 'Sin datos' : `${Math.round(x * 100)} %`);
 const ESTADOS = ['Perdió el mínimo', 'En riesgo', 'Atención', 'Al día', 'Aprobó'];
 const SEGUIR = ['Perdió el mínimo', 'En riesgo', 'Atención']; // a quienes conviene escribirles
@@ -35,13 +35,13 @@ export function bandeja(rs) {
     .sort((p, q) => orden.indexOf(p.estado) - orden.indexOf(q.estado) || p.quedan - q.quedan || p.r.c.programaCorto.localeCompare(q.r.c.programaCorto) || p.n - q.n);
 }
 
-/** Texto listo para pegar, con el primer nombre del estudiante (o [nombre] si el Excel aún no lo trae). */
+/** Texto listo para pegar, con [nombre] para que quien lo envíe lo complete (el sitio no guarda nombres; el N.º es el de la fila del Excel). */
 export function mensajeSeguimiento(x) {
   const q = Math.max(x.quedan, 0);
   const cierre = x.estado === 'Perdió el mínimo'
     ? 'Con las clases que llevamos ya no se alcanza el mínimo de asistencia para certificar, y quisiera que hablemos de cómo seguir.'
     : `Te ${q === 1 ? 'queda 1 falta' : `quedan ${q} faltas`} antes de no alcanzar el mínimo de asistencia para certificar.`;
-  const pila = x.etiqueta ? x.etiqueta.split(' ')[0] : '[nombre]';
+  const pila = '[nombre]';
   return `Hola ${pila}, te escribo del ${x.r.c.programaCorto}. Llevas ${x.faltas} ${x.faltas === 1 ? 'falta' : 'faltas'} en las clases. ${cierre} ¿Todo bien? Cuéntame si pasó algo y miramos cómo te podemos apoyar.`;
 }
 

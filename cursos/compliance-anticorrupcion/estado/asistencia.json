@@ -263,7 +263,6 @@
  "lista": [
   {
    "n": 11,
-   "etiqueta": "Maria Ramon",
    "estado": "Al día",
    "asistio": 13,
    "faltas": 3,
@@ -293,7 +292,6 @@
   },
   {
    "n": 2,
-   "etiqueta": "Andrea Orellano",
    "estado": "Al día",
    "asistio": 16,
    "faltas": 1,
@@ -324,7 +322,6 @@
   },
   {
    "n": 3,
-   "etiqueta": "Andrea Fontalvo",
    "estado": "Al día",
    "asistio": 16,
    "faltas": 1,
@@ -355,7 +352,6 @@
   },
   {
    "n": 4,
-   "etiqueta": "Andrea Sanchez",
    "estado": "Al día",
    "asistio": 16,
    "faltas": 1,
@@ -386,7 +382,6 @@
   },
   {
    "n": 5,
-   "etiqueta": "Andres Diaz",
    "estado": "Al día",
    "asistio": 16,
    "faltas": 1,
@@ -417,7 +412,6 @@
   },
   {
    "n": 8,
-   "etiqueta": "Esmeralda Romero",
    "estado": "Al día",
    "asistio": 16,
    "faltas": 1,
@@ -448,7 +442,6 @@
   },
   {
    "n": 12,
-   "etiqueta": "Monica Cuestas",
    "estado": "Al día",
    "asistio": 16,
    "faltas": 1,
@@ -479,7 +472,6 @@
   },
   {
    "n": 1,
-   "etiqueta": "Alejandra Zuloaga",
    "estado": "Al día",
    "asistio": 17,
    "faltas": 0,
@@ -510,7 +502,6 @@
   },
   {
    "n": 6,
-   "etiqueta": "Eblin Salamanca",
    "estado": "Al día",
    "asistio": 17,
    "faltas": 0,
@@ -541,7 +532,6 @@
   },
   {
    "n": 7,
-   "etiqueta": "Edgar Medina",
    "estado": "Al día",
    "asistio": 17,
    "faltas": 0,
@@ -572,7 +562,6 @@
   },
   {
    "n": 9,
-   "etiqueta": "Maria Gonzalez",
    "estado": "Al día",
    "asistio": 17,
    "faltas": 0,
@@ -603,7 +592,6 @@
   },
   {
    "n": 10,
-   "etiqueta": "Maria Echavarria",
    "estado": "Al día",
    "asistio": 17,
    "faltas": 0,
@@ -634,7 +622,6 @@
   },
   {
    "n": 13,
-   "etiqueta": "Nelson Molina",
    "estado": "Al día",
    "asistio": 17,
    "faltas": 0,
@@ -665,7 +652,6 @@
   },
   {
    "n": 14,
-   "etiqueta": "Simarik Patiño",
    "estado": "Al día",
    "asistio": 17,
    "faltas": 0,
