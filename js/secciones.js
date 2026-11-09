@@ -62,6 +62,7 @@ export function contactos(el, lista) {
 export async function miAsistencia(seccion, nav, entrada, salida) {
   let a;
   try { const r = await fetch(`asistencia.json?m=${Math.floor(Date.now() / 60000)}`, { cache: 'no-store' }); if (!r.ok) return; a = await r.json(); } catch { return; }
+  if (!a.lista?.length) return;  // curso sin lista de estudiantes todavía: la sección sigue oculta
   seccion.hidden = nav.hidden = false;
   // la huella de la cédula (misma cuenta que scripts/asistencia.py: PBKDF2-SHA256, 100 mil vueltas, sal del curso, 16 bytes) es lo único que está publicado
   const huella = async (ced) => {

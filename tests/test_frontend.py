@@ -720,6 +720,8 @@ def test_pagina_de_curso_con_datos_incompletos_sigue_funcionando(pagina, base, c
     pagina.wait_for_selector("h1", state="attached")
     pagina.wait_for_timeout(1200)
     assert pagina.locator("h1").inner_text().strip() and pagina.locator("#vista").count() == 1
+    if como == "asistencia sin estudiantes":
+        assert not pagina.locator("#asistencia").is_visible()  # sin lista, «Mi asistencia» no se muestra
     if como.startswith("asistencia"):
         pagina.fill("#asis-n", "1234567890") if pagina.locator("#asis-n").is_visible() else None
         pagina.wait_for_timeout(500)

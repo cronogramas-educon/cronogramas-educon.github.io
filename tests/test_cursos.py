@@ -305,3 +305,13 @@ def test_aviso_sin_ruta_no_escribe_en_ningun_curso(tmp_path):
     e = tmp_path / "e.json"
     e.write_text(json.dumps({"client_payload": {"filas": json.dumps([{"Profesor": "A"}])}}), encoding="utf-8")
     assert cu.recibir(e, tmp_path / "f.json")[:2] == ("ninguno", None)
+
+
+def test_curso_sin_asistencia_publica_un_archivo_vacio_y_el_hub_no_lo_cuenta(sitio):
+    """El archivo vacío evita el 404 en la consola; no debe aparecer como asistencia en el hub."""
+    hub = sitio / "g" / REG["global"]["adminCodigo"]
+    sin = [c for c in REG["cursos"] if not (cu.RAIZ / "cursos" / c["id"] / "estado/asistencia.json").exists()]
+    assert sin, "la prueba necesita al menos un curso sin asistencia"
+    for c in sin:
+        assert json.loads((sitio / cu.sitio_ruta(c) / "asistencia.json").read_text(encoding="utf-8")) == {"lista": []}
+        assert not (hub / "asistencia" / f"{c['id']}.json").exists()

@@ -368,6 +368,8 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
             publica = {k: a[k] for k in ("actualizado", "programadas", "dictadas", "permitidas", "estudiantes", "sal") if k in a}
             publica["lista"] = sorted(({k: x.get(k) for k in ("clave", "estado", "asistio", "faltas", "quedan", "porcentaje", "marcas")} for x in a["lista"] if x.get("clave")), key=lambda x: x["clave"])  # sin el orden del Excel, que sería el orden alfabético de los nombres
             (destino / "asistencia.json").write_text(json.dumps(publica, ensure_ascii=False), encoding="utf-8")
+        else:  # sin asistencia aún: un archivo vacío evita el 404 en la consola del navegador y la página oculta «Mi asistencia»
+            (destino / "asistencia.json").write_text('{"lista": []}', encoding="utf-8")
         texto = bienvenida.del_curso(c, g, raiz) if c.get("teams") else None
         if texto:  # el texto es el mismo que publica el flujo; solo la vista previa del sitio de administración, nunca los identificadores de Teams
             bienvenidas[c["id"]] = texto
