@@ -640,6 +640,19 @@ def test_pagina_de_estudiantes_mi_asistencia_por_cedula(pagina, base):
     assert pagina.errores == []
 
 
+def test_mi_asistencia_sin_clases_registradas_no_muestra_cifras_que_engañan(pagina, base):
+    def sin_registro(ruta):
+        r = ruta.fetch()
+        d = r.json()
+        d["dictadas"] = 0
+        ruta.fulfill(response=r, json=d)
+    pagina.route("**/asistencia.json*", sin_registro)
+    abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
+    pagina.fill("#asis-n", "1000000003")
+    pagina.wait_for_selector("#asis-resultado .asis-vacio:has-text('todavía no se ha registrado')")
+    assert pagina.locator("#asis-resultado .asis-ficha").count() == 0 and pagina.errores == []
+
+
 def test_hub_panorama_indicadores_matriz_filtro_orden_y_salto_al_curso(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     assert pagina.locator("#panorama").evaluate("e => e.getBoundingClientRect().top") < pagina.locator("#urgente").evaluate("e => e.getBoundingClientRect().top")  # el panorama va primero

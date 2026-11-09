@@ -91,7 +91,9 @@ export async function miAsistencia(seccion, nav, entrada, salida) {
     if (ced.length < 5) { salida.innerHTML = '<p class="asis-vacio">Escribe tu número de cédula completo, sin puntos ni espacios.</p>'; return; }
     const k = await huella(ced), x = a.lista.find((e) => e.clave === k);
     if (mio !== turno) return;  // llegó otra tecla mientras se calculaba
-    salida.innerHTML = x ? ficha(x) : '<p class="asis-vacio">No encontramos esa cédula en este curso. Revisa que la hayas escrito completa o escribe a la coordinación para que la verifiquen.</p>';
+    // sin ninguna clase registrada (curso nuevo o a la espera de los reportes), "Al día, 0 faltas" engañaría
+    salida.innerHTML = x && !a.dictadas ? '<p class="asis-vacio">Tu cédula está en el curso, pero la asistencia todavía no se ha registrado. Cuando la coordinación la cargue, aquí verás cómo vas.</p>'
+      : x ? ficha(x) : '<p class="asis-vacio">No encontramos esa cédula en este curso. Revisa que la hayas escrito completa o escribe a la coordinación para que la verifiquen.</p>';
   };
   entrada.addEventListener('input', ver);
 }
