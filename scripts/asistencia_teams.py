@@ -21,6 +21,7 @@ from collections import defaultdict
 
 import openpyxl
 from openpyxl.utils import get_column_letter, column_index_from_string
+from openpyxl.utils.exceptions import InvalidFileException
 
 MINIMO, REVISION, RELEVANTE = 0.5, 0.4, 0.2
 HOJAS = {"Asistencia": "xl/worksheets/sheet2.xml", "Resumen": "xl/worksheets/sheet3.xml"}
@@ -125,18 +126,23 @@ def _union(iv):
 def calcular(ruta_reporte, estudiantes, alias=None):
     """estudiantes = {nombre completo: fila}. Devuelve fecha, marcas {fila: 1|0|None} y lo que requiere decisión humana."""
     alias = alias or {}
-    resumen, tramos = leer_reporte(ruta_reporte)
-    total = _duracion(resumen["Meeting duration"])
-    fecha = _fecha_hora(resumen["Start time"]).date()
+    try:
+        resumen, tramos = leer_reporte(ruta_reporte)
+        total = _duracion(resumen["Meeting duration"])
+        fecha = _fecha_hora(resumen["Start time"]).date()
+        tramos = [(f[0], _fecha_hora(f[1]), _fecha_hora(f[2]), f[4] if len(f) > 4 else "") for f in tramos]
+    except (KeyError, ValueError, IndexError, UnicodeError, OSError, csv.Error, zipfile.BadZipFile) as e:
+        raise ValueError(f"No parece un reporte de asistencia de Teams (falta o no se entiende: {e!r}). Descárgalo de nuevo desde la reunión, pestaña Asistencia.") from None
+    if not total:
+        raise ValueError("El reporte dice que la reunión duró 0 segundos: no se puede calcular el porcentaje.")
     por_est, otros = defaultdict(lambda: {"iv": [], "cuentas": set(), "como": set()}), defaultdict(list)
-    for f in tramos:
-        a, b = _fecha_hora(f[1]), _fecha_hora(f[2])
-        est, como = emparejar(f[0], f[4] if len(f) > 4 else "", estudiantes, alias)
+    for nombre, a, b, correo in tramos:
+        est, como = emparejar(nombre, correo, estudiantes, alias)
         if est:
             x = por_est[est]
-            x["iv"].append((a, b)); x["cuentas"].add(f[0].strip()); x["como"].add(como)
+            x["iv"].append((a, b)); x["cuentas"].add(nombre.strip()); x["como"].add(como)
         else:
-            otros[f[0].strip()].append((a, b))
+            otros[nombre.strip()].append((a, b))
     seg = lambda iv: sum((b - a).total_seconds() for a, b in _union(iv))
     lista, marcas, revision = [], {}, []
     for nombre, fila in sorted(estudiantes.items(), key=lambda kv: kv[1]):
@@ -176,8 +182,11 @@ def _fecha_de_clase(wb, ws, col, n):
 
 
 def leer_libro(ruta):
-    wb = openpyxl.load_workbook(ruta, data_only=True)
-    ws = wb["Asistencia"]
+    try:
+        wb = openpyxl.load_workbook(ruta, data_only=True)
+        ws = wb["Asistencia"]
+    except (KeyError, OSError, zipfile.BadZipFile, InvalidFileException) as e:
+        raise ValueError(f"No es el Excel «Formato de asistencia» (no se pudo abrir la hoja Asistencia: {e!r}).") from None
     clases = []
     for c in range(1, ws.max_column + 1):
         m = re.fullmatch(r"Clase (\d+)", str(ws.cell(6, c).value or "").strip())

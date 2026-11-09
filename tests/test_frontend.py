@@ -18,9 +18,13 @@ class Silencioso(http.server.SimpleHTTPRequestHandler):
         pass
 
 
+class Servidor(http.server.ThreadingHTTPServer):
+    request_queue_size = 128  # con la cola por defecto (5) el navegador, que pide ~20 archivos a la vez, recibía ERR_CONNECTION_RESET y las pruebas fallaban al azar
+
+
 @pytest.fixture(scope="module")
 def servidor(sitio):
-    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Silencioso, directory=str(sitio["dir"])))
+    srv = Servidor(("127.0.0.1", 0), functools.partial(Silencioso, directory=str(sitio["dir"])))
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     yield f"http://127.0.0.1:{srv.server_address[1]}"
     srv.shutdown()
@@ -674,3 +678,74 @@ def test_hub_panorama_indicadores_matriz_filtro_orden_y_salto_al_curso(pagina, s
     pagina.locator(".pan-matriz [data-ir-curso]", has_text="Compliance").click()  # salta al detalle del curso y lo abre
     pagina.wait_for_selector("#cursos-lista .curso[data-curso] .curso-mas[open]")
     assert pagina.locator("#cursos-lista .curso", has_text="Compliance").locator(".curso-mas").get_attribute("open") is not None and pagina.errores == []
+
+
+def _degradar(d, como):
+    """Versiones empobrecidas de data.json, como las que llegan cuando a un curso le faltan datos."""
+    cs = d["clases"]
+    if como == "sin docentes":
+        d["profesores"] = []
+        for c in cs: c["profesores"], c["profesor"] = [], ""
+    elif como == "sin enlaces ni asistentes":
+        for c in cs: c["linkTeams"], c["asistentePat"] = None, ""
+        d["asistentesPat"] = []
+    elif como == "sin temas ni unidades":
+        d["unidades"] = []
+        for c in cs: c["tema"], c["temaPuntos"], c["unidad"], c["unidadSlug"] = "", [], "", ""
+    elif como == "campos nulos":
+        for c in cs:
+            for k in ("tema", "temaPuntos", "horas", "profesor", "profesores", "dia", "linkTeams", "asistentePat", "unidad", "unidadSlug", "temaHeredado", "diaCalculado", "secuencia", "cambio"):
+                c[k] = None
+    elif como == "una sola clase":
+        d["clases"] = cs[:1]
+    elif como == "meta incompleta":
+        d["meta"] = {"programa": d["meta"]["programa"]}
+    elif como == "sin avisos ni cambios":
+        d["cambios"], d["canceladas"] = [], []
+    return d
+
+
+@pytest.mark.parametrize("como", ["sin docentes", "sin enlaces ni asistentes", "sin temas ni unidades", "campos nulos", "una sola clase", "meta incompleta", "sin avisos ni cambios",
+                                  "sin contenido.json", "asistencia sin estudiantes", "asistencia con filas incompletas", "sin clases"])
+def test_pagina_de_curso_con_datos_incompletos_sigue_funcionando(pagina, base, como):
+    def datos(ruta):
+        r = ruta.fetch(); d = r.json()
+        ruta.fulfill(response=r, json=({**d, "clases": []} if como == "sin clases" else _degradar(d, como)))
+    pagina.route("**/data/data.json*", datos)
+    if como == "sin contenido.json":
+        pagina.route("**/config/contenido.json*", lambda ruta: ruta.fulfill(status=404, body=""))
+    if como.startswith("asistencia"):
+        pagina.route("**/asistencia.json*", lambda ruta: ruta.fulfill(json={"estudiantes": 0, "lista": [], "sal": "x"} if "sin estudiantes" in como else {"sal": "x", "dictadas": 3, "lista": [{"clave": "a" * 32}, {"clave": "b" * 32, "marcas": {}}]}))
+    pagina.goto(f"{base}?ahora=2026-10-14T10:00:00-05:00")
+    pagina.wait_for_selector("h1", state="attached")
+    pagina.wait_for_timeout(1200)
+    assert pagina.locator("h1").inner_text().strip() and pagina.locator("#vista").count() == 1
+    if como.startswith("asistencia"):
+        pagina.fill("#asis-n", "1234567890") if pagina.locator("#asis-n").is_visible() else None
+        pagina.wait_for_timeout(500)
+    assert [e for e in pagina.errores if "Failed to load resource" not in e] == [], como
+
+
+@pytest.mark.parametrize("como", ["sin docentes", "sin enlaces ni asistentes", "sin temas ni unidades", "una sola clase", "meta incompleta", "sin avisos ni cambios", "sin clases",
+                                  "asistencia sin estudiantes", "asistencia sin dictadas", "sin ningún archivo de asistencia"])
+def test_hub_con_datos_incompletos_en_todos_los_cursos_sigue_funcionando(pagina, servidor, sitio, como):
+    def datos(ruta):
+        r = ruta.fetch(); d = r.json()
+        ruta.fulfill(response=r, json=({**d, "clases": []} if como == "sin clases" else _degradar(d, como)))
+    pagina.route("**/data/data.json*", datos)
+    if como.startswith("asistencia") or como.startswith("sin ningún"):
+        def asis(ruta):
+            if como.startswith("sin ningún"):
+                return ruta.fulfill(status=404, body="")
+            r = ruta.fetch(); d = r.json()
+            ruta.fulfill(response=r, json=({**d, "estudiantes": 0, "lista": [], "dictadas": 0} if "sin estudiantes" in como else {**d, "dictadas": 0}))
+        pagina.route("**/asistencia/*.json*", asis)
+        pagina.route("**/asistencia.json*", asis)
+    pagina.goto(f"{servidor}/{sitio['hub']}/index.html?ahora=2026-10-14T10:00:00-05:00")
+    pagina.wait_for_selector("#panorama", state="attached")
+    pagina.wait_for_timeout(1500)  # con una sola clase (o ninguna) no hay cursos activos: es válido que no haya tarjetas, no que falle
+    assert pagina.locator("#cursos-lista").count() == 1 and pagina.inner_text("#cursos-lista").strip()
+    if pagina.locator("#asis-seguimiento summary").is_visible():  # sin cursos activos esa sección no se muestra
+        pagina.click("#asis-seguimiento summary")
+    pagina.wait_for_timeout(300)
+    assert [e for e in pagina.errores if "Failed to load resource" not in e] == [], como

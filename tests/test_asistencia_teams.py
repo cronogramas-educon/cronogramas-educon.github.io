@@ -107,3 +107,15 @@ def test_excel_de_un_curso_publicado_trae_fechas_originales_y_lista_ordenada(tmp
     assert d["curso"] == "Curso X" and [c["situacion"] for c in d["clases"]] == ["", "Reprogramada"] and d["clases"][1] == {"fecha": "2026-03-03", "situacion": "Reprogramada", "nueva": "2026-03-10"}
     assert [e["nombre"] for e in d["estudiantes"]] == ["ALFA DOS", "ZETA UNO"] and d["estudiantes"][0]["cedula"] == "111"
     assert gen.datos_de_curso(carpeta)["estudiantes"] == []  # sin lista: plantilla del curso para llenar después
+
+
+def test_archivos_que_no_son_lo_esperado_dan_mensaje_claro(tmp_path, libro):
+    basura = tmp_path / "basura.csv"
+    basura.write_bytes(b"\xff\xfe\x00no es un reporte")
+    with pytest.raises(ValueError, match="No parece un reporte"):
+        at.calcular(basura, at.leer_libro(libro)["estudiantes"])
+    cero = reporte(tmp_path, [("Ana", "6:00", "7:00", "")], duracion="0h 0m 0s")
+    with pytest.raises(ValueError, match="0 segundos"):
+        at.calcular(cero, at.leer_libro(libro)["estudiantes"])
+    with pytest.raises(ValueError, match="No es el Excel"):
+        at.leer_libro(basura)

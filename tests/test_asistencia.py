@@ -118,3 +118,11 @@ def test_excel_de_asistencia_sin_estudiantes_es_un_aviso_no_una_falla(tmp_path, 
     cu.main()  # no lanza SystemExit
     assert "::notice::" in capsys.readouterr().out and not (cu.RAIZ / "cursos" / "curso-que-no-existe").exists()
     assert issubclass(asi.SinEstudiantes, ValueError)
+
+
+def test_entradas_rotas_dan_un_mensaje_claro_y_no_un_error_interno():
+    with pytest.raises(ValueError, match="no llegó como una tabla"):
+        asi.resumir(None)
+    roto = [{"Nombre del estudiante": "A", "Clase 1": 1, "Asistió": None, "Faltas": None, "Faltas que le quedan": None, "Estado": ""}]
+    with pytest.raises(ValueError, match="vacías o con error"):  # fórmulas grises con error y el curso aún sin Cuadro de horas
+        asi.resumir(roto)

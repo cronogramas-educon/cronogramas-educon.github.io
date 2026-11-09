@@ -113,6 +113,8 @@ class SinEstudiantes(ValueError):
 
 def resumir(filas, ahora=None, clases=None, sal=None):
     """Resumen sin nombres. Lanza ValueError con un mensaje claro si el Excel no trae las columnas calculadas."""
+    if not isinstance(filas, list):
+        raise ValueError("El Excel de asistencia no llegó como una tabla de filas: revisa que el flujo lea la tabla Table1.")
     est = [f for f in normalizar(filas) if isinstance(f, dict) and str(f.get(NOMBRE) or "").strip()]
     if not est:
         raise SinEstudiantes("El Excel de asistencia no tiene estudiantes: escribe sus nombres en la hoja Asistencia.")
@@ -126,6 +128,8 @@ def resumir(filas, ahora=None, clases=None, sal=None):
     if ncl:
         claves = claves[:ncl]
     primero = est[0]
+    if _ent(primero["Faltas que le quedan"]) is None or _ent(primero["Faltas"]) is None:
+        raise ValueError("Las columnas grises Faltas y Faltas que le quedan están vacías o con error en la primera fila: revisa que sus fórmulas funcionen.")
     permitidas = _ent(primero["Faltas que le quedan"]) + _ent(primero["Faltas"])
     programadas = _ent(primero.get("Clases programadas")) or len(claves)
     dictadas = (_ent(primero["Asistió"]) or 0) + (_ent(primero["Faltas"]) or 0) + (_ent(primero.get("Sin marcar")) or 0)
