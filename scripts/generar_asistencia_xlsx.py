@@ -3,6 +3,9 @@
 
   python scripts/generar_asistencia_xlsx.py --plantilla SALIDA.xlsx      plantilla en blanco para copiar a cada curso nuevo
   python scripts/generar_asistencia_xlsx.py DATOS.json SALIDA.xlsx       un curso con sus datos
+  python scripts/generar_asistencia_xlsx.py --curso ID [--estudiantes LISTA.csv] SALIDA.xlsx
+      un curso ya publicado: toma el nombre, las fechas originales y las reprogramaciones de cursos/ID/; LISTA.csv (cédula,nombre, con o sin
+      encabezado, fuera del repositorio) trae los estudiantes, que quedan en orden alfabético
 DATOS.json: {"curso": "...", "minimo": 0.8, "clases": [{"fecha": "2026-10-01", "situacion": "", "nueva": ""}, ...],
              "estudiantes": [{"cedula": "", "nombre": "...", "marcas": [1, 0, null, ...]}, ...]}
 Los datos de estudiantes no viven en el repositorio (es público): el JSON se escribe fuera de él.
@@ -11,9 +14,11 @@ El archivo cabe hasta 40 clases. Cuántas tiene el curso lo dice la tabla Parame
 se escribe a mano (el sitio ya la toma del Cuadro de horas; aquí solo afecta los colores del archivo). Las columnas de clases que sobran quedan "Sin programar".
 Hojas: Instrucciones, Asistencia (tabla Table1, una columna por clase), Resumen (tabla Parametros y cuentas) y Cronograma (fechas y situación de cada clase).
 Las cuentas son fórmulas: el sitio lee las columnas calculadas (scripts/asistencia.py)."""
-import json, sys
+import csv, json, sys
 from datetime import date
 from pathlib import Path
+
+RAIZ = Path(__file__).resolve().parent.parent
 
 from openpyxl import Workbook
 from openpyxl.comments import Comment
@@ -348,7 +353,32 @@ def construir(d, salida):
     wb.save(salida)
 
 
+def datos_de_curso(carpeta, lista_csv=None):
+    """DATOS.json de un curso publicado (cursos/ID/): una fila por clase, con su fecha original y la nueva si se reprogramó."""
+    carpeta = Path(carpeta)
+    d = json.loads((carpeta / "data/data.json").read_text(encoding="utf-8"))
+    try:
+        nombre = json.loads((carpeta / "config/contenido.json").read_text(encoding="utf-8")).get("programaCorto")
+    except (OSError, ValueError):
+        nombre = None
+    clases = []
+    for c in d["clases"]:
+        orig = (c.get("cambio") or {}).get("fechaOriginal") or c["fecha"]
+        clases.append({"fecha": orig, "situacion": "Reprogramada" if orig != c["fecha"] else "", "nueva": c["fecha"] if orig != c["fecha"] else ""})
+    est = []
+    if lista_csv:
+        for fila in csv.reader(Path(lista_csv).read_text(encoding="utf-8-sig").splitlines()):
+            if len(fila) >= 2 and fila[1].strip() and fila[0].strip().lower() not in ("cédula", "cedula", "documento"):
+                est.append({"cedula": fila[0].strip(), "nombre": fila[1].strip().upper()})
+        est.sort(key=lambda e: e["nombre"])
+    return {"curso": nombre or d["meta"]["programa"], "clases": clases, "estudiantes": est}
+
+
 def main(argv):
+    if argv and argv[0] == "--curso":
+        lista = argv[argv.index("--estudiantes") + 1] if "--estudiantes" in argv else None
+        construir(datos_de_curso(RAIZ / "cursos" / argv[1], lista), argv[-1])
+        return
     if argv and argv[0] == "--plantilla":
         construir({"curso": "Nombre del curso"}, argv[1])
         return

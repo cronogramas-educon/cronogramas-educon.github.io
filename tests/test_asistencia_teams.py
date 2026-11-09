@@ -93,3 +93,17 @@ def test_dos_clases_el_mismo_dia_pide_elegir(tmp_path, libro, monkeypatch):
         at.escribir_marcas(doble, tmp_path / "x.xlsx", "2026-03-02", {7: 1})
     assert at.escribir_marcas(doble, tmp_path / "y.xlsx", "2026-03-02#2", {7: 1})["n"] == 2
     assert openpyxl.load_workbook(tmp_path / "y.xlsx")["Asistencia"]["E7"].value == 1
+
+
+def test_excel_de_un_curso_publicado_trae_fechas_originales_y_lista_ordenada(tmp_path):
+    carpeta = tmp_path / "curso-x"
+    (carpeta / "data").mkdir(parents=True); (carpeta / "config").mkdir()
+    (carpeta / "data/data.json").write_text('{"meta": {"programa": "Programa largo"}, "clases": [{"fecha": "2026-03-02"}, '
+                                            '{"fecha": "2026-03-10", "cambio": {"fechaOriginal": "2026-03-03"}}]}', encoding="utf-8")
+    (carpeta / "config/contenido.json").write_text('{"programaCorto": "Curso X"}', encoding="utf-8")
+    lista = tmp_path / "lista.csv"
+    lista.write_text("Cédula,Nombre\n222,zeta uno\n111,alfa dos\n", encoding="utf-8")
+    d = gen.datos_de_curso(carpeta, lista)
+    assert d["curso"] == "Curso X" and [c["situacion"] for c in d["clases"]] == ["", "Reprogramada"] and d["clases"][1] == {"fecha": "2026-03-03", "situacion": "Reprogramada", "nueva": "2026-03-10"}
+    assert [e["nombre"] for e in d["estudiantes"]] == ["ALFA DOS", "ZETA UNO"] and d["estudiantes"][0]["cedula"] == "111"
+    assert gen.datos_de_curso(carpeta)["estudiantes"] == []  # sin lista: plantilla del curso para llenar después

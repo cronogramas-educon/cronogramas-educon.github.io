@@ -8,7 +8,7 @@ Excel de asistencia (SharePoint)  →  flujo de Power Automate (evento excel-act
 
 ## El Excel
 
-Se genera con `python scripts/generar_asistencia_xlsx.py DATOS.json SALIDA.xlsx` (el formato de `DATOS.json` está en el encabezado del script). Los datos de estudiantes nunca viven en el repositorio, que es público: el JSON se escribe fuera de él.
+Para un curso ya publicado es más corto: `python scripts/generar_asistencia_xlsx.py --curso ID [--estudiantes LISTA.csv] SALIDA.xlsx` toma el nombre, las fechas originales y las reprogramaciones de `cursos/ID/` y, si le pasas un CSV `cédula,nombre` (guardado fuera del repositorio), deja a los estudiantes en orden alfabético. Un Excel recién creado sin estudiantes no hace fallar la actualización: el sitio solo avisa («El Excel de asistencia no tiene estudiantes») y publica la asistencia cuando haya lista. Para el formato completo se genera con `python scripts/generar_asistencia_xlsx.py DATOS.json SALIDA.xlsx` (el formato de `DATOS.json` está en el encabezado del script). Los datos de estudiantes nunca viven en el repositorio, que es público: el JSON se escribe fuera de él.
 
 Hojas: **Instrucciones**, **Asistencia** (tabla `Table1`, una columna por clase), **Resumen** (reglas y cuentas) y **Cronograma** (fecha y situación de cada clase).
 

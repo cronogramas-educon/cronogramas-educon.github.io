@@ -15,7 +15,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from asistencia import aplicar as aplicar_asistencia, es_asistencia
+from asistencia import SinEstudiantes, aplicar as aplicar_asistencia, es_asistencia
 
 RAIZ = Path(__file__).resolve().parent.parent
 CAMPOS_CURSO = ("programa", "programaCorto", "tipo", "marca", "modalidad", "urlPaginaOficial", "periodo", "cohorte")
@@ -419,6 +419,9 @@ def main():
     elif cmd == "asistencia":  # cursos.py asistencia fuente.json CURSO
         try:
             r, cambio = aplicar_asistencia(json.loads(Path(sys.argv[2]).read_text(encoding="utf-8")), RAIZ / "cursos" / sys.argv[3])
+        except SinEstudiantes as e:  # curso nuevo con el Excel recién creado: aviso, no falla (el estado anterior se conserva)
+            print(f"::notice::{e} La asistencia de {sys.argv[3]} se publicará cuando haya estudiantes.")
+            return
         except ValueError as e:
             sys.exit(f"::error::{e}")
         print(f"Asistencia de {sys.argv[3]}: {r['estudiantes']} estudiantes, {r['dictadas']} de {r['programadas']} clases dictadas. " + ("Actualizada." if cambio else "Sin cambios."))

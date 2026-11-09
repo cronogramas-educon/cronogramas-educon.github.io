@@ -108,3 +108,13 @@ def test_el_cuadro_de_horas_manda_el_numero_de_clases(tmp_path):
     assert cambio and (r["programadas"], r["permitidas"]) == (20, 4)
     assert {x["n"]: x["estado"] for x in r["lista"]}[2] == "Atención"
     assert len(r["porClase"]) == 20
+
+
+def test_excel_de_asistencia_sin_estudiantes_es_un_aviso_no_una_falla(tmp_path, monkeypatch, capsys):
+    """Curso nuevo: el Excel recién creado aún no tiene lista. No debe fallar la ejecución ni escribir nada."""
+    fuente = tmp_path / "fuente.json"
+    fuente.write_text(json.dumps([{"N°": "", "Cédula": "", "Nombre del estudiante": "", "Clase 1": ""}]), encoding="utf-8")
+    monkeypatch.setattr(sys, "argv", ["cursos.py", "asistencia", str(fuente), "curso-que-no-existe"])
+    cu.main()  # no lanza SystemExit
+    assert "::notice::" in capsys.readouterr().out and not (cu.RAIZ / "cursos" / "curso-que-no-existe").exists()
+    assert issubclass(asi.SinEstudiantes, ValueError)

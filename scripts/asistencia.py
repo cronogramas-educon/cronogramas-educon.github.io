@@ -107,11 +107,15 @@ def desde_cuadro(est, clases, ahora, sal=None):
             "porEstado": por_estado, "sinMarcar": sin_t, "porClase": por_clase, "lista": lista}, sal)
 
 
+class SinEstudiantes(ValueError):
+    """El Excel existe pero aún no tiene estudiantes: no es un error, el curso simplemente todavía no publica asistencia."""
+
+
 def resumir(filas, ahora=None, clases=None, sal=None):
     """Resumen sin nombres. Lanza ValueError con un mensaje claro si el Excel no trae las columnas calculadas."""
     est = [f for f in normalizar(filas) if isinstance(f, dict) and str(f.get(NOMBRE) or "").strip()]
     if not est:
-        raise ValueError("El Excel de asistencia no tiene estudiantes: escribe sus nombres en la hoja Asistencia.")
+        raise SinEstudiantes("El Excel de asistencia no tiene estudiantes: escribe sus nombres en la hoja Asistencia.")
     if clases:
         return desde_cuadro(est, clases, ahora or datetime.now(BOGOTA), sal)
     falta = [c for c in REQUERIDAS if c not in est[0]]
