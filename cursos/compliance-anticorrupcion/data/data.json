@@ -10,9 +10,9 @@
     "horasCompletas": true,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
-    "hash": "43387c37e6654253",
-    "generadoEn": "2026-10-30T19:21:52Z",
-    "fuenteModificadaEn": "2026-10-30T19:21:35.8482434Z"
+    "hash": "45e52757b45af5d5",
+    "generadoEn": "2026-11-09T16:39:21Z",
+    "fuenteModificadaEn": "2026-11-09T16:39:04.5866922Z"
   },
   "clases": [
     {
@@ -652,9 +652,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Sebastián Villegas",
+      "profesor": "Beatriz Londoño P",
       "profesores": [
-        "Sebastián Villegas"
+        "Beatriz Londoño P"
       ],
       "dia": "Martes",
       "diaCalculado": "Martes",
@@ -727,9 +727,9 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Beatriz Londoño P",
+      "profesor": "Sebastián Villegas",
       "profesores": [
-        "Beatriz Londoño P"
+        "Sebastián Villegas"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
