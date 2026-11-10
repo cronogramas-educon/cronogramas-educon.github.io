@@ -21,8 +21,12 @@ RAIZ = Path(__file__).resolve().parent.parent
 CAMPOS_CURSO = ("programa", "programaCorto", "tipo", "marca", "modalidad", "urlPaginaOficial", "periodo", "cohorte")
 
 
-def registro(raiz=RAIZ):
-    return json.loads((Path(raiz) / "config/cursos.json").read_text(encoding="utf-8"))
+def registro(raiz=RAIZ, env=True):
+    """Registro de cursos. El código del hub NO vive en el repo público: viene del secreto ADMIN_CODIGO (env=False lo omite, para reescribir el archivo)."""
+    reg = json.loads((Path(raiz) / "config/cursos.json").read_text(encoding="utf-8"))
+    if env and os.environ.get("ADMIN_CODIGO"):
+        reg["global"]["adminCodigo"] = os.environ["ADMIN_CODIGO"].strip()
+    return reg
 
 
 def sitio_ruta(c):
@@ -168,7 +172,7 @@ def fusionar(reg, filas):
     """Aplica las filas del Excel de registro sobre el registro. Nunca borra cursos ni cambia códigos. Devuelve (avisos, cambios)."""
     cursos = reg["cursos"]
     por = {_norm(c["carpeta"]): c for c in cursos}
-    codigos = {c["codigo"] for c in cursos} | {reg["global"]["adminCodigo"]}
+    codigos = {c["codigo"] for c in cursos} | {reg["global"].get("adminCodigo", "")}
     ids = {c["id"] for c in cursos}
     avisos, cambios, vistas = [], [], set()
     for n, f in enumerate(filas, 2):  # el encabezado es la fila 1 de la hoja
@@ -261,7 +265,7 @@ def aplicar_registro(fuente, raiz=RAIZ):
         filas = json.loads(Path(fuente).read_text(encoding="utf-8"))
         if not isinstance(filas, list) or not es_registro(filas):
             raise ValueError("El Excel de registro debe tener una tabla con la columna 'Carpeta del curso'")
-        reg = registro(raiz)
+        reg = registro(raiz, env=False)
         avisos, cambios = fusionar(reg, filas)
     except Exception as e:  # el último registro bueno se conserva y el sitio base muestra el error
         _guardar_json(est, {"error": str(e), "avisos": [], "actualizado": _ahora()})
@@ -379,6 +383,8 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
         resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "cohorte": c.get("cohorte", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
                         "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "bienvenida": c["id"] in bienvenidas, "bienvenidaEnviada": enviadas.get(c["id"], {}).get("fecha", ""), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"], "encuesta": c.get("encuesta", ""),
                         "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{base_sharepoint(c['carpeta'], g)}/{c['carpeta']}", safe=":/")})
+    if len(g.get("adminCodigo", "")) < 10:
+        raise SystemExit("Falta el secreto ADMIN_CODIGO (mínimo 10 caracteres): el código del hub ya no está en el repositorio.")
     hub = salida / "g" / g["adminCodigo"]
     hub.mkdir(parents=True)
     if asistencias:

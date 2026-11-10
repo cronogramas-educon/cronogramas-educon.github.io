@@ -40,6 +40,8 @@ jobs:
         run: pip install -r requirements.txt pytest icalendar
 
       - name: Pruebas de datos y registro de cursos
+        env:
+          ADMIN_CODIGO: codigodepruebas1
         run: pytest tests/test_datos.py tests/test_cursos.py tests/test_alertas.py tests/test_asistencia.py tests/test_bienvenida.py -q
 
       - name: Anotar la bienvenida enviada por el flujo de Teams
@@ -147,6 +149,8 @@ jobs:
           python-version: '3.12'
 
       - name: Armar el sitio
+        env:
+          ADMIN_CODIGO: ${{ secrets.ADMIN_CODIGO }}
         run: python scripts/cursos.py sitio _sitio "$(git rev-parse --short=8 HEAD)"
 
       - uses: actions/upload-pages-artifact@v3

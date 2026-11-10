@@ -1,11 +1,12 @@
 """Sitio de prueba: dos cursos con datos sanitizados (enlaces de ejemplo) para las pruebas del frontend."""
-import json, shutil, sys
+import json, os, shutil, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
 from openpyxl import load_workbook
 
+os.environ.setdefault("ADMIN_CODIGO", "codigodepruebas1")  # el real vive en un secreto de GitHub
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
 import asistencia
