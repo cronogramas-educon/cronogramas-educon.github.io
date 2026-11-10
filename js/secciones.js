@@ -11,7 +11,7 @@ export function plan(el, d, abiertas) {
     return `<details class="unidad" data-slug="${esc(u.slug)}"${abiertas.has(u.slug) ? ' open' : ''}>
       <summary>${esc(legible(u.nombre))}${ic('caret-down')}</summary>
       <div class="unidad-cuerpo">${cs.map((c) => `<div class="unidad-clase">
-        <h4>${esc(nombreClase(c))} <span>${esc(fechaLarga(c.fecha))}</span></h4>
+        <h3>${esc(nombreClase(c))} <span>${esc(fechaLarga(c.fecha))}</span></h3>
         <ul>${c.temaPuntos.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div>`).join('')}</div></details>`;
   }).join('');
 }

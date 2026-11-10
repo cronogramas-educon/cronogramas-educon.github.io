@@ -657,6 +657,16 @@ def test_mi_asistencia_sin_clases_registradas_no_muestra_cifras_que_engañan(pag
     assert pagina.locator("#asis-resultado .asis-ficha").count() == 0 and pagina.errores == []
 
 
+def test_hub_en_celular_con_todo_desplegado_no_se_desborda(pagina, servidor, sitio):
+    pagina.set_viewport_size({"width": 375, "height": 812})
+    abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
+    pagina.evaluate("document.querySelectorAll('details').forEach(d => d.open = true)")
+    pagina.wait_for_timeout(600)
+    assert pagina.locator(".mx-envoltura").count() >= 1  # la matriz de asistencia es la que ensanchaba la página
+    assert pagina.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth")
+    assert pagina.errores == []
+
+
 def test_hub_panorama_indicadores_matriz_filtro_orden_y_salto_al_curso(pagina, servidor, sitio):
     abrir_hub(pagina, servidor, sitio, "2026-10-02T10:00:00-05:00")
     assert pagina.locator("#panorama").evaluate("e => e.getBoundingClientRect().top") < pagina.locator("#urgente").evaluate("e => e.getBoundingClientRect().top")  # el panorama va primero
