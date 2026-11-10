@@ -13,13 +13,13 @@ on:
     paths-ignore: ['docs/**', 'README.md', 'tests/**', 'referencias/**', 'cursos/**']
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: read   # lo mínimo por defecto; cada trabajo pide solo lo suyo
 
 jobs:
   construir:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # sube el commit "Actualizar datos desde el Excel"
     # Un grupo por curso: dos guardados del mismo Excel se hacen en orden y el último gana; cursos distintos no se pisan
     concurrency:
       group: construir-${{ github.event.client_payload.ruta || github.ref }}
@@ -132,6 +132,10 @@ jobs:
     # always(): si el Excel falló, igual se publica para que el sitio base muestre el aviso de error
     if: ${{ always() && needs.construir.outputs.desplegar == 'true' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write      # publicar en Pages
+      id-token: write   # lo exige deploy-pages
     # Solo importa el último despliegue: arma el sitio con lo más reciente de main, así ninguno pisa datos de otro curso
     concurrency:
       group: desplegar-pages
