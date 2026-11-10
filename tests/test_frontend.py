@@ -47,8 +47,9 @@ def navegador():
 
 
 @pytest.fixture
-def pagina(navegador):
-    ctx = navegador.new_context(viewport={"width": 1440, "height": 900}, accept_downloads=True)
+def pagina(navegador, request):
+    # bypass_csp solo para que Playwright pueda evaluar sus propias funciones; la prueba de CSP usa el contexto sin bypass
+    ctx = navegador.new_context(viewport={"width": 1440, "height": 900}, accept_downloads=True, bypass_csp="csp" not in request.node.name)
     p = ctx.new_page()
     p.errores = []
     p.on("pageerror", lambda e: p.errores.append(str(e)))
@@ -761,3 +762,23 @@ def test_hub_con_datos_incompletos_en_todos_los_cursos_sigue_funcionando(pagina,
         pagina.click("#asis-seguimiento summary")
     pagina.wait_for_timeout(300)
     assert [e for e in pagina.errores if "Failed to load resource" not in e] == [], como
+
+
+def test_csp_y_referrer_sin_violaciones(pagina, servidor, sitio):
+    """La CSP bloquea todo lo externo; las páginas propias (curso, hub, raíz) no deben romperse por ella."""
+    for ruta in (f"{sitio['a']}/index.html", f"{sitio['hub']}/index.html", "index.html"):
+        pagina.goto(f"{servidor}/{ruta}")
+        pagina.wait_for_timeout(1500)
+        assert pagina.locator("meta[name=referrer][content=no-referrer]").count() == 1, ruta
+        assert "script-src 'self'" in pagina.locator("meta[http-equiv=Content-Security-Policy]").get_attribute("content"), ruta
+        assert pagina.locator("#vista, #panorama, body").first.is_visible()
+    assert not pagina.errores, pagina.errores
+
+
+def test_csp_boton_reintentar_sin_manejador_en_linea(pagina, servidor, sitio):
+    pagina.route("**/data/data.json*", lambda r: r.abort())
+    pagina.goto(f"{servidor}/{sitio['a']}/index.html")
+    pagina.wait_for_selector("#vista .enlace-btn")
+    with pagina.expect_navigation():
+        pagina.click("#vista .enlace-btn")
+    assert not pagina.errores or all("Failed to load resource" in e or "ERR_FAILED" in e for e in pagina.errores), pagina.errores

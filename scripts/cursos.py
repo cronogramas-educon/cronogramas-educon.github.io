@@ -9,7 +9,7 @@ Uso:
   python scripts/cursos.py registro fuente.json                             fusiona el Excel "Registro de cursos" en config/cursos.json
   python scripts/cursos.py sinregistrar EVENTO                              anota la carpeta de un Excel que no está en el registro
 """
-import json, os, re, secrets, shutil, string, sys, unicodedata
+import base64, hashlib, json, os, re, secrets, shutil, string, sys, unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote, unquote
@@ -326,7 +326,17 @@ def _html(plantilla, **v):
     s = Path(plantilla).read_text(encoding="utf-8")
     for k, x in v.items():
         s = s.replace(f"__{k}__", str(x))
-    return s
+    return _blindar(s)
+
+
+def _blindar(html):
+    """Endurece la página (GitHub Pages no deja poner cabeceras): CSP que solo admite scripts propios y el importmap con su hash,
+    sin conexiones externas, y sin Referer para que la URL secreta del hub no viaje a SharePoint ni a ningún enlace."""
+    hashes = "".join(f" 'sha256-{base64.b64encode(hashlib.sha256(m.encode()).digest()).decode()}'"
+                     for m in re.findall(r"<script[^>]*>(.+?)</script>", html, re.S) if m.strip())
+    csp = ("default-src 'none'; script-src 'self'" + hashes + "; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; "
+           "connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'")
+    return html.replace('<meta charset="utf-8">', f'<meta charset="utf-8">\n  <meta http-equiv="Content-Security-Policy" content="{csp}">\n  <meta name="referrer" content="no-referrer">', 1)
 
 
 def _esc(s):

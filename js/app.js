@@ -176,7 +176,8 @@ async function arrancar() {
     $('titulo').textContent = cfg.programaCorto ?? 'Cronograma';
     $('vista').innerHTML = e.sinDatos
       ? `<div class="vacio"><strong>El cronograma de este curso se publicará pronto</strong>Vuelve a revisar esta página en unas horas.</div>`
-      : `<div class="vacio"><strong>No pudimos cargar el cronograma</strong>Revisa tu conexión e inténtalo de nuevo. <button class="enlace-btn" type="button" onclick="location.reload()">Reintentar</button></div>`;
+      : `<div class="vacio"><strong>No pudimos cargar el cronograma</strong>Revisa tu conexión e inténtalo de nuevo. <button class="enlace-btn" type="button">Reintentar</button></div>`;
+    if (!e.sinDatos) $('vista').querySelector('.enlace-btn').onclick = () => location.reload();
     return;
   }
   setInterval(() => { if (document.visibilityState === 'visible') tick(); }, 1000);
