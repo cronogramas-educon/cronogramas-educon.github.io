@@ -1,0 +1,17 @@
+# Propone un PR cuando hay versión nueva; las acciones están fijadas por hash, así que esto es lo que las mantiene al día.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      acciones:
+        patterns: ["*"]
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      python:
+        patterns: ["*"]
