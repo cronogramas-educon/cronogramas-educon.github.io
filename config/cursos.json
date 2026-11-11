@@ -206,6 +206,26 @@
         "equipo": "048548df-5199-41ef-9932-7994f198226b",
         "canal": "19:y6HelA3RYz7gldqFkuknZMLnjKJkRt31WHcSFT9yL4Q1@thread.tacv2"
       }
+    },
+    {
+      "id": "prueba-cafe-2027-1-cohorte-4-cuarta-vez-en-el-semestre",
+      "codigo": "gxe9kah9",
+      "carpeta": "EduContinua 2027-1/Cohorte 4 (cuarta vez en el semestre)/Diplomado Prueba cafe",
+      "tipo": "Diplomado",
+      "programa": "Prueba cafe",
+      "programaCorto": "Prueba cafe",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "",
+      "periodo": "2027-1",
+      "horario": {
+        "inicio": "18:30",
+        "fin": "21:30"
+      },
+      "cohorte": "Cohorte 4 (cuarta vez en el semestre)",
+      "teams": {
+        "equipo": "6c440265-92a3-47b6-8e69-fbded6ac1552",
+        "canal": "19:UgCk3emNWKfdv1vG1BZ9-eLdlNdgddJX5AH9z4Id-Ps1@thread.tacv2"
+      }
     }
   ]
 }
