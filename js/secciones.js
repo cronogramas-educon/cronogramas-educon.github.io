@@ -1,6 +1,6 @@
 // Secciones que dependen solo de los datos: unidades, docentes, acompañamiento y sobre el programa.
 import { esc, horario, legible, ic } from './ui.js';
-import { fechaCorta, fechaLarga, cap } from './utils-fecha.js';
+import { fechaCorta, fechaLarga, cap, partes, hora12 } from './utils-fecha.js';
 
 const nombreClase = (c) => cap(c.clase.toLowerCase());
 
@@ -30,26 +30,46 @@ export function apoyo(el, d) {
   el.innerHTML = n.length ? `En las sesiones de Teams te acompañan <strong>${esc(n.join(' y '))}</strong>.` : 'Quién te acompaña en las sesiones de Teams está por confirmar.';
 }
 
-/** Lo que un estudiante necesita saber del curso. El texto es el mismo de la bienvenida; un curso puede cambiarlo con `infoCurso` (lista de {titulo, texto}) en su configuración. */
+/** Lo que un estudiante necesita saber del curso. El texto es el mismo de la bienvenida. Un curso puede cambiarlo con `infoCurso` (lista de {titulo, texto, cifra?, rotulo?}) en su configuración:
+ *  los que traen `cifra` van arriba como datos clave; el resto, como notas. */
 export const INFO_CURSO = [
-  { titulo: 'Asistencia', texto: 'Se exige una asistencia mínima del 80 % de las clases programadas para optar al certificado. Si superas el 20 % de inasistencias, no se expide la certificación.' },
-  { titulo: 'Certificado', texto: 'El certificado en PDF se envía al correo electrónico registrado en un plazo máximo de 40 días hábiles después de terminar el curso.' },
+  { titulo: 'Asistencia', cifra: '80 %', rotulo: 'de asistencia mínima', texto: 'Se exige una asistencia mínima del 80 % de las clases programadas para optar al certificado. Si superas el 20 % de inasistencias, no se expide la certificación.' },
+  { titulo: 'Certificado', cifra: '40 días', rotulo: 'hábiles para recibirlo', texto: 'El certificado en PDF se envía al correo electrónico registrado en un plazo máximo de 40 días hábiles después de terminar el curso.' },
+  { titulo: 'Conexión', cifra: '5 min', rotulo: 'antes de cada clase', texto: 'Conéctate 5 minutos antes y revisa tu conexión a internet. El enlace de cada clase está en esta página.' },
   { titulo: 'Grabaciones', texto: 'Las sesiones se graban solo para control interno de la Universidad; por políticas institucionales no se comparten con los estudiantes.' },
   { titulo: 'Material de apoyo', texto: 'Oportunamente se compartirá un enlace a la carpeta compartida. Que haya diapositivas o guías depende del criterio de cada docente.' },
-  { titulo: 'Conexión', texto: 'Conéctate 5 minutos antes y revisa tu conexión a internet. El enlace de cada clase está en esta página.' },
   { titulo: 'Cambios y trámites', texto: 'La Universidad puede modificar la programación o a los docentes por fuerza mayor, con aviso previo. Los aplazamientos, devoluciones o cancelaciones se rigen por el Reglamento de Estudiantes.' },
   { titulo: 'Ayuda', texto: 'Si no puedes entrar a una clase o tienes una duda logística, escríbenos por el grupo del curso.' },
 ];
 
-export function infoCurso(el, cfg) {
+/** "De un vistazo": lo que se calcula solo de los datos del curso. Lo que no esté, no se muestra. */
+function alVistazo(d, cfg) {
+  const m = d?.meta ?? {};
+  const h = cfg.horario;
+  const hora = h?.inicio ? `${hora12(h.inicio)} a ${hora12(h.fin)}` : (d?.clases?.[0] ? horario(d.clases[0]) : '');
+  const fechas = m.inicio && m.fin ? `${fechaCorta(m.inicio)} a ${fechaCorta(m.fin)}` : '';
+  return [
+    [m.totalClases ? String(m.totalClases) : '', 'clases', m.horasTotales ? `${m.horasTotales} horas en total` : ''],
+    [fechas, 'del curso', m.inicio ? String(partes(m.inicio).y) : ''],
+    [hora, 'horario', 'hora de Colombia'],
+    [(cfg.modalidad ?? m.modalidad ?? '').replace(/\s*\(.*\)/, ''), 'modalidad', (/\((.*)\)/.exec(cfg.modalidad ?? m.modalidad ?? '') ?? [])[1] ?? ''],
+  ].filter(([v]) => v);
+}
+
+export function infoCurso(el, cfg, d) {
   const lista = cfg.infoCurso ?? INFO_CURSO;
-  el.innerHTML = lista.map((x) => `<div class="tarjeta"><h3>${esc(x.titulo)}</h3><p>${esc(x.texto)}</p></div>`).join('');
+  const claves = lista.filter((x) => x.cifra), notas = lista.filter((x) => !x.cifra);
+  const vistazo = alVistazo(d, cfg);
+  el.innerHTML = (vistazo.length ? `<dl class="vistazo">${vistazo.map(([v, k, n]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}${n ? `<small>${esc(n)}</small>` : ''}</dd></div>`).join('')}</dl>` : '')
+    + (claves.length ? `<div class="claves">${claves.map((x) => `<article class="clave"><p class="cifra">${esc(x.cifra)}<span>${esc(x.rotulo ?? '')}</span></p><h3>${esc(x.titulo)}</h3><p>${esc(x.texto)}</p></article>`).join('')}</div>` : '')
+    + (notas.length ? `<div class="notas">${notas.map((x) => `<article class="nota-info"><h3>${esc(x.titulo)}</h3><p>${esc(x.texto)}</p></article>`).join('')}</div>` : '');
 }
 
 export function sobre(el, d, cfg) {
   const link = cfg.urlPaginaOficial
     ? `<a class="btn" href="${esc(cfg.urlPaginaOficial)}" target="_blank" rel="noopener noreferrer">Inscripción y valores${ic('arrow-up-right')}</a>` : '';
-  el.innerHTML = `<p>La Universidad puede ajustar el cronograma. Esta página siempre muestra la versión vigente.</p>${link}`;
+  const nombre = cfg.programa ?? d?.meta?.programa;
+  el.innerHTML = `<div>${nombre ? `<p class="sobre-nombre">${esc(nombre)}</p>` : ''}<p>${esc([cfg.facultad, cfg.universidad].filter(Boolean).join(', '))}. La programación puede ajustarse: esta página siempre muestra la versión vigente.</p></div>${link}`;
 }
 
 /** Personas de la Facultad a quienes escribir por temas logísticos o administrativos. Cada una: nombre, cargo y correo institucional. */

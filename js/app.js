@@ -86,7 +86,7 @@ function estaticos() {
   $('contacto').hidden = !hayContactos;
   $('nav').querySelector('[href="#contacto"]').hidden = !hayContactos;
   if (hayContactos) sec.contactos($('contactos-lista'), cfg.contactos);
-  sec.infoCurso($('info-contenido'), cfg);
+  sec.infoCurso($('info-contenido'), cfg, datos);
   sec.miAsistencia($('asistencia'), $('nav').querySelector('[href="#asistencia"]'), $('asis-n'), $('asis-resultado'));
   sec.sobre($('sobre-contenido'), datos, cfg);
   $('pie-nombre').textContent = [cfg.universidad, cfg.facultad].filter(Boolean).join(', ');

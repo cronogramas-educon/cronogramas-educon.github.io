@@ -594,7 +594,7 @@ def test_pagina_de_estudiantes_trae_la_informacion_del_curso(pagina, base):
     abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
     info = pagina.inner_text("#info-contenido")
     assert "80 %" in info and "40 días hábiles" in info and "grupo del curso" in info
-    assert pagina.locator("#info-contenido .tarjeta").count() == 7 and pagina.locator('#nav a[href="#info"]').count() == 1
+    assert pagina.locator("#info-contenido .clave, #info-contenido .nota-info").count() == 7 and pagina.locator("#info-contenido .vistazo > div").count() >= 3 and pagina.locator('#nav a[href="#info"]').count() == 1
     assert pagina.errores == []
 
 
