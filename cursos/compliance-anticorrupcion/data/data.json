@@ -10,9 +10,9 @@
     "horasCompletas": true,
     "inicio": "2026-10-01",
     "fin": "2026-12-04",
-    "hash": "45e52757b45af5d5",
-    "generadoEn": "2026-11-09T16:39:21Z",
-    "fuenteModificadaEn": "2026-11-09T16:39:04.5866922Z"
+    "hash": "08635abd990886ce",
+    "generadoEn": "2026-11-12T22:26:26Z",
+    "fuenteModificadaEn": "2026-11-12T22:26:06.9579560Z"
   },
   "clases": [
     {
@@ -626,9 +626,8 @@
       ],
       "temaHeredado": false,
       "horas": 3,
-      "profesor": "Marta Lucia Ramírez y Beatriz Londoño P",
+      "profesor": "Beatriz Londoño P",
       "profesores": [
-        "Marta Lucia Ramírez",
         "Beatriz Londoño P"
       ],
       "dia": "Jueves",
