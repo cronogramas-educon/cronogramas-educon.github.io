@@ -782,3 +782,17 @@ def test_csp_boton_reintentar_sin_manejador_en_linea(pagina, servidor, sitio):
     with pagina.expect_navigation():
         pagina.click("#vista .enlace-btn")
     assert not pagina.errores or all("Failed to load resource" in e or "ERR_FAILED" in e for e in pagina.errores), pagina.errores
+
+
+def test_temario_marca_la_unidad_en_curso_y_atenua_las_terminadas(pagina, base, sitio):
+    datos = json.loads(sitio["datos_a"].read_text(encoding="utf-8"))
+    abrir(pagina, base, "ahora=2026-10-14T10:00:00-05:00")
+    assert pagina.locator("#plan-lista .en-curso").count() == 1
+    sig = min((c for c in datos["clases"] if c["fin"] > "2026-10-14T10:00:00-05:00"), key=lambda c: c["inicio"])
+    assert pagina.locator("#plan-lista .unidad:has(.en-curso)").get_attribute("data-slug") == sig["unidadSlug"]
+    slugs = [u["slug"] for u in datos["unidades"]]
+    assert pagina.locator("#plan-lista .unidad.terminada:has(.en-curso)").count() == 0
+    abrir(pagina, base, "ahora=2027-01-15T10:00:00-05:00")  # curso terminado: ninguna "En curso", todas atenuadas
+    assert pagina.locator("#plan-lista .en-curso").count() == 0
+    assert pagina.locator("#plan-lista .unidad.terminada").count() == len(slugs)
+    assert pagina.errores == []

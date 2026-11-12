@@ -1,15 +1,19 @@
 // Secciones que dependen solo de los datos: unidades, docentes, acompañamiento y sobre el programa.
 import { esc, horario, legible, ic } from './ui.js';
-import { fechaCorta, fechaLarga, cap, partes, hora12 } from './utils-fecha.js';
+import { fechaCorta, fechaLarga, cap, partes, hora12, estadoClase } from './utils-fecha.js';
 
 const nombreClase = (c) => cap(c.clase.toLowerCase());
 
 export function plan(el, d, abiertas) {
   const porId = new Map(d.clases.map((c) => [c.id, c]));
+  // "En curso" es la unidad de la próxima clase (o de la que está en vivo); las unidades con todas sus clases dadas quedan atenuadas.
+  const ya = (u) => u.clases.every((id) => { const c = porId.get(id); return c && estadoClase(c) === 'pasada'; });
+  const sig = [...d.clases].sort((a, b) => a.inicio.localeCompare(b.inicio)).find((c) => estadoClase(c) !== 'pasada');
+  const actual = sig?.unidadSlug;
   el.innerHTML = d.unidades.map((u) => {
     const cs = u.clases.map((id) => porId.get(id));
-    return `<details class="unidad" data-slug="${esc(u.slug)}"${abiertas.has(u.slug) ? ' open' : ''}>
-      <summary>${esc(legible(u.nombre))}${ic('caret-down')}</summary>
+    return `<details class="unidad${ya(u) ? ' terminada' : ''}" data-slug="${esc(u.slug)}"${abiertas.has(u.slug) ? ' open' : ''}>
+      <summary>${esc(legible(u.nombre))}${u.slug === actual ? '<span class="en-curso">En curso</span>' : ''}${ic('caret-down')}</summary>
       <div class="unidad-cuerpo">${cs.map((c) => `<div class="unidad-clase">
         <h3>${esc(nombreClase(c))} <span>${esc(fechaLarga(c.fecha))}</span></h3>
         <ul>${c.temaPuntos.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div>`).join('')}</div></details>`;

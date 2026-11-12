@@ -158,6 +158,8 @@
 .unidad summary { display: flex; align-items: center; gap: 16px; padding: 18px 4px; cursor: pointer; list-style: none; font: 700 1.08rem/1.35 var(--font-display); }
 .unidad summary::-webkit-details-marker { display: none; }
 .unidad summary:hover { color: #fff; }
+.unidad.terminada summary { color: var(--felt-2); font-weight: 600; }
+.en-curso { flex: none; padding: 3px 10px; border-radius: var(--r-pill); background: var(--red); color: #fff; font: 700 .72rem/1.3 var(--font-body); letter-spacing: .08em; text-transform: uppercase; }
 .unidad summary .ic { margin-left: auto; transition: transform .3s var(--ease); color: var(--red-tint); }
 .unidad[open] summary .ic { transform: rotate(180deg); }
 .unidad-cuerpo { padding: 2px 4px 24px; display: grid; gap: 18px; max-width: 760px; }
