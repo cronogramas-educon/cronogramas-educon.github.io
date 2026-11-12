@@ -46,11 +46,12 @@ export const INFO_CURSO = [
 function alVistazo(d, cfg) {
   const m = d?.meta ?? {};
   const h = cfg.horario;
-  const hora = h?.inicio ? `${hora12(h.inicio)} a ${hora12(h.fin)}` : (d?.clases?.[0] ? horario(d.clases[0]) : '');
-  const fechas = m.inicio && m.fin ? `${fechaCorta(m.inicio)} a ${fechaCorta(m.fin)}` : '';
+  const c0 = d?.clases?.find((c) => c.inicio && c.fin);
+  const hora = h?.inicio && h?.fin ? `${hora12(h.inicio)} a ${hora12(h.fin)}` : (c0 ? horario(c0) : '');
+  const fechas = m.inicio && m.fin && /^\d{4}-\d\d-\d\d$/.test(m.inicio) ? `${fechaCorta(m.inicio)} a ${fechaCorta(m.fin)}` : '';
   return [
     [m.totalClases ? String(m.totalClases) : '', 'clases', m.horasTotales ? `${m.horasTotales} horas en total` : ''],
-    [fechas, 'del curso', m.inicio ? String(partes(m.inicio).y) : ''],
+    [fechas, 'del curso', fechas ? String(partes(m.inicio).y) : ''],
     [hora, 'horario', 'hora de Colombia'],
     [(cfg.modalidad ?? m.modalidad ?? '').replace(/\s*\(.*\)/, ''), 'modalidad', (/\((.*)\)/.exec(cfg.modalidad ?? m.modalidad ?? '') ?? [])[1] ?? ''],
   ].filter(([v]) => v);
@@ -59,7 +60,8 @@ function alVistazo(d, cfg) {
 export function infoCurso(el, cfg, d) {
   const lista = cfg.infoCurso ?? INFO_CURSO;
   const claves = lista.filter((x) => x.cifra), notas = lista.filter((x) => !x.cifra);
-  const vistazo = alVistazo(d, cfg);
+  let vistazo = [];
+  try { vistazo = alVistazo(d, cfg); } catch { /* datos incompletos: la franja es un extra, nunca debe romper la sección */ }
   el.innerHTML = (vistazo.length ? `<dl class="vistazo">${vistazo.map(([v, k, n]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}${n ? `<small>${esc(n)}</small>` : ''}</dd></div>`).join('')}</dl>` : '')
     + (claves.length ? `<div class="claves">${claves.map((x) => `<article class="clave"><p class="cifra">${esc(x.cifra)}<span>${esc(x.rotulo ?? '')}</span></p><h3>${esc(x.titulo)}</h3><p>${esc(x.texto)}</p></article>`).join('')}</div>` : '')
     + (notas.length ? `<div class="notas">${notas.map((x) => `<article class="nota-info"><h3>${esc(x.titulo)}</h3><p>${esc(x.texto)}</p></article>`).join('')}</div>` : '');
