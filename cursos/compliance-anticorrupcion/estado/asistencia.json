@@ -1,10 +1,10 @@
 {
- "actualizado": "2026-11-04T17:54:13-05:00",
+ "actualizado": "2026-11-14T12:57:38-05:00",
  "programadas": 35,
  "dictadas": 17,
  "permitidas": 7,
  "estudiantes": 14,
- "promedio": 0.962,
+ "promedio": 0.9622,
  "porEstado": {
   "Perdió el mínimo": 0,
   "En riesgo": 0,
@@ -12,7 +12,7 @@
   "Al día": 14,
   "Aprobó": 0
  },
- "sinMarcar": 1,
+ "sinMarcar": 0,
  "porClase": [
   {
    "clase": 1,
@@ -73,8 +73,8 @@
   {
    "clase": 9,
    "estado": "Dictada",
-   "asistieron": 13,
-   "marcadas": 13,
+   "asistieron": 14,
+   "marcadas": 14,
    "de": 14
   },
   {
@@ -264,10 +264,10 @@
   {
    "n": 11,
    "estado": "Al día",
-   "asistio": 13,
+   "asistio": 14,
    "faltas": 3,
    "quedan": 4,
-   "porcentaje": 0.8125,
+   "porcentaje": 0.8235294117647058,
    "puedeLlegar": 0.9142857142857143,
    "clave": "252d65900f75d2976e784baa519eac6e",
    "seguimiento": "",
@@ -280,6 +280,7 @@
     "6": 1,
     "7": 0,
     "8": 1,
+    "9": 1,
     "10": 1,
     "11": 1,
     "12": 1,
