@@ -182,7 +182,7 @@ jobs:
     steps:
       - name: Aviso si falta el token
         if: env.VERCEL_TOKEN == ''
-        run: echo "::notice::Falta el secreto VERCEL_TOKEN: no se publica en Vercel (GitHub Pages no se ve afectado)."
+        run: echo "::notice::Falta el secreto VERCEL_TOKEN, no se publica en Vercel. GitHub Pages no se ve afectado."
 
       - if: env.VERCEL_TOKEN != ''
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
