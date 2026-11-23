@@ -37,7 +37,9 @@ Flujo "Cronograma a GitHub"  (lee Table1, manda las filas)
    v
 GitHub Actions "Actualizar datos"  (valida, construye, detecta cambios, commit, despliega)
    v
-GitHub Pages  https://cronogramas-educon.github.io/
+Vercel (principal)  https://cronogramas-educon.vercel.app/
+GitHub Pages (dirección anterior)  https://cronogramas-educon.github.io/  sus páginas HTML solo redirigen a Vercel (misma ruta, filtros y ancla);
+                                    conserva cronograma.ics y los datos para quien ya se suscribió con webcal://
    |-- c/<curso>-<codigo>/   página de estudiantes (solo esta se comparte)
    |-- g/<codigo>/           sitio de administración
    '-- index.html            página neutra
@@ -93,6 +95,7 @@ Gotchas conocidos del diseñador:
 ## 6. GitHub
 
 - Repositorio público `cronogramas-educon/cronogramas-educon.github.io`. Settings > Pages > Source: GitHub Actions.
+- Publicación: el flujo "Actualizar datos" arma el sitio una vez para Vercel (job `vercel`, secreto `VERCEL_TOKEN`, cuenta educofdcp, proyecto `cronogramas-educon`) y otra vez para Pages con `--redirigir` (job `desplegar`). `config/cursos.json` `urlSitio` es la dirección principal y la usan los mensajes de bienvenida. Para volver a Pages como principal: `urlSitio` de vuelta a github.io y quitar `--redirigir`.
 - Organización: Settings > Third-party access > OAuth application policy debe decir "No restrictions"; si no, el conector de GitHub de Power Automate recibe Forbidden.
 - Repositorio privado auxiliar `cronogramas-educon/avisos-internos`: solo guarda las incidencias que activan las alertas por correo.
 - Variables del repositorio: `MODO_ENTRADA=json` (heredada), `RESPONSABLE_AVISOS=EducontinuaFEJPI` (a quién se asignan las incidencias; debe ser la cuenta con la que está conectado el flujo) y `ALERTAS_ACTIVAS=true` (interruptor de las alertas por correo; si no existe o vale otra cosa, solo se anota en el resumen de la ejecución).

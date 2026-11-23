@@ -7,7 +7,7 @@ El Excel manda. Si contradice la página oficial, la página muestra lo del Exce
 ## Cómo está organizado
 
 ```
-https://cronogramas-educon.github.io/
+https://cronogramas-educon.vercel.app/          (sitio principal, en Vercel)
 ├── c/<curso>-<código>/    página del curso, la única que se comparte con sus estudiantes
 ├── g/<código>/            sitio base de administración (solo para quienes administran)
 └── index.html             página neutra: no lista cursos ni enlaces

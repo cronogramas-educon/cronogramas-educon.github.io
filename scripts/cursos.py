@@ -4,7 +4,7 @@
 Uso:
   python scripts/cursos.py resolver "<ruta de la carpeta en SharePoint>"   imprime el id del curso (código 3 si no está registrado)
   python scripts/cursos.py sincronizar                                      escribe cursos/<id>/config/contenido.json desde config/cursos.json
-  python scripts/cursos.py sitio SALIDA [VERSION]                           arma el sitio publicable en SALIDA
+  python scripts/cursos.py sitio SALIDA [VERSION] [--redirigir]             arma el sitio publicable en SALIDA (con --redirigir, las páginas HTML mandan a g.urlSitio)
   python scripts/cursos.py recibir EVENTO                                   lee el aviso de Power Automate y escribe fuente.json y las salidas del workflow
   python scripts/cursos.py registro fuente.json                             fusiona el Excel "Registro de cursos" en config/cursos.json
   python scripts/cursos.py sinregistrar EVENTO                              anota la carpeta de un Excel que no está en el registro
@@ -343,7 +343,45 @@ def _esc(s):
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
 
 
-def armar_sitio(salida, version="dev", raiz=RAIZ):
+PAGINA_REDIRECCION = """<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Esta página cambió de dirección</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="refresh" content="3; url=__DESTINO____RUTA__">
+  <style>html{background:#0B1B3D;color:#EEF1FA}body{min-height:100vh;margin:0;display:grid;place-items:center;font:16px/1.5 system-ui,sans-serif;text-align:center;padding:24px}a{color:#FF7A8C}h1{font-size:1.4rem}</style>
+</head>
+<body>
+  <main>
+    <h1>Esta página cambió de dirección</h1>
+    <p>Te llevamos a la nueva. Si no pasa nada, entra aquí:<br><a id="nueva" href="__DESTINO____RUTA__">__DESTINO____RUTA__</a></p>
+  </main>
+  <script>
+    // Conserva la ruta, los filtros (?docente=…) y el ancla (#…) del enlace original.
+    var destino = "__DESTINO__" + location.pathname + location.search + location.hash;
+    document.getElementById("nueva").href = destino;
+    document.getElementById("nueva").textContent = destino;
+    location.replace(destino);
+  </script>
+</body>
+</html>
+"""
+
+
+def redirigir_paginas(salida, destino):
+    """Convierte cada página HTML del sitio en una redirección a la misma ruta de `destino`. Los demás archivos (cronograma.ics, datos) se dejan:
+    una app de calendario no sigue redirecciones HTML y los estudiantes ya suscritos a la dirección anterior deben seguir recibiendo cambios."""
+    salida, destino = Path(salida), destino.rstrip("/")
+    for pagina in salida.rglob("*.html"):
+        rel = pagina.relative_to(salida).as_posix()
+        ruta = "/" + (rel[: -len("index.html")] if rel.endswith("index.html") else rel)
+        pagina.write_text(_blindar(PAGINA_REDIRECCION.replace("__DESTINO__", destino).replace("__RUTA__", ruta)), encoding="utf-8")
+
+
+def armar_sitio(salida, version="dev", raiz=RAIZ, redirigir=False):
+    """`redirigir`: el sitio que se publica es solo el aviso de mudanza hacia g.urlSitio (la dirección anterior)."""
     raiz, salida = Path(raiz), Path(salida)
     reg = registro(raiz)
     g = reg["global"]
@@ -413,6 +451,8 @@ def armar_sitio(salida, version="dev", raiz=RAIZ):
             "sinRegistrar": sin, "formularioRegistro": g.get("formularioRegistro", ""), "formularioBienvenida": g.get("formularioBienvenida", ""), "preguntasBienvenida": g.get("preguntasBienvenida", {}), "encuestaSatisfaccion": g.get("encuestaSatisfaccion", ""), "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=(quote(g["registroUrl"], safe=":/") if g.get("registroUrl") else enlace(g["registroRuta"]) if g.get("registroRuta") else "") + "?web=1")}
     (hub / "cursos.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
     (hub / "index.html").write_text(_html(raiz / "plantilla/hub.html", V=version, BASE="../../"), encoding="utf-8")
+    if redirigir:
+        redirigir_paginas(salida, g["urlSitio"])
     return salida
 
 
@@ -448,7 +488,8 @@ def main():
         if isinstance(p, dict) and p.get("ruta"):
             anotar_sin_registrar(p["ruta"])
     elif cmd == "sitio":
-        armar_sitio(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else "dev")
+        args = [a for a in sys.argv[3:] if not a.startswith("--")]
+        armar_sitio(sys.argv[2], args[0] if args else "dev", redirigir="--redirigir" in sys.argv)
     else:
         sys.exit(__doc__)
 

@@ -155,7 +155,8 @@ jobs:
       - name: Armar el sitio
         env:
           ADMIN_CODIGO: ${{ secrets.ADMIN_CODIGO }}
-        run: python scripts/cursos.py sitio _sitio "$(git rev-parse --short=8 HEAD)"
+        # Pages quedó como dirección anterior: sus páginas redirigen a Vercel; el cronograma.ics y los datos siguen ahí para quien ya se suscribió
+        run: python scripts/cursos.py sitio _sitio "$(git rev-parse --short=8 HEAD)" --redirigir
 
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:

@@ -1,12 +1,14 @@
 """Pruebas de humo del frontend con Chromium headless. Se omiten si Playwright no está instalado.
 La hora se simula con ?ahora=..., sin tocar el reloj del sistema."""
-import functools, http.server, json, threading
+import functools, http.server, json, sys, threading
 from pathlib import Path
 
 import pytest
 
 pw = pytest.importorskip("playwright.sync_api")
 RAIZ = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ / "scripts"))
+import cursos as cu
 
 
 class Silencioso(http.server.SimpleHTTPRequestHandler):
@@ -796,3 +798,73 @@ def test_temario_marca_la_unidad_en_curso_y_atenua_las_terminadas(pagina, base, 
     assert pagina.locator("#plan-lista .en-curso").count() == 0
     assert pagina.locator("#plan-lista .unidad.terminada").count() == len(slugs)
     assert pagina.errores == []
+
+
+# --- La dirección de GitHub Pages quedó como "anterior": sus páginas redirigen a Vercel (g.urlSitio)
+
+DESTINO = "https://cronogramas-educon.vercel.app"
+
+
+class ConPagina404(Silencioso):
+    """Como GitHub Pages: una ruta que no existe responde 404 con el contenido de 404.html."""
+    def send_error(self, code, message=None, explain=None):
+        pagina = Path(self.directory) / "404.html"
+        if code != 404 or not pagina.exists():
+            return super().send_error(code, message, explain)
+        cuerpo = pagina.read_bytes()
+        self.send_response(404)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(cuerpo)))
+        self.end_headers()
+        self.wfile.write(cuerpo)
+
+
+@pytest.fixture(scope="module")
+def sitio_anterior(sitio, tmp_path_factory):
+    out = cu.armar_sitio(tmp_path_factory.mktemp("anterior") / "_sitio", "test", raiz=sitio["dir"].parent, redirigir=True)
+    srv = Servidor(("127.0.0.1", 0), functools.partial(ConPagina404, directory=str(out)))
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    yield out, f"http://127.0.0.1:{srv.server_address[1]}"
+    srv.shutdown()
+
+
+def test_anterior_todas_las_paginas_son_redireccion_y_se_conservan_ics_y_datos(sitio_anterior, sitio):
+    out, _ = sitio_anterior
+    paginas = list(out.rglob("*.html"))
+    assert len(paginas) >= 5  # raíz, 404, hub y los cursos
+    for p in paginas:
+        t = p.read_text(encoding="utf-8")
+        assert "Esta página cambió de dirección" in t and DESTINO in t and "js/app.js" not in t and "js/hub.js" not in t, p
+        assert "Content-Security-Policy" in t and 'name="referrer"' in t, p
+    curso = out / sitio["a"]
+    assert (curso / "cronograma.ics").exists() and (curso / "data/data.json").exists()  # quien ya se suscribió con webcal:// sigue recibiendo cambios
+    assert f'content="3; url={DESTINO}/{sitio["a"]}/"' in (curso / "index.html").read_text(encoding="utf-8")
+
+
+def _con_destino(pagina):
+    pagina.route(f"{DESTINO}/**", lambda r: r.fulfill(status=200, content_type="text/html", body="<title>destino</title><p>nueva</p>"))
+
+
+def test_anterior_redirige_conservando_ruta_filtros_y_ancla(navegador, sitio_anterior, sitio):
+    _, url = sitio_anterior
+    ctx = navegador.new_context()
+    p = ctx.new_page()
+    _con_destino(p)
+    for entrada, final in ((f"{sitio['a']}/?docente=Ana&vista=lista#clase-3", f"{DESTINO}/{sitio['a']}/?docente=Ana&vista=lista#clase-3"),
+                           (f"{sitio['hub']}/", f"{DESTINO}/{sitio['hub']}/"),
+                           ("", f"{DESTINO}/"),
+                           ("no-existe/otra?x=1", f"{DESTINO}/no-existe/otra?x=1")):  # 404.html también redirige, a la misma ruta
+        p.goto(f"{url}/{entrada}")
+        p.wait_for_url(final)
+        assert p.url == final, entrada
+    ctx.close()
+
+
+def test_anterior_sin_javascript_redirige_por_meta_refresh(navegador, sitio_anterior, sitio):
+    _, url = sitio_anterior
+    ctx = navegador.new_context(java_script_enabled=False)
+    p = ctx.new_page()
+    _con_destino(p)
+    p.goto(f"{url}/{sitio['a']}/")
+    p.wait_for_url(f"{DESTINO}/{sitio['a']}/", timeout=8000)
+    ctx.close()
