@@ -101,7 +101,7 @@ def test_cuenta_regresiva_avanza(pagina, base):
 
 
 def test_filtro_docente_incluye_clases_con_dos_docentes(pagina, base):
-    abrir(pagina, base, "docente=Beatriz%20Londo%C3%B1o%20P&vista=lista")
+    abrir(pagina, base, "docente=Beatriz%20Londo%C3%B1o%20P&vista=lista&ahora=2026-10-01T09:00:00-05:00")  # hora fija: sin ella la prueba dependía de qué clases ya habían pasado hoy
     filas = pagina.locator(".fila")
     textos = " ".join(filas.all_inner_texts())
     assert "Clase 23" in textos and "Clase 30" in textos  # compartidas con Marta Lucia Ramírez
