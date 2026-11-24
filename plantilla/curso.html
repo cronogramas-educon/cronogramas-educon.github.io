@@ -44,6 +44,13 @@
         <p class="lead" id="lead"></p>
       </div>
       <div id="panel" aria-live="off"></div>
+      <nav class="accesos" aria-label="Accesos rápidos">
+        <a href="#cronograma"><strong>Ver el cronograma</strong><span>Todas las clases, por mes o en lista.</span></a>
+        <a href="#calendario-acciones"><strong>Llevarlo a mi calendario</strong><span>Recibe las clases y sus cambios.</span></a>
+        <a href="#asistencia" hidden><strong>Revisar mi asistencia</strong><span>Con tu cédula, sin nombres.</span></a>
+        <a href="#temario"><strong>Ver los temas</strong><span>Qué se estudia en cada unidad.</span></a>
+        <a href="#docentes"><strong>Conocer a los docentes</strong><span>Quién dicta cada clase.</span></a>
+      </nav>
     </section>
 
     <section class="seccion" id="cronograma">
@@ -70,7 +77,7 @@
         <p class="contador" id="contador" aria-live="polite"></p>
       </div>
       <div id="vista"></div>
-      <div class="acciones">
+      <div class="acciones" id="calendario-acciones">
         <details class="menu" id="menu-ics">
           <summary class="btn"><span data-ic="calendar-plus"></span>Agregar a mi calendario<span data-ic="caret-down"></span></summary>
           <div class="menu-panel papel">

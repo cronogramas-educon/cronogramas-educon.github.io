@@ -161,6 +161,25 @@ function enlazar() {
   iniciarLista($('vista'));
   iniciarCalendario($('vista'), { poner, estado, mesesActual: () => mesesDe(datos.meta) });
   suscribir(pintar);
+  menuVivo();
+}
+
+// Accesos rápidos solo a lo que existe (mismo estado que el menú) y menú que marca la sección que se está leyendo.
+function menuVivo() {
+  const nav = $('nav');
+  const sincronizar = () => document.querySelectorAll('.accesos a').forEach((a) => {
+    const n = nav.querySelector(`[href="${a.getAttribute('href')}"]`);
+    a.hidden = !!n && n.hidden;
+  });
+  new MutationObserver(sincronizar).observe(nav, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
+  sincronizar();
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    nav.querySelectorAll('a').forEach((a) => a.toggleAttribute('aria-current', a.getAttribute('href') === `#${e.target.id}`));
+    nav.querySelectorAll('a[aria-current]').forEach((a) => a.setAttribute('aria-current', 'true'));
+  }), { rootMargin: '-25% 0px -65% 0px' });
+  nav.querySelectorAll('a').forEach((a) => { const s = document.querySelector(a.getAttribute('href')); if (s) io.observe(s); });
 }
 
 async function arrancar() {
