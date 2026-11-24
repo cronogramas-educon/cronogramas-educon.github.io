@@ -391,7 +391,7 @@ def preparar_vercel(salida, reg, raiz):
         if pagina.exists():
             pagina.write_text(pagina.read_text(encoding="utf-8").replace("</body>", cuerpo, 1), encoding="utf-8")
         if not c["id"].startswith("prueba"):
-            cfg["redirects"].append({"source": f"/{c['id']}", "destination": f"/{sitio_ruta(c)}/", "permanent": False})
+            cfg["redirects"].append({"source": f"/{c['id']}/", "destination": f"/{sitio_ruta(c)}/", "permanent": False})
     (salida / "vercel.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
