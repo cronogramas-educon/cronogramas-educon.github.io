@@ -200,8 +200,7 @@ jobs:
         env:
           ADMIN_CODIGO: ${{ secrets.ADMIN_CODIGO }}
         run: |
-          python scripts/cursos.py sitio _sitio "$(git rev-parse --short=8 HEAD)"
-          cp vercel.json _sitio/vercel.json
+          python scripts/cursos.py sitio _sitio "$(git rev-parse --short=8 HEAD)" --vercel
 
       - name: Publicar en Vercel
         if: env.VERCEL_TOKEN != ''

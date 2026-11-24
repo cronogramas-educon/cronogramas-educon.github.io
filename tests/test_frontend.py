@@ -868,3 +868,14 @@ def test_anterior_sin_javascript_redirige_por_meta_refresh(navegador, sitio_ante
     p.goto(f"{url}/{sitio['a']}/")
     p.wait_for_url(f"{DESTINO}/{sitio['a']}/", timeout=8000)
     ctx.close()
+
+
+def test_vercel_analitica_solo_en_cursos_y_enlaces_cortos(tmp_path):
+    cu.armar_sitio(tmp_path, "t", vercel=True)
+    cfg = json.loads((tmp_path / "vercel.json").read_text(encoding="utf-8"))
+    cortos = {r["source"]: r["destination"] for r in cfg["redirects"]}
+    assert cortos["/compliance-anticorrupcion"].startswith("/c/compliance-anticorrupcion-")
+    assert not any("prueba" in s for s in cortos)
+    assert cfg["headers"] and cfg["trailingSlash"] is True
+    assert all("_vercel/insights" in p.read_text(encoding="utf-8") for p in (tmp_path / "c").glob("*/index.html"))
+    assert not any("_vercel" in p.read_text(encoding="utf-8") for p in (tmp_path / "g").glob("*/index.html"))

@@ -4,7 +4,7 @@
 Uso:
   python scripts/cursos.py resolver "<ruta de la carpeta en SharePoint>"   imprime el id del curso (código 3 si no está registrado)
   python scripts/cursos.py sincronizar                                      escribe cursos/<id>/config/contenido.json desde config/cursos.json
-  python scripts/cursos.py sitio SALIDA [VERSION] [--redirigir]             arma el sitio publicable en SALIDA (con --redirigir, las páginas HTML mandan a g.urlSitio)
+  python scripts/cursos.py sitio SALIDA [VERSION] [--redirigir|--vercel]           arma el sitio publicable en SALIDA (con --redirigir, las páginas HTML mandan a g.urlSitio)
   python scripts/cursos.py recibir EVENTO                                   lee el aviso de Power Automate y escribe fuente.json y las salidas del workflow
   python scripts/cursos.py registro fuente.json                             fusiona el Excel "Registro de cursos" en config/cursos.json
   python scripts/cursos.py sinregistrar EVENTO                              anota la carpeta de un Excel que no está en el registro
@@ -380,7 +380,22 @@ def redirigir_paginas(salida, destino):
         pagina.write_text(_blindar(PAGINA_REDIRECCION.replace("__DESTINO__", destino).replace("__RUTA__", ruta)), encoding="utf-8")
 
 
-def armar_sitio(salida, version="dev", raiz=RAIZ, redirigir=False):
+def preparar_vercel(salida, reg, raiz):
+    """Solo en Vercel: analítica y velocidad (scripts propios de Vercel, sin cookies) en las páginas de curso, no en el hub secreto;
+    y enlaces cortos /<id-del-curso> hacia la carpeta con código (se omiten los cursos de prueba)."""
+    cuerpo = '<script defer src="/_vercel/insights/script.js"></script>\n  <script defer src="/_vercel/speed-insights/script.js"></script>\n</body>'
+    cfg = json.loads((raiz / "vercel.json").read_text(encoding="utf-8"))
+    cfg["redirects"] = []
+    for c in reg["cursos"]:
+        pagina = salida / sitio_ruta(c) / "index.html"
+        if pagina.exists():
+            pagina.write_text(pagina.read_text(encoding="utf-8").replace("</body>", cuerpo, 1), encoding="utf-8")
+        if not c["id"].startswith("prueba"):
+            cfg["redirects"].append({"source": f"/{c['id']}", "destination": f"/{sitio_ruta(c)}/", "permanent": False})
+    (salida / "vercel.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def armar_sitio(salida, version="dev", raiz=RAIZ, redirigir=False, vercel=False):
     """`redirigir`: el sitio que se publica es solo el aviso de mudanza hacia g.urlSitio (la dirección anterior)."""
     raiz, salida = Path(raiz), Path(salida)
     reg = registro(raiz)
@@ -451,6 +466,8 @@ def armar_sitio(salida, version="dev", raiz=RAIZ, redirigir=False):
             "sinRegistrar": sin, "formularioRegistro": g.get("formularioRegistro", ""), "formularioBienvenida": g.get("formularioBienvenida", ""), "preguntasBienvenida": g.get("preguntasBienvenida", {}), "encuestaSatisfaccion": g.get("encuestaSatisfaccion", ""), "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=(quote(g["registroUrl"], safe=":/") if g.get("registroUrl") else enlace(g["registroRuta"]) if g.get("registroRuta") else "") + "?web=1")}
     (hub / "cursos.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
     (hub / "index.html").write_text(_html(raiz / "plantilla/hub.html", V=version, BASE="../../"), encoding="utf-8")
+    if vercel:
+        preparar_vercel(salida, reg, raiz)
     if redirigir:
         redirigir_paginas(salida, g["urlSitio"])
     return salida
@@ -489,7 +506,7 @@ def main():
             anotar_sin_registrar(p["ruta"])
     elif cmd == "sitio":
         args = [a for a in sys.argv[3:] if not a.startswith("--")]
-        armar_sitio(sys.argv[2], args[0] if args else "dev", redirigir="--redirigir" in sys.argv)
+        armar_sitio(sys.argv[2], args[0] if args else "dev", redirigir="--redirigir" in sys.argv, vercel="--vercel" in sys.argv)
     else:
         sys.exit(__doc__)
 
