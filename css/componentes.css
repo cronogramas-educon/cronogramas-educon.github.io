@@ -301,24 +301,8 @@
 .anillo b { font: 800 2rem/1 var(--font-display); font-stretch: 105%; }
 .anillo small { margin-top: 4px; font-size: .78rem; color: var(--felt-2); }
 .progreso-msj { margin: 0; font: 600 1rem/1.4 var(--font-display); }
-.pantalla { border-radius: 14px; overflow: hidden; background: var(--paper); color: var(--ink); box-shadow: var(--sombra-chica); max-width: 420px; }
-.pantalla-barra { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: var(--paper-2); font-size: .75rem; color: var(--ink-2); }
-.pantalla-barra i { width: 8px; height: 8px; border-radius: 50%; background: #C5CDE0; }
-.pantalla-barra span { margin-left: 8px; padding: 3px 10px; border-radius: var(--r-pill); background: #fff; }
-.pantalla-cuerpo { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px 20px 28px; min-height: 140px; }
-.paso .pantalla p { color: var(--ink); max-width: none; }
-.pt-titulo { font: 800 1rem var(--font-display); }
-.pt-clic { padding: 10px 20px; border-radius: var(--r-pill); background: var(--ink); color: #fff; font: 700 .88rem var(--font-body); box-shadow: 0 0 0 4px var(--paper), 0 0 0 7px var(--red); }
-.pt-campo { width: min(100%, 240px); padding: 10px 14px; border: 1.5px solid #C5CDE0; border-radius: 10px; background: #fff; color: var(--ink-2); font-size: .88rem; }
-.pt-activo { border-color: var(--red); }
-.pt-lleno { color: var(--ink); letter-spacing: .2em; }
-.paso .pantalla .pt-correo { width: min(100%, 240px); padding: 12px 14px; border-left: 3px solid var(--red); background: #fff; border-radius: 8px; font-size: .82rem; color: var(--ink-2); }
-.pt-correo b { display: block; margin-top: 4px; font: 800 1.3rem var(--font-display); letter-spacing: .25em; color: var(--ink); }
-.pt-doc { display: flex; align-items: center; gap: 10px; font: 800 1rem var(--font-display); }
-.pt-doc .ic { font-size: 1.6rem; color: var(--red); }
-.pt-acciones { display: flex; gap: 10px; }
-.pt-acciones .ic { box-sizing: content-box; padding: 10px; border-radius: 50%; background: var(--ink); color: #fff; }
 .certificado-notas { margin-top: 20px; }
+.captura { display: block; width: 100%; max-width: 560px; height: auto; border-radius: 12px; border: 1px solid var(--navy-700); box-shadow: var(--sombra-chica); background: #fff; }
 @property --p { syntax: '<number>'; inherits: false; initial-value: 0; }
 @media (max-width: 860px) { .pasos { grid-template-columns: 1fr; } .progreso { position: static; order: -1; flex-direction: row; text-align: left; padding: 16px; } .anillo { width: 92px; height: 92px; flex: none; } .anillo b { font-size: 1.4rem; } }
-@media print { .progreso, .ver-como, .paso .btn { display: none; } .pasos { grid-template-columns: 1fr; } }
+@media print { .progreso, .ver-como, .paso .btn, .paso-check { display: none; } .pasos { grid-template-columns: 1fr; } }
