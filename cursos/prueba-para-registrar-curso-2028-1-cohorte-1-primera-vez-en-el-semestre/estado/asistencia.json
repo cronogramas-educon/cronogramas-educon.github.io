@@ -1,15 +1,15 @@
 {
- "actualizado": "2026-11-26T15:03:36-05:00",
+ "actualizado": "2026-11-26T15:04:19-05:00",
  "programadas": 1,
  "dictadas": 0,
  "permitidas": 0,
- "estudiantes": 2,
+ "estudiantes": 3,
  "promedio": null,
  "porEstado": {
   "Perdió el mínimo": 0,
   "En riesgo": 0,
   "Atención": 0,
-  "Al día": 2,
+  "Al día": 3,
   "Aprobó": 0
  },
  "sinMarcar": 0,
@@ -19,7 +19,7 @@
    "estado": "Sin dictar",
    "asistieron": 0,
    "marcadas": 0,
-   "de": 2
+   "de": 3
   }
  ],
  "lista": [
@@ -44,6 +44,18 @@
    "porcentaje": null,
    "puedeLlegar": 1.0,
    "clave": "5c36caa31bb72b2e1e5264f3581abd08",
+   "seguimiento": "",
+   "marcas": {}
+  },
+  {
+   "n": 3,
+   "estado": "Al día",
+   "asistio": 0,
+   "faltas": 0,
+   "quedan": 0,
+   "porcentaje": null,
+   "puedeLlegar": 1.0,
+   "clave": "7d4b1cf99521332e1fda7bec78a58337",
    "seguimiento": "",
    "marcas": {}
   }
