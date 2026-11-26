@@ -136,6 +136,7 @@ jobs:
       contents: read
       pages: write      # publicar en Pages
       id-token: write   # lo exige deploy-pages
+      actions: read     # deploy-pages lista el artefacto del sitio; sin esto a veces dice que no existe
     # Solo importa el último despliegue: arma el sitio con lo más reciente de main, así ninguno pisa datos de otro curso
     concurrency:
       group: desplegar-pages
