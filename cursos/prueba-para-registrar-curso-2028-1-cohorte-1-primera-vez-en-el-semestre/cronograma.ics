@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cronograma Educacion Continua//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Diplomado Prueba para registrar curso
+X-WR-TIMEZONE:America/Bogota
+BEGIN:VTIMEZONE
+TZID:America/Bogota
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0500
+TZNAME:-05
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:clase-01@cronograma-prueba-para-registrar-curso-2028-1-cohorte-1-primer
+ a-vez-en-el-semestre
+DTSTAMP:20261126T190144Z
+SEQUENCE:0
+DTSTART;TZID=America/Bogota:20261127T080000
+DTEND;TZID=America/Bogota:20261127T190000
+SUMMARY:Clase 1: Diplomado Prueba para registrar curso
+DESCRIPTION:Introducción\n\nTema:\n- Creación curso o diplomado\n\nDocent
+ e: Nombre del docente\nAsistente PAT: Nombre del asistente encargado
+LOCATION:Microsoft Teams
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Clase 1 comienza en 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

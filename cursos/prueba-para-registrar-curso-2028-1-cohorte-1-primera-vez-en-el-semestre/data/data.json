@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "programa": "Diplomado Prueba para registrar curso",
+    "tipo": "Diplomado",
+    "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+    "modalidad": "Remota (Microsoft Teams)",
+    "zona": "America/Bogota",
+    "totalClases": 1,
+    "horasTotales": 2,
+    "horasCompletas": true,
+    "inicio": "2026-11-27",
+    "fin": "2026-11-27",
+    "hash": "37fc32f8b975e733",
+    "generadoEn": "2026-11-26T19:01:44Z",
+    "fuenteModificadaEn": "2026-11-26T19:01:26.6562968Z"
+  },
+  "clases": [
+    {
+      "id": 1,
+      "clase": "Clase 1",
+      "unidad": "Introducción",
+      "unidadSlug": "introduccion",
+      "tema": "Creación curso o diplomado",
+      "temaPuntos": [
+        "Creación curso o diplomado"
+      ],
+      "temaHeredado": false,
+      "horas": 2,
+      "profesor": "Nombre del docente",
+      "profesores": [
+        "Nombre del docente"
+      ],
+      "dia": "Viernes",
+      "diaCalculado": "Viernes",
+      "fecha": "2026-11-27",
+      "asistentePat": "Nombre del asistente encargado",
+      "linkTeams": "",
+      "cambio": null,
+      "inicio": "2026-11-27T08:00:00-05:00",
+      "fin": "2026-11-27T19:00:00-05:00",
+      "secuencia": 0
+    }
+  ],
+  "unidades": [
+    {
+      "slug": "introduccion",
+      "nombre": "Introducción",
+      "clases": [
+        1
+      ],
+      "horas": 2
+    }
+  ],
+  "profesores": [
+    "Nombre del docente"
+  ],
+  "asistentesPat": [
+    "Nombre del asistente encargado"
+  ],
+  "cambios": [],
+  "canceladas": []
+}
