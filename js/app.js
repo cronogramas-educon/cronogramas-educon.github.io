@@ -174,7 +174,7 @@ function pasoAPaso(el) {
   let guardado = [];
   try { guardado = JSON.parse(localStorage.getItem(clave)) || []; } catch { /* sin almacenamiento */ }
   checks.forEach((c, i) => { c.checked = !!guardado[i]; });
-  const titulo = (i) => checks[i].closest('.paso').querySelector('h3').textContent;
+  const titulo = (i) => checks[i].closest('.cert-paso').querySelector('h3').textContent;
   function pintarProgreso() {
     const listos = checks.filter((c) => c.checked).length;
     const sig = checks.findIndex((c) => !c.checked);

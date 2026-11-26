@@ -885,7 +885,7 @@ def test_certificado_paso_a_paso(pagina, servidor, sitio):
     url = f"{servidor}/{sitio['a']}/index.html?ahora=2026-11-24T17:00:00-05:00"
     pagina.goto(url)
     pagina.wait_for_selector(".progreso:not([hidden])")
-    assert pagina.locator(".paso").count() == 6 and pagina.inner_text(".progreso-n") == "0"
+    assert pagina.locator(".cert-paso").count() == 6 and pagina.inner_text(".progreso-n") == "0"
     assert "evolutool.com" in pagina.get_attribute("#paso-1 a.btn", "href")
     pagina.check("#paso-1 .paso-check")
     pagina.check("#paso-2 .paso-check")

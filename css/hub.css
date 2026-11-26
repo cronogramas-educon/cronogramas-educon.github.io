@@ -367,10 +367,17 @@
 
 /* ---- Cierre del curso ---- */
 .lista-cierre { display: grid; gap: 8px; margin: 0 0 10px; padding: 0; list-style: none; }
-.lista-cierre .paso { display: flex; gap: .6rem; align-items: flex-start; margin: 0; }
-.lista-cierre .paso.pend { color: var(--amber-ink); }
-.lista-cierre label { display: flex; gap: .6rem; align-items: flex-start; cursor: pointer; }
-.lista-cierre input { margin-top: .25em; }
+.lista-cierre .paso { display: flex; gap: .65rem; align-items: center; margin: 0; padding: 10px 14px; border-radius: 10px; background: var(--paper-2); color: var(--ink); line-height: 1.35; }
+.lista-cierre .paso .ic { flex: none; font-size: 1.1rem; }
+.lista-cierre .paso.ok .ic { color: #1D7A45; }
+.lista-cierre .paso.pend { background: #FFF2CC; color: var(--amber-ink); }
+.lista-cierre label { display: flex; gap: .65rem; align-items: center; width: 100%; cursor: pointer; }
+.lista-cierre input { flex: none; appearance: none; display: grid; place-content: center; width: 20px; height: 20px; margin: 0; border: 2px solid var(--ink-2); border-radius: 6px; background: #fff; cursor: pointer; transition: background .2s var(--ease), border-color .2s var(--ease); }
+.lista-cierre input::after { content: ''; width: 9px; height: 5px; border: solid #fff; border-width: 0 0 2.5px 2.5px; transform: translateY(-1px) rotate(-45deg) scale(0); transition: transform .2s var(--ease); }
+.lista-cierre input:checked { background: var(--red); border-color: var(--red); }
+.lista-cierre input:checked::after { transform: translateY(-1px) rotate(-45deg) scale(1); }
+.lista-cierre input:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.lista-cierre .paso:has(input:checked) span { color: var(--ink-2); text-decoration: line-through; text-decoration-color: rgba(68, 83, 122, .5); }
 
 /* ---- Panorama general: indicadores y matriz de cursos ----
    Un solo significado por color: rojo = atender ya, ámbar = revisar, verde = en orden. Todo lo demás (avance, fechas, números) va en azul o neutro,
@@ -541,9 +548,9 @@
 .formato-nombre { margin: 14px 0; padding: 14px 18px; border-left: 3px solid var(--red); border-radius: 8px; background: var(--navy-950); }
 .formato-nombre span { color: var(--felt-2); font-size: .92rem; }
 .prompt { white-space: pre-wrap; margin: 12px 0; padding: 16px 18px; max-height: 340px; overflow: auto; border: 1px solid var(--navy-700); border-radius: 10px; background: var(--navy-950); color: var(--felt); font: .88rem/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; }
-.guia .pasos { display: block; columns: auto; max-width: 74ch; padding-left: 1.4em; }
-.guia .pasos li { display: list-item; }
 .guia > .nota, .guia > h3 { max-width: 74ch; }
 .tabla-alias { width: 100%; border-collapse: collapse; font-size: .88rem; margin: 6px 0 4px; }
 .tabla-alias th, .tabla-alias td { padding: 8px 10px; border: 1px solid var(--navy-700); text-align: left; vertical-align: top; }
 .tabla-alias th { background: var(--navy-800); color: #fff; font-weight: 700; }
+.opciones-reunion { margin: 8px 0; padding-left: 1.2em; list-style: disc; }
+.opciones-reunion li { margin-bottom: 4px; }
