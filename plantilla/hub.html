@@ -91,7 +91,55 @@
       <div role="tabpanel" id="panel-docentes" aria-labelledby="tab-docentes" data-titulo="Por docente"><div id="rep-docentes"></div></div>
       <div role="tabpanel" id="panel-cursos" aria-labelledby="tab-cursos" data-titulo="Por curso" hidden><div id="rep-cursos"></div></div>
       <div role="tabpanel" id="panel-meses" aria-labelledby="tab-meses" data-titulo="Por mes" hidden><div id="rep-meses"></div></div></div></details>
-    <details class="seccion plegable" id="guias"><summary><h2>Guías para PAT</h2><span class="plg-cuenta">2</span><span class="asis-abrir" aria-hidden="true"></span></summary><div class="plg-cuerpo">
+    <details class="seccion plegable" id="guias"><summary><h2>Guías para PAT</h2><span class="plg-cuenta">3</span><span class="asis-abrir" aria-hidden="true"></span></summary><div class="plg-cuerpo">
+      <details class="mas guia"><summary>Abrir un curso o diplomado desde cero</summary>
+        <p class="nota">El orden completo, desde que se aprueba un curso hasta que los estudiantes reciben su enlace. Cada fase depende de la anterior: no te saltes ninguna.</p>
+        <h3>1. Registrar el curso (una sola vez)</h3>
+        <ol class="pasos">
+          <li>En este sitio ve a <strong>Cursos y periodos</strong> y presiona <strong>Registrar curso nuevo</strong>. Se abre el formulario «Nuevo curso o diplomado de Educación Continua».</li>
+          <li>Inicia sesión con la <strong>cuenta institucional de la unidad</strong> y responde: periodo, edición del semestre, tipo (diplomado o curso), nombre y horario.</li>
+          <li>Envía <strong>una sola vez</strong> y espera unos cinco minutos. Si no aparece nada, no lo envíes de nuevo, porque se duplicaría el curso. Avisa a la coordinación.</li>
+          <li>Comprueba que se creó todo:
+            <ul class="opciones-reunion">
+              <li><strong>SharePoint</strong>, sitio EduContinua: carpeta <strong>EduContinua periodo</strong>, <strong>Cohorte N</strong>, carpeta del curso con el <strong>Cuadro de horas módulos y profesores</strong> y el <strong>Formato de asistencia</strong>.</li>
+              <li><strong>Teams</strong>: el equipo del curso, con su canal General.</li>
+              <li><strong>Este sitio</strong>: la tarjeta del curso, marcada «Sin datos», con su enlace para estudiantes.</li>
+            </ul></li>
+        </ol>
+        <h3>2. Llenar el cronograma</h3>
+        <ol class="pasos">
+          <li>Abre el <strong>Cuadro de horas</strong> del curso (en la tarjeta del curso, <strong>Ver el detalle</strong>, <strong>Carpeta en SharePoint</strong>). Escribe una fila por clase: No., Unidad, Tema, Horas, <strong>CLASE</strong> en «No. de clase», Profesor, Fecha y Asistente PAT.</li>
+          <li>Si no tienes un dato, déjalo en blanco. La página muestra «Por confirmar». No escribas «pendiente» ni «N/A».</li>
+          <li>Guarda. En uno o dos minutos la página del curso se publica y la tarjeta muestra el avance. Revisa en <strong>Pendientes por confirmar</strong> qué falta.</li>
+          <li>Abre la página del curso (<strong>Abrir sitio</strong>) y revisa fechas, horarios, temario y docentes.</li>
+        </ol>
+        <h3>3. Preparar el equipo de Teams</h3>
+        <ol class="pasos">
+          <li>Desde la cuenta de la unidad, agrega al equipo al <strong>PAT del curso como propietario</strong> y a los <strong>profesores como miembros</strong>. Sin eso el PAT no puede crear las clases desde el canal.</li>
+          <li>Agrega a los estudiantes matriculados con su correo de matrícula (equipo, <strong>···</strong>, <strong>Agregar miembro</strong>). Los correos que no son de la Universidad entran como invitados.</li>
+          <li>Crea una reunión por clase siguiendo la guía <strong>Crear las reuniones de Teams de un curso</strong> y pega cada enlace en «Link de reunión» del Cuadro de horas.</li>
+        </ol>
+        <h3>4. Preparar la asistencia</h3>
+        <ol class="pasos">
+          <li>Abre el <strong>Formato de asistencia</strong> del curso. En la hoja <strong>Asistencia</strong> escribe la <strong>Cédula</strong> (solo números) y el <strong>nombre completo</strong> de cada estudiante, desde la fila 7. Sin cédula el estudiante no puede consultar su asistencia.</li>
+          <li>No toques las columnas grises, que se calculan solas.</li>
+          <li>Si ya sabes que alguien entra a Teams con otro nombre o correo, anótalo en la hoja <strong>Alias Teams</strong>.</li>
+          <li>Instala la skill de asistencia en tu Claude (guía <strong>Actualizar la asistencia con Claude</strong>).</li>
+        </ol>
+        <h3>5. Dar la bienvenida y compartir el enlace</h3>
+        <ol class="pasos">
+          <li>En la tarjeta del curso, <strong>Ver el detalle</strong>, <strong>Mensaje de bienvenida</strong>. Revisa la vista previa y presiona <strong>Enviar al grupo de Teams</strong>.</li>
+          <li>En el formulario escribe la gestora logística y revisa el PAT. Envía <strong>una sola vez</strong>. Llega al canal General y recibes un correo de confirmación.</li>
+          <li>Copia el enlace de estudiantes (<strong>Copiar enlace</strong>) y compártelo por el grupo de WhatsApp o por correo. Comparte solo ese enlace, nunca el de este sitio.</li>
+        </ol>
+        <h3>6. Durante el curso y al cerrarlo</h3>
+        <ol class="pasos">
+          <li>Cada día, <strong>Mensaje del día</strong> te deja listo el aviso de la clase para WhatsApp.</li>
+          <li>Después de cada clase, actualiza la asistencia con Claude.</li>
+          <li>Cambios de fecha o cancelaciones: solo en el Cuadro de horas. Cambia la fecha o escribe <strong>Cancelada</strong> en «Situación» y guarda.</li>
+          <li>Al terminar, el curso pasa solo al <strong>Archivo</strong>. Completa la lista <strong>Cierre del curso</strong> de su tarjeta (certificados, encuesta y horas de los docentes).</li>
+        </ol>
+      </details>
       <details class="mas guia"><summary>Actualizar la asistencia con Claude</summary>
         <p class="nota">Subes a Claude el reporte de asistencia de Teams y el Excel de asistencia del curso. Claude calcula quién asistió y te devuelve el Excel con la clase marcada. Sirve para cualquier curso o diplomado.</p>
         <h3>Instalación (una sola vez)</h3>
