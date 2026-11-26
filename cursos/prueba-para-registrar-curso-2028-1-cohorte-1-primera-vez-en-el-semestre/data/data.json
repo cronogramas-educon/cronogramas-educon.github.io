@@ -8,11 +8,11 @@
     "totalClases": 1,
     "horasTotales": 2,
     "horasCompletas": true,
-    "inicio": "2026-11-27",
-    "fin": "2026-11-27",
-    "hash": "dd8ffd904b3605b1",
-    "generadoEn": "2026-11-26T19:03:47Z",
-    "fuenteModificadaEn": "2026-11-26T19:03:26.4659452Z"
+    "inicio": "2026-11-26",
+    "fin": "2026-11-26",
+    "hash": "75b24681923d1828",
+    "generadoEn": "2026-11-26T19:47:14Z",
+    "fuenteModificadaEn": "2026-11-26T19:46:58.5788622Z"
   },
   "clases": [
     {
@@ -31,14 +31,19 @@
         "Nombre del profesor"
       ],
       "dia": "Viernes",
-      "diaCalculado": "Viernes",
-      "fecha": "2026-11-27",
+      "diaCalculado": "Jueves",
+      "fecha": "2026-11-26",
       "asistentePat": "Nombre del asistente PAT",
       "linkTeams": "",
-      "cambio": null,
-      "inicio": "2026-11-27T08:00:00-05:00",
-      "fin": "2026-11-27T19:00:00-05:00",
-      "secuencia": 0
+      "cambio": {
+        "tipo": "fecha",
+        "fechaAnterior": "2026-11-27",
+        "fechaOriginal": "2026-11-27",
+        "detectadoEn": "2026-11-26T19:47:14Z"
+      },
+      "inicio": "2026-11-26T08:00:00-05:00",
+      "fin": "2026-11-26T19:00:00-05:00",
+      "secuencia": 1
     }
   ],
   "unidades": [
@@ -57,6 +62,16 @@
   "asistentesPat": [
     "Nombre del asistente PAT"
   ],
-  "cambios": [],
+  "cambios": [
+    {
+      "id": 1,
+      "clase": "CLASE 1",
+      "fechaOriginal": "2026-11-27",
+      "fechaAnterior": "2026-11-27",
+      "fechaNueva": "2026-11-26",
+      "detectadoEn": "2026-11-26T19:47:14Z",
+      "resuelto": false
+    }
+  ],
   "canceladas": []
 }

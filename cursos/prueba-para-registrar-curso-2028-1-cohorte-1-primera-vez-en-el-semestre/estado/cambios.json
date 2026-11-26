@@ -1,12 +1,22 @@
 {
   "base": {
-    "1": "2026-11-27"
+    "1": "2026-11-26"
   },
   "original": {
     "1": "2026-11-27"
   },
   "secuencia": {
-    "1": 0
+    "1": 1
   },
-  "cambios": []
+  "cambios": [
+    {
+      "id": 1,
+      "clase": "CLASE 1",
+      "fechaOriginal": "2026-11-27",
+      "fechaAnterior": "2026-11-27",
+      "fechaNueva": "2026-11-26",
+      "detectadoEn": "2026-11-26T19:47:14Z",
+      "resuelto": false
+    }
+  ]
 }

@@ -17,10 +17,10 @@ END:VTIMEZONE
 BEGIN:VEVENT
 UID:clase-01@cronograma-prueba-para-registrar-curso-2028-1-cohorte-1-primer
  a-vez-en-el-semestre
-DTSTAMP:20261126T190347Z
-SEQUENCE:0
-DTSTART;TZID=America/Bogota:20261127T080000
-DTEND;TZID=America/Bogota:20261127T190000
+DTSTAMP:20261126T194714Z
+SEQUENCE:1
+DTSTART;TZID=America/Bogota:20261126T080000
+DTEND;TZID=America/Bogota:20261126T190000
 SUMMARY:Clase 1: Diplomado Prueba para registrar curso
 DESCRIPTION:Introducción\n\nTema:\n- Creación de curso o diplomado\n\nDoc
  ente: Nombre del profesor\nAsistente PAT: Nombre del asistente PAT
