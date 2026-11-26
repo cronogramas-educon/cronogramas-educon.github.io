@@ -344,3 +344,37 @@ def test_alias_de_nombres_unifica_variantes(tmp_path, raiz):
     assert c[1]["profesores"] == ["Melissa Alejandra Dukuara", "Luis Pérez"]
     assert c[2]["profesor"] == "Ana Gómez / Luis Pérez" and c[2]["profesores"] == ["Ana Gómez", "Luis Pérez"]
     assert c[0]["asistentePat"] == "Mia Cano Ruiz" and "Mia Cano Ruiz" in datos["asistentesPat"]
+
+
+def _solo_enlace(ws):
+    """Cuadro sin clases: todo vacío salvo un enlace de Teams suelto (lo que deja un PAT que pega el enlace antes de llenar la fila)."""
+    for r in range(3, ws.max_row + 1):
+        for c in range(1, 12):
+            ws.cell(r, c).value = None
+    ws.cell(3, 10).value = "https://teams.microsoft.com/meet/123?p=abc"
+
+
+def _main(monkeypatch, entrada, raiz):
+    monkeypatch.setattr(sys, "argv", ["construir_datos.py", str(entrada), "--raiz", str(raiz)])
+    try:
+        cd.main()
+        return 0
+    except SystemExit as e:
+        return e.code
+
+
+def test_cuadro_sin_clases_de_un_curso_nuevo_no_es_error(raiz, tmp_path, monkeypatch):
+    p = xlsx_con(tmp_path, "c.xlsx", _solo_enlace)
+    with pytest.raises(cd.SinClases):
+        cd.construir(p, raiz)
+    (raiz / "estado").mkdir()
+    (raiz / "estado/error.json").write_text('{"mensaje": "viejo"}', encoding="utf-8")
+    assert _main(monkeypatch, p, raiz) == 0
+    assert not (raiz / "estado/error.json").exists() and not (raiz / "data/data.json").exists()
+
+
+def test_curso_publicado_que_queda_sin_clases_si_es_error(raiz, tmp_path, monkeypatch):
+    (raiz / "data").mkdir()
+    (raiz / "data/data.json").write_text("{}", encoding="utf-8")
+    assert _main(monkeypatch, xlsx_con(tmp_path, "d.xlsx", _solo_enlace), raiz) == 1
+    assert "quedó sin clases" in (raiz / "estado/error.json").read_text(encoding="utf-8")

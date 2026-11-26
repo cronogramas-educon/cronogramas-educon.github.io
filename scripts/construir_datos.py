@@ -21,6 +21,10 @@ class ErrorDatos(Exception):
     """Error que detiene la publicación."""
 
 
+class SinClases(ErrorDatos):
+    """El Cuadro de horas todavía no tiene clases (vacío, o con solo enlaces o asistentes sueltos): no es un error del curso nuevo."""
+
+
 def slug(s):
     s = unicodedata.normalize("NFD", s.lower())
     s = "".join(c for c in s if unicodedata.category(c) != "Mn")
@@ -169,9 +173,12 @@ def filas_a_clases(filas, cfg):
     """Devuelve (clases, avisos, canceladas). Una clase marcada Cancelada en la columna Situación no es una clase del curso: no cuenta en horas,
     asistencia, calendario ni alertas, pero conserva su número, así que las demás no se renumeran."""
     clases, avisos, canceladas, ant_tema, ant_raw = [], [], [], "", ""
+    sin_clase = 0  # filas con datos de una clase (unidad, tema, profesor o fecha) pero sin «CLASE N»
     for v in filas:
         if not v[4] or not str(v[4]).strip().upper().startswith("CLASE"):
-            continue  # fila TOTAL, vacías y residuos
+            if str(v[1] or "").strip().upper() != "TOTAL" and any(str(v[i] or "").strip() for i in (1, 2, 5, 7)):
+                sin_clase += 1
+            continue  # fila TOTAL, vacías y residuos (un enlace o un asistente PAT sueltos)
         try:
             num = int(float(v[0]))
         except (TypeError, ValueError):
@@ -205,8 +212,10 @@ def filas_a_clases(filas, cfg):
             avisos.append(f"{c['clase']} tiene un enlace de Teams que no empieza por https:// (se ignora)")
             c["linkTeams"] = ""
         clases.append(c)
+    if not clases and sin_clase:
+        raise ErrorDatos(f"Hay {sin_clase} fila(s) con datos pero ninguna clase: escribe CLASE 1, CLASE 2… en la columna 'No. de clase'.")
     if not clases:
-        raise ErrorDatos("No se encontró ninguna clase (filas con 'CLASE' en la columna 'No. de clase').")
+        raise SinClases("El Cuadro de horas todavía no tiene clases.")
     ids = [c["id"] for c in clases] + [c["id"] for c in canceladas]
     dup = sorted({i for i in ids if ids.count(i) > 1})
     if dup:
@@ -343,6 +352,16 @@ def main():
     ruta_error = Path(a.raiz) / "estado/error.json"
     try:
         datos, avisos = construir(a.entrada, a.raiz, a.json, modificado=a.modificado)
+    except SinClases as e:
+        if not (Path(a.raiz) / "data/data.json").exists():  # curso nuevo: queda «sin cronograma», sin error
+            ruta_error.unlink(missing_ok=True)
+            print(f"SIN CLASES: {e} El curso se publica cuando tenga clases.")
+            return
+        e = ErrorDatos("El Cuadro de horas quedó sin clases. Se conserva el último cronograma publicado; revisa si se borraron filas.")
+        print(f"ERROR: {e}", file=sys.stderr)
+        ruta_error.parent.mkdir(exist_ok=True)
+        ruta_error.write_text(json.dumps({"mensaje": str(e), "en": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}, ensure_ascii=False), encoding="utf-8")
+        sys.exit(1)
     except ErrorDatos as e:
         print(f"ERROR: {e}", file=sys.stderr)
         ruta_error.parent.mkdir(exist_ok=True)  # el sitio base de administración lo muestra; se conserva el último data.json bueno
