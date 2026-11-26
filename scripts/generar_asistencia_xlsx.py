@@ -341,6 +341,22 @@ def _hoja_instrucciones(wb, curso):
     ay.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
 
 
+ALIAS_ENCABEZADOS = ("Estudiante (como está en la hoja Asistencia)", "Nombre o cuenta en Teams", "Correo en Teams", "Nota")
+
+
+def _hoja_alias(wb):
+    """Cómo aparece cada estudiante en Teams cuando el nombre no se parece al de la lista. La lee la skill de asistencia de los PAT."""
+    ws = wb.create_sheet("Alias Teams")
+    for j, h in enumerate(ALIAS_ENCABEZADOS, 1):
+        _celda(ws, f"{colletra(j)}1", h, bold=True, color=AZUL)
+    for col, ancho in zip("ABCD", (44, 34, 34, 40)):
+        ws.column_dimensions[col].width = ancho
+    ws.freeze_panes = "A2"
+    ws["A1"].comment = Comment("Una fila por cuenta de Teams. Copia el nombre del estudiante tal como está en la columna C de Asistencia. "
+                               "Si la cuenta es de un profesor, organizador o invitado, escribe aquí: No matriculado.", "Asistencia", width=300, height=110)
+    ws["B1"].comment = Comment("Tal como sale en el reporte de asistencia de Teams, por ejemplo LAURAPR88 (Guest). Puede ir vacío si pones el correo.", "Asistencia", width=260, height=80)
+
+
 def construir(d, salida):
     wb = Workbook()
     clases = d.get("clases", [])
@@ -349,6 +365,7 @@ def construir(d, salida):
     _hoja_cronograma(wb, clases)
     _hoja_instrucciones(wb, d["curso"])
     wb.move_sheet("Instrucciones", offset=-3)
+    _hoja_alias(wb)  # al final: las demás hojas conservan su número
     wb.active = 1
     wb.save(salida)
 

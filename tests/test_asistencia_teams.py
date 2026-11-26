@@ -158,3 +158,29 @@ def test_escribe_aunque_excel_online_haya_renumerado_las_hojas(tmp_path, libro):
     at.escribir_marcas(renum, salida, "2026-03-02", {7: 1, 8: 0})
     ws = openpyxl.load_workbook(salida)["Asistencia"]
     assert ws["D7"].value == 1 and ws["D8"].value == 0
+
+
+def test_alias_desde_la_hoja_alias_teams_del_propio_libro(tmp_path, libro):
+    """Los PAT anotan en el Excel cómo aparece cada estudiante en Teams; el nombre puede ir sin tildes ni mayúsculas."""
+    import json, subprocess
+    wb = openpyxl.load_workbook(libro)
+    assert wb.sheetnames[-1] == "Alias Teams"
+    ws = wb["Alias Teams"]
+    ws.append(["dario jose lara vega", "TABITA (Guest)", "", "cuenta de la hermana"])
+    ws.append(["Elena Mora", "", "Elena.Rara@x.com", ""])
+    ws.append(["No matriculado", "Profe Invitado", "", "profesor"])
+    ws.append(["Persona Que No Existe", "alguien", "", ""])
+    ws.append(["CARLA MARIA GOMEZ LEON", "", "", "sin cuenta"])
+    wb.save(libro)
+    libro_leido = at.leer_libro(libro)
+    assert libro_leido["alias"]["nombres"] == {"TABITA (Guest)": "DARIO JOSE LARA VEGA"}
+    assert libro_leido["alias"]["correos"] == {"ELENA SOFIA MORA DIAZ": ["elena.rara@x.com"]}
+    assert libro_leido["alias"]["no_matriculados"] == ["Profe Invitado"]
+    assert len(libro_leido["avisos_alias"]) == 2  # la persona que no existe y la fila sin cuenta ni correo
+    rep = reporte(tmp_path, [("TABITA (Guest)", "6:00", "7:55", ""), ("zz", "6:00", "7:55", "ELENA.RARA@x.com"), ("Profe Invitado", "6:00", "7:59", "")])
+    r = json.loads(subprocess.run([sys.executable, "-I", str(RAIZ / "scripts/asistencia_teams.py"), "calcular", str(rep), str(libro)],
+                                  capture_output=True, text=True, check=True).stdout)
+    marcas = {e["nombre"]: e["marca"] for e in r["estudiantes"]}
+    assert marcas["DARIO JOSE LARA VEGA"] == 1 and marcas["ELENA SOFIA MORA DIAZ"] == 1
+    assert r["sin_coincidencia"] == [] and [x["nombre"] for x in r["no_matriculados"]] == ["Profe Invitado"]
+    assert len(r["avisos_alias"]) == 2

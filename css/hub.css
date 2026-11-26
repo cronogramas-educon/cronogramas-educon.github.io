@@ -544,3 +544,6 @@
 .guia .pasos { display: block; columns: auto; max-width: 74ch; padding-left: 1.4em; }
 .guia .pasos li { display: list-item; }
 .guia > .nota, .guia > h3 { max-width: 74ch; }
+.tabla-alias { width: 100%; border-collapse: collapse; font-size: .88rem; margin: 6px 0 4px; }
+.tabla-alias th, .tabla-alias td { padding: 8px 10px; border: 1px solid var(--navy-700); text-align: left; vertical-align: top; }
+.tabla-alias th { background: var(--navy-800); color: #fff; font-weight: 700; }

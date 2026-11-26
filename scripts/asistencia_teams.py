@@ -15,6 +15,8 @@ Uso (todo sale como JSON, así lo puede llamar también el hub o un flujo):
 
 Alias (todo opcional): {"correos": {"NOMBRE COMPLETO": ["a@x.com"]}, "nombres": {"cuenta de teams": "NOMBRE COMPLETO"},
 "no_matriculados": ["Nombre de un profesor u organizador"]}. "NOMBRE COMPLETO" es el de la columna C del libro.
+Los alias también pueden vivir en el propio libro, hoja "Alias Teams" (A estudiante, B cuenta de Teams, C correo, D nota;
+"No matriculado" en A marca la cuenta como profesor u organizador): así viajan con el Excel del curso y los comparten todos los PAT.
 """
 import csv, datetime, io, json, os, re, shutil, subprocess, sys, tempfile, unicodedata, zipfile
 from collections import defaultdict
@@ -100,7 +102,7 @@ def emparejar(nombre, correo, estudiantes, alias):
             return est, "correo"
     clave = _sin_cuenta(nombre)
     for cuenta, est in alias.get("nombres", {}).items():
-        if _norm(cuenta).strip() == clave and est in estudiantes:
+        if _sin_cuenta(cuenta) == clave and est in estudiantes:
             return est, "alias de nombre"
     tk = [t for t in _tokens(nombre) if len(t) > 1]
     punt = sorted(((sum(1 for e in set(_tokens(s)) if len(e) > 1 and any(_igual(t, e) for t in tk)), s) for s in estudiantes), reverse=True)
@@ -197,7 +199,52 @@ def leer_libro(ruta):
                            "estado": ws.cell(4, c).value, "marcas": sum(1 for r in range(7, ws.max_row + 1) if ws.cell(r, c).value is not None)})
     est = {str(ws.cell(r, 3).value).strip(): r for r in range(7, ws.max_row + 1) if ws.cell(r, 3).value and str(ws.cell(r, 3).value).strip()}
     cedulas = sum(1 for r in est.values() if ws.cell(r, 2).value)
-    return {"clases": clases, "estudiantes": est, "sin_cedula": len(est) - cedulas}
+    alias, avisos = _alias_del_libro(wb, est)
+    return {"clases": clases, "estudiantes": est, "sin_cedula": len(est) - cedulas, "alias": alias, "avisos_alias": avisos}
+
+
+def _estudiante_de(texto, est):
+    """El nombre de la columna C al que se refiere lo que escribió el PAT: igual sin tildes ni mayúsculas, o el único que comparte dos palabras."""
+    t = _norm(str(texto)).strip()
+    for s in est:
+        if _norm(s).strip() == t:
+            return s
+    tk = set(_tokens(t))
+    hits = [s for s in est if len(tk & set(_tokens(s))) >= 2]
+    return hits[0] if len(hits) == 1 else None
+
+
+def _alias_del_libro(wb, est):
+    """Hoja "Alias Teams" (opcional): alias en el formato de los JSON y avisos de filas que no se entienden."""
+    alias, avisos = {"correos": {}, "nombres": {}, "no_matriculados": []}, []
+    if "Alias Teams" not in wb.sheetnames:
+        return alias, avisos
+    for r, fila in enumerate(wb["Alias Teams"].iter_rows(min_row=2, max_col=3, values_only=True), 2):
+        quien, cuenta, correo = (str(x).strip() if x not in (None, "") else "" for x in fila)
+        if not (quien or cuenta or correo):
+            continue
+        if not (cuenta or correo):
+            avisos.append(f"Fila {r} de Alias Teams: falta el nombre o el correo de Teams.")
+        elif _norm(quien).startswith("no matricul"):
+            alias["no_matriculados"].append(cuenta or correo)
+        elif (s := _estudiante_de(quien, est)) is None:
+            avisos.append(f"Fila {r} de Alias Teams: «{quien}» no coincide con ningún estudiante de la hoja Asistencia.")
+        else:
+            if cuenta:
+                alias["nombres"][cuenta] = s
+            if correo:
+                alias["correos"].setdefault(s, []).append(correo.lower())
+    return alias, avisos
+
+
+def unir_alias(*fuentes):
+    out = {"correos": {}, "nombres": {}, "no_matriculados": []}
+    for a in fuentes:
+        for s, cs in (a or {}).get("correos", {}).items():
+            out["correos"].setdefault(s, []).extend(cs)
+        out["nombres"].update((a or {}).get("nombres", {}))
+        out["no_matriculados"] += (a or {}).get("no_matriculados", [])
+    return out
 
 
 def _columna(libro, fecha):
@@ -311,8 +358,9 @@ def main(argv):
         salida = leer_libro(argv[2])
     elif cmd == "calcular":
         libro = leer_libro(argv[3])
-        alias = json.load(open(argv[4], encoding="utf8")) if len(argv) > 4 and os.path.exists(argv[4]) else {}
-        salida = calcular(argv[2], libro["estudiantes"], alias)
+        extra = json.load(open(argv[4], encoding="utf8")) if len(argv) > 4 and os.path.exists(argv[4]) else {}
+        salida = calcular(argv[2], libro["estudiantes"], unir_alias(libro["alias"], extra))
+        salida["avisos_alias"] = libro["avisos_alias"]
     elif cmd == "escribir":
         marcas = {int(k): v for k, v in json.load(open(argv[5], encoding="utf8")).items()}
         salida = escribir_marcas(argv[2], argv[3], argv[4], marcas)

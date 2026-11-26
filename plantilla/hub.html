@@ -106,11 +106,21 @@
         <ol class="pasos">
           <li>En el calendario de Teams abre la reunión de la clase, pestaña <strong>Asistencia</strong>, <strong>Descargar</strong>. Solo lo puede descargar quien organizó la reunión.</li>
           <li>En SharePoint, carpeta del curso, descarga el Excel <strong>Formato de asistencia</strong> (tres puntos, <strong>Descargar</strong>). Si la carpeta está sincronizada en tu computador, usa ese archivo directamente.</li>
-          <li>Abre un chat nuevo en Claude, adjunta los dos archivos y escribe: <em>Actualiza la asistencia de esta clase.</em> Si tienes el archivo <code>alias-asistencia.json</code> del curso, adjúntalo también.</li>
+          <li>Abre un chat nuevo en Claude, adjunta los dos archivos y escribe: <em>Actualiza la asistencia de esta clase.</em> Si sabes que alguien entró con un nombre raro, díselo en el mismo mensaje, por ejemplo: <em>En Teams, «Lau P» es Laura Pérez y «Carolina» es la profesora.</em></li>
           <li>Responde lo que Claude pregunte: quién quedó entre 40 % y 50 % y qué cuentas de Teams no reconoce.</li>
           <li>Descarga el Excel que te entrega. Con el archivo cerrado para todos, súbelo a la carpeta del curso con <strong>Cargar</strong>, <strong>Archivos</strong> y acepta <strong>Reemplazar</strong>. Si la carpeta está sincronizada, guárdalo encima del anterior.</li>
-          <li>Si Claude te entrega un <code>alias-asistencia.json</code> nuevo, guárdalo en la carpeta del curso. Tiene correos de estudiantes, no lo compartas.</li>
+          <li>Si Claude te da filas para la hoja <strong>Alias Teams</strong>, cópialas en esa hoja del Excel del curso. Así la próxima vez reconoce a esas personas sin preguntar.</li>
         </ol>
+        <h3>Nombres confusos en Teams: hoja Alias Teams</h3>
+        <p class="nota">Cuando la cuenta de Teams de un estudiante no se parece a su nombre en la lista (apodo, cuenta de la empresa o de un familiar, «Invitado», solo un correo), anótala una vez en la hoja <strong>Alias Teams</strong> del Excel de asistencia. La comparten todos los PAT del curso y Claude la lee sola.</p>
+        <div class="tabla-envoltura"><table class="tabla-alias">
+          <thead><tr><th>Estudiante (como está en la hoja Asistencia)</th><th>Nombre o cuenta en Teams</th><th>Correo en Teams</th><th>Nota</th></tr></thead>
+          <tbody>
+            <tr><td>LAURA MARCELA PEREZ RUIZ</td><td>LAURAPR88 (Guest)</td><td></td><td>Cuenta personal</td></tr>
+            <tr><td>JUAN CARLOS GOMEZ</td><td></td><td>jgomez@empresa.com</td><td>Entra con la cuenta del trabajo</td></tr>
+            <tr><td>No matriculado</td><td>Carolina (Unverified)</td><td></td><td>Profesora invitada</td></tr>
+          </tbody></table></div>
+        <p class="nota">Si el correo sale en el reporte de Teams, escríbelo: es lo más seguro. Si el Excel de tu curso no tiene la hoja, créala con el nombre exacto <strong>Alias Teams</strong> y esos cuatro encabezados en la fila 1. Los ejemplos de esta tabla son inventados.</p>
         <p class="nota">En unos minutos esta página muestra la asistencia nueva. Si algo sale mal, en SharePoint usa <strong>Historial de versiones</strong> para volver a la versión anterior.</p>
       </details>
       <details class="mas guia"><summary>Crear las reuniones de Teams de un curso</summary>
