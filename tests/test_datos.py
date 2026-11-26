@@ -378,3 +378,18 @@ def test_curso_publicado_que_queda_sin_clases_si_es_error(raiz, tmp_path, monkey
     (raiz / "data/data.json").write_text("{}", encoding="utf-8")
     assert _main(monkeypatch, xlsx_con(tmp_path, "d.xlsx", _solo_enlace), raiz) == 1
     assert "quedó sin clases" in (raiz / "estado/error.json").read_text(encoding="utf-8")
+
+
+def test_clase_sin_fecha_no_bloquea_y_se_publica_el_resto(raiz, tmp_path):
+    """Mientras alguien llena el Excel, una fila con CLASE pero sin fecha no debe tumbar el cronograma."""
+    p = xlsx_con(tmp_path, "e.xlsx", lambda ws: setattr(ws.cell(fila_de(ws, 2), 8), "value", None))
+    datos, avisos = cd.construir(p, raiz)
+    assert all(c["id"] != 2 for c in datos["clases"]) and any("no tiene fecha" in a for a in avisos)
+
+
+def test_curso_nuevo_con_clases_aun_sin_fecha_no_es_error(raiz, tmp_path, monkeypatch):
+    def sin_fechas(ws):
+        for r in range(3, ws.max_row + 1):
+            ws.cell(r, 8).value = None
+    assert _main(monkeypatch, xlsx_con(tmp_path, "f.xlsx", sin_fechas), raiz) == 0
+    assert not (raiz / "estado/error.json").exists()

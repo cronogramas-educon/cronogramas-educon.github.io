@@ -173,6 +173,7 @@ def filas_a_clases(filas, cfg):
     """Devuelve (clases, avisos, canceladas). Una clase marcada Cancelada en la columna Situación no es una clase del curso: no cuenta en horas,
     asistencia, calendario ni alertas, pero conserva su número, así que las demás no se renumeran."""
     clases, avisos, canceladas, ant_tema, ant_raw = [], [], [], "", ""
+    sin_fecha = 0
     sin_clase = 0  # filas con datos de una clase (unidad, tema, profesor o fecha) pero sin «CLASE N»
     for v in filas:
         if not v[4] or not str(v[4]).strip().upper().startswith("CLASE"):
@@ -189,6 +190,10 @@ def filas_a_clases(filas, cfg):
             except ErrorDatos:
                 f = ""
             canceladas.append({"id": num, "clase": limpiar(v[4]), "unidad": limpiar(v[1]), "fecha": f})
+            continue
+        if v[7] is None or not str(v[7]).strip():  # fila a medio llenar (Excel guarda solo mientras se escribe): se publica cuando tenga fecha
+            avisos.append(f"{limpiar(v[4])} no tiene fecha: no se publica hasta que la tenga")
+            sin_fecha += 1
             continue
         horas = entero_o_none(v[3])
         tema, heredado = limpiar(v[2]), False
@@ -212,6 +217,8 @@ def filas_a_clases(filas, cfg):
             avisos.append(f"{c['clase']} tiene un enlace de Teams que no empieza por https:// (se ignora)")
             c["linkTeams"] = ""
         clases.append(c)
+    if not clases and sin_fecha:
+        raise SinClases(f"Ninguna clase tiene fecha todavía ({sin_fecha} sin fecha).")
     if not clases and sin_clase:
         raise ErrorDatos(f"Hay {sin_clase} fila(s) con datos pero ninguna clase: escribe CLASE 1, CLASE 2… en la columna 'No. de clase'.")
     if not clases:
