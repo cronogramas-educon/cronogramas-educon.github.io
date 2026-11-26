@@ -27,7 +27,7 @@
       <a class="marca" href="#inicio" id="marca"></a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><span data-ic="list"></span>Menú</button>
       <nav class="nav" id="nav" aria-label="Secciones">
-        <a href="#cronograma">Cronograma</a><a href="#temario">Temario</a><a href="#docentes">Docentes</a><a href="#asistencia" hidden>Mi asistencia</a><a href="#info">Información</a><a href="#contacto" hidden>Contacto</a>
+        <a href="#cronograma">Cronograma</a><a href="#temario">Temario</a><a href="#docentes">Docentes</a><a href="#asistencia" hidden>Mi asistencia</a><a href="#info">Información</a><a href="#certificado">Certificado</a><a href="#contacto" hidden>Contacto</a>
       </nav>
     </div>
   </header>
@@ -50,6 +50,7 @@
         <a href="#asistencia" hidden><strong>Revisar mi asistencia</strong><span>Con tu cédula, sin nombres.</span></a>
         <a href="#temario"><strong>Ver los temas</strong><span>Qué se estudia en cada unidad.</span></a>
         <a href="#docentes"><strong>Conocer a los docentes</strong><span>Quién dicta cada clase.</span></a>
+        <a href="#certificado"><strong>Obtener mi certificado</strong><span>Paso a paso para descargarlo.</span></a>
       </nav>
     </section>
 
@@ -101,6 +102,64 @@
       <label class="campo">Tu número de cédula <input id="asis-n" type="search" inputmode="numeric" autocomplete="off" placeholder="Solo números, sin puntos"></label>
       <div id="asis-resultado" aria-live="polite"></div></section>
     <section class="seccion" id="info"><h2>Información del curso</h2><div id="info-contenido"></div></section>
+    <section class="seccion" id="certificado"><h2>Tu certificado</h2>
+      <p class="nota">Cuando tu certificado esté listo, la Universidad te enviará un correo. Desde ese momento lo encuentras en el portal Título e Insignia Digital Unisabana. Marca cada paso cuando lo completes. Tu avance queda guardado en este navegador.</p>
+      <div class="pasos" id="pasos">
+        <ol class="pasos-lista">
+          <li class="paso" id="paso-1">
+            <input type="checkbox" class="paso-check" aria-labelledby="paso-1-t">
+            <div class="paso-texto">
+              <h3 id="paso-1-t">Entra al portal</h3><p>Abre el portal Título e Insignia Digital Unisabana y haz clic en <strong>Login</strong>.</p><a class="btn rojo" href="https://unisabana.evolutool.com/home.php" target="_blank" rel="noopener noreferrer">Abrir el portal<span data-ic="arrow-up-right"></span></a>
+              <details class="ver-como"><summary>Ver cómo</summary><div class="pantalla" aria-hidden="true"><div class="pantalla-barra"><i></i><i></i><i></i><span>unisabana.evolutool.com</span></div><div class="pantalla-cuerpo"><p class="pt-titulo">Título e Insignia Digital</p><b class="pt-clic">Login</b></div></div></details>
+            </div>
+          </li>
+          <li class="paso" id="paso-2">
+            <input type="checkbox" class="paso-check" aria-labelledby="paso-2-t">
+            <div class="paso-texto">
+              <h3 id="paso-2-t">Pide un código nuevo</h3><p>Elige <strong>Obtener nuevo token</strong>. En educación continua entras con un código que llega a tu correo, sin contraseña.</p>
+              <details class="ver-como"><summary>Ver cómo</summary><div class="pantalla" aria-hidden="true"><div class="pantalla-barra"><i></i><i></i><i></i><span>unisabana.evolutool.com</span></div><div class="pantalla-cuerpo"><p class="pt-titulo">Ingreso</p><b class="pt-clic">Obtener nuevo token</b></div></div></details>
+            </div>
+          </li>
+          <li class="paso" id="paso-3">
+            <input type="checkbox" class="paso-check" aria-labelledby="paso-3-t">
+            <div class="paso-texto">
+              <h3 id="paso-3-t">Escribe tu correo</h3><p>Escribe tu correo y haz clic en <strong>Solicitar código</strong>. Usa el mismo correo en el que recibiste el aviso de la Universidad.</p>
+              <details class="ver-como"><summary>Ver cómo</summary><div class="pantalla" aria-hidden="true"><div class="pantalla-barra"><i></i><i></i><i></i><span>unisabana.evolutool.com</span></div><div class="pantalla-cuerpo"><span class="pt-campo">Correo electrónico</span><b class="pt-clic">Solicitar código</b></div></div></details>
+            </div>
+          </li>
+          <li class="paso" id="paso-4">
+            <input type="checkbox" class="paso-check" aria-labelledby="paso-4-t">
+            <div class="paso-texto">
+              <h3 id="paso-4-t">Copia el código de tu correo</h3><p>Te llega un código (token). Escríbelo en el portal. Si no aparece en unos minutos, revisa el correo no deseado.</p>
+              <details class="ver-como"><summary>Ver cómo</summary><div class="pantalla" aria-hidden="true"><div class="pantalla-barra"><i></i><i></i><i></i><span>unisabana.evolutool.com</span></div><div class="pantalla-cuerpo"><p class="pt-correo">Tu código de acceso<b>••••••</b></p><span class="pt-campo pt-activo">Token</span></div></div></details>
+            </div>
+          </li>
+          <li class="paso" id="paso-5">
+            <input type="checkbox" class="paso-check" aria-labelledby="paso-5-t">
+            <div class="paso-texto">
+              <h3 id="paso-5-t">Inicia sesión</h3><p>Con el código escrito, haz clic en <strong>Iniciar sesión</strong>.</p>
+              <details class="ver-como"><summary>Ver cómo</summary><div class="pantalla" aria-hidden="true"><div class="pantalla-barra"><i></i><i></i><i></i><span>unisabana.evolutool.com</span></div><div class="pantalla-cuerpo"><span class="pt-campo pt-lleno">••••••</span><b class="pt-clic">Iniciar sesión</b></div></div></details>
+            </div>
+          </li>
+          <li class="paso" id="paso-6">
+            <input type="checkbox" class="paso-check" aria-labelledby="paso-6-t">
+            <div class="paso-texto">
+              <h3 id="paso-6-t">Descarga tu certificado</h3><p>Ya puedes <strong>verlo, descargarlo, imprimirlo o compartirlo</strong>. Tiene código QR y firma digital certificada para comprobar que es auténtico.</p>
+              <details class="ver-como"><summary>Ver cómo</summary><div class="pantalla" aria-hidden="true"><div class="pantalla-barra"><i></i><i></i><i></i><span>unisabana.evolutool.com</span></div><div class="pantalla-cuerpo"><p class="pt-doc"><span data-ic="stamp"></span>Tu certificado</p><p class="pt-acciones"><span data-ic="magnifying-glass"></span><span data-ic="download-simple"></span><span data-ic="printer"></span><span data-ic="link-simple"></span></p></div></div></details>
+            </div>
+          </li>
+        </ol>
+        <aside class="progreso" hidden>
+          <div class="anillo"><b><span class="progreso-n">0</span>/6</b><small>pasos listos</small></div>
+          <p class="progreso-msj"></p>
+          <button class="enlace-btn" type="button" data-reiniciar>Reiniciar lista</button>
+        </aside>
+      </div>
+      <div class="notas certificado-notas">
+        <p class="nota-info"><strong>Ojo al compartir.</strong> Quien tenga tu código QR puede ver el contenido de tu certificado, el acta y la información de tu insignia digital. Compártelo solo con quien lo necesite.</p>
+        <p class="nota-info"><strong>¿No puedes entrar?</strong> Escribe a <a href="mailto:soporte@diplogrados.com">soporte@diplogrados.com</a> o por <a href="https://api.whatsapp.com/send?phone=573104095518" target="_blank" rel="noopener noreferrer">WhatsApp al +57 310 409 5518</a>.</p>
+      </div>
+    </section>
     <section class="seccion" id="contacto" hidden><h2>Contacto</h2><p class="apoyo">Para temas de logística o administrativos, escribe a:</p><div class="contactos-lista" id="contactos-lista"></div></section>
     <section class="seccion" id="sobre"><h2>Sobre el programa</h2><div class="sobre" id="sobre-contenido"></div></section>
   </main>

@@ -338,7 +338,7 @@ def test_raiz_no_lista_cursos(pagina, servidor):
 def test_curso_no_enlaza_a_nada_interno(pagina, base):
     abrir(pagina, base, "vista=lista")
     hrefs = pagina.eval_on_selector_all("a[href]", "es => es.map(e => e.getAttribute('href'))")
-    assert all(h.startswith(("#", "https://", "webcal:")) for h in hrefs), hrefs
+    assert all(h.startswith(("#", "https://", "webcal:", "mailto:")) for h in hrefs), hrefs
 
 
 # --- cierre automático y archivo
@@ -879,3 +879,19 @@ def test_vercel_analitica_solo_en_cursos_y_enlaces_cortos(tmp_path):
     assert cfg["headers"] and cfg["trailingSlash"] is True
     assert all("_vercel/insights" in p.read_text(encoding="utf-8") for p in (tmp_path / "c").glob("*/index.html"))
     assert not any("_vercel" in p.read_text(encoding="utf-8") for p in (tmp_path / "g").glob("*/index.html"))
+
+
+def test_certificado_paso_a_paso(pagina, servidor, sitio):
+    url = f"{servidor}/{sitio['a']}/index.html?ahora=2026-11-24T17:00:00-05:00"
+    pagina.goto(url)
+    pagina.wait_for_selector(".progreso:not([hidden])")
+    assert pagina.locator(".paso").count() == 6 and pagina.inner_text(".progreso-n") == "0"
+    assert "evolutool.com" in pagina.get_attribute("#paso-1 a.btn", "href")
+    pagina.check("#paso-1 .paso-check")
+    pagina.check("#paso-2 .paso-check")
+    assert pagina.inner_text(".progreso-n") == "2" and "paso 3" in pagina.inner_text(".progreso-msj")
+    pagina.reload()
+    pagina.wait_for_selector(".progreso:not([hidden])")
+    assert pagina.inner_text(".progreso-n") == "2"  # el avance sobrevive a la recarga
+    pagina.click("[data-reiniciar]")
+    assert pagina.inner_text(".progreso-n") == "0"

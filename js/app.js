@@ -162,6 +162,40 @@ function enlazar() {
   iniciarCalendario($('vista'), { poner, estado, mesesActual: () => mesesDe(datos.meta) });
   suscribir(pintar);
   menuVivo();
+  pasoAPaso($('pasos'));
+}
+
+// Lista de pasos con casillas: el avance se guarda en este navegador (si no se puede, funciona igual sin guardar).
+function pasoAPaso(el) {
+  const checks = [...el.querySelectorAll('.paso-check')];
+  if (!checks.length) return;
+  const clave = `pasos-certificado:${location.pathname}`;
+  const panel = el.querySelector('.progreso');
+  let guardado = [];
+  try { guardado = JSON.parse(localStorage.getItem(clave)) || []; } catch { /* sin almacenamiento */ }
+  checks.forEach((c, i) => { c.checked = !!guardado[i]; });
+  const titulo = (i) => checks[i].closest('.paso').querySelector('h3').textContent;
+  function pintarProgreso() {
+    const listos = checks.filter((c) => c.checked).length;
+    const sig = checks.findIndex((c) => !c.checked);
+    panel.querySelector('.progreso-n').textContent = listos;
+    panel.querySelector('.anillo').style.setProperty('--p', Math.round(listos / checks.length * 100));
+    panel.querySelector('.progreso-msj').textContent = listos === checks.length ? '¡Listo! Ya tienes tu certificado.'
+      : listos === 0 ? `Empieza por el paso 1: ${titulo(0).toLowerCase()}.` : `Vas bien. Sigue con el paso ${sig + 1}: ${titulo(sig).toLowerCase()}.`;
+    panel.querySelector('[data-reiniciar]').hidden = listos === 0;
+  }
+  el.addEventListener('change', (e) => {
+    if (!e.target.matches('.paso-check')) return;
+    try { localStorage.setItem(clave, JSON.stringify(checks.map((c) => c.checked))); } catch { /* sin almacenamiento */ }
+    pintarProgreso();
+  });
+  panel.querySelector('[data-reiniciar]').onclick = () => {
+    checks.forEach((c) => { c.checked = false; });
+    try { localStorage.removeItem(clave); } catch { /* sin almacenamiento */ }
+    pintarProgreso();
+  };
+  panel.hidden = false;
+  pintarProgreso();
 }
 
 // Accesos rápidos solo a lo que existe (mismo estado que el menú) y menú que marca la sección que se está leyendo.
