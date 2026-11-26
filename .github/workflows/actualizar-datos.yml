@@ -136,14 +136,14 @@ jobs:
       contents: read
       pages: write      # publicar en Pages
       id-token: write   # lo exige deploy-pages
-      actions: read     # deploy-pages lista el artefacto del sitio; sin esto a veces dice que no existe
+      actions: read     # deploy-pages lista el artefacto del sitio
     # Solo importa el último despliegue: arma el sitio con lo más reciente de main, así ninguno pisa datos de otro curso
     concurrency:
       group: desplegar-pages
       cancel-in-progress: true
     environment:
       name: github-pages
-      url: ${{ steps.pages.outputs.page_url }}
+      url: ${{ steps.pages.outputs.page_url || steps.pages2.outputs.page_url }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -163,7 +163,20 @@ jobs:
         with:
           path: _sitio
 
+      # deploy-pages a veces no ve el artefacto recién subido («No artifacts named github-pages»): se espera y, si falla, se reintenta una vez
+      - name: Esperar a que GitHub registre el artefacto
+        run: sleep 15
+
       - id: pages
+        continue-on-error: true
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+      - name: Esperar antes de reintentar
+        if: steps.pages.outcome == 'failure'
+        run: sleep 45
+
+      - id: pages2
+        if: steps.pages.outcome == 'failure'
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
 
   # Segundo destino, en paralelo a GitHub Pages: el mismo sitio (mismo script, mismos datos) publicado en Vercel.
