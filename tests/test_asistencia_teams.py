@@ -119,3 +119,26 @@ def test_archivos_que_no_son_lo_esperado_dan_mensaje_claro(tmp_path, libro):
         at.calcular(cero, at.leer_libro(libro)["estudiantes"])
     with pytest.raises(ValueError, match="No es el Excel"):
         at.leer_libro(basura)
+
+
+def test_skill_empacada_funciona_sola_como_en_el_claude_de_un_pat(tmp_path, libro):
+    """El .zip del hub: SKILL.md con su encabezado y el motor, que corre fuera del repositorio con solo los archivos del usuario."""
+    import json, subprocess
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    import cursos
+    z = tmp_path / "skill.zip"
+    cursos.empacar_skill(RAIZ, z)
+    with zipfile.ZipFile(z) as zz:
+        assert sorted(zz.namelist()) == ["asistencia-teams/SKILL.md", "asistencia-teams/scripts/asistencia_teams.py"]
+        assert zz.read("asistencia-teams/SKILL.md").decode().startswith("---\nname: asistencia-teams\ndescription: ")
+        zz.extractall(tmp_path / "skill")
+    motor = tmp_path / "skill/asistencia-teams/scripts/asistencia_teams.py"
+    rep = reporte(tmp_path, [("Ana Lucia Perez Rios", "6:00", "7:50", ""), ("Beto Andres Ruiz Soto", "6:00", "6:20", "")])
+    corre = lambda *a: subprocess.run([sys.executable, "-I", str(motor), *map(str, a)], capture_output=True, text=True, cwd=tmp_path, check=True).stdout
+    r = json.loads(corre("calcular", rep, libro))
+    assert r["fecha"] == "2026-03-02" and r["marcas"][str(7)] == 1 and r["marcas"][str(8)] == 0
+    (tmp_path / "marcas.json").write_text(json.dumps(r["marcas"]))
+    salida = tmp_path / "salida.xlsx"
+    corre("escribir", libro, salida, "2026-03-02", tmp_path / "marcas.json")
+    ws = openpyxl.load_workbook(salida)["Asistencia"]
+    assert ws["D7"].value == 1 and ws["D8"].value == 0

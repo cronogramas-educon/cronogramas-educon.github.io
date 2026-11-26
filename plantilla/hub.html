@@ -20,7 +20,7 @@
     <div class="dentro">
       <span class="marca">Educación Continua</span>
       <nav class="nav nav-hub" id="nav-hub" aria-label="Secciones">
-        <a href="#panorama">Panorama</a><a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#mensajes">Mensaje del día</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
+        <a href="#panorama">Panorama</a><a href="#buscar" id="nav-buscar">Buscar</a><a href="#urgente">Urgente<span class="insignia" id="ins-urgente" hidden></span></a><a href="#cursos">Cursos</a><a href="#pendientes">Pendientes</a><a href="#mensajes">Mensaje del día</a><a href="#agenda">Agenda</a><a href="#cambios">Cambios</a><a href="#reportes">Reportes</a><a href="#guias">Guías</a><a href="#archivo" id="nav-archivo" hidden>Archivo</a>
       </nav>
       <a class="btn-registrar" href="#registro">Cursos y periodos</a>
     </div>
@@ -91,6 +91,62 @@
       <div role="tabpanel" id="panel-docentes" aria-labelledby="tab-docentes" data-titulo="Por docente"><div id="rep-docentes"></div></div>
       <div role="tabpanel" id="panel-cursos" aria-labelledby="tab-cursos" data-titulo="Por curso" hidden><div id="rep-cursos"></div></div>
       <div role="tabpanel" id="panel-meses" aria-labelledby="tab-meses" data-titulo="Por mes" hidden><div id="rep-meses"></div></div></div></details>
+    <details class="seccion plegable" id="guias"><summary><h2>Guías para PAT</h2><span class="plg-cuenta">2</span><span class="asis-abrir" aria-hidden="true"></span></summary><div class="plg-cuerpo">
+      <details class="mas guia"><summary>Actualizar la asistencia con Claude</summary>
+        <p class="nota">Subes a Claude el reporte de asistencia de Teams y el Excel de asistencia del curso. Claude calcula quién asistió y te devuelve el Excel con la clase marcada. Sirve para cualquier curso o diplomado.</p>
+        <h3>Instalación (una sola vez)</h3>
+        <ol class="pasos">
+          <li>Descarga la skill. No la descomprimas.<br><a class="btn rojo" href="skill-asistencia-teams.zip" download><span data-ic="download-simple"></span>Descargar skill de asistencia</a></li>
+          <li>Entra a <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a> con tu cuenta. En <strong>Ajustes</strong>, <strong>Capacidades</strong>, activa <strong>Ejecución de código y creación de archivos</strong> (en inglés, <em>Code execution and file creation</em> o <em>Create and edit files</em>).</li>
+          <li>Ve a <strong>Personalizar</strong>, <strong>Skills</strong>, botón <strong>+</strong>, <strong>Crear skill</strong>, <strong>Subir una skill</strong>, y elige el archivo <code>skill-asistencia-teams.zip</code>.</li>
+          <li>Verifica que <strong>asistencia-teams</strong> quede activada en la lista de skills.</li>
+        </ol>
+        <p class="nota">Las skills personales funcionan con seguridad en los planes Pro o superiores. Si en tu cuenta gratuita no aparece la opción, pide ayuda a la coordinación.</p>
+        <h3>Cada vez que termine una clase</h3>
+        <ol class="pasos">
+          <li>En el calendario de Teams abre la reunión de la clase, pestaña <strong>Asistencia</strong>, <strong>Descargar</strong>. Solo lo puede descargar quien organizó la reunión.</li>
+          <li>En SharePoint, carpeta del curso, descarga el Excel <strong>Formato de asistencia</strong> (tres puntos, <strong>Descargar</strong>). Si la carpeta está sincronizada en tu computador, usa ese archivo directamente.</li>
+          <li>Abre un chat nuevo en Claude, adjunta los dos archivos y escribe: <em>Actualiza la asistencia de esta clase.</em> Si tienes el archivo <code>alias-asistencia.json</code> del curso, adjúntalo también.</li>
+          <li>Responde lo que Claude pregunte: quién quedó entre 40 % y 50 % y qué cuentas de Teams no reconoce.</li>
+          <li>Descarga el Excel que te entrega. Con el archivo cerrado para todos, súbelo a la carpeta del curso con <strong>Cargar</strong>, <strong>Archivos</strong> y acepta <strong>Reemplazar</strong>. Si la carpeta está sincronizada, guárdalo encima del anterior.</li>
+          <li>Si Claude te entrega un <code>alias-asistencia.json</code> nuevo, guárdalo en la carpeta del curso. Tiene correos de estudiantes, no lo compartas.</li>
+        </ol>
+        <p class="nota">En unos minutos esta página muestra la asistencia nueva. Si algo sale mal, en SharePoint usa <strong>Historial de versiones</strong> para volver a la versión anterior.</p>
+      </details>
+      <details class="mas guia"><summary>Crear las reuniones de Teams de un curso</summary>
+        <p class="nota">Todas las reuniones llevan el mismo formato de nombre. Así el calendario se lee fácil, los reportes de asistencia se reconocen solos y la skill de asistencia puede comprobar que el reporte es de la clase correcta.</p>
+        <p class="formato-nombre"><strong>Curso · Clase NN · D mmm · Tema corto</strong><br><span>Ejemplo: Compliance · Clase 07 · 13 oct · Gestión de riesgos</span></p>
+        <h3>1. Pide a una IA los nombres de todas las reuniones</h3>
+        <p class="nota">Abre Claude, ChatGPT, Copilot o la que uses. Copia este prompt, cambia lo que está entre corchetes y adjunta el Excel <strong>Cuadro de horas módulos y profesores</strong> del curso (o pega su tabla).</p>
+        <pre class="prompt" id="prompt-reuniones">Te adjunto el cuadro de horas de un curso de Educación Continua de la Universidad de La Sabana. Tiene una fila por clase con las columnas No., Unidad, Tema, Horas, No. de clase, Profesor, Día y Fecha.
+
+Crea el nombre de la reunión de Teams de cada clase con este formato exacto:
+[NOMBRE CORTO] · Clase NN · D mmm · Tema corto
+
+Reglas:
+1. NOMBRE CORTO es [escribe aquí el nombre corto del curso, por ejemplo Compliance o IA Legal G1]. Es igual en todas las reuniones.
+2. NN es el número de la clase con dos dígitos (01, 02, 03...).
+3. D mmm es el día sin cero inicial y el mes en tres letras minúsculas en español (1 oct, 13 nov).
+4. Tema corto resume el tema de esa clase en máximo 6 palabras, con mayúscula inicial y sin punto final. Si el tema está vacío, usa la unidad.
+5. Separa las partes con un punto medio y un espacio a cada lado ( · ). No uses comillas, guiones ni emojis.
+6. Si una clase dice Cancelada, no le crees reunión. Si fue reprogramada, usa la fecha nueva.
+7. No inventes nada. Si a una clase le falta la fecha o el número, ponla al final en una lista llamada Por confirmar.
+
+Entrega una tabla con las columnas Clase, Fecha, Profesor y Nombre de la reunión. La hora de todas las clases es [de 5:00 p. m. a 8:00 p. m.]. Después de la tabla, repite solo los nombres de las reuniones, uno por línea, para copiarlos.</pre>
+        <p class="acciones-registro"><button class="btn" type="button" data-copiar-msj="prompt-reuniones"><span data-ic="link-simple"></span><span>Copiar prompt</span></button></p>
+        <p class="nota">Revisa la tabla contra el Excel antes de crear las reuniones: fechas, números de clase y que no falte ninguna.</p>
+        <h3>2. Crea una reunión por clase</h3>
+        <ol class="pasos">
+          <li>En Teams ve a <strong>Calendario</strong>, <strong>Nueva reunión</strong>.</li>
+          <li>En el título pega el nombre de esa clase, tal cual sale en la tabla.</li>
+          <li>Invita al profesor de la clase. A los estudiantes no hace falta invitarlos: el enlace les llega por la página del curso.</li>
+          <li>Pon la fecha y la hora de la clase. No uses <strong>Repetir</strong>: cada clase tiene su propia reunión.</li>
+          <li><strong>Guarda</strong> o <strong>Envía</strong>. Quien crea la reunión es quien después puede descargar el reporte de asistencia.</li>
+          <li>Abre la reunión, <strong>Copiar vínculo</strong>, y pégalo en la columna <strong>Link de reunión</strong> de esa clase en el Cuadro de horas. La página del curso lo publica sola.</li>
+        </ol>
+        <p class="nota">Si una clase cambia de fecha, edita la misma reunión y cambia la fecha en su nombre. No crees una nueva: el enlace se conserva.</p>
+      </details>
+    </div></details>
     <section class="seccion" id="archivo" hidden><h2>Archivo</h2>
       <p class="nota">Los cursos terminan solos y pasan aquí. Su página sigue abierta en modo lectura con el mismo enlace.</p>
       <div id="archivo-lista"></div></section>

@@ -380,6 +380,15 @@ def redirigir_paginas(salida, destino):
         pagina.write_text(_blindar(PAGINA_REDIRECCION.replace("__DESTINO__", destino).replace("__RUTA__", ruta)), encoding="utf-8")
 
 
+def empacar_skill(raiz, destino):
+    """Skill de asistencia para el Claude de cada PAT: instrucciones (skills/asistencia-teams) + el mismo motor que usa el repositorio.
+    Sin datos de estudiantes: los alias con correos viven en la carpeta de cada curso, nunca aquí."""
+    import zipfile
+    with zipfile.ZipFile(destino, "w", zipfile.ZIP_DEFLATED) as z:
+        z.write(raiz / "skills/asistencia-teams/SKILL.md", "asistencia-teams/SKILL.md")
+        z.write(raiz / "scripts/asistencia_teams.py", "asistencia-teams/scripts/asistencia_teams.py")
+
+
 def preparar_vercel(salida, reg, raiz):
     """Solo en Vercel: analítica y velocidad (scripts propios de Vercel, sin cookies) en las páginas de curso, no en el hub secreto;
     y enlaces cortos /<id-del-curso> hacia la carpeta con código (se omiten los cursos de prueba)."""
@@ -465,6 +474,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ, redirigir=False, vercel=False)
     meta = {"cursos": resumen, "sharepointBase": quote(g["sharepointBase"], safe=":/"), "carpetaActual": enlace(reciente), "nombreCarpetaActual": reciente,
             "sinRegistrar": sin, "formularioRegistro": g.get("formularioRegistro", ""), "formularioBienvenida": g.get("formularioBienvenida", ""), "preguntasBienvenida": g.get("preguntasBienvenida", {}), "encuestaSatisfaccion": g.get("encuestaSatisfaccion", ""), "registro": dict(leer("registro.json", {"error": None, "avisos": [], "actualizado": ""}), enlace=(quote(g["registroUrl"], safe=":/") if g.get("registroUrl") else enlace(g["registroRuta"]) if g.get("registroRuta") else "") + "?web=1")}
     (hub / "cursos.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
+    empacar_skill(RAIZ, hub / "skill-asistencia-teams.zip")  # código del repositorio, no datos del curso
     (hub / "index.html").write_text(_html(raiz / "plantilla/hub.html", V=version, BASE="../../"), encoding="utf-8")
     if vercel:
         preparar_vercel(salida, reg, raiz)
