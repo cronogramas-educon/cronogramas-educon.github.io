@@ -10,30 +10,30 @@
     "horasCompletas": true,
     "inicio": "2026-11-27",
     "fin": "2026-11-27",
-    "hash": "37fc32f8b975e733",
-    "generadoEn": "2026-11-26T19:01:44Z",
-    "fuenteModificadaEn": "2026-11-26T19:01:26.6562968Z"
+    "hash": "dd8ffd904b3605b1",
+    "generadoEn": "2026-11-26T19:03:47Z",
+    "fuenteModificadaEn": "2026-11-26T19:03:26.4659452Z"
   },
   "clases": [
     {
       "id": 1,
-      "clase": "Clase 1",
+      "clase": "CLASE 1",
       "unidad": "Introducción",
       "unidadSlug": "introduccion",
-      "tema": "Creación curso o diplomado",
+      "tema": "Creación de curso o diplomado",
       "temaPuntos": [
-        "Creación curso o diplomado"
+        "Creación de curso o diplomado"
       ],
       "temaHeredado": false,
       "horas": 2,
-      "profesor": "Nombre del docente",
+      "profesor": "Nombre del profesor",
       "profesores": [
-        "Nombre del docente"
+        "Nombre del profesor"
       ],
       "dia": "Viernes",
       "diaCalculado": "Viernes",
       "fecha": "2026-11-27",
-      "asistentePat": "Nombre del asistente encargado",
+      "asistentePat": "Nombre del asistente PAT",
       "linkTeams": "",
       "cambio": null,
       "inicio": "2026-11-27T08:00:00-05:00",
@@ -52,10 +52,10 @@
     }
   ],
   "profesores": [
-    "Nombre del docente"
+    "Nombre del profesor"
   ],
   "asistentesPat": [
-    "Nombre del asistente encargado"
+    "Nombre del asistente PAT"
   ],
   "cambios": [],
   "canceladas": []
