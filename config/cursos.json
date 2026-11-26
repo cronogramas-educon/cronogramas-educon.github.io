@@ -226,6 +226,26 @@
         "equipo": "6c440265-92a3-47b6-8e69-fbded6ac1552",
         "canal": "19:UgCk3emNWKfdv1vG1BZ9-eLdlNdgddJX5AH9z4Id-Ps1@thread.tacv2"
       }
+    },
+    {
+      "id": "prueba-para-registrar-curso-2028-1-cohorte-1-primera-vez-en-el-semestre",
+      "codigo": "qv30w1o8",
+      "carpeta": "EduContinua 2028-1/Cohorte 1 (primera vez en el semestre)/Diplomado Prueba para registrar curso",
+      "tipo": "Diplomado",
+      "programa": "Prueba para registrar curso",
+      "programaCorto": "Prueba para registrar curso",
+      "modalidad": "Remota (Microsoft Teams)",
+      "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/curso/curso-en-propiedad-horizontal",
+      "periodo": "2028-1",
+      "horario": {
+        "inicio": "08:00",
+        "fin": "19:00"
+      },
+      "cohorte": "Cohorte 1 (primera vez en el semestre)",
+      "teams": {
+        "equipo": "4cbc5af9-8c5f-4535-bff1-03fc52b9f07d",
+        "canal": "19:0lTvvZHxMWdxLROKjyKO2ksxTxFzHPgqLrffnkLC2ag1@thread.tacv2"
+      }
     }
   ]
 }

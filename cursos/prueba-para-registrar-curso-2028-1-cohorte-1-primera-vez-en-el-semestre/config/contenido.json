@@ -1,0 +1,43 @@
+{
+  "programa": "Diplomado Prueba para registrar curso",
+  "programaCorto": "Diplomado Prueba para registrar curso",
+  "tipo": "Diplomado",
+  "modalidad": "Remota (Microsoft Teams)",
+  "urlPaginaOficial": "https://www.unisabana.edu.co/programas/educacion-continua/curso/curso-en-propiedad-horizontal",
+  "periodo": "2028-1",
+  "cohorte": "Cohorte 1 (primera vez en el semestre)",
+  "universidad": "Universidad de La Sabana",
+  "facultad": "Facultad de Estudios Jurídicos, Políticos e Internacionales",
+  "horario": {
+    "inicio": "08:00",
+    "fin": "19:00",
+    "zona": "America/Bogota",
+    "desfase": "-05:00"
+  },
+  "uidSufijo": "cronograma-prueba-para-registrar-curso-2028-1-cohorte-1-primera-vez-en-el-semestre",
+  "mostrarLinksTeams": true,
+  "diasAvisoCambio": 14,
+  "profesoresInstitucionales": [
+    "SABANA"
+  ],
+  "siglas": [
+    "EEUU",
+    "ALA/CFT",
+    "ROS",
+    "IA",
+    "ESG",
+    "UGPP",
+    "PEP",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "id": "prueba-para-registrar-curso-2028-1-cohorte-1-primera-vez-en-el-semestre"
+}
