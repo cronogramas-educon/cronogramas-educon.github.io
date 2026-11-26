@@ -184,3 +184,38 @@ def test_alias_desde_la_hoja_alias_teams_del_propio_libro(tmp_path, libro):
     assert marcas["DARIO JOSE LARA VEGA"] == 1 and marcas["ELENA SOFIA MORA DIAZ"] == 1
     assert r["sin_coincidencia"] == [] and [x["nombre"] for x in r["no_matriculados"]] == ["Profe Invitado"]
     assert len(r["avisos_alias"]) == 2
+
+
+def _cuadro(tmp_path, filas):
+    """Cuadro de horas mínimo: encabezados reales en la fila 2 y una fila por clase (No. de clase, fecha, situación)."""
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "DISTRIBUCIÓN HORAS"
+    for j, h in enumerate(["No.", "Unidad", "Tema", "Horas", "No. de clase", "Profesor", "Día", "Fecha", "Asistente PAT", "Link de reunión", "Situación"], 1):
+        ws.cell(2, j, h)
+    for i, (clase, fecha, sit) in enumerate(filas, 3):
+        ws.cell(i, 1, i - 2); ws.cell(i, 5, clase); ws.cell(i, 8, fecha); ws.cell(i, 11, sit)
+    p = tmp_path / "Cuadro de horas.xlsx"
+    wb.save(p)
+    return p
+
+
+def test_excel_de_plantilla_sin_fechas_se_completa_con_el_cuadro_y_gana_la_hoja_alias(tmp_path):
+    """Caso real: el Formato de asistencia de un curso nuevo sale de la plantilla de SharePoint, sin fechas y sin «Alias Teams»."""
+    import datetime as dt
+    libro = tmp_path / "Formato de asistencia - Prueba.xlsx"
+    gen.construir({"curso": "Prueba", "clases": [], "estudiantes": [{"nombre": n, "cedula": f"900000000{i}"} for i, n in enumerate(NOMBRES)]}, libro)
+    wb = openpyxl.load_workbook(libro); del wb["Alias Teams"]; wb.save(libro)  # como la plantilla vieja
+    cuadro = _cuadro(tmp_path, [("CLASE 1", dt.datetime(2026, 3, 2), None), ("CLASE 2", dt.datetime(2026, 3, 9), "Cancelada")])
+    with pytest.raises(SystemExit, match="Cuadro de horas"):
+        at.escribir_marcas(libro, tmp_path / "x.xlsx", "2026-03-02", {7: 1})
+    assert at.leer_libro(libro, str(cuadro))["clases"][0]["fecha"] == "2026-03-02"
+    salida = tmp_path / "salida.xlsx"
+    at.escribir_marcas(libro, salida, "2026-03-02", {7: 1, 8: 0}, cuadro=str(cuadro))
+    wb = openpyxl.load_workbook(salida)
+    assert wb["Asistencia"]["D7"].value == 1 and wb["Asistencia"]["D8"].value == 0
+    assert wb["Cronograma"]["B6"].value.date() == dt.date(2026, 3, 2) and wb["Cronograma"]["D7"].value == "Cancelada"
+    assert wb["Resumen"]["C5"].value == 2
+    assert wb.sheetnames[-1] == "Alias Teams" and wb["Alias Teams"]["B1"].value == "Nombre o cuenta en Teams"
+    # una vez escrito, el libro ya trae sus fechas y la hoja: la siguiente clase no necesita el Cuadro
+    assert at.leer_libro(salida)["clases"][0]["fecha"] == "2026-03-02"

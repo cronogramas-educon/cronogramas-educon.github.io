@@ -12,6 +12,8 @@ Uso (todo sale como JSON, así lo puede llamar también el hub o un flujo):
   python3 -I scripts/asistencia_teams.py libro LIBRO.xlsx
   python3 -I scripts/asistencia_teams.py calcular REPORTE LIBRO.xlsx [ALIAS.json]
   python3 -I scripts/asistencia_teams.py escribir LIBRO.xlsx DESTINO.xlsx AAAA-MM-DD[#N] MARCAS.json   (#N = clase, si hay dos el mismo día)
+  Con --cuadro CUADRO.xlsx (Cuadro de horas del curso) las fechas salen del Cuadro, y al escribir se copian a la hoja Cronograma del
+  Excel de asistencia. Si el libro no tiene la hoja «Alias Teams», escribir la agrega vacía.
 
 Alias (todo opcional): {"correos": {"NOMBRE COMPLETO": ["a@x.com"]}, "nombres": {"cuenta de teams": "NOMBRE COMPLETO"},
 "no_matriculados": ["Nombre de un profesor u organizador"]}. "NOMBRE COMPLETO" es el de la columna C del libro.
@@ -26,7 +28,7 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 from openpyxl.utils.exceptions import InvalidFileException
 
 MINIMO, REVISION, RELEVANTE = 0.5, 0.4, 0.2
-HOJAS = ("Asistencia", "Resumen")  # las que llevan marcas o cuentas que dependen de ellas
+HOJAS = ("Asistencia", "Resumen", "Cronograma")  # las que llevan marcas o cuentas que dependen de ellas
 
 
 # ---------- reporte de Teams ----------
@@ -183,7 +185,33 @@ def _fecha_de_clase(wb, ws, col, n):
     return None
 
 
-def leer_libro(ruta):
+def leer_cuadro(ruta):
+    """Cuadro de horas del curso: {n: {"fecha": "AAAA-MM-DD" o None, "cancelada": bool}} por cada fila «CLASE N». El Cuadro manda sobre las fechas."""
+    try:
+        wb = openpyxl.load_workbook(ruta, data_only=True)
+    except (OSError, zipfile.BadZipFile, InvalidFileException) as e:
+        raise ValueError(f"No se pudo abrir el Cuadro de horas: {e!r}") from None
+    for ws in [wb["DISTRIBUCIÓN HORAS"]] if "DISTRIBUCIÓN HORAS" in wb.sheetnames else wb.worksheets:
+        for r in range(1, min(ws.max_row, 15) + 1):
+            enc = {_norm(str(ws.cell(r, c).value or "")).strip(): c for c in range(1, ws.max_column + 1)}
+            if "no. de clase" in enc and "fecha" in enc:
+                cn, cf, cs = enc["no. de clase"], enc["fecha"], enc.get("situacion")
+                clases = {}
+                for f in range(r + 1, ws.max_row + 1):
+                    m = re.fullmatch(r"\s*clase\s*(\d+)\s*", _norm(str(ws.cell(f, cn).value or "")))
+                    if not m:
+                        continue
+                    v = ws.cell(f, cf).value
+                    if isinstance(v, (int, float)) and not isinstance(v, bool):
+                        v = datetime.datetime(1899, 12, 30) + datetime.timedelta(days=int(v))
+                    fecha = v.date().isoformat() if isinstance(v, datetime.datetime) else v.isoformat() if isinstance(v, datetime.date) else None
+                    canc = bool(cs) and _norm(str(ws.cell(f, cs).value or "")).startswith("cancelad")
+                    clases[int(m.group(1))] = {"fecha": fecha, "cancelada": canc}
+                return clases
+    raise ValueError("No es el Cuadro de horas: no tiene las columnas «No. de clase» y «Fecha».")
+
+
+def leer_libro(ruta, cuadro=None):
     try:
         wb = openpyxl.load_workbook(ruta, data_only=True)
         ws = wb["Asistencia"]
@@ -200,6 +228,18 @@ def leer_libro(ruta):
     est = {str(ws.cell(r, 3).value).strip(): r for r in range(7, ws.max_row + 1) if ws.cell(r, 3).value and str(ws.cell(r, 3).value).strip()}
     cedulas = sum(1 for r in est.values() if ws.cell(r, 2).value)
     alias, avisos = _alias_del_libro(wb, est)
+    if cuadro:  # el Excel de asistencia puede venir sin fechas (plantilla): las da el Cuadro de horas
+        cq = leer_cuadro(cuadro) if not isinstance(cuadro, dict) else cuadro
+        for c in clases:
+            if c["n"] in cq:
+                c["fecha"] = cq[c["n"]]["fecha"]
+                if cq[c["n"]]["cancelada"]:
+                    c["estado"] = "Cancelada"
+        sin_col = sorted(n for n in cq if n > len(clases))
+        if sin_col:
+            avisos.append(f"El Cuadro tiene clases sin columna en el Excel de asistencia: {sin_col}.")
+    if "Alias Teams" not in wb.sheetnames:
+        avisos.append("El Excel no tiene la hoja «Alias Teams»: se agrega al escribir las marcas.")
     return {"clases": clases, "estudiantes": est, "sin_cedula": len(est) - cedulas, "alias": alias, "avisos_alias": avisos}
 
 
@@ -252,19 +292,21 @@ def _columna(libro, fecha):
     fecha, _, n = fecha.partition("#")
     cs = [c for c in libro["clases"] if c["fecha"] == fecha and (not n or c["n"] == int(n))]
     if not cs:
-        raise SystemExit(f"No hay una clase con fecha {fecha} en la fila 5. No inventes columna: avisa al usuario.")
+        raise SystemExit(f"No hay una clase con fecha {fecha} en el Excel de asistencia. Si sus fechas están vacías, pide el Cuadro de horas del curso y usa --cuadro. No inventes columna: avisa al usuario.")
     if len(cs) > 1:
         raise SystemExit(f"Hay {len(cs)} clases con la fecha {fecha} ({', '.join('Clase %d' % c['n'] for c in cs)}): decide a cuál va.")
     return cs[0]
 
 
-def _zip(zin, destino, cambios):
+def _zip(zin, destino, cambios, nuevos=None):
     destino = str(destino)
     tmp = destino + ".tmp"
     with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zout:
         for it in zin.infolist():
             datos = cambios[it.filename].encode("utf8") if it.filename in cambios else zin.read(it.filename)
             zout.writestr(it, datos, compress_type=zipfile.ZIP_DEFLATED)
+        for nombre, texto in (nuevos or {}).items():
+            zout.writestr(nombre, texto.encode("utf8"), compress_type=zipfile.ZIP_DEFLATED)
     os.replace(tmp, destino)
 
 
@@ -277,10 +319,104 @@ def _partes(zin):
     return {h.get("name"): destino(rels[h.get(nr + "id")]) for h in ET.fromstring(zin.read("xl/workbook.xml")).iter(ns + "sheet")}
 
 
-def escribir_marcas(origen, destino, fecha, marcas):
+def _col_num(ref):
+    return column_index_from_string(re.match(r"[A-Z]+", ref).group(0))
+
+
+def _poner(hoja, ref, valor):
+    """Escribe una celda en el XML de una hoja (número, texto o vacío), creándola si no existe y conservando su estilo."""
+    if valor is None:
+        contenido, tipo = "", ""
+    elif isinstance(valor, str):
+        t = valor.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        contenido, tipo = f"<is><t>{t}</t></is>", ' t="inlineStr"'
+    else:
+        contenido, tipo = f"<v>{valor}</v>", ""
+    mm = re.search(r'<c r="%s"((?:\s[^>]*?)?)(?:/>|>.*?</c>)' % ref, hoja, re.S)
+    if mm:
+        attrs = re.sub(r'\st="[^"]*"', "", mm.group(1))
+        nueva = f'<c r="{ref}"{attrs}{tipo}>{contenido}</c>' if contenido else f'<c r="{ref}"{attrs}/>'
+        return hoja[:mm.start()] + nueva + hoja[mm.end():]
+    if not contenido:
+        return hoja
+    fila = int(re.search(r"\d+", ref).group(0))
+    celda = f'<c r="{ref}"{tipo}>{contenido}</c>'
+    mr = re.search(r'<row r="%d"[^>]*?(?:/>|>(.*?)</row>)' % fila, hoja, re.S)
+    if mr:
+        if mr.group(0).endswith("/>"):
+            return hoja[:mr.start()] + mr.group(0)[:-2] + ">" + celda + "</row>" + hoja[mr.end():]
+        cuerpo, ini = mr.group(1), mr.start(1)
+        for mc in re.finditer(r'<c r="([A-Z]+\d+)"', cuerpo):
+            if _col_num(mc.group(1)) > _col_num(ref):
+                return hoja[:ini + mc.start()] + celda + hoja[ini + mc.start():]
+        return hoja[:mr.end(1)] + celda + hoja[mr.end(1):]
+    for mr in re.finditer(r'<row r="(\d+)"', hoja):
+        if int(mr.group(1)) > fila:
+            return hoja[:mr.start()] + f'<row r="{fila}">{celda}</row>' + hoja[mr.start():]
+    if "<sheetData/>" in hoja:
+        return hoja.replace("<sheetData/>", f'<sheetData><row r="{fila}">{celda}</row></sheetData>', 1)
+    return hoja.replace("</sheetData>", f'<row r="{fila}">{celda}</row></sheetData>', 1)
+
+
+ALIAS_ENCABEZADOS = ("Estudiante (como está en la hoja Asistencia)", "Nombre o cuenta en Teams", "Correo en Teams", "Nota")
+
+
+def _hoja_alias(zin, cambios):
+    """Agrega la hoja «Alias Teams» (vacía, con encabezados) a un libro que no la tiene. Devuelve las partes nuevas."""
+    ns_r = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+    usadas = {n for n in zin.namelist() if n.startswith("xl/worksheets/sheet")}
+    k = 1
+    while f"xl/worksheets/sheet{k}.xml" in usadas:
+        k += 1
+    rels = cambios.get("xl/_rels/workbook.xml.rels") or zin.read("xl/_rels/workbook.xml.rels").decode("utf8")
+    ids = {int(x) for x in re.findall(r'Id="rId(\d+)"', rels)}
+    rid = f"rId{max(ids, default=0) + 1}"
+    rels = rels.replace("</Relationships>", f'<Relationship Id="{rid}" Type="{ns_r}/worksheet" Target="worksheets/sheet{k}.xml"/></Relationships>')
+    wb = cambios.get("xl/workbook.xml") or zin.read("xl/workbook.xml").decode("utf8")
+    sid = max((int(x) for x in re.findall(r'sheetId="(\d+)"', wb)), default=0) + 1
+    pref = re.search(r'xmlns:(\w+)="%s"' % re.escape(ns_r), wb)
+    rpref = pref.group(1) if pref else "r"
+    if not pref:
+        wb = wb.replace("<workbook ", f'<workbook xmlns:r="{ns_r}" ', 1)
+    wb = wb.replace("</sheets>", f'<sheet name="Alias Teams" sheetId="{sid}" {rpref}:id="{rid}"/></sheets>', 1)
+    ct = cambios.get("[Content_Types].xml") or zin.read("[Content_Types].xml").decode("utf8")
+    ct = ct.replace("</Types>", f'<Override PartName="/xl/worksheets/sheet{k}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>')
+    cambios.update({"xl/_rels/workbook.xml.rels": rels, "xl/workbook.xml": wb, "[Content_Types].xml": ct})
+    enc = "".join(f'<c r="{chr(65 + i)}1" t="inlineStr"><is><t>{h}</t></is></c>' for i, h in enumerate(ALIAS_ENCABEZADOS))
+    hoja = ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+            '<sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>'
+            '<cols><col min="1" max="1" width="44" customWidth="1"/><col min="2" max="3" width="34" customWidth="1"/><col min="4" max="4" width="40" customWidth="1"/></cols>'
+            f'<sheetData><row r="1">{enc}</row></sheetData></worksheet>')
+    return {f"xl/worksheets/sheet{k}.xml": hoja}
+
+
+def _sincronizar_cronograma(zin, partes, cuadro, cambios):
+    """Copia al Excel de asistencia las fechas (y cancelaciones) del Cuadro de horas: hoja Cronograma columna B, y «Clases del curso»."""
+    if "Cronograma" not in partes:
+        return
+    wbv = None
+    cr = cambios.get(partes["Cronograma"]) or zin.read(partes["Cronograma"]).decode("utf8")
+    for n, d in cuadro.items():
+        if n > 40:
+            continue
+        if d["fecha"]:
+            serial = (datetime.date.fromisoformat(d["fecha"]) - datetime.date(1899, 12, 30)).days
+            cr = _poner(cr, f"B{5 + n}", serial)
+            cr = _poner(cr, f"E{5 + n}", None)  # la fecha vigente ya es la del Cuadro
+        if d["cancelada"]:
+            cr = _poner(cr, f"D{5 + n}", "Cancelada")
+    cambios[partes["Cronograma"]] = cr
+    if "Resumen" in partes and cuadro:
+        rs = cambios.get(partes["Resumen"]) or zin.read(partes["Resumen"]).decode("utf8")
+        cambios[partes["Resumen"]] = _poner(rs, "C5", max(cuadro))
+
+
+def escribir_marcas(origen, destino, fecha, marcas, cuadro=None):
     """Parchea solo el XML de las celdas de la clase de esa fecha (no usa openpyxl para guardar: la tabla, los comentarios
     y los estilos deben quedar intactos). marcas = {fila: 1|0|None}. Se detiene si la columna ya tiene marcas."""
-    libro = leer_libro(origen)
+    cq = leer_cuadro(cuadro) if cuadro else None
+    libro = leer_libro(origen, cq)
     clase = _columna(libro, fecha)
     col = clase["columna"]
     ws = openpyxl.load_workbook(origen, data_only=True)["Asistencia"]
@@ -304,9 +440,13 @@ def escribir_marcas(origen, destino, fecha, marcas):
     wb = zin.read("xl/workbook.xml").decode("utf8")
     if "fullCalcOnLoad" not in wb:
         wb = re.sub(r"<calcPr([^>]*?)/>", r'<calcPr\1 fullCalcOnLoad="1"/>', wb)
+    cambios, partes = {parte: hoja, "xl/workbook.xml": wb}, _partes(zin)
+    if cq:
+        _sincronizar_cronograma(zin, partes, cq, cambios)
+    nuevos = _hoja_alias(zin, cambios) if "Alias Teams" not in partes else {}
     if str(origen) != str(destino):
         shutil.copy(origen, destino)
-    _zip(zin, destino, {parte: hoja, "xl/workbook.xml": wb})
+    _zip(zin, destino, cambios, nuevos)
     _refrescar_cache(destino)
     return clase
 
@@ -353,17 +493,21 @@ def main(argv):
     uso = __doc__.split("Uso", 1)[1].split("Alias", 1)[0]
     if len(argv) < 3:
         raise SystemExit("Uso" + uso)
+    cuadro = None
+    if "--cuadro" in argv:
+        i = argv.index("--cuadro")
+        cuadro, argv = argv[i + 1], argv[:i] + argv[i + 2:]
     cmd = argv[1]
     if cmd == "libro":
-        salida = leer_libro(argv[2])
+        salida = leer_libro(argv[2], cuadro)
     elif cmd == "calcular":
-        libro = leer_libro(argv[3])
+        libro = leer_libro(argv[3], cuadro)
         extra = json.load(open(argv[4], encoding="utf8")) if len(argv) > 4 and os.path.exists(argv[4]) else {}
         salida = calcular(argv[2], libro["estudiantes"], unir_alias(libro["alias"], extra))
         salida["avisos_alias"] = libro["avisos_alias"]
     elif cmd == "escribir":
         marcas = {int(k): v for k, v in json.load(open(argv[5], encoding="utf8")).items()}
-        salida = escribir_marcas(argv[2], argv[3], argv[4], marcas)
+        salida = escribir_marcas(argv[2], argv[3], argv[4], marcas, cuadro)
     else:
         raise SystemExit("Uso" + uso)
     print(json.dumps(salida, ensure_ascii=False, indent=1, default=str))

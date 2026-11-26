@@ -10,18 +10,19 @@ Sirve para cualquier curso o diplomado que use el Excel «Formato de asistencia 
 ## Qué debe adjuntar el usuario
 1. El reporte de asistencia de Teams de UNA clase (`... Attendance report ....csv` o `.xlsx`).
 2. El Excel de asistencia del curso, descargado de SharePoint en ese momento (la versión más reciente).
-3. Opcional: notas en el chat sobre cómo aparecen algunos estudiantes en Teams (ver «Información extra sobre los nombres»).
+3. El Cuadro de horas del curso («Cuadro de horas, módulos y profesores»), también recién descargado. De ahí salen las fechas de las clases: el Excel de asistencia de un curso nuevo viene sin fechas.
+4. Opcional: notas en el chat sobre cómo aparecen algunos estudiantes en Teams (ver «Información extra sobre los nombres»).
 
-Si falta el reporte o el Excel, pídelo y explica cómo descargarlo (ver «Ayuda para el usuario»). No sigas sin los dos.
+Si falta el reporte, el Excel de asistencia o el Cuadro de horas, pídelo y explica cómo descargarlo (ver «Ayuda para el usuario»). No sigas sin los tres.
 
 ## Procedimiento
 Usa el script `scripts/asistencia_teams.py` de esta skill con `python3 -I`. Necesita `openpyxl` (si no está, instálalo con `pip install openpyxl`). Copia los archivos del usuario a una carpeta de trabajo y no cambies sus nombres.
 
 1. Lee el libro:
-   `python3 -I scripts/asistencia_teams.py libro LIBRO.xlsx`
+   `python3 -I scripts/asistencia_teams.py libro LIBRO.xlsx --cuadro CUADRO.xlsx`
    Devuelve las clases (número, columna, fecha, estado, cuántas marcas tiene), los estudiantes (nombre, fila) y los alias de la hoja «Alias Teams» si el libro la tiene. Si falla, el archivo no es el «Formato de asistencia»: díselo al usuario y detente.
 2. Si el usuario dio notas sobre nombres en el chat, conviértelas en `alias-chat.json` (ver abajo). Calcula la asistencia:
-   `python3 -I scripts/asistencia_teams.py calcular REPORTE LIBRO.xlsx [alias-chat.json]`
+   `python3 -I scripts/asistencia_teams.py calcular REPORTE LIBRO.xlsx [alias-chat.json] --cuadro CUADRO.xlsx`
    Los alias de la hoja «Alias Teams» se aplican solos; el JSON se suma a ellos. La fecha de la clase sale del reporte (Start time), nunca del nombre del archivo.
 3. Revisa antes de escribir y pregunta solo lo necesario, todo en un mismo mensaje:
    - Si `alertas` no está vacío, muéstralo y pregunta si es el reporte correcto.
@@ -33,9 +34,10 @@ Usa el script `scripts/asistencia_teams.py` de esta skill con `python3 -I`. Nece
    Si el usuario dice que una cuenta es de un estudiante, agrégala a `alias-chat.json` y vuelve a calcular.
 4. Escribe las marcas en una COPIA:
    guarda `marcas` (con las decisiones del usuario) en `marcas.json` y ejecuta
-   `python3 -I scripts/asistencia_teams.py escribir LIBRO.xlsx "Formato de asistencia - <curso>.xlsx" AAAA-MM-DD marcas.json`
+   `python3 -I scripts/asistencia_teams.py escribir LIBRO.xlsx "Formato de asistencia - <curso>.xlsx" AAAA-MM-DD marcas.json --cuadro CUADRO.xlsx`
    (si hay dos clases el mismo día, usa `AAAA-MM-DD#N`). El nombre del archivo de salida debe ser exactamente el mismo del original.
-   El script cambia solo las celdas de esa clase. No guardes el libro con openpyxl ni con otra herramienta: se dañan la tabla y las fórmulas que usa el sitio de administración.
+   El script cambia las celdas de esa clase, copia las fechas y cancelaciones del Cuadro a la hoja Cronograma y, si falta, agrega la hoja «Alias Teams» vacía. Si la fecha del reporte no coincide con ninguna clase del Cuadro, no escribas: dile al PAT qué fecha trae el reporte y qué fechas tiene el Cuadro.
+   El script no toca nada más del libro. No guardes el libro con openpyxl ni con otra herramienta: se dañan la tabla y las fórmulas que usa el sitio de administración.
 5. Entrega:
    - El Excel actualizado para descargar.
    - Un informe corto: clase y fecha, cuántos asistieron (1), cuántos faltaron (0), los que quedaron vacíos para revisar, las cuentas no matriculadas y las que se emparejaron por alias.
@@ -56,7 +58,7 @@ A veces la cuenta de Teams no se parece al nombre de la lista (apodos, cuentas d
    - B, Nombre o cuenta en Teams: tal como sale en el reporte, por ejemplo `LAURAPR88 (Guest)`.
    - C, Correo en Teams: el correo de esa cuenta, si sale en el reporte. Es lo más seguro para emparejar.
    - D, Nota: libre.
-   Los cursos creados desde noviembre de 2026 ya traen la hoja. Si el libro no la tiene, explícale al usuario que agregue en Excel una hoja llamada exactamente `Alias Teams` con esos cuatro encabezados en la fila 1.
+   Si el libro no la tiene, el paso de escribir la agrega vacía. Desde la siguiente clase el PAT ya puede llenarla.
 2. **Notas en el chat** (para esta vez). Ejemplos: «En Teams, Lau P es Laura Pérez», «el correo jgomez@empresa.com es de Juan Gómez», «Carolina es la profesora». Conviértelas en `alias-chat.json` usando el nombre exacto de la columna C. Si una nota puede referirse a dos estudiantes, pregunta antes de calcular. Al final dale las filas para la hoja «Alias Teams».
 
 Formato de `alias-chat.json` (el script también lo acepta si el usuario trae uno de antes):
