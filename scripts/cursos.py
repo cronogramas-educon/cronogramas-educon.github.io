@@ -392,7 +392,8 @@ def empacar_skill(raiz, destino):
 def preparar_vercel(salida, reg, raiz):
     """Solo en Vercel: analítica y velocidad (scripts propios de Vercel, sin cookies) en las páginas de curso, no en el hub secreto;
     y enlaces cortos /<id-del-curso> hacia la carpeta con código (se omiten los cursos de prueba)."""
-    cuerpo = '<script defer src="/_vercel/insights/script.js"></script>\n  <script defer src="/_vercel/speed-insights/script.js"></script>\n</body>'
+    # ponytail: Web Analytics (/_vercel/insights/script.js) se agrega aquí cuando se active en el panel de Vercel; sin activarla responde 404
+    cuerpo = '<script defer src="/_vercel/speed-insights/script.js"></script>\n</body>'
     cfg = json.loads((raiz / "vercel.json").read_text(encoding="utf-8"))
     cfg["redirects"] = []
     for c in reg["cursos"]:

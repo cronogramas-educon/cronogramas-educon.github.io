@@ -24,7 +24,7 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 from openpyxl.utils.exceptions import InvalidFileException
 
 MINIMO, REVISION, RELEVANTE = 0.5, 0.4, 0.2
-HOJAS = {"Asistencia": "xl/worksheets/sheet2.xml", "Resumen": "xl/worksheets/sheet3.xml"}
+HOJAS = ("Asistencia", "Resumen")  # las que llevan marcas o cuentas que dependen de ellas
 
 
 # ---------- reporte de Teams ----------
@@ -221,6 +221,15 @@ def _zip(zin, destino, cambios):
     os.replace(tmp, destino)
 
 
+def _partes(zin):
+    """Nombre de hoja -> parte XML, leído del propio libro: Excel Online puede renumerar los sheetN.xml al guardar."""
+    import xml.etree.ElementTree as ET
+    ns, nr = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}", "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
+    rels = {r.get("Id"): r.get("Target") for r in ET.fromstring(zin.read("xl/_rels/workbook.xml.rels"))}
+    destino = lambda t: t.lstrip("/") if t.startswith("/") else "xl/" + t
+    return {h.get("name"): destino(rels[h.get(nr + "id")]) for h in ET.fromstring(zin.read("xl/workbook.xml")).iter(ns + "sheet")}
+
+
 def escribir_marcas(origen, destino, fecha, marcas):
     """Parchea solo el XML de las celdas de la clase de esa fecha (no usa openpyxl para guardar: la tabla, los comentarios
     y los estilos deben quedar intactos). marcas = {fila: 1|0|None}. Se detiene si la columna ya tiene marcas."""
@@ -235,7 +244,8 @@ def escribir_marcas(origen, destino, fecha, marcas):
         if ws.cell(int(r), ci).value is not None:
             raise SystemExit(f"{col}{r} ya tiene marca ({ws.cell(int(r), ci).value}). Avisa al usuario y pregunta antes de sobrescribir.")
     zin = zipfile.ZipFile(origen)
-    hoja = zin.read(HOJAS["Asistencia"]).decode("utf8")
+    parte = _partes(zin)["Asistencia"]
+    hoja = zin.read(parte).decode("utf8")
     for r, m in marcas.items():
         ref = f"{col}{int(r)}"
         mm = re.search(r'<c r="%s"((?:\s[^>]*?)?)(?:/>|>.*?</c>)' % ref, hoja, re.S)
@@ -249,7 +259,7 @@ def escribir_marcas(origen, destino, fecha, marcas):
         wb = re.sub(r"<calcPr([^>]*?)/>", r'<calcPr\1 fullCalcOnLoad="1"/>', wb)
     if str(origen) != str(destino):
         shutil.copy(origen, destino)
-    _zip(zin, destino, {HOJAS["Asistencia"]: hoja, "xl/workbook.xml": wb})
+    _zip(zin, destino, {parte: hoja, "xl/workbook.xml": wb})
     _refrescar_cache(destino)
     return clase
 
@@ -270,7 +280,9 @@ def _refrescar_cache(ruta):
                        capture_output=True, timeout=150)
         calc = openpyxl.load_workbook(os.path.join(td, "out", "t.xlsx"), data_only=True)
         zin, cambios = zipfile.ZipFile(ruta), {}
-        for nombre, parte in HOJAS.items():
+        partes = _partes(zin)
+        for nombre in HOJAS:
+            parte = partes[nombre]
             xml, ws = zin.read(parte).decode("utf8"), calc[nombre]
 
             def arreglar(m):

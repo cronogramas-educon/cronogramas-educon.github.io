@@ -495,7 +495,21 @@ function pestanasReportes() {
 /** Menú fijo que marca la sección que se está leyendo, y botón para volver arriba. */
 function navegacion() {
   const enlaces = new Map([...document.querySelectorAll('#nav-hub a')].map((a) => [a.getAttribute('href').slice(1), a]));
-  const marcar = (id) => { for (const [k, a] of enlaces) { if (k === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); } };
+  // El menú puede no caber: se desvanece el borde mientras haya más enlaces a la derecha, y el de la sección actual se trae a la vista.
+  const nav = $('nav-hub');
+  const ajustar = () => { nav.classList.toggle('desborda', nav.scrollWidth > nav.clientWidth + 2); nav.classList.toggle('al-final', nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 2); };
+  nav.addEventListener('scroll', ajustar, { passive: true });
+  window.addEventListener('resize', ajustar);
+  const marcar = (id) => {
+    for (const [k, a] of enlaces) {
+      if (k !== id) { a.removeAttribute('aria-current'); continue; }
+      a.setAttribute('aria-current', 'true');
+      const r = a.getBoundingClientRect(), n = nav.getBoundingClientRect();
+      if (r.left < n.left || r.right > n.right) nav.scrollLeft += r.left - n.left - (n.width - r.width) / 2;
+    }
+    ajustar();
+  };
+  ajustar();
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((es) => {
       const vis = es.filter((x) => x.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];

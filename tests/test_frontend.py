@@ -877,7 +877,7 @@ def test_vercel_analitica_solo_en_cursos_y_enlaces_cortos(tmp_path):
     assert cortos["/compliance-anticorrupcion/"].startswith("/c/compliance-anticorrupcion-")
     assert not any("prueba" in s for s in cortos)
     assert cfg["headers"] and cfg["trailingSlash"] is True
-    assert all("_vercel/insights" in p.read_text(encoding="utf-8") for p in (tmp_path / "c").glob("*/index.html"))
+    assert all("_vercel/speed-insights" in p.read_text(encoding="utf-8") for p in (tmp_path / "c").glob("*/index.html"))
     assert not any("_vercel" in p.read_text(encoding="utf-8") for p in (tmp_path / "g").glob("*/index.html"))
 
 

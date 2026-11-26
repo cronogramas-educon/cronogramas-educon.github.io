@@ -142,3 +142,19 @@ def test_skill_empacada_funciona_sola_como_en_el_claude_de_un_pat(tmp_path, libr
     corre("escribir", libro, salida, "2026-03-02", tmp_path / "marcas.json")
     ws = openpyxl.load_workbook(salida)["Asistencia"]
     assert ws["D7"].value == 1 and ws["D8"].value == 0
+
+
+def test_escribe_aunque_excel_online_haya_renumerado_las_hojas(tmp_path, libro):
+    """Excel Online puede guardar la hoja Asistencia como sheet9.xml: se busca por nombre, no por número."""
+    renum = tmp_path / "renumerado.xlsx"
+    with zipfile.ZipFile(libro) as zin, zipfile.ZipFile(renum, "w", zipfile.ZIP_DEFLATED) as zout:
+        for it in zin.infolist():
+            datos = zin.read(it.filename)
+            if it.filename in ("xl/_rels/workbook.xml.rels", "[Content_Types].xml"):
+                datos = datos.replace(b"worksheets/sheet2.xml", b"worksheets/sheet9.xml")
+            nombre = it.filename.replace("worksheets/sheet2.xml", "worksheets/sheet9.xml").replace("worksheets/_rels/sheet2.xml.rels", "worksheets/_rels/sheet9.xml.rels")
+            zout.writestr(nombre, datos)
+    salida = tmp_path / "salida.xlsx"
+    at.escribir_marcas(renum, salida, "2026-03-02", {7: 1, 8: 0})
+    ws = openpyxl.load_workbook(salida)["Asistencia"]
+    assert ws["D7"].value == 1 and ws["D8"].value == 0

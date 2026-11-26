@@ -215,7 +215,7 @@
 /* ---- Menú fijo, con la sección activa, y utilizable en celular ---- */
 .nav-hub { gap: 2px; overflow-x: auto; scrollbar-width: none; }
 .nav-hub::-webkit-scrollbar { display: none; }
-.nav-hub a { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; padding: 8px 11px; font-size: .86rem; }
+.nav-hub a { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; padding: 8px 8px; font-size: .86rem; }
 .nav-hub a[aria-current] { background: var(--navy-800); color: #fff; box-shadow: inset 0 -2px 0 var(--red); }
 .insignia { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: var(--r-pill); background: var(--red); color: #fff; font: 800 .74rem/1 var(--font-display); }
 .btn-registrar { flex: none; padding: 8px 14px; border: 1.5px solid var(--navy-600); border-radius: var(--r-pill); color: var(--felt); font: 700 .86rem var(--font-body); text-decoration: none; white-space: nowrap; }
@@ -328,7 +328,7 @@
 .atajo { margin-left: 8px; color: var(--felt-2); font-weight: 600; }
 @media (hover: none) { .atajo { display: none; } }
 #urgente-lista, #cursos-lista { margin-top: 14px; }
-@media (max-width: 720px) { .nav-hub { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); padding-right: 24px; } }
+.nav-hub.desborda:not(.al-final) { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
 
 /* Asistencia dentro de la tarjeta de cada curso */
 .curso-asis { padding-top: 10px; border-top: 1px dashed var(--ink-2); }
