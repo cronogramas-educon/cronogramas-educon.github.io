@@ -1,63 +1,69 @@
 {
- "actualizado": "2026-11-26T15:09:11-05:00",
+ "actualizado": "2026-11-26T15:19:38-05:00",
  "programadas": 1,
- "dictadas": 0,
+ "dictadas": 1,
  "permitidas": 0,
  "estudiantes": 3,
- "promedio": null,
+ "promedio": 0.3333,
  "porEstado": {
-  "Perdió el mínimo": 0,
+  "Perdió el mínimo": 2,
   "En riesgo": 0,
   "Atención": 0,
-  "Al día": 3,
-  "Aprobó": 0
+  "Al día": 0,
+  "Aprobó": 1
  },
  "sinMarcar": 0,
  "porClase": [
   {
    "clase": 1,
-   "estado": "Sin dictar",
-   "asistieron": 0,
-   "marcadas": 0,
+   "estado": "Dictada",
+   "asistieron": 1,
+   "marcadas": 3,
    "de": 3
   }
  ],
  "lista": [
   {
    "n": 1,
-   "estado": "Al día",
+   "estado": "Perdió el mínimo",
    "asistio": 0,
-   "faltas": 0,
-   "quedan": 0,
-   "porcentaje": null,
-   "puedeLlegar": 1.0,
+   "faltas": 1,
+   "quedan": -1,
+   "porcentaje": 0.0,
+   "puedeLlegar": 0.0,
    "clave": "6ec6afad5e070dbe7bce5fa235a1b9a2",
    "seguimiento": "",
-   "marcas": {}
+   "marcas": {
+    "1": 0
+   }
   },
   {
    "n": 2,
-   "estado": "Al día",
+   "estado": "Perdió el mínimo",
    "asistio": 0,
-   "faltas": 0,
-   "quedan": 0,
-   "porcentaje": null,
-   "puedeLlegar": 1.0,
+   "faltas": 1,
+   "quedan": -1,
+   "porcentaje": 0.0,
+   "puedeLlegar": 0.0,
    "clave": "5c36caa31bb72b2e1e5264f3581abd08",
    "seguimiento": "",
-   "marcas": {}
+   "marcas": {
+    "1": 0
+   }
   },
   {
    "n": 3,
-   "estado": "Al día",
-   "asistio": 0,
+   "estado": "Aprobó",
+   "asistio": 1,
    "faltas": 0,
    "quedan": 0,
-   "porcentaje": null,
+   "porcentaje": 1.0,
    "puedeLlegar": 1.0,
    "clave": "edf2e9a4cae68306574646588588c5fb",
    "seguimiento": "",
-   "marcas": {}
+   "marcas": {
+    "1": 1
+   }
   }
  ],
  "sal": "prueba-para-registrar-curso-2028-1-cohorte-1-primera-vez-en-el-semestre",
