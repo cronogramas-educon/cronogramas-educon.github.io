@@ -554,3 +554,7 @@
 .tabla-alias th { background: var(--navy-800); color: #fff; font-weight: 700; }
 .opciones-reunion { margin: 8px 0; padding-left: 1.2em; list-style: disc; }
 .opciones-reunion li { margin-bottom: 4px; }
+.video-guia { margin: 6px 0 22px; max-width: 960px; }
+.video-guia video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--r-tag); border: 1px solid var(--navy-700); background: var(--navy-950); box-shadow: var(--sombra-tag); }
+.video-guia figcaption { margin-top: 10px; color: var(--felt-2); font-size: .9rem; }
+@media print { .video-guia { display: none; } }

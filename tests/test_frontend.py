@@ -895,3 +895,20 @@ def test_certificado_paso_a_paso(pagina, servidor, sitio):
     assert pagina.inner_text(".progreso-n") == "2"  # el avance sobrevive a la recarga
     pagina.click("[data-reiniciar]")
     assert pagina.inner_text(".progreso-n") == "0"
+
+
+def test_hub_video_de_reuniones_carga_con_la_csp(pagina, servidor, sitio):
+    """El video de la guía de reuniones se sirve del mismo sitio y la CSP (media-src 'self') lo deja reproducir."""
+    pagina.goto(f"{servidor}/{sitio['hub']}/index.html")
+    pagina.evaluate("document.querySelector('#guias').open = true; document.querySelectorAll('#guias .guia').forEach(d => d.open = true)")
+    errores = []
+    pagina.on("console", lambda m: "Content Security Policy" in m.text and errores.append(m.text))
+    pagina.reload()
+    pagina.evaluate("document.querySelector('#guias').open = true; document.querySelectorAll('#guias .guia').forEach(d => d.open = true)")
+    for _ in range(50):
+        if pagina.evaluate("(() => { const v = document.querySelector('.video-guia video'); return v.readyState >= 1 && v.duration > 100; })()"):
+            break
+        pagina.wait_for_timeout(200)
+    else:
+        raise AssertionError("el video no cargó")
+    assert errores == []

@@ -334,7 +334,7 @@ def _blindar(html):
     sin conexiones externas, y sin Referer para que la URL secreta del hub no viaje a SharePoint ni a ningún enlace."""
     hashes = "".join(f" 'sha256-{base64.b64encode(hashlib.sha256(m.encode()).digest()).decode()}'"
                      for m in re.findall(r"<script[^>]*>(.+?)</script>", html, re.S) if m.strip())
-    csp = ("default-src 'none'; script-src 'self'" + hashes + "; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; "
+    csp = ("default-src 'none'; script-src 'self'" + hashes + "; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self'; font-src 'self'; "
            "connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'")
     return html.replace('<meta charset="utf-8">', f'<meta charset="utf-8">\n  <meta http-equiv="Content-Security-Policy" content="{csp}">\n  <meta name="referrer" content="no-referrer">', 1)
 
