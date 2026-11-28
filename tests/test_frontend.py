@@ -912,3 +912,22 @@ def test_hub_video_de_reuniones_carga_con_la_csp(pagina, servidor, sitio):
     else:
         raise AssertionError("el video no cargó")
     assert errores == []
+
+
+def test_reporte_de_horas_descuenta_inasistencia_y_paga_reemplazo(pagina, servidor, sitio):
+    """El reporte es la base del pago: quien no asistió no cobra esa clase y quien la reemplazó sí; la página de estudiantes no lo muestra."""
+    pagina.goto(f"{servidor}/{sitio['hub']}/index.html")
+    pagina.wait_for_selector("#rep-docentes tbody tr", state="attached")
+    pagina.evaluate("document.querySelector('#reportes').open = true")
+    nov = pagina.inner_text("#rep-novedades")
+    assert "No asistió: no se le pagan estas horas" in nov and "Persona Reemplazo" in nov and "Reemplazó" in nov
+    filas = pagina.eval_on_selector_all("#rep-docentes tbody tr", "rs => rs.map(r => [...r.children].map(c => c.textContent.trim()))")
+    reemp = next(f for f in filas if f[0] == "Persona Reemplazo")
+    assert reemp[1] == "1" and any(f[4] for f in filas)  # una clase pagada al reemplazo y horas no pagadas a la docente
+    with pagina.expect_download() as dl:
+        pagina.click("#rep-csv")
+    texto = open(dl.value.path(), encoding="utf-8-sig").read()
+    assert "Horas no pagadas por inasistencia" in texto and "Novedad;Persona Reemplazo" in texto
+    pagina.goto(f"{servidor}/{sitio['a']}/index.html")
+    pagina.wait_for_timeout(800)
+    assert "Persona Reemplazo" not in pagina.content()

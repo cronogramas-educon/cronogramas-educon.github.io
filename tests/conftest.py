@@ -77,6 +77,10 @@ def sitio(tmp_path_factory):
     datos_b.write_text(json.dumps(d3), encoding="utf-8")
     asistencia.aplicar(_filas_cierre(), t / "cursos" / B)
     datos_b.write_text(completo, encoding="utf-8")
+    # novedad de pago en el curso A: la docente de la clase 1 no asistió y la reemplazó otra persona
+    c1 = json.loads((t / "cursos" / A / "data/data.json").read_text(encoding="utf-8"))["clases"][0]
+    (t / "cursos" / A / "estado/novedades.json").write_text(json.dumps([{"id": c1["id"], "clase": c1["clase"], "fecha": c1["fecha"], "horas": c1["horas"],
+        "dictada": True, "noAsistio": c1["profesores"], "reemplazo": ["Persona Reemplazo"]}]), encoding="utf-8")
     out = cu.armar_sitio(t / "_sitio", "test", raiz=t)
     por = {c["id"]: c for c in reg["cursos"]}
     return {"dir": out, "a": cu.sitio_ruta(por[A]), "b": cu.sitio_ruta(por[B]), "hub": f"g/{reg['global']['adminCodigo']}",

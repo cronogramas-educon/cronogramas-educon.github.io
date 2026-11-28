@@ -229,21 +229,26 @@ function seccionReportes(rs) {
   const rep = reportes(sel, ahora());
   const tabla = (cab, filas) => `<div class="tabla-envoltura"><table class="tabla-pend"><thead><tr>${cab.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${filas.map((f) => `<tr>${f.map((c, i) => (i ? `<td>${c}</td>` : `<th scope="row">${c}</th>`)).join('')}</tr>`).join('')}</tbody></table></div>`;
   const n1 = (e) => String(Math.round(e * 10) / 10).replace('.', ',');
-  $('rep-docentes').innerHTML = tabla(['Docente', 'Clases', 'Horas', 'Ya realizadas', 'Cursos'], rep.docentes.map((e) => [esc(e.k), e.clases, esc(horasTxt(e)), n1(e.hechas), esc(e.cursos.join(', '))]));
+  $('rep-docentes').innerHTML = tabla(['Docente', 'Clases', 'Horas a pagar', 'Ya realizadas', 'No asistió (horas)', 'Cursos'], rep.docentes.map((e) => [esc(e.k), e.clases, esc(horasTxt(e)), n1(e.hechas), e.descontadas ? `<span class="rep-desc">${n1(e.descontadas)}</span>` : '', esc(e.cursos.join(', '))]));
+  $('rep-novedades').innerHTML = rep.novedades.length
+    ? tabla(['Docente', 'Curso', 'Clase', 'Fecha', 'Horas', 'Qué pasó'], rep.novedades.map((n) => [esc(n.docente), esc(n.curso), esc(n.clase), esc(n.fecha ? fechaLargaAnio(n.fecha) : 'Sin fecha'), n1(n.horas), esc(n.que)]))
+    : '<p class="nota">Ninguna novedad en este periodo. Si un docente no llega a una clase, escribe su nombre en la columna «Docente que no asistió» del Cuadro de horas.</p>';
+  $('cuenta-novedades').textContent = rep.novedades.length ? `${rep.novedades.length} ${rep.novedades.length === 1 ? 'novedad' : 'novedades'}` : '';
   $('rep-sel').textContent = `Mostrando: ${periodoSel ? `periodo ${periodoSel}` : 'todos los periodos'}. ${rep.docentes.length} ${rep.docentes.length === 1 ? 'docente' : 'docentes'}, ${rep.cursos.length} ${rep.cursos.length === 1 ? 'curso' : 'cursos'}.`;
   $('rep-cursos').innerHTML = tabla(['Curso', 'Periodo', 'Clases', 'Horas', 'Docentes'], rep.cursos.map((e) => [esc(e.nombre), esc(e.periodo || 'Por confirmar'), e.clases, esc(horasTxt(e)), e.docentes]));
   $('rep-meses').innerHTML = tabla(['Mes', 'Clases', 'Horas'], rep.meses.map((e) => [esc(cap(mesAnio(e.k))), e.clases, esc(horasTxt(e))]));
-  $('rep-nota').textContent = 'Las horas salen de la columna Horas del Excel. Donde esa casilla está vacía se calculan con el horario del curso y se marcan como estimadas. Una clase con dos docentes cuenta completa para cada uno.';
+  $('rep-nota').textContent = 'Las horas salen de la columna Horas del Excel. Donde esa casilla está vacía se calculan con el horario del curso y se marcan como estimadas. Una clase con dos docentes cuenta completa para cada uno. Si en el Cuadro de horas una clase tiene «Docente que no asistió», esas horas no se le pagan a esa persona; si tiene «Reemplazo», se le pagan a quien la reemplazó. Una clase Cancelada no suma horas a nadie.';
   reporteActual = rep;
 }
 let reporteActual = null;
 const descargar = (nombre, texto) => { const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([texto], { type: 'text/csv;charset=utf-8' })), download: nombre }); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
 const csvReporte = () => {
   const r = reporteActual, h = (e) => Math.round(e.horas * 10) / 10;
-  return csv(['Tipo', 'Nombre', 'Periodo', 'Clases', 'Horas', 'Horas estimadas con el horario (clases)', 'Horas ya realizadas'], [
-    ...r.docentes.map((e) => ['Docente', e.k, '', e.clases, h(e), e.estimadas, Math.round(e.hechas * 10) / 10]),
-    ...r.cursos.map((e) => ['Curso', e.nombre, e.periodo, e.clases, h(e), e.estimadas, Math.round(e.hechas * 10) / 10]),
-    ...r.meses.map((e) => ['Mes', e.k, '', e.clases, h(e), e.estimadas, Math.round(e.hechas * 10) / 10])]);
+  return csv(['Tipo', 'Nombre', 'Periodo', 'Clases', 'Horas', 'Horas estimadas con el horario (clases)', 'Horas ya realizadas', 'Horas no pagadas por inasistencia', 'Detalle'], [
+    ...r.docentes.map((e) => ['Docente', e.k, '', e.clases, h(e), e.estimadas, Math.round(e.hechas * 10) / 10, Math.round((e.descontadas || 0) * 10) / 10, '']),
+    ...r.novedades.map((n) => ['Novedad', n.docente, n.periodo, '', '', '', '', n.tipo === 'falta' ? Math.round(n.horas * 10) / 10 : '', `${n.curso}, ${n.clase}, ${n.fecha}: ${n.que}`]),
+    ...r.cursos.map((e) => ['Curso', e.nombre, e.periodo, e.clases, h(e), e.estimadas, Math.round(e.hechas * 10) / 10, '', '']),
+    ...r.meses.map((e) => ['Mes', e.k, '', e.clases, h(e), e.estimadas, Math.round(e.hechas * 10) / 10, '', ''])]);
 };
 
 async function pintar(meta) {
@@ -251,8 +256,8 @@ async function pintar(meta) {
   preguntasBienv = meta.preguntasBienvenida || {};
   encuestaUrl = meta.encuestaSatisfaccion || '';
   const rs = await Promise.all(meta.cursos.map(async (c) => {
-    const [d, error, asis] = await Promise.all([c.tieneDatos && traer(`${new URL(`${c.ruta}/data/data.json`, BASE)}`), c.tieneError && traer(`${new URL(`${c.ruta}/estado/error.json`, BASE)}`), c.tieneAsistencia && traer(`asistencia/${c.id}.json`)]);
-    return Object.assign(analizar(c, d, error), { asis: asis || null });
+    const [d, error, asis, nov] = await Promise.all([c.tieneDatos && traer(`${new URL(`${c.ruta}/data/data.json`, BASE)}`), c.tieneError && traer(`${new URL(`${c.ruta}/estado/error.json`, BASE)}`), c.tieneAsistencia && traer(`asistencia/${c.id}.json`), c.tieneNovedades && traer(`novedades/${c.id}.json`)]);
+    return Object.assign(analizar(c, d, error), { asis: asis || null, novedades: nov || [] });
   }));
   ultimosRs = rs;
   const fallos = rs.filter((r) => r.fallo);

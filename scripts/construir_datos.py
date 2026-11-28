@@ -13,6 +13,9 @@ from pathlib import Path
 HOJA = "DISTRIBUCIÓN HORAS"
 COLS = ["No.", "Unidad", "Tema", "Horas", "No. de clase", "Profesor", "Día", "Fecha", "Asistente PAT", "Link de reunión"]
 SITUACION = "Situación"  # columna K, opcional: "Cancelada" saca la clase del cómputo (conserva su número "No.")
+NO_ASISTIO = "Docente que no asistió"  # columna L, opcional: a esa persona no se le pagan las horas de la clase
+REEMPLAZO = "Reemplazo"  # columna M, opcional: quien dictó la clase en su lugar; se le pagan esas horas
+OPCIONALES = (SITUACION, NO_ASISTIO, REEMPLAZO)
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 BOGOTA = timezone(timedelta(hours=-5))  # sin horario de verano
 
@@ -106,9 +109,10 @@ def leer_xlsx(ruta):
         vistos = {limpiar(c.value) for r in range(1, 15) for c in ws[r][:10]}
         faltan = [c for c in COLS if c not in vistos]
         raise ErrorDatos(f"No se encontró la fila de encabezados exactos A:J. Columnas que faltan: {faltan or 'orden distinto'}")
-    # A:J más la Situación (K) si existe; se ignora todo lo demás
-    k = limpiar(ws.cell(hdr, 11).value) == SITUACION
-    return [[ws.cell(r, c).value for c in range(1, 12 if k else 11)] for r in range(hdr + 1, ws.max_row + 1)]
+    # A:J más las columnas opcionales (Situación, Docente que no asistió, Reemplazo) donde estén; se ignora todo lo demás
+    pos = {limpiar(ws.cell(hdr, c).value): c for c in range(11, ws.max_column + 1)}
+    extra = [pos.get(n) for n in OPCIONALES]
+    return [[ws.cell(r, c).value for c in range(1, 11)] + [ws.cell(r, c).value if c else None for c in extra] for r in range(hdr + 1, ws.max_row + 1)]
 
 
 def leer_json(ruta):
@@ -121,7 +125,7 @@ def leer_json(ruta):
     datos = [{deco(k): v for k, v in d.items()} for d in datos]
     if datos and not set(COLS) <= set(datos[0]):
         raise ErrorDatos(f"El JSON no trae las columnas obligatorias: {[c for c in COLS if c not in datos[0]]}")
-    return [[d.get(c) for c in COLS] + [d.get(SITUACION)] for d in datos]
+    return [[d.get(c) for c in COLS] + [d.get(n) for n in OPCIONALES] for d in datos]
 
 
 def hhmm_a_min(h):
@@ -168,11 +172,33 @@ def cancelada(v):
     return len(v) > 10 and limpiar(v[10]).lower().startswith("cancelad")
 
 
+def _personas(v, i, alias):
+    return con_alias(v[i], alias)[0] if len(v) > i and limpiar(v[i]) else []
+
+
+def _novedad(v, num, horas, fecha, profesores, alias, avisos, dictada):
+    """Docente que no asistió (L) y reemplazo (M) de una fila. None si la fila no tiene novedad. Es la base del pago a docentes."""
+    faltan, reemplazo = _personas(v, 11, alias), _personas(v, 12, alias)
+    if not (faltan or reemplazo):
+        return None
+    clase = limpiar(v[4])
+    norm = lambda x: limpiar(x).lower()
+    desconocidos = [p for p in faltan if norm(p) not in {norm(q) for q in profesores}]
+    if desconocidos:
+        avisos.append(f"{clase}: «{', '.join(desconocidos)}» en «{NO_ASISTIO}» no es docente de esa clase (revisa el nombre); no se le descuentan horas")
+    descontados = [p for p in profesores if norm(p) in {norm(q) for q in faltan}]
+    if reemplazo and not dictada:
+        avisos.append(f"{clase} está Cancelada: el reemplazo no suma horas porque la clase no se dictó")
+        reemplazo = []
+    return {"id": num, "clase": clase, "fecha": fecha, "horas": horas, "dictada": dictada,
+            "noAsistio": descontados, "reemplazo": reemplazo}
+
+
 def filas_a_clases(filas, cfg):
     alias = cfg.get("aliasPersonas", {})
     """Devuelve (clases, avisos, canceladas). Una clase marcada Cancelada en la columna Situación no es una clase del curso: no cuenta en horas,
     asistencia, calendario ni alertas, pero conserva su número, así que las demás no se renumeran."""
-    clases, avisos, canceladas, ant_tema, ant_raw = [], [], [], "", ""
+    clases, avisos, canceladas, ant_tema, ant_raw, novedades = [], [], [], "", "", []
     sin_fecha = 0
     sin_clase = 0  # filas con datos de una clase (unidad, tema, profesor o fecha) pero sin «CLASE N»
     for v in filas:
@@ -190,6 +216,9 @@ def filas_a_clases(filas, cfg):
             except ErrorDatos:
                 f = ""
             canceladas.append({"id": num, "clase": limpiar(v[4]), "unidad": limpiar(v[1]), "fecha": f})
+            nv = _novedad(v, num, entero_o_none(v[3]), f, con_alias(v[5], alias)[0], alias, avisos, False)
+            if nv:
+                novedades.append(nv)
             continue
         if v[7] is None or not str(v[7]).strip():  # fila a medio llenar (Excel guarda solo mientras se escribe): se publica cuando tenga fecha
             avisos.append(f"{limpiar(v[4])} no tiene fecha: no se publica hasta que la tenga")
@@ -217,6 +246,9 @@ def filas_a_clases(filas, cfg):
             avisos.append(f"{c['clase']} tiene un enlace de Teams que no empieza por https:// (se ignora)")
             c["linkTeams"] = ""
         clases.append(c)
+        nv = _novedad(v, num, horas, c["fecha"], c["profesores"], alias, avisos, True)
+        if nv:
+            novedades.append(nv)
     if not clases and sin_fecha:
         raise SinClases(f"Ninguna clase tiene fecha todavía ({sin_fecha} sin fecha).")
     if not clases and sin_clase:
@@ -234,6 +266,7 @@ def filas_a_clases(filas, cfg):
         n = sum(1 for c in clases if vacio(c))
         if n:
             avisos.append(f"{n} de {len(clases)} clases sin {etiqueta}")
+    filas_a_clases.novedades = novedades  # ponytail: atributo para no cambiar la firma que usan varios llamadores
     return clases, avisos, canceladas
 
 
@@ -337,6 +370,14 @@ def construir(entrada, raiz, modo_json=False, ahora=None, modificado=""):
     estado, activos = aplicar_cambios(clases, estado, ahora, cfg["diasAvisoCambio"])
     datos = armar(clases, cfg, activos, ahora, modificado, canceladas)
     ruta_datos = raiz / "data/data.json"
+    # Novedades de pago (docente que no asistió, reemplazos): solo para el sitio de administración, nunca en la página de estudiantes
+    ruta_nov = raiz / "estado/novedades.json"
+    nov = filas_a_clases.novedades
+    if nov:
+        ruta_nov.parent.mkdir(exist_ok=True)
+        ruta_nov.write_text(json.dumps(nov, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    else:
+        ruta_nov.unlink(missing_ok=True)
     if ruta_datos.exists() and json.loads(ruta_datos.read_text(encoding="utf-8"))["meta"]["hash"] == datos["meta"]["hash"]:
         return None, avisos
     from generar_ics import generar

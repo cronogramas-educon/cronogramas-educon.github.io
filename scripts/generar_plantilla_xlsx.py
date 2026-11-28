@@ -10,9 +10,9 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.worksheet.table import Table, TableStyleInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from construir_datos import COLS, HOJA, SITUACION
+from construir_datos import COLS, HOJA, NO_ASISTIO, REEMPLAZO, SITUACION
 
-ANCHOS = [7, 38, 68, 9, 14, 30, 13, 13, 18, 40, 14]
+ANCHOS = [7, 38, 68, 9, 14, 30, 13, 13, 18, 40, 14, 26, 26]
 FILAS = 300  # filas con validación
 AYUDA = [
     "PLANTILLA DEL EXCEL DE UN CURSO",
@@ -33,8 +33,9 @@ AYUDA = [
     "Fecha: una fecha real de Excel. El Día se corrige solo en la página si no coincide.",
     "Link de reunión: la dirección completa de Teams, que empieza por https://",
     "Situación (columna K): déjala vacía mientras la clase siga. Si se cancela, elige Cancelada: la clase deja de contar en horas, asistencia y calendario, y la página avisa. NO borres la fila ni cambies los números: las demás clases conservan su número y la asistencia sigue alineada.",
+    "Docente que no asistió (columna L): si un docente no llegó a su clase, escribe aquí su nombre tal como está en Profesor. Esas horas no se le pagan en el reporte de horas, que es la base del pago. Si la clase la dictó otra persona, escribe su nombre en Reemplazo (columna M) y las horas se le pagan a ella. Si la clase no se dictó, además elige Cancelada en Situación.",
     "El archivo debe llamarse Cuadro de horas módulos y profesores. No guardes esta plantilla con ese nombre en una carpeta de curso hasta llenarla.",
-    "Todo lo de las columnas A a J se publica. No pongas correos, teléfonos ni datos de pago.",
+    "Todo lo de las columnas A a J se publica en la página del curso. Las columnas L y M solo las ve el sitio de administración. No pongas correos, teléfonos ni datos de pago.",
 ]
 
 
@@ -43,18 +44,18 @@ def main(salida):
     ws = wb.active
     ws.title = HOJA
     ws.row_dimensions[1].height = 14.25
-    for j, (t, w) in enumerate(zip(COLS + [SITUACION], ANCHOS), 1):
+    for j, (t, w) in enumerate(zip(COLS + [SITUACION, NO_ASISTIO, REEMPLAZO], ANCHOS), 1):
         c = ws.cell(2, j, t)
         c.font, c.fill = Font(bold=True, name="Calibri", size=11), PatternFill("solid", fgColor="5B9BD5")
         c.alignment = Alignment(horizontal="left" if j == 10 else "center", vertical="center", wrap_text=True)
         ws.column_dimensions[c.column_letter].width = w
     ws.row_dimensions[2].height = 21.75
     for r in range(3, FILAS + 3):
-        for j in range(1, 12):
-            ws.cell(r, j).alignment = Alignment(horizontal="left" if j in (3, 6, 10) else "center", vertical="center", wrap_text=True)
+        for j in range(1, 14):
+            ws.cell(r, j).alignment = Alignment(horizontal="left" if j in (3, 6, 10, 12, 13) else "center", vertical="center", wrap_text=True)
         ws.cell(r, 8).number_format = "dd/mm/yyyy"
         ws.cell(r, 5).font = Font(bold=True, name="Calibri", size=11)
-    t = Table(displayName="Table1", ref="A2:K3")
+    t = Table(displayName="Table1", ref="A2:M3")
     t.tableStyleInfo = TableStyleInfo(name="TableStyleMedium20", showRowStripes=True)
     ws.add_table(t)
 

@@ -454,7 +454,7 @@ def armar_sitio(salida, version="dev", raiz=RAIZ, redirigir=False, vercel=False)
         (destino / "index.html").write_text(_html(
             raiz / "plantilla/curso.html", V=version, BASE="../../", ID=c["id"], NOMBRE=_esc(con_tipo(c["programaCorto"], c["tipo"])), DESC=_esc(desc)), encoding="utf-8")
         resumen.append({"id": c["id"], "periodo": c.get("periodo", ""), "cohorte": c.get("cohorte", ""), "ruta": sitio_ruta(c), "tieneDatos": (origen / "data/data.json").exists(),
-                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "bienvenida": c["id"] in bienvenidas, "bienvenidaEnviada": enviadas.get(c["id"], {}).get("fecha", ""), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"], "encuesta": c.get("encuesta", ""),
+                        "tieneError": (origen / "estado/error.json").exists(), "tieneAsistencia": c["id"] in asistencias, "tieneNovedades": (origen / "estado/novedades.json").exists(), "bienvenida": c["id"] in bienvenidas, "bienvenidaEnviada": enviadas.get(c["id"], {}).get("fecha", ""), "programa": con_tipo(c["programa"], c["tipo"]), "programaCorto": con_tipo(c["programaCorto"], c["tipo"]), "tipo": c["tipo"], "encuesta": c.get("encuesta", ""),
                         "urlPaginaOficial": c.get("urlPaginaOficial", ""), "carpetaSharePoint": quote(f"{base_sharepoint(c['carpeta'], g)}/{c['carpeta']}", safe=":/")})
     if len(g.get("adminCodigo", "")) < 10:
         raise SystemExit("Falta el secreto ADMIN_CODIGO (mínimo 10 caracteres): el código del hub ya no está en el repositorio.")
@@ -464,6 +464,11 @@ def armar_sitio(salida, version="dev", raiz=RAIZ, redirigir=False, vercel=False)
         (hub / "asistencia").mkdir()
         for cid, arch in asistencias.items():
             shutil.copy(arch, hub / "asistencia" / f"{cid}.json")
+    novedades = [c["id"] for c in reg["cursos"] if (raiz / "cursos" / c["id"] / "estado/novedades.json").exists()]
+    if novedades:  # pago de docentes: solo el sitio de administración las ve, nunca la página de estudiantes
+        (hub / "novedades").mkdir()
+        for cid in novedades:
+            shutil.copy(raiz / "cursos" / cid / "estado/novedades.json", hub / "novedades" / f"{cid}.json")
     if bienvenidas:
         (hub / "bienvenida").mkdir()
         for cid, texto in bienvenidas.items():

@@ -299,7 +299,7 @@ def test_plantilla_maestra_cumple_el_formato(tmp_path):
     gp.main(f)
     ws = load_workbook(f)[cd.HOJA]
     assert [ws.cell(2, j).value for j in range(1, 11)] == cd.COLS and "Table1" in ws.tables
-    assert len(ws.data_validations.dataValidation) == 6 and ws.cell(2, 11).value == "Situación" and ws.tables["Table1"].ref == "A2:K3"
+    assert len(ws.data_validations.dataValidation) == 6 and ws.cell(2, 11).value == "Situación" and ws.cell(2, 12).value == "Docente que no asistió" and ws.cell(2, 13).value == "Reemplazo" and ws.tables["Table1"].ref == "A2:M3"
 
 
 def test_clase_cancelada_sale_del_computo_y_conserva_los_numeros(raiz, tmp_path):
@@ -393,3 +393,32 @@ def test_curso_nuevo_con_clases_aun_sin_fecha_no_es_error(raiz, tmp_path, monkey
             ws.cell(r, 8).value = None
     assert _main(monkeypatch, xlsx_con(tmp_path, "f.xlsx", sin_fechas), raiz) == 0
     assert not (raiz / "estado/error.json").exists()
+
+
+def _con_novedades(ws):
+    """Columnas opcionales en otro orden (L Reemplazo, M Situación, N Docente que no asistió): se leen por nombre."""
+    ws.cell(2, 12, "Reemplazo"); ws.cell(2, 13, "Situación"); ws.cell(2, 14, "Docente que no asistió")
+    f1, f2, f3 = fila_de(ws, 1), fila_de(ws, 2), fila_de(ws, 3)
+    ws.cell(f1, 14, ws.cell(f1, 6).value); ws.cell(f1, 12, "Ana Reemplazo")          # faltó, con reemplazo
+    ws.cell(f2, 14, "Nadie Conocido")                                                 # nombre que no es docente de la clase
+    ws.cell(f3, 14, ws.cell(f3, 6).value); ws.cell(f3, 13, "Cancelada")               # faltó y se canceló
+
+
+def test_novedades_de_pago_salen_del_cuadro_y_no_van_a_la_pagina(raiz, tmp_path):
+    p = xlsx_con(tmp_path, "n.xlsx", _con_novedades)
+    datos, avisos = cd.construir(p, raiz)
+    nov = json.loads((raiz / "estado/novedades.json").read_text(encoding="utf-8"))
+    por_id = {n["id"]: n for n in nov}
+    prof1 = next(c for c in datos["clases"] if c["id"] == 1)["profesores"]
+    assert por_id[1]["dictada"] and por_id[1]["noAsistio"] == prof1 and por_id[1]["reemplazo"] == ["Ana Reemplazo"]
+    assert por_id[2]["noAsistio"] == [] and any("Nadie Conocido" in a for a in avisos)
+    assert not por_id[3]["dictada"] and all(c["id"] != 3 for c in datos["clases"])
+    publico = json.dumps(datos, ensure_ascii=False)
+    assert "noAsistio" not in publico and "Ana Reemplazo" not in publico  # la página de estudiantes no se entera
+
+
+def test_sin_novedades_no_queda_archivo(raiz, tmp_path):
+    (raiz / "estado").mkdir()
+    (raiz / "estado/novedades.json").write_text("[]", encoding="utf-8")
+    cd.construir(xlsx_con(tmp_path, "s.xlsx", lambda ws: None), raiz)
+    assert not (raiz / "estado/novedades.json").exists()

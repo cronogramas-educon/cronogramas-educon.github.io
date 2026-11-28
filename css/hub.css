@@ -558,3 +558,5 @@
 .video-guia video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--r-tag); border: 1px solid var(--navy-700); background: var(--navy-950); box-shadow: var(--sombra-tag); }
 .video-guia figcaption { margin-top: 10px; color: var(--felt-2); font-size: .9rem; }
 @media print { .video-guia { display: none; } }
+.rep-titulo { margin: 28px 0 8px; display: flex; gap: 10px; align-items: center; font-size: 1.1rem; }
+.rep-desc { color: var(--red); font-weight: 700; }

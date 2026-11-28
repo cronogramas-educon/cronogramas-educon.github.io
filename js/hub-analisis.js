@@ -90,20 +90,44 @@ export function horasDe(c) {
 
 /** Totales por docente, por curso y por mes. Una clase con dos docentes cuenta completa para cada uno. */
 export function reportes(rs, t) {
-  const doc = new Map(), cur = new Map(), mes = new Map();
-  const suma = (m, k, extra) => { const e = m.get(k) ?? { clases: 0, horas: 0, hechas: 0, estimadas: 0, ...extra }; m.set(k, e); return e; };
+  const doc = new Map(), cur = new Map(), mes = new Map(), novedades = [];
+  const suma = (m, k, extra) => { const e = m.get(k) ?? { clases: 0, horas: 0, hechas: 0, estimadas: 0, descontadas: 0, ...extra }; m.set(k, e); return e; };
+  // Novedades del Cuadro de horas (docente que no asistió, reemplazo) por curso y número de clase: este reporte es la base del pago
+  const nov = new Map();
+  for (const r of rs) for (const n of r.novedades ?? []) nov.set(`${r.c.id}|${n.id}`, n);
   for (const { c, curso } of clases(rs)) {
     const { h, estimada } = horasDe(c), hecha = estadoClase(c, t) === 'pasada';
     const acum = (e) => { e.clases++; e.horas += h; if (hecha) e.hechas += h; if (estimada) e.estimadas++; return e; };
     const ec = acum(suma(cur, curso.id, { nombre: curso.programaCorto + (curso.cohorte ? `, ${curso.cohorte}` : ''), periodo: curso.periodo || '', docentes: new Set() }));
-    c.profesores.forEach((p) => { ec.docentes.add(p); acum(suma(doc, p, { cursos: new Set() })).cursos.add(curso.programaCorto); });
+    const n = nov.get(`${curso.id}|${c.id}`), faltan = new Set(n?.noAsistio ?? []);
+    const cursoTxt = curso.programaCorto + (curso.cohorte ? `, ${curso.cohorte}` : '');
+    c.profesores.forEach((p) => {
+      if (faltan.has(p)) {
+        suma(doc, p, { cursos: new Set() }).descontadas += h;
+        novedades.push({ docente: p, curso: cursoTxt, periodo: curso.periodo || '', clase: c.clase, fecha: c.fecha, horas: h, tipo: 'falta', que: "No asistió: no se le pagan estas horas" });
+        return;
+      }
+      ec.docentes.add(p); acum(suma(doc, p, { cursos: new Set() })).cursos.add(curso.programaCorto);
+    });
+    for (const p of n?.reemplazo ?? []) {
+      if (c.profesores.includes(p)) continue;  // ya cobra la clase como docente
+      ec.docentes.add(p); acum(suma(doc, p, { cursos: new Set() })).cursos.add(curso.programaCorto);
+      novedades.push({ docente: p, curso: cursoTxt, periodo: curso.periodo || '', clase: c.clase, fecha: c.fecha, horas: h, tipo: 'reemplazo', que: `Reemplazó${n.noAsistio.length ? ` a ${n.noAsistio.join(' y ')}` : ''}: se pagan las horas` });
+    }
     acum(suma(mes, c.fecha.slice(0, 7), {}));
   }
+  // Clases canceladas con docente que no asistió: no suman horas a nadie, pero quedan en el registro
+  for (const r of rs) for (const n of r.novedades ?? []) {
+    if (n.dictada) continue;
+    for (const p of n.noAsistio) novedades.push({ docente: p, curso: r.c.programaCorto + (r.c.cohorte ? `, ${r.c.cohorte}` : ''), periodo: r.c.periodo || '', clase: n.clase, fecha: n.fecha, horas: n.horas ?? 0, tipo: 'cancelada', que: 'No asistió y la clase se canceló: no suma horas' });
+  }
+  novedades.sort((a, b) => (a.fecha || '').localeCompare(b.fecha || '') || a.docente.localeCompare(b.docente, 'es'));
   const ord = (m, f) => [...m.entries()].map(([k, v]) => ({ k, ...v })).sort(f);
   return {
     docentes: ord(doc, (a, b) => b.horas - a.horas || a.k.localeCompare(b.k, 'es')).map((e) => ({ ...e, cursos: [...e.cursos] })),
     cursos: ord(cur, (a, b) => a.nombre.localeCompare(b.nombre, 'es')).map((e) => ({ ...e, docentes: e.docentes.size })),
     meses: ord(mes, (a, b) => a.k.localeCompare(b.k)),
+    novedades,
   };
 }
 

@@ -36,6 +36,16 @@ Dentro de la tabla (hoja `DISTRIBUCIÓN HORAS`, columnas A a J):
 
 Si dejas un tema vacío, la página usa el de la clase anterior. Si la columna `Día` no coincide con la fecha, la página muestra el día correcto.
 
+## Docente que no asistió (pago de horas)
+
+El reporte de horas del sitio de administración es la base del pago a docentes. Para registrar que un docente no llegó a una clase, en el Cuadro de horas del curso:
+
+- Columna **Docente que no asistió**: escribe su nombre tal como está en Profesor. Esas horas no se le cuentan. Si la clase tenía dos docentes, solo se descuenta a quien escribiste.
+- Columna **Reemplazo** (opcional): quien dictó la clase en su lugar. Esas horas se le cuentan a esa persona.
+- Si la clase no se dictó, además elige **Cancelada** en Situación: no suma horas a nadie y queda en el registro.
+
+Si las columnas no existen en un Cuadro viejo, escribe los encabezados exactos a la derecha de Situación; la tabla crece sola. El reporte muestra «Novedades de pago» con cada caso y el archivo para Excel incluye las horas no pagadas. Estas columnas no se publican en la página de estudiantes, pero el repositorio es público: el dato queda en `cursos/<curso>/estado/novedades.json`.
+
 ## Qué no debes hacer
 
 - Renombrar la hoja `DISTRIBUCIÓN HORAS`, la carpeta del curso o el archivo (el nombre debe seguir empezando por `Cuadro de horas`).
