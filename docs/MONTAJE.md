@@ -83,7 +83,7 @@ Todo lo nuevo vive en la cuenta institucional `educofdcp@unisabana.edu.co`, no e
 - **`Registro de cursos.xlsx`** en la raíz: el registro único, con las columnas Cohorte, Clave (se calcula sola) y Estado (lo escribe el sistema). Los 8 cursos de 2026-2 que ya existían siguen en el sitio Especializaciones hasta que terminen; sus filas dicen "Ya existía antes del sitio EduContinua".
 - **Formulario "Registrar curso o diplomado nuevo"** (Microsoft Forms, cuenta educofdcp): la forma más fácil de registrar un curso. Cada respuesta agrega una fila al registro.
 - **Flujos de Power Automate (cuenta educofdcp):**
-  1. *Cronograma a GitHub (EduContinua):* se dispara al guardar el registro o un "Cuadro de horas" del sitio (nunca la plantilla), lee la tabla `Table1` y manda las filas crudas a GitHub en el evento `excel-actualizado`. No necesita el paso Seleccionar: el procesador toma solo las columnas que conoce.
+  1. *Cronograma a GitHub (EduContinua):* se dispara al guardar el registro o un "Cuadro de horas" del sitio (nunca la plantilla), lee la tabla `Table1` pasa por `Select` y manda las filas a GitHub en el evento `excel-actualizado`. El `Select` nombra cada columna: una columna nueva del Cuadro solo llega si se agrega allí (así se agregaron «Docente que no asistió» y «Reemplazo» el 28 de noviembre de 2026).
   2. *Preparar curso nuevo:* por cada fila del registro con Estado vacío crea la carpeta `periodo/cohorte/curso`, copia la plantilla y escribe el Estado.
   3. *Registrar curso desde el formulario:* convierte cada respuesta en una fila del registro.
 

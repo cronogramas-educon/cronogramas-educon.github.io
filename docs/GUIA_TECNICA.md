@@ -85,6 +85,7 @@ Gotcha: el diseñador no dejó guardar una `Condition` con una rama de correo y 
 
 Gotchas conocidos del diseñador:
 - Los pasos Initialize variable no se pueden anidar.
+- El `Select` del flujo Cronograma lleva 13 columnas: las 10 de A:J, `Situación`, `Docente que no asistió` y `Reemplazo` (`@item()?['Docente que no asistió']`). Una columna que no esté allí nunca llega a GitHub aunque exista en la tabla.
 - En `Select` la tilde de `Situación` va literal; con `Situaci_x00f3_n` llega vacío. Los puntos de los encabezados llegan codificados (`No_x002e_`); el procesador los decodifica.
 - Las fechas llegan como número serial de Excel en texto; el procesador las convierte.
 - `Do until` exige `@` en las expresiones. Usar `int()` donde haga falta.
