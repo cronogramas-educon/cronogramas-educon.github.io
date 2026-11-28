@@ -17,7 +17,7 @@ END:VTIMEZONE
 BEGIN:VEVENT
 UID:clase-01@cronograma-prueba-para-registrar-curso-2028-1-cohorte-1-primer
  a-vez-en-el-semestre
-DTSTAMP:20261126T194714Z
+DTSTAMP:20261128T161949Z
 SEQUENCE:1
 DTSTART;TZID=America/Bogota:20261126T080000
 DTEND;TZID=America/Bogota:20261126T190000
